@@ -1,0 +1,256 @@
+package io.getstream;
+
+import io.getstream.exceptions.StreamException;
+import io.getstream.models.*;
+import io.getstream.services.Common;
+import java.util.*;
+import java.util.concurrent.TimeoutException;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+
+public class BasicTest {
+  protected static UserObject testUser;
+  protected static List<UserObject> testUsers = new ArrayList<>();
+
+  //  protected static ChannelStateResponse testChannelGetResponse;
+  //  protected static ChannelResponse testChannel;
+  //  protected static MessageResponse testMessage;
+
+  @BeforeAll
+  static void setup() throws StreamException, SecurityException, IllegalArgumentException {
+    setProperties();
+    // cleanChannels();
+    // cleanChannelTypes();
+    cleanBlocklists();
+    // cleanCommands();
+    upsertUsers();
+    // createTestChannel();
+    // createTestMessage();
+  }
+
+  //  private static void cleanChannels() throws StreamException {
+  //    while (true) {
+  //      List<String> channels =
+  //              new ChatClient.QueryChannels(QueryChannelsRequest.builder().build())
+  //              .request().getChannels().stream()
+  //              .map(channel -> channel.getChannel().getCid())
+  //              .collect(Collectors.toList());
+  //
+  //      if (channels.size() == 0) {
+  //        break;
+  //      }
+  //
+  //      var deleteManyResponse = new
+  // ChatClient.DeleteChannels(DeleteChannelsRequest.builder().cids(channels).hardDelete(true).build()).request();
+  //      String taskId = deleteManyResponse.getTaskId();
+  //      Assertions.assertNotNull(taskId);
+  //
+  //      System.out.printf("Waiting for channel deletion task %s to complete...\n", taskId);
+  //
+  //      while (true) {
+  //        GetTaskResponse response = new Common.GetTask(taskId).request();
+  //        String status = response.getStatus();
+  //
+  //        if (status.equals("completed") || status.equals("ok")) {
+  //          break;
+  //        }
+  //        if (status.equals("failed") || status.equals("error")) {
+  //          throw new StreamException(
+  //              String.format("Failed to delete channel(task_id: %s): %s", response.getTaskId(),
+  // status),
+  //              (Throwable) null);
+  //        }
+  //
+  //        // wait for the channels to delete
+  //        Assertions.assertDoesNotThrow(() -> Thread.sleep(500));
+  //      }
+  //    }
+  //  }
+
+  //  private static void cleanChannelTypes() throws StreamException {
+  //    new ChatClient.ListChannelTypes().request()
+  //        .getChannelTypes()
+  //        .values()
+  //        .forEach(
+  //            channelType -> {
+  //              try {
+  //                new ChatClient.DeleteChannelType(channelType.getName()).request();
+  //              } catch (StreamException e) {
+  //                // Do nothing. Happens when there are channels of that type
+  //              }
+  //            });
+  //  }
+
+  private static void cleanBlocklists() throws StreamException {
+    new Common.ListBlockLists()
+        .request()
+        .getBlocklists()
+        .forEach(
+            blocklist -> {
+              try {
+                new Common.DeleteBlockList(blocklist.getName()).request();
+              } catch (StreamException e) {
+                // Do nothing this happens for built in
+              }
+            });
+  }
+
+  //  private static void cleanCommands() throws StreamException {
+  //    new ChatClient.ListCommands()
+  //        .request()
+  //        .getCommands()
+  //        .forEach(
+  //            command -> {
+  //              try {
+  //                new ChatClient.DeleteCommand(command.getName()).request();
+  //              } catch (StreamException e) {
+  //                // Do nothing
+  //              }
+  //            });
+  //
+  //    waitFor(
+  //        () -> {
+  //          var commands =
+  //              Assertions.assertDoesNotThrow(() -> new
+  // ChatClient.ListCommands().request().getCommands());
+  //          return commands.size() == 5; // Built-in 5 commands
+  //        });
+  //  }
+  //
+  //  private static void createTestMessage() throws StreamException {
+  //    testMessage = sendTestMessage();
+  //  }
+  //
+  //  private static void createTestChannel() throws StreamException {
+  //    testChannelGetResponse = createRandomChannel();
+  //    testChannel = testChannelGetResponse.getChannel();
+  //  }
+
+  static void upsertUsers() throws StreamException {
+    UserRequest testUserRequestObject =
+        UserRequest.builder()
+            .id(RandomStringUtils.randomAlphabetic(10))
+            .name("Gandalf the Grey")
+            .build();
+
+    List<UserRequest> testUsersRequestObjects = new ArrayList<>();
+
+    testUsersRequestObjects.add(testUserRequestObject);
+    testUsersRequestObjects.add(
+        UserRequest.builder()
+            .id(RandomStringUtils.randomAlphabetic(10))
+            .name("Frodo Baggins")
+            .build());
+    testUsersRequestObjects.add(
+        UserRequest.builder()
+            .id(RandomStringUtils.randomAlphabetic(10))
+            .name("Frodo Baggins")
+            .build());
+    testUsersRequestObjects.add(
+        UserRequest.builder()
+            .id(RandomStringUtils.randomAlphabetic(10))
+            .name("Samwise Gamgee")
+            .build());
+
+    UpdateUsersRequest updateUsersRequest =
+        UpdateUsersRequest.builder()
+            .users(
+                testUsersRequestObjects.stream()
+                    .collect(Collectors.toMap(UserRequest::getId, x -> x)))
+            .build();
+
+    testUsers =
+        new Common.UpdateUsers(updateUsersRequest)
+            .request().getUsers().values().stream().map(BasicTest::fromFullUserResponse).toList();
+    testUser = testUsers.getFirst();
+  }
+
+  // create a function to convert a FullUserResponse to a UserObject
+  public static UserObject fromFullUserResponse(FullUserResponse fullUserResponse) {
+    return UserObject.builder()
+        .banned(fullUserResponse.getBanned())
+        .id(fullUserResponse.getId())
+        .online(fullUserResponse.getOnline())
+        .role(fullUserResponse.getRole())
+        .custom(fullUserResponse.getCustom())
+        .createdAt(fullUserResponse.getCreatedAt())
+        .deactivatedAt(fullUserResponse.getDeactivatedAt())
+        .deletedAt(fullUserResponse.getDeletedAt())
+        .invisible(fullUserResponse.getInvisible())
+        .language(fullUserResponse.getLanguage())
+        .lastActive(fullUserResponse.getLastActive())
+        .revokeTokensIssuedBefore(fullUserResponse.getRevokeTokensIssuedBefore())
+        .updatedAt(fullUserResponse.getUpdatedAt())
+        .teams(fullUserResponse.getTeams())
+        .privacySettings(fullUserResponse.getPrivacySettings())
+        .pushNotifications(fullUserResponse.getPushNotifications())
+        .build();
+  }
+
+  static void setProperties() {
+    System.setProperty(
+        "java.util.logging.SimpleFormatter.format",
+        "%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS %4$s %2$s %5$s%6$s%n");
+  }
+
+  protected static List<ChannelMember> buildChannelMembersList() {
+    return testUsers.stream()
+        .map(user -> ChannelMember.builder().user(user).build())
+        .collect(Collectors.toList());
+  }
+
+  //  protected static ChannelStateResponse createRandomChannel() throws StreamException {
+  //    return new ChatClient.GetOrCreateChannel("team", RandomStringUtils.randomAlphabetic(12),
+  // ChannelGetOrCreateRequest.builder().data(
+  //                ChannelInput.builder()
+  //                .createdBy(testUser)
+  //                .members(buildChannelMembersList())
+  //                .build()).build())
+  //        .request();
+  //  }
+  //
+  //  protected static MessageResponse sendTestMessage() throws StreamException {
+  //    String text = UUID.randomUUID().toString();
+  //    MessageRequest messageRequest =
+  //        MessageRequest.builder().text(text).userId(testUser.getId()).build();
+  //    return new ChatClient.SendMessage(testChannel.getType(), testChannel.getId(),
+  // SendMessageRequest.builder().message(messageRequest).build())
+  //        .request()
+  //        .getMessage();
+  //  }
+
+  /**
+   * This is used to pause after creation, as there can be a small delay before we can act upon the
+   * resource
+   */
+  protected void pause() {
+    try {
+      java.lang.Thread.sleep(6000);
+    } catch (InterruptedException e) {
+      // Do nothing
+    }
+  }
+
+  protected static void waitFor(Supplier<Boolean> predicate) {
+    waitFor(predicate, 500L, 15000L);
+  }
+
+  protected static void waitFor(Supplier<Boolean> predicate, Long askInterval, Long timeout) {
+    var start = System.currentTimeMillis();
+
+    while (true) {
+      if (timeout < (System.currentTimeMillis() - start)) {
+        Assertions.fail(new TimeoutException());
+      }
+
+      if (Assertions.assertDoesNotThrow(predicate::get)) {
+        return;
+      }
+
+      Assertions.assertDoesNotThrow(() -> java.lang.Thread.sleep(askInterval));
+    }
+  }
+}
