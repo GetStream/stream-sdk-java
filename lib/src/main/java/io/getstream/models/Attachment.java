@@ -3,14 +3,13 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class Attachment {
 
   @NotNull
@@ -54,6 +53,14 @@ public class Attachment {
   private String imageUrl;
 
   @Nullable
+  @JsonProperty("latitude")
+  private Double latitude;
+
+  @Nullable
+  @JsonProperty("longitude")
+  private Double longitude;
+
+  @Nullable
   @JsonProperty("og_scrape_url")
   private String ogScrapeUrl;
 
@@ -68,6 +75,10 @@ public class Attachment {
   @Nullable
   @JsonProperty("pretext")
   private String pretext;
+
+  @Nullable
+  @JsonProperty("stopped_sharing")
+  private Boolean stoppedSharing;
 
   @Nullable
   @JsonProperty("text")
@@ -85,7 +96,6 @@ public class Attachment {
   @JsonProperty("title_link")
   private String titleLink;
 
-  /** Attachment type (e.g. image, video, url, poll) */
   @Nullable
   @JsonProperty("type")
   private String type;

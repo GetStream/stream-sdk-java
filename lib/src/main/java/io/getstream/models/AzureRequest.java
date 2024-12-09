@@ -1,13 +1,12 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class AzureRequest {
 
   @NotNull
@@ -16,7 +15,7 @@ public class AzureRequest {
 
   @NotNull
   @JsonProperty("abs_client_id")
-  private String absClientId;
+  private String absClientID;
 
   @NotNull
   @JsonProperty("abs_client_secret")
@@ -24,5 +23,5 @@ public class AzureRequest {
 
   @NotNull
   @JsonProperty("abs_tenant_id")
-  private String absTenantId;
+  private String absTenantID;
 }

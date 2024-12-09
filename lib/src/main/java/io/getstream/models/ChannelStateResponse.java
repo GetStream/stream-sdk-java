@@ -1,20 +1,16 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import io.getstream.models.framework.StreamResponseWithRateLimit;
 import java.util.Date;
 import java.util.List;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class ChannelStateResponse implements StreamResponseWithRateLimit {
-  private RateLimit rateLimit;
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
+public class ChannelStateResponse {
 
   @NotNull
   @JsonProperty("duration")
@@ -34,7 +30,7 @@ public class ChannelStateResponse implements StreamResponseWithRateLimit {
 
   @NotNull
   @JsonProperty("threads")
-  private List<ThreadState> threads;
+  private List<ThreadStateResponse> threads;
 
   @Nullable
   @JsonProperty("hidden")
@@ -50,7 +46,7 @@ public class ChannelStateResponse implements StreamResponseWithRateLimit {
 
   @Nullable
   @JsonProperty("pending_messages")
-  private List<PendingMessage> pendingMessages;
+  private List<PendingMessageResponse> pendingMessages;
 
   @Nullable
   @JsonProperty("read")
@@ -60,7 +56,6 @@ public class ChannelStateResponse implements StreamResponseWithRateLimit {
   @JsonProperty("watchers")
   private List<UserResponse> watchers;
 
-  /** Represents channel in chat */
   @Nullable
   @JsonProperty("channel")
   private ChannelResponse channel;

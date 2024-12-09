@@ -2,19 +2,22 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class LayoutSettingsRequest {
 
   @NotNull
   @JsonProperty("name")
   private String name;
+
+  @Nullable
+  @JsonProperty("detect_orientation")
+  private Boolean detectOrientation;
 
   @Nullable
   @JsonProperty("external_app_url")

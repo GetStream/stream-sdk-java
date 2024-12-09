@@ -1,8 +1,6 @@
 package io.getstream.models;
 
-import lombok.*;
-
-@Data
-@Builder
-@NoArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
 public class StopRecordingRequest {}

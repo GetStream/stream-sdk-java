@@ -1,13 +1,12 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class GoLiveRequest {
 
   @Nullable
@@ -16,7 +15,11 @@ public class GoLiveRequest {
 
   @Nullable
   @JsonProperty("start_hls")
-  private Boolean startHls;
+  private Boolean startHLS;
+
+  @Nullable
+  @JsonProperty("start_rtmp_broadcasts")
+  private Boolean startRTMPBroadcasts;
 
   @Nullable
   @JsonProperty("start_recording")

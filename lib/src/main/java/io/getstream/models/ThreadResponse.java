@@ -1,21 +1,17 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import io.getstream.models.framework.StreamResponseWithRateLimit;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class ThreadResponse implements StreamResponseWithRateLimit {
-  private RateLimit rateLimit;
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
+public class ThreadResponse {
 
   @NotNull
   @JsonProperty("channel_cid")
@@ -27,11 +23,11 @@ public class ThreadResponse implements StreamResponseWithRateLimit {
 
   @NotNull
   @JsonProperty("created_by_user_id")
-  private String createdByUserId;
+  private String createdByUserID;
 
   @NotNull
   @JsonProperty("parent_message_id")
-  private String parentMessageId;
+  private String parentMessageID;
 
   @NotNull
   @JsonProperty("title")
@@ -44,6 +40,10 @@ public class ThreadResponse implements StreamResponseWithRateLimit {
   @NotNull
   @JsonProperty("custom")
   private Map<String, Object> custom;
+
+  @Nullable
+  @JsonProperty("active_participant_count")
+  private Integer activeParticipantCount;
 
   @Nullable
   @JsonProperty("deleted_at")
@@ -65,18 +65,15 @@ public class ThreadResponse implements StreamResponseWithRateLimit {
   @JsonProperty("thread_participants")
   private List<ThreadParticipant> threadParticipants;
 
-  /** Represents channel in chat */
   @Nullable
   @JsonProperty("channel")
   private ChannelResponse channel;
 
-  /** Represents chat user */
   @Nullable
   @JsonProperty("created_by")
-  private UserObject createdBy;
+  private UserResponse createdBy;
 
-  /** Represents any chat message */
   @Nullable
   @JsonProperty("parent_message")
-  private Message parentMessage;
+  private MessageResponse parentMessage;
 }

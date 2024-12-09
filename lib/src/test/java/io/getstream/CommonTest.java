@@ -27,13 +27,13 @@ public class CommonTest extends BasicTest {
   @DisplayName("App Get does not throw Exception")
   @Test
   void whenCallingGetApp_thenNoException() {
-    Assertions.assertDoesNotThrow(() -> new Common.GetApp().request());
+    Assertions.assertDoesNotThrow(() -> new Common.getApp().request());
   }
 
   @Test
   @DisplayName("App get async does not throw Exception")
   void whenCallingGetAppAsync_thenNoException() {
-    new Common.GetApp().requestAsync(Assertions::assertNotNull, Assertions::assertNull);
+    new Common.getApp().requestAsync(Assertions::assertNotNull, Assertions::assertNull);
   }
 
   @DisplayName("App Settings update does not throw Exception")
@@ -54,10 +54,10 @@ public class CommonTest extends BasicTest {
                     .build())
             .build();
 
-    Assertions.assertDoesNotThrow(() -> new Common.UpdateApp(data).request());
+    Assertions.assertDoesNotThrow(() -> new Common.updateApp(data).request());
     Assertions.assertDoesNotThrow(
         () ->
-            new Common.UpdateApp(
+            new Common.updateApp(
                     UpdateAppRequest.builder()
                         .disableAuthChecks(false)
                         .disablePermissionsChecks(false)
@@ -75,7 +75,7 @@ public class CommonTest extends BasicTest {
 
     StreamException exception =
         Assertions.assertThrows(
-            StreamException.class, () -> new Common.GetApp().withClient(client).request());
+            StreamException.class, () -> new Common.getApp().withClient(client).request());
     Assertions.assertEquals(401, exception.getResponseData().getStatusCode());
   }
 
@@ -84,7 +84,7 @@ public class CommonTest extends BasicTest {
   void givenBadSecret_whenEnableAuthAndGettingApp_thenException() {
     Assertions.assertDoesNotThrow(
         () ->
-            new Common.UpdateApp(UpdateAppRequest.builder().disableAuthChecks(false).build())
+            new Common.updateApp(UpdateAppRequest.builder().disableAuthChecks(false).build())
                 .request());
     var properties = new Properties();
     properties.put(
@@ -94,14 +94,14 @@ public class CommonTest extends BasicTest {
 
     StreamException exception =
         Assertions.assertThrows(
-            StreamException.class, () -> new Common.GetApp().withClient(client).request());
+            StreamException.class, () -> new Common.getApp().withClient(client).request());
     Assertions.assertEquals(401, exception.getResponseData().getStatusCode());
   }
 
   @DisplayName("Get rate limits does not throw Exception")
   @Test
   void whenCallingGetRateLimits_thenNoException() {
-    Assertions.assertDoesNotThrow(() -> new Common.GetRateLimits().request());
+    Assertions.assertDoesNotThrow(() -> new Common.getRateLimits().request());
   }
 
   @DisplayName("Can check sqs")
@@ -110,7 +110,7 @@ public class CommonTest extends BasicTest {
     CheckSQSResponse response =
         Assertions.assertDoesNotThrow(
             () ->
-                new Common.CheckSQS(
+                new Common.checkSQS(
                         CheckSQSRequest.builder()
                             .sqsKey("key")
                             .sqsSecret("secret")
@@ -126,7 +126,7 @@ public class CommonTest extends BasicTest {
     CheckSNSResponse response =
         Assertions.assertDoesNotThrow(
             () ->
-                new Common.CheckSNS(
+                new Common.checkSNS(
                         CheckSNSRequest.builder()
                             .snsKey("key")
                             .snsSecret("secret")

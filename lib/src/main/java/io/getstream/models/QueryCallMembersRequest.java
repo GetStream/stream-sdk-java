@@ -3,14 +3,13 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class QueryCallMembersRequest {
 
   @NotNull
@@ -35,7 +34,7 @@ public class QueryCallMembersRequest {
 
   @Nullable
   @JsonProperty("sort")
-  private List<SortParam> sort;
+  private List<SortParamRequest> sort;
 
   @Nullable
   @JsonProperty("filter_conditions")

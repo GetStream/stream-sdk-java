@@ -1,19 +1,15 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import io.getstream.models.framework.StreamResponseWithRateLimit;
 import java.util.Date;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class ReactionResponse implements StreamResponseWithRateLimit {
-  private RateLimit rateLimit;
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
+public class ReactionResponse {
 
   @NotNull
   @JsonProperty("created_at")
@@ -21,7 +17,7 @@ public class ReactionResponse implements StreamResponseWithRateLimit {
 
   @NotNull
   @JsonProperty("message_id")
-  private String messageId;
+  private String messageID;
 
   @NotNull
   @JsonProperty("score")
@@ -37,7 +33,7 @@ public class ReactionResponse implements StreamResponseWithRateLimit {
 
   @NotNull
   @JsonProperty("user_id")
-  private String userId;
+  private String userID;
 
   @NotNull
   @JsonProperty("custom")

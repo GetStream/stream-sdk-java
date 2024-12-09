@@ -4,14 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class Poll {
 
   @NotNull
@@ -32,7 +31,7 @@ public class Poll {
 
   @NotNull
   @JsonProperty("created_by_id")
-  private String createdById;
+  private String createdByID;
 
   @NotNull
   @JsonProperty("description")
@@ -94,8 +93,7 @@ public class Poll {
   @JsonProperty("voting_visibility")
   private String votingVisibility;
 
-  /** Represents chat user */
   @Nullable
   @JsonProperty("created_by")
-  private UserObject createdBy;
+  private User createdBy;
 }

@@ -3,19 +3,22 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class UserSessionStats {
 
   @NotNull
   @JsonProperty("freeze_duration_seconds")
   private Integer freezeDurationSeconds;
+
+  @NotNull
+  @JsonProperty("group")
+  private String group;
 
   @NotNull
   @JsonProperty("max_freeze_fraction")
@@ -24,6 +27,10 @@ public class UserSessionStats {
   @NotNull
   @JsonProperty("max_freezes_duration_seconds")
   private Integer maxFreezesDurationSeconds;
+
+  @NotNull
+  @JsonProperty("min_event_ts")
+  private Integer minEventTs;
 
   @NotNull
   @JsonProperty("packet_loss_fraction")
@@ -47,7 +54,7 @@ public class UserSessionStats {
 
   @NotNull
   @JsonProperty("session_id")
-  private String sessionId;
+  private String sessionID;
 
   @NotNull
   @JsonProperty("total_pixels_in")
@@ -186,10 +193,6 @@ public class UserSessionStats {
   private MediaPubSubHint pubSubHints;
 
   @Nullable
-  @JsonProperty("publisher_audio_mos")
-  private MOSStats publisherAudioMos;
-
-  @Nullable
   @JsonProperty("publisher_jitter")
   private TimeStats publisherJitter;
 
@@ -200,10 +203,6 @@ public class UserSessionStats {
   @Nullable
   @JsonProperty("publisher_video_quality_limitation_duration_seconds")
   private Map<String, Double> publisherVideoQualityLimitationDurationSeconds;
-
-  @Nullable
-  @JsonProperty("subscriber_audio_mos")
-  private MOSStats subscriberAudioMos;
 
   @Nullable
   @JsonProperty("subscriber_jitter")

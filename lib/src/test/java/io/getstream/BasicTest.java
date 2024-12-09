@@ -12,8 +12,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 
 public class BasicTest {
-  protected static UserObject testUser;
-  protected static List<UserObject> testUsers = new ArrayList<>();
+  protected static UserResponse testUser;
+  protected static List<UserResponse> testUsers = new ArrayList<>();
 
   //  protected static ChannelStateResponse testChannelGetResponse;
   //  protected static ChannelResponse testChannel;
@@ -85,13 +85,13 @@ public class BasicTest {
   //  }
 
   private static void cleanBlocklists() throws StreamException {
-    new Common.ListBlockLists()
+    new Common.listBlockLists()
         .request()
         .getBlocklists()
         .forEach(
             blocklist -> {
               try {
-                new Common.DeleteBlockList(blocklist.getName()).request();
+                new Common.deleteBlockList(blocklist.getName()).request();
               } catch (StreamException e) {
                 // Do nothing this happens for built in
               }
@@ -163,14 +163,14 @@ public class BasicTest {
             .build();
 
     testUsers =
-        new Common.UpdateUsers(updateUsersRequest)
+        new Common.updateUsers(updateUsersRequest)
             .request().getUsers().values().stream().map(BasicTest::fromFullUserResponse).toList();
     testUser = testUsers.getFirst();
   }
 
   // create a function to convert a FullUserResponse to a UserObject
-  public static UserObject fromFullUserResponse(FullUserResponse fullUserResponse) {
-    return UserObject.builder()
+  public static UserResponse fromFullUserResponse(FullUserResponse fullUserResponse) {
+    return UserResponse.builder()
         .banned(fullUserResponse.getBanned())
         .id(fullUserResponse.getId())
         .online(fullUserResponse.getOnline())

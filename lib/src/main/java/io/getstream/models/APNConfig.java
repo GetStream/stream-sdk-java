@@ -1,13 +1,12 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class APNConfig {
 
   @Nullable
@@ -20,7 +19,7 @@ public class APNConfig {
 
   @Nullable
   @JsonProperty("bundle_id")
-  private String bundleId;
+  private String bundleID;
 
   @Nullable
   @JsonProperty("development")
@@ -36,7 +35,7 @@ public class APNConfig {
 
   @Nullable
   @JsonProperty("key_id")
-  private String keyId;
+  private String keyID;
 
   @Nullable
   @JsonProperty("notification_template")
@@ -48,5 +47,5 @@ public class APNConfig {
 
   @Nullable
   @JsonProperty("team_id")
-  private String teamId;
+  private String teamID;
 }

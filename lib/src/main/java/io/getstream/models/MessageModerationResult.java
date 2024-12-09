@@ -2,14 +2,13 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class MessageModerationResult {
 
   @NotNull
@@ -22,7 +21,7 @@ public class MessageModerationResult {
 
   @NotNull
   @JsonProperty("message_id")
-  private String messageId;
+  private String messageID;
 
   @NotNull
   @JsonProperty("updated_at")
@@ -52,7 +51,6 @@ public class MessageModerationResult {
   @JsonProperty("ai_moderation_response")
   private ModerationResponse aiModerationResponse;
 
-  /** Sets thresholds for AI moderation */
   @Nullable
   @JsonProperty("moderation_thresholds")
   private Thresholds moderationThresholds;

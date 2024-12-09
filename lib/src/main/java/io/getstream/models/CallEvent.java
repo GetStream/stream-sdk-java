@@ -1,15 +1,14 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
-import lombok.*;
+import java.util.List;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class CallEvent {
 
   @NotNull
@@ -19,6 +18,14 @@ public class CallEvent {
   @NotNull
   @JsonProperty("end_timestamp")
   private Integer endTimestamp;
+
+  @NotNull
+  @JsonProperty("internal")
+  private Boolean internal;
+
+  @NotNull
+  @JsonProperty("kind")
+  private String kind;
 
   @NotNull
   @JsonProperty("severity")
@@ -33,10 +40,14 @@ public class CallEvent {
   private String type;
 
   @Nullable
+  @JsonProperty("category")
+  private String category;
+
+  @Nullable
   @JsonProperty("component")
   private String component;
 
   @Nullable
-  @JsonProperty("additional")
-  private Map<String, Object> additional;
+  @JsonProperty("issue_tags")
+  private List<String> issueTags;
 }

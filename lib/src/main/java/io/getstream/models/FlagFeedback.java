@@ -3,13 +3,12 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class FlagFeedback {
 
   @NotNull
@@ -18,7 +17,7 @@ public class FlagFeedback {
 
   @NotNull
   @JsonProperty("message_id")
-  private String messageId;
+  private String messageID;
 
   @NotNull
   @JsonProperty("labels")

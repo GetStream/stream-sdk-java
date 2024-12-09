@@ -1,27 +1,29 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import io.getstream.models.framework.StreamResponseWithRateLimit;
-import lombok.*;
+import java.util.Date;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class EgressRTMPResponse implements StreamResponseWithRateLimit {
-  private RateLimit rateLimit;
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
+public class EgressRTMPResponse {
 
   @NotNull
   @JsonProperty("name")
   private String name;
 
   @NotNull
+  @JsonProperty("started_at")
+  private Date startedAt;
+
+  @Nullable
   @JsonProperty("stream_key")
   private String streamKey;
 
-  @NotNull
-  @JsonProperty("url")
-  private String url;
+  @Nullable
+  @JsonProperty("stream_url")
+  private String streamUrl;
 }

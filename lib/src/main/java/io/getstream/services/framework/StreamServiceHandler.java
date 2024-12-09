@@ -12,7 +12,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class StreamServiceHandler {
-  public <T extends StreamResponseWithRateLimit> T handle(Call<T> call) throws StreamException {
+  public <T> T handle(Call<T> call) throws StreamException {
     try {
       Response<T> response = call.execute();
       if (response.isSuccessful()) {
@@ -24,7 +24,7 @@ public class StreamServiceHandler {
     }
   }
 
-  public <T extends StreamResponseWithRateLimit> void handleAsync(
+  public <T> void handleAsync(
       Call<T> call, Consumer<T> onSuccess, Consumer<StreamException> onError) {
     call.enqueue(
         new Callback<T>() {
@@ -48,7 +48,7 @@ public class StreamServiceHandler {
         });
   }
 
-  private <T extends StreamResponseWithRateLimit> T enrichResponse(Response<T> response) {
+  private <T> T enrichResponse(Response<T> response) {
     T result = response.body();
     if (result instanceof StreamResponseWithRateLimit) {
       Headers headers = response.headers();

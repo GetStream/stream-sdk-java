@@ -4,18 +4,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class CallRequest {
 
   @Nullable
   @JsonProperty("created_by_id")
-  private String createdById;
+  private String createdByID;
 
   @Nullable
   @JsonProperty("starts_at")
@@ -24,6 +23,10 @@ public class CallRequest {
   @Nullable
   @JsonProperty("team")
   private String team;
+
+  @Nullable
+  @JsonProperty("video")
+  private Boolean video;
 
   @Nullable
   @JsonProperty("members")

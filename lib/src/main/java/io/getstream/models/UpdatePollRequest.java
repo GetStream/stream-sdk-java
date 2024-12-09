@@ -3,14 +3,13 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class UpdatePollRequest {
 
   @NotNull
@@ -47,7 +46,7 @@ public class UpdatePollRequest {
 
   @Nullable
   @JsonProperty("user_id")
-  private String userId;
+  private String userID;
 
   @Nullable
   @JsonProperty("voting_visibility")
@@ -55,7 +54,7 @@ public class UpdatePollRequest {
 
   @Nullable
   @JsonProperty("options")
-  private List<PollOption> options;
+  private List<PollOptionRequest> options;
 
   @Nullable
   @JsonProperty("Custom")

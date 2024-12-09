@@ -2,7 +2,6 @@ package io.getstream.services;
 
 import io.getstream.models.*;
 import java.util.*;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import retrofit2.Call;
@@ -61,11 +60,11 @@ public interface CommonService {
   @DELETE("/api/v2/devices")
   @NotNull
   Call<Response> deleteDevice(
-      @NotNull @Query("id") String id, @Nullable @Query("user_id") String userId);
+      @NotNull @Query("id") String id, @Nullable @Query("user_id") String userID);
 
   @GET("/api/v2/devices")
   @NotNull
-  Call<ListDevicesResponse> listDevices(@Nullable @Query("user_id") String userId);
+  Call<ListDevicesResponse> listDevices(@Nullable @Query("user_id") String userID);
 
   @POST("/api/v2/devices")
   @NotNull
@@ -118,29 +117,6 @@ public interface CommonService {
   @GET("/api/v2/imports/{id}")
   @NotNull
   Call<GetImportResponse> getImport(@NotNull @Path("id") String id);
-
-  @DELETE("/api/v2/moderation/ban")
-  @NotNull
-  Call<Response> unban(
-      @NotNull @Query("target_user_id") String targetUserId,
-      @Nullable @Query("channel_cid") String channelCid,
-      @Nullable @Query("created_by") String createdBy);
-
-  @POST("/api/v2/moderation/ban")
-  @NotNull
-  Call<Response> ban(@NotNull @Body BanRequest banRequest);
-
-  @POST("/api/v2/moderation/flag")
-  @NotNull
-  Call<FlagResponse> flag(@Nullable @Body FlagRequest flagRequest);
-
-  @POST("/api/v2/moderation/mute")
-  @NotNull
-  Call<MuteUserResponse> muteUser(@NotNull @Body MuteUserRequest muteUserRequest);
-
-  @POST("/api/v2/moderation/unmute")
-  @NotNull
-  Call<UnmuteResponse> unmuteUser(@NotNull @Body UnmuteUserRequest unmuteUserRequest);
 
   @GET("/api/v2/og")
   @NotNull
@@ -208,7 +184,7 @@ public interface CommonService {
 
   @GET("/api/v2/users/block")
   @NotNull
-  Call<GetBlockedUsersResponse> getBlockedUsers(@Nullable @Query("user_id") String userId);
+  Call<GetBlockedUsersResponse> getBlockedUsers(@Nullable @Query("user_id") String userID);
 
   @POST("/api/v2/users/block")
   @NotNull
@@ -239,16 +215,16 @@ public interface CommonService {
   @POST("/api/v2/users/{user_id}/deactivate")
   @NotNull
   Call<DeactivateUserResponse> deactivateUser(
-      @NotNull @Path("user_id") String userId,
+      @NotNull @Path("user_id") String userID,
       @Nullable @Body DeactivateUserRequest deactivateUserRequest);
 
   @GET("/api/v2/users/{user_id}/export")
   @NotNull
-  Call<ExportUserResponse> exportUser(@NotNull @Path("user_id") String userId);
+  Call<ExportUserResponse> exportUser(@NotNull @Path("user_id") String userID);
 
   @POST("/api/v2/users/{user_id}/reactivate")
   @NotNull
   Call<ReactivateUserResponse> reactivateUser(
-      @NotNull @Path("user_id") String userId,
+      @NotNull @Path("user_id") String userID,
       @Nullable @Body ReactivateUserRequest reactivateUserRequest);
 }

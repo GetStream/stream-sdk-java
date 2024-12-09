@@ -1,20 +1,16 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import io.getstream.models.framework.StreamResponseWithRateLimit;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class GetOGResponse implements StreamResponseWithRateLimit {
-  private RateLimit rateLimit;
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
+public class GetOGResponse {
 
   @NotNull
   @JsonProperty("duration")
@@ -24,7 +20,6 @@ public class GetOGResponse implements StreamResponseWithRateLimit {
   @JsonProperty("custom")
   private Map<String, Object> custom;
 
-  /** URL of detected video or audio */
   @Nullable
   @JsonProperty("asset_url")
   private String assetUrl;
@@ -33,12 +28,10 @@ public class GetOGResponse implements StreamResponseWithRateLimit {
   @JsonProperty("author_icon")
   private String authorIcon;
 
-  /** og:site */
   @Nullable
   @JsonProperty("author_link")
   private String authorLink;
 
-  /** og:site_name */
   @Nullable
   @JsonProperty("author_name")
   private String authorName;
@@ -59,12 +52,18 @@ public class GetOGResponse implements StreamResponseWithRateLimit {
   @JsonProperty("footer_icon")
   private String footerIcon;
 
-  /** URL of detected image */
   @Nullable
   @JsonProperty("image_url")
   private String imageUrl;
 
-  /** extracted url from the text */
+  @Nullable
+  @JsonProperty("latitude")
+  private Double latitude;
+
+  @Nullable
+  @JsonProperty("longitude")
+  private Double longitude;
+
   @Nullable
   @JsonProperty("og_scrape_url")
   private String ogScrapeUrl;
@@ -81,27 +80,26 @@ public class GetOGResponse implements StreamResponseWithRateLimit {
   @JsonProperty("pretext")
   private String pretext;
 
-  /** og:description */
+  @Nullable
+  @JsonProperty("stopped_sharing")
+  private Boolean stoppedSharing;
+
   @Nullable
   @JsonProperty("text")
   private String text;
 
-  /** URL of detected thumb image */
   @Nullable
   @JsonProperty("thumb_url")
   private String thumbUrl;
 
-  /** og:title */
   @Nullable
   @JsonProperty("title")
   private String title;
 
-  /** og:url */
   @Nullable
   @JsonProperty("title_link")
   private String titleLink;
 
-  /** Attachment type, could be empty, image, audio or video */
   @Nullable
   @JsonProperty("type")
   private String type;

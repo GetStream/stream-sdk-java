@@ -1,41 +1,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import io.getstream.models.framework.StreamResponseWithRateLimit;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class CallResponse implements StreamResponseWithRateLimit {
-  private RateLimit rateLimit;
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
+public class CallResponse {
 
   @NotNull
   @JsonProperty("backstage")
   private Boolean backstage;
 
-  /** The unique identifier for a call (<type>:<id>) */
+  @NotNull
+  @JsonProperty("captioning")
+  private Boolean captioning;
+
   @NotNull
   @JsonProperty("cid")
   private String cid;
 
-  /** Date/time of creation */
   @NotNull
   @JsonProperty("created_at")
   private Date createdAt;
 
   @NotNull
   @JsonProperty("current_session_id")
-  private String currentSessionId;
+  private String currentSessionID;
 
-  /** Call ID */
   @NotNull
   @JsonProperty("id")
   private String id;
@@ -48,12 +45,10 @@ public class CallResponse implements StreamResponseWithRateLimit {
   @JsonProperty("transcribing")
   private Boolean transcribing;
 
-  /** The type of call */
   @NotNull
   @JsonProperty("type")
   private String type;
 
-  /** Date/time of the last update */
   @NotNull
   @JsonProperty("updated_at")
   private Date updatedAt;
@@ -66,7 +61,6 @@ public class CallResponse implements StreamResponseWithRateLimit {
   @JsonProperty("created_by")
   private UserResponse createdBy;
 
-  /** Custom data for this object */
   @NotNull
   @JsonProperty("custom")
   private Map<String, Object> custom;
@@ -83,7 +77,6 @@ public class CallResponse implements StreamResponseWithRateLimit {
   @JsonProperty("settings")
   private CallSettingsResponse settings;
 
-  /** Date/time when the call ended */
   @Nullable
   @JsonProperty("ended_at")
   private Date endedAt;
@@ -92,7 +85,6 @@ public class CallResponse implements StreamResponseWithRateLimit {
   @JsonProperty("join_ahead_time_seconds")
   private Integer joinAheadTimeSeconds;
 
-  /** Date/time when the call will start */
   @Nullable
   @JsonProperty("starts_at")
   private Date startsAt;

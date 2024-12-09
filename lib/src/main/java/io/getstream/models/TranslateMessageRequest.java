@@ -1,16 +1,14 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class TranslateMessageRequest {
 
-  /** Language to translate message to */
   @NotNull
   @JsonProperty("language")
   private String language;

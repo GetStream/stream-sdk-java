@@ -1,20 +1,19 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class PinRequest {
 
   @NotNull
   @JsonProperty("session_id")
-  private String sessionId;
+  private String sessionID;
 
   @NotNull
   @JsonProperty("user_id")
-  private String userId;
+  private String userID;
 }

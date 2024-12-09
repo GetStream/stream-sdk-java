@@ -1,14 +1,13 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class APNConfigFields {
 
   @NotNull
@@ -33,7 +32,7 @@ public class APNConfigFields {
 
   @Nullable
   @JsonProperty("bundle_id")
-  private String bundleId;
+  private String bundleID;
 
   @Nullable
   @JsonProperty("host")
@@ -41,7 +40,7 @@ public class APNConfigFields {
 
   @Nullable
   @JsonProperty("key_id")
-  private String keyId;
+  private String keyID;
 
   @Nullable
   @JsonProperty("p12_cert")
@@ -49,5 +48,5 @@ public class APNConfigFields {
 
   @Nullable
   @JsonProperty("team_id")
-  private String teamId;
+  private String teamID;
 }

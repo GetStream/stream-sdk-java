@@ -2,7 +2,6 @@ package io.getstream.services;
 
 import io.getstream.models.*;
 import java.util.*;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import retrofit2.Call;
@@ -33,7 +32,8 @@ public interface VideoService {
       @NotNull @Path("id") String id,
       @Nullable @Query("members_limit") Integer membersLimit,
       @Nullable @Query("ring") Boolean ring,
-      @Nullable @Query("notify") Boolean notify);
+      @Nullable @Query("notify") Boolean notify,
+      @Nullable @Query("video") Boolean video);
 
   @PATCH("/api/v2/video/call/{type}/{id}")
   @NotNull
@@ -115,9 +115,34 @@ public interface VideoService {
   Call<ListRecordingsResponse> listRecordings(
       @NotNull @Path("type") String type, @NotNull @Path("id") String id);
 
+  @POST("/api/v2/video/call/{type}/{id}/rtmp_broadcasts")
+  @NotNull
+  Call<StartRTMPBroadcastsResponse> startRTMPBroadcasts(
+      @NotNull @Path("type") String type,
+      @NotNull @Path("id") String id,
+      @NotNull @Body StartRTMPBroadcastsRequest startRTMPBroadcastsRequest);
+
+  @POST("/api/v2/video/call/{type}/{id}/rtmp_broadcasts/stop")
+  @NotNull
+  Call<StopAllRTMPBroadcastsResponse> stopAllRTMPBroadcasts(
+      @NotNull @Path("type") String type, @NotNull @Path("id") String id);
+
+  @POST("/api/v2/video/call/{type}/{id}/rtmp_broadcasts/{name}/stop")
+  @NotNull
+  Call<StopRTMPBroadcastsResponse> stopRTMPBroadcast(
+      @NotNull @Path("type") String type,
+      @NotNull @Path("id") String id,
+      @NotNull @Path("name") String name,
+      @Nullable @Body StopRTMPBroadcastsRequest stopRTMPBroadcastsRequest);
+
   @POST("/api/v2/video/call/{type}/{id}/start_broadcasting")
   @NotNull
   Call<StartHLSBroadcastingResponse> startHLSBroadcasting(
+      @NotNull @Path("type") String type, @NotNull @Path("id") String id);
+
+  @POST("/api/v2/video/call/{type}/{id}/start_closed_captions")
+  @NotNull
+  Call<StartClosedCaptionsResponse> startClosedCaptions(
       @NotNull @Path("type") String type, @NotNull @Path("id") String id);
 
   @POST("/api/v2/video/call/{type}/{id}/start_recording")
@@ -146,10 +171,17 @@ public interface VideoService {
   Call<StopHLSBroadcastingResponse> stopHLSBroadcasting(
       @NotNull @Path("type") String type, @NotNull @Path("id") String id);
 
+  @POST("/api/v2/video/call/{type}/{id}/stop_closed_captions")
+  @NotNull
+  Call<StopClosedCaptionsResponse> stopClosedCaptions(
+      @NotNull @Path("type") String type, @NotNull @Path("id") String id);
+
   @POST("/api/v2/video/call/{type}/{id}/stop_live")
   @NotNull
   Call<StopLiveResponse> stopLive(
-      @NotNull @Path("type") String type, @NotNull @Path("id") String id);
+      @NotNull @Path("type") String type,
+      @NotNull @Path("id") String id,
+      @Nullable @Body StopLiveRequest stopLiveRequest);
 
   @POST("/api/v2/video/call/{type}/{id}/stop_recording")
   @NotNull

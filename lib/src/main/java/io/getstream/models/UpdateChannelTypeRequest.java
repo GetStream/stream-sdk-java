@@ -3,14 +3,13 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class UpdateChannelTypeRequest {
 
   @NotNull
@@ -50,6 +49,14 @@ public class UpdateChannelTypeRequest {
   private Boolean mutes;
 
   @Nullable
+  @JsonProperty("partition_size")
+  private Integer partitionSize;
+
+  @Nullable
+  @JsonProperty("partition_ttl")
+  private String partitionTtl;
+
+  @Nullable
   @JsonProperty("polls")
   private Boolean polls;
 
@@ -82,6 +89,10 @@ public class UpdateChannelTypeRequest {
   private Boolean search;
 
   @Nullable
+  @JsonProperty("skip_last_msg_update_for_system_msgs")
+  private Boolean skipLastMsgUpdateForSystemMsgs;
+
+  @Nullable
   @JsonProperty("typing_events")
   private Boolean typingEvents;
 
@@ -101,7 +112,6 @@ public class UpdateChannelTypeRequest {
   @JsonProperty("blocklists")
   private List<BlockListOptions> blocklists;
 
-  /** List of commands that channel supports */
   @Nullable
   @JsonProperty("commands")
   private List<String> commands;
@@ -110,7 +120,6 @@ public class UpdateChannelTypeRequest {
   @JsonProperty("permissions")
   private List<PolicyRequest> permissions;
 
-  /** Sets thresholds for AI moderation */
   @Nullable
   @JsonProperty("automod_thresholds")
   private Thresholds automodThresholds;

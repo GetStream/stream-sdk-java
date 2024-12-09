@@ -2,19 +2,18 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class MessageReadEvent {
 
   @NotNull
   @JsonProperty("channel_id")
-  private String channelId;
+  private String channelID;
 
   @NotNull
   @JsonProperty("channel_type")
@@ -34,19 +33,17 @@ public class MessageReadEvent {
 
   @Nullable
   @JsonProperty("last_read_message_id")
-  private String lastReadMessageId;
+  private String lastReadMessageID;
 
   @Nullable
   @JsonProperty("team")
   private String team;
 
-  /** Represents a conversation thread linked to a specific message in a channel. */
   @Nullable
   @JsonProperty("thread")
-  private Thread thread;
+  private ThreadResponse thread;
 
-  /** Represents chat user */
   @Nullable
   @JsonProperty("user")
-  private UserObject user;
+  private UserResponse user;
 }

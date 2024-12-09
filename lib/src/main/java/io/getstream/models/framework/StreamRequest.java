@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import retrofit2.Call;
 
-public abstract class StreamRequest<T extends StreamResponseWithRateLimit> {
+public abstract class StreamRequest<T> {
   protected abstract Call<T> generateCall(Client client) throws StreamException;
 
   private Client client;

@@ -1,13 +1,12 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class MessageChangeSet {
 
   @NotNull
@@ -36,7 +35,7 @@ public class MessageChangeSet {
 
   @NotNull
   @JsonProperty("quoted_message_id")
-  private Boolean quotedMessageId;
+  private Boolean quotedMessageID;
 
   @NotNull
   @JsonProperty("silent")

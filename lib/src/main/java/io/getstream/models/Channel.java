@@ -4,14 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class Channel {
 
   @NotNull
@@ -88,15 +87,13 @@ public class Channel {
 
   @Nullable
   @JsonProperty("config_overrides")
-  private ChannelConfig configOverrides;
+  private ConfigOverrides configOverrides;
 
-  /** Represents chat user */
   @Nullable
   @JsonProperty("created_by")
-  private UserObject createdBy;
+  private User createdBy;
 
-  /** Represents chat user */
   @Nullable
   @JsonProperty("truncated_by")
-  private UserObject truncatedBy;
+  private User truncatedBy;
 }

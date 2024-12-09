@@ -1,21 +1,18 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class ChannelGetOrCreateRequest {
 
-  /** Whether this channel will be hidden for the user who created the channel or not */
   @Nullable
   @JsonProperty("hide_for_creator")
   private Boolean hideForCreator;
 
-  /** Refresh channel state */
   @Nullable
   @JsonProperty("state")
   private Boolean state;

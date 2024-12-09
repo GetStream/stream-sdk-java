@@ -1,7 +1,6 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
 
 public enum OwnCapability {
   @JsonProperty("block-users")
@@ -55,6 +54,9 @@ public enum OwnCapability {
   @JsonProperty("start-broadcast-call")
   START_BROADCAST_CALL,
 
+  @JsonProperty("start-closed-captions-call")
+  START_CLOSED_CAPTIONS_CALL,
+
   @JsonProperty("start-record-call")
   START_RECORD_CALL,
 
@@ -63,6 +65,9 @@ public enum OwnCapability {
 
   @JsonProperty("stop-broadcast-call")
   STOP_BROADCAST_CALL,
+
+  @JsonProperty("stop-closed-captions-call")
+  STOP_CLOSED_CAPTIONS_CALL,
 
   @JsonProperty("stop-record-call")
   STOP_RECORD_CALL,

@@ -1,21 +1,17 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import io.getstream.models.framework.StreamResponseWithRateLimit;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class FullUserResponse implements StreamResponseWithRateLimit {
-  private RateLimit rateLimit;
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
+public class FullUserResponse {
 
   @NotNull
   @JsonProperty("banned")
@@ -58,6 +54,10 @@ public class FullUserResponse implements StreamResponseWithRateLimit {
   private Integer unreadChannels;
 
   @NotNull
+  @JsonProperty("unread_count")
+  private Integer unreadCount;
+
+  @NotNull
   @JsonProperty("unread_threads")
   private Integer unreadThreads;
 
@@ -75,11 +75,11 @@ public class FullUserResponse implements StreamResponseWithRateLimit {
 
   @NotNull
   @JsonProperty("devices")
-  private List<Device> devices;
+  private List<DeviceResponse> devices;
 
   @NotNull
   @JsonProperty("mutes")
-  private List<UserMute> mutes;
+  private List<UserMuteResponse> mutes;
 
   @NotNull
   @JsonProperty("teams")
@@ -119,9 +119,9 @@ public class FullUserResponse implements StreamResponseWithRateLimit {
 
   @Nullable
   @JsonProperty("privacy_settings")
-  private PrivacySettings privacySettings;
+  private PrivacySettingsResponse privacySettings;
 
   @Nullable
   @JsonProperty("push_notifications")
-  private PushNotificationSettings pushNotifications;
+  private PushNotificationSettingsResponse pushNotifications;
 }

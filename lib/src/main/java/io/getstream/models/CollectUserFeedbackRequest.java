@@ -2,14 +2,13 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class CollectUserFeedbackRequest {
 
   @NotNull
@@ -26,7 +25,7 @@ public class CollectUserFeedbackRequest {
 
   @NotNull
   @JsonProperty("user_session_id")
-  private String userSessionId;
+  private String userSessionID;
 
   @Nullable
   @JsonProperty("reason")

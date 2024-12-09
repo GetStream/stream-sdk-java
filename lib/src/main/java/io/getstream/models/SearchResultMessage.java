@@ -4,14 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class SearchResultMessage {
 
   @NotNull
@@ -68,15 +67,15 @@ public class SearchResultMessage {
 
   @NotNull
   @JsonProperty("latest_reactions")
-  private List<Reaction> latestReactions;
+  private List<ReactionResponse> latestReactions;
 
   @NotNull
   @JsonProperty("mentioned_users")
-  private List<UserObject> mentionedUsers;
+  private List<UserResponse> mentionedUsers;
 
   @NotNull
   @JsonProperty("own_reactions")
-  private List<Reaction> ownReactions;
+  private List<ReactionResponse> ownReactions;
 
   @NotNull
   @JsonProperty("custom")
@@ -87,16 +86,12 @@ public class SearchResultMessage {
   private Map<String, Integer> reactionCounts;
 
   @NotNull
-  @JsonProperty("reaction_groups")
-  private Map<String, ReactionGroupResponse> reactionGroups;
-
-  @NotNull
   @JsonProperty("reaction_scores")
   private Map<String, Integer> reactionScores;
 
-  @Nullable
-  @JsonProperty("before_message_send_failed")
-  private Boolean beforeMessageSendFailed;
+  @NotNull
+  @JsonProperty("user")
+  private UserResponse user;
 
   @Nullable
   @JsonProperty("command")
@@ -116,7 +111,7 @@ public class SearchResultMessage {
 
   @Nullable
   @JsonProperty("parent_id")
-  private String parentId;
+  private String parentID;
 
   @Nullable
   @JsonProperty("pin_expires")
@@ -128,11 +123,11 @@ public class SearchResultMessage {
 
   @Nullable
   @JsonProperty("poll_id")
-  private String pollId;
+  private String pollID;
 
   @Nullable
   @JsonProperty("quoted_message_id")
-  private String quotedMessageId;
+  private String quotedMessageID;
 
   @Nullable
   @JsonProperty("show_in_channel")
@@ -140,9 +135,8 @@ public class SearchResultMessage {
 
   @Nullable
   @JsonProperty("thread_participants")
-  private List<UserObject> threadParticipants;
+  private List<UserResponse> threadParticipants;
 
-  /** Represents channel in chat */
   @Nullable
   @JsonProperty("channel")
   private ChannelResponse channel;
@@ -155,22 +149,23 @@ public class SearchResultMessage {
   @JsonProperty("image_labels")
   private Map<String, List<String>> imageLabels;
 
-  /** Represents chat user */
+  @Nullable
+  @JsonProperty("moderation")
+  private ModerationV2Response moderation;
+
   @Nullable
   @JsonProperty("pinned_by")
-  private UserObject pinnedBy;
+  private UserResponse pinnedBy;
 
   @Nullable
   @JsonProperty("poll")
-  private Poll poll;
+  private PollResponseData poll;
 
-  /** Represents any chat message */
   @Nullable
   @JsonProperty("quoted_message")
-  private Message quotedMessage;
+  private MessageResponse quotedMessage;
 
-  /** Represents chat user */
   @Nullable
-  @JsonProperty("user")
-  private UserObject user;
+  @JsonProperty("reaction_groups")
+  private Map<String, ReactionGroupResponse> reactionGroups;
 }

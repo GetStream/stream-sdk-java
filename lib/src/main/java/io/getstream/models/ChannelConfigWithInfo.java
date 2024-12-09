@@ -4,14 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class ChannelConfigWithInfo {
 
   @NotNull
@@ -83,6 +82,10 @@ public class ChannelConfigWithInfo {
   private Boolean search;
 
   @NotNull
+  @JsonProperty("skip_last_msg_update_for_system_msgs")
+  private Boolean skipLastMsgUpdateForSystemMsgs;
+
+  @NotNull
   @JsonProperty("typing_events")
   private Boolean typingEvents;
 
@@ -111,6 +114,14 @@ public class ChannelConfigWithInfo {
   private String blocklistBehavior;
 
   @Nullable
+  @JsonProperty("partition_size")
+  private Integer partitionSize;
+
+  @Nullable
+  @JsonProperty("partition_ttl")
+  private String partitionTtl;
+
+  @Nullable
   @JsonProperty("allowed_flag_reasons")
   private List<String> allowedFlagReasons;
 
@@ -118,7 +129,6 @@ public class ChannelConfigWithInfo {
   @JsonProperty("blocklists")
   private List<BlockListOptions> blocklists;
 
-  /** Sets thresholds for AI moderation */
   @Nullable
   @JsonProperty("automod_thresholds")
   private Thresholds automodThresholds;

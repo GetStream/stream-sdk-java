@@ -2,21 +2,19 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class Device {
 
   @NotNull
   @JsonProperty("created_at")
   private Date createdAt;
 
-  /** Device ID */
   @NotNull
   @JsonProperty("id")
   private String id;
@@ -27,7 +25,7 @@ public class Device {
 
   @NotNull
   @JsonProperty("user_id")
-  private String userId;
+  private String userID;
 
   @Nullable
   @JsonProperty("disabled")
@@ -37,7 +35,6 @@ public class Device {
   @JsonProperty("disabled_reason")
   private String disabledReason;
 
-  /** Name of the push provider configuration */
   @Nullable
   @JsonProperty("push_provider_name")
   private String pushProviderName;

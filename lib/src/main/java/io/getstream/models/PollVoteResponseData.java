@@ -2,14 +2,13 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class PollVoteResponseData {
 
   @NotNull
@@ -22,11 +21,11 @@ public class PollVoteResponseData {
 
   @NotNull
   @JsonProperty("option_id")
-  private String optionId;
+  private String optionID;
 
   @NotNull
   @JsonProperty("poll_id")
-  private String pollId;
+  private String pollID;
 
   @NotNull
   @JsonProperty("updated_at")
@@ -42,10 +41,9 @@ public class PollVoteResponseData {
 
   @Nullable
   @JsonProperty("user_id")
-  private String userId;
+  private String userID;
 
-  /** Represents chat user */
   @Nullable
   @JsonProperty("user")
-  private UserObject user;
+  private UserResponse user;
 }

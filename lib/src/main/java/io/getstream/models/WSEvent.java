@@ -3,14 +3,13 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class WSEvent {
 
   @NotNull
@@ -31,7 +30,7 @@ public class WSEvent {
 
   @Nullable
   @JsonProperty("channel_id")
-  private String channelId;
+  private String channelID;
 
   @Nullable
   @JsonProperty("channel_type")
@@ -43,11 +42,11 @@ public class WSEvent {
 
   @Nullable
   @JsonProperty("connection_id")
-  private String connectionId;
+  private String connectionID;
 
   @Nullable
   @JsonProperty("parent_id")
-  private String parentId;
+  private String parentID;
 
   @Nullable
   @JsonProperty("reason")
@@ -58,8 +57,12 @@ public class WSEvent {
   private String team;
 
   @Nullable
+  @JsonProperty("thread_id")
+  private String threadID;
+
+  @Nullable
   @JsonProperty("user_id")
-  private String userId;
+  private String userID;
 
   @Nullable
   @JsonProperty("watcher_count")
@@ -69,28 +72,25 @@ public class WSEvent {
   @JsonProperty("automoderation_scores")
   private ModerationResponse automoderationScores;
 
-  /** Represents channel in chat */
   @Nullable
   @JsonProperty("channel")
   private ChannelResponse channel;
 
-  /** Represents chat user */
   @Nullable
   @JsonProperty("created_by")
-  private UserObject createdBy;
+  private UserResponse createdBy;
 
   @Nullable
   @JsonProperty("me")
-  private OwnUser me;
+  private OwnUserResponse me;
 
   @Nullable
   @JsonProperty("member")
   private ChannelMember member;
 
-  /** Represents any chat message */
   @Nullable
   @JsonProperty("message")
-  private Message message;
+  private MessageResponse message;
 
   @Nullable
   @JsonProperty("message_update")
@@ -98,24 +98,21 @@ public class WSEvent {
 
   @Nullable
   @JsonProperty("poll")
-  private Poll poll;
+  private PollResponseData poll;
 
   @Nullable
   @JsonProperty("poll_vote")
-  private PollVote pollVote;
+  private PollVoteResponseData pollVote;
 
-  /** Represents user reaction to a message */
   @Nullable
   @JsonProperty("reaction")
-  private Reaction reaction;
+  private ReactionResponse reaction;
 
-  /** Represents a conversation thread linked to a specific message in a channel. */
   @Nullable
   @JsonProperty("thread")
-  private Thread thread;
+  private ThreadResponse thread;
 
-  /** Represents chat user */
   @Nullable
   @JsonProperty("user")
-  private UserObject user;
+  private UserResponse user;
 }

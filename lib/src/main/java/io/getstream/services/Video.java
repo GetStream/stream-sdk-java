@@ -3,15 +3,14 @@ package io.getstream.services;
 import io.getstream.models.*;
 import io.getstream.models.framework.*;
 import io.getstream.services.framework.Client;
-import lombok.*;
 import retrofit2.Call;
 
-@Data
-@NoArgsConstructor
+@lombok.Data
+@lombok.NoArgsConstructor
 public class Video {
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class QueryCallMembers extends StreamRequest<QueryCallMembersResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class queryCallMembers extends StreamRequest<QueryCallMembersResponse> {
     private QueryCallMembersRequest queryCallMembersRequest;
 
     @Override
@@ -20,9 +19,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class QueryCallStats extends StreamRequest<QueryCallStatsResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class queryCallStats extends StreamRequest<QueryCallStatsResponse> {
     private QueryCallStatsRequest queryCallStatsRequest;
 
     @Override
@@ -31,26 +30,27 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class GetCall extends StreamRequest<GetCallResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class getCall extends StreamRequest<GetCallResponse> {
     private String type;
     private String id;
     private Integer membersLimit;
     private Boolean ring;
     private Boolean notify;
+    private Boolean video;
 
     @Override
     protected Call<GetCallResponse> generateCall(Client client) {
       return client
           .create(VideoService.class)
-          .getCall(this.type, this.id, this.membersLimit, this.ring, this.notify);
+          .getCall(this.type, this.id, this.membersLimit, this.ring, this.notify, this.video);
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class UpdateCall extends StreamRequest<UpdateCallResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class updateCall extends StreamRequest<UpdateCallResponse> {
     private String type;
     private String id;
     private UpdateCallRequest updateCallRequest;
@@ -63,9 +63,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class GetOrCreateCall extends StreamRequest<GetOrCreateCallResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class getOrCreateCall extends StreamRequest<GetOrCreateCallResponse> {
     private String type;
     private String id;
     private GetOrCreateCallRequest getOrCreateCallRequest;
@@ -78,9 +78,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class BlockUser extends StreamRequest<BlockUserResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class blockUser extends StreamRequest<BlockUserResponse> {
     private String type;
     private String id;
     private BlockUserRequest blockUserRequest;
@@ -91,9 +91,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class DeleteCall extends StreamRequest<DeleteCallResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class deleteCall extends StreamRequest<DeleteCallResponse> {
     private String type;
     private String id;
     private DeleteCallRequest deleteCallRequest;
@@ -106,9 +106,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class SendCallEvent extends StreamRequest<SendCallEventResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class sendCallEvent extends StreamRequest<SendCallEventResponse> {
     private String type;
     private String id;
     private SendCallEventRequest sendCallEventRequest;
@@ -121,9 +121,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class CollectUserFeedback extends StreamRequest<CollectUserFeedbackResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class collectUserFeedback extends StreamRequest<CollectUserFeedbackResponse> {
     private String type;
     private String id;
     private String session;
@@ -137,9 +137,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class GoLive extends StreamRequest<GoLiveResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class goLive extends StreamRequest<GoLiveResponse> {
     private String type;
     private String id;
     private GoLiveRequest goLiveRequest;
@@ -150,9 +150,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class EndCall extends StreamRequest<EndCallResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class endCall extends StreamRequest<EndCallResponse> {
     private String type;
     private String id;
 
@@ -162,9 +162,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class UpdateCallMembers extends StreamRequest<UpdateCallMembersResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class updateCallMembers extends StreamRequest<UpdateCallMembersResponse> {
     private String type;
     private String id;
     private UpdateCallMembersRequest updateCallMembersRequest;
@@ -177,9 +177,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class MuteUsers extends StreamRequest<MuteUsersResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class muteUsers extends StreamRequest<MuteUsersResponse> {
     private String type;
     private String id;
     private MuteUsersRequest muteUsersRequest;
@@ -190,9 +190,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class VideoPin extends StreamRequest<PinResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class videoPin extends StreamRequest<PinResponse> {
     private String type;
     private String id;
     private PinRequest pinRequest;
@@ -203,9 +203,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class ListRecordings extends StreamRequest<ListRecordingsResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class listRecordings extends StreamRequest<ListRecordingsResponse> {
     private String type;
     private String id;
 
@@ -215,9 +215,52 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class StartHLSBroadcasting extends StreamRequest<StartHLSBroadcastingResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class startRTMPBroadcasts extends StreamRequest<StartRTMPBroadcastsResponse> {
+    private String type;
+    private String id;
+    private StartRTMPBroadcastsRequest startRTMPBroadcastsRequest;
+
+    @Override
+    protected Call<StartRTMPBroadcastsResponse> generateCall(Client client) {
+      return client
+          .create(VideoService.class)
+          .startRTMPBroadcasts(this.type, this.id, this.startRTMPBroadcastsRequest);
+    }
+  }
+
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class stopAllRTMPBroadcasts extends StreamRequest<StopAllRTMPBroadcastsResponse> {
+    private String type;
+    private String id;
+
+    @Override
+    protected Call<StopAllRTMPBroadcastsResponse> generateCall(Client client) {
+      return client.create(VideoService.class).stopAllRTMPBroadcasts(this.type, this.id);
+    }
+  }
+
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class stopRTMPBroadcast extends StreamRequest<StopRTMPBroadcastsResponse> {
+    private String type;
+    private String id;
+    private String name;
+    private StopRTMPBroadcastsRequest stopRTMPBroadcastsRequest;
+
+    @Override
+    protected Call<StopRTMPBroadcastsResponse> generateCall(Client client) {
+      return client
+          .create(VideoService.class)
+          .stopRTMPBroadcast(this.type, this.id, this.name, this.stopRTMPBroadcastsRequest);
+    }
+  }
+
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class startHLSBroadcasting extends StreamRequest<StartHLSBroadcastingResponse> {
     private String type;
     private String id;
 
@@ -227,9 +270,21 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class StartRecording extends StreamRequest<StartRecordingResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class startClosedCaptions extends StreamRequest<StartClosedCaptionsResponse> {
+    private String type;
+    private String id;
+
+    @Override
+    protected Call<StartClosedCaptionsResponse> generateCall(Client client) {
+      return client.create(VideoService.class).startClosedCaptions(this.type, this.id);
+    }
+  }
+
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class startRecording extends StreamRequest<StartRecordingResponse> {
     private String type;
     private String id;
     private StartRecordingRequest startRecordingRequest;
@@ -242,9 +297,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class StartTranscription extends StreamRequest<StartTranscriptionResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class startTranscription extends StreamRequest<StartTranscriptionResponse> {
     private String type;
     private String id;
     private StartTranscriptionRequest startTranscriptionRequest;
@@ -257,9 +312,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class GetCallStats extends StreamRequest<GetCallStatsResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class getCallStats extends StreamRequest<GetCallStatsResponse> {
     private String type;
     private String id;
     private String session;
@@ -270,9 +325,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class StopHLSBroadcasting extends StreamRequest<StopHLSBroadcastingResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class stopHLSBroadcasting extends StreamRequest<StopHLSBroadcastingResponse> {
     private String type;
     private String id;
 
@@ -282,21 +337,34 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class StopLive extends StreamRequest<StopLiveResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class stopClosedCaptions extends StreamRequest<StopClosedCaptionsResponse> {
     private String type;
     private String id;
 
     @Override
-    protected Call<StopLiveResponse> generateCall(Client client) {
-      return client.create(VideoService.class).stopLive(this.type, this.id);
+    protected Call<StopClosedCaptionsResponse> generateCall(Client client) {
+      return client.create(VideoService.class).stopClosedCaptions(this.type, this.id);
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class StopRecording extends StreamRequest<StopRecordingResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class stopLive extends StreamRequest<StopLiveResponse> {
+    private String type;
+    private String id;
+    private StopLiveRequest stopLiveRequest;
+
+    @Override
+    protected Call<StopLiveResponse> generateCall(Client client) {
+      return client.create(VideoService.class).stopLive(this.type, this.id, this.stopLiveRequest);
+    }
+  }
+
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class stopRecording extends StreamRequest<StopRecordingResponse> {
     private String type;
     private String id;
 
@@ -306,9 +374,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class StopTranscription extends StreamRequest<StopTranscriptionResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class stopTranscription extends StreamRequest<StopTranscriptionResponse> {
     private String type;
     private String id;
 
@@ -318,9 +386,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class ListTranscriptions extends StreamRequest<ListTranscriptionsResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class listTranscriptions extends StreamRequest<ListTranscriptionsResponse> {
     private String type;
     private String id;
 
@@ -330,9 +398,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class UnblockUser extends StreamRequest<UnblockUserResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class unblockUser extends StreamRequest<UnblockUserResponse> {
     private String type;
     private String id;
     private UnblockUserRequest unblockUserRequest;
@@ -345,9 +413,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class VideoUnpin extends StreamRequest<UnpinResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class videoUnpin extends StreamRequest<UnpinResponse> {
     private String type;
     private String id;
     private UnpinRequest unpinRequest;
@@ -358,9 +426,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class UpdateUserPermissions extends StreamRequest<UpdateUserPermissionsResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class updateUserPermissions extends StreamRequest<UpdateUserPermissionsResponse> {
     private String type;
     private String id;
     private UpdateUserPermissionsRequest updateUserPermissionsRequest;
@@ -373,9 +441,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class DeleteRecording extends StreamRequest<DeleteRecordingResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class deleteRecording extends StreamRequest<DeleteRecordingResponse> {
     private String type;
     private String id;
     private String session;
@@ -389,9 +457,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class DeleteTranscription extends StreamRequest<DeleteTranscriptionResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class deleteTranscription extends StreamRequest<DeleteTranscriptionResponse> {
     private String type;
     private String id;
     private String session;
@@ -405,9 +473,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class QueryCalls extends StreamRequest<QueryCallsResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class queryCalls extends StreamRequest<QueryCallsResponse> {
     private QueryCallsRequest queryCallsRequest;
 
     @Override
@@ -416,8 +484,8 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  public static class ListCallTypes extends StreamRequest<ListCallTypeResponse> {
+  @lombok.NoArgsConstructor
+  public static class listCallTypes extends StreamRequest<ListCallTypeResponse> {
 
     @Override
     protected Call<ListCallTypeResponse> generateCall(Client client) {
@@ -425,9 +493,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class CreateCallType extends StreamRequest<CreateCallTypeResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class createCallType extends StreamRequest<CreateCallTypeResponse> {
     private CreateCallTypeRequest createCallTypeRequest;
 
     @Override
@@ -436,9 +504,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class DeleteCallType extends StreamRequest<Response> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class deleteCallType extends StreamRequest<Response> {
     private String name;
 
     @Override
@@ -447,9 +515,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class GetCallType extends StreamRequest<GetCallTypeResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class getCallType extends StreamRequest<GetCallTypeResponse> {
     private String name;
 
     @Override
@@ -458,9 +526,9 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class UpdateCallType extends StreamRequest<UpdateCallTypeResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class updateCallType extends StreamRequest<UpdateCallTypeResponse> {
     private String name;
     private UpdateCallTypeRequest updateCallTypeRequest;
 
@@ -472,8 +540,8 @@ public class Video {
     }
   }
 
-  @NoArgsConstructor
-  public static class GetEdges extends StreamRequest<GetEdgesResponse> {
+  @lombok.NoArgsConstructor
+  public static class getEdges extends StreamRequest<GetEdgesResponse> {
 
     @Override
     protected Call<GetEdgesResponse> generateCall(Client client) {

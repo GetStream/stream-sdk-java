@@ -54,7 +54,7 @@ public class CallTest extends BasicTest {
 
     Assertions.assertDoesNotThrow(
         () ->
-            new Video.CreateCallType(
+            new Video.createCallType(
                     CreateCallTypeRequest.builder()
                         .grants(grants)
                         .name(callTypeName)
@@ -68,7 +68,7 @@ public class CallTest extends BasicTest {
 
   @AfterAll
   static void tearDown() throws StreamException {
-    new Video.DeleteCallType(callTypeName).request();
+    new Video.deleteCallType(callTypeName).request();
   }
 
   @Test
@@ -78,7 +78,7 @@ public class CallTest extends BasicTest {
     var response =
         Assertions.assertDoesNotThrow(
             () ->
-                new Video.UpdateCallType(
+                new Video.updateCallType(
                         callTypeName,
                         UpdateCallTypeRequest.builder()
                             .settings(
@@ -124,7 +124,7 @@ public class CallTest extends BasicTest {
 
     Assertions.assertDoesNotThrow(
         () ->
-            new Video.UpdateCallType(
+            new Video.updateCallType(
                 callTypeName,
                 UpdateCallTypeRequest.builder()
                     .settings(
@@ -148,7 +148,7 @@ public class CallTest extends BasicTest {
   public void testUpdateCustomRecordingStyle() {
     Assertions.assertDoesNotThrow(
         () ->
-            new Video.UpdateCallType(
+            new Video.updateCallType(
                 callTypeName,
                 UpdateCallTypeRequest.builder()
                     .settings(
@@ -172,7 +172,7 @@ public class CallTest extends BasicTest {
   public void testUpdateCustomRecordingWebsite() {
     Assertions.assertDoesNotThrow(
         () ->
-            new Video.UpdateCallType(
+            new Video.updateCallType(
                 callTypeName,
                 UpdateCallTypeRequest.builder()
                     .settings(
@@ -195,7 +195,7 @@ public class CallTest extends BasicTest {
   @Test
   public void testReadCallType() {
     var response =
-        Assertions.assertDoesNotThrow(() -> new Video.GetCallType(callTypeName).request());
+        Assertions.assertDoesNotThrow(() -> new Video.getCallType(callTypeName).request());
     Assertions.assertEquals(callTypeName, response.getName());
   }
 
@@ -205,7 +205,7 @@ public class CallTest extends BasicTest {
         GetOrCreateCallRequest.builder()
             .data(
                 CallRequest.builder()
-                    .createdById(testUser.getId())
+                    .createdByID(testUser.getId())
                     .settingsOverride(
                         CallSettingsRequest.builder()
                             .geofencing(
@@ -218,7 +218,7 @@ public class CallTest extends BasicTest {
 
     String callID = "call-" + RandomStringUtils.randomAlphanumeric(10);
     Call testCall = new Call(callType, callID);
-    var response = Assertions.assertDoesNotThrow(() -> testCall.GetOrCreate(callRequest));
+    var response = Assertions.assertDoesNotThrow(() -> testCall.getOrCreate(callRequest));
     Assertions.assertEquals(testUser.getId(), response.getCall().getCreatedBy().getId());
     Assertions.assertFalse(response.getCall().getSettings().getScreensharing().getEnabled());
   }
@@ -227,12 +227,12 @@ public class CallTest extends BasicTest {
   public void testUpdateCall() {
     var callRequest =
         GetOrCreateCallRequest.builder()
-            .data(CallRequest.builder().createdById(testUser.getId()).build())
+            .data(CallRequest.builder().createdByID(testUser.getId()).build())
             .build();
 
     var callId = "call-" + RandomStringUtils.randomAlphabetic(10);
     Assertions.assertDoesNotThrow(
-        () -> new Video.GetOrCreateCall("default", callId, callRequest).request());
+        () -> new Video.getOrCreateCall("default", callId, callRequest).request());
 
     Call call = new Call(callType, callId);
 
@@ -248,7 +248,7 @@ public class CallTest extends BasicTest {
                     .build())
             .build();
 
-    var updatedResponse = Assertions.assertDoesNotThrow(() -> call.Update(updateRequest));
+    var updatedResponse = Assertions.assertDoesNotThrow(() -> call.update(updateRequest));
     Assertions.assertTrue(updatedResponse.getCall().getSettings().getAudio().getMicDefaultOn());
   }
 
@@ -260,15 +260,15 @@ public class CallTest extends BasicTest {
 
     GetOrCreateCallRequest callRequest =
         GetOrCreateCallRequest.builder()
-            .data(CallRequest.builder().createdById(testUser.getId()).build())
+            .data(CallRequest.builder().createdByID(testUser.getId()).build())
             .build();
 
-    Assertions.assertDoesNotThrow(() -> testCall.GetOrCreate(callRequest));
+    Assertions.assertDoesNotThrow(() -> testCall.getOrCreate(callRequest));
 
     Map<String, Object> customEvent = Map.of("bananas", "good");
 
     SendCallEventRequest sendEventRequest =
-        SendCallEventRequest.builder().userId(testUser.getId()).custom(customEvent).build();
-    Assertions.assertDoesNotThrow(() -> testCall.SendCallEvent(sendEventRequest));
+        SendCallEventRequest.builder().userID(testUser.getId()).custom(customEvent).build();
+    Assertions.assertDoesNotThrow(() -> testCall.sendCallEvent(sendEventRequest));
   }
 }

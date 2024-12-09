@@ -1,13 +1,12 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class FlagMessageDetails {
 
   @Nullable
@@ -24,5 +23,5 @@ public class FlagMessageDetails {
 
   @Nullable
   @JsonProperty("updated_by_id")
-  private String updatedById;
+  private String updatedByID;
 }

@@ -1,20 +1,24 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class BroadcastSettings {
 
   @NotNull
   @JsonProperty("enabled")
   private Boolean enabled;
 
-  @NotNull
+  @Nullable
   @JsonProperty("hls")
   private HLSSettings hls;
+
+  @Nullable
+  @JsonProperty("rtmp")
+  private RTMPSettings rtmp;
 }

@@ -2,13 +2,12 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
-import lombok.*;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class MuteUsersRequest {
 
   @Nullable
@@ -21,7 +20,7 @@ public class MuteUsersRequest {
 
   @Nullable
   @JsonProperty("muted_by_id")
-  private String mutedById;
+  private String mutedByID;
 
   @Nullable
   @JsonProperty("screenshare")

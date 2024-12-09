@@ -2,18 +2,17 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class MarkChannelsReadRequest {
 
   @Nullable
   @JsonProperty("user_id")
-  private String userId;
+  private String userID;
 
   @Nullable
   @JsonProperty("read_by_channel")

@@ -1,13 +1,12 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class QueryThreadsRequest {
 
   @Nullable
@@ -22,7 +21,6 @@ public class QueryThreadsRequest {
   @JsonProperty("next")
   private String next;
 
-  /** Limit the number of participants returned per each thread */
   @Nullable
   @JsonProperty("participant_limit")
   private Integer participantLimit;
@@ -31,14 +29,13 @@ public class QueryThreadsRequest {
   @JsonProperty("prev")
   private String prev;
 
-  /** Limit the number of replies returned per each thread */
   @Nullable
   @JsonProperty("reply_limit")
   private Integer replyLimit;
 
   @Nullable
   @JsonProperty("user_id")
-  private String userId;
+  private String userID;
 
   @Nullable
   @JsonProperty("user")

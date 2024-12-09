@@ -4,13 +4,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class UpdateAppRequest {
 
   @Nullable
@@ -50,12 +49,28 @@ public class UpdateAppRequest {
   private String enforceUniqueUsernames;
 
   @Nullable
+  @JsonProperty("feeds_moderation_enabled")
+  private Boolean feedsModerationEnabled;
+
+  @Nullable
+  @JsonProperty("feeds_v2_region")
+  private String feedsV2Region;
+
+  @Nullable
   @JsonProperty("image_moderation_enabled")
   private Boolean imageModerationEnabled;
 
   @Nullable
   @JsonProperty("migrate_permissions_to_v2")
   private Boolean migratePermissionsToV2;
+
+  @Nullable
+  @JsonProperty("moderation_enabled")
+  private Boolean moderationEnabled;
+
+  @Nullable
+  @JsonProperty("moderation_webhook_url")
+  private String moderationWebhookUrl;
 
   @Nullable
   @JsonProperty("multi_tenant_enabled")
@@ -108,6 +123,10 @@ public class UpdateAppRequest {
   @Nullable
   @JsonProperty("webhook_url")
   private String webhookUrl;
+
+  @Nullable
+  @JsonProperty("allowed_flag_reasons")
+  private List<String> allowedFlagReasons;
 
   @Nullable
   @JsonProperty("image_moderation_block_labels")

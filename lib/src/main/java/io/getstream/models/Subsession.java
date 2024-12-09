@@ -1,14 +1,13 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class Subsession {
 
   @NotNull
@@ -21,7 +20,7 @@ public class Subsession {
 
   @NotNull
   @JsonProperty("sfu_id")
-  private String sfuId;
+  private String sfuID;
 
   @Nullable
   @JsonProperty("pub_sub_hint")

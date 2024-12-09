@@ -3,17 +3,15 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class UserRequest {
 
-  /** User ID */
   @NotNull
   @JsonProperty("id")
   private String id;
@@ -30,7 +28,6 @@ public class UserRequest {
   @JsonProperty("language")
   private String language;
 
-  /** Optional name of user */
   @Nullable
   @JsonProperty("name")
   private String name;
@@ -49,7 +46,7 @@ public class UserRequest {
 
   @Nullable
   @JsonProperty("privacy_settings")
-  private PrivacySettings privacySettings;
+  private PrivacySettingsResponse privacySettings;
 
   @Nullable
   @JsonProperty("push_notifications")

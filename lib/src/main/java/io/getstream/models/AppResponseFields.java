@@ -4,14 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class AppResponseFields {
 
   @NotNull
@@ -51,6 +50,14 @@ public class AppResponseFields {
   private Boolean imageModerationEnabled;
 
   @NotNull
+  @JsonProperty("moderation_enabled")
+  private Boolean moderationEnabled;
+
+  @NotNull
+  @JsonProperty("moderation_webhook_url")
+  private String moderationWebhookUrl;
+
+  @NotNull
   @JsonProperty("multi_tenant_enabled")
   private Boolean multiTenantEnabled;
 
@@ -65,10 +72,6 @@ public class AppResponseFields {
   @NotNull
   @JsonProperty("permission_version")
   private String permissionVersion;
-
-  @NotNull
-  @JsonProperty("polls_enabled")
-  private Boolean pollsEnabled;
 
   @NotNull
   @JsonProperty("reminders_interval")

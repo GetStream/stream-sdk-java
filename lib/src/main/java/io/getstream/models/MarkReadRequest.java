@@ -1,28 +1,25 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class MarkReadRequest {
 
-  /** ID of the message that is considered last read by client */
   @Nullable
   @JsonProperty("message_id")
-  private String messageId;
+  private String messageID;
 
-  /** Optional Thread ID to specifically mark a given thread as read */
   @Nullable
   @JsonProperty("thread_id")
-  private String threadId;
+  private String threadID;
 
   @Nullable
   @JsonProperty("user_id")
-  private String userId;
+  private String userID;
 
   @Nullable
   @JsonProperty("user")

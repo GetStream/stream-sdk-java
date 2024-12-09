@@ -2,13 +2,12 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class UnreadCountsThread {
 
   @NotNull
@@ -17,11 +16,11 @@ public class UnreadCountsThread {
 
   @NotNull
   @JsonProperty("last_read_message_id")
-  private String lastReadMessageId;
+  private String lastReadMessageID;
 
   @NotNull
   @JsonProperty("parent_message_id")
-  private String parentMessageId;
+  private String parentMessageID;
 
   @NotNull
   @JsonProperty("unread_count")

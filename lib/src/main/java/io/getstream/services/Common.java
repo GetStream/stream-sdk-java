@@ -3,14 +3,13 @@ package io.getstream.services;
 import io.getstream.models.*;
 import io.getstream.models.framework.*;
 import io.getstream.services.framework.Client;
-import lombok.*;
 import retrofit2.Call;
 
-@Data
-@NoArgsConstructor
+@lombok.Data
+@lombok.NoArgsConstructor
 public class Common {
-  @NoArgsConstructor
-  public static class GetApp extends StreamRequest<GetApplicationResponse> {
+  @lombok.NoArgsConstructor
+  public static class getApp extends StreamRequest<GetApplicationResponse> {
 
     @Override
     protected Call<GetApplicationResponse> generateCall(Client client) {
@@ -18,9 +17,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class UpdateApp extends StreamRequest<Response> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class updateApp extends StreamRequest<Response> {
     private UpdateAppRequest updateAppRequest;
 
     @Override
@@ -29,8 +28,8 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  public static class ListBlockLists extends StreamRequest<ListBlockListResponse> {
+  @lombok.NoArgsConstructor
+  public static class listBlockLists extends StreamRequest<ListBlockListResponse> {
 
     @Override
     protected Call<ListBlockListResponse> generateCall(Client client) {
@@ -38,9 +37,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class CreateBlockList extends StreamRequest<Response> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class createBlockList extends StreamRequest<Response> {
     private CreateBlockListRequest createBlockListRequest;
 
     @Override
@@ -49,9 +48,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class DeleteBlockList extends StreamRequest<Response> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class deleteBlockList extends StreamRequest<Response> {
     private String name;
 
     @Override
@@ -60,9 +59,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class GetBlockList extends StreamRequest<GetBlockListResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class getBlockList extends StreamRequest<GetBlockListResponse> {
     private String name;
 
     @Override
@@ -71,9 +70,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class UpdateBlockList extends StreamRequest<Response> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class updateBlockList extends StreamRequest<Response> {
     private String name;
     private UpdateBlockListRequest updateBlockListRequest;
 
@@ -85,9 +84,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class CheckPush extends StreamRequest<CheckPushResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class checkPush extends StreamRequest<CheckPushResponse> {
     private CheckPushRequest checkPushRequest;
 
     @Override
@@ -96,9 +95,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class CheckSNS extends StreamRequest<CheckSNSResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class checkSNS extends StreamRequest<CheckSNSResponse> {
     private CheckSNSRequest checkSNSRequest;
 
     @Override
@@ -107,9 +106,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class CheckSQS extends StreamRequest<CheckSQSResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class checkSQS extends StreamRequest<CheckSQSResponse> {
     private CheckSQSRequest checkSQSRequest;
 
     @Override
@@ -118,32 +117,32 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class DeleteDevice extends StreamRequest<Response> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class deleteDevice extends StreamRequest<Response> {
     private String id;
-    private String userId;
+    private String userID;
 
     @Override
     protected Call<Response> generateCall(Client client) {
-      return client.create(CommonService.class).deleteDevice(this.id, this.userId);
+      return client.create(CommonService.class).deleteDevice(this.id, this.userID);
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class ListDevices extends StreamRequest<ListDevicesResponse> {
-    private String userId;
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class listDevices extends StreamRequest<ListDevicesResponse> {
+    private String userID;
 
     @Override
     protected Call<ListDevicesResponse> generateCall(Client client) {
-      return client.create(CommonService.class).listDevices(this.userId);
+      return client.create(CommonService.class).listDevices(this.userID);
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class CreateDevice extends StreamRequest<Response> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class createDevice extends StreamRequest<Response> {
     private CreateDeviceRequest createDeviceRequest;
 
     @Override
@@ -152,9 +151,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class ExportUsers extends StreamRequest<ExportUsersResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class exportUsers extends StreamRequest<ExportUsersResponse> {
     private ExportUsersRequest exportUsersRequest;
 
     @Override
@@ -163,8 +162,8 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  public static class ListExternalStorage extends StreamRequest<ListExternalStorageResponse> {
+  @lombok.NoArgsConstructor
+  public static class listExternalStorage extends StreamRequest<ListExternalStorageResponse> {
 
     @Override
     protected Call<ListExternalStorageResponse> generateCall(Client client) {
@@ -172,9 +171,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class CreateExternalStorage extends StreamRequest<CreateExternalStorageResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class createExternalStorage extends StreamRequest<CreateExternalStorageResponse> {
     private CreateExternalStorageRequest createExternalStorageRequest;
 
     @Override
@@ -185,9 +184,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class DeleteExternalStorage extends StreamRequest<DeleteExternalStorageResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class deleteExternalStorage extends StreamRequest<DeleteExternalStorageResponse> {
     private String name;
 
     @Override
@@ -196,9 +195,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class UpdateExternalStorage extends StreamRequest<UpdateExternalStorageResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class updateExternalStorage extends StreamRequest<UpdateExternalStorageResponse> {
     private String name;
     private UpdateExternalStorageRequest updateExternalStorageRequest;
 
@@ -210,9 +209,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class CheckExternalStorage extends StreamRequest<CheckExternalStorageResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class checkExternalStorage extends StreamRequest<CheckExternalStorageResponse> {
     private String name;
 
     @Override
@@ -221,9 +220,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class CreateGuest extends StreamRequest<CreateGuestResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class createGuest extends StreamRequest<CreateGuestResponse> {
     private CreateGuestRequest createGuestRequest;
 
     @Override
@@ -232,9 +231,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class CreateImportURL extends StreamRequest<CreateImportURLResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class createImportURL extends StreamRequest<CreateImportURLResponse> {
     private CreateImportURLRequest createImportURLRequest;
 
     @Override
@@ -243,8 +242,8 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  public static class ListImports extends StreamRequest<ListImportsResponse> {
+  @lombok.NoArgsConstructor
+  public static class listImports extends StreamRequest<ListImportsResponse> {
 
     @Override
     protected Call<ListImportsResponse> generateCall(Client client) {
@@ -252,9 +251,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class CreateImport extends StreamRequest<CreateImportResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class createImport extends StreamRequest<CreateImportResponse> {
     private CreateImportRequest createImportRequest;
 
     @Override
@@ -263,9 +262,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class GetImport extends StreamRequest<GetImportResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class getImport extends StreamRequest<GetImportResponse> {
     private String id;
 
     @Override
@@ -274,68 +273,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class Unban extends StreamRequest<Response> {
-    private String targetUserId;
-    private String channelCid;
-    private String createdBy;
-
-    @Override
-    protected Call<Response> generateCall(Client client) {
-      return client
-          .create(CommonService.class)
-          .unban(this.targetUserId, this.channelCid, this.createdBy);
-    }
-  }
-
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class Ban extends StreamRequest<Response> {
-    private BanRequest banRequest;
-
-    @Override
-    protected Call<Response> generateCall(Client client) {
-      return client.create(CommonService.class).ban(this.banRequest);
-    }
-  }
-
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class Flag extends StreamRequest<FlagResponse> {
-    private FlagRequest flagRequest;
-
-    @Override
-    protected Call<FlagResponse> generateCall(Client client) {
-      return client.create(CommonService.class).flag(this.flagRequest);
-    }
-  }
-
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class MuteUser extends StreamRequest<MuteUserResponse> {
-    private MuteUserRequest muteUserRequest;
-
-    @Override
-    protected Call<MuteUserResponse> generateCall(Client client) {
-      return client.create(CommonService.class).muteUser(this.muteUserRequest);
-    }
-  }
-
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class UnmuteUser extends StreamRequest<UnmuteResponse> {
-    private UnmuteUserRequest unmuteUserRequest;
-
-    @Override
-    protected Call<UnmuteResponse> generateCall(Client client) {
-      return client.create(CommonService.class).unmuteUser(this.unmuteUserRequest);
-    }
-  }
-
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class GetOG extends StreamRequest<GetOGResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class getOG extends StreamRequest<GetOGResponse> {
     private String url;
 
     @Override
@@ -344,8 +284,8 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  public static class ListPermissions extends StreamRequest<ListPermissionsResponse> {
+  @lombok.NoArgsConstructor
+  public static class listPermissions extends StreamRequest<ListPermissionsResponse> {
 
     @Override
     protected Call<ListPermissionsResponse> generateCall(Client client) {
@@ -353,9 +293,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class GetPermission extends StreamRequest<GetCustomPermissionResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class getPermission extends StreamRequest<GetCustomPermissionResponse> {
     private String id;
 
     @Override
@@ -364,8 +304,8 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  public static class ListPushProviders extends StreamRequest<ListPushProvidersResponse> {
+  @lombok.NoArgsConstructor
+  public static class listPushProviders extends StreamRequest<ListPushProvidersResponse> {
 
     @Override
     protected Call<ListPushProvidersResponse> generateCall(Client client) {
@@ -373,9 +313,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class UpsertPushProvider extends StreamRequest<UpsertPushProviderResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class upsertPushProvider extends StreamRequest<UpsertPushProviderResponse> {
     private UpsertPushProviderRequest upsertPushProviderRequest;
 
     @Override
@@ -384,9 +324,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class DeletePushProvider extends StreamRequest<Response> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class deletePushProvider extends StreamRequest<Response> {
     private String type;
     private String name;
 
@@ -396,9 +336,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class GetRateLimits extends StreamRequest<GetRateLimitsResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class getRateLimits extends StreamRequest<GetRateLimitsResponse> {
     private Boolean serverSide;
     private Boolean android;
     private Boolean ios;
@@ -413,8 +353,8 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  public static class ListRoles extends StreamRequest<ListRolesResponse> {
+  @lombok.NoArgsConstructor
+  public static class listRoles extends StreamRequest<ListRolesResponse> {
 
     @Override
     protected Call<ListRolesResponse> generateCall(Client client) {
@@ -422,9 +362,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class CreateRole extends StreamRequest<CreateRoleResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class createRole extends StreamRequest<CreateRoleResponse> {
     private CreateRoleRequest createRoleRequest;
 
     @Override
@@ -433,9 +373,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class DeleteRole extends StreamRequest<Response> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class deleteRole extends StreamRequest<Response> {
     private String name;
 
     @Override
@@ -444,9 +384,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class GetTask extends StreamRequest<GetTaskResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class getTask extends StreamRequest<GetTaskResponse> {
     private String id;
 
     @Override
@@ -455,9 +395,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class QueryUsers extends StreamRequest<QueryUsersResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class queryUsers extends StreamRequest<QueryUsersResponse> {
     private QueryUsersPayload payload;
 
     @Override
@@ -466,9 +406,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class UpdateUsersPartial extends StreamRequest<UpdateUsersResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class updateUsersPartial extends StreamRequest<UpdateUsersResponse> {
     private UpdateUsersPartialRequest updateUsersPartialRequest;
 
     @Override
@@ -477,9 +417,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class UpdateUsers extends StreamRequest<UpdateUsersResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class updateUsers extends StreamRequest<UpdateUsersResponse> {
     private UpdateUsersRequest updateUsersRequest;
 
     @Override
@@ -488,20 +428,20 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class GetBlockedUsers extends StreamRequest<GetBlockedUsersResponse> {
-    private String userId;
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class getBlockedUsers extends StreamRequest<GetBlockedUsersResponse> {
+    private String userID;
 
     @Override
     protected Call<GetBlockedUsersResponse> generateCall(Client client) {
-      return client.create(CommonService.class).getBlockedUsers(this.userId);
+      return client.create(CommonService.class).getBlockedUsers(this.userID);
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class BlockUsers extends StreamRequest<BlockUsersResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class blockUsers extends StreamRequest<BlockUsersResponse> {
     private BlockUsersRequest blockUsersRequest;
 
     @Override
@@ -510,9 +450,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class DeactivateUsers extends StreamRequest<DeactivateUsersResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class deactivateUsers extends StreamRequest<DeactivateUsersResponse> {
     private DeactivateUsersRequest deactivateUsersRequest;
 
     @Override
@@ -521,9 +461,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class DeleteUsers extends StreamRequest<DeleteUsersResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class deleteUsers extends StreamRequest<DeleteUsersResponse> {
     private DeleteUsersRequest deleteUsersRequest;
 
     @Override
@@ -532,9 +472,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class ReactivateUsers extends StreamRequest<ReactivateUsersResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class reactivateUsers extends StreamRequest<ReactivateUsersResponse> {
     private ReactivateUsersRequest reactivateUsersRequest;
 
     @Override
@@ -543,9 +483,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class RestoreUsers extends StreamRequest<Response> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class restoreUsers extends StreamRequest<Response> {
     private RestoreUsersRequest restoreUsersRequest;
 
     @Override
@@ -554,9 +494,9 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class UnblockUsers extends StreamRequest<UnblockUsersResponse> {
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class unblockUsers extends StreamRequest<UnblockUsersResponse> {
     private UnblockUsersRequest unblockUsersRequest;
 
     @Override
@@ -565,42 +505,42 @@ public class Common {
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class DeactivateUser extends StreamRequest<DeactivateUserResponse> {
-    private String userId;
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class deactivateUser extends StreamRequest<DeactivateUserResponse> {
+    private String userID;
     private DeactivateUserRequest deactivateUserRequest;
 
     @Override
     protected Call<DeactivateUserResponse> generateCall(Client client) {
       return client
           .create(CommonService.class)
-          .deactivateUser(this.userId, this.deactivateUserRequest);
+          .deactivateUser(this.userID, this.deactivateUserRequest);
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class ExportUser extends StreamRequest<ExportUserResponse> {
-    private String userId;
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class exportUser extends StreamRequest<ExportUserResponse> {
+    private String userID;
 
     @Override
     protected Call<ExportUserResponse> generateCall(Client client) {
-      return client.create(CommonService.class).exportUser(this.userId);
+      return client.create(CommonService.class).exportUser(this.userID);
     }
   }
 
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class ReactivateUser extends StreamRequest<ReactivateUserResponse> {
-    private String userId;
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class reactivateUser extends StreamRequest<ReactivateUserResponse> {
+    private String userID;
     private ReactivateUserRequest reactivateUserRequest;
 
     @Override
     protected Call<ReactivateUserResponse> generateCall(Client client) {
       return client
           .create(CommonService.class)
-          .reactivateUser(this.userId, this.reactivateUserRequest);
+          .reactivateUser(this.userID, this.reactivateUserRequest);
     }
   }
 }

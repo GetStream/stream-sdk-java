@@ -3,14 +3,13 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class ThreadParticipant {
 
   @NotNull
@@ -21,7 +20,6 @@ public class ThreadParticipant {
   @JsonProperty("channel_cid")
   private String channelCid;
 
-  /** Date/time of creation */
   @NotNull
   @JsonProperty("created_at")
   private Date createdAt;
@@ -38,23 +36,19 @@ public class ThreadParticipant {
   @JsonProperty("last_thread_message_at")
   private Date lastThreadMessageAt;
 
-  /** Left Thread At is the time when the user left the thread */
   @Nullable
   @JsonProperty("left_thread_at")
   private Date leftThreadAt;
 
-  /** Thead ID is unique string identifier of the thread */
   @Nullable
   @JsonProperty("thread_id")
-  private String threadId;
+  private String threadID;
 
-  /** User ID is unique string identifier of the user */
   @Nullable
   @JsonProperty("user_id")
-  private String userId;
+  private String userID;
 
-  /** Represents chat user */
   @Nullable
   @JsonProperty("user")
-  private UserObject user;
+  private UserResponse user;
 }

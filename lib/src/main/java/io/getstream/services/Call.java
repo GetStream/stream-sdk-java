@@ -1,151 +1,179 @@
 package io.getstream.services;
 
 import io.getstream.models.*;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import retrofit2.http.Body;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-@AllArgsConstructor
+@lombok.AllArgsConstructor
 public class Call {
   private String callType;
   private String callID;
 
-  public GetCallResponse Get(
+  public GetCallResponse get(
       @Nullable @Query("members_limit") Integer membersLimit,
       @Nullable @Query("ring") Boolean ring,
-      @Nullable @Query("notify") Boolean notify)
+      @Nullable @Query("notify") Boolean notify,
+      @Nullable @Query("video") Boolean video)
       throws Exception {
-    return new Video.GetCall(this.callType, this.callID, membersLimit, ring, notify).request();
+    return new Video.getCall(this.callType, this.callID, membersLimit, ring, notify, video)
+        .request();
   }
 
-  public UpdateCallResponse Update(@Nullable @Body UpdateCallRequest updateCallRequest)
+  public UpdateCallResponse update(@Nullable @Body UpdateCallRequest updateCallRequest)
       throws Exception {
-    return new Video.UpdateCall(this.callType, this.callID, updateCallRequest).request();
+    return new Video.updateCall(this.callType, this.callID, updateCallRequest).request();
   }
 
-  public GetOrCreateCallResponse GetOrCreate(
+  public GetOrCreateCallResponse getOrCreate(
       @Nullable @Body GetOrCreateCallRequest getOrCreateCallRequest) throws Exception {
-    return new Video.GetOrCreateCall(this.callType, this.callID, getOrCreateCallRequest).request();
+    return new Video.getOrCreateCall(this.callType, this.callID, getOrCreateCallRequest).request();
   }
 
-  public BlockUserResponse BlockUser(@NotNull @Body BlockUserRequest blockUserRequest)
+  public BlockUserResponse blockUser(@NotNull @Body BlockUserRequest blockUserRequest)
       throws Exception {
-    return new Video.BlockUser(this.callType, this.callID, blockUserRequest).request();
+    return new Video.blockUser(this.callType, this.callID, blockUserRequest).request();
   }
 
-  public DeleteCallResponse Delete(@Nullable @Body DeleteCallRequest deleteCallRequest)
+  public DeleteCallResponse delete(@Nullable @Body DeleteCallRequest deleteCallRequest)
       throws Exception {
-    return new Video.DeleteCall(this.callType, this.callID, deleteCallRequest).request();
+    return new Video.deleteCall(this.callType, this.callID, deleteCallRequest).request();
   }
 
-  public SendCallEventResponse SendCallEvent(
+  public SendCallEventResponse sendCallEvent(
       @Nullable @Body SendCallEventRequest sendCallEventRequest) throws Exception {
-    return new Video.SendCallEvent(this.callType, this.callID, sendCallEventRequest).request();
+    return new Video.sendCallEvent(this.callType, this.callID, sendCallEventRequest).request();
   }
 
-  public CollectUserFeedbackResponse CollectUserFeedback(
+  public CollectUserFeedbackResponse collectUserFeedback(
       @NotNull @Path("session") String session,
       @NotNull @Body CollectUserFeedbackRequest collectUserFeedbackRequest)
       throws Exception {
-    return new Video.CollectUserFeedback(
+    return new Video.collectUserFeedback(
             this.callType, this.callID, session, collectUserFeedbackRequest)
         .request();
   }
 
-  public GoLiveResponse GoLive(@Nullable @Body GoLiveRequest goLiveRequest) throws Exception {
-    return new Video.GoLive(this.callType, this.callID, goLiveRequest).request();
+  public GoLiveResponse goLive(@Nullable @Body GoLiveRequest goLiveRequest) throws Exception {
+    return new Video.goLive(this.callType, this.callID, goLiveRequest).request();
   }
 
-  public EndCallResponse End() throws Exception {
-    return new Video.EndCall(this.callType, this.callID).request();
+  public EndCallResponse end() throws Exception {
+    return new Video.endCall(this.callType, this.callID).request();
   }
 
-  public UpdateCallMembersResponse UpdateCallMembers(
+  public UpdateCallMembersResponse updateCallMembers(
       @Nullable @Body UpdateCallMembersRequest updateCallMembersRequest) throws Exception {
-    return new Video.UpdateCallMembers(this.callType, this.callID, updateCallMembersRequest)
+    return new Video.updateCallMembers(this.callType, this.callID, updateCallMembersRequest)
         .request();
   }
 
-  public MuteUsersResponse MuteUsers(@Nullable @Body MuteUsersRequest muteUsersRequest)
+  public MuteUsersResponse muteUsers(@Nullable @Body MuteUsersRequest muteUsersRequest)
       throws Exception {
-    return new Video.MuteUsers(this.callType, this.callID, muteUsersRequest).request();
+    return new Video.muteUsers(this.callType, this.callID, muteUsersRequest).request();
   }
 
-  public PinResponse VideoPin(@NotNull @Body PinRequest pinRequest) throws Exception {
-    return new Video.VideoPin(this.callType, this.callID, pinRequest).request();
+  public PinResponse videoPin(@NotNull @Body PinRequest pinRequest) throws Exception {
+    return new Video.videoPin(this.callType, this.callID, pinRequest).request();
   }
 
-  public ListRecordingsResponse ListRecordings() throws Exception {
-    return new Video.ListRecordings(this.callType, this.callID).request();
+  public ListRecordingsResponse listRecordings() throws Exception {
+    return new Video.listRecordings(this.callType, this.callID).request();
   }
 
-  public StartHLSBroadcastingResponse StartHLSBroadcasting() throws Exception {
-    return new Video.StartHLSBroadcasting(this.callType, this.callID).request();
+  public StartRTMPBroadcastsResponse startRTMPBroadcasts(
+      @NotNull @Body StartRTMPBroadcastsRequest startRTMPBroadcastsRequest) throws Exception {
+    return new Video.startRTMPBroadcasts(this.callType, this.callID, startRTMPBroadcastsRequest)
+        .request();
   }
 
-  public StartRecordingResponse StartRecording(
+  public StopAllRTMPBroadcastsResponse stopAllRTMPBroadcasts() throws Exception {
+    return new Video.stopAllRTMPBroadcasts(this.callType, this.callID).request();
+  }
+
+  public StopRTMPBroadcastsResponse stopRTMPBroadcast(
+      @NotNull @Path("name") String name,
+      @Nullable @Body StopRTMPBroadcastsRequest stopRTMPBroadcastsRequest)
+      throws Exception {
+    return new Video.stopRTMPBroadcast(this.callType, this.callID, name, stopRTMPBroadcastsRequest)
+        .request();
+  }
+
+  public StartHLSBroadcastingResponse startHLSBroadcasting() throws Exception {
+    return new Video.startHLSBroadcasting(this.callType, this.callID).request();
+  }
+
+  public StartClosedCaptionsResponse startClosedCaptions() throws Exception {
+    return new Video.startClosedCaptions(this.callType, this.callID).request();
+  }
+
+  public StartRecordingResponse startRecording(
       @Nullable @Body StartRecordingRequest startRecordingRequest) throws Exception {
-    return new Video.StartRecording(this.callType, this.callID, startRecordingRequest).request();
+    return new Video.startRecording(this.callType, this.callID, startRecordingRequest).request();
   }
 
-  public StartTranscriptionResponse StartTranscription(
+  public StartTranscriptionResponse startTranscription(
       @Nullable @Body StartTranscriptionRequest startTranscriptionRequest) throws Exception {
-    return new Video.StartTranscription(this.callType, this.callID, startTranscriptionRequest)
+    return new Video.startTranscription(this.callType, this.callID, startTranscriptionRequest)
         .request();
   }
 
-  public GetCallStatsResponse GetCallStats(@NotNull @Path("session") String session)
+  public GetCallStatsResponse getCallStats(@NotNull @Path("session") String session)
       throws Exception {
-    return new Video.GetCallStats(this.callType, this.callID, session).request();
+    return new Video.getCallStats(this.callType, this.callID, session).request();
   }
 
-  public StopHLSBroadcastingResponse StopHLSBroadcasting() throws Exception {
-    return new Video.StopHLSBroadcasting(this.callType, this.callID).request();
+  public StopHLSBroadcastingResponse stopHLSBroadcasting() throws Exception {
+    return new Video.stopHLSBroadcasting(this.callType, this.callID).request();
   }
 
-  public StopLiveResponse StopLive() throws Exception {
-    return new Video.StopLive(this.callType, this.callID).request();
+  public StopClosedCaptionsResponse stopClosedCaptions() throws Exception {
+    return new Video.stopClosedCaptions(this.callType, this.callID).request();
   }
 
-  public StopRecordingResponse StopRecording() throws Exception {
-    return new Video.StopRecording(this.callType, this.callID).request();
-  }
-
-  public StopTranscriptionResponse StopTranscription() throws Exception {
-    return new Video.StopTranscription(this.callType, this.callID).request();
-  }
-
-  public ListTranscriptionsResponse ListTranscriptions() throws Exception {
-    return new Video.ListTranscriptions(this.callType, this.callID).request();
-  }
-
-  public UnblockUserResponse UnblockUser(@NotNull @Body UnblockUserRequest unblockUserRequest)
+  public StopLiveResponse stopLive(@Nullable @Body StopLiveRequest stopLiveRequest)
       throws Exception {
-    return new Video.UnblockUser(this.callType, this.callID, unblockUserRequest).request();
+    return new Video.stopLive(this.callType, this.callID, stopLiveRequest).request();
   }
 
-  public UnpinResponse VideoUnpin(@NotNull @Body UnpinRequest unpinRequest) throws Exception {
-    return new Video.VideoUnpin(this.callType, this.callID, unpinRequest).request();
+  public StopRecordingResponse stopRecording() throws Exception {
+    return new Video.stopRecording(this.callType, this.callID).request();
   }
 
-  public UpdateUserPermissionsResponse UpdateUserPermissions(
+  public StopTranscriptionResponse stopTranscription() throws Exception {
+    return new Video.stopTranscription(this.callType, this.callID).request();
+  }
+
+  public ListTranscriptionsResponse listTranscriptions() throws Exception {
+    return new Video.listTranscriptions(this.callType, this.callID).request();
+  }
+
+  public UnblockUserResponse unblockUser(@NotNull @Body UnblockUserRequest unblockUserRequest)
+      throws Exception {
+    return new Video.unblockUser(this.callType, this.callID, unblockUserRequest).request();
+  }
+
+  public UnpinResponse videoUnpin(@NotNull @Body UnpinRequest unpinRequest) throws Exception {
+    return new Video.videoUnpin(this.callType, this.callID, unpinRequest).request();
+  }
+
+  public UpdateUserPermissionsResponse updateUserPermissions(
       @NotNull @Body UpdateUserPermissionsRequest updateUserPermissionsRequest) throws Exception {
-    return new Video.UpdateUserPermissions(this.callType, this.callID, updateUserPermissionsRequest)
+    return new Video.updateUserPermissions(this.callType, this.callID, updateUserPermissionsRequest)
         .request();
   }
 
-  public DeleteRecordingResponse DeleteRecording(
+  public DeleteRecordingResponse deleteRecording(
       @NotNull @Path("session") String session, @NotNull @Path("filename") String filename)
       throws Exception {
-    return new Video.DeleteRecording(this.callType, this.callID, session, filename).request();
+    return new Video.deleteRecording(this.callType, this.callID, session, filename).request();
   }
 
-  public DeleteTranscriptionResponse DeleteTranscription(
+  public DeleteTranscriptionResponse deleteTranscription(
       @NotNull @Path("session") String session, @NotNull @Path("filename") String filename)
       throws Exception {
-    return new Video.DeleteTranscription(this.callType, this.callID, session, filename).request();
+    return new Video.deleteTranscription(this.callType, this.callID, session, filename).request();
   }
 }

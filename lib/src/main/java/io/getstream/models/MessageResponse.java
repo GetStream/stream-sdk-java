@@ -1,21 +1,17 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import io.getstream.models.framework.StreamResponseWithRateLimit;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class MessageResponse implements StreamResponseWithRateLimit {
-  private RateLimit rateLimit;
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
+public class MessageResponse {
 
   @NotNull
   @JsonProperty("cid")
@@ -115,7 +111,7 @@ public class MessageResponse implements StreamResponseWithRateLimit {
 
   @Nullable
   @JsonProperty("parent_id")
-  private String parentId;
+  private String parentID;
 
   @Nullable
   @JsonProperty("pin_expires")
@@ -127,11 +123,11 @@ public class MessageResponse implements StreamResponseWithRateLimit {
 
   @Nullable
   @JsonProperty("poll_id")
-  private String pollId;
+  private String pollID;
 
   @Nullable
   @JsonProperty("quoted_message_id")
-  private String quotedMessageId;
+  private String quotedMessageID;
 
   @Nullable
   @JsonProperty("show_in_channel")
@@ -150,17 +146,20 @@ public class MessageResponse implements StreamResponseWithRateLimit {
   private Map<String, List<String>> imageLabels;
 
   @Nullable
+  @JsonProperty("moderation")
+  private ModerationV2Response moderation;
+
+  @Nullable
   @JsonProperty("pinned_by")
   private UserResponse pinnedBy;
 
   @Nullable
   @JsonProperty("poll")
-  private Poll poll;
+  private PollResponseData poll;
 
-  /** Represents any chat message */
   @Nullable
   @JsonProperty("quoted_message")
-  private Message quotedMessage;
+  private MessageResponse quotedMessage;
 
   @Nullable
   @JsonProperty("reaction_groups")

@@ -2,14 +2,13 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class PushProvider {
 
   @NotNull
@@ -46,7 +45,7 @@ public class PushProvider {
 
   @Nullable
   @JsonProperty("apn_key_id")
-  private String apnKeyId;
+  private String apnKeyID;
 
   @Nullable
   @JsonProperty("apn_notification_template")
@@ -58,7 +57,7 @@ public class PushProvider {
 
   @Nullable
   @JsonProperty("apn_team_id")
-  private String apnTeamId;
+  private String apnTeamID;
 
   @Nullable
   @JsonProperty("apn_topic")
@@ -102,7 +101,7 @@ public class PushProvider {
 
   @Nullable
   @JsonProperty("huawei_app_id")
-  private String huaweiAppId;
+  private String huaweiAppID;
 
   @Nullable
   @JsonProperty("huawei_app_secret")

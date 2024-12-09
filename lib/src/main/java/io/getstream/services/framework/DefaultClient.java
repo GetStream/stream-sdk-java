@@ -32,6 +32,7 @@ public class DefaultClient implements Client {
   @NotNull private final String apiSecret;
   @NotNull private final String apiKey;
   @NotNull private final Properties extendedProperties;
+  @NotNull private final String sdkVersion;
 
   public static DefaultClient getInstance() {
     if (defaultInstance == null) {
@@ -83,6 +84,7 @@ public class DefaultClient implements Client {
     this.apiSecret = apiSecret.toString();
     this.apiKey = apiKey.toString();
     this.retrofit = buildRetrofitClient();
+    this.sdkVersion = readSdkVersion();
   }
 
   private Retrofit buildRetrofitClient() {
@@ -105,7 +107,7 @@ public class DefaultClient implements Client {
                   .newBuilder()
                   .url(url)
                   .header("Content-Type", "application/json")
-                  .header("X-Stream-Client", "stream-java-client-" + getSdkVersion())
+                  .header("X-Stream-Client", "stream-java-client-" + sdkVersion)
                   .header("Stream-Auth-Type", "jwt")
                   .header("Authorization", jwtToken(apiSecret))
                   .build();
@@ -213,7 +215,7 @@ public class DefaultClient implements Client {
     return url.toString();
   }
 
-  private static @NotNull String getSdkVersion() {
+  private static @NotNull String readSdkVersion() {
     var clsLoader = DefaultClient.class.getClassLoader();
     try (var inputStream = clsLoader.getResourceAsStream("version.properties")) {
       var properties = new Properties();

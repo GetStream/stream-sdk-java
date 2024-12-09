@@ -1,27 +1,22 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import io.getstream.models.framework.StreamResponseWithRateLimit;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class UserResponse implements StreamResponseWithRateLimit {
-  private RateLimit rateLimit;
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
+public class UserResponse {
 
   @NotNull
   @JsonProperty("banned")
   private Boolean banned;
 
-  /** Date/time of creation */
   @NotNull
   @JsonProperty("created_at")
   private Date createdAt;
@@ -50,7 +45,6 @@ public class UserResponse implements StreamResponseWithRateLimit {
   @JsonProperty("shadow_banned")
   private Boolean shadowBanned;
 
-  /** Date/time of the last update */
   @NotNull
   @JsonProperty("updated_at")
   private Date updatedAt;
@@ -61,7 +55,7 @@ public class UserResponse implements StreamResponseWithRateLimit {
 
   @NotNull
   @JsonProperty("devices")
-  private List<Device> devices;
+  private List<DeviceResponse> devices;
 
   @NotNull
   @JsonProperty("teams")
@@ -72,10 +66,13 @@ public class UserResponse implements StreamResponseWithRateLimit {
   private Map<String, Object> custom;
 
   @Nullable
+  @JsonProperty("ban_expires")
+  private Date banExpires;
+
+  @Nullable
   @JsonProperty("deactivated_at")
   private Date deactivatedAt;
 
-  /** Date/time of deletion */
   @Nullable
   @JsonProperty("deleted_at")
   private Date deletedAt;
@@ -97,6 +94,10 @@ public class UserResponse implements StreamResponseWithRateLimit {
   private Date revokeTokensIssuedBefore;
 
   @Nullable
+  @JsonProperty("privacy_settings")
+  private PrivacySettingsResponse privacySettings;
+
+  @Nullable
   @JsonProperty("push_notifications")
-  private PushNotificationSettings pushNotifications;
+  private PushNotificationSettingsResponse pushNotifications;
 }

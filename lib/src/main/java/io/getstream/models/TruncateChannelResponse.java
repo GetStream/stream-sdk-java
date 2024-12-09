@@ -1,31 +1,24 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import io.getstream.models.framework.StreamResponseWithRateLimit;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class TruncateChannelResponse implements StreamResponseWithRateLimit {
-  private RateLimit rateLimit;
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
+public class TruncateChannelResponse {
 
-  /** Duration of the request in human-readable format */
   @NotNull
   @JsonProperty("duration")
   private String duration;
 
-  /** Represents channel in chat */
   @Nullable
   @JsonProperty("channel")
   private ChannelResponse channel;
 
-  /** Represents any chat message */
   @Nullable
   @JsonProperty("message")
-  private Message message;
+  private MessageResponse message;
 }

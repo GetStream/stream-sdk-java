@@ -1,19 +1,15 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import io.getstream.models.framework.StreamResponseWithRateLimit;
 import java.util.Date;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class BanResponse implements StreamResponseWithRateLimit {
-  private RateLimit rateLimit;
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
+public class BanResponse {
 
   @NotNull
   @JsonProperty("created_at")
@@ -31,18 +27,15 @@ public class BanResponse implements StreamResponseWithRateLimit {
   @JsonProperty("shadow")
   private Boolean shadow;
 
-  /** Represents chat user */
   @Nullable
   @JsonProperty("banned_by")
-  private UserObject bannedBy;
+  private UserResponse bannedBy;
 
-  /** Represents channel in chat */
   @Nullable
   @JsonProperty("channel")
   private ChannelResponse channel;
 
-  /** Represents chat user */
   @Nullable
   @JsonProperty("user")
-  private UserObject user;
+  private UserResponse user;
 }

@@ -2,18 +2,17 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class UnreadCountsChannel {
 
   @NotNull
   @JsonProperty("channel_id")
-  private String channelId;
+  private String channelID;
 
   @NotNull
   @JsonProperty("last_read")
