@@ -10,31 +10,31 @@ public class CallTokenClaims {
   private Instant expiresAt;
   private Instant issuedAt;
 
-    public CallTokenClaims(String userID, String role, List<String> callCIDs, Integer expiresIn) {
-        this.userID = userID;
-        this.role = role;
-        this.callCIDs = callCIDs;
-        this.issuedAt = Instant.now().minusSeconds(5);
-        this.expiresAt = Instant.now().plusSeconds(expiresIn);
-    }
+  public CallTokenClaims(String userID, String role, List<String> callCIDs, Integer expiresIn) {
+    this.userID = userID;
+    this.role = role;
+    this.callCIDs = callCIDs;
+    this.issuedAt = Instant.now().minusSeconds(5);
+    this.expiresAt = Instant.now().plusSeconds(expiresIn);
+  }
 
-    public List<String> getCallCIDs() {
-        return callCIDs;
-    }
+  public List<String> getCallCIDs() {
+    return callCIDs;
+  }
 
-    public String getRole() {
-        return role;
-    }
+  public String getRole() {
+    return role;
+  }
 
-    public String getUserID() {
-        return userID;
-    }
+  public String getUserID() {
+    return userID;
+  }
 
-    public Instant getExpiresAt() {
-        return expiresAt;
-    }
+  public Instant getExpiresAt() {
+    return expiresAt;
+  }
 
-    public Instant getIssuedAt() {
-        return issuedAt;
-    }
+  public Instant getIssuedAt() {
+    return issuedAt;
+  }
 }

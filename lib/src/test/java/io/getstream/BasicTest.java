@@ -125,7 +125,6 @@ public class BasicTest {
             });
   }
 
-
   private static void cleanCommands() throws Exception {
     chat.listCommands()
         .execute()
