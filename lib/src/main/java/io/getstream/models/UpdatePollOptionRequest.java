@@ -2,7 +2,6 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -11,11 +10,9 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class UpdatePollOptionRequest {
 
-  @NotNull
   @JsonProperty("id")
   private String id;
 
-  @NotNull
   @JsonProperty("text")
   private String text;
 

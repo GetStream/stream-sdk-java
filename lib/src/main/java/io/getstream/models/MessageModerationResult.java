@@ -2,7 +2,6 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -11,27 +10,21 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class MessageModerationResult {
 
-  @NotNull
   @JsonProperty("action")
   private String action;
 
-  @NotNull
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @NotNull
   @JsonProperty("message_id")
   private String messageID;
 
-  @NotNull
   @JsonProperty("updated_at")
   private Date updatedAt;
 
-  @NotNull
   @JsonProperty("user_bad_karma")
   private Boolean userBadKarma;
 
-  @NotNull
   @JsonProperty("user_karma")
   private Double userKarma;
 

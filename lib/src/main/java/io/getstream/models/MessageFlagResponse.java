@@ -3,7 +3,6 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -12,15 +11,12 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class MessageFlagResponse {
 
-  @NotNull
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @NotNull
   @JsonProperty("created_by_automod")
   private Boolean createdByAutomod;
 
-  @NotNull
   @JsonProperty("updated_at")
   private Date updatedAt;
 

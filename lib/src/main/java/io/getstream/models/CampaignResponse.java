@@ -3,7 +3,6 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -12,63 +11,51 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class CampaignResponse {
 
-  @NotNull
   @JsonProperty("create_channels")
   private Boolean createChannels;
 
-  @NotNull
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @NotNull
   @JsonProperty("description")
   private String description;
 
-  @NotNull
   @JsonProperty("id")
   private String id;
 
-  @NotNull
   @JsonProperty("name")
   private String name;
 
-  @NotNull
   @JsonProperty("sender_id")
   private String senderID;
 
-  @NotNull
+  @JsonProperty("sender_mode")
+  private String senderMode;
+
   @JsonProperty("skip_push")
   private Boolean skipPush;
 
-  @NotNull
   @JsonProperty("skip_webhook")
   private Boolean skipWebhook;
 
-  @NotNull
   @JsonProperty("status")
   private String status;
 
-  @NotNull
   @JsonProperty("updated_at")
   private Date updatedAt;
 
-  @NotNull
   @JsonProperty("segment_ids")
   private List<String> segmentIds;
 
-  @NotNull
   @JsonProperty("segments")
   private List<Segment> segments;
 
-  @NotNull
   @JsonProperty("user_ids")
   private List<String> userIds;
 
-  @NotNull
   @JsonProperty("users")
   private List<UserResponse> users;
 
-  @NotNull
   @JsonProperty("stats")
   private CampaignStatsResponse stats;
 

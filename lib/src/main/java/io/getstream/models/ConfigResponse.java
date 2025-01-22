@@ -2,7 +2,6 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -11,19 +10,18 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class ConfigResponse {
 
-  @NotNull
   @JsonProperty("async")
   private Boolean async;
 
-  @NotNull
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @NotNull
   @JsonProperty("key")
   private String key;
 
-  @NotNull
+  @JsonProperty("team")
+  private String team;
+
   @JsonProperty("updated_at")
   private Date updatedAt;
 
@@ -34,6 +32,10 @@ public class ConfigResponse {
   @Nullable
   @JsonProperty("ai_text_config")
   private AITextConfig aiTextConfig;
+
+  @Nullable
+  @JsonProperty("ai_video_config")
+  private AIVideoConfig aiVideoConfig;
 
   @Nullable
   @JsonProperty("automod_platform_circumvention_config")

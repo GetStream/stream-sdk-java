@@ -42,6 +42,10 @@ public class CallSettings {
   private ScreensharingSettings screensharing;
 
   @Nullable
+  @JsonProperty("session")
+  private SessionSettings session;
+
+  @Nullable
   @JsonProperty("thumbnails")
   private ThumbnailsSettings thumbnails;
 

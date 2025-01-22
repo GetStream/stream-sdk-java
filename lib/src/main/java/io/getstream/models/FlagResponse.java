@@ -1,7 +1,6 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.NotNull;
 
 @lombok.Data
 @lombok.Builder
@@ -9,11 +8,9 @@ import org.jetbrains.annotations.NotNull;
 @lombok.AllArgsConstructor
 public class FlagResponse {
 
-  @NotNull
   @JsonProperty("duration")
   private String duration;
 
-  @NotNull
   @JsonProperty("item_id")
   private String itemID;
 }

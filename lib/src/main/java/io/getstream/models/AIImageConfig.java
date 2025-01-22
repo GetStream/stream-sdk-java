@@ -2,7 +2,6 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -11,11 +10,9 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class AIImageConfig {
 
-  @NotNull
   @JsonProperty("enabled")
   private Boolean enabled;
 
-  @NotNull
   @JsonProperty("rules")
   private List<AWSRekognitionRule> rules;
 

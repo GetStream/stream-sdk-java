@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -13,23 +12,18 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class Flag2 {
 
-  @NotNull
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @NotNull
   @JsonProperty("entity_id")
   private String entityID;
 
-  @NotNull
   @JsonProperty("entity_type")
   private String entityType;
 
-  @NotNull
   @JsonProperty("updated_at")
   private Date updatedAt;
 
-  @NotNull
   @JsonProperty("result")
   private List<Map<String, Object>> result;
 

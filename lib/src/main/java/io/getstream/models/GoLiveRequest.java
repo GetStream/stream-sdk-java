@@ -14,6 +14,10 @@ public class GoLiveRequest {
   private String recordingStorageName;
 
   @Nullable
+  @JsonProperty("start_closed_caption")
+  private Boolean startClosedCaption;
+
+  @Nullable
   @JsonProperty("start_hls")
   private Boolean startHLS;
 

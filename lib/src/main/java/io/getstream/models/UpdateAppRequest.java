@@ -117,10 +117,6 @@ public class UpdateAppRequest {
   private String sqsUrl;
 
   @Nullable
-  @JsonProperty("video_provider")
-  private String videoProvider;
-
-  @Nullable
   @JsonProperty("webhook_url")
   private String webhookUrl;
 
@@ -145,10 +141,6 @@ public class UpdateAppRequest {
   private List<String> webhookEvents;
 
   @Nullable
-  @JsonProperty("agora_options")
-  private Config agoraOptions;
-
-  @Nullable
   @JsonProperty("apn_config")
   private APNConfig apnConfig;
 
@@ -171,10 +163,6 @@ public class UpdateAppRequest {
   @Nullable
   @JsonProperty("grants")
   private Map<String, List<String>> grants;
-
-  @Nullable
-  @JsonProperty("hms_options")
-  private Config hmsOptions;
 
   @Nullable
   @JsonProperty("huawei_config")

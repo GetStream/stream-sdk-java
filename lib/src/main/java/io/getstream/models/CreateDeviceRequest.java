@@ -1,7 +1,6 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -10,11 +9,9 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class CreateDeviceRequest {
 
-  @NotNull
   @JsonProperty("id")
   private String id;
 
-  @NotNull
   @JsonProperty("push_provider")
   private String pushProvider;
 

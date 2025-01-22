@@ -1,7 +1,6 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -10,15 +9,12 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class APNConfigFields {
 
-  @NotNull
   @JsonProperty("development")
   private Boolean development;
 
-  @NotNull
   @JsonProperty("enabled")
   private Boolean enabled;
 
-  @NotNull
   @JsonProperty("notification_template")
   private String notificationTemplate;
 

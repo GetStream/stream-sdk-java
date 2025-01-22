@@ -1,7 +1,6 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -9,10 +8,6 @@ import org.jetbrains.annotations.Nullable;
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class AggregatedStats {
-
-  @Nullable
-  @JsonProperty("countrywise_aggregate_stats")
-  private Map<String, CountrywiseAggregateStats> countrywiseAggregateStats;
 
   @Nullable
   @JsonProperty("publisher_aggregate_stats")

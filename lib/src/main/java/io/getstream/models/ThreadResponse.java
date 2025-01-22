@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -13,31 +12,24 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class ThreadResponse {
 
-  @NotNull
   @JsonProperty("channel_cid")
   private String channelCid;
 
-  @NotNull
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @NotNull
   @JsonProperty("created_by_user_id")
   private String createdByUserID;
 
-  @NotNull
   @JsonProperty("parent_message_id")
   private String parentMessageID;
 
-  @NotNull
   @JsonProperty("title")
   private String title;
 
-  @NotNull
   @JsonProperty("updated_at")
   private Date updatedAt;
 
-  @NotNull
   @JsonProperty("custom")
   private Map<String, Object> custom;
 

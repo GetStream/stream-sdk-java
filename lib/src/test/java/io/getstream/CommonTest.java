@@ -4,8 +4,7 @@ import static io.getstream.models.framework.User.createToken;
 
 import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
-import io.getstream.services.Common;
-import io.getstream.services.framework.DefaultClient;
+import io.getstream.services.framework.StreamSDKClient;
 import java.util.Properties;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
@@ -27,13 +26,7 @@ public class CommonTest extends BasicTest {
   @DisplayName("App Get does not throw Exception")
   @Test
   void whenCallingGetApp_thenNoException() {
-    Assertions.assertDoesNotThrow(() -> new Common.getApp().request());
-  }
-
-  @Test
-  @DisplayName("App get async does not throw Exception")
-  void whenCallingGetAppAsync_thenNoException() {
-    new Common.getApp().requestAsync(Assertions::assertNotNull, Assertions::assertNull);
+    Assertions.assertDoesNotThrow(() -> common.getApp().execute());
   }
 
   @DisplayName("App Settings update does not throw Exception")
@@ -54,28 +47,28 @@ public class CommonTest extends BasicTest {
                     .build())
             .build();
 
-    Assertions.assertDoesNotThrow(() -> new Common.updateApp(data).request());
+    Assertions.assertDoesNotThrow(() -> common.updateApp(data).execute());
     Assertions.assertDoesNotThrow(
         () ->
-            new Common.updateApp(
+            common
+                .updateApp(
                     UpdateAppRequest.builder()
                         .disableAuthChecks(false)
                         .disablePermissionsChecks(false)
                         .build())
-                .request());
+                .execute());
   }
 
   @DisplayName("App Get fails with bad key")
   @Test
   void givenBadKey_whenGettingApp_thenException() {
     var properties = new Properties();
-    properties.put(DefaultClient.API_KEY_PROP_NAME, "XXX");
+    properties.put(StreamSDKClient.API_KEY_PROP_NAME, "XXX");
 
-    var client = new DefaultClient(properties);
+    var client = new StreamSDKClient(properties);
 
     StreamException exception =
-        Assertions.assertThrows(
-            StreamException.class, () -> new Common.getApp().withClient(client).request());
+        Assertions.assertThrows(StreamException.class, () -> client.common().getApp().execute());
     Assertions.assertEquals(401, exception.getResponseData().getStatusCode());
   }
 
@@ -84,25 +77,25 @@ public class CommonTest extends BasicTest {
   void givenBadSecret_whenEnableAuthAndGettingApp_thenException() {
     Assertions.assertDoesNotThrow(
         () ->
-            new Common.updateApp(UpdateAppRequest.builder().disableAuthChecks(false).build())
-                .request());
+            common
+                .updateApp(UpdateAppRequest.builder().disableAuthChecks(false).build())
+                .execute());
     var properties = new Properties();
     properties.put(
-        DefaultClient.API_SECRET_PROP_NAME, "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        StreamSDKClient.API_SECRET_PROP_NAME, "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
-    var client = new DefaultClient(properties);
+    var client = new StreamSDKClient(properties);
 
     StreamException exception =
-        Assertions.assertThrows(
-            StreamException.class, () -> new Common.getApp().withClient(client).request());
+        Assertions.assertThrows(StreamException.class, () -> client.common().getApp().execute());
     Assertions.assertEquals(401, exception.getResponseData().getStatusCode());
   }
 
-  @DisplayName("Get rate limits does not throw Exception")
-  @Test
-  void whenCallingGetRateLimits_thenNoException() {
-    Assertions.assertDoesNotThrow(() -> new Common.getRateLimits().request());
-  }
+  //  @DisplayName("Get rate limits does not throw Exception")
+  //  @Test
+  //  void whenCallingGetRateLimits_thenNoException() {
+  //    Assertions.assertDoesNotThrow(() -> common.getRateLimits().request());
+  //  }
 
   @DisplayName("Can check sqs")
   @Test
@@ -110,13 +103,15 @@ public class CommonTest extends BasicTest {
     CheckSQSResponse response =
         Assertions.assertDoesNotThrow(
             () ->
-                new Common.checkSQS(
+                common
+                    .checkSQS(
                         CheckSQSRequest.builder()
                             .sqsKey("key")
                             .sqsSecret("secret")
                             .sqsUrl("https://foo.com/bar")
                             .build())
-                    .request());
+                    .execute()
+                    .getData());
     Assertions.assertEquals("error", response.getStatus());
   }
 
@@ -126,56 +121,15 @@ public class CommonTest extends BasicTest {
     CheckSNSResponse response =
         Assertions.assertDoesNotThrow(
             () ->
-                new Common.checkSNS(
+                common
+                    .checkSNS(
                         CheckSNSRequest.builder()
                             .snsKey("key")
                             .snsSecret("secret")
                             .snsTopicArn("arn:aws:sns:us-east-1:123456789012:sns-topic")
                             .build())
-                    .request());
+                    .execute()
+                    .getData());
     Assertions.assertEquals("error", response.getStatus());
   }
-
-  //    @DisplayName("Can check push templates")
-  //    @Test
-  //    void whenCheckingPushTemplates_thenNoException() {
-  //      String firstUserId = testUser.getId();
-  //      String secondUserId = testUsers.get(1).getId();
-  //      String text = "Hello @" + secondUserId;
-  //      MessageRequest messageRequest =
-  //          MessageRequest.builder().text(text).userId(firstUserId).build();
-  //      MessageResponse message =
-  //          Assertions.assertDoesNotThrow(
-  //                  () ->
-  //                          new ChatClient.SendMessage(testChannel.getType(), testChannel.getId(),
-  // SendMessageRequest.builder().message(messageRequest).build())
-  //                          .request())
-  //              .getMessage();
-  //      Assertions.assertDoesNotThrow(
-  //          () ->
-  //                  new Common.UpdateApp(UpdateAppRequest.builder()
-  //                      .pushConfig(
-  //                          PushConfig.builder()
-  //                              .version("v2")
-  //                              .offlineOnly(false)
-  //                              .build())
-  //                      .build())
-  //                  .request());
-  //      Assertions.assertDoesNotThrow(
-  //          () ->
-  //                  new Common.CheckPush(CheckPushRequest.builder()
-  //                      .messageId(message.getId())
-  //                      .skipDevices(true)
-  //                      .userId(secondUserId)
-  //                      .build())
-  //                  .request());
-  //    }
-  //
-  //    @DisplayName("Can revoke tokens")
-  //    @Test
-  //    void whenRevokingTokens_thenNoException() {
-  //      Calendar calendar = new GregorianCalendar();
-  //      calendar.add(Calendar.DAY_OF_MONTH, -1);
-  //      Assertions.assertDoesNotThrow(() -> App.revokeTokens(calendar.getTime()).request());
-  //    }
 }

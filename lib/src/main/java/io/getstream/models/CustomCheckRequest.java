@@ -1,7 +1,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.NotNull;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -10,29 +10,18 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class CustomCheckRequest {
 
-  @NotNull
-  @JsonProperty("entity_creator_id")
-  private String entityCreatorID;
-
-  @NotNull
   @JsonProperty("entity_id")
   private String entityID;
 
-  @NotNull
   @JsonProperty("entity_type")
   private String entityType;
 
-  @Nullable
-  @JsonProperty("name")
-  private String name;
+  @JsonProperty("flags")
+  private List<CustomCheckFlag> flags;
 
   @Nullable
-  @JsonProperty("reason")
-  private String reason;
-
-  @Nullable
-  @JsonProperty("recommended_action")
-  private String recommendedAction;
+  @JsonProperty("entity_creator_id")
+  private String entityCreatorID;
 
   @Nullable
   @JsonProperty("user_id")

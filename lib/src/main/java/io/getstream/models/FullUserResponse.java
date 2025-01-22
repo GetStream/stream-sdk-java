@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -13,79 +12,60 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class FullUserResponse {
 
-  @NotNull
   @JsonProperty("banned")
   private Boolean banned;
 
-  @NotNull
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @NotNull
   @JsonProperty("id")
   private String id;
 
-  @NotNull
   @JsonProperty("invisible")
   private Boolean invisible;
 
-  @NotNull
   @JsonProperty("language")
   private String language;
 
-  @NotNull
   @JsonProperty("online")
   private Boolean online;
 
-  @NotNull
   @JsonProperty("role")
   private String role;
 
-  @NotNull
   @JsonProperty("shadow_banned")
   private Boolean shadowBanned;
 
-  @NotNull
   @JsonProperty("total_unread_count")
   private Integer totalUnreadCount;
 
-  @NotNull
   @JsonProperty("unread_channels")
   private Integer unreadChannels;
 
-  @NotNull
   @JsonProperty("unread_count")
   private Integer unreadCount;
 
-  @NotNull
   @JsonProperty("unread_threads")
   private Integer unreadThreads;
 
-  @NotNull
   @JsonProperty("updated_at")
   private Date updatedAt;
 
-  @NotNull
   @JsonProperty("blocked_user_ids")
   private List<String> blockedUserIds;
 
-  @NotNull
   @JsonProperty("channel_mutes")
   private List<ChannelMute> channelMutes;
 
-  @NotNull
   @JsonProperty("devices")
   private List<DeviceResponse> devices;
 
-  @NotNull
   @JsonProperty("mutes")
   private List<UserMuteResponse> mutes;
 
-  @NotNull
   @JsonProperty("teams")
   private List<String> teams;
 
-  @NotNull
   @JsonProperty("custom")
   private Map<String, Object> custom;
 

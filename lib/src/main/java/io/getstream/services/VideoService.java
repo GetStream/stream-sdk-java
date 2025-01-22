@@ -1,10 +1,10 @@
 package io.getstream.services;
 
 import io.getstream.models.*;
+import io.getstream.services.framework.StreamRequest;
 import java.util.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
@@ -17,17 +17,17 @@ import retrofit2.http.Query;
 public interface VideoService {
   @POST("/api/v2/video/call/members")
   @NotNull
-  Call<QueryCallMembersResponse> queryCallMembers(
+  StreamRequest<QueryCallMembersResponse> queryCallMembers(
       @NotNull @Body QueryCallMembersRequest queryCallMembersRequest);
 
   @POST("/api/v2/video/call/stats")
   @NotNull
-  Call<QueryCallStatsResponse> queryCallStats(
+  StreamRequest<QueryCallStatsResponse> queryCallStats(
       @Nullable @Body QueryCallStatsRequest queryCallStatsRequest);
 
   @GET("/api/v2/video/call/{type}/{id}")
   @NotNull
-  Call<GetCallResponse> getCall(
+  StreamRequest<GetCallResponse> getCall(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @Nullable @Query("members_limit") Integer membersLimit,
@@ -37,42 +37,42 @@ public interface VideoService {
 
   @PATCH("/api/v2/video/call/{type}/{id}")
   @NotNull
-  Call<UpdateCallResponse> updateCall(
+  StreamRequest<UpdateCallResponse> updateCall(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @Nullable @Body UpdateCallRequest updateCallRequest);
 
   @POST("/api/v2/video/call/{type}/{id}")
   @NotNull
-  Call<GetOrCreateCallResponse> getOrCreateCall(
+  StreamRequest<GetOrCreateCallResponse> getOrCreateCall(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @Nullable @Body GetOrCreateCallRequest getOrCreateCallRequest);
 
   @POST("/api/v2/video/call/{type}/{id}/block")
   @NotNull
-  Call<BlockUserResponse> blockUser(
+  StreamRequest<BlockUserResponse> blockUser(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @NotNull @Body BlockUserRequest blockUserRequest);
 
   @POST("/api/v2/video/call/{type}/{id}/delete")
   @NotNull
-  Call<DeleteCallResponse> deleteCall(
+  StreamRequest<DeleteCallResponse> deleteCall(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @Nullable @Body DeleteCallRequest deleteCallRequest);
 
   @POST("/api/v2/video/call/{type}/{id}/event")
   @NotNull
-  Call<SendCallEventResponse> sendCallEvent(
+  StreamRequest<SendCallEventResponse> sendCallEvent(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @Nullable @Body SendCallEventRequest sendCallEventRequest);
 
   @POST("/api/v2/video/call/{type}/{id}/feedback/{session}")
   @NotNull
-  Call<CollectUserFeedbackResponse> collectUserFeedback(
+  StreamRequest<CollectUserFeedbackResponse> collectUserFeedback(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @NotNull @Path("session") String session,
@@ -80,56 +80,64 @@ public interface VideoService {
 
   @POST("/api/v2/video/call/{type}/{id}/go_live")
   @NotNull
-  Call<GoLiveResponse> goLive(
+  StreamRequest<GoLiveResponse> goLive(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @Nullable @Body GoLiveRequest goLiveRequest);
 
   @POST("/api/v2/video/call/{type}/{id}/mark_ended")
   @NotNull
-  Call<EndCallResponse> endCall(@NotNull @Path("type") String type, @NotNull @Path("id") String id);
+  StreamRequest<EndCallResponse> endCall(
+      @NotNull @Path("type") String type, @NotNull @Path("id") String id);
 
   @POST("/api/v2/video/call/{type}/{id}/members")
   @NotNull
-  Call<UpdateCallMembersResponse> updateCallMembers(
+  StreamRequest<UpdateCallMembersResponse> updateCallMembers(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @Nullable @Body UpdateCallMembersRequest updateCallMembersRequest);
 
   @POST("/api/v2/video/call/{type}/{id}/mute_users")
   @NotNull
-  Call<MuteUsersResponse> muteUsers(
+  StreamRequest<MuteUsersResponse> muteUsers(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @Nullable @Body MuteUsersRequest muteUsersRequest);
 
   @POST("/api/v2/video/call/{type}/{id}/pin")
   @NotNull
-  Call<PinResponse> videoPin(
+  StreamRequest<PinResponse> videoPin(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @NotNull @Body PinRequest pinRequest);
 
   @GET("/api/v2/video/call/{type}/{id}/recordings")
   @NotNull
-  Call<ListRecordingsResponse> listRecordings(
+  StreamRequest<ListRecordingsResponse> listRecordings(
       @NotNull @Path("type") String type, @NotNull @Path("id") String id);
+
+  @GET("/api/v2/video/call/{type}/{id}/report")
+  @NotNull
+  StreamRequest<GetCallReportResponse> getCallReport(
+      @NotNull @Path("type") String type,
+      @NotNull @Path("id") String id,
+      @Nullable @Query("session_id") String sessionID);
 
   @POST("/api/v2/video/call/{type}/{id}/rtmp_broadcasts")
   @NotNull
-  Call<StartRTMPBroadcastsResponse> startRTMPBroadcasts(
+  StreamRequest<StartRTMPBroadcastsResponse> startRTMPBroadcasts(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @NotNull @Body StartRTMPBroadcastsRequest startRTMPBroadcastsRequest);
 
   @POST("/api/v2/video/call/{type}/{id}/rtmp_broadcasts/stop")
   @NotNull
-  Call<StopAllRTMPBroadcastsResponse> stopAllRTMPBroadcasts(
+  StreamRequest<StopAllRTMPBroadcastsResponse> stopAllRTMPBroadcasts(
       @NotNull @Path("type") String type, @NotNull @Path("id") String id);
 
   @POST("/api/v2/video/call/{type}/{id}/rtmp_broadcasts/{name}/stop")
   @NotNull
-  Call<StopRTMPBroadcastsResponse> stopRTMPBroadcast(
+  StreamRequest<StopRTMPBroadcastsResponse> stopRTMPBroadcast(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @NotNull @Path("name") String name,
@@ -137,91 +145,97 @@ public interface VideoService {
 
   @POST("/api/v2/video/call/{type}/{id}/start_broadcasting")
   @NotNull
-  Call<StartHLSBroadcastingResponse> startHLSBroadcasting(
+  StreamRequest<StartHLSBroadcastingResponse> startHLSBroadcasting(
       @NotNull @Path("type") String type, @NotNull @Path("id") String id);
 
   @POST("/api/v2/video/call/{type}/{id}/start_closed_captions")
   @NotNull
-  Call<StartClosedCaptionsResponse> startClosedCaptions(
-      @NotNull @Path("type") String type, @NotNull @Path("id") String id);
+  StreamRequest<StartClosedCaptionsResponse> startClosedCaptions(
+      @NotNull @Path("type") String type,
+      @NotNull @Path("id") String id,
+      @Nullable @Body StartClosedCaptionsRequest startClosedCaptionsRequest);
 
   @POST("/api/v2/video/call/{type}/{id}/start_recording")
   @NotNull
-  Call<StartRecordingResponse> startRecording(
+  StreamRequest<StartRecordingResponse> startRecording(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @Nullable @Body StartRecordingRequest startRecordingRequest);
 
   @POST("/api/v2/video/call/{type}/{id}/start_transcription")
   @NotNull
-  Call<StartTranscriptionResponse> startTranscription(
+  StreamRequest<StartTranscriptionResponse> startTranscription(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @Nullable @Body StartTranscriptionRequest startTranscriptionRequest);
 
   @GET("/api/v2/video/call/{type}/{id}/stats/{session}")
   @NotNull
-  Call<GetCallStatsResponse> getCallStats(
+  StreamRequest<GetCallStatsResponse> getCallStats(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @NotNull @Path("session") String session);
 
   @POST("/api/v2/video/call/{type}/{id}/stop_broadcasting")
   @NotNull
-  Call<StopHLSBroadcastingResponse> stopHLSBroadcasting(
+  StreamRequest<StopHLSBroadcastingResponse> stopHLSBroadcasting(
       @NotNull @Path("type") String type, @NotNull @Path("id") String id);
 
   @POST("/api/v2/video/call/{type}/{id}/stop_closed_captions")
   @NotNull
-  Call<StopClosedCaptionsResponse> stopClosedCaptions(
-      @NotNull @Path("type") String type, @NotNull @Path("id") String id);
+  StreamRequest<StopClosedCaptionsResponse> stopClosedCaptions(
+      @NotNull @Path("type") String type,
+      @NotNull @Path("id") String id,
+      @Nullable @Body StopClosedCaptionsRequest stopClosedCaptionsRequest);
 
   @POST("/api/v2/video/call/{type}/{id}/stop_live")
   @NotNull
-  Call<StopLiveResponse> stopLive(
+  StreamRequest<StopLiveResponse> stopLive(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @Nullable @Body StopLiveRequest stopLiveRequest);
 
   @POST("/api/v2/video/call/{type}/{id}/stop_recording")
   @NotNull
-  Call<StopRecordingResponse> stopRecording(
+  StreamRequest<StopRecordingResponse> stopRecording(
       @NotNull @Path("type") String type, @NotNull @Path("id") String id);
 
   @POST("/api/v2/video/call/{type}/{id}/stop_transcription")
   @NotNull
-  Call<StopTranscriptionResponse> stopTranscription(
-      @NotNull @Path("type") String type, @NotNull @Path("id") String id);
+  StreamRequest<StopTranscriptionResponse> stopTranscription(
+      @NotNull @Path("type") String type,
+      @NotNull @Path("id") String id,
+      @Nullable @Body StopTranscriptionRequest stopTranscriptionRequest);
 
   @GET("/api/v2/video/call/{type}/{id}/transcriptions")
   @NotNull
-  Call<ListTranscriptionsResponse> listTranscriptions(
+  StreamRequest<ListTranscriptionsResponse> listTranscriptions(
       @NotNull @Path("type") String type, @NotNull @Path("id") String id);
 
   @POST("/api/v2/video/call/{type}/{id}/unblock")
   @NotNull
-  Call<UnblockUserResponse> unblockUser(
+  StreamRequest<UnblockUserResponse> unblockUser(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @NotNull @Body UnblockUserRequest unblockUserRequest);
 
   @POST("/api/v2/video/call/{type}/{id}/unpin")
   @NotNull
-  Call<UnpinResponse> videoUnpin(
+  StreamRequest<UnpinResponse> videoUnpin(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @NotNull @Body UnpinRequest unpinRequest);
 
   @POST("/api/v2/video/call/{type}/{id}/user_permissions")
   @NotNull
-  Call<UpdateUserPermissionsResponse> updateUserPermissions(
+  StreamRequest<UpdateUserPermissionsResponse> updateUserPermissions(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @NotNull @Body UpdateUserPermissionsRequest updateUserPermissionsRequest);
 
   @DELETE("/api/v2/video/call/{type}/{id}/{session}/recordings/{filename}")
   @NotNull
-  Call<DeleteRecordingResponse> deleteRecording(
+  StreamRequest<DeleteRecordingResponse> deleteRecording(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @NotNull @Path("session") String session,
@@ -229,7 +243,7 @@ public interface VideoService {
 
   @DELETE("/api/v2/video/call/{type}/{id}/{session}/transcriptions/{filename}")
   @NotNull
-  Call<DeleteTranscriptionResponse> deleteTranscription(
+  StreamRequest<DeleteTranscriptionResponse> deleteTranscription(
       @NotNull @Path("type") String type,
       @NotNull @Path("id") String id,
       @NotNull @Path("session") String session,
@@ -237,32 +251,37 @@ public interface VideoService {
 
   @POST("/api/v2/video/calls")
   @NotNull
-  Call<QueryCallsResponse> queryCalls(@Nullable @Body QueryCallsRequest queryCallsRequest);
+  StreamRequest<QueryCallsResponse> queryCalls(@Nullable @Body QueryCallsRequest queryCallsRequest);
 
   @GET("/api/v2/video/calltypes")
   @NotNull
-  Call<ListCallTypeResponse> listCallTypes();
+  StreamRequest<ListCallTypeResponse> listCallTypes();
 
   @POST("/api/v2/video/calltypes")
   @NotNull
-  Call<CreateCallTypeResponse> createCallType(
+  StreamRequest<CreateCallTypeResponse> createCallType(
       @NotNull @Body CreateCallTypeRequest createCallTypeRequest);
 
   @DELETE("/api/v2/video/calltypes/{name}")
   @NotNull
-  Call<Response> deleteCallType(@NotNull @Path("name") String name);
+  StreamRequest<Response> deleteCallType(@NotNull @Path("name") String name);
 
   @GET("/api/v2/video/calltypes/{name}")
   @NotNull
-  Call<GetCallTypeResponse> getCallType(@NotNull @Path("name") String name);
+  StreamRequest<GetCallTypeResponse> getCallType(@NotNull @Path("name") String name);
 
   @PUT("/api/v2/video/calltypes/{name}")
   @NotNull
-  Call<UpdateCallTypeResponse> updateCallType(
+  StreamRequest<UpdateCallTypeResponse> updateCallType(
       @NotNull @Path("name") String name,
       @Nullable @Body UpdateCallTypeRequest updateCallTypeRequest);
 
   @GET("/api/v2/video/edges")
   @NotNull
-  Call<GetEdgesResponse> getEdges();
+  StreamRequest<GetEdgesResponse> getEdges();
+
+  @POST("/api/v2/video/stats")
+  @NotNull
+  StreamRequest<QueryAggregateCallStatsResponse> queryAggregateCallStats(
+      @Nullable @Body QueryAggregateCallStatsRequest queryAggregateCallStatsRequest);
 }

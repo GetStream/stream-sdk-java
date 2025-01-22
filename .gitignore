@@ -49,3 +49,5 @@ gradle-app.setting
 
 ## project specific
 /local.properties
+
+.idea

@@ -1,9 +1,7 @@
 package io.getstream;
 
-import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
 import io.getstream.services.Call;
-import io.getstream.services.Video;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,21 +52,22 @@ public class CallTest extends BasicTest {
 
     Assertions.assertDoesNotThrow(
         () ->
-            new Video.createCallType(
+            video
+                .createCallType(
                     CreateCallTypeRequest.builder()
                         .grants(grants)
                         .name(callTypeName)
                         .settings(callSettings)
                         .notificationSettings(notificationSettings)
                         .build())
-                .request());
+                .execute());
 
     java.lang.Thread.sleep(3000);
   }
 
   @AfterAll
-  static void tearDown() throws StreamException {
-    new Video.deleteCallType(callTypeName).request();
+  static void tearDown() throws Exception {
+    video.deleteCallType(callTypeName).execute();
   }
 
   @Test
@@ -78,7 +77,8 @@ public class CallTest extends BasicTest {
     var response =
         Assertions.assertDoesNotThrow(
             () ->
-                new Video.updateCallType(
+                video
+                    .updateCallType(
                         callTypeName,
                         UpdateCallTypeRequest.builder()
                             .settings(
@@ -95,13 +95,14 @@ public class CallTest extends BasicTest {
                                     .build())
                             .grants(grants)
                             .build())
-                    .request());
+                    .execute());
 
-    Assertions.assertFalse(response.getSettings().getAudio().getMicDefaultOn());
-    Assertions.assertEquals("earpiece", response.getSettings().getAudio().getDefaultDevice());
-    Assertions.assertEquals("disabled", response.getSettings().getRecording().getMode());
-    Assertions.assertTrue(response.getSettings().getBackstage().getEnabled());
-    Assertions.assertEquals(List.of("join-backstage"), response.getGrants().get("host"));
+    Assertions.assertFalse(response.getData().getSettings().getAudio().getMicDefaultOn());
+    Assertions.assertEquals(
+        "earpiece", response.getData().getSettings().getAudio().getDefaultDevice());
+    Assertions.assertEquals("disabled", response.getData().getSettings().getRecording().getMode());
+    Assertions.assertTrue(response.getData().getSettings().getBackstage().getEnabled());
+    Assertions.assertEquals(List.of("join-backstage"), response.getData().getGrants().get("host"));
   }
 
   @Test
@@ -124,7 +125,7 @@ public class CallTest extends BasicTest {
 
     Assertions.assertDoesNotThrow(
         () ->
-            new Video.updateCallType(
+            video.updateCallType(
                 callTypeName,
                 UpdateCallTypeRequest.builder()
                     .settings(
@@ -148,7 +149,7 @@ public class CallTest extends BasicTest {
   public void testUpdateCustomRecordingStyle() {
     Assertions.assertDoesNotThrow(
         () ->
-            new Video.updateCallType(
+            video.updateCallType(
                 callTypeName,
                 UpdateCallTypeRequest.builder()
                     .settings(
@@ -172,7 +173,7 @@ public class CallTest extends BasicTest {
   public void testUpdateCustomRecordingWebsite() {
     Assertions.assertDoesNotThrow(
         () ->
-            new Video.updateCallType(
+            video.updateCallType(
                 callTypeName,
                 UpdateCallTypeRequest.builder()
                     .settings(
@@ -194,9 +195,8 @@ public class CallTest extends BasicTest {
 
   @Test
   public void testReadCallType() {
-    var response =
-        Assertions.assertDoesNotThrow(() -> new Video.getCallType(callTypeName).request());
-    Assertions.assertEquals(callTypeName, response.getName());
+    var response = Assertions.assertDoesNotThrow(() -> video.getCallType(callTypeName).execute());
+    Assertions.assertEquals(callTypeName, response.getData().getName());
   }
 
   @Test
@@ -219,8 +219,9 @@ public class CallTest extends BasicTest {
     String callID = "call-" + RandomStringUtils.randomAlphanumeric(10);
     Call testCall = new Call(callType, callID);
     var response = Assertions.assertDoesNotThrow(() -> testCall.getOrCreate(callRequest));
-    Assertions.assertEquals(testUser.getId(), response.getCall().getCreatedBy().getId());
-    Assertions.assertFalse(response.getCall().getSettings().getScreensharing().getEnabled());
+    Assertions.assertEquals(testUser.getId(), response.getData().getCall().getCreatedBy().getId());
+    Assertions.assertFalse(
+        response.getData().getCall().getSettings().getScreensharing().getEnabled());
   }
 
   @Test
@@ -232,7 +233,7 @@ public class CallTest extends BasicTest {
 
     var callId = "call-" + RandomStringUtils.randomAlphabetic(10);
     Assertions.assertDoesNotThrow(
-        () -> new Video.getOrCreateCall("default", callId, callRequest).request());
+        () -> video.getOrCreateCall("default", callId, callRequest).execute());
 
     Call call = new Call(callType, callId);
 
@@ -249,7 +250,8 @@ public class CallTest extends BasicTest {
             .build();
 
     var updatedResponse = Assertions.assertDoesNotThrow(() -> call.update(updateRequest));
-    Assertions.assertTrue(updatedResponse.getCall().getSettings().getAudio().getMicDefaultOn());
+    Assertions.assertTrue(
+        updatedResponse.getData().getCall().getSettings().getAudio().getMicDefaultOn());
   }
 
   @Test

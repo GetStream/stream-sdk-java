@@ -2,7 +2,6 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -11,49 +10,42 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class GetCallStatsResponse {
 
-  @NotNull
   @JsonProperty("call_duration_seconds")
   private Integer callDurationSeconds;
 
-  @NotNull
   @JsonProperty("call_status")
   private String callStatus;
 
-  @NotNull
   @JsonProperty("duration")
   private String duration;
 
-  @NotNull
   @JsonProperty("max_freezes_duration_seconds")
   private Integer maxFreezesDurationSeconds;
 
-  @NotNull
   @JsonProperty("max_participants")
   private Integer maxParticipants;
 
-  @NotNull
   @JsonProperty("max_total_quality_limitation_duration_seconds")
   private Integer maxTotalQualityLimitationDurationSeconds;
 
-  @NotNull
   @JsonProperty("publishing_participants")
   private Integer publishingParticipants;
 
-  @NotNull
   @JsonProperty("quality_score")
   private Integer qualityScore;
 
-  @NotNull
   @JsonProperty("sfu_count")
   private Integer sfuCount;
 
-  @NotNull
   @JsonProperty("participant_report")
   private List<UserStats> participantReport;
 
-  @NotNull
   @JsonProperty("sfus")
   private List<SFULocationResponse> sfus;
+
+  @Nullable
+  @JsonProperty("average_connection_time")
+  private Double averageConnectionTime;
 
   @Nullable
   @JsonProperty("aggregated")

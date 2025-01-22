@@ -3,7 +3,6 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -12,57 +11,48 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class UserSessionStats {
 
-  @NotNull
   @JsonProperty("freeze_duration_seconds")
   private Integer freezeDurationSeconds;
 
-  @NotNull
   @JsonProperty("group")
   private String group;
 
-  @NotNull
   @JsonProperty("max_freeze_fraction")
   private Double maxFreezeFraction;
 
-  @NotNull
   @JsonProperty("max_freezes_duration_seconds")
   private Integer maxFreezesDurationSeconds;
 
-  @NotNull
   @JsonProperty("min_event_ts")
   private Integer minEventTs;
 
-  @NotNull
   @JsonProperty("packet_loss_fraction")
   private Double packetLossFraction;
 
-  @NotNull
   @JsonProperty("publisher_packet_loss_fraction")
   private Double publisherPacketLossFraction;
 
-  @NotNull
   @JsonProperty("publishing_duration_seconds")
   private Integer publishingDurationSeconds;
 
-  @NotNull
   @JsonProperty("quality_score")
   private Double qualityScore;
 
-  @NotNull
   @JsonProperty("receiving_duration_seconds")
   private Integer receivingDurationSeconds;
 
-  @NotNull
   @JsonProperty("session_id")
   private String sessionID;
 
-  @NotNull
   @JsonProperty("total_pixels_in")
   private Integer totalPixelsIn;
 
-  @NotNull
   @JsonProperty("total_pixels_out")
   private Integer totalPixelsOut;
+
+  @Nullable
+  @JsonProperty("average_connection_time")
+  private Double averageConnectionTime;
 
   @Nullable
   @JsonProperty("browser")

@@ -42,6 +42,10 @@ public class CallSettingsRequest {
   private ScreensharingSettingsRequest screensharing;
 
   @Nullable
+  @JsonProperty("session")
+  private SessionSettingsRequest session;
+
+  @Nullable
   @JsonProperty("thumbnails")
   private ThumbnailsSettingsRequest thumbnails;
 

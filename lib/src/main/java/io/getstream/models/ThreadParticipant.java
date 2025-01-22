@@ -3,7 +3,6 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -12,23 +11,18 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class ThreadParticipant {
 
-  @NotNull
   @JsonProperty("app_pk")
   private Integer appPk;
 
-  @NotNull
   @JsonProperty("channel_cid")
   private String channelCid;
 
-  @NotNull
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @NotNull
   @JsonProperty("last_read_at")
   private Date lastReadAt;
 
-  @NotNull
   @JsonProperty("custom")
   private Map<String, Object> custom;
 

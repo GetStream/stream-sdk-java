@@ -3,7 +3,6 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -12,31 +11,24 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class ChannelMemberResponse {
 
-  @NotNull
   @JsonProperty("banned")
   private Boolean banned;
 
-  @NotNull
   @JsonProperty("channel_role")
   private String channelRole;
 
-  @NotNull
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @NotNull
   @JsonProperty("notifications_muted")
   private Boolean notificationsMuted;
 
-  @NotNull
   @JsonProperty("shadow_banned")
   private Boolean shadowBanned;
 
-  @NotNull
   @JsonProperty("updated_at")
   private Date updatedAt;
 
-  @NotNull
   @JsonProperty("custom")
   private Map<String, Object> custom;
 

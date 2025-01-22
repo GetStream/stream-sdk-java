@@ -2,7 +2,6 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 
 @lombok.Data
 @lombok.Builder
@@ -10,23 +9,18 @@ import org.jetbrains.annotations.NotNull;
 @lombok.AllArgsConstructor
 public class GetOrCreateCallResponse {
 
-  @NotNull
   @JsonProperty("created")
   private Boolean created;
 
-  @NotNull
   @JsonProperty("duration")
   private String duration;
 
-  @NotNull
   @JsonProperty("members")
   private List<MemberResponse> members;
 
-  @NotNull
   @JsonProperty("own_capabilities")
   private List<OwnCapability> ownCapabilities;
 
-  @NotNull
   @JsonProperty("call")
   private CallResponse call;
 }

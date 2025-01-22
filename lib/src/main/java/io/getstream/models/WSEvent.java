@@ -3,7 +3,6 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -12,15 +11,12 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class WSEvent {
 
-  @NotNull
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @NotNull
   @JsonProperty("type")
   private String type;
 
-  @NotNull
   @JsonProperty("custom")
   private Map<String, Object> custom;
 
@@ -31,6 +27,10 @@ public class WSEvent {
   @Nullable
   @JsonProperty("channel_id")
   private String channelID;
+
+  @Nullable
+  @JsonProperty("channel_last_message_at")
+  private Date channelLastMessageAt;
 
   @Nullable
   @JsonProperty("channel_type")

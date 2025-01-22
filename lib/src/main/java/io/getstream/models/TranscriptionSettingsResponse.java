@@ -1,8 +1,6 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
-import org.jetbrains.annotations.NotNull;
 
 @lombok.Data
 @lombok.Builder
@@ -10,15 +8,12 @@ import org.jetbrains.annotations.NotNull;
 @lombok.AllArgsConstructor
 public class TranscriptionSettingsResponse {
 
-  @NotNull
   @JsonProperty("closed_caption_mode")
   private String closedCaptionMode;
 
-  @NotNull
+  @JsonProperty("language")
+  private String language;
+
   @JsonProperty("mode")
   private String mode;
-
-  @NotNull
-  @JsonProperty("languages")
-  private List<String> languages;
 }

@@ -3,7 +3,6 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -12,19 +11,15 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class ChannelStateResponseFields {
 
-  @NotNull
   @JsonProperty("members")
   private List<ChannelMember> members;
 
-  @NotNull
   @JsonProperty("messages")
   private List<MessageResponse> messages;
 
-  @NotNull
   @JsonProperty("pinned_messages")
   private List<MessageResponse> pinnedMessages;
 
-  @NotNull
   @JsonProperty("threads")
   private List<ThreadStateResponse> threads;
 

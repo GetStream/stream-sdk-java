@@ -2,7 +2,6 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -11,19 +10,15 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class PushProviderResponse {
 
-  @NotNull
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @NotNull
   @JsonProperty("name")
   private String name;
 
-  @NotNull
   @JsonProperty("type")
   private String type;
 
-  @NotNull
   @JsonProperty("updated_at")
   private Date updatedAt;
 

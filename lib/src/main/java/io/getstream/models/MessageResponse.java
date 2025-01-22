@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -13,83 +12,63 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class MessageResponse {
 
-  @NotNull
   @JsonProperty("cid")
   private String cid;
 
-  @NotNull
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @NotNull
   @JsonProperty("deleted_reply_count")
   private Integer deletedReplyCount;
 
-  @NotNull
   @JsonProperty("html")
   private String html;
 
-  @NotNull
   @JsonProperty("id")
   private String id;
 
-  @NotNull
   @JsonProperty("pinned")
   private Boolean pinned;
 
-  @NotNull
   @JsonProperty("reply_count")
   private Integer replyCount;
 
-  @NotNull
   @JsonProperty("shadowed")
   private Boolean shadowed;
 
-  @NotNull
   @JsonProperty("silent")
   private Boolean silent;
 
-  @NotNull
   @JsonProperty("text")
   private String text;
 
-  @NotNull
   @JsonProperty("type")
   private String type;
 
-  @NotNull
   @JsonProperty("updated_at")
   private Date updatedAt;
 
-  @NotNull
   @JsonProperty("attachments")
   private List<Attachment> attachments;
 
-  @NotNull
   @JsonProperty("latest_reactions")
   private List<ReactionResponse> latestReactions;
 
-  @NotNull
   @JsonProperty("mentioned_users")
   private List<UserResponse> mentionedUsers;
 
-  @NotNull
   @JsonProperty("own_reactions")
   private List<ReactionResponse> ownReactions;
 
-  @NotNull
   @JsonProperty("custom")
   private Map<String, Object> custom;
 
-  @NotNull
   @JsonProperty("reaction_counts")
   private Map<String, Integer> reactionCounts;
 
-  @NotNull
   @JsonProperty("reaction_scores")
   private Map<String, Integer> reactionScores;
 
-  @NotNull
   @JsonProperty("user")
   private UserResponse user;
 

@@ -10,6 +10,14 @@ import org.jetbrains.annotations.Nullable;
 public class StartTranscriptionRequest {
 
   @Nullable
+  @JsonProperty("enable_closed_captions")
+  private Boolean enableClosedCaptions;
+
+  @Nullable
+  @JsonProperty("language")
+  private String language;
+
+  @Nullable
   @JsonProperty("transcription_external_storage")
   private String transcriptionExternalStorage;
 }

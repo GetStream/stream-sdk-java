@@ -1,7 +1,6 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -10,11 +9,9 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class ScreensharingSettings {
 
-  @NotNull
   @JsonProperty("access_request_enabled")
   private Boolean accessRequestEnabled;
 
-  @NotNull
   @JsonProperty("enabled")
   private Boolean enabled;
 

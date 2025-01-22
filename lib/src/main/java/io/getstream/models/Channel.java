@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -13,39 +12,30 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class Channel {
 
-  @NotNull
   @JsonProperty("auto_translation_language")
   private String autoTranslationLanguage;
 
-  @NotNull
   @JsonProperty("cid")
   private String cid;
 
-  @NotNull
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @NotNull
   @JsonProperty("disabled")
   private Boolean disabled;
 
-  @NotNull
   @JsonProperty("frozen")
   private Boolean frozen;
 
-  @NotNull
   @JsonProperty("id")
   private String id;
 
-  @NotNull
   @JsonProperty("type")
   private String type;
 
-  @NotNull
   @JsonProperty("updated_at")
   private Date updatedAt;
 
-  @NotNull
   @JsonProperty("custom")
   private Map<String, Object> custom;
 

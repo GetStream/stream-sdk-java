@@ -1,7 +1,6 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -10,7 +9,6 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class UpsertConfigRequest {
 
-  @NotNull
   @JsonProperty("key")
   private String key;
 
@@ -19,12 +17,24 @@ public class UpsertConfigRequest {
   private Boolean async;
 
   @Nullable
+  @JsonProperty("team")
+  private String team;
+
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
   @JsonProperty("ai_image_config")
   private AIImageConfig aiImageConfig;
 
   @Nullable
   @JsonProperty("ai_text_config")
   private AITextConfig aiTextConfig;
+
+  @Nullable
+  @JsonProperty("ai_video_config")
+  private AIVideoConfig aiVideoConfig;
 
   @Nullable
   @JsonProperty("automod_platform_circumvention_config")
@@ -53,6 +63,10 @@ public class UpsertConfigRequest {
   @Nullable
   @JsonProperty("google_vision_config")
   private GoogleVisionConfig googleVisionConfig;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 
   @Nullable
   @JsonProperty("velocity_filter_config")
