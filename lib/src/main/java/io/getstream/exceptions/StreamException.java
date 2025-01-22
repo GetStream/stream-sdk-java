@@ -21,10 +21,6 @@ public class StreamException extends Exception {
     this.responseData = responseData;
   }
 
-  public ResponseData getResponseData() {
-    return this.responseData;
-  }
-
   public StreamException(String message, Throwable t) {
     super(message, t);
   }

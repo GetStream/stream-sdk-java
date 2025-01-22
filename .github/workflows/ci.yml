@@ -19,7 +19,7 @@ jobs:
 #      - name: Commit message lint
 #        uses: wagoid/commitlint-github-action@v4
 
-      - name: Setup JDK 11
+      - name: Setup JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: 'corretto'
