@@ -33,5 +33,5 @@ jobs:
           STREAM_KEY: ${{ secrets.STREAM_KEY }}
           STREAM_SECRET: ${{ secrets.STREAM_SECRET }}
         run: |
-          ./gradlew spotlessCheck
-          ./gradlew jacocoTestReport
+          ./gradlew spotlessCheck --no-daemon
+          ./gradlew build --no-daemon
