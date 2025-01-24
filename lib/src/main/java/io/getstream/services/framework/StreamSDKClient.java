@@ -104,7 +104,8 @@ public class StreamSDKClient {
       this.logLevel = propLogLevel;
     }
 
-    var envApiSecret = env.getOrDefault("STREAM_API_SECRET", System.getProperty(API_SECRET_PROP_NAME));
+    var envApiSecret =
+        env.getOrDefault("STREAM_API_SECRET", System.getProperty(API_SECRET_PROP_NAME));
     if (envApiSecret != null) {
       this.apiSecret = envApiSecret;
     }
