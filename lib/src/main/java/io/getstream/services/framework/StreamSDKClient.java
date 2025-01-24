@@ -35,9 +35,11 @@ public class StreamSDKClient {
   @NotNull private String apiKey;
   private long timeout = 10000;
   @NotNull private String logLevel = "NONE";
-  @NotNull private final String sdkVersion;
+  @NotNull private final String sdkVersion = readSdkVersion();
+  ;
   @NotNull private String baseUrl = API_DEFAULT_URL;
   @NotNull private final Retrofit retrofit;
+  @NotNull private String jwtToken;
 
   public StreamSDKClient() {
     this(System.getProperties());
@@ -46,7 +48,15 @@ public class StreamSDKClient {
   public StreamSDKClient(Properties properties) {
     readPropertiesAndEnv(properties);
 
-    sdkVersion = readSdkVersion();
+    if (apiKey.isEmpty()) {
+      throw new IllegalArgumentException("apiKey and apiSecret are required");
+    }
+
+    if (apiSecret.isEmpty()) {
+      throw new IllegalArgumentException("apiSecret is required");
+    }
+
+    jwtToken = buildJWT(apiSecret);
     retrofit = buildRetrofitClient();
   }
 
@@ -66,7 +76,7 @@ public class StreamSDKClient {
     defaultInstance = instance;
   }
 
-  private static @NotNull String jwtToken(String apiSecret) {
+  private static @NotNull String buildJWT(String apiSecret) {
     Key signingKey =
         new SecretKeySpec(
             apiSecret.getBytes(StandardCharsets.UTF_8), SignatureAlgorithm.HS256.getJcaName());
@@ -94,23 +104,23 @@ public class StreamSDKClient {
       this.logLevel = propLogLevel;
     }
 
-    var envApiSecret = env.getOrDefault("STREAM_SECRET", System.getProperty("STREAM_SECRET"));
+    var envApiSecret = env.getOrDefault("STREAM_SECRET", System.getProperty(API_SECRET_PROP_NAME));
     if (envApiSecret != null) {
       this.apiSecret = envApiSecret;
     }
 
-    var envApiKey = env.getOrDefault("STREAM_KEY", System.getProperty("STREAM_KEY"));
+    var envApiKey = env.getOrDefault("STREAM_KEY", System.getProperty(API_KEY_PROP_NAME));
     if (envApiKey != null) {
       this.apiKey = envApiKey;
     }
 
     var envTimeout =
-        env.getOrDefault("STREAM_CHAT_TIMEOUT", System.getProperty("STREAM_CHAT_TIMEOUT"));
+        env.getOrDefault("STREAM_CHAT_TIMEOUT", System.getProperty(API_TIMEOUT_PROP_NAME));
     if (envTimeout != null) {
       timeout = Long.parseLong(envTimeout);
     }
 
-    var envApiUrl = env.getOrDefault("STREAM_CHAT_URL", System.getProperty("STREAM_CHAT_URL"));
+    var envApiUrl = env.getOrDefault("STREAM_CHAT_URL", System.getProperty(API_URL_PROP_NAME));
     if (envApiUrl != null) {
       this.baseUrl = envApiUrl;
     }
