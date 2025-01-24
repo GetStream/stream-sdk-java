@@ -104,23 +104,23 @@ public class StreamSDKClient {
       this.logLevel = propLogLevel;
     }
 
-    var envApiSecret = env.getOrDefault("STREAM_SECRET", System.getProperty(API_SECRET_PROP_NAME));
+    var envApiSecret = env.getOrDefault("STREAM_API_SECRET", System.getProperty(API_SECRET_PROP_NAME));
     if (envApiSecret != null) {
       this.apiSecret = envApiSecret;
     }
 
-    var envApiKey = env.getOrDefault("STREAM_KEY", System.getProperty(API_KEY_PROP_NAME));
+    var envApiKey = env.getOrDefault("STREAM_API_KEY", System.getProperty(API_KEY_PROP_NAME));
     if (envApiKey != null) {
       this.apiKey = envApiKey;
     }
 
     var envTimeout =
-        env.getOrDefault("STREAM_CHAT_TIMEOUT", System.getProperty(API_TIMEOUT_PROP_NAME));
+        env.getOrDefault("STREAM_API_TIMEOUT", System.getProperty(API_TIMEOUT_PROP_NAME));
     if (envTimeout != null) {
       timeout = Long.parseLong(envTimeout);
     }
 
-    var envApiUrl = env.getOrDefault("STREAM_CHAT_URL", System.getProperty(API_URL_PROP_NAME));
+    var envApiUrl = env.getOrDefault("STREAM_BASE_URL", System.getProperty(API_URL_PROP_NAME));
     if (envApiUrl != null) {
       this.baseUrl = envApiUrl;
     }
