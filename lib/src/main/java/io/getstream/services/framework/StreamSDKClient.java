@@ -163,7 +163,7 @@ public class StreamSDKClient {
                   .header("Content-Type", "application/json")
                   .header("X-Stream-Client", "stream-java-client-" + sdkVersion)
                   .header("Stream-Auth-Type", "jwt")
-                  .header("Authorization", jwtToken(apiSecret))
+                  .header("Authorization", jwtToken)
                   .build();
           return chain.proceed(request);
         });
