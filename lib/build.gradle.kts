@@ -6,7 +6,7 @@ plugins {
     `java-library`
     `maven-publish`
     signing
-    id("com.diffplug.spotless") version "7.0.0.BETA1"
+    id("com.diffplug.spotless") version "7.0.2"
 }
 
 group = "io.getstream"
@@ -93,46 +93,37 @@ tasks.register("generateVersionProperties") {
         propertiesFile.writer().use { properties.store(it, null) }
     }
 }
+
 tasks.named("processResources").configure {
     dependsOn("generateVersionProperties")
 }
 
-//extra["ossrhUsername"] = ""
-//extra["ossrhPassword"] = ""
-//extra["signing.keyId"] = ""
-//extra["signing.password"] = ""
-//extra["signing.secretKeyRingFile"] = ""
-//extra["sonatypeStagingProfileId"] = ""
-//
-//val secretPropsFile = project.rootProject.file("local.properties")
-//if (secretPropsFile.exists()) {
-//    // Read local.properties file first if it exists
-//    val properties = Properties()
-//    FileInputStream(secretPropsFile).use { properties.load(it) }
-//    properties.forEach { (name, value) -> extra[name.toString()] = value.toString() }
-//} else {
-//    // Use system environment variables
-//    extra["ossrhUsername"] = System.getenv("OSSRH_USERNAME") ?: ""
-//    extra["ossrhPassword"] = System.getenv("OSSRH_PASSWORD") ?: ""
-//    extra["signing.keyId"] = System.getenv("SIGNING_KEY_ID") ?: ""
-//    extra["signing.password"] = System.getenv("SIGNING_PASSWORD") ?: ""
-//    extra["signing.secretKeyRingFile"] = System.getenv("SIGNING_SECRET_KEY_RING_FILE") ?: ""
-//    extra["sonatypeStagingProfileId"] = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: ""
-//}
-//
-//nexusPublishing {
-//    repositories {
-//        sonatype {
-//            stagingProfileId.set(sonatypeStagingProfileId as String)
-//            username.set(ossrhUsername as String)
-//            password.set(ossrhPassword as String)
-//        }
-//    }
-//}
-//
-//signing {
-//    sign(publishing.publications)
-//}
+extra["ossrhUsername"] = ""
+extra["ossrhPassword"] = ""
+extra["signing.keyId"] = ""
+extra["signing.password"] = ""
+extra["signing.secretKeyRingFile"] = ""
+extra["sonatypeStagingProfileId"] = ""
+
+val secretPropsFile = project.rootProject.file("local.properties")
+if (secretPropsFile.exists()) {
+    // Read local.properties file first if it exists
+    val properties = Properties()
+    FileInputStream(secretPropsFile).use { properties.load(it) }
+    properties.forEach { (name, value) -> extra[name.toString()] = value.toString() }
+} else {
+    // Use system environment variables
+    extra["ossrhUsername"] = System.getenv("OSSRH_USERNAME") ?: ""
+    extra["ossrhPassword"] = System.getenv("OSSRH_PASSWORD") ?: ""
+    extra["signing.keyId"] = System.getenv("SIGNING_KEY_ID") ?: ""
+    extra["signing.password"] = System.getenv("SIGNING_PASSWORD") ?: ""
+    extra["signing.secretKeyRingFile"] = System.getenv("SIGNING_SECRET_KEY_RING_FILE") ?: ""
+    extra["sonatypeStagingProfileId"] = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: ""
+}
+
+signing {
+    sign(publishing.publications)
+}
 
 publishing {
     publications {
@@ -164,6 +155,17 @@ publishing {
                 scm {
                     connection.set("scm:git:github.com/getstream/stream-java-sdk.git")
                 }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "ossrh"
+            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            credentials {
+                username = extra["ossrhUsername"] as String? ?: ""
+                password = extra["ossrhPassword"] as String? ?: ""
             }
         }
     }

@@ -28,13 +28,15 @@ public class StreamSDKClient {
   public static final String API_SECRET_PROP_NAME = "io.getstream.apiSecret";
   public static final String API_TIMEOUT_PROP_NAME = "io.getstream.timeout";
   public static final String API_URL_PROP_NAME = "io.getstream.url";
+  public static final String API_LOG_LEVEL_PROP_NAME = "io.getstream.debug.logLevel";
 
   private static final String API_DEFAULT_URL = "https://chat.stream-io-api.com";
   private static volatile StreamSDKClient defaultInstance;
-  @NotNull private final String apiSecret;
-  @NotNull private final String apiKey;
-  @NotNull private final Properties extendedProperties;
+  @NotNull private String apiSecret;
+  @NotNull private String apiKey;
+  @NotNull private String logLevel = "NONE";
   @NotNull private final String sdkVersion;
+  @NotNull private String baseUrl = API_DEFAULT_URL;
   @NotNull private Retrofit retrofit;
 
   public StreamSDKClient() {
@@ -42,36 +44,10 @@ public class StreamSDKClient {
   }
 
   public StreamSDKClient(Properties properties) {
-    System.out.println(properties);
-    extendedProperties = extendProperties(properties);
-    var apiKey = extendedProperties.get(API_KEY_PROP_NAME);
-    var apiSecret = extendedProperties.get(API_SECRET_PROP_NAME);
+    readPropertiesAndEnv(properties);
 
-    // if apiKey is null, load it from the environment
-    if (apiKey == null) {
-      apiKey = System.getenv("STREAM_KEY");
-    }
-
-    if (apiSecret == null) {
-      apiSecret = System.getenv("STREAM_SECRET");
-    }
-
-    if (apiKey == null) {
-      throw new IllegalStateException(
-          "Missing Stream API key. Please set STREAM_KEY environment variable or System"
-              + " property");
-    }
-
-    if (apiSecret == null) {
-      throw new IllegalStateException(
-          "Missing Stream API secret. Please set STREAM_SECRET environment variable or System"
-              + " property");
-    }
-
-    this.apiSecret = apiSecret.toString();
-    this.apiKey = apiKey.toString();
-    this.retrofit = buildRetrofitClient();
-    this.sdkVersion = readSdkVersion();
+    sdkVersion = readSdkVersion();
+    retrofit = buildRetrofitClient();
   }
 
   public static StreamSDKClient getInstance() {
@@ -111,19 +87,22 @@ public class StreamSDKClient {
         .compact();
   }
 
-  @NotNull
-  private static Properties extendProperties(Properties properties) {
-    var canformedProperties = new Properties();
+  private void readPropertiesAndEnv(Properties properties) {
     var env = System.getenv();
+
+    var propLogLevel = properties.getProperty(API_LOG_LEVEL_PROP_NAME);
+    if (propLogLevel != null) {
+      this.logLevel = propLogLevel;
+    }
 
     var envApiSecret = env.getOrDefault("STREAM_SECRET", System.getProperty("STREAM_SECRET"));
     if (envApiSecret != null) {
-      canformedProperties.put(API_SECRET_PROP_NAME, envApiSecret);
+      this.apiSecret = envApiSecret;
     }
 
     var envApiKey = env.getOrDefault("STREAM_KEY", System.getProperty("STREAM_KEY"));
     if (envApiKey != null) {
-      canformedProperties.put(API_KEY_PROP_NAME, envApiKey);
+      this.apiKey = envApiKey;
     }
 
     var envTimeout =
@@ -134,22 +113,16 @@ public class StreamSDKClient {
 
     var envApiUrl = env.getOrDefault("STREAM_CHAT_URL", System.getProperty("STREAM_CHAT_URL"));
     if (envApiUrl != null) {
-      canformedProperties.put(API_URL_PROP_NAME, envApiUrl);
+      this.baseUrl = envApiUrl;
     }
-
-    canformedProperties.putAll(System.getProperties());
-    canformedProperties.putAll(properties);
-    return canformedProperties;
   }
 
-  private static long getStreamChatTimeout(@NotNull Properties properties) {
-    var timeout = properties.getOrDefault(API_TIMEOUT_PROP_NAME, 10000);
-    return Long.parseLong(timeout.toString());
+  private long getStreamChatTimeout() {
+
   }
 
-  private static String getStreamChatBaseUrl(@NotNull Properties properties) {
-    var url = properties.getOrDefault(API_URL_PROP_NAME, API_DEFAULT_URL);
-    return url.toString();
+  private String getStreamChatBaseUrl() {
+    return baseUrl;
   }
 
   private static @NotNull String readSdkVersion() {
@@ -163,16 +136,8 @@ public class StreamSDKClient {
     }
   }
 
-  private static @NotNull HttpLoggingInterceptor.Level getLogLevel(@NotNull Properties properties) {
-    final var propName = "io.getstream.debug.logLevel";
-    var logLevel = properties.getOrDefault(propName, "NONE").toString();
+  private @NotNull HttpLoggingInterceptor.Level getLogLevel() {
     return HttpLoggingInterceptor.Level.valueOf(logLevel);
-  }
-
-  private static boolean hasFailOnUnknownProperties(@NotNull Properties properties) {
-    final var propName = "io.getstream.debug.failOnUnknownProperties";
-    var hasEnabled = properties.getOrDefault(propName, "false");
-    return Boolean.parseBoolean(hasEnabled.toString());
   }
 
   private Retrofit buildRetrofitClient() {
@@ -183,7 +148,7 @@ public class StreamSDKClient {
     httpClient.interceptors().clear();
 
     HttpLoggingInterceptor loggingInterceptor =
-        new HttpLoggingInterceptor().setLevel(getLogLevel(extendedProperties));
+        new HttpLoggingInterceptor().setLevel(getLogLevel());
     httpClient.addInterceptor(loggingInterceptor);
 
     httpClient.addInterceptor(
@@ -204,14 +169,14 @@ public class StreamSDKClient {
     final ObjectMapper mapper = new ObjectMapper();
     mapper.configure(
         DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
-        hasFailOnUnknownProperties(extendedProperties));
+        false);
     mapper.setDateFormat(
         new StdDateFormat().withColonInTimeZone(true).withTimeZone(TimeZone.getTimeZone("UTC")));
     mapper.enable(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE);
 
     Retrofit.Builder builder =
         new Retrofit.Builder()
-            .baseUrl(getStreamChatBaseUrl(extendedProperties))
+            .baseUrl(getStreamChatBaseUrl())
             .addConverterFactory(new QueryConverterFactory())
             .addConverterFactory(JacksonConverterFactory.create(mapper))
             .addCallAdapterFactory(StreamRequestCallAdapterFactory.create());
@@ -242,11 +207,5 @@ public class StreamSDKClient {
   @NotNull
   public String getApiKey() {
     return apiKey;
-  }
-
-  public void setTimeout(@NotNull Duration timeoutDuration) {
-    extendedProperties.setProperty(
-        API_TIMEOUT_PROP_NAME, Long.toString(timeoutDuration.toMillis()));
-    this.retrofit = buildRetrofitClient();
   }
 }
