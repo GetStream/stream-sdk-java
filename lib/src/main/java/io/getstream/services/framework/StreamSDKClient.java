@@ -11,7 +11,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
-import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import javax.crypto.spec.SecretKeySpec;
@@ -34,10 +33,11 @@ public class StreamSDKClient {
   private static volatile StreamSDKClient defaultInstance;
   @NotNull private String apiSecret;
   @NotNull private String apiKey;
+  private long timeout = 10000;
   @NotNull private String logLevel = "NONE";
   @NotNull private final String sdkVersion;
   @NotNull private String baseUrl = API_DEFAULT_URL;
-  @NotNull private Retrofit retrofit;
+  @NotNull private final Retrofit retrofit;
 
   public StreamSDKClient() {
     this(System.getProperties());
@@ -62,7 +62,7 @@ public class StreamSDKClient {
     return defaultInstance;
   }
 
-  public static void setInstance(@NotNull StreamSDKClient instance) {
+  public static void setDefaultInstance(@NotNull StreamSDKClient instance) {
     defaultInstance = instance;
   }
 
@@ -77,12 +77,11 @@ public class StreamSDKClient {
     GregorianCalendar calendar = new GregorianCalendar();
     calendar.add(Calendar.SECOND, -5);
     return Jwts.builder()
-        .setIssuedAt(new Date())
-        .setIssuer("Stream Chat Java SDK")
-        .setSubject("Stream Chat Java SDK")
+        .issuedAt(new Date())
+        .issuer("Stream Chat Java SDK")
+        .subject("Stream Chat Java SDK")
         .claim("server", true)
         .claim("scope", "admins")
-        .setIssuedAt(calendar.getTime())
         .signWith(signingKey, SignatureAlgorithm.HS256)
         .compact();
   }
@@ -108,21 +107,13 @@ public class StreamSDKClient {
     var envTimeout =
         env.getOrDefault("STREAM_CHAT_TIMEOUT", System.getProperty("STREAM_CHAT_TIMEOUT"));
     if (envTimeout != null) {
-      canformedProperties.put(API_TIMEOUT_PROP_NAME, envTimeout);
+      timeout = Long.parseLong(envTimeout);
     }
 
     var envApiUrl = env.getOrDefault("STREAM_CHAT_URL", System.getProperty("STREAM_CHAT_URL"));
     if (envApiUrl != null) {
       this.baseUrl = envApiUrl;
     }
-  }
-
-  private long getStreamChatTimeout() {
-
-  }
-
-  private String getStreamChatBaseUrl() {
-    return baseUrl;
   }
 
   private static @NotNull String readSdkVersion() {
@@ -144,7 +135,7 @@ public class StreamSDKClient {
     OkHttpClient.Builder httpClient =
         new OkHttpClient.Builder()
             .connectionPool(new ConnectionPool(5, 59, TimeUnit.SECONDS))
-            .callTimeout(getStreamChatTimeout(extendedProperties), TimeUnit.MILLISECONDS);
+            .callTimeout(timeout, TimeUnit.MILLISECONDS);
     httpClient.interceptors().clear();
 
     HttpLoggingInterceptor loggingInterceptor =
@@ -167,16 +158,14 @@ public class StreamSDKClient {
           return chain.proceed(request);
         });
     final ObjectMapper mapper = new ObjectMapper();
-    mapper.configure(
-        DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
-        false);
+    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     mapper.setDateFormat(
         new StdDateFormat().withColonInTimeZone(true).withTimeZone(TimeZone.getTimeZone("UTC")));
     mapper.enable(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE);
 
     Retrofit.Builder builder =
         new Retrofit.Builder()
-            .baseUrl(getStreamChatBaseUrl())
+            .baseUrl(baseUrl)
             .addConverterFactory(new QueryConverterFactory())
             .addConverterFactory(JacksonConverterFactory.create(mapper))
             .addCallAdapterFactory(StreamRequestCallAdapterFactory.create());
@@ -191,10 +180,12 @@ public class StreamSDKClient {
     return retrofit.create(VideoService.class);
   }
 
+  @NotNull
   public ChatService chat() {
     return retrofit.create(ChatService.class);
   }
 
+  @NotNull
   public CommonService common() {
     return retrofit.create(CommonService.class);
   }
