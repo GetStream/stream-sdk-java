@@ -111,10 +111,8 @@ public class StreamSDKClient {
     }
 
     var propAPIKey = properties.getProperty(API_KEY_PROP_NAME);
-    System.out.printf("from properties %s\n", propAPIKey);
     var envApiKey = env.getOrDefault("STREAM_API_KEY", System.getProperty(API_KEY_PROP_NAME));
     if (envApiKey != null) {
-      System.out.printf("res %s\n", envApiKey);
       this.apiKey = envApiKey;
     }
 
