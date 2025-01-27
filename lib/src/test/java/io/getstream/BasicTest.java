@@ -31,10 +31,10 @@ public class BasicTest {
   @BeforeAll
   static void setup() throws Exception {
     setProperties();
-    cleanChannels();
-    cleanChannelTypes();
-    cleanBlocklists();
-    cleanCommands();
+    //    cleanChannels();
+    //    cleanChannelTypes();
+    //    cleanBlocklists();
+    //    cleanCommands();
     upsertUsers();
     createTestChannel();
     createTestMessage();
