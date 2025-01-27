@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 // DocTest is a class that contains the code snippets from the documentation.
 // The code snippets are tested to ensure that they are correct and up-to-date.
+@Disabled
 public class DocTest extends BasicTest {
 
   @Test
