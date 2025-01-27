@@ -1,14 +1,18 @@
 # Official Java SDK for [Stream](https://getstream.io/)
 
-> [!NOTE]
-> Not to be confused with the [Feeds SDK](https://github.com/GetStream/stream-java) or [Chat SDK](https://github.com/GetStream/stream-chat-java).
+Check out our:
+
+- ⭐ [Chat API](https://getstream.io/chat/)
+- 📱 [Video API](https://getstream.io/video/)
+- 🔔 [Activity Feeds](https://getstream.io/activity-feeds/)
 
 ## Features
 
 - Video call creation and management
+- Chat session creation and management
 - Token generation for user authentication
 
-## Installation using gradle
+## Installation
 
 ```gradle
 dependencies {
@@ -22,12 +26,11 @@ dependencies {
 
 To configure the SDK you need to provide required properties.
 
-| Property               | ENV                 | Default                        | Required |
-| ---------------------- | ------------------- | ------------------------------ | -------- |
-| io.getstream.apiKey    | STREAM_KEY          | -                              | Yes      |
-| io.getstream.apiSecret | STREAM_SECRET       | -                              | Yes      |
-| io.getstream.timeout   | STREAM_CHAT_TIMEOUT | 10000                          | No       |
-| io.getstream.url       | STREAM_CHAT_URL     | https://chat.stream-io-api.com | No       |
+| Property               | ENV                | Default                      | Required |
+| ---------------------- |--------------------|------------------------------| -------- |
+| io.getstream.apiKey    | STREAM_API_KEY     | -                            | Yes      |
+| io.getstream.apiSecret | STREAM_API_SECRET  | -                            | Yes      |
+| io.getstream.timeout   | STREAM_API_TIMEOUT | 10000                          | No       |
 
 ### Users and Authentication
 
@@ -54,7 +57,7 @@ UpdateUsersRequest updateUsersRequest =
         .users(userRequests.stream().collect(Collectors.toMap(UserRequest::getId, x -> x)))
         .build();
 
-new client.common().UpdateUsers(updateUsersRequest).request();
+client.common().UpdateUsers(updateUsersRequest).request();
 
 // Create a JWT token for the user to connect client-side (e.g. browser/mobile app)
 // token expires in 24 hours
@@ -62,7 +65,7 @@ String token = createToken(userId, 24*60*60);
 ```
 
 // Token does not expire
-String token = createToken(userId, null, null);
+String token = createToken(userId);
 ```
 
 ### Video API - Calls
@@ -83,10 +86,6 @@ call.getOrCreate(
                 .build())
         .build());
 ```
-
-### App configuration
-
-### Chat API - Channels
 
 ## Development
 
@@ -110,7 +109,7 @@ Format the code:
 
 ### Generate code from spec
 
-To regenerate the source from the OpenAPI specification, just run the `./generate.sh` script from this repo.
+To regenerate the Java source from OpenAPI, just run the `./generate.sh` script from this repo.
 
 > [!NOTE]
 > Code generation currently relies on tooling that is not publicly available, only Stream devs can regenerate SDK source code from the OpenAPI spec.
