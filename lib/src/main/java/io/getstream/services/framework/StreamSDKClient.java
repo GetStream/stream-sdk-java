@@ -45,7 +45,7 @@ public class StreamSDKClient {
     this(System.getProperties());
   }
 
-  public StreamSDKClient(Properties properties) {
+  public StreamSDKClient(Properties properties) throws IllegalArgumentException {
     readPropertiesAndEnv(properties);
 
     if (apiKey == null || apiKey.isEmpty()) {
