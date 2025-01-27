@@ -54,14 +54,13 @@ UpdateUsersRequest updateUsersRequest =
         .users(userRequests.stream().collect(Collectors.toMap(UserRequest::getId, x -> x)))
         .build();
 
-new Common.UpdateUsers(updateUsersRequest).request();
+new client.common().UpdateUsers(updateUsersRequest).request();
 
 // Create a JWT token for the user to connect client-side (e.g. browser/mobile app)
 String userId = RandomStringUtils.randomAlphabetic(10);
-GregorianCalendar expiryTime = new GregorianCalendar();
-// Token expires in 2 weeks
-expiryTime.add(GregorianCalendar.WEEK_OF_YEAR, 2);
-String token = createToken(userId, expiryTime.getTime(), null);
+// token expires in 24 hours
+String token = createToken(userId, 24*60*60);
+```
 
 // Token does not expire
 String token = createToken(userId, null, null);
@@ -72,27 +71,18 @@ String token = createToken(userId, null, null);
 To create a video call, use the `client.video.call` method:
 
 ```java
-var callRequest =
+var testCall = new Call("default", UUID.randomUUID().toString());
+
+// create call if it doesn't exist or get the existing one
+call.getOrCreate(
     GetOrCreateCallRequest.builder()
         .data(
             CallRequest.builder()
-                .createdById("tommaso-id")
-                .members(
-                    List.of(
-                        MemberRequest.builder().userId("thierry-id").build(),
-                        MemberRequest.builder().userId("tommaso-id").build()))
+                .createdByID("sacha")
+                .members(members)
+                .custom(Map.of("color", "blue"))
                 .build())
-        .build();
-
-// generate a random call ID
-String callID = "call-" + UUID.randomUUID();
-
-// use request classes on Video
-new Video.GetOrCreateCall("default", callID, callRequest).request();
-
-// or use the Call convenience class
-Call testCall = new Call("default", callID);
-testCall.GetOrCreate(callRequest);
+        .build());
 ```
 
 ### App configuration

@@ -13,6 +13,11 @@ import org.jetbrains.annotations.Nullable;
 public class User {
   private static StreamSDKClient client = StreamSDKClient.getInstance();
 
+  // create token without limits on validity
+  public static String createToken(@NotNull String userId) {
+    return createToken(client.getApiSecret(), userId, null);
+  }
+
   @NotNull
   public static String createToken(@NotNull String userId, @Nullable Integer validity) {
     return createToken(client.getApiSecret(), userId, validity);
