@@ -100,6 +100,6 @@ public class OwnUserResponse {
   private PrivacySettingsResponse privacySettings;
 
   @Nullable
-  @JsonProperty("push_notifications")
-  private PushNotificationSettingsResponse pushNotifications;
+  @JsonProperty("push_preferences")
+  private PushPreferences pushPreferences;
 }

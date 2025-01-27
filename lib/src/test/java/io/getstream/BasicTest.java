@@ -196,30 +196,6 @@ public class BasicTest {
     testUser = testUsers.get(0);
   }
 
-  // create a function to convert a FullUserResponse to a UserObject
-  public static UserResponse fromFullUserResponse(FullUserResponse fullUserResponse) {
-    return UserResponse.builder()
-        .banned(fullUserResponse.getBanned())
-        .id(fullUserResponse.getId())
-        .online(fullUserResponse.getOnline())
-        .role(fullUserResponse.getRole())
-        .custom(fullUserResponse.getCustom())
-        .createdAt(fullUserResponse.getCreatedAt())
-        .deactivatedAt(fullUserResponse.getDeactivatedAt())
-        .deletedAt(fullUserResponse.getDeletedAt())
-        .invisible(fullUserResponse.getInvisible())
-        .language(fullUserResponse.getLanguage())
-        .lastActive(fullUserResponse.getLastActive())
-        .revokeTokensIssuedBefore(fullUserResponse.getRevokeTokensIssuedBefore())
-        .updatedAt(fullUserResponse.getUpdatedAt())
-        .teams(fullUserResponse.getTeams())
-        .privacySettings(fullUserResponse.getPrivacySettings())
-        .pushNotifications(fullUserResponse.getPushNotifications())
-        .shadowBanned(fullUserResponse.getShadowBanned())
-        .blockedUserIds(fullUserResponse.getBlockedUserIds())
-        .build();
-  }
-
   static void setProperties() {
     System.setProperty(
         "java.util.logging.SimpleFormatter.format",

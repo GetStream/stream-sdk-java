@@ -71,9 +71,6 @@ public class ReviewQueueItem {
   @JsonProperty("teams")
   private List<String> teams;
 
-  @JsonProperty("completed_at")
-  private NullTime completedAt;
-
   @JsonProperty("reviewed_at")
   private NullTime reviewedAt;
 

@@ -1,6 +1,30 @@
 package io.getstream.models;
 
 public class OwnCapability {
+  private final String value;
+
+  private OwnCapability(String value) {
+    this.value = value;
+  }
+
+  @Override
+  public String toString() {
+    return value;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    OwnCapability that = (OwnCapability) o;
+    return value.equals(that.value);
+  }
+
+  @Override
+  public int hashCode() {
+    return value.hashCode();
+  }
+
   public static OwnCapability BLOCK_USERS = new OwnCapability("block-users");
   public static OwnCapability CHANGE_MAX_DURATION = new OwnCapability("change-max-duration");
   public static OwnCapability CREATE_CALL = new OwnCapability("create-call");
@@ -35,27 +59,4 @@ public class OwnCapability {
   public static OwnCapability UPDATE_CALL_PERMISSIONS =
       new OwnCapability("update-call-permissions");
   public static OwnCapability UPDATE_CALL_SETTINGS = new OwnCapability("update-call-settings");
-  private final String value;
-
-  private OwnCapability(String value) {
-    this.value = value;
-  }
-
-  @Override
-  public String toString() {
-    return value;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    OwnCapability that = (OwnCapability) o;
-    return value.equals(that.value);
-  }
-
-  @Override
-  public int hashCode() {
-    return value.hashCode();
-  }
 }

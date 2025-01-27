@@ -15,6 +15,12 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface VideoService {
+  @POST("/api/v2/video/call/feedback")
+  @NotNull
+  StreamRequest<QueryUserFeedbackResponse> queryUserFeedback(
+      @Nullable @Query("full") Boolean full,
+      @Nullable @Body QueryUserFeedbackRequest queryUserFeedbackRequest);
+
   @POST("/api/v2/video/call/members")
   @NotNull
   StreamRequest<QueryCallMembersResponse> queryCallMembers(

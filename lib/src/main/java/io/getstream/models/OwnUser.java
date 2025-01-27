@@ -94,6 +94,6 @@ public class OwnUser {
   private PrivacySettings privacySettings;
 
   @Nullable
-  @JsonProperty("push_notifications")
-  private PushNotificationSettings pushNotifications;
+  @JsonProperty("push_preferences")
+  private PushPreferences pushPreferences;
 }

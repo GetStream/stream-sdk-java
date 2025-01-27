@@ -45,8 +45,4 @@ public class UserRequest {
   @Nullable
   @JsonProperty("privacy_settings")
   private PrivacySettingsResponse privacySettings;
-
-  @Nullable
-  @JsonProperty("push_notifications")
-  private PushNotificationSettingsInput pushNotifications;
 }

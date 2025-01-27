@@ -74,8 +74,4 @@ public class User {
   @Nullable
   @JsonProperty("privacy_settings")
   private PrivacySettings privacySettings;
-
-  @Nullable
-  @JsonProperty("push_notifications")
-  private PushNotificationSettings pushNotifications;
 }

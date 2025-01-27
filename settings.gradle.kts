@@ -7,3 +7,10 @@
 
 rootProject.name = "stream-sdk-java"
 include("lib")
+
+dependencyResolutionManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}

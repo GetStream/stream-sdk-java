@@ -80,8 +80,4 @@ public class EntityCreator {
   @Nullable
   @JsonProperty("privacy_settings")
   private PrivacySettings privacySettings;
-
-  @Nullable
-  @JsonProperty("push_notifications")
-  private PushNotificationSettings pushNotifications;
 }

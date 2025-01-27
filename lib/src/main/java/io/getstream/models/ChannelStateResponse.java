@@ -57,4 +57,8 @@ public class ChannelStateResponse {
   @Nullable
   @JsonProperty("membership")
   private ChannelMember membership;
+
+  @Nullable
+  @JsonProperty("push_preferences")
+  private ChannelPushPreferences pushPreferences;
 }

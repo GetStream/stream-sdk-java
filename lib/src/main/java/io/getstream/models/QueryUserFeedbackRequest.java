@@ -9,19 +9,11 @@ import org.jetbrains.annotations.Nullable;
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class QueryReviewQueueResponse {
+public class QueryUserFeedbackRequest {
 
-  @JsonProperty("duration")
-  private String duration;
-
-  @JsonProperty("items")
-  private List<ReviewQueueItemResponse> items;
-
-  @JsonProperty("action_config")
-  private Map<String, List<ModerationActionConfig>> actionConfig;
-
-  @JsonProperty("stats")
-  private Map<String, Object> stats;
+  @Nullable
+  @JsonProperty("limit")
+  private Integer limit;
 
   @Nullable
   @JsonProperty("next")
@@ -30,4 +22,12 @@ public class QueryReviewQueueResponse {
   @Nullable
   @JsonProperty("prev")
   private String prev;
+
+  @Nullable
+  @JsonProperty("sort")
+  private List<SortParamRequest> sort;
+
+  @Nullable
+  @JsonProperty("filter_conditions")
+  private Map<String, Object> filterConditions;
 }

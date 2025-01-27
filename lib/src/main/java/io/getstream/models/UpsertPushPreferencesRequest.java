@@ -1,16 +1,14 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class EgressHLSResponse {
+public class UpsertPushPreferencesRequest {
 
-  @JsonProperty("playlist_url")
-  private String playlistUrl;
-
-  @JsonProperty("status")
-  private String status;
+  @JsonProperty("preferences")
+  private List<PushPreferenceInput> preferences;
 }

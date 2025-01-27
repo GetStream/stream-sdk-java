@@ -100,8 +100,4 @@ public class FullUserResponse {
   @Nullable
   @JsonProperty("privacy_settings")
   private PrivacySettingsResponse privacySettings;
-
-  @Nullable
-  @JsonProperty("push_notifications")
-  private PushNotificationSettingsResponse pushNotifications;
 }

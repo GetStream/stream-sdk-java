@@ -16,6 +16,13 @@ description = "Stream official Java SDK"
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
+    gradlePluginPortal()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 dependencies {
@@ -45,11 +52,6 @@ dependencies {
     testAnnotationProcessor("org.projectlombok:lombok:1.18.32")
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
 
 val localProperties = Properties()
 val localPropertiesFile = project.rootProject.file("local.properties")

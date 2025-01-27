@@ -420,6 +420,11 @@ public interface ChatService {
       @Nullable @Query("user_id") String userID,
       @Nullable @Body QueryPollVotesRequest queryPollVotesRequest);
 
+  @POST("/api/v2/chat/push_preferences")
+  @NotNull
+  StreamRequest<UpsertPushPreferencesResponse> updatePushNotificationPreferences(
+      @NotNull @Body UpsertPushPreferencesRequest upsertPushPreferencesRequest);
+
   @GET("/api/v2/chat/query_banned_users")
   @NotNull
   StreamRequest<QueryBannedUsersResponse> queryBannedUsers(
