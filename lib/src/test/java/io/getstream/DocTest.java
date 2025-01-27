@@ -54,7 +54,7 @@ public class DocTest extends BasicTest {
                 .build())
         .execute();
 
-    User.createToken("john", Instant.now().plus(24, ChronoUnit.HOURS), Instant.now());
+    User.createToken("john", 24*60*60);
 
     // creating a call
     List<MemberRequest> members =
@@ -276,7 +276,7 @@ public class DocTest extends BasicTest {
 
     // create a token for user john
     var userToken =
-        User.createToken("john", Instant.now().plus(24, ChronoUnit.HOURS), Instant.now());
+        User.createToken("john", 24*60*60);
 
     // call tokens
     var callToken =
