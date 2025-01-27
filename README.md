@@ -57,7 +57,6 @@ UpdateUsersRequest updateUsersRequest =
 new client.common().UpdateUsers(updateUsersRequest).request();
 
 // Create a JWT token for the user to connect client-side (e.g. browser/mobile app)
-String userId = RandomStringUtils.randomAlphabetic(10);
 // token expires in 24 hours
 String token = createToken(userId, 24*60*60);
 ```
