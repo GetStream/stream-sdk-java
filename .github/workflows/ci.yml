@@ -36,4 +36,4 @@ jobs:
           STREAM_API_SECRET: ${{ secrets.STREAM_API_SECRET }}
         run: |
           ./gradlew spotlessCheck --no-daemon
-          ./gradlew build --no-daemon
+          ./gradlew build --info --no-daemon
