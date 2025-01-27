@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 // DocTest is a class that contains the code snippets from the documentation.
@@ -465,6 +466,7 @@ public class DocTest extends BasicTest {
   }
 
   @Test
+  @Disabled // we dont update apps on CI
   public void multiTenant() throws StreamException {
     // shows the current status
     var app = client.common().getApp().execute();

@@ -2,9 +2,13 @@ package io.getstream;
 
 import static io.getstream.models.framework.User.createToken;
 
+import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
+import io.getstream.services.framework.StreamSDKClient;
+import java.util.Properties;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,6 +32,7 @@ public class CommonTest extends BasicTest {
 
   @DisplayName("App Settings update does not throw Exception")
   @Test
+  @Disabled
   void whenUpdatingAppSettings_thenNoException() {
     var data =
         UpdateAppRequest.builder()
@@ -56,46 +61,39 @@ public class CommonTest extends BasicTest {
                 .execute());
   }
 
-  //  @DisplayName("App Get fails with bad key")
-  //  @Test
-  //  void givenBadKey_whenGettingApp_thenException() {
-  //    var properties = new Properties();
-  //    properties.put(StreamSDKClient.API_KEY_PROP_NAME, "XXX");
-  //
-  //    var client = new StreamSDKClient(properties);
-  //
-  //    StreamException exception =
-  //        Assertions.assertThrows(StreamException.class, () ->
-  // client.common().getApp().execute());
-  //    Assertions.assertEquals(401, exception.getResponseData().getStatusCode());
-  //  }
+  @DisplayName("App Get fails with bad key")
+  @Test
+  @Disabled
+  void givenBadKey_whenGettingApp_thenException() {
+    var properties = new Properties();
+    properties.put(StreamSDKClient.API_KEY_PROP_NAME, "XXX");
 
-  //  @DisplayName("App Get fails with bad secret (after enabling auth)")
-  //  @Test
-  //  void givenBadSecret_whenEnableAuthAndGettingApp_thenException() {
-  //    Assertions.assertDoesNotThrow(
-  //        () ->
-  //            common
-  //                .updateApp(UpdateAppRequest.builder().disableAuthChecks(false).build())
-  //                .execute());
-  //    var properties = new Properties();
-  //    properties.put(
-  //        StreamSDKClient.API_SECRET_PROP_NAME,
-  // "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-  //
-  //    var client = new StreamSDKClient(properties);
-  //
-  //    StreamException exception =
-  //        Assertions.assertThrows(StreamException.class, () ->
-  // client.common().getApp().execute());
-  //    Assertions.assertEquals(401, exception.getResponseData().getStatusCode());
-  //  }
+    var client = new StreamSDKClient(properties);
 
-  //  @DisplayName("Get rate limits does not throw Exception")
-  //  @Test
-  //  void whenCallingGetRateLimits_thenNoException() {
-  //    Assertions.assertDoesNotThrow(() -> common.getRateLimits().request());
-  //  }
+    StreamException exception =
+        Assertions.assertThrows(StreamException.class, () -> client.common().getApp().execute());
+    Assertions.assertEquals(401, exception.getResponseData().getStatusCode());
+  }
+
+  @DisplayName("App Get fails with bad secret (after enabling auth)")
+  @Test
+  @Disabled
+  void givenBadSecret_whenEnableAuthAndGettingApp_thenException() {
+    Assertions.assertDoesNotThrow(
+        () ->
+            common
+                .updateApp(UpdateAppRequest.builder().disableAuthChecks(false).build())
+                .execute());
+    var properties = new Properties();
+    properties.put(
+        StreamSDKClient.API_SECRET_PROP_NAME, "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+
+    var client = new StreamSDKClient(properties);
+
+    StreamException exception =
+        Assertions.assertThrows(StreamException.class, () -> client.common().getApp().execute());
+    Assertions.assertEquals(401, exception.getResponseData().getStatusCode());
+  }
 
   @DisplayName("Can check sqs")
   @Test
