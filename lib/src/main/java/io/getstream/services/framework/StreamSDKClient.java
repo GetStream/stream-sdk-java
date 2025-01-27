@@ -48,11 +48,11 @@ public class StreamSDKClient {
   public StreamSDKClient(Properties properties) {
     readPropertiesAndEnv(properties);
 
-    if (apiKey.isEmpty()) {
+    if (apiKey == null || apiKey.isEmpty()) {
       throw new IllegalArgumentException("apiKey and apiSecret are required");
     }
 
-    if (apiSecret.isEmpty()) {
+    if (apiSecret == null || apiSecret.isEmpty()) {
       throw new IllegalArgumentException("apiSecret is required");
     }
 
