@@ -4,13 +4,13 @@ import io.getstream.models.ChannelGetOrCreateRequest;
 import io.getstream.models.ChannelInput;
 import io.getstream.models.ChannelMember;
 import io.getstream.models.UpdateChannelRequest;
-import io.getstream.services.Channels;
+import io.getstream.services.Channel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class ChannelsTest extends BasicTest {
-  private Channels channels = new Channels("messaging", "java_test", chat);
+  private Channel channels = new Channel("messaging", "java_test", chat);
 
   @DisplayName("Can create channel")
   @Test

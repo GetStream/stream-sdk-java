@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.util.Map;
 import lombok.Data;
 import lombok.Getter;
+import okhttp3.Response;
 import okhttp3.ResponseBody;
-import retrofit2.Response;
 
 public class StreamException extends Exception {
   private static final long serialVersionUID = 1L;
@@ -45,7 +45,6 @@ public class StreamException extends Exception {
    * @param responseBody Stream API response body
    * @return the StreamException
    */
-  @Deprecated
   public static StreamException build(ResponseBody responseBody) {
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -68,10 +67,10 @@ public class StreamException extends Exception {
    * @param httpResponse Stream API response
    * @return the StreamException
    */
-  public static StreamException build(Response<?> httpResponse) {
+  public static StreamException build(Response httpResponse) {
     StreamException exception;
 
-    ResponseBody errorBody = httpResponse.errorBody();
+    ResponseBody errorBody = httpResponse.body();
     if (errorBody != null) {
       exception = StreamException.build(errorBody);
     } else {

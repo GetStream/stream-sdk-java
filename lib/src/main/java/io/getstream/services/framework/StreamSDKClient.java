@@ -3,9 +3,7 @@ package io.getstream.services.framework;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.StdDateFormat;
-import io.getstream.services.ChatService;
-import io.getstream.services.CommonService;
-import io.getstream.services.VideoService;
+import io.getstream.services.*;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.io.IOException;
@@ -19,8 +17,6 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.jetbrains.annotations.NotNull;
-import retrofit2.Retrofit;
-import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class StreamSDKClient {
   public static final String API_KEY_PROP_NAME = "io.getstream.apiKey";
@@ -28,19 +24,33 @@ public class StreamSDKClient {
   public static final String API_TIMEOUT_PROP_NAME = "io.getstream.timeout";
   public static final String API_URL_PROP_NAME = "io.getstream.url";
   public static final String API_LOG_LEVEL_PROP_NAME = "io.getstream.debug.logLevel";
-
   private static final String API_DEFAULT_URL = "https://chat.stream-io-api.com";
-  private static volatile StreamSDKClient defaultInstance;
+
+  @NotNull private final String sdkVersion = readSdkVersion();
+
+  @NotNull
+  private final ObjectMapper objectMapper =
+      new ObjectMapper()
+          .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+          .setDateFormat(
+              new StdDateFormat()
+                  .withColonInTimeZone(true)
+                  .withTimeZone(TimeZone.getTimeZone("UTC")))
+          .enable(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE);
+
   @NotNull private String apiSecret;
   @NotNull private String apiKey;
   private long timeout = 10000;
   @NotNull private String logLevel = "NONE";
-  @NotNull private final String sdkVersion = readSdkVersion();
-  ;
   @NotNull private String baseUrl = API_DEFAULT_URL;
-  @NotNull private final Retrofit retrofit;
-  @NotNull private String jwtToken;
+  @NotNull private OkHttpClient client;
 
+  public StreamSDKClient(@NotNull String apiKey, @NotNull String apiSecret) {
+    setCredetials(apiKey, apiSecret);
+  }
+
+  // defult constructor using ENV or System properties
+  // env vars have priority over system properties
   public StreamSDKClient() {
     this(System.getProperties());
   }
@@ -56,34 +66,14 @@ public class StreamSDKClient {
       throw new IllegalArgumentException("apiSecret is required");
     }
 
-    jwtToken = buildJWT(apiSecret);
-    retrofit = buildRetrofitClient();
-  }
-
-  public static StreamSDKClient getInstance() {
-    if (defaultInstance == null) {
-      synchronized (StreamSDKClient.class) {
-        if (defaultInstance == null) {
-          defaultInstance = new StreamSDKClient();
-        }
-      }
-    }
-
-    return defaultInstance;
-  }
-
-  public static void setDefaultInstance(@NotNull StreamSDKClient instance) {
-    defaultInstance = instance;
+    setCredetials(apiKey, apiSecret);
   }
 
   private static @NotNull String buildJWT(String apiSecret) {
     Key signingKey =
         new SecretKeySpec(
             apiSecret.getBytes(StandardCharsets.UTF_8), SignatureAlgorithm.HS256.getJcaName());
-    // We set issued at 5 seconds ago to avoid problems like JWTAuth error: token
-    // used before
-    // issue
-    // at (iat)
+    // We set issued at 5 seconds ago to avoid problems like JWTAuth error in case of clock drift
     GregorianCalendar calendar = new GregorianCalendar();
     calendar.add(Calendar.SECOND, -5);
     return Jwts.builder()
@@ -94,6 +84,39 @@ public class StreamSDKClient {
         .claim("scope", "admins")
         .signWith(signingKey, SignatureAlgorithm.HS256)
         .compact();
+  }
+
+  private static @NotNull String readSdkVersion() {
+    var clsLoader = StreamSDKClient.class.getClassLoader();
+    try (var inputStream = clsLoader.getResourceAsStream("version.properties")) {
+      var properties = new Properties();
+      properties.load(inputStream);
+      return properties.getProperty("version");
+    } catch (IOException ex) {
+      throw new IllegalStateException(ex);
+    }
+  }
+
+  @NotNull
+  public OkHttpClient getHttpClient() {
+    return client;
+  }
+
+  @NotNull
+  public ObjectMapper getObjectMapper() {
+    return objectMapper;
+  }
+
+  @NotNull
+  public String getBaseUrl() {
+    return baseUrl;
+  }
+
+  private void setCredetials(@NotNull String apiKey, @NotNull String apiSecret) {
+    this.apiKey = apiKey;
+    this.apiSecret = apiSecret;
+    var jwtToken = buildJWT(apiSecret);
+    this.client = buildHTTPClient(jwtToken);
   }
 
   private void readPropertiesAndEnv(Properties properties) {
@@ -128,22 +151,11 @@ public class StreamSDKClient {
     }
   }
 
-  private static @NotNull String readSdkVersion() {
-    var clsLoader = StreamSDKClient.class.getClassLoader();
-    try (var inputStream = clsLoader.getResourceAsStream("version.properties")) {
-      var properties = new Properties();
-      properties.load(inputStream);
-      return properties.getProperty("version");
-    } catch (IOException ex) {
-      throw new IllegalStateException(ex);
-    }
-  }
-
   private @NotNull HttpLoggingInterceptor.Level getLogLevel() {
     return HttpLoggingInterceptor.Level.valueOf(logLevel);
   }
 
-  private Retrofit buildRetrofitClient() {
+  private OkHttpClient buildHTTPClient(String jwtToken) {
     OkHttpClient.Builder httpClient =
         new OkHttpClient.Builder()
             .connectionPool(new ConnectionPool(5, 59, TimeUnit.SECONDS))
@@ -169,37 +181,22 @@ public class StreamSDKClient {
                   .build();
           return chain.proceed(request);
         });
-    final ObjectMapper mapper = new ObjectMapper();
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-    mapper.setDateFormat(
-        new StdDateFormat().withColonInTimeZone(true).withTimeZone(TimeZone.getTimeZone("UTC")));
-    mapper.enable(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE);
-
-    Retrofit.Builder builder =
-        new Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .addConverterFactory(new QueryConverterFactory())
-            .addConverterFactory(JacksonConverterFactory.create(mapper))
-            .addCallAdapterFactory(StreamRequestCallAdapterFactory.create());
-
-    builder.client(httpClient.build());
-
-    return builder.build();
+    return httpClient.build();
   }
 
   @NotNull
-  public VideoService video() {
-    return retrofit.create(VideoService.class);
+  public Video video() {
+    return new VideoImpl(this);
   }
 
   @NotNull
-  public ChatService chat() {
-    return retrofit.create(ChatService.class);
+  public Chat chat() {
+    return new ChatImpl(this);
   }
 
   @NotNull
-  public CommonService common() {
-    return retrofit.create(CommonService.class);
+  public Common common() {
+    return new CommonImpl(this);
   }
 
   @NotNull

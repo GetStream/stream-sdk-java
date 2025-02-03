@@ -13,4 +13,7 @@ public class BlockListRule {
 
   @JsonProperty("name")
   private String name;
+
+  @JsonProperty("team")
+  private String team;
 }

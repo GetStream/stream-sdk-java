@@ -23,6 +23,10 @@ public class CheckRequest {
   private String entityType;
 
   @Nullable
+  @JsonProperty("config_team")
+  private String configTeam;
+
+  @Nullable
   @JsonProperty("test_mode")
   private Boolean testMode;
 

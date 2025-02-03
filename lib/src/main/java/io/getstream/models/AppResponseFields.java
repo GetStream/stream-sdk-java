@@ -42,6 +42,9 @@ public class AppResponseFields {
   @JsonProperty("moderation_enabled")
   private Boolean moderationEnabled;
 
+  @JsonProperty("moderation_multitenant_blocklist_enabled")
+  private Boolean moderationMultitenantBlocklistEnabled;
+
   @JsonProperty("moderation_webhook_url")
   private String moderationWebhookUrl;
 

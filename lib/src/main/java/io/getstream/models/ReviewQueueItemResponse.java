@@ -11,6 +11,9 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class ReviewQueueItemResponse {
 
+  @JsonProperty("ai_text_severity")
+  private String aiTextSeverity;
+
   @JsonProperty("created_at")
   private Date createdAt;
 

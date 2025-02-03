@@ -2,9 +2,9 @@ package io.getstream;
 
 import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
-import io.getstream.services.ChatService;
-import io.getstream.services.CommonService;
-import io.getstream.services.VideoService;
+import io.getstream.services.Chat;
+import io.getstream.services.Common;
+import io.getstream.services.Video;
 import io.getstream.services.framework.StreamSDKClient;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +24,9 @@ public class BasicTest {
   protected static ChannelStateResponse testChannelGetResponse;
   protected static ChannelResponse testChannel;
   protected static MessageResponse testMessage;
-  static ChatService chat = StreamSDKClient.getInstance().chat();
-  static CommonService common = StreamSDKClient.getInstance().common();
-  static VideoService video = StreamSDKClient.getInstance().video();
+  static Chat chat;
+  static Common common;
+  static Video video;
 
   @BeforeAll
   static void setup() throws Exception {
@@ -40,7 +40,7 @@ public class BasicTest {
     createTestMessage();
     pause();
 
-    client = StreamSDKClient.getInstance();
+    client = new StreamSDKClient();
 
     common = client.common();
     chat = client.chat();

@@ -13,7 +13,7 @@ package io.getstream.services.framework;
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  *
- * Derived from Square HttpLogginInterceptor
+ * Derived from Square HttpLoggingInterceptor
  */
 
 import static okhttp3.internal.platform.Platform.INFO;

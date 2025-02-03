@@ -17,6 +17,10 @@ public class CreateBlockListRequest {
   private List<String> words;
 
   @Nullable
+  @JsonProperty("team")
+  private String team;
+
+  @Nullable
   @JsonProperty("type")
   private String type;
 }

@@ -11,6 +11,10 @@ import org.jetbrains.annotations.Nullable;
 public class UpdateBlockListRequest {
 
   @Nullable
+  @JsonProperty("team")
+  private String team;
+
+  @Nullable
   @JsonProperty("words")
   private List<String> words;
 }

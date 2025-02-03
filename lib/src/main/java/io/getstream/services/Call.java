@@ -3,218 +3,216 @@ package io.getstream.services;
 import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
 import io.getstream.models.framework.StreamResponse;
-import io.getstream.services.framework.StreamSDKClient;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import retrofit2.http.Body;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 @lombok.AllArgsConstructor
 public class Call {
-  private VideoService service;
+  private Video service;
   private String callType;
   private String callID;
 
-  public Call(String callType, String callID) {
-    this.callType = callType;
-    this.callID = callID;
-    this.service = StreamSDKClient.getInstance().video();
-  }
-
-  public Call(String callType, String callID, VideoService service) {
+  public Call(String callType, String callID, Video service) {
     this.callType = callType;
     this.callID = callID;
     this.service = service;
   }
 
-  public StreamResponse<GetCallResponse> get(
-      @Nullable @Query("members_limit") Integer membersLimit,
-      @Nullable @Query("ring") Boolean ring,
-      @Nullable @Query("notify") Boolean notify,
-      @Nullable @Query("video") Boolean video)
+  @NotNull
+  public StreamResponse<GetCallResponse> get(GetCallRequest request) throws StreamException {
+    return service.getCall(this.callType, this.callID, request).execute();
+  }
+
+  @NotNull
+  public StreamResponse<UpdateCallResponse> update(UpdateCallRequest request)
       throws StreamException {
-    return service.getCall(this.callType, this.callID, membersLimit, ring, notify, video).execute();
+    return service.updateCall(this.callType, this.callID, request).execute();
   }
 
-  public StreamResponse<UpdateCallResponse> update(
-      @Nullable @Body UpdateCallRequest updateCallRequest) throws StreamException {
-    return service.updateCall(this.callType, this.callID, updateCallRequest).execute();
+  @NotNull
+  public StreamResponse<GetOrCreateCallResponse> getOrCreate(GetOrCreateCallRequest request)
+      throws StreamException {
+    return service.getOrCreateCall(this.callType, this.callID, request).execute();
   }
 
-  public StreamResponse<GetOrCreateCallResponse> getOrCreate(
-      @Nullable @Body GetOrCreateCallRequest getOrCreateCallRequest) throws StreamException {
-    return service.getOrCreateCall(this.callType, this.callID, getOrCreateCallRequest).execute();
+  @NotNull
+  public StreamResponse<BlockUserResponse> blockUser(BlockUserRequest request)
+      throws StreamException {
+    return service.blockUser(this.callType, this.callID, request).execute();
   }
 
-  public StreamResponse<BlockUserResponse> blockUser(
-      @NotNull @Body BlockUserRequest blockUserRequest) throws StreamException {
-    return service.blockUser(this.callType, this.callID, blockUserRequest).execute();
+  @NotNull
+  public StreamResponse<DeleteCallResponse> delete(DeleteCallRequest request)
+      throws StreamException {
+    return service.deleteCall(this.callType, this.callID, request).execute();
   }
 
-  public StreamResponse<DeleteCallResponse> delete(
-      @Nullable @Body DeleteCallRequest deleteCallRequest) throws StreamException {
-    return service.deleteCall(this.callType, this.callID, deleteCallRequest).execute();
+  @NotNull
+  public StreamResponse<SendCallEventResponse> sendCallEvent(SendCallEventRequest request)
+      throws StreamException {
+    return service.sendCallEvent(this.callType, this.callID, request).execute();
   }
 
-  public StreamResponse<SendCallEventResponse> sendCallEvent(
-      @Nullable @Body SendCallEventRequest sendCallEventRequest) throws StreamException {
-    return service.sendCallEvent(this.callType, this.callID, sendCallEventRequest).execute();
-  }
-
+  @NotNull
   public StreamResponse<CollectUserFeedbackResponse> collectUserFeedback(
-      @NotNull @Path("session") String session,
-      @NotNull @Body CollectUserFeedbackRequest collectUserFeedbackRequest)
-      throws StreamException {
-    return service
-        .collectUserFeedback(this.callType, this.callID, session, collectUserFeedbackRequest)
-        .execute();
+      @NotNull String session, CollectUserFeedbackRequest request) throws StreamException {
+    return service.collectUserFeedback(this.callType, this.callID, session, request).execute();
   }
 
-  public StreamResponse<GoLiveResponse> goLive(@Nullable @Body GoLiveRequest goLiveRequest)
-      throws StreamException {
-    return service.goLive(this.callType, this.callID, goLiveRequest).execute();
+  @NotNull
+  public StreamResponse<GoLiveResponse> goLive(GoLiveRequest request) throws StreamException {
+    return service.goLive(this.callType, this.callID, request).execute();
   }
 
-  public StreamResponse<EndCallResponse> end() throws StreamException {
-    return service.endCall(this.callType, this.callID).execute();
+  @NotNull
+  public StreamResponse<EndCallResponse> end(EndCallRequest request) throws StreamException {
+    return service.endCall(this.callType, this.callID, request).execute();
   }
 
+  @NotNull
   public StreamResponse<UpdateCallMembersResponse> updateCallMembers(
-      @Nullable @Body UpdateCallMembersRequest updateCallMembersRequest) throws StreamException {
-    return service
-        .updateCallMembers(this.callType, this.callID, updateCallMembersRequest)
-        .execute();
+      UpdateCallMembersRequest request) throws StreamException {
+    return service.updateCallMembers(this.callType, this.callID, request).execute();
   }
 
-  public StreamResponse<MuteUsersResponse> muteUsers(
-      @Nullable @Body MuteUsersRequest muteUsersRequest) throws StreamException {
-    return service.muteUsers(this.callType, this.callID, muteUsersRequest).execute();
-  }
-
-  public StreamResponse<PinResponse> videoPin(@NotNull @Body PinRequest pinRequest)
+  @NotNull
+  public StreamResponse<MuteUsersResponse> muteUsers(MuteUsersRequest request)
       throws StreamException {
-    return service.videoPin(this.callType, this.callID, pinRequest).execute();
+    return service.muteUsers(this.callType, this.callID, request).execute();
   }
 
-  public StreamResponse<ListRecordingsResponse> listRecordings() throws StreamException {
-    return service.listRecordings(this.callType, this.callID).execute();
+  @NotNull
+  public StreamResponse<PinResponse> videoPin(VideoPinRequest request) throws StreamException {
+    return service.videoPin(this.callType, this.callID, request).execute();
   }
 
-  public StreamResponse<GetCallReportResponse> getCallReport(
-      @Nullable @Query("session_id") String sessionID) throws StreamException {
-    return service.getCallReport(this.callType, this.callID, sessionID).execute();
+  @NotNull
+  public StreamResponse<ListRecordingsResponse> listRecordings(ListRecordingsRequest request)
+      throws StreamException {
+    return service.listRecordings(this.callType, this.callID, request).execute();
   }
 
+  @NotNull
+  public StreamResponse<GetCallReportResponse> getCallReport(GetCallReportRequest request)
+      throws StreamException {
+    return service.getCallReport(this.callType, this.callID, request).execute();
+  }
+
+  @NotNull
   public StreamResponse<StartRTMPBroadcastsResponse> startRTMPBroadcasts(
-      @NotNull @Body StartRTMPBroadcastsRequest startRTMPBroadcastsRequest) throws StreamException {
-    return service
-        .startRTMPBroadcasts(this.callType, this.callID, startRTMPBroadcastsRequest)
-        .execute();
+      StartRTMPBroadcastsRequest request) throws StreamException {
+    return service.startRTMPBroadcasts(this.callType, this.callID, request).execute();
   }
 
-  public StreamResponse<StopAllRTMPBroadcastsResponse> stopAllRTMPBroadcasts()
-      throws StreamException {
-    return service.stopAllRTMPBroadcasts(this.callType, this.callID).execute();
+  @NotNull
+  public StreamResponse<StopAllRTMPBroadcastsResponse> stopAllRTMPBroadcasts(
+      StopAllRTMPBroadcastsRequest request) throws StreamException {
+    return service.stopAllRTMPBroadcasts(this.callType, this.callID, request).execute();
   }
 
+  @NotNull
   public StreamResponse<StopRTMPBroadcastsResponse> stopRTMPBroadcast(
-      @NotNull @Path("name") String name,
-      @Nullable @Body StopRTMPBroadcastsRequest stopRTMPBroadcastsRequest)
-      throws StreamException {
-    return service
-        .stopRTMPBroadcast(this.callType, this.callID, name, stopRTMPBroadcastsRequest)
-        .execute();
+      @NotNull String name, StopRTMPBroadcastRequest request) throws StreamException {
+    return service.stopRTMPBroadcast(this.callType, this.callID, name, request).execute();
   }
 
-  public StreamResponse<StartHLSBroadcastingResponse> startHLSBroadcasting()
-      throws StreamException {
-    return service.startHLSBroadcasting(this.callType, this.callID).execute();
+  @NotNull
+  public StreamResponse<StartHLSBroadcastingResponse> startHLSBroadcasting(
+      StartHLSBroadcastingRequest request) throws StreamException {
+    return service.startHLSBroadcasting(this.callType, this.callID, request).execute();
   }
 
+  @NotNull
   public StreamResponse<StartClosedCaptionsResponse> startClosedCaptions(
-      @Nullable @Body StartClosedCaptionsRequest startClosedCaptionsRequest)
+      StartClosedCaptionsRequest request) throws StreamException {
+    return service.startClosedCaptions(this.callType, this.callID, request).execute();
+  }
+
+  @NotNull
+  public StreamResponse<StartRecordingResponse> startRecording(StartRecordingRequest request)
       throws StreamException {
-    return service
-        .startClosedCaptions(this.callType, this.callID, startClosedCaptionsRequest)
-        .execute();
+    return service.startRecording(this.callType, this.callID, request).execute();
   }
 
-  public StreamResponse<StartRecordingResponse> startRecording(
-      @Nullable @Body StartRecordingRequest startRecordingRequest) throws StreamException {
-    return service.startRecording(this.callType, this.callID, startRecordingRequest).execute();
-  }
-
+  @NotNull
   public StreamResponse<StartTranscriptionResponse> startTranscription(
-      @Nullable @Body StartTranscriptionRequest startTranscriptionRequest) throws StreamException {
-    return service
-        .startTranscription(this.callType, this.callID, startTranscriptionRequest)
-        .execute();
+      StartTranscriptionRequest request) throws StreamException {
+    return service.startTranscription(this.callType, this.callID, request).execute();
   }
 
-  public StreamResponse<GetCallStatsResponse> getCallStats(@NotNull @Path("session") String session)
-      throws StreamException {
-    return service.getCallStats(this.callType, this.callID, session).execute();
+  @NotNull
+  public StreamResponse<GetCallStatsResponse> getCallStats(
+      @NotNull String session, GetCallStatsRequest request) throws StreamException {
+    return service.getCallStats(this.callType, this.callID, session, request).execute();
   }
 
-  public StreamResponse<StopHLSBroadcastingResponse> stopHLSBroadcasting() throws StreamException {
-    return service.stopHLSBroadcasting(this.callType, this.callID).execute();
+  @NotNull
+  public StreamResponse<StopHLSBroadcastingResponse> stopHLSBroadcasting(
+      StopHLSBroadcastingRequest request) throws StreamException {
+    return service.stopHLSBroadcasting(this.callType, this.callID, request).execute();
   }
 
+  @NotNull
   public StreamResponse<StopClosedCaptionsResponse> stopClosedCaptions(
-      @Nullable @Body StopClosedCaptionsRequest stopClosedCaptionsRequest) throws StreamException {
-    return service
-        .stopClosedCaptions(this.callType, this.callID, stopClosedCaptionsRequest)
-        .execute();
+      StopClosedCaptionsRequest request) throws StreamException {
+    return service.stopClosedCaptions(this.callType, this.callID, request).execute();
   }
 
-  public StreamResponse<StopLiveResponse> stopLive(@Nullable @Body StopLiveRequest stopLiveRequest)
+  @NotNull
+  public StreamResponse<StopLiveResponse> stopLive(StopLiveRequest request) throws StreamException {
+    return service.stopLive(this.callType, this.callID, request).execute();
+  }
+
+  @NotNull
+  public StreamResponse<StopRecordingResponse> stopRecording(StopRecordingRequest request)
       throws StreamException {
-    return service.stopLive(this.callType, this.callID, stopLiveRequest).execute();
+    return service.stopRecording(this.callType, this.callID, request).execute();
   }
 
-  public StreamResponse<StopRecordingResponse> stopRecording() throws StreamException {
-    return service.stopRecording(this.callType, this.callID).execute();
-  }
-
+  @NotNull
   public StreamResponse<StopTranscriptionResponse> stopTranscription(
-      @Nullable @Body StopTranscriptionRequest stopTranscriptionRequest) throws StreamException {
-    return service
-        .stopTranscription(this.callType, this.callID, stopTranscriptionRequest)
-        .execute();
+      StopTranscriptionRequest request) throws StreamException {
+    return service.stopTranscription(this.callType, this.callID, request).execute();
   }
 
-  public StreamResponse<ListTranscriptionsResponse> listTranscriptions() throws StreamException {
-    return service.listTranscriptions(this.callType, this.callID).execute();
+  @NotNull
+  public StreamResponse<ListTranscriptionsResponse> listTranscriptions(
+      ListTranscriptionsRequest request) throws StreamException {
+    return service.listTranscriptions(this.callType, this.callID, request).execute();
   }
 
-  public StreamResponse<UnblockUserResponse> unblockUser(
-      @NotNull @Body UnblockUserRequest unblockUserRequest) throws StreamException {
-    return service.unblockUser(this.callType, this.callID, unblockUserRequest).execute();
-  }
-
-  public StreamResponse<UnpinResponse> videoUnpin(@NotNull @Body UnpinRequest unpinRequest)
+  @NotNull
+  public StreamResponse<UnblockUserResponse> unblockUser(UnblockUserRequest request)
       throws StreamException {
-    return service.videoUnpin(this.callType, this.callID, unpinRequest).execute();
+    return service.unblockUser(this.callType, this.callID, request).execute();
   }
 
+  @NotNull
+  public StreamResponse<UnpinResponse> videoUnpin(VideoUnpinRequest request)
+      throws StreamException {
+    return service.videoUnpin(this.callType, this.callID, request).execute();
+  }
+
+  @NotNull
   public StreamResponse<UpdateUserPermissionsResponse> updateUserPermissions(
-      @NotNull @Body UpdateUserPermissionsRequest updateUserPermissionsRequest)
+      UpdateUserPermissionsRequest request) throws StreamException {
+    return service.updateUserPermissions(this.callType, this.callID, request).execute();
+  }
+
+  @NotNull
+  public StreamResponse<DeleteRecordingResponse> deleteRecording(
+      @NotNull String session, @NotNull String filename, DeleteRecordingRequest request)
       throws StreamException {
     return service
-        .updateUserPermissions(this.callType, this.callID, updateUserPermissionsRequest)
+        .deleteRecording(this.callType, this.callID, session, filename, request)
         .execute();
   }
 
-  public StreamResponse<DeleteRecordingResponse> deleteRecording(
-      @NotNull @Path("session") String session, @NotNull @Path("filename") String filename)
-      throws StreamException {
-    return service.deleteRecording(this.callType, this.callID, session, filename).execute();
-  }
-
+  @NotNull
   public StreamResponse<DeleteTranscriptionResponse> deleteTranscription(
-      @NotNull @Path("session") String session, @NotNull @Path("filename") String filename)
+      @NotNull String session, @NotNull String filename, DeleteTranscriptionRequest request)
       throws StreamException {
-    return service.deleteTranscription(this.callType, this.callID, session, filename).execute();
+    return service
+        .deleteTranscription(this.callType, this.callID, session, filename, request)
+        .execute();
   }
 }

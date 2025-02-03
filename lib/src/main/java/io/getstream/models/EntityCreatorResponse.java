@@ -48,9 +48,6 @@ public class EntityCreatorResponse {
   @JsonProperty("blocked_user_ids")
   private List<String> blockedUserIds;
 
-  @JsonProperty("devices")
-  private List<DeviceResponse> devices;
-
   @JsonProperty("teams")
   private List<String> teams;
 
@@ -84,6 +81,10 @@ public class EntityCreatorResponse {
   @Nullable
   @JsonProperty("revoke_tokens_issued_before")
   private Date revokeTokensIssuedBefore;
+
+  @Nullable
+  @JsonProperty("devices")
+  private List<DeviceResponse> devices;
 
   @Nullable
   @JsonProperty("privacy_settings")

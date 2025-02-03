@@ -1,6 +1,8 @@
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.annotations.Query;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -30,4 +32,8 @@ public class QueryUserFeedbackRequest {
   @Nullable
   @JsonProperty("filter_conditions")
   private Map<String, Object> filterConditions;
+
+  @Query("full")
+  @JsonIgnore
+  private Boolean Full;
 }

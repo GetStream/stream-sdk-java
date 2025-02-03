@@ -1,7 +1,7 @@
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.Nullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.annotations.Query;
 
 @lombok.Data
 @lombok.Builder
@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class DeleteReactionRequest {
 
-  @Nullable
-  @JsonProperty("hard_delete")
-  private Boolean hardDelete;
+  @Query("user_id")
+  @JsonIgnore
+  private String UserID;
 }

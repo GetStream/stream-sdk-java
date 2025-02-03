@@ -41,8 +41,6 @@ dependencies {
 
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
     implementation("com.squareup.okhttp3:okhttp")
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation("com.squareup.retrofit2:converter-jackson:2.11.0")
     implementation("io.jsonwebtoken:jjwt-api:0.12.6")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.6")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.6")

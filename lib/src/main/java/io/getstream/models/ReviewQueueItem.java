@@ -11,6 +11,9 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class ReviewQueueItem {
 
+  @JsonProperty("ai_text_severity")
+  private String aiTextSeverity;
+
   @JsonProperty("bounce_count")
   private Integer bounceCount;
 

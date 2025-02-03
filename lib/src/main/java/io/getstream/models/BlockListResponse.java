@@ -25,6 +25,14 @@ public class BlockListResponse {
   private Date createdAt;
 
   @Nullable
+  @JsonProperty("id")
+  private String id;
+
+  @Nullable
+  @JsonProperty("team")
+  private String team;
+
+  @Nullable
   @JsonProperty("updated_at")
   private Date updatedAt;
 }

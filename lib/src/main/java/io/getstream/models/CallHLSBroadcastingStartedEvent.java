@@ -18,6 +18,9 @@ public class CallHLSBroadcastingStartedEvent {
   @JsonProperty("hls_playlist_url")
   private String hlsPlaylistUrl;
 
+  @JsonProperty("call")
+  private CallResponse call;
+
   @JsonProperty("type")
   private String type;
 }

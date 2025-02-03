@@ -15,9 +15,6 @@ public class ReportByHistogramBucket {
   @JsonProperty("count")
   private Integer count;
 
-  @JsonProperty("mean")
-  private Double mean;
-
   @JsonProperty("sum")
   private Double sum;
 
