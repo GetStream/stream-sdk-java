@@ -28,6 +28,10 @@ public class ChatImpl implements Chat {
         null);
   }
 
+  public StreamRequest<QueryCampaignsResponse> queryCampaigns() throws StreamException {
+    return queryCampaigns(new QueryCampaignsRequest());
+  }
+
   @NotNull
   public StreamRequest<GetCampaignResponse> getCampaign(
       @NotNull String id, GetCampaignRequest request) throws StreamException {
@@ -41,6 +45,10 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/campaigns/{id}",
         request,
         pathParams);
+  }
+
+  public StreamRequest<GetCampaignResponse> getCampaign(@NotNull String id) throws StreamException {
+    return getCampaign(id, new GetCampaignRequest());
   }
 
   @NotNull
@@ -58,6 +66,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<StartCampaignResponse> startCampaign(@NotNull String id)
+      throws StreamException {
+    return startCampaign(id, new StartCampaignRequest());
+  }
+
   @NotNull
   public StreamRequest<CampaignResponse> scheduleCampaign(
       @NotNull String id, ScheduleCampaignRequest request) throws StreamException {
@@ -73,6 +86,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<CampaignResponse> scheduleCampaign(@NotNull String id)
+      throws StreamException {
+    return scheduleCampaign(id, new ScheduleCampaignRequest());
+  }
+
   @NotNull
   public StreamRequest<QueryChannelsResponse> queryChannels(QueryChannelsRequest request)
       throws StreamException {
@@ -85,6 +103,10 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/channels",
         request,
         null);
+  }
+
+  public StreamRequest<QueryChannelsResponse> queryChannels() throws StreamException {
+    return queryChannels(new QueryChannelsRequest());
   }
 
   @NotNull
@@ -115,6 +137,10 @@ public class ChatImpl implements Chat {
         null);
   }
 
+  public StreamRequest<MarkReadResponse> markChannelsRead() throws StreamException {
+    return markChannelsRead(new MarkChannelsReadRequest());
+  }
+
   @NotNull
   public StreamRequest<ChannelStateResponse> getOrCreateDistinctChannel(
       @NotNull String type, GetOrCreateDistinctChannelRequest request) throws StreamException {
@@ -128,6 +154,11 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/channels/{type}/query",
         request,
         pathParams);
+  }
+
+  public StreamRequest<ChannelStateResponse> getOrCreateDistinctChannel(@NotNull String type)
+      throws StreamException {
+    return getOrCreateDistinctChannel(type, new GetOrCreateDistinctChannelRequest());
   }
 
   @NotNull
@@ -149,6 +180,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<DeleteChannelResponse> deleteChannel(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return deleteChannel(type, id, new DeleteChannelRequest());
+  }
+
   @NotNull
   public StreamRequest<UpdateChannelPartialResponse> updateChannelPartial(
       @NotNull String type, @NotNull String id, UpdateChannelPartialRequest request)
@@ -168,6 +204,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<UpdateChannelPartialResponse> updateChannelPartial(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return updateChannelPartial(type, id, new UpdateChannelPartialRequest());
+  }
+
   @NotNull
   public StreamRequest<UpdateChannelResponse> updateChannel(
       @NotNull String type, @NotNull String id, UpdateChannelRequest request)
@@ -185,6 +226,11 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/channels/{type}/{id}",
         request,
         pathParams);
+  }
+
+  public StreamRequest<UpdateChannelResponse> updateChannel(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return updateChannel(type, id, new UpdateChannelRequest());
   }
 
   @NotNull
@@ -223,6 +269,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<Response> deleteFile(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return deleteFile(type, id, new DeleteFileRequest());
+  }
+
   @NotNull
   public StreamRequest<FileUploadResponse> uploadFile(
       @NotNull String type, @NotNull String id, UploadFileRequest request) throws StreamException {
@@ -239,6 +290,11 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/channels/{type}/{id}/file",
         request,
         pathParams);
+  }
+
+  public StreamRequest<FileUploadResponse> uploadFile(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return uploadFile(type, id, new UploadFileRequest());
   }
 
   @NotNull
@@ -259,6 +315,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<HideChannelResponse> hideChannel(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return hideChannel(type, id, new HideChannelRequest());
+  }
+
   @NotNull
   public StreamRequest<Response> deleteImage(
       @NotNull String type, @NotNull String id, DeleteImageRequest request) throws StreamException {
@@ -277,6 +338,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<Response> deleteImage(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return deleteImage(type, id, new DeleteImageRequest());
+  }
+
   @NotNull
   public StreamRequest<ImageUploadResponse> uploadImage(
       @NotNull String type, @NotNull String id, UploadImageRequest request) throws StreamException {
@@ -293,6 +359,11 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/channels/{type}/{id}/image",
         request,
         pathParams);
+  }
+
+  public StreamRequest<ImageUploadResponse> uploadImage(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return uploadImage(type, id, new UploadImageRequest());
   }
 
   @NotNull
@@ -316,6 +387,11 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/channels/{type}/{id}/member/{user_id}",
         request,
         pathParams);
+  }
+
+  public StreamRequest<UpdateMemberPartialResponse> updateMemberPartial(
+      @NotNull String userID, @NotNull String type, @NotNull String id) throws StreamException {
+    return updateMemberPartial(userID, type, id, new UpdateMemberPartialRequest());
   }
 
   @NotNull
@@ -374,6 +450,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<ChannelStateResponse> getOrCreateChannel(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return getOrCreateChannel(type, id, new GetOrCreateChannelRequest());
+  }
+
   @NotNull
   public StreamRequest<MarkReadResponse> markRead(
       @NotNull String type, @NotNull String id, MarkReadRequest request) throws StreamException {
@@ -392,6 +473,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<MarkReadResponse> markRead(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return markRead(type, id, new MarkReadRequest());
+  }
+
   @NotNull
   public StreamRequest<ShowChannelResponse> showChannel(
       @NotNull String type, @NotNull String id, ShowChannelRequest request) throws StreamException {
@@ -408,6 +494,11 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/channels/{type}/{id}/show",
         request,
         pathParams);
+  }
+
+  public StreamRequest<ShowChannelResponse> showChannel(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return showChannel(type, id, new ShowChannelRequest());
   }
 
   @NotNull
@@ -429,6 +520,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<TruncateChannelResponse> truncateChannel(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return truncateChannel(type, id, new TruncateChannelRequest());
+  }
+
   @NotNull
   public StreamRequest<Response> markUnread(
       @NotNull String type, @NotNull String id, MarkUnreadRequest request) throws StreamException {
@@ -447,6 +543,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<Response> markUnread(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return markUnread(type, id, new MarkUnreadRequest());
+  }
+
   @NotNull
   public StreamRequest<ListChannelTypesResponse> listChannelTypes(ListChannelTypesRequest request)
       throws StreamException {
@@ -459,6 +560,10 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/channeltypes",
         request,
         null);
+  }
+
+  public StreamRequest<ListChannelTypesResponse> listChannelTypes() throws StreamException {
+    return listChannelTypes(new ListChannelTypesRequest());
   }
 
   @NotNull
@@ -490,6 +595,10 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<Response> deleteChannelType(@NotNull String name) throws StreamException {
+    return deleteChannelType(name, new DeleteChannelTypeRequest());
+  }
+
   @NotNull
   public StreamRequest<GetChannelTypeResponse> getChannelType(
       @NotNull String name, GetChannelTypeRequest request) throws StreamException {
@@ -503,6 +612,11 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/channeltypes/{name}",
         request,
         pathParams);
+  }
+
+  public StreamRequest<GetChannelTypeResponse> getChannelType(@NotNull String name)
+      throws StreamException {
+    return getChannelType(name, new GetChannelTypeRequest());
   }
 
   @NotNull
@@ -534,6 +648,10 @@ public class ChatImpl implements Chat {
         null);
   }
 
+  public StreamRequest<ListCommandsResponse> listCommands() throws StreamException {
+    return listCommands(new ListCommandsRequest());
+  }
+
   @NotNull
   public StreamRequest<CreateCommandResponse> createCommand(CreateCommandRequest request)
       throws StreamException {
@@ -563,6 +681,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<DeleteCommandResponse> deleteCommand(@NotNull String name)
+      throws StreamException {
+    return deleteCommand(name, new DeleteCommandRequest());
+  }
+
   @NotNull
   public StreamRequest<GetCommandResponse> getCommand(
       @NotNull String name, GetCommandRequest request) throws StreamException {
@@ -576,6 +699,10 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/commands/{name}",
         request,
         pathParams);
+  }
+
+  public StreamRequest<GetCommandResponse> getCommand(@NotNull String name) throws StreamException {
+    return getCommand(name, new GetCommandRequest());
   }
 
   @NotNull
@@ -622,6 +749,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<GetExportChannelsStatusResponse> getExportChannelsStatus(@NotNull String id)
+      throws StreamException {
+    return getExportChannelsStatus(id, new GetExportChannelsStatusRequest());
+  }
+
   @NotNull
   public StreamRequest<MembersResponse> queryMembers(QueryMembersRequest request)
       throws StreamException {
@@ -634,6 +766,10 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/members",
         request,
         null);
+  }
+
+  public StreamRequest<MembersResponse> queryMembers() throws StreamException {
+    return queryMembers(new QueryMembersRequest());
   }
 
   @NotNull
@@ -665,6 +801,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<DeleteMessageResponse> deleteMessage(@NotNull String id)
+      throws StreamException {
+    return deleteMessage(id, new DeleteMessageRequest());
+  }
+
   @NotNull
   public StreamRequest<GetMessageResponse> getMessage(@NotNull String id, GetMessageRequest request)
       throws StreamException {
@@ -678,6 +819,10 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/messages/{id}",
         request,
         pathParams);
+  }
+
+  public StreamRequest<GetMessageResponse> getMessage(@NotNull String id) throws StreamException {
+    return getMessage(id, new GetMessageRequest());
   }
 
   @NotNull
@@ -710,6 +855,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<UpdateMessagePartialResponse> updateMessagePartial(@NotNull String id)
+      throws StreamException {
+    return updateMessagePartial(id, new UpdateMessagePartialRequest());
+  }
+
   @NotNull
   public StreamRequest<MessageResponse> runMessageAction(
       @NotNull String id, RunMessageActionRequest request) throws StreamException {
@@ -738,6 +888,10 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/messages/{id}/commit",
         request,
         pathParams);
+  }
+
+  public StreamRequest<MessageResponse> commitMessage(@NotNull String id) throws StreamException {
+    return commitMessage(id, new CommitMessageRequest());
   }
 
   @NotNull
@@ -774,6 +928,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<DeleteReactionResponse> deleteReaction(
+      @NotNull String id, @NotNull String type) throws StreamException {
+    return deleteReaction(id, type, new DeleteReactionRequest());
+  }
+
   @NotNull
   public StreamRequest<GetReactionsResponse> getReactions(
       @NotNull String id, GetReactionsRequest request) throws StreamException {
@@ -789,6 +948,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<GetReactionsResponse> getReactions(@NotNull String id)
+      throws StreamException {
+    return getReactions(id, new GetReactionsRequest());
+  }
+
   @NotNull
   public StreamRequest<QueryReactionsResponse> queryReactions(
       @NotNull String id, QueryReactionsRequest request) throws StreamException {
@@ -802,6 +966,11 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/messages/{id}/reactions",
         request,
         pathParams);
+  }
+
+  public StreamRequest<QueryReactionsResponse> queryReactions(@NotNull String id)
+      throws StreamException {
+    return queryReactions(id, new QueryReactionsRequest());
   }
 
   @NotNull
@@ -853,6 +1022,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<PollVoteResponse> castPollVote(
+      @NotNull String messageID, @NotNull String pollID) throws StreamException {
+    return castPollVote(messageID, pollID, new CastPollVoteRequest());
+  }
+
   @NotNull
   public StreamRequest<PollVoteResponse> removePollVote(
       @NotNull String messageID,
@@ -876,6 +1050,12 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<PollVoteResponse> removePollVote(
+      @NotNull String messageID, @NotNull String pollID, @NotNull String voteID)
+      throws StreamException {
+    return removePollVote(messageID, pollID, voteID, new RemovePollVoteRequest());
+  }
+
   @NotNull
   public StreamRequest<GetRepliesResponse> getReplies(
       @NotNull String parentID, GetRepliesRequest request) throws StreamException {
@@ -889,6 +1069,11 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/messages/{parent_id}/replies",
         request,
         pathParams);
+  }
+
+  public StreamRequest<GetRepliesResponse> getReplies(@NotNull String parentID)
+      throws StreamException {
+    return getReplies(parentID, new GetRepliesRequest());
   }
 
   @NotNull
@@ -905,6 +1090,10 @@ public class ChatImpl implements Chat {
         null);
   }
 
+  public StreamRequest<QueryMessageFlagsResponse> queryMessageFlags() throws StreamException {
+    return queryMessageFlags(new QueryMessageFlagsRequest());
+  }
+
   @NotNull
   public StreamRequest<MuteChannelResponse> muteChannel(MuteChannelRequest request)
       throws StreamException {
@@ -919,6 +1108,10 @@ public class ChatImpl implements Chat {
         null);
   }
 
+  public StreamRequest<MuteChannelResponse> muteChannel() throws StreamException {
+    return muteChannel(new MuteChannelRequest());
+  }
+
   @NotNull
   public StreamRequest<UnmuteResponse> unmuteChannel(UnmuteChannelRequest request)
       throws StreamException {
@@ -931,6 +1124,10 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/moderation/unmute/channel",
         request,
         null);
+  }
+
+  public StreamRequest<UnmuteResponse> unmuteChannel() throws StreamException {
+    return unmuteChannel(new UnmuteChannelRequest());
   }
 
   @NotNull
@@ -973,6 +1170,10 @@ public class ChatImpl implements Chat {
         null);
   }
 
+  public StreamRequest<QueryPollsResponse> queryPolls() throws StreamException {
+    return queryPolls(new QueryPollsRequest());
+  }
+
   @NotNull
   public StreamRequest<Response> deletePoll(@NotNull String pollID, DeletePollRequest request)
       throws StreamException {
@@ -986,6 +1187,10 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/polls/{poll_id}",
         request,
         pathParams);
+  }
+
+  public StreamRequest<Response> deletePoll(@NotNull String pollID) throws StreamException {
+    return deletePoll(pollID, new DeletePollRequest());
   }
 
   @NotNull
@@ -1003,6 +1208,10 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<PollResponse> getPoll(@NotNull String pollID) throws StreamException {
+    return getPoll(pollID, new GetPollRequest());
+  }
+
   @NotNull
   public StreamRequest<PollResponse> updatePollPartial(
       @NotNull String pollID, UpdatePollPartialRequest request) throws StreamException {
@@ -1016,6 +1225,11 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/polls/{poll_id}",
         request,
         pathParams);
+  }
+
+  public StreamRequest<PollResponse> updatePollPartial(@NotNull String pollID)
+      throws StreamException {
+    return updatePollPartial(pollID, new UpdatePollPartialRequest());
   }
 
   @NotNull
@@ -1067,6 +1281,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<Response> deletePollOption(@NotNull String pollID, @NotNull String optionID)
+      throws StreamException {
+    return deletePollOption(pollID, optionID, new DeletePollOptionRequest());
+  }
+
   @NotNull
   public StreamRequest<PollOptionResponse> getPollOption(
       @NotNull String pollID, @NotNull String optionID, GetPollOptionRequest request)
@@ -1086,6 +1305,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<PollOptionResponse> getPollOption(
+      @NotNull String pollID, @NotNull String optionID) throws StreamException {
+    return getPollOption(pollID, optionID, new GetPollOptionRequest());
+  }
+
   @NotNull
   public StreamRequest<PollVotesResponse> queryPollVotes(
       @NotNull String pollID, QueryPollVotesRequest request) throws StreamException {
@@ -1099,6 +1323,11 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/polls/{poll_id}/votes",
         request,
         pathParams);
+  }
+
+  public StreamRequest<PollVotesResponse> queryPollVotes(@NotNull String pollID)
+      throws StreamException {
+    return queryPollVotes(pollID, new QueryPollVotesRequest());
   }
 
   @NotNull
@@ -1129,6 +1358,10 @@ public class ChatImpl implements Chat {
         null);
   }
 
+  public StreamRequest<QueryBannedUsersResponse> queryBannedUsers() throws StreamException {
+    return queryBannedUsers(new QueryBannedUsersRequest());
+  }
+
   @NotNull
   public StreamRequest<SearchResponse> search(SearchRequest request) throws StreamException {
 
@@ -1140,6 +1373,10 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/search",
         request,
         null);
+  }
+
+  public StreamRequest<SearchResponse> search() throws StreamException {
+    return search(new SearchRequest());
   }
 
   @NotNull
@@ -1171,6 +1408,10 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<Response> deleteSegment(@NotNull String id) throws StreamException {
+    return deleteSegment(id, new DeleteSegmentRequest());
+  }
+
   @NotNull
   public StreamRequest<GetSegmentResponse> getSegment(@NotNull String id, GetSegmentRequest request)
       throws StreamException {
@@ -1184,6 +1425,10 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/segments/{id}",
         request,
         pathParams);
+  }
+
+  public StreamRequest<GetSegmentResponse> getSegment(@NotNull String id) throws StreamException {
+    return getSegment(id, new GetSegmentRequest());
   }
 
   @NotNull
@@ -1220,6 +1465,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<Response> segmentTargetExists(@NotNull String id, @NotNull String targetID)
+      throws StreamException {
+    return segmentTargetExists(id, targetID, new SegmentTargetExistsRequest());
+  }
+
   @NotNull
   public StreamRequest<QuerySegmentTargetsResponse> querySegmentTargets(
       @NotNull String id, QuerySegmentTargetsRequest request) throws StreamException {
@@ -1235,6 +1485,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<QuerySegmentTargetsResponse> querySegmentTargets(@NotNull String id)
+      throws StreamException {
+    return querySegmentTargets(id, new QuerySegmentTargetsRequest());
+  }
+
   @NotNull
   public StreamRequest<QueryThreadsResponse> queryThreads(QueryThreadsRequest request)
       throws StreamException {
@@ -1247,6 +1502,10 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/threads",
         request,
         null);
+  }
+
+  public StreamRequest<QueryThreadsResponse> queryThreads() throws StreamException {
+    return queryThreads(new QueryThreadsRequest());
   }
 
   @NotNull
@@ -1264,6 +1523,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<GetThreadResponse> getThread(@NotNull String messageID)
+      throws StreamException {
+    return getThread(messageID, new GetThreadRequest());
+  }
+
   @NotNull
   public StreamRequest<UpdateThreadPartialResponse> updateThreadPartial(
       @NotNull String messageID, UpdateThreadPartialRequest request) throws StreamException {
@@ -1279,6 +1543,11 @@ public class ChatImpl implements Chat {
         pathParams);
   }
 
+  public StreamRequest<UpdateThreadPartialResponse> updateThreadPartial(@NotNull String messageID)
+      throws StreamException {
+    return updateThreadPartial(messageID, new UpdateThreadPartialRequest());
+  }
+
   @NotNull
   public StreamRequest<WrappedUnreadCountsResponse> unreadCounts(UnreadCountsRequest request)
       throws StreamException {
@@ -1291,6 +1560,10 @@ public class ChatImpl implements Chat {
         "/api/v2/chat/unread",
         request,
         null);
+  }
+
+  public StreamRequest<WrappedUnreadCountsResponse> unreadCounts() throws StreamException {
+    return unreadCounts(new UnreadCountsRequest());
   }
 
   @NotNull

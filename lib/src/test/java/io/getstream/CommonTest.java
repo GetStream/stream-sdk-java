@@ -27,7 +27,7 @@ public class CommonTest extends BasicTest {
   @DisplayName("App Get does not throw Exception")
   @Test
   void whenCallingGetApp_thenNoException() {
-    Assertions.assertDoesNotThrow(() -> common.getApp().execute());
+    Assertions.assertDoesNotThrow(() -> common.getApp(null).execute());
   }
 
   @DisplayName("App Settings update does not throw Exception")
@@ -71,7 +71,8 @@ public class CommonTest extends BasicTest {
     var client = new StreamSDKClient(properties);
 
     StreamException exception =
-        Assertions.assertThrows(StreamException.class, () -> client.common().getApp().execute());
+        Assertions.assertThrows(
+            StreamException.class, () -> client.common().getApp(null).execute());
     Assertions.assertEquals(401, exception.getResponseData().getStatusCode());
   }
 
@@ -91,7 +92,8 @@ public class CommonTest extends BasicTest {
     var client = new StreamSDKClient(properties);
 
     StreamException exception =
-        Assertions.assertThrows(StreamException.class, () -> client.common().getApp().execute());
+        Assertions.assertThrows(
+            StreamException.class, () -> client.common().getApp(null).execute());
     Assertions.assertEquals(401, exception.getResponseData().getStatusCode());
   }
 

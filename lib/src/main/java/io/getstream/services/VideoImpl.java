@@ -28,6 +28,10 @@ public class VideoImpl implements Video {
         null);
   }
 
+  public StreamRequest<QueryUserFeedbackResponse> queryUserFeedback() throws StreamException {
+    return queryUserFeedback(new QueryUserFeedbackRequest());
+  }
+
   @NotNull
   public StreamRequest<QueryCallMembersResponse> queryCallMembers(QueryCallMembersRequest request)
       throws StreamException {
@@ -56,6 +60,10 @@ public class VideoImpl implements Video {
         null);
   }
 
+  public StreamRequest<QueryCallStatsResponse> queryCallStats() throws StreamException {
+    return queryCallStats(new QueryCallStatsRequest());
+  }
+
   @NotNull
   public StreamRequest<GetCallResponse> getCall(
       @NotNull String type, @NotNull String id, GetCallRequest request) throws StreamException {
@@ -72,6 +80,11 @@ public class VideoImpl implements Video {
         "/api/v2/video/call/{type}/{id}",
         request,
         pathParams);
+  }
+
+  public StreamRequest<GetCallResponse> getCall(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return getCall(type, id, new GetCallRequest());
   }
 
   @NotNull
@@ -92,6 +105,11 @@ public class VideoImpl implements Video {
         pathParams);
   }
 
+  public StreamRequest<UpdateCallResponse> updateCall(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return updateCall(type, id, new UpdateCallRequest());
+  }
+
   @NotNull
   public StreamRequest<GetOrCreateCallResponse> getOrCreateCall(
       @NotNull String type, @NotNull String id, GetOrCreateCallRequest request)
@@ -109,6 +127,11 @@ public class VideoImpl implements Video {
         "/api/v2/video/call/{type}/{id}",
         request,
         pathParams);
+  }
+
+  public StreamRequest<GetOrCreateCallResponse> getOrCreateCall(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return getOrCreateCall(type, id, new GetOrCreateCallRequest());
   }
 
   @NotNull
@@ -147,6 +170,11 @@ public class VideoImpl implements Video {
         pathParams);
   }
 
+  public StreamRequest<DeleteCallResponse> deleteCall(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return deleteCall(type, id, new DeleteCallRequest());
+  }
+
   @NotNull
   public StreamRequest<SendCallEventResponse> sendCallEvent(
       @NotNull String type, @NotNull String id, SendCallEventRequest request)
@@ -164,6 +192,11 @@ public class VideoImpl implements Video {
         "/api/v2/video/call/{type}/{id}/event",
         request,
         pathParams);
+  }
+
+  public StreamRequest<SendCallEventResponse> sendCallEvent(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return sendCallEvent(type, id, new SendCallEventRequest());
   }
 
   @NotNull
@@ -207,6 +240,11 @@ public class VideoImpl implements Video {
         pathParams);
   }
 
+  public StreamRequest<GoLiveResponse> goLive(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return goLive(type, id, new GoLiveRequest());
+  }
+
   @NotNull
   public StreamRequest<EndCallResponse> endCall(
       @NotNull String type, @NotNull String id, EndCallRequest request) throws StreamException {
@@ -223,6 +261,11 @@ public class VideoImpl implements Video {
         "/api/v2/video/call/{type}/{id}/mark_ended",
         request,
         pathParams);
+  }
+
+  public StreamRequest<EndCallResponse> endCall(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return endCall(type, id, new EndCallRequest());
   }
 
   @NotNull
@@ -244,6 +287,11 @@ public class VideoImpl implements Video {
         pathParams);
   }
 
+  public StreamRequest<UpdateCallMembersResponse> updateCallMembers(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return updateCallMembers(type, id, new UpdateCallMembersRequest());
+  }
+
   @NotNull
   public StreamRequest<MuteUsersResponse> muteUsers(
       @NotNull String type, @NotNull String id, MuteUsersRequest request) throws StreamException {
@@ -260,6 +308,11 @@ public class VideoImpl implements Video {
         "/api/v2/video/call/{type}/{id}/mute_users",
         request,
         pathParams);
+  }
+
+  public StreamRequest<MuteUsersResponse> muteUsers(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return muteUsers(type, id, new MuteUsersRequest());
   }
 
   @NotNull
@@ -299,6 +352,11 @@ public class VideoImpl implements Video {
         pathParams);
   }
 
+  public StreamRequest<ListRecordingsResponse> listRecordings(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return listRecordings(type, id, new ListRecordingsRequest());
+  }
+
   @NotNull
   public StreamRequest<GetCallReportResponse> getCallReport(
       @NotNull String type, @NotNull String id, GetCallReportRequest request)
@@ -316,6 +374,11 @@ public class VideoImpl implements Video {
         "/api/v2/video/call/{type}/{id}/report",
         request,
         pathParams);
+  }
+
+  public StreamRequest<GetCallReportResponse> getCallReport(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return getCallReport(type, id, new GetCallReportRequest());
   }
 
   @NotNull
@@ -356,6 +419,11 @@ public class VideoImpl implements Video {
         pathParams);
   }
 
+  public StreamRequest<StopAllRTMPBroadcastsResponse> stopAllRTMPBroadcasts(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return stopAllRTMPBroadcasts(type, id, new StopAllRTMPBroadcastsRequest());
+  }
+
   @NotNull
   public StreamRequest<StopRTMPBroadcastsResponse> stopRTMPBroadcast(
       @NotNull String type,
@@ -379,6 +447,11 @@ public class VideoImpl implements Video {
         pathParams);
   }
 
+  public StreamRequest<StopRTMPBroadcastsResponse> stopRTMPBroadcast(
+      @NotNull String type, @NotNull String id, @NotNull String name) throws StreamException {
+    return stopRTMPBroadcast(type, id, name, new StopRTMPBroadcastRequest());
+  }
+
   @NotNull
   public StreamRequest<StartHLSBroadcastingResponse> startHLSBroadcasting(
       @NotNull String type, @NotNull String id, StartHLSBroadcastingRequest request)
@@ -396,6 +469,11 @@ public class VideoImpl implements Video {
         "/api/v2/video/call/{type}/{id}/start_broadcasting",
         request,
         pathParams);
+  }
+
+  public StreamRequest<StartHLSBroadcastingResponse> startHLSBroadcasting(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return startHLSBroadcasting(type, id, new StartHLSBroadcastingRequest());
   }
 
   @NotNull
@@ -417,6 +495,11 @@ public class VideoImpl implements Video {
         pathParams);
   }
 
+  public StreamRequest<StartClosedCaptionsResponse> startClosedCaptions(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return startClosedCaptions(type, id, new StartClosedCaptionsRequest());
+  }
+
   @NotNull
   public StreamRequest<StartRecordingResponse> startRecording(
       @NotNull String type, @NotNull String id, StartRecordingRequest request)
@@ -436,6 +519,11 @@ public class VideoImpl implements Video {
         pathParams);
   }
 
+  public StreamRequest<StartRecordingResponse> startRecording(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return startRecording(type, id, new StartRecordingRequest());
+  }
+
   @NotNull
   public StreamRequest<StartTranscriptionResponse> startTranscription(
       @NotNull String type, @NotNull String id, StartTranscriptionRequest request)
@@ -453,6 +541,11 @@ public class VideoImpl implements Video {
         "/api/v2/video/call/{type}/{id}/start_transcription",
         request,
         pathParams);
+  }
+
+  public StreamRequest<StartTranscriptionResponse> startTranscription(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return startTranscription(type, id, new StartTranscriptionRequest());
   }
 
   @NotNull
@@ -478,6 +571,11 @@ public class VideoImpl implements Video {
         pathParams);
   }
 
+  public StreamRequest<GetCallStatsResponse> getCallStats(
+      @NotNull String type, @NotNull String id, @NotNull String session) throws StreamException {
+    return getCallStats(type, id, session, new GetCallStatsRequest());
+  }
+
   @NotNull
   public StreamRequest<StopHLSBroadcastingResponse> stopHLSBroadcasting(
       @NotNull String type, @NotNull String id, StopHLSBroadcastingRequest request)
@@ -495,6 +593,11 @@ public class VideoImpl implements Video {
         "/api/v2/video/call/{type}/{id}/stop_broadcasting",
         request,
         pathParams);
+  }
+
+  public StreamRequest<StopHLSBroadcastingResponse> stopHLSBroadcasting(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return stopHLSBroadcasting(type, id, new StopHLSBroadcastingRequest());
   }
 
   @NotNull
@@ -516,6 +619,11 @@ public class VideoImpl implements Video {
         pathParams);
   }
 
+  public StreamRequest<StopClosedCaptionsResponse> stopClosedCaptions(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return stopClosedCaptions(type, id, new StopClosedCaptionsRequest());
+  }
+
   @NotNull
   public StreamRequest<StopLiveResponse> stopLive(
       @NotNull String type, @NotNull String id, StopLiveRequest request) throws StreamException {
@@ -532,6 +640,11 @@ public class VideoImpl implements Video {
         "/api/v2/video/call/{type}/{id}/stop_live",
         request,
         pathParams);
+  }
+
+  public StreamRequest<StopLiveResponse> stopLive(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return stopLive(type, id, new StopLiveRequest());
   }
 
   @NotNull
@@ -553,6 +666,11 @@ public class VideoImpl implements Video {
         pathParams);
   }
 
+  public StreamRequest<StopRecordingResponse> stopRecording(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return stopRecording(type, id, new StopRecordingRequest());
+  }
+
   @NotNull
   public StreamRequest<StopTranscriptionResponse> stopTranscription(
       @NotNull String type, @NotNull String id, StopTranscriptionRequest request)
@@ -572,6 +690,11 @@ public class VideoImpl implements Video {
         pathParams);
   }
 
+  public StreamRequest<StopTranscriptionResponse> stopTranscription(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return stopTranscription(type, id, new StopTranscriptionRequest());
+  }
+
   @NotNull
   public StreamRequest<ListTranscriptionsResponse> listTranscriptions(
       @NotNull String type, @NotNull String id, ListTranscriptionsRequest request)
@@ -589,6 +712,11 @@ public class VideoImpl implements Video {
         "/api/v2/video/call/{type}/{id}/transcriptions",
         request,
         pathParams);
+  }
+
+  public StreamRequest<ListTranscriptionsResponse> listTranscriptions(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return listTranscriptions(type, id, new ListTranscriptionsRequest());
   }
 
   @NotNull
@@ -671,6 +799,12 @@ public class VideoImpl implements Video {
         pathParams);
   }
 
+  public StreamRequest<DeleteRecordingResponse> deleteRecording(
+      @NotNull String type, @NotNull String id, @NotNull String session, @NotNull String filename)
+      throws StreamException {
+    return deleteRecording(type, id, session, filename, new DeleteRecordingRequest());
+  }
+
   @NotNull
   public StreamRequest<DeleteTranscriptionResponse> deleteTranscription(
       @NotNull String type,
@@ -696,6 +830,12 @@ public class VideoImpl implements Video {
         pathParams);
   }
 
+  public StreamRequest<DeleteTranscriptionResponse> deleteTranscription(
+      @NotNull String type, @NotNull String id, @NotNull String session, @NotNull String filename)
+      throws StreamException {
+    return deleteTranscription(type, id, session, filename, new DeleteTranscriptionRequest());
+  }
+
   @NotNull
   public StreamRequest<QueryCallsResponse> queryCalls(QueryCallsRequest request)
       throws StreamException {
@@ -710,6 +850,10 @@ public class VideoImpl implements Video {
         null);
   }
 
+  public StreamRequest<QueryCallsResponse> queryCalls() throws StreamException {
+    return queryCalls(new QueryCallsRequest());
+  }
+
   @NotNull
   public StreamRequest<ListCallTypeResponse> listCallTypes(ListCallTypesRequest request)
       throws StreamException {
@@ -722,6 +866,10 @@ public class VideoImpl implements Video {
         "/api/v2/video/calltypes",
         request,
         null);
+  }
+
+  public StreamRequest<ListCallTypeResponse> listCallTypes() throws StreamException {
+    return listCallTypes(new ListCallTypesRequest());
   }
 
   @NotNull
@@ -753,6 +901,10 @@ public class VideoImpl implements Video {
         pathParams);
   }
 
+  public StreamRequest<Response> deleteCallType(@NotNull String name) throws StreamException {
+    return deleteCallType(name, new DeleteCallTypeRequest());
+  }
+
   @NotNull
   public StreamRequest<GetCallTypeResponse> getCallType(
       @NotNull String name, GetCallTypeRequest request) throws StreamException {
@@ -766,6 +918,11 @@ public class VideoImpl implements Video {
         "/api/v2/video/calltypes/{name}",
         request,
         pathParams);
+  }
+
+  public StreamRequest<GetCallTypeResponse> getCallType(@NotNull String name)
+      throws StreamException {
+    return getCallType(name, new GetCallTypeRequest());
   }
 
   @NotNull
@@ -783,6 +940,11 @@ public class VideoImpl implements Video {
         pathParams);
   }
 
+  public StreamRequest<UpdateCallTypeResponse> updateCallType(@NotNull String name)
+      throws StreamException {
+    return updateCallType(name, new UpdateCallTypeRequest());
+  }
+
   @NotNull
   public StreamRequest<GetEdgesResponse> getEdges(GetEdgesRequest request) throws StreamException {
 
@@ -794,6 +956,10 @@ public class VideoImpl implements Video {
         "/api/v2/video/edges",
         request,
         null);
+  }
+
+  public StreamRequest<GetEdgesResponse> getEdges() throws StreamException {
+    return getEdges(new GetEdgesRequest());
   }
 
   @NotNull
@@ -808,6 +974,11 @@ public class VideoImpl implements Video {
         "/api/v2/video/stats",
         request,
         null);
+  }
+
+  public StreamRequest<QueryAggregateCallStatsResponse> queryAggregateCallStats()
+      throws StreamException {
+    return queryAggregateCallStats(new QueryAggregateCallStatsRequest());
   }
 
   @NotNull

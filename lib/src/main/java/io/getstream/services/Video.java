@@ -11,6 +11,8 @@ public interface Video {
   public StreamRequest<QueryUserFeedbackResponse> queryUserFeedback(
       QueryUserFeedbackRequest request) throws StreamException;
 
+  public StreamRequest<QueryUserFeedbackResponse> queryUserFeedback() throws StreamException;
+
   @NotNull
   public StreamRequest<QueryCallMembersResponse> queryCallMembers(QueryCallMembersRequest request)
       throws StreamException;
@@ -19,18 +21,29 @@ public interface Video {
   public StreamRequest<QueryCallStatsResponse> queryCallStats(QueryCallStatsRequest request)
       throws StreamException;
 
+  public StreamRequest<QueryCallStatsResponse> queryCallStats() throws StreamException;
+
   @NotNull
   public StreamRequest<GetCallResponse> getCall(
       @NotNull String type, @NotNull String id, GetCallRequest request) throws StreamException;
+
+  public StreamRequest<GetCallResponse> getCall(@NotNull String type, @NotNull String id)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<UpdateCallResponse> updateCall(
       @NotNull String type, @NotNull String id, UpdateCallRequest request) throws StreamException;
 
+  public StreamRequest<UpdateCallResponse> updateCall(@NotNull String type, @NotNull String id)
+      throws StreamException;
+
   @NotNull
   public StreamRequest<GetOrCreateCallResponse> getOrCreateCall(
       @NotNull String type, @NotNull String id, GetOrCreateCallRequest request)
       throws StreamException;
+
+  public StreamRequest<GetOrCreateCallResponse> getOrCreateCall(
+      @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<BlockUserResponse> blockUser(
@@ -40,10 +53,16 @@ public interface Video {
   public StreamRequest<DeleteCallResponse> deleteCall(
       @NotNull String type, @NotNull String id, DeleteCallRequest request) throws StreamException;
 
+  public StreamRequest<DeleteCallResponse> deleteCall(@NotNull String type, @NotNull String id)
+      throws StreamException;
+
   @NotNull
   public StreamRequest<SendCallEventResponse> sendCallEvent(
       @NotNull String type, @NotNull String id, SendCallEventRequest request)
       throws StreamException;
+
+  public StreamRequest<SendCallEventResponse> sendCallEvent(
+      @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<CollectUserFeedbackResponse> collectUserFeedback(
@@ -57,18 +76,30 @@ public interface Video {
   public StreamRequest<GoLiveResponse> goLive(
       @NotNull String type, @NotNull String id, GoLiveRequest request) throws StreamException;
 
+  public StreamRequest<GoLiveResponse> goLive(@NotNull String type, @NotNull String id)
+      throws StreamException;
+
   @NotNull
   public StreamRequest<EndCallResponse> endCall(
       @NotNull String type, @NotNull String id, EndCallRequest request) throws StreamException;
+
+  public StreamRequest<EndCallResponse> endCall(@NotNull String type, @NotNull String id)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<UpdateCallMembersResponse> updateCallMembers(
       @NotNull String type, @NotNull String id, UpdateCallMembersRequest request)
       throws StreamException;
 
+  public StreamRequest<UpdateCallMembersResponse> updateCallMembers(
+      @NotNull String type, @NotNull String id) throws StreamException;
+
   @NotNull
   public StreamRequest<MuteUsersResponse> muteUsers(
       @NotNull String type, @NotNull String id, MuteUsersRequest request) throws StreamException;
+
+  public StreamRequest<MuteUsersResponse> muteUsers(@NotNull String type, @NotNull String id)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<PinResponse> videoPin(
@@ -79,10 +110,16 @@ public interface Video {
       @NotNull String type, @NotNull String id, ListRecordingsRequest request)
       throws StreamException;
 
+  public StreamRequest<ListRecordingsResponse> listRecordings(
+      @NotNull String type, @NotNull String id) throws StreamException;
+
   @NotNull
   public StreamRequest<GetCallReportResponse> getCallReport(
       @NotNull String type, @NotNull String id, GetCallReportRequest request)
       throws StreamException;
+
+  public StreamRequest<GetCallReportResponse> getCallReport(
+      @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<StartRTMPBroadcastsResponse> startRTMPBroadcasts(
@@ -94,6 +131,9 @@ public interface Video {
       @NotNull String type, @NotNull String id, StopAllRTMPBroadcastsRequest request)
       throws StreamException;
 
+  public StreamRequest<StopAllRTMPBroadcastsResponse> stopAllRTMPBroadcasts(
+      @NotNull String type, @NotNull String id) throws StreamException;
+
   @NotNull
   public StreamRequest<StopRTMPBroadcastsResponse> stopRTMPBroadcast(
       @NotNull String type,
@@ -102,25 +142,40 @@ public interface Video {
       StopRTMPBroadcastRequest request)
       throws StreamException;
 
+  public StreamRequest<StopRTMPBroadcastsResponse> stopRTMPBroadcast(
+      @NotNull String type, @NotNull String id, @NotNull String name) throws StreamException;
+
   @NotNull
   public StreamRequest<StartHLSBroadcastingResponse> startHLSBroadcasting(
       @NotNull String type, @NotNull String id, StartHLSBroadcastingRequest request)
       throws StreamException;
+
+  public StreamRequest<StartHLSBroadcastingResponse> startHLSBroadcasting(
+      @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<StartClosedCaptionsResponse> startClosedCaptions(
       @NotNull String type, @NotNull String id, StartClosedCaptionsRequest request)
       throws StreamException;
 
+  public StreamRequest<StartClosedCaptionsResponse> startClosedCaptions(
+      @NotNull String type, @NotNull String id) throws StreamException;
+
   @NotNull
   public StreamRequest<StartRecordingResponse> startRecording(
       @NotNull String type, @NotNull String id, StartRecordingRequest request)
       throws StreamException;
 
+  public StreamRequest<StartRecordingResponse> startRecording(
+      @NotNull String type, @NotNull String id) throws StreamException;
+
   @NotNull
   public StreamRequest<StartTranscriptionResponse> startTranscription(
       @NotNull String type, @NotNull String id, StartTranscriptionRequest request)
       throws StreamException;
+
+  public StreamRequest<StartTranscriptionResponse> startTranscription(
+      @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<GetCallStatsResponse> getCallStats(
@@ -130,34 +185,55 @@ public interface Video {
       GetCallStatsRequest request)
       throws StreamException;
 
+  public StreamRequest<GetCallStatsResponse> getCallStats(
+      @NotNull String type, @NotNull String id, @NotNull String session) throws StreamException;
+
   @NotNull
   public StreamRequest<StopHLSBroadcastingResponse> stopHLSBroadcasting(
       @NotNull String type, @NotNull String id, StopHLSBroadcastingRequest request)
       throws StreamException;
+
+  public StreamRequest<StopHLSBroadcastingResponse> stopHLSBroadcasting(
+      @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<StopClosedCaptionsResponse> stopClosedCaptions(
       @NotNull String type, @NotNull String id, StopClosedCaptionsRequest request)
       throws StreamException;
 
+  public StreamRequest<StopClosedCaptionsResponse> stopClosedCaptions(
+      @NotNull String type, @NotNull String id) throws StreamException;
+
   @NotNull
   public StreamRequest<StopLiveResponse> stopLive(
       @NotNull String type, @NotNull String id, StopLiveRequest request) throws StreamException;
+
+  public StreamRequest<StopLiveResponse> stopLive(@NotNull String type, @NotNull String id)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<StopRecordingResponse> stopRecording(
       @NotNull String type, @NotNull String id, StopRecordingRequest request)
       throws StreamException;
 
+  public StreamRequest<StopRecordingResponse> stopRecording(
+      @NotNull String type, @NotNull String id) throws StreamException;
+
   @NotNull
   public StreamRequest<StopTranscriptionResponse> stopTranscription(
       @NotNull String type, @NotNull String id, StopTranscriptionRequest request)
       throws StreamException;
 
+  public StreamRequest<StopTranscriptionResponse> stopTranscription(
+      @NotNull String type, @NotNull String id) throws StreamException;
+
   @NotNull
   public StreamRequest<ListTranscriptionsResponse> listTranscriptions(
       @NotNull String type, @NotNull String id, ListTranscriptionsRequest request)
       throws StreamException;
+
+  public StreamRequest<ListTranscriptionsResponse> listTranscriptions(
+      @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<UnblockUserResponse> unblockUser(
@@ -181,6 +257,10 @@ public interface Video {
       DeleteRecordingRequest request)
       throws StreamException;
 
+  public StreamRequest<DeleteRecordingResponse> deleteRecording(
+      @NotNull String type, @NotNull String id, @NotNull String session, @NotNull String filename)
+      throws StreamException;
+
   @NotNull
   public StreamRequest<DeleteTranscriptionResponse> deleteTranscription(
       @NotNull String type,
@@ -190,13 +270,21 @@ public interface Video {
       DeleteTranscriptionRequest request)
       throws StreamException;
 
+  public StreamRequest<DeleteTranscriptionResponse> deleteTranscription(
+      @NotNull String type, @NotNull String id, @NotNull String session, @NotNull String filename)
+      throws StreamException;
+
   @NotNull
   public StreamRequest<QueryCallsResponse> queryCalls(QueryCallsRequest request)
       throws StreamException;
 
+  public StreamRequest<QueryCallsResponse> queryCalls() throws StreamException;
+
   @NotNull
   public StreamRequest<ListCallTypeResponse> listCallTypes(ListCallTypesRequest request)
       throws StreamException;
+
+  public StreamRequest<ListCallTypeResponse> listCallTypes() throws StreamException;
 
   @NotNull
   public StreamRequest<CreateCallTypeResponse> createCallType(CreateCallTypeRequest request)
@@ -206,20 +294,33 @@ public interface Video {
   public StreamRequest<Response> deleteCallType(@NotNull String name, DeleteCallTypeRequest request)
       throws StreamException;
 
+  public StreamRequest<Response> deleteCallType(@NotNull String name) throws StreamException;
+
   @NotNull
   public StreamRequest<GetCallTypeResponse> getCallType(
       @NotNull String name, GetCallTypeRequest request) throws StreamException;
+
+  public StreamRequest<GetCallTypeResponse> getCallType(@NotNull String name)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<UpdateCallTypeResponse> updateCallType(
       @NotNull String name, UpdateCallTypeRequest request) throws StreamException;
 
+  public StreamRequest<UpdateCallTypeResponse> updateCallType(@NotNull String name)
+      throws StreamException;
+
   @NotNull
   public StreamRequest<GetEdgesResponse> getEdges(GetEdgesRequest request) throws StreamException;
+
+  public StreamRequest<GetEdgesResponse> getEdges() throws StreamException;
 
   @NotNull
   public StreamRequest<QueryAggregateCallStatsResponse> queryAggregateCallStats(
       QueryAggregateCallStatsRequest request) throws StreamException;
+
+  public StreamRequest<QueryAggregateCallStatsResponse> queryAggregateCallStats()
+      throws StreamException;
 
   @NotNull
   public Call call(String callType, String callID);

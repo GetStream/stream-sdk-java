@@ -28,6 +28,10 @@ public class CommonImpl implements Common {
         null);
   }
 
+  public StreamRequest<GetApplicationResponse> getApp() throws StreamException {
+    return getApp(new GetAppRequest());
+  }
+
   @NotNull
   public StreamRequest<Response> updateApp(UpdateAppRequest request) throws StreamException {
 
@@ -39,6 +43,10 @@ public class CommonImpl implements Common {
         "/api/v2/app",
         request,
         null);
+  }
+
+  public StreamRequest<Response> updateApp() throws StreamException {
+    return updateApp(new UpdateAppRequest());
   }
 
   @NotNull
@@ -53,6 +61,10 @@ public class CommonImpl implements Common {
         "/api/v2/blocklists",
         request,
         null);
+  }
+
+  public StreamRequest<ListBlockListResponse> listBlockLists() throws StreamException {
+    return listBlockLists(new ListBlockListsRequest());
   }
 
   @NotNull
@@ -84,6 +96,10 @@ public class CommonImpl implements Common {
         pathParams);
   }
 
+  public StreamRequest<Response> deleteBlockList(@NotNull String name) throws StreamException {
+    return deleteBlockList(name, new DeleteBlockListRequest());
+  }
+
   @NotNull
   public StreamRequest<GetBlockListResponse> getBlockList(
       @NotNull String name, GetBlockListRequest request) throws StreamException {
@@ -97,6 +113,11 @@ public class CommonImpl implements Common {
         "/api/v2/blocklists/{name}",
         request,
         pathParams);
+  }
+
+  public StreamRequest<GetBlockListResponse> getBlockList(@NotNull String name)
+      throws StreamException {
+    return getBlockList(name, new GetBlockListRequest());
   }
 
   @NotNull
@@ -114,6 +135,11 @@ public class CommonImpl implements Common {
         pathParams);
   }
 
+  public StreamRequest<UpdateBlockListResponse> updateBlockList(@NotNull String name)
+      throws StreamException {
+    return updateBlockList(name, new UpdateBlockListRequest());
+  }
+
   @NotNull
   public StreamRequest<CheckPushResponse> checkPush(CheckPushRequest request)
       throws StreamException {
@@ -126,6 +152,10 @@ public class CommonImpl implements Common {
         "/api/v2/check_push",
         request,
         null);
+  }
+
+  public StreamRequest<CheckPushResponse> checkPush() throws StreamException {
+    return checkPush(new CheckPushRequest());
   }
 
   @NotNull
@@ -141,6 +171,10 @@ public class CommonImpl implements Common {
         null);
   }
 
+  public StreamRequest<CheckSNSResponse> checkSNS() throws StreamException {
+    return checkSNS(new CheckSNSRequest());
+  }
+
   @NotNull
   public StreamRequest<CheckSQSResponse> checkSQS(CheckSQSRequest request) throws StreamException {
 
@@ -152,6 +186,10 @@ public class CommonImpl implements Common {
         "/api/v2/check_sqs",
         request,
         null);
+  }
+
+  public StreamRequest<CheckSQSResponse> checkSQS() throws StreamException {
+    return checkSQS(new CheckSQSRequest());
   }
 
   @NotNull
@@ -179,6 +217,10 @@ public class CommonImpl implements Common {
         "/api/v2/devices",
         request,
         null);
+  }
+
+  public StreamRequest<ListDevicesResponse> listDevices() throws StreamException {
+    return listDevices(new ListDevicesRequest());
   }
 
   @NotNull
@@ -222,6 +264,10 @@ public class CommonImpl implements Common {
         null);
   }
 
+  public StreamRequest<ListExternalStorageResponse> listExternalStorage() throws StreamException {
+    return listExternalStorage(new ListExternalStorageRequest());
+  }
+
   @NotNull
   public StreamRequest<CreateExternalStorageResponse> createExternalStorage(
       CreateExternalStorageRequest request) throws StreamException {
@@ -249,6 +295,11 @@ public class CommonImpl implements Common {
         "/api/v2/external_storage/{name}",
         request,
         pathParams);
+  }
+
+  public StreamRequest<DeleteExternalStorageResponse> deleteExternalStorage(@NotNull String name)
+      throws StreamException {
+    return deleteExternalStorage(name, new DeleteExternalStorageRequest());
   }
 
   @NotNull
@@ -281,6 +332,11 @@ public class CommonImpl implements Common {
         pathParams);
   }
 
+  public StreamRequest<CheckExternalStorageResponse> checkExternalStorage(@NotNull String name)
+      throws StreamException {
+    return checkExternalStorage(name, new CheckExternalStorageRequest());
+  }
+
   @NotNull
   public StreamRequest<CreateGuestResponse> createGuest(CreateGuestRequest request)
       throws StreamException {
@@ -309,6 +365,10 @@ public class CommonImpl implements Common {
         null);
   }
 
+  public StreamRequest<CreateImportURLResponse> createImportURL() throws StreamException {
+    return createImportURL(new CreateImportURLRequest());
+  }
+
   @NotNull
   public StreamRequest<ListImportsResponse> listImports(ListImportsRequest request)
       throws StreamException {
@@ -321,6 +381,10 @@ public class CommonImpl implements Common {
         "/api/v2/imports",
         request,
         null);
+  }
+
+  public StreamRequest<ListImportsResponse> listImports() throws StreamException {
+    return listImports(new ListImportsRequest());
   }
 
   @NotNull
@@ -352,6 +416,10 @@ public class CommonImpl implements Common {
         pathParams);
   }
 
+  public StreamRequest<GetImportResponse> getImport(@NotNull String id) throws StreamException {
+    return getImport(id, new GetImportRequest());
+  }
+
   @NotNull
   public StreamRequest<GetOGResponse> getOG(GetOGRequest request) throws StreamException {
 
@@ -379,6 +447,10 @@ public class CommonImpl implements Common {
         null);
   }
 
+  public StreamRequest<ListPermissionsResponse> listPermissions() throws StreamException {
+    return listPermissions(new ListPermissionsRequest());
+  }
+
   @NotNull
   public StreamRequest<GetCustomPermissionResponse> getPermission(
       @NotNull String id, GetPermissionRequest request) throws StreamException {
@@ -392,6 +464,11 @@ public class CommonImpl implements Common {
         "/api/v2/permissions/{id}",
         request,
         pathParams);
+  }
+
+  public StreamRequest<GetCustomPermissionResponse> getPermission(@NotNull String id)
+      throws StreamException {
+    return getPermission(id, new GetPermissionRequest());
   }
 
   @NotNull
@@ -408,6 +485,10 @@ public class CommonImpl implements Common {
         null);
   }
 
+  public StreamRequest<ListPushProvidersResponse> listPushProviders() throws StreamException {
+    return listPushProviders(new ListPushProvidersRequest());
+  }
+
   @NotNull
   public StreamRequest<UpsertPushProviderResponse> upsertPushProvider(
       UpsertPushProviderRequest request) throws StreamException {
@@ -420,6 +501,10 @@ public class CommonImpl implements Common {
         "/api/v2/push_providers",
         request,
         null);
+  }
+
+  public StreamRequest<UpsertPushProviderResponse> upsertPushProvider() throws StreamException {
+    return upsertPushProvider(new UpsertPushProviderRequest());
   }
 
   @NotNull
@@ -441,6 +526,11 @@ public class CommonImpl implements Common {
         pathParams);
   }
 
+  public StreamRequest<Response> deletePushProvider(@NotNull String type, @NotNull String name)
+      throws StreamException {
+    return deletePushProvider(type, name, new DeletePushProviderRequest());
+  }
+
   @NotNull
   public StreamRequest<GetRateLimitsResponse> getRateLimits(GetRateLimitsRequest request)
       throws StreamException {
@@ -455,6 +545,10 @@ public class CommonImpl implements Common {
         null);
   }
 
+  public StreamRequest<GetRateLimitsResponse> getRateLimits() throws StreamException {
+    return getRateLimits(new GetRateLimitsRequest());
+  }
+
   @NotNull
   public StreamRequest<ListRolesResponse> listRoles(ListRolesRequest request)
       throws StreamException {
@@ -467,6 +561,10 @@ public class CommonImpl implements Common {
         "/api/v2/roles",
         request,
         null);
+  }
+
+  public StreamRequest<ListRolesResponse> listRoles() throws StreamException {
+    return listRoles(new ListRolesRequest());
   }
 
   @NotNull
@@ -498,6 +596,10 @@ public class CommonImpl implements Common {
         pathParams);
   }
 
+  public StreamRequest<Response> deleteRole(@NotNull String name) throws StreamException {
+    return deleteRole(name, new DeleteRoleRequest());
+  }
+
   @NotNull
   public StreamRequest<GetTaskResponse> getTask(@NotNull String id, GetTaskRequest request)
       throws StreamException {
@@ -513,6 +615,10 @@ public class CommonImpl implements Common {
         pathParams);
   }
 
+  public StreamRequest<GetTaskResponse> getTask(@NotNull String id) throws StreamException {
+    return getTask(id, new GetTaskRequest());
+  }
+
   @NotNull
   public StreamRequest<QueryUsersResponse> queryUsers(QueryUsersRequest request)
       throws StreamException {
@@ -525,6 +631,10 @@ public class CommonImpl implements Common {
         "/api/v2/users",
         request,
         null);
+  }
+
+  public StreamRequest<QueryUsersResponse> queryUsers() throws StreamException {
+    return queryUsers(new QueryUsersRequest());
   }
 
   @NotNull
@@ -567,6 +677,10 @@ public class CommonImpl implements Common {
         "/api/v2/users/block",
         request,
         null);
+  }
+
+  public StreamRequest<GetBlockedUsersResponse> getBlockedUsers() throws StreamException {
+    return getBlockedUsers(new GetBlockedUsersRequest());
   }
 
   @NotNull
@@ -667,6 +781,11 @@ public class CommonImpl implements Common {
         pathParams);
   }
 
+  public StreamRequest<DeactivateUserResponse> deactivateUser(@NotNull String userID)
+      throws StreamException {
+    return deactivateUser(userID, new DeactivateUserRequest());
+  }
+
   @NotNull
   public StreamRequest<ExportUserResponse> exportUser(
       @NotNull String userID, ExportUserRequest request) throws StreamException {
@@ -682,6 +801,11 @@ public class CommonImpl implements Common {
         pathParams);
   }
 
+  public StreamRequest<ExportUserResponse> exportUser(@NotNull String userID)
+      throws StreamException {
+    return exportUser(userID, new ExportUserRequest());
+  }
+
   @NotNull
   public StreamRequest<ReactivateUserResponse> reactivateUser(
       @NotNull String userID, ReactivateUserRequest request) throws StreamException {
@@ -695,5 +819,10 @@ public class CommonImpl implements Common {
         "/api/v2/users/{user_id}/reactivate",
         request,
         pathParams);
+  }
+
+  public StreamRequest<ReactivateUserResponse> reactivateUser(@NotNull String userID)
+      throws StreamException {
+    return reactivateUser(userID, new ReactivateUserRequest());
   }
 }
