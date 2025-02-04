@@ -33,10 +33,6 @@ public class StreamSDKClient extends CommonImpl implements Common {
         return new ChatImpl(httpClient);
     }
 
-    public Common common() {
-        return this;
-    }
-
     public TokenBuilder tokenBuilder() {
         var tb = new TokenBuilder(httpClient.getApiSecret());
         return tb;
