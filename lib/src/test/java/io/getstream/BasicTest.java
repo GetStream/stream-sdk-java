@@ -212,7 +212,7 @@ public class BasicTest {
     return chat.getOrCreateChannel(
             "team",
             RandomStringUtils.randomAlphabetic(12),
-            ChannelGetOrCreateRequest.builder()
+            GetOrCreateChannelRequest.builder()
                 .data(
                     ChannelInput.builder()
                         .createdBy(UserRequest.builder().id(testUser.getId()).build())

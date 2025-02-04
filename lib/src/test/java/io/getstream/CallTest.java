@@ -217,7 +217,7 @@ public class CallTest extends BasicTest {
             .build();
 
     String callID = "call-" + RandomStringUtils.randomAlphanumeric(10);
-    Call testCall = new Call(callType, callID);
+    Call testCall = video.call(callType, callID);
     var response = Assertions.assertDoesNotThrow(() -> testCall.getOrCreate(callRequest));
     Assertions.assertEquals(testUser.getId(), response.getData().getCall().getCreatedBy().getId());
     Assertions.assertFalse(
@@ -235,7 +235,7 @@ public class CallTest extends BasicTest {
     Assertions.assertDoesNotThrow(
         () -> video.getOrCreateCall("default", callId, callRequest).execute());
 
-    Call call = new Call(callType, callId);
+    Call call = video.call(callType, callId);
 
     var updateRequest =
         UpdateCallRequest.builder()
@@ -258,7 +258,7 @@ public class CallTest extends BasicTest {
   void testSendCustomEvent() {
     Assertions.assertNotNull(testUser, "User should not be null");
     String callID = "call-" + RandomStringUtils.randomAlphanumeric(10);
-    Call testCall = new Call(callType, callID);
+    Call testCall = video.call(callType, callID);
 
     GetOrCreateCallRequest callRequest =
         GetOrCreateCallRequest.builder()

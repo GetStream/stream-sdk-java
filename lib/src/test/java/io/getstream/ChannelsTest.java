@@ -1,9 +1,6 @@
 package io.getstream;
 
-import io.getstream.models.ChannelGetOrCreateRequest;
-import io.getstream.models.ChannelInput;
-import io.getstream.models.ChannelMember;
-import io.getstream.models.UpdateChannelRequest;
+import io.getstream.models.*;
 import io.getstream.services.Channel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +15,7 @@ public class ChannelsTest extends BasicTest {
     Assertions.assertDoesNotThrow(
         () ->
             this.channels.getOrCreate(
-                ChannelGetOrCreateRequest.builder()
+                GetOrCreateChannelRequest.builder()
                     .data(ChannelInput.builder().createdByID(testUser.getId()).build())
                     .build()));
   }
