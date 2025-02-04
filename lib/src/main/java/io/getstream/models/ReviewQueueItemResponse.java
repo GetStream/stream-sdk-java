@@ -66,6 +66,10 @@ public class ReviewQueueItemResponse {
   private Date reviewedAt;
 
   @Nullable
+  @JsonProperty("teams")
+  private List<String> teams;
+
+  @Nullable
   @JsonProperty("assigned_to")
   private UserResponse assignedTo;
 

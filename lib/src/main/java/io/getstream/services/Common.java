@@ -10,17 +10,20 @@ public interface Common {
   @NotNull
   public StreamRequest<GetApplicationResponse> getApp(GetAppRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<GetApplicationResponse> getApp() throws StreamException;
 
   @NotNull
   public StreamRequest<Response> updateApp(UpdateAppRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<Response> updateApp() throws StreamException;
 
   @NotNull
   public StreamRequest<ListBlockListResponse> listBlockLists(ListBlockListsRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<ListBlockListResponse> listBlockLists() throws StreamException;
 
   @NotNull
@@ -31,12 +34,14 @@ public interface Common {
   public StreamRequest<Response> deleteBlockList(
       @NotNull String name, DeleteBlockListRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<Response> deleteBlockList(@NotNull String name) throws StreamException;
 
   @NotNull
   public StreamRequest<GetBlockListResponse> getBlockList(
       @NotNull String name, GetBlockListRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<GetBlockListResponse> getBlockList(@NotNull String name)
       throws StreamException;
 
@@ -44,6 +49,7 @@ public interface Common {
   public StreamRequest<UpdateBlockListResponse> updateBlockList(
       @NotNull String name, UpdateBlockListRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<UpdateBlockListResponse> updateBlockList(@NotNull String name)
       throws StreamException;
 
@@ -51,16 +57,19 @@ public interface Common {
   public StreamRequest<CheckPushResponse> checkPush(CheckPushRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<CheckPushResponse> checkPush() throws StreamException;
 
   @NotNull
   public StreamRequest<CheckSNSResponse> checkSNS(CheckSNSRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<CheckSNSResponse> checkSNS() throws StreamException;
 
   @NotNull
   public StreamRequest<CheckSQSResponse> checkSQS(CheckSQSRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<CheckSQSResponse> checkSQS() throws StreamException;
 
   @NotNull
@@ -70,6 +79,7 @@ public interface Common {
   public StreamRequest<ListDevicesResponse> listDevices(ListDevicesRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<ListDevicesResponse> listDevices() throws StreamException;
 
   @NotNull
@@ -83,6 +93,7 @@ public interface Common {
   public StreamRequest<ListExternalStorageResponse> listExternalStorage(
       ListExternalStorageRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<ListExternalStorageResponse> listExternalStorage() throws StreamException;
 
   @NotNull
@@ -93,6 +104,7 @@ public interface Common {
   public StreamRequest<DeleteExternalStorageResponse> deleteExternalStorage(
       @NotNull String name, DeleteExternalStorageRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<DeleteExternalStorageResponse> deleteExternalStorage(@NotNull String name)
       throws StreamException;
 
@@ -104,6 +116,7 @@ public interface Common {
   public StreamRequest<CheckExternalStorageResponse> checkExternalStorage(
       @NotNull String name, CheckExternalStorageRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<CheckExternalStorageResponse> checkExternalStorage(@NotNull String name)
       throws StreamException;
 
@@ -115,12 +128,14 @@ public interface Common {
   public StreamRequest<CreateImportURLResponse> createImportURL(CreateImportURLRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<CreateImportURLResponse> createImportURL() throws StreamException;
 
   @NotNull
   public StreamRequest<ListImportsResponse> listImports(ListImportsRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<ListImportsResponse> listImports() throws StreamException;
 
   @NotNull
@@ -131,6 +146,7 @@ public interface Common {
   public StreamRequest<GetImportResponse> getImport(@NotNull String id, GetImportRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<GetImportResponse> getImport(@NotNull String id) throws StreamException;
 
   @NotNull
@@ -140,12 +156,14 @@ public interface Common {
   public StreamRequest<ListPermissionsResponse> listPermissions(ListPermissionsRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<ListPermissionsResponse> listPermissions() throws StreamException;
 
   @NotNull
   public StreamRequest<GetCustomPermissionResponse> getPermission(
       @NotNull String id, GetPermissionRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<GetCustomPermissionResponse> getPermission(@NotNull String id)
       throws StreamException;
 
@@ -153,12 +171,14 @@ public interface Common {
   public StreamRequest<ListPushProvidersResponse> listPushProviders(
       ListPushProvidersRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<ListPushProvidersResponse> listPushProviders() throws StreamException;
 
   @NotNull
   public StreamRequest<UpsertPushProviderResponse> upsertPushProvider(
       UpsertPushProviderRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<UpsertPushProviderResponse> upsertPushProvider() throws StreamException;
 
   @NotNull
@@ -166,6 +186,7 @@ public interface Common {
       @NotNull String type, @NotNull String name, DeletePushProviderRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<Response> deletePushProvider(@NotNull String type, @NotNull String name)
       throws StreamException;
 
@@ -173,12 +194,14 @@ public interface Common {
   public StreamRequest<GetRateLimitsResponse> getRateLimits(GetRateLimitsRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<GetRateLimitsResponse> getRateLimits() throws StreamException;
 
   @NotNull
   public StreamRequest<ListRolesResponse> listRoles(ListRolesRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<ListRolesResponse> listRoles() throws StreamException;
 
   @NotNull
@@ -189,18 +212,21 @@ public interface Common {
   public StreamRequest<Response> deleteRole(@NotNull String name, DeleteRoleRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<Response> deleteRole(@NotNull String name) throws StreamException;
 
   @NotNull
   public StreamRequest<GetTaskResponse> getTask(@NotNull String id, GetTaskRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<GetTaskResponse> getTask(@NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryUsersResponse> queryUsers(QueryUsersRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<QueryUsersResponse> queryUsers() throws StreamException;
 
   @NotNull
@@ -215,6 +241,7 @@ public interface Common {
   public StreamRequest<GetBlockedUsersResponse> getBlockedUsers(GetBlockedUsersRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<GetBlockedUsersResponse> getBlockedUsers() throws StreamException;
 
   @NotNull
@@ -244,6 +271,7 @@ public interface Common {
   public StreamRequest<DeactivateUserResponse> deactivateUser(
       @NotNull String userID, DeactivateUserRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<DeactivateUserResponse> deactivateUser(@NotNull String userID)
       throws StreamException;
 
@@ -251,6 +279,7 @@ public interface Common {
   public StreamRequest<ExportUserResponse> exportUser(
       @NotNull String userID, ExportUserRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<ExportUserResponse> exportUser(@NotNull String userID)
       throws StreamException;
 
@@ -258,6 +287,7 @@ public interface Common {
   public StreamRequest<ReactivateUserResponse> reactivateUser(
       @NotNull String userID, ReactivateUserRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<ReactivateUserResponse> reactivateUser(@NotNull String userID)
       throws StreamException;
 }

@@ -30,6 +30,7 @@ public class ChatImpl implements Chat {
         new TypeReference<QueryCampaignsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<QueryCampaignsResponse> queryCampaigns() throws StreamException {
     return queryCampaigns(new QueryCampaignsRequest());
   }
@@ -50,6 +51,7 @@ public class ChatImpl implements Chat {
         new TypeReference<GetCampaignResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetCampaignResponse> getCampaign(@NotNull String id) throws StreamException {
     return getCampaign(id, new GetCampaignRequest());
   }
@@ -70,6 +72,7 @@ public class ChatImpl implements Chat {
         new TypeReference<StartCampaignResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<StartCampaignResponse> startCampaign(@NotNull String id)
       throws StreamException {
     return startCampaign(id, new StartCampaignRequest());
@@ -91,6 +94,7 @@ public class ChatImpl implements Chat {
         new TypeReference<CampaignResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<CampaignResponse> scheduleCampaign(@NotNull String id)
       throws StreamException {
     return scheduleCampaign(id, new ScheduleCampaignRequest());
@@ -111,6 +115,7 @@ public class ChatImpl implements Chat {
         new TypeReference<QueryChannelsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<QueryChannelsResponse> queryChannels() throws StreamException {
     return queryChannels(new QueryChannelsRequest());
   }
@@ -145,6 +150,7 @@ public class ChatImpl implements Chat {
         new TypeReference<MarkReadResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<MarkReadResponse> markChannelsRead() throws StreamException {
     return markChannelsRead(new MarkChannelsReadRequest());
   }
@@ -165,6 +171,7 @@ public class ChatImpl implements Chat {
         new TypeReference<ChannelStateResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ChannelStateResponse> getOrCreateDistinctChannel(@NotNull String type)
       throws StreamException {
     return getOrCreateDistinctChannel(type, new GetOrCreateDistinctChannelRequest());
@@ -190,6 +197,7 @@ public class ChatImpl implements Chat {
         new TypeReference<DeleteChannelResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<DeleteChannelResponse> deleteChannel(
       @NotNull String type, @NotNull String id) throws StreamException {
     return deleteChannel(type, id, new DeleteChannelRequest());
@@ -215,6 +223,7 @@ public class ChatImpl implements Chat {
         new TypeReference<UpdateChannelPartialResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<UpdateChannelPartialResponse> updateChannelPartial(
       @NotNull String type, @NotNull String id) throws StreamException {
     return updateChannelPartial(type, id, new UpdateChannelPartialRequest());
@@ -240,6 +249,7 @@ public class ChatImpl implements Chat {
         new TypeReference<UpdateChannelResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<UpdateChannelResponse> updateChannel(
       @NotNull String type, @NotNull String id) throws StreamException {
     return updateChannel(type, id, new UpdateChannelRequest());
@@ -283,6 +293,7 @@ public class ChatImpl implements Chat {
         new TypeReference<Response>() {});
   }
 
+  @NotNull
   public StreamRequest<Response> deleteFile(@NotNull String type, @NotNull String id)
       throws StreamException {
     return deleteFile(type, id, new DeleteFileRequest());
@@ -307,6 +318,7 @@ public class ChatImpl implements Chat {
         new TypeReference<FileUploadResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<FileUploadResponse> uploadFile(@NotNull String type, @NotNull String id)
       throws StreamException {
     return uploadFile(type, id, new UploadFileRequest());
@@ -331,6 +343,7 @@ public class ChatImpl implements Chat {
         new TypeReference<HideChannelResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<HideChannelResponse> hideChannel(@NotNull String type, @NotNull String id)
       throws StreamException {
     return hideChannel(type, id, new HideChannelRequest());
@@ -355,6 +368,7 @@ public class ChatImpl implements Chat {
         new TypeReference<Response>() {});
   }
 
+  @NotNull
   public StreamRequest<Response> deleteImage(@NotNull String type, @NotNull String id)
       throws StreamException {
     return deleteImage(type, id, new DeleteImageRequest());
@@ -379,6 +393,7 @@ public class ChatImpl implements Chat {
         new TypeReference<ImageUploadResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ImageUploadResponse> uploadImage(@NotNull String type, @NotNull String id)
       throws StreamException {
     return uploadImage(type, id, new UploadImageRequest());
@@ -408,6 +423,7 @@ public class ChatImpl implements Chat {
         new TypeReference<UpdateMemberPartialResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<UpdateMemberPartialResponse> updateMemberPartial(
       @NotNull String userID, @NotNull String type, @NotNull String id) throws StreamException {
     return updateMemberPartial(userID, type, id, new UpdateMemberPartialRequest());
@@ -472,6 +488,7 @@ public class ChatImpl implements Chat {
         new TypeReference<ChannelStateResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ChannelStateResponse> getOrCreateChannel(
       @NotNull String type, @NotNull String id) throws StreamException {
     return getOrCreateChannel(type, id, new GetOrCreateChannelRequest());
@@ -496,6 +513,7 @@ public class ChatImpl implements Chat {
         new TypeReference<MarkReadResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<MarkReadResponse> markRead(@NotNull String type, @NotNull String id)
       throws StreamException {
     return markRead(type, id, new MarkReadRequest());
@@ -520,6 +538,7 @@ public class ChatImpl implements Chat {
         new TypeReference<ShowChannelResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ShowChannelResponse> showChannel(@NotNull String type, @NotNull String id)
       throws StreamException {
     return showChannel(type, id, new ShowChannelRequest());
@@ -545,6 +564,7 @@ public class ChatImpl implements Chat {
         new TypeReference<TruncateChannelResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<TruncateChannelResponse> truncateChannel(
       @NotNull String type, @NotNull String id) throws StreamException {
     return truncateChannel(type, id, new TruncateChannelRequest());
@@ -569,6 +589,7 @@ public class ChatImpl implements Chat {
         new TypeReference<Response>() {});
   }
 
+  @NotNull
   public StreamRequest<Response> markUnread(@NotNull String type, @NotNull String id)
       throws StreamException {
     return markUnread(type, id, new MarkUnreadRequest());
@@ -589,6 +610,7 @@ public class ChatImpl implements Chat {
         new TypeReference<ListChannelTypesResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ListChannelTypesResponse> listChannelTypes() throws StreamException {
     return listChannelTypes(new ListChannelTypesRequest());
   }
@@ -624,6 +646,7 @@ public class ChatImpl implements Chat {
         new TypeReference<Response>() {});
   }
 
+  @NotNull
   public StreamRequest<Response> deleteChannelType(@NotNull String name) throws StreamException {
     return deleteChannelType(name, new DeleteChannelTypeRequest());
   }
@@ -644,6 +667,7 @@ public class ChatImpl implements Chat {
         new TypeReference<GetChannelTypeResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetChannelTypeResponse> getChannelType(@NotNull String name)
       throws StreamException {
     return getChannelType(name, new GetChannelTypeRequest());
@@ -680,6 +704,7 @@ public class ChatImpl implements Chat {
         new TypeReference<ListCommandsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ListCommandsResponse> listCommands() throws StreamException {
     return listCommands(new ListCommandsRequest());
   }
@@ -715,6 +740,7 @@ public class ChatImpl implements Chat {
         new TypeReference<DeleteCommandResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<DeleteCommandResponse> deleteCommand(@NotNull String name)
       throws StreamException {
     return deleteCommand(name, new DeleteCommandRequest());
@@ -736,6 +762,7 @@ public class ChatImpl implements Chat {
         new TypeReference<GetCommandResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetCommandResponse> getCommand(@NotNull String name) throws StreamException {
     return getCommand(name, new GetCommandRequest());
   }
@@ -787,6 +814,7 @@ public class ChatImpl implements Chat {
         new TypeReference<GetExportChannelsStatusResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetExportChannelsStatusResponse> getExportChannelsStatus(@NotNull String id)
       throws StreamException {
     return getExportChannelsStatus(id, new GetExportChannelsStatusRequest());
@@ -807,6 +835,7 @@ public class ChatImpl implements Chat {
         new TypeReference<MembersResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<MembersResponse> queryMembers() throws StreamException {
     return queryMembers(new QueryMembersRequest());
   }
@@ -842,6 +871,7 @@ public class ChatImpl implements Chat {
         new TypeReference<DeleteMessageResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<DeleteMessageResponse> deleteMessage(@NotNull String id)
       throws StreamException {
     return deleteMessage(id, new DeleteMessageRequest());
@@ -863,6 +893,7 @@ public class ChatImpl implements Chat {
         new TypeReference<GetMessageResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetMessageResponse> getMessage(@NotNull String id) throws StreamException {
     return getMessage(id, new GetMessageRequest());
   }
@@ -899,6 +930,7 @@ public class ChatImpl implements Chat {
         new TypeReference<UpdateMessagePartialResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<UpdateMessagePartialResponse> updateMessagePartial(@NotNull String id)
       throws StreamException {
     return updateMessagePartial(id, new UpdateMessagePartialRequest());
@@ -936,6 +968,7 @@ public class ChatImpl implements Chat {
         new TypeReference<MessageResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<MessageResponse> commitMessage(@NotNull String id) throws StreamException {
     return commitMessage(id, new CommitMessageRequest());
   }
@@ -976,6 +1009,7 @@ public class ChatImpl implements Chat {
         new TypeReference<DeleteReactionResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<DeleteReactionResponse> deleteReaction(
       @NotNull String id, @NotNull String type) throws StreamException {
     return deleteReaction(id, type, new DeleteReactionRequest());
@@ -997,6 +1031,7 @@ public class ChatImpl implements Chat {
         new TypeReference<GetReactionsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetReactionsResponse> getReactions(@NotNull String id)
       throws StreamException {
     return getReactions(id, new GetReactionsRequest());
@@ -1018,6 +1053,7 @@ public class ChatImpl implements Chat {
         new TypeReference<QueryReactionsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<QueryReactionsResponse> queryReactions(@NotNull String id)
       throws StreamException {
     return queryReactions(id, new QueryReactionsRequest());
@@ -1075,6 +1111,7 @@ public class ChatImpl implements Chat {
         new TypeReference<PollVoteResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<PollVoteResponse> castPollVote(
       @NotNull String messageID, @NotNull String pollID) throws StreamException {
     return castPollVote(messageID, pollID, new CastPollVoteRequest());
@@ -1104,6 +1141,7 @@ public class ChatImpl implements Chat {
         new TypeReference<PollVoteResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<PollVoteResponse> removePollVote(
       @NotNull String messageID, @NotNull String pollID, @NotNull String voteID)
       throws StreamException {
@@ -1126,6 +1164,7 @@ public class ChatImpl implements Chat {
         new TypeReference<GetRepliesResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetRepliesResponse> getReplies(@NotNull String parentID)
       throws StreamException {
     return getReplies(parentID, new GetRepliesRequest());
@@ -1146,6 +1185,7 @@ public class ChatImpl implements Chat {
         new TypeReference<QueryMessageFlagsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<QueryMessageFlagsResponse> queryMessageFlags() throws StreamException {
     return queryMessageFlags(new QueryMessageFlagsRequest());
   }
@@ -1165,6 +1205,7 @@ public class ChatImpl implements Chat {
         new TypeReference<MuteChannelResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<MuteChannelResponse> muteChannel() throws StreamException {
     return muteChannel(new MuteChannelRequest());
   }
@@ -1184,6 +1225,7 @@ public class ChatImpl implements Chat {
         new TypeReference<UnmuteResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<UnmuteResponse> unmuteChannel() throws StreamException {
     return unmuteChannel(new UnmuteChannelRequest());
   }
@@ -1231,6 +1273,7 @@ public class ChatImpl implements Chat {
         new TypeReference<QueryPollsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<QueryPollsResponse> queryPolls() throws StreamException {
     return queryPolls(new QueryPollsRequest());
   }
@@ -1251,6 +1294,7 @@ public class ChatImpl implements Chat {
         new TypeReference<Response>() {});
   }
 
+  @NotNull
   public StreamRequest<Response> deletePoll(@NotNull String pollID) throws StreamException {
     return deletePoll(pollID, new DeletePollRequest());
   }
@@ -1271,6 +1315,7 @@ public class ChatImpl implements Chat {
         new TypeReference<PollResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<PollResponse> getPoll(@NotNull String pollID) throws StreamException {
     return getPoll(pollID, new GetPollRequest());
   }
@@ -1291,6 +1336,7 @@ public class ChatImpl implements Chat {
         new TypeReference<PollResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<PollResponse> updatePollPartial(@NotNull String pollID)
       throws StreamException {
     return updatePollPartial(pollID, new UpdatePollPartialRequest());
@@ -1348,6 +1394,7 @@ public class ChatImpl implements Chat {
         new TypeReference<Response>() {});
   }
 
+  @NotNull
   public StreamRequest<Response> deletePollOption(@NotNull String pollID, @NotNull String optionID)
       throws StreamException {
     return deletePollOption(pollID, optionID, new DeletePollOptionRequest());
@@ -1373,6 +1420,7 @@ public class ChatImpl implements Chat {
         new TypeReference<PollOptionResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<PollOptionResponse> getPollOption(
       @NotNull String pollID, @NotNull String optionID) throws StreamException {
     return getPollOption(pollID, optionID, new GetPollOptionRequest());
@@ -1394,6 +1442,7 @@ public class ChatImpl implements Chat {
         new TypeReference<PollVotesResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<PollVotesResponse> queryPollVotes(@NotNull String pollID)
       throws StreamException {
     return queryPollVotes(pollID, new QueryPollVotesRequest());
@@ -1429,6 +1478,7 @@ public class ChatImpl implements Chat {
         new TypeReference<QueryBannedUsersResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<QueryBannedUsersResponse> queryBannedUsers() throws StreamException {
     return queryBannedUsers(new QueryBannedUsersRequest());
   }
@@ -1447,6 +1497,7 @@ public class ChatImpl implements Chat {
         new TypeReference<SearchResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<SearchResponse> search() throws StreamException {
     return search(new SearchRequest());
   }
@@ -1482,6 +1533,7 @@ public class ChatImpl implements Chat {
         new TypeReference<Response>() {});
   }
 
+  @NotNull
   public StreamRequest<Response> deleteSegment(@NotNull String id) throws StreamException {
     return deleteSegment(id, new DeleteSegmentRequest());
   }
@@ -1502,6 +1554,7 @@ public class ChatImpl implements Chat {
         new TypeReference<GetSegmentResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetSegmentResponse> getSegment(@NotNull String id) throws StreamException {
     return getSegment(id, new GetSegmentRequest());
   }
@@ -1542,6 +1595,7 @@ public class ChatImpl implements Chat {
         new TypeReference<Response>() {});
   }
 
+  @NotNull
   public StreamRequest<Response> segmentTargetExists(@NotNull String id, @NotNull String targetID)
       throws StreamException {
     return segmentTargetExists(id, targetID, new SegmentTargetExistsRequest());
@@ -1563,6 +1617,7 @@ public class ChatImpl implements Chat {
         new TypeReference<QuerySegmentTargetsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<QuerySegmentTargetsResponse> querySegmentTargets(@NotNull String id)
       throws StreamException {
     return querySegmentTargets(id, new QuerySegmentTargetsRequest());
@@ -1583,6 +1638,7 @@ public class ChatImpl implements Chat {
         new TypeReference<QueryThreadsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<QueryThreadsResponse> queryThreads() throws StreamException {
     return queryThreads(new QueryThreadsRequest());
   }
@@ -1603,6 +1659,7 @@ public class ChatImpl implements Chat {
         new TypeReference<GetThreadResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetThreadResponse> getThread(@NotNull String messageID)
       throws StreamException {
     return getThread(messageID, new GetThreadRequest());
@@ -1624,6 +1681,7 @@ public class ChatImpl implements Chat {
         new TypeReference<UpdateThreadPartialResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<UpdateThreadPartialResponse> updateThreadPartial(@NotNull String messageID)
       throws StreamException {
     return updateThreadPartial(messageID, new UpdateThreadPartialRequest());
@@ -1644,6 +1702,7 @@ public class ChatImpl implements Chat {
         new TypeReference<WrappedUnreadCountsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<WrappedUnreadCountsResponse> unreadCounts() throws StreamException {
     return unreadCounts(new UnreadCountsRequest());
   }

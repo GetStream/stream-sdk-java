@@ -30,6 +30,7 @@ public class CommonImpl implements Common {
         new TypeReference<GetApplicationResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetApplicationResponse> getApp() throws StreamException {
     return getApp(new GetAppRequest());
   }
@@ -48,6 +49,7 @@ public class CommonImpl implements Common {
         new TypeReference<Response>() {});
   }
 
+  @NotNull
   public StreamRequest<Response> updateApp() throws StreamException {
     return updateApp(new UpdateAppRequest());
   }
@@ -67,6 +69,7 @@ public class CommonImpl implements Common {
         new TypeReference<ListBlockListResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ListBlockListResponse> listBlockLists() throws StreamException {
     return listBlockLists(new ListBlockListsRequest());
   }
@@ -102,6 +105,7 @@ public class CommonImpl implements Common {
         new TypeReference<Response>() {});
   }
 
+  @NotNull
   public StreamRequest<Response> deleteBlockList(@NotNull String name) throws StreamException {
     return deleteBlockList(name, new DeleteBlockListRequest());
   }
@@ -122,6 +126,7 @@ public class CommonImpl implements Common {
         new TypeReference<GetBlockListResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetBlockListResponse> getBlockList(@NotNull String name)
       throws StreamException {
     return getBlockList(name, new GetBlockListRequest());
@@ -143,6 +148,7 @@ public class CommonImpl implements Common {
         new TypeReference<UpdateBlockListResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<UpdateBlockListResponse> updateBlockList(@NotNull String name)
       throws StreamException {
     return updateBlockList(name, new UpdateBlockListRequest());
@@ -163,6 +169,7 @@ public class CommonImpl implements Common {
         new TypeReference<CheckPushResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<CheckPushResponse> checkPush() throws StreamException {
     return checkPush(new CheckPushRequest());
   }
@@ -181,6 +188,7 @@ public class CommonImpl implements Common {
         new TypeReference<CheckSNSResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<CheckSNSResponse> checkSNS() throws StreamException {
     return checkSNS(new CheckSNSRequest());
   }
@@ -199,6 +207,7 @@ public class CommonImpl implements Common {
         new TypeReference<CheckSQSResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<CheckSQSResponse> checkSQS() throws StreamException {
     return checkSQS(new CheckSQSRequest());
   }
@@ -232,6 +241,7 @@ public class CommonImpl implements Common {
         new TypeReference<ListDevicesResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ListDevicesResponse> listDevices() throws StreamException {
     return listDevices(new ListDevicesRequest());
   }
@@ -280,6 +290,7 @@ public class CommonImpl implements Common {
         new TypeReference<ListExternalStorageResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ListExternalStorageResponse> listExternalStorage() throws StreamException {
     return listExternalStorage(new ListExternalStorageRequest());
   }
@@ -315,6 +326,7 @@ public class CommonImpl implements Common {
         new TypeReference<DeleteExternalStorageResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<DeleteExternalStorageResponse> deleteExternalStorage(@NotNull String name)
       throws StreamException {
     return deleteExternalStorage(name, new DeleteExternalStorageRequest());
@@ -352,6 +364,7 @@ public class CommonImpl implements Common {
         new TypeReference<CheckExternalStorageResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<CheckExternalStorageResponse> checkExternalStorage(@NotNull String name)
       throws StreamException {
     return checkExternalStorage(name, new CheckExternalStorageRequest());
@@ -387,6 +400,7 @@ public class CommonImpl implements Common {
         new TypeReference<CreateImportURLResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<CreateImportURLResponse> createImportURL() throws StreamException {
     return createImportURL(new CreateImportURLRequest());
   }
@@ -406,6 +420,7 @@ public class CommonImpl implements Common {
         new TypeReference<ListImportsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ListImportsResponse> listImports() throws StreamException {
     return listImports(new ListImportsRequest());
   }
@@ -441,6 +456,7 @@ public class CommonImpl implements Common {
         new TypeReference<GetImportResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetImportResponse> getImport(@NotNull String id) throws StreamException {
     return getImport(id, new GetImportRequest());
   }
@@ -474,6 +490,7 @@ public class CommonImpl implements Common {
         new TypeReference<ListPermissionsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ListPermissionsResponse> listPermissions() throws StreamException {
     return listPermissions(new ListPermissionsRequest());
   }
@@ -494,6 +511,7 @@ public class CommonImpl implements Common {
         new TypeReference<GetCustomPermissionResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetCustomPermissionResponse> getPermission(@NotNull String id)
       throws StreamException {
     return getPermission(id, new GetPermissionRequest());
@@ -514,6 +532,7 @@ public class CommonImpl implements Common {
         new TypeReference<ListPushProvidersResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ListPushProvidersResponse> listPushProviders() throws StreamException {
     return listPushProviders(new ListPushProvidersRequest());
   }
@@ -533,6 +552,7 @@ public class CommonImpl implements Common {
         new TypeReference<UpsertPushProviderResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<UpsertPushProviderResponse> upsertPushProvider() throws StreamException {
     return upsertPushProvider(new UpsertPushProviderRequest());
   }
@@ -557,6 +577,7 @@ public class CommonImpl implements Common {
         new TypeReference<Response>() {});
   }
 
+  @NotNull
   public StreamRequest<Response> deletePushProvider(@NotNull String type, @NotNull String name)
       throws StreamException {
     return deletePushProvider(type, name, new DeletePushProviderRequest());
@@ -577,6 +598,7 @@ public class CommonImpl implements Common {
         new TypeReference<GetRateLimitsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetRateLimitsResponse> getRateLimits() throws StreamException {
     return getRateLimits(new GetRateLimitsRequest());
   }
@@ -596,6 +618,7 @@ public class CommonImpl implements Common {
         new TypeReference<ListRolesResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ListRolesResponse> listRoles() throws StreamException {
     return listRoles(new ListRolesRequest());
   }
@@ -631,6 +654,7 @@ public class CommonImpl implements Common {
         new TypeReference<Response>() {});
   }
 
+  @NotNull
   public StreamRequest<Response> deleteRole(@NotNull String name) throws StreamException {
     return deleteRole(name, new DeleteRoleRequest());
   }
@@ -651,6 +675,7 @@ public class CommonImpl implements Common {
         new TypeReference<GetTaskResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetTaskResponse> getTask(@NotNull String id) throws StreamException {
     return getTask(id, new GetTaskRequest());
   }
@@ -670,6 +695,7 @@ public class CommonImpl implements Common {
         new TypeReference<QueryUsersResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<QueryUsersResponse> queryUsers() throws StreamException {
     return queryUsers(new QueryUsersRequest());
   }
@@ -719,6 +745,7 @@ public class CommonImpl implements Common {
         new TypeReference<GetBlockedUsersResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetBlockedUsersResponse> getBlockedUsers() throws StreamException {
     return getBlockedUsers(new GetBlockedUsersRequest());
   }
@@ -828,6 +855,7 @@ public class CommonImpl implements Common {
         new TypeReference<DeactivateUserResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<DeactivateUserResponse> deactivateUser(@NotNull String userID)
       throws StreamException {
     return deactivateUser(userID, new DeactivateUserRequest());
@@ -849,6 +877,7 @@ public class CommonImpl implements Common {
         new TypeReference<ExportUserResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ExportUserResponse> exportUser(@NotNull String userID)
       throws StreamException {
     return exportUser(userID, new ExportUserRequest());
@@ -870,6 +899,7 @@ public class CommonImpl implements Common {
         new TypeReference<ReactivateUserResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ReactivateUserResponse> reactivateUser(@NotNull String userID)
       throws StreamException {
     return reactivateUser(userID, new ReactivateUserRequest());

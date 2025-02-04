@@ -30,6 +30,7 @@ public class VideoImpl implements Video {
         new TypeReference<QueryUserFeedbackResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<QueryUserFeedbackResponse> queryUserFeedback() throws StreamException {
     return queryUserFeedback(new QueryUserFeedbackRequest());
   }
@@ -64,6 +65,7 @@ public class VideoImpl implements Video {
         new TypeReference<QueryCallStatsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<QueryCallStatsResponse> queryCallStats() throws StreamException {
     return queryCallStats(new QueryCallStatsRequest());
   }
@@ -87,6 +89,7 @@ public class VideoImpl implements Video {
         new TypeReference<GetCallResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetCallResponse> getCall(@NotNull String type, @NotNull String id)
       throws StreamException {
     return getCall(type, id, new GetCallRequest());
@@ -111,6 +114,7 @@ public class VideoImpl implements Video {
         new TypeReference<UpdateCallResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<UpdateCallResponse> updateCall(@NotNull String type, @NotNull String id)
       throws StreamException {
     return updateCall(type, id, new UpdateCallRequest());
@@ -136,6 +140,7 @@ public class VideoImpl implements Video {
         new TypeReference<GetOrCreateCallResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetOrCreateCallResponse> getOrCreateCall(
       @NotNull String type, @NotNull String id) throws StreamException {
     return getOrCreateCall(type, id, new GetOrCreateCallRequest());
@@ -179,6 +184,7 @@ public class VideoImpl implements Video {
         new TypeReference<DeleteCallResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<DeleteCallResponse> deleteCall(@NotNull String type, @NotNull String id)
       throws StreamException {
     return deleteCall(type, id, new DeleteCallRequest());
@@ -204,6 +210,7 @@ public class VideoImpl implements Video {
         new TypeReference<SendCallEventResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<SendCallEventResponse> sendCallEvent(
       @NotNull String type, @NotNull String id) throws StreamException {
     return sendCallEvent(type, id, new SendCallEventRequest());
@@ -252,6 +259,7 @@ public class VideoImpl implements Video {
         new TypeReference<GoLiveResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GoLiveResponse> goLive(@NotNull String type, @NotNull String id)
       throws StreamException {
     return goLive(type, id, new GoLiveRequest());
@@ -276,6 +284,7 @@ public class VideoImpl implements Video {
         new TypeReference<EndCallResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<EndCallResponse> endCall(@NotNull String type, @NotNull String id)
       throws StreamException {
     return endCall(type, id, new EndCallRequest());
@@ -301,6 +310,7 @@ public class VideoImpl implements Video {
         new TypeReference<UpdateCallMembersResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<UpdateCallMembersResponse> updateCallMembers(
       @NotNull String type, @NotNull String id) throws StreamException {
     return updateCallMembers(type, id, new UpdateCallMembersRequest());
@@ -325,6 +335,7 @@ public class VideoImpl implements Video {
         new TypeReference<MuteUsersResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<MuteUsersResponse> muteUsers(@NotNull String type, @NotNull String id)
       throws StreamException {
     return muteUsers(type, id, new MuteUsersRequest());
@@ -369,6 +380,7 @@ public class VideoImpl implements Video {
         new TypeReference<ListRecordingsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ListRecordingsResponse> listRecordings(
       @NotNull String type, @NotNull String id) throws StreamException {
     return listRecordings(type, id, new ListRecordingsRequest());
@@ -394,6 +406,7 @@ public class VideoImpl implements Video {
         new TypeReference<GetCallReportResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetCallReportResponse> getCallReport(
       @NotNull String type, @NotNull String id) throws StreamException {
     return getCallReport(type, id, new GetCallReportRequest());
@@ -439,6 +452,7 @@ public class VideoImpl implements Video {
         new TypeReference<StopAllRTMPBroadcastsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<StopAllRTMPBroadcastsResponse> stopAllRTMPBroadcasts(
       @NotNull String type, @NotNull String id) throws StreamException {
     return stopAllRTMPBroadcasts(type, id, new StopAllRTMPBroadcastsRequest());
@@ -468,6 +482,7 @@ public class VideoImpl implements Video {
         new TypeReference<StopRTMPBroadcastsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<StopRTMPBroadcastsResponse> stopRTMPBroadcast(
       @NotNull String type, @NotNull String id, @NotNull String name) throws StreamException {
     return stopRTMPBroadcast(type, id, name, new StopRTMPBroadcastRequest());
@@ -493,6 +508,7 @@ public class VideoImpl implements Video {
         new TypeReference<StartHLSBroadcastingResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<StartHLSBroadcastingResponse> startHLSBroadcasting(
       @NotNull String type, @NotNull String id) throws StreamException {
     return startHLSBroadcasting(type, id, new StartHLSBroadcastingRequest());
@@ -518,6 +534,7 @@ public class VideoImpl implements Video {
         new TypeReference<StartClosedCaptionsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<StartClosedCaptionsResponse> startClosedCaptions(
       @NotNull String type, @NotNull String id) throws StreamException {
     return startClosedCaptions(type, id, new StartClosedCaptionsRequest());
@@ -543,6 +560,7 @@ public class VideoImpl implements Video {
         new TypeReference<StartRecordingResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<StartRecordingResponse> startRecording(
       @NotNull String type, @NotNull String id) throws StreamException {
     return startRecording(type, id, new StartRecordingRequest());
@@ -568,6 +586,7 @@ public class VideoImpl implements Video {
         new TypeReference<StartTranscriptionResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<StartTranscriptionResponse> startTranscription(
       @NotNull String type, @NotNull String id) throws StreamException {
     return startTranscription(type, id, new StartTranscriptionRequest());
@@ -597,6 +616,7 @@ public class VideoImpl implements Video {
         new TypeReference<GetCallStatsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetCallStatsResponse> getCallStats(
       @NotNull String type, @NotNull String id, @NotNull String session) throws StreamException {
     return getCallStats(type, id, session, new GetCallStatsRequest());
@@ -622,6 +642,7 @@ public class VideoImpl implements Video {
         new TypeReference<StopHLSBroadcastingResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<StopHLSBroadcastingResponse> stopHLSBroadcasting(
       @NotNull String type, @NotNull String id) throws StreamException {
     return stopHLSBroadcasting(type, id, new StopHLSBroadcastingRequest());
@@ -647,6 +668,7 @@ public class VideoImpl implements Video {
         new TypeReference<StopClosedCaptionsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<StopClosedCaptionsResponse> stopClosedCaptions(
       @NotNull String type, @NotNull String id) throws StreamException {
     return stopClosedCaptions(type, id, new StopClosedCaptionsRequest());
@@ -671,6 +693,7 @@ public class VideoImpl implements Video {
         new TypeReference<StopLiveResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<StopLiveResponse> stopLive(@NotNull String type, @NotNull String id)
       throws StreamException {
     return stopLive(type, id, new StopLiveRequest());
@@ -696,6 +719,7 @@ public class VideoImpl implements Video {
         new TypeReference<StopRecordingResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<StopRecordingResponse> stopRecording(
       @NotNull String type, @NotNull String id) throws StreamException {
     return stopRecording(type, id, new StopRecordingRequest());
@@ -721,6 +745,7 @@ public class VideoImpl implements Video {
         new TypeReference<StopTranscriptionResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<StopTranscriptionResponse> stopTranscription(
       @NotNull String type, @NotNull String id) throws StreamException {
     return stopTranscription(type, id, new StopTranscriptionRequest());
@@ -746,6 +771,7 @@ public class VideoImpl implements Video {
         new TypeReference<ListTranscriptionsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ListTranscriptionsResponse> listTranscriptions(
       @NotNull String type, @NotNull String id) throws StreamException {
     return listTranscriptions(type, id, new ListTranscriptionsRequest());
@@ -835,6 +861,7 @@ public class VideoImpl implements Video {
         new TypeReference<DeleteRecordingResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<DeleteRecordingResponse> deleteRecording(
       @NotNull String type, @NotNull String id, @NotNull String session, @NotNull String filename)
       throws StreamException {
@@ -867,6 +894,7 @@ public class VideoImpl implements Video {
         new TypeReference<DeleteTranscriptionResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<DeleteTranscriptionResponse> deleteTranscription(
       @NotNull String type, @NotNull String id, @NotNull String session, @NotNull String filename)
       throws StreamException {
@@ -888,6 +916,7 @@ public class VideoImpl implements Video {
         new TypeReference<QueryCallsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<QueryCallsResponse> queryCalls() throws StreamException {
     return queryCalls(new QueryCallsRequest());
   }
@@ -907,6 +936,7 @@ public class VideoImpl implements Video {
         new TypeReference<ListCallTypeResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<ListCallTypeResponse> listCallTypes() throws StreamException {
     return listCallTypes(new ListCallTypesRequest());
   }
@@ -942,6 +972,7 @@ public class VideoImpl implements Video {
         new TypeReference<Response>() {});
   }
 
+  @NotNull
   public StreamRequest<Response> deleteCallType(@NotNull String name) throws StreamException {
     return deleteCallType(name, new DeleteCallTypeRequest());
   }
@@ -962,6 +993,7 @@ public class VideoImpl implements Video {
         new TypeReference<GetCallTypeResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetCallTypeResponse> getCallType(@NotNull String name)
       throws StreamException {
     return getCallType(name, new GetCallTypeRequest());
@@ -983,6 +1015,7 @@ public class VideoImpl implements Video {
         new TypeReference<UpdateCallTypeResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<UpdateCallTypeResponse> updateCallType(@NotNull String name)
       throws StreamException {
     return updateCallType(name, new UpdateCallTypeRequest());
@@ -1002,6 +1035,7 @@ public class VideoImpl implements Video {
         new TypeReference<GetEdgesResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<GetEdgesResponse> getEdges() throws StreamException {
     return getEdges(new GetEdgesRequest());
   }
@@ -1021,6 +1055,7 @@ public class VideoImpl implements Video {
         new TypeReference<QueryAggregateCallStatsResponse>() {});
   }
 
+  @NotNull
   public StreamRequest<QueryAggregateCallStatsResponse> queryAggregateCallStats()
       throws StreamException {
     return queryAggregateCallStats(new QueryAggregateCallStatsRequest());

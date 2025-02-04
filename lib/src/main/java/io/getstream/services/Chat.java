@@ -11,18 +11,21 @@ public interface Chat {
   public StreamRequest<QueryCampaignsResponse> queryCampaigns(QueryCampaignsRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<QueryCampaignsResponse> queryCampaigns() throws StreamException;
 
   @NotNull
   public StreamRequest<GetCampaignResponse> getCampaign(
       @NotNull String id, GetCampaignRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<GetCampaignResponse> getCampaign(@NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<StartCampaignResponse> startCampaign(
       @NotNull String id, StartCampaignRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<StartCampaignResponse> startCampaign(@NotNull String id)
       throws StreamException;
 
@@ -30,6 +33,7 @@ public interface Chat {
   public StreamRequest<CampaignResponse> scheduleCampaign(
       @NotNull String id, ScheduleCampaignRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<CampaignResponse> scheduleCampaign(@NotNull String id)
       throws StreamException;
 
@@ -37,6 +41,7 @@ public interface Chat {
   public StreamRequest<QueryChannelsResponse> queryChannels(QueryChannelsRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<QueryChannelsResponse> queryChannels() throws StreamException;
 
   @NotNull
@@ -47,12 +52,14 @@ public interface Chat {
   public StreamRequest<MarkReadResponse> markChannelsRead(MarkChannelsReadRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<MarkReadResponse> markChannelsRead() throws StreamException;
 
   @NotNull
   public StreamRequest<ChannelStateResponse> getOrCreateDistinctChannel(
       @NotNull String type, GetOrCreateDistinctChannelRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<ChannelStateResponse> getOrCreateDistinctChannel(@NotNull String type)
       throws StreamException;
 
@@ -61,6 +68,7 @@ public interface Chat {
       @NotNull String type, @NotNull String id, DeleteChannelRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<DeleteChannelResponse> deleteChannel(
       @NotNull String type, @NotNull String id) throws StreamException;
 
@@ -69,6 +77,7 @@ public interface Chat {
       @NotNull String type, @NotNull String id, UpdateChannelPartialRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<UpdateChannelPartialResponse> updateChannelPartial(
       @NotNull String type, @NotNull String id) throws StreamException;
 
@@ -77,6 +86,7 @@ public interface Chat {
       @NotNull String type, @NotNull String id, UpdateChannelRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<UpdateChannelResponse> updateChannel(
       @NotNull String type, @NotNull String id) throws StreamException;
 
@@ -88,6 +98,7 @@ public interface Chat {
   public StreamRequest<Response> deleteFile(
       @NotNull String type, @NotNull String id, DeleteFileRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<Response> deleteFile(@NotNull String type, @NotNull String id)
       throws StreamException;
 
@@ -95,6 +106,7 @@ public interface Chat {
   public StreamRequest<FileUploadResponse> uploadFile(
       @NotNull String type, @NotNull String id, UploadFileRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<FileUploadResponse> uploadFile(@NotNull String type, @NotNull String id)
       throws StreamException;
 
@@ -102,6 +114,7 @@ public interface Chat {
   public StreamRequest<HideChannelResponse> hideChannel(
       @NotNull String type, @NotNull String id, HideChannelRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<HideChannelResponse> hideChannel(@NotNull String type, @NotNull String id)
       throws StreamException;
 
@@ -109,6 +122,7 @@ public interface Chat {
   public StreamRequest<Response> deleteImage(
       @NotNull String type, @NotNull String id, DeleteImageRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<Response> deleteImage(@NotNull String type, @NotNull String id)
       throws StreamException;
 
@@ -116,6 +130,7 @@ public interface Chat {
   public StreamRequest<ImageUploadResponse> uploadImage(
       @NotNull String type, @NotNull String id, UploadImageRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<ImageUploadResponse> uploadImage(@NotNull String type, @NotNull String id)
       throws StreamException;
 
@@ -127,6 +142,7 @@ public interface Chat {
       UpdateMemberPartialRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<UpdateMemberPartialResponse> updateMemberPartial(
       @NotNull String userID, @NotNull String type, @NotNull String id) throws StreamException;
 
@@ -144,6 +160,7 @@ public interface Chat {
       @NotNull String type, @NotNull String id, GetOrCreateChannelRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<ChannelStateResponse> getOrCreateChannel(
       @NotNull String type, @NotNull String id) throws StreamException;
 
@@ -151,6 +168,7 @@ public interface Chat {
   public StreamRequest<MarkReadResponse> markRead(
       @NotNull String type, @NotNull String id, MarkReadRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<MarkReadResponse> markRead(@NotNull String type, @NotNull String id)
       throws StreamException;
 
@@ -158,6 +176,7 @@ public interface Chat {
   public StreamRequest<ShowChannelResponse> showChannel(
       @NotNull String type, @NotNull String id, ShowChannelRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<ShowChannelResponse> showChannel(@NotNull String type, @NotNull String id)
       throws StreamException;
 
@@ -166,6 +185,7 @@ public interface Chat {
       @NotNull String type, @NotNull String id, TruncateChannelRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<TruncateChannelResponse> truncateChannel(
       @NotNull String type, @NotNull String id) throws StreamException;
 
@@ -173,6 +193,7 @@ public interface Chat {
   public StreamRequest<Response> markUnread(
       @NotNull String type, @NotNull String id, MarkUnreadRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<Response> markUnread(@NotNull String type, @NotNull String id)
       throws StreamException;
 
@@ -180,6 +201,7 @@ public interface Chat {
   public StreamRequest<ListChannelTypesResponse> listChannelTypes(ListChannelTypesRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<ListChannelTypesResponse> listChannelTypes() throws StreamException;
 
   @NotNull
@@ -190,12 +212,14 @@ public interface Chat {
   public StreamRequest<Response> deleteChannelType(
       @NotNull String name, DeleteChannelTypeRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<Response> deleteChannelType(@NotNull String name) throws StreamException;
 
   @NotNull
   public StreamRequest<GetChannelTypeResponse> getChannelType(
       @NotNull String name, GetChannelTypeRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<GetChannelTypeResponse> getChannelType(@NotNull String name)
       throws StreamException;
 
@@ -207,6 +231,7 @@ public interface Chat {
   public StreamRequest<ListCommandsResponse> listCommands(ListCommandsRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<ListCommandsResponse> listCommands() throws StreamException;
 
   @NotNull
@@ -217,6 +242,7 @@ public interface Chat {
   public StreamRequest<DeleteCommandResponse> deleteCommand(
       @NotNull String name, DeleteCommandRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<DeleteCommandResponse> deleteCommand(@NotNull String name)
       throws StreamException;
 
@@ -224,6 +250,7 @@ public interface Chat {
   public StreamRequest<GetCommandResponse> getCommand(
       @NotNull String name, GetCommandRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<GetCommandResponse> getCommand(@NotNull String name) throws StreamException;
 
   @NotNull
@@ -238,6 +265,7 @@ public interface Chat {
   public StreamRequest<GetExportChannelsStatusResponse> getExportChannelsStatus(
       @NotNull String id, GetExportChannelsStatusRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<GetExportChannelsStatusResponse> getExportChannelsStatus(@NotNull String id)
       throws StreamException;
 
@@ -245,6 +273,7 @@ public interface Chat {
   public StreamRequest<MembersResponse> queryMembers(QueryMembersRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<MembersResponse> queryMembers() throws StreamException;
 
   @NotNull
@@ -255,6 +284,7 @@ public interface Chat {
   public StreamRequest<DeleteMessageResponse> deleteMessage(
       @NotNull String id, DeleteMessageRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<DeleteMessageResponse> deleteMessage(@NotNull String id)
       throws StreamException;
 
@@ -262,6 +292,7 @@ public interface Chat {
   public StreamRequest<GetMessageResponse> getMessage(@NotNull String id, GetMessageRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<GetMessageResponse> getMessage(@NotNull String id) throws StreamException;
 
   @NotNull
@@ -272,6 +303,7 @@ public interface Chat {
   public StreamRequest<UpdateMessagePartialResponse> updateMessagePartial(
       @NotNull String id, UpdateMessagePartialRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<UpdateMessagePartialResponse> updateMessagePartial(@NotNull String id)
       throws StreamException;
 
@@ -283,6 +315,7 @@ public interface Chat {
   public StreamRequest<MessageResponse> commitMessage(
       @NotNull String id, CommitMessageRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<MessageResponse> commitMessage(@NotNull String id) throws StreamException;
 
   @NotNull
@@ -294,6 +327,7 @@ public interface Chat {
       @NotNull String id, @NotNull String type, DeleteReactionRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<DeleteReactionResponse> deleteReaction(
       @NotNull String id, @NotNull String type) throws StreamException;
 
@@ -301,6 +335,7 @@ public interface Chat {
   public StreamRequest<GetReactionsResponse> getReactions(
       @NotNull String id, GetReactionsRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<GetReactionsResponse> getReactions(@NotNull String id)
       throws StreamException;
 
@@ -308,6 +343,7 @@ public interface Chat {
   public StreamRequest<QueryReactionsResponse> queryReactions(
       @NotNull String id, QueryReactionsRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<QueryReactionsResponse> queryReactions(@NotNull String id)
       throws StreamException;
 
@@ -324,6 +360,7 @@ public interface Chat {
       @NotNull String messageID, @NotNull String pollID, CastPollVoteRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<PollVoteResponse> castPollVote(
       @NotNull String messageID, @NotNull String pollID) throws StreamException;
 
@@ -335,6 +372,7 @@ public interface Chat {
       RemovePollVoteRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<PollVoteResponse> removePollVote(
       @NotNull String messageID, @NotNull String pollID, @NotNull String voteID)
       throws StreamException;
@@ -343,6 +381,7 @@ public interface Chat {
   public StreamRequest<GetRepliesResponse> getReplies(
       @NotNull String parentID, GetRepliesRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<GetRepliesResponse> getReplies(@NotNull String parentID)
       throws StreamException;
 
@@ -350,18 +389,21 @@ public interface Chat {
   public StreamRequest<QueryMessageFlagsResponse> queryMessageFlags(
       QueryMessageFlagsRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<QueryMessageFlagsResponse> queryMessageFlags() throws StreamException;
 
   @NotNull
   public StreamRequest<MuteChannelResponse> muteChannel(MuteChannelRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<MuteChannelResponse> muteChannel() throws StreamException;
 
   @NotNull
   public StreamRequest<UnmuteResponse> unmuteChannel(UnmuteChannelRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<UnmuteResponse> unmuteChannel() throws StreamException;
 
   @NotNull
@@ -374,24 +416,28 @@ public interface Chat {
   public StreamRequest<QueryPollsResponse> queryPolls(QueryPollsRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<QueryPollsResponse> queryPolls() throws StreamException;
 
   @NotNull
   public StreamRequest<Response> deletePoll(@NotNull String pollID, DeletePollRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<Response> deletePoll(@NotNull String pollID) throws StreamException;
 
   @NotNull
   public StreamRequest<PollResponse> getPoll(@NotNull String pollID, GetPollRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<PollResponse> getPoll(@NotNull String pollID) throws StreamException;
 
   @NotNull
   public StreamRequest<PollResponse> updatePollPartial(
       @NotNull String pollID, UpdatePollPartialRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<PollResponse> updatePollPartial(@NotNull String pollID)
       throws StreamException;
 
@@ -408,6 +454,7 @@ public interface Chat {
       @NotNull String pollID, @NotNull String optionID, DeletePollOptionRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<Response> deletePollOption(@NotNull String pollID, @NotNull String optionID)
       throws StreamException;
 
@@ -416,6 +463,7 @@ public interface Chat {
       @NotNull String pollID, @NotNull String optionID, GetPollOptionRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<PollOptionResponse> getPollOption(
       @NotNull String pollID, @NotNull String optionID) throws StreamException;
 
@@ -423,6 +471,7 @@ public interface Chat {
   public StreamRequest<PollVotesResponse> queryPollVotes(
       @NotNull String pollID, QueryPollVotesRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<PollVotesResponse> queryPollVotes(@NotNull String pollID)
       throws StreamException;
 
@@ -434,11 +483,13 @@ public interface Chat {
   public StreamRequest<QueryBannedUsersResponse> queryBannedUsers(QueryBannedUsersRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<QueryBannedUsersResponse> queryBannedUsers() throws StreamException;
 
   @NotNull
   public StreamRequest<SearchResponse> search(SearchRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<SearchResponse> search() throws StreamException;
 
   @NotNull
@@ -449,12 +500,14 @@ public interface Chat {
   public StreamRequest<Response> deleteSegment(@NotNull String id, DeleteSegmentRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<Response> deleteSegment(@NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<GetSegmentResponse> getSegment(@NotNull String id, GetSegmentRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<GetSegmentResponse> getSegment(@NotNull String id) throws StreamException;
 
   @NotNull
@@ -466,6 +519,7 @@ public interface Chat {
       @NotNull String id, @NotNull String targetID, SegmentTargetExistsRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<Response> segmentTargetExists(@NotNull String id, @NotNull String targetID)
       throws StreamException;
 
@@ -473,6 +527,7 @@ public interface Chat {
   public StreamRequest<QuerySegmentTargetsResponse> querySegmentTargets(
       @NotNull String id, QuerySegmentTargetsRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<QuerySegmentTargetsResponse> querySegmentTargets(@NotNull String id)
       throws StreamException;
 
@@ -480,12 +535,14 @@ public interface Chat {
   public StreamRequest<QueryThreadsResponse> queryThreads(QueryThreadsRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<QueryThreadsResponse> queryThreads() throws StreamException;
 
   @NotNull
   public StreamRequest<GetThreadResponse> getThread(
       @NotNull String messageID, GetThreadRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<GetThreadResponse> getThread(@NotNull String messageID)
       throws StreamException;
 
@@ -493,6 +550,7 @@ public interface Chat {
   public StreamRequest<UpdateThreadPartialResponse> updateThreadPartial(
       @NotNull String messageID, UpdateThreadPartialRequest request) throws StreamException;
 
+  @NotNull
   public StreamRequest<UpdateThreadPartialResponse> updateThreadPartial(@NotNull String messageID)
       throws StreamException;
 
@@ -500,6 +558,7 @@ public interface Chat {
   public StreamRequest<WrappedUnreadCountsResponse> unreadCounts(UnreadCountsRequest request)
       throws StreamException;
 
+  @NotNull
   public StreamRequest<WrappedUnreadCountsResponse> unreadCounts() throws StreamException;
 
   @NotNull
