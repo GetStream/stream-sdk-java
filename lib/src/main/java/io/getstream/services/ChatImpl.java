@@ -3,14 +3,14 @@ package io.getstream.services;
 import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
 import io.getstream.services.framework.StreamRequest;
-import io.getstream.services.framework.StreamSDKClient;
+import io.getstream.services.framework.StreamHTTPClient;
 import java.util.*;
 import org.jetbrains.annotations.NotNull;
 
 public class ChatImpl implements Chat {
-  private StreamSDKClient client;
+  private StreamHTTPClient client;
 
-  public ChatImpl(StreamSDKClient client) {
+  public ChatImpl(StreamHTTPClient client) {
     this.client = client;
   }
 

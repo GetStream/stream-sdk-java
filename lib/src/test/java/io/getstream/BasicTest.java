@@ -5,13 +5,15 @@ import io.getstream.models.*;
 import io.getstream.services.Chat;
 import io.getstream.services.Common;
 import io.getstream.services.Video;
-import io.getstream.services.framework.StreamSDKClient;
+import io.getstream.services.framework.StreamHTTPClient;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeoutException;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+
+import io.getstream.services.framework.StreamSDKClient;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;

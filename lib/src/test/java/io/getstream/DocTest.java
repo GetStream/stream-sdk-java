@@ -56,7 +56,7 @@ public class DocTest extends BasicTest {
                 .build())
         .execute();
 
-    User.createToken("john", 24 * 60 * 60);
+    client.tokenBuilder().createToken("john", 24 * 60 * 60);
 
     // creating a call
     List<MemberRequest> members =

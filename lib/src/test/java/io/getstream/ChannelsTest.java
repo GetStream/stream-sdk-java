@@ -7,14 +7,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class ChannelsTest extends BasicTest {
-  private Channel channels = new Channel("messaging", "java_test", chat);
+  private Channel channel = chat.channel("messaging", "java_test");
 
   @DisplayName("Can create channel")
   @Test
   void whenCreatingChannel_thenNoException() {
     Assertions.assertDoesNotThrow(
         () ->
-            this.channels.getOrCreate(
+            this.channel.getOrCreate(
                 GetOrCreateChannelRequest.builder()
                     .data(ChannelInput.builder().createdByID(testUser.getId()).build())
                     .build()));
@@ -25,7 +25,7 @@ public class ChannelsTest extends BasicTest {
   void whenUpdatingChannel_thenNoException() {
     Assertions.assertDoesNotThrow(
         () ->
-            this.channels.update(
+            this.channel.update(
                 UpdateChannelRequest.builder()
                     .data(
                         ChannelInput.builder()
