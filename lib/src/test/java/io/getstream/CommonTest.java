@@ -26,7 +26,7 @@ public class CommonTest extends BasicTest {
   @DisplayName("App Get does not throw Exception")
   @Test
   void whenCallingGetApp_thenNoException() {
-    Assertions.assertDoesNotThrow(() -> common.getApp(null).execute());
+    Assertions.assertDoesNotThrow(() -> client.getApp(null).execute());
   }
 
   @DisplayName("App Settings update does not throw Exception")
@@ -48,10 +48,10 @@ public class CommonTest extends BasicTest {
                     .build())
             .build();
 
-    Assertions.assertDoesNotThrow(() -> common.updateApp(data).execute());
+    Assertions.assertDoesNotThrow(() -> client.updateApp(data).execute());
     Assertions.assertDoesNotThrow(
         () ->
-            common
+            client
                 .updateApp(
                     UpdateAppRequest.builder()
                         .disableAuthChecks(false)
@@ -80,7 +80,7 @@ public class CommonTest extends BasicTest {
   void givenBadSecret_whenEnableAuthAndGettingApp_thenException() {
     Assertions.assertDoesNotThrow(
         () ->
-            common
+            client
                 .updateApp(UpdateAppRequest.builder().disableAuthChecks(false).build())
                 .execute());
     var properties = new Properties();
@@ -100,7 +100,7 @@ public class CommonTest extends BasicTest {
     CheckSQSResponse response =
         Assertions.assertDoesNotThrow(
             () ->
-                common
+                client
                     .checkSQS(
                         CheckSQSRequest.builder()
                             .sqsKey("key")
@@ -118,7 +118,7 @@ public class CommonTest extends BasicTest {
     CheckSNSResponse response =
         Assertions.assertDoesNotThrow(
             () ->
-                common
+                client
                     .checkSNS(
                         CheckSNSRequest.builder()
                             .snsKey("key")

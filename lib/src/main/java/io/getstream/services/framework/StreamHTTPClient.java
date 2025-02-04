@@ -49,7 +49,7 @@ public class StreamHTTPClient {
     setCredetials(apiKey, apiSecret);
   }
 
-  // defult constructor using ENV or System properties
+  // default constructor using ENV or System properties
   // env vars have priority over system properties
   public StreamHTTPClient() {
     this(System.getProperties());

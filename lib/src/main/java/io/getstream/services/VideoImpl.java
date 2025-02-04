@@ -1,5 +1,6 @@
 package io.getstream.services;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
 import io.getstream.services.framework.StreamHTTPClient;
@@ -25,7 +26,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/feedback",
         request,
-        null);
+        null,
+        new TypeReference<QueryUserFeedbackResponse>() {});
   }
 
   public StreamRequest<QueryUserFeedbackResponse> queryUserFeedback() throws StreamException {
@@ -43,7 +45,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/members",
         request,
-        null);
+        null,
+        new TypeReference<QueryCallMembersResponse>() {});
   }
 
   @NotNull
@@ -57,7 +60,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/stats",
         request,
-        null);
+        null,
+        new TypeReference<QueryCallStatsResponse>() {});
   }
 
   public StreamRequest<QueryCallStatsResponse> queryCallStats() throws StreamException {
@@ -79,7 +83,8 @@ public class VideoImpl implements Video {
         "GET",
         "/api/v2/video/call/{type}/{id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<GetCallResponse>() {});
   }
 
   public StreamRequest<GetCallResponse> getCall(@NotNull String type, @NotNull String id)
@@ -102,7 +107,8 @@ public class VideoImpl implements Video {
         "PATCH",
         "/api/v2/video/call/{type}/{id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<UpdateCallResponse>() {});
   }
 
   public StreamRequest<UpdateCallResponse> updateCall(@NotNull String type, @NotNull String id)
@@ -126,7 +132,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<GetOrCreateCallResponse>() {});
   }
 
   public StreamRequest<GetOrCreateCallResponse> getOrCreateCall(
@@ -149,7 +156,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/block",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<BlockUserResponse>() {});
   }
 
   @NotNull
@@ -167,7 +175,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/delete",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<DeleteCallResponse>() {});
   }
 
   public StreamRequest<DeleteCallResponse> deleteCall(@NotNull String type, @NotNull String id)
@@ -191,7 +200,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/event",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<SendCallEventResponse>() {});
   }
 
   public StreamRequest<SendCallEventResponse> sendCallEvent(
@@ -219,7 +229,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/feedback/{session}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<CollectUserFeedbackResponse>() {});
   }
 
   @NotNull
@@ -237,7 +248,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/go_live",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<GoLiveResponse>() {});
   }
 
   public StreamRequest<GoLiveResponse> goLive(@NotNull String type, @NotNull String id)
@@ -260,7 +272,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/mark_ended",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<EndCallResponse>() {});
   }
 
   public StreamRequest<EndCallResponse> endCall(@NotNull String type, @NotNull String id)
@@ -284,7 +297,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/members",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<UpdateCallMembersResponse>() {});
   }
 
   public StreamRequest<UpdateCallMembersResponse> updateCallMembers(
@@ -307,7 +321,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/mute_users",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<MuteUsersResponse>() {});
   }
 
   public StreamRequest<MuteUsersResponse> muteUsers(@NotNull String type, @NotNull String id)
@@ -330,7 +345,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/pin",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<PinResponse>() {});
   }
 
   @NotNull
@@ -349,7 +365,8 @@ public class VideoImpl implements Video {
         "GET",
         "/api/v2/video/call/{type}/{id}/recordings",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<ListRecordingsResponse>() {});
   }
 
   public StreamRequest<ListRecordingsResponse> listRecordings(
@@ -373,7 +390,8 @@ public class VideoImpl implements Video {
         "GET",
         "/api/v2/video/call/{type}/{id}/report",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<GetCallReportResponse>() {});
   }
 
   public StreamRequest<GetCallReportResponse> getCallReport(
@@ -397,7 +415,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/rtmp_broadcasts",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<StartRTMPBroadcastsResponse>() {});
   }
 
   @NotNull
@@ -416,7 +435,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/rtmp_broadcasts/stop",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<StopAllRTMPBroadcastsResponse>() {});
   }
 
   public StreamRequest<StopAllRTMPBroadcastsResponse> stopAllRTMPBroadcasts(
@@ -444,7 +464,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/rtmp_broadcasts/{name}/stop",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<StopRTMPBroadcastsResponse>() {});
   }
 
   public StreamRequest<StopRTMPBroadcastsResponse> stopRTMPBroadcast(
@@ -468,7 +489,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/start_broadcasting",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<StartHLSBroadcastingResponse>() {});
   }
 
   public StreamRequest<StartHLSBroadcastingResponse> startHLSBroadcasting(
@@ -492,7 +514,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/start_closed_captions",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<StartClosedCaptionsResponse>() {});
   }
 
   public StreamRequest<StartClosedCaptionsResponse> startClosedCaptions(
@@ -516,7 +539,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/start_recording",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<StartRecordingResponse>() {});
   }
 
   public StreamRequest<StartRecordingResponse> startRecording(
@@ -540,7 +564,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/start_transcription",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<StartTranscriptionResponse>() {});
   }
 
   public StreamRequest<StartTranscriptionResponse> startTranscription(
@@ -568,7 +593,8 @@ public class VideoImpl implements Video {
         "GET",
         "/api/v2/video/call/{type}/{id}/stats/{session}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<GetCallStatsResponse>() {});
   }
 
   public StreamRequest<GetCallStatsResponse> getCallStats(
@@ -592,7 +618,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/stop_broadcasting",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<StopHLSBroadcastingResponse>() {});
   }
 
   public StreamRequest<StopHLSBroadcastingResponse> stopHLSBroadcasting(
@@ -616,7 +643,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/stop_closed_captions",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<StopClosedCaptionsResponse>() {});
   }
 
   public StreamRequest<StopClosedCaptionsResponse> stopClosedCaptions(
@@ -639,7 +667,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/stop_live",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<StopLiveResponse>() {});
   }
 
   public StreamRequest<StopLiveResponse> stopLive(@NotNull String type, @NotNull String id)
@@ -663,7 +692,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/stop_recording",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<StopRecordingResponse>() {});
   }
 
   public StreamRequest<StopRecordingResponse> stopRecording(
@@ -687,7 +717,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/stop_transcription",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<StopTranscriptionResponse>() {});
   }
 
   public StreamRequest<StopTranscriptionResponse> stopTranscription(
@@ -711,7 +742,8 @@ public class VideoImpl implements Video {
         "GET",
         "/api/v2/video/call/{type}/{id}/transcriptions",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<ListTranscriptionsResponse>() {});
   }
 
   public StreamRequest<ListTranscriptionsResponse> listTranscriptions(
@@ -734,7 +766,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/unblock",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<UnblockUserResponse>() {});
   }
 
   @NotNull
@@ -752,7 +785,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/unpin",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<UnpinResponse>() {});
   }
 
   @NotNull
@@ -771,7 +805,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/call/{type}/{id}/user_permissions",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<UpdateUserPermissionsResponse>() {});
   }
 
   @NotNull
@@ -796,7 +831,8 @@ public class VideoImpl implements Video {
         "DELETE",
         "/api/v2/video/call/{type}/{id}/{session}/recordings/{filename}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<DeleteRecordingResponse>() {});
   }
 
   public StreamRequest<DeleteRecordingResponse> deleteRecording(
@@ -827,7 +863,8 @@ public class VideoImpl implements Video {
         "DELETE",
         "/api/v2/video/call/{type}/{id}/{session}/transcriptions/{filename}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<DeleteTranscriptionResponse>() {});
   }
 
   public StreamRequest<DeleteTranscriptionResponse> deleteTranscription(
@@ -847,7 +884,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/calls",
         request,
-        null);
+        null,
+        new TypeReference<QueryCallsResponse>() {});
   }
 
   public StreamRequest<QueryCallsResponse> queryCalls() throws StreamException {
@@ -865,7 +903,8 @@ public class VideoImpl implements Video {
         "GET",
         "/api/v2/video/calltypes",
         request,
-        null);
+        null,
+        new TypeReference<ListCallTypeResponse>() {});
   }
 
   public StreamRequest<ListCallTypeResponse> listCallTypes() throws StreamException {
@@ -883,7 +922,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/calltypes",
         request,
-        null);
+        null,
+        new TypeReference<CreateCallTypeResponse>() {});
   }
 
   @NotNull
@@ -898,7 +938,8 @@ public class VideoImpl implements Video {
         "DELETE",
         "/api/v2/video/calltypes/{name}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<Response>() {});
   }
 
   public StreamRequest<Response> deleteCallType(@NotNull String name) throws StreamException {
@@ -917,7 +958,8 @@ public class VideoImpl implements Video {
         "GET",
         "/api/v2/video/calltypes/{name}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<GetCallTypeResponse>() {});
   }
 
   public StreamRequest<GetCallTypeResponse> getCallType(@NotNull String name)
@@ -937,7 +979,8 @@ public class VideoImpl implements Video {
         "PUT",
         "/api/v2/video/calltypes/{name}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<UpdateCallTypeResponse>() {});
   }
 
   public StreamRequest<UpdateCallTypeResponse> updateCallType(@NotNull String name)
@@ -955,7 +998,8 @@ public class VideoImpl implements Video {
         "GET",
         "/api/v2/video/edges",
         request,
-        null);
+        null,
+        new TypeReference<GetEdgesResponse>() {});
   }
 
   public StreamRequest<GetEdgesResponse> getEdges() throws StreamException {
@@ -973,7 +1017,8 @@ public class VideoImpl implements Video {
         "POST",
         "/api/v2/video/stats",
         request,
-        null);
+        null,
+        new TypeReference<QueryAggregateCallStatsResponse>() {});
   }
 
   public StreamRequest<QueryAggregateCallStatsResponse> queryAggregateCallStats()

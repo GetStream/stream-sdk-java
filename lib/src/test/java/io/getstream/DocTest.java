@@ -161,7 +161,7 @@ public class DocTest extends BasicTest {
             .getTaskID();
 
     while (true) {
-      var response = common.getTask(taskId).execute();
+      var response = client.getTask(taskId).execute();
       String status = response.getData().getStatus();
 
       if (status.equals("completed") || status.equals("ok")) {
@@ -188,7 +188,7 @@ public class DocTest extends BasicTest {
             .getTaskID();
 
     while (true) {
-      var response = common.getTask(taskId).execute();
+      var response = client.getTask(taskId).execute();
       String status = response.getData().getStatus();
 
       if (status.equals("completed") || status.equals("ok")) {
@@ -235,7 +235,7 @@ public class DocTest extends BasicTest {
 
     // wait for the task to complete
     while (true) {
-      var taskResponse = common.getTask(taskID).execute();
+      var taskResponse = client.getTask(taskID).execute();
       String status = taskResponse.getData().getStatus();
 
       if (status.equals("completed") || status.equals("ok")) {

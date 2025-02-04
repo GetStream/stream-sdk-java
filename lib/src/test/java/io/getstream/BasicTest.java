@@ -3,7 +3,6 @@ package io.getstream;
 import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
 import io.getstream.services.Chat;
-import io.getstream.services.Common;
 import io.getstream.services.Video;
 import io.getstream.services.framework.StreamSDKClient;
 import java.util.ArrayList;
@@ -25,11 +24,15 @@ public class BasicTest {
   protected static ChannelResponse testChannel;
   protected static MessageResponse testMessage;
   static Chat chat;
-  static Common common;
   static Video video;
 
   @BeforeAll
   static void setup() throws Exception {
+    client = new StreamSDKClient();
+
+    chat = client.chat();
+    video = client.video();
+
     setProperties();
     //    cleanChannels();
     //    cleanChannelTypes();
@@ -39,12 +42,6 @@ public class BasicTest {
     createTestChannel();
     createTestMessage();
     pause();
-
-    client = new StreamSDKClient();
-
-    common = client.common();
-    chat = client.chat();
-    video = client.video();
   }
 
   private static void cleanChannels() throws StreamException, NullPointerException {
@@ -73,7 +70,7 @@ public class BasicTest {
       System.out.printf("Waiting for channel deletion task %s to complete...\n", taskId);
 
       while (true) {
-        var response = common.getTask(taskId).execute();
+        var response = client.getTask(taskId).execute();
         String status = response.getData().getStatus();
 
         if (status.equals("completed") || status.equals("ok")) {
@@ -110,7 +107,7 @@ public class BasicTest {
   }
 
   private static void cleanBlocklists() throws Exception {
-    common
+    client
         .listBlockLists()
         .execute()
         .getData()
@@ -118,7 +115,7 @@ public class BasicTest {
         .forEach(
             blocklist -> {
               try {
-                common.deleteBlockList(blocklist.getName()).execute();
+                client.deleteBlockList(blocklist.getName()).execute();
               } catch (Exception e) {
                 // Do nothing this happens for built in
               }
@@ -191,7 +188,7 @@ public class BasicTest {
             .build();
 
     testUsers =
-        common.updateUsers(updateUsersRequest).execute().getData().getUsers().values().stream()
+        client.updateUsers(updateUsersRequest).execute().getData().getUsers().values().stream()
             .toList();
     testUser = testUsers.get(0);
   }

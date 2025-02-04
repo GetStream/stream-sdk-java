@@ -8,6 +8,7 @@ import io.getstream.models.framework.RateLimit;
 import io.getstream.models.framework.StreamResponse;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
@@ -16,6 +17,7 @@ public class StreamRequest<T> {
   private final OkHttpClient client;
   private final Request request;
   private final ObjectMapper objectMapper;
+  private final TypeReference<T> typeReference;
 
   public StreamRequest(
       OkHttpClient client,
@@ -24,17 +26,21 @@ public class StreamRequest<T> {
       String method,
       String path,
       Object jRequest,
-      Map<String, String> pathParams)
+      Map<String, String> pathParams,
+      TypeReference<T> typeReference)
       throws StreamException {
     this.objectMapper = mapper;
     this.client = client;
+    this.typeReference = typeReference;
 
     Request request;
     try {
-      var rawBody =
-          jRequest != null
-              ? RequestBody.create(mapper.writeValueAsBytes(jRequest))
-              : RequestBody.create(new byte[0]);
+      RequestBody rawBody;
+      if (List.of("GET", "DELETE", "HEAD", "OPTIONS").contains(method) || jRequest == null) {
+        rawBody = null;
+      } else {
+        rawBody = RequestBody.create(objectMapper.writeValueAsBytes(jRequest));
+      }
       request =
           new Request.Builder()
               .url(buildUrl(baseURL, path, pathParams, jRequest))
@@ -45,12 +51,6 @@ public class StreamRequest<T> {
     }
 
     this.request = request;
-  }
-
-  public StreamRequest(OkHttpClient client, Request request, ObjectMapper objectMapper) {
-    this.client = client;
-    this.request = request;
-    this.objectMapper = objectMapper;
   }
 
   @NotNull
@@ -123,7 +123,7 @@ public class StreamRequest<T> {
     // unmarshal the response body to the expected type using jackson
     T result;
     try {
-      result = objectMapper.readValue(rawBody.string(), new TypeReference<>() {});
+      result = objectMapper.readValue(rawBody.string(), typeReference);
     } catch (Throwable e) {
       throw StreamException.build(e);
     }

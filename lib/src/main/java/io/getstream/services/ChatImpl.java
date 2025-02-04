@@ -1,5 +1,6 @@
 package io.getstream.services;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
 import io.getstream.services.framework.StreamHTTPClient;
@@ -25,7 +26,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/campaigns/query",
         request,
-        null);
+        null,
+        new TypeReference<QueryCampaignsResponse>() {});
   }
 
   public StreamRequest<QueryCampaignsResponse> queryCampaigns() throws StreamException {
@@ -44,7 +46,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/campaigns/{id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<GetCampaignResponse>() {});
   }
 
   public StreamRequest<GetCampaignResponse> getCampaign(@NotNull String id) throws StreamException {
@@ -63,7 +66,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/campaigns/{id}/start",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<StartCampaignResponse>() {});
   }
 
   public StreamRequest<StartCampaignResponse> startCampaign(@NotNull String id)
@@ -83,7 +87,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/campaigns/{id}/stop",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<CampaignResponse>() {});
   }
 
   public StreamRequest<CampaignResponse> scheduleCampaign(@NotNull String id)
@@ -102,7 +107,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/channels",
         request,
-        null);
+        null,
+        new TypeReference<QueryChannelsResponse>() {});
   }
 
   public StreamRequest<QueryChannelsResponse> queryChannels() throws StreamException {
@@ -120,7 +126,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/channels/delete",
         request,
-        null);
+        null,
+        new TypeReference<DeleteChannelsResponse>() {});
   }
 
   @NotNull
@@ -134,7 +141,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/channels/read",
         request,
-        null);
+        null,
+        new TypeReference<MarkReadResponse>() {});
   }
 
   public StreamRequest<MarkReadResponse> markChannelsRead() throws StreamException {
@@ -153,7 +161,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/channels/{type}/query",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<ChannelStateResponse>() {});
   }
 
   public StreamRequest<ChannelStateResponse> getOrCreateDistinctChannel(@NotNull String type)
@@ -177,7 +186,8 @@ public class ChatImpl implements Chat {
         "DELETE",
         "/api/v2/chat/channels/{type}/{id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<DeleteChannelResponse>() {});
   }
 
   public StreamRequest<DeleteChannelResponse> deleteChannel(
@@ -201,7 +211,8 @@ public class ChatImpl implements Chat {
         "PATCH",
         "/api/v2/chat/channels/{type}/{id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<UpdateChannelPartialResponse>() {});
   }
 
   public StreamRequest<UpdateChannelPartialResponse> updateChannelPartial(
@@ -225,7 +236,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/channels/{type}/{id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<UpdateChannelResponse>() {});
   }
 
   public StreamRequest<UpdateChannelResponse> updateChannel(
@@ -248,7 +260,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/channels/{type}/{id}/event",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<EventResponse>() {});
   }
 
   @NotNull
@@ -266,7 +279,8 @@ public class ChatImpl implements Chat {
         "DELETE",
         "/api/v2/chat/channels/{type}/{id}/file",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<Response>() {});
   }
 
   public StreamRequest<Response> deleteFile(@NotNull String type, @NotNull String id)
@@ -289,7 +303,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/channels/{type}/{id}/file",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<FileUploadResponse>() {});
   }
 
   public StreamRequest<FileUploadResponse> uploadFile(@NotNull String type, @NotNull String id)
@@ -312,7 +327,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/channels/{type}/{id}/hide",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<HideChannelResponse>() {});
   }
 
   public StreamRequest<HideChannelResponse> hideChannel(@NotNull String type, @NotNull String id)
@@ -335,7 +351,8 @@ public class ChatImpl implements Chat {
         "DELETE",
         "/api/v2/chat/channels/{type}/{id}/image",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<Response>() {});
   }
 
   public StreamRequest<Response> deleteImage(@NotNull String type, @NotNull String id)
@@ -358,7 +375,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/channels/{type}/{id}/image",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<ImageUploadResponse>() {});
   }
 
   public StreamRequest<ImageUploadResponse> uploadImage(@NotNull String type, @NotNull String id)
@@ -386,7 +404,8 @@ public class ChatImpl implements Chat {
         "PATCH",
         "/api/v2/chat/channels/{type}/{id}/member/{user_id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<UpdateMemberPartialResponse>() {});
   }
 
   public StreamRequest<UpdateMemberPartialResponse> updateMemberPartial(
@@ -409,7 +428,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/channels/{type}/{id}/message",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<SendMessageResponse>() {});
   }
 
   @NotNull
@@ -428,7 +448,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/channels/{type}/{id}/messages",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<GetManyMessagesResponse>() {});
   }
 
   @NotNull
@@ -447,7 +468,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/channels/{type}/{id}/query",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<ChannelStateResponse>() {});
   }
 
   public StreamRequest<ChannelStateResponse> getOrCreateChannel(
@@ -470,7 +492,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/channels/{type}/{id}/read",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<MarkReadResponse>() {});
   }
 
   public StreamRequest<MarkReadResponse> markRead(@NotNull String type, @NotNull String id)
@@ -493,7 +516,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/channels/{type}/{id}/show",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<ShowChannelResponse>() {});
   }
 
   public StreamRequest<ShowChannelResponse> showChannel(@NotNull String type, @NotNull String id)
@@ -517,7 +541,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/channels/{type}/{id}/truncate",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<TruncateChannelResponse>() {});
   }
 
   public StreamRequest<TruncateChannelResponse> truncateChannel(
@@ -540,7 +565,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/channels/{type}/{id}/unread",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<Response>() {});
   }
 
   public StreamRequest<Response> markUnread(@NotNull String type, @NotNull String id)
@@ -559,7 +585,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/channeltypes",
         request,
-        null);
+        null,
+        new TypeReference<ListChannelTypesResponse>() {});
   }
 
   public StreamRequest<ListChannelTypesResponse> listChannelTypes() throws StreamException {
@@ -577,7 +604,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/channeltypes",
         request,
-        null);
+        null,
+        new TypeReference<CreateChannelTypeResponse>() {});
   }
 
   @NotNull
@@ -592,7 +620,8 @@ public class ChatImpl implements Chat {
         "DELETE",
         "/api/v2/chat/channeltypes/{name}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<Response>() {});
   }
 
   public StreamRequest<Response> deleteChannelType(@NotNull String name) throws StreamException {
@@ -611,7 +640,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/channeltypes/{name}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<GetChannelTypeResponse>() {});
   }
 
   public StreamRequest<GetChannelTypeResponse> getChannelType(@NotNull String name)
@@ -631,7 +661,8 @@ public class ChatImpl implements Chat {
         "PUT",
         "/api/v2/chat/channeltypes/{name}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<UpdateChannelTypeResponse>() {});
   }
 
   @NotNull
@@ -645,7 +676,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/commands",
         request,
-        null);
+        null,
+        new TypeReference<ListCommandsResponse>() {});
   }
 
   public StreamRequest<ListCommandsResponse> listCommands() throws StreamException {
@@ -663,7 +695,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/commands",
         request,
-        null);
+        null,
+        new TypeReference<CreateCommandResponse>() {});
   }
 
   @NotNull
@@ -678,7 +711,8 @@ public class ChatImpl implements Chat {
         "DELETE",
         "/api/v2/chat/commands/{name}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<DeleteCommandResponse>() {});
   }
 
   public StreamRequest<DeleteCommandResponse> deleteCommand(@NotNull String name)
@@ -698,7 +732,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/commands/{name}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<GetCommandResponse>() {});
   }
 
   public StreamRequest<GetCommandResponse> getCommand(@NotNull String name) throws StreamException {
@@ -717,7 +752,8 @@ public class ChatImpl implements Chat {
         "PUT",
         "/api/v2/chat/commands/{name}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<UpdateCommandResponse>() {});
   }
 
   @NotNull
@@ -731,7 +767,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/export_channels",
         request,
-        null);
+        null,
+        new TypeReference<ExportChannelsResponse>() {});
   }
 
   @NotNull
@@ -746,7 +783,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/export_channels/{id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<GetExportChannelsStatusResponse>() {});
   }
 
   public StreamRequest<GetExportChannelsStatusResponse> getExportChannelsStatus(@NotNull String id)
@@ -765,7 +803,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/members",
         request,
-        null);
+        null,
+        new TypeReference<MembersResponse>() {});
   }
 
   public StreamRequest<MembersResponse> queryMembers() throws StreamException {
@@ -783,7 +822,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/messages/history",
         request,
-        null);
+        null,
+        new TypeReference<QueryMessageHistoryResponse>() {});
   }
 
   @NotNull
@@ -798,7 +838,8 @@ public class ChatImpl implements Chat {
         "DELETE",
         "/api/v2/chat/messages/{id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<DeleteMessageResponse>() {});
   }
 
   public StreamRequest<DeleteMessageResponse> deleteMessage(@NotNull String id)
@@ -818,7 +859,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/messages/{id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<GetMessageResponse>() {});
   }
 
   public StreamRequest<GetMessageResponse> getMessage(@NotNull String id) throws StreamException {
@@ -837,7 +879,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/messages/{id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<UpdateMessageResponse>() {});
   }
 
   @NotNull
@@ -852,7 +895,8 @@ public class ChatImpl implements Chat {
         "PUT",
         "/api/v2/chat/messages/{id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<UpdateMessagePartialResponse>() {});
   }
 
   public StreamRequest<UpdateMessagePartialResponse> updateMessagePartial(@NotNull String id)
@@ -872,7 +916,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/messages/{id}/action",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<MessageResponse>() {});
   }
 
   @NotNull
@@ -887,7 +932,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/messages/{id}/commit",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<MessageResponse>() {});
   }
 
   public StreamRequest<MessageResponse> commitMessage(@NotNull String id) throws StreamException {
@@ -906,7 +952,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/messages/{id}/reaction",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<SendReactionResponse>() {});
   }
 
   @NotNull
@@ -925,7 +972,8 @@ public class ChatImpl implements Chat {
         "DELETE",
         "/api/v2/chat/messages/{id}/reaction/{type}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<DeleteReactionResponse>() {});
   }
 
   public StreamRequest<DeleteReactionResponse> deleteReaction(
@@ -945,7 +993,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/messages/{id}/reactions",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<GetReactionsResponse>() {});
   }
 
   public StreamRequest<GetReactionsResponse> getReactions(@NotNull String id)
@@ -965,7 +1014,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/messages/{id}/reactions",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<QueryReactionsResponse>() {});
   }
 
   public StreamRequest<QueryReactionsResponse> queryReactions(@NotNull String id)
@@ -985,7 +1035,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/messages/{id}/translate",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<MessageResponse>() {});
   }
 
   @NotNull
@@ -1000,7 +1051,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/messages/{id}/undelete",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<UpdateMessageResponse>() {});
   }
 
   @NotNull
@@ -1019,7 +1071,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/messages/{message_id}/polls/{poll_id}/vote",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<PollVoteResponse>() {});
   }
 
   public StreamRequest<PollVoteResponse> castPollVote(
@@ -1047,7 +1100,8 @@ public class ChatImpl implements Chat {
         "DELETE",
         "/api/v2/chat/messages/{message_id}/polls/{poll_id}/vote/{vote_id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<PollVoteResponse>() {});
   }
 
   public StreamRequest<PollVoteResponse> removePollVote(
@@ -1068,7 +1122,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/messages/{parent_id}/replies",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<GetRepliesResponse>() {});
   }
 
   public StreamRequest<GetRepliesResponse> getReplies(@NotNull String parentID)
@@ -1087,7 +1142,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/moderation/flags/message",
         request,
-        null);
+        null,
+        new TypeReference<QueryMessageFlagsResponse>() {});
   }
 
   public StreamRequest<QueryMessageFlagsResponse> queryMessageFlags() throws StreamException {
@@ -1105,7 +1161,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/moderation/mute/channel",
         request,
-        null);
+        null,
+        new TypeReference<MuteChannelResponse>() {});
   }
 
   public StreamRequest<MuteChannelResponse> muteChannel() throws StreamException {
@@ -1123,7 +1180,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/moderation/unmute/channel",
         request,
-        null);
+        null,
+        new TypeReference<UnmuteResponse>() {});
   }
 
   public StreamRequest<UnmuteResponse> unmuteChannel() throws StreamException {
@@ -1140,7 +1198,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/polls",
         request,
-        null);
+        null,
+        new TypeReference<PollResponse>() {});
   }
 
   @NotNull
@@ -1153,7 +1212,8 @@ public class ChatImpl implements Chat {
         "PUT",
         "/api/v2/chat/polls",
         request,
-        null);
+        null,
+        new TypeReference<PollResponse>() {});
   }
 
   @NotNull
@@ -1167,7 +1227,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/polls/query",
         request,
-        null);
+        null,
+        new TypeReference<QueryPollsResponse>() {});
   }
 
   public StreamRequest<QueryPollsResponse> queryPolls() throws StreamException {
@@ -1186,7 +1247,8 @@ public class ChatImpl implements Chat {
         "DELETE",
         "/api/v2/chat/polls/{poll_id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<Response>() {});
   }
 
   public StreamRequest<Response> deletePoll(@NotNull String pollID) throws StreamException {
@@ -1205,7 +1267,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/polls/{poll_id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<PollResponse>() {});
   }
 
   public StreamRequest<PollResponse> getPoll(@NotNull String pollID) throws StreamException {
@@ -1224,7 +1287,8 @@ public class ChatImpl implements Chat {
         "PATCH",
         "/api/v2/chat/polls/{poll_id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<PollResponse>() {});
   }
 
   public StreamRequest<PollResponse> updatePollPartial(@NotNull String pollID)
@@ -1244,7 +1308,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/polls/{poll_id}/options",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<PollOptionResponse>() {});
   }
 
   @NotNull
@@ -1259,7 +1324,8 @@ public class ChatImpl implements Chat {
         "PUT",
         "/api/v2/chat/polls/{poll_id}/options",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<PollOptionResponse>() {});
   }
 
   @NotNull
@@ -1278,7 +1344,8 @@ public class ChatImpl implements Chat {
         "DELETE",
         "/api/v2/chat/polls/{poll_id}/options/{option_id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<Response>() {});
   }
 
   public StreamRequest<Response> deletePollOption(@NotNull String pollID, @NotNull String optionID)
@@ -1302,7 +1369,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/polls/{poll_id}/options/{option_id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<PollOptionResponse>() {});
   }
 
   public StreamRequest<PollOptionResponse> getPollOption(
@@ -1322,7 +1390,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/polls/{poll_id}/votes",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<PollVotesResponse>() {});
   }
 
   public StreamRequest<PollVotesResponse> queryPollVotes(@NotNull String pollID)
@@ -1341,7 +1410,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/push_preferences",
         request,
-        null);
+        null,
+        new TypeReference<UpsertPushPreferencesResponse>() {});
   }
 
   @NotNull
@@ -1355,7 +1425,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/query_banned_users",
         request,
-        null);
+        null,
+        new TypeReference<QueryBannedUsersResponse>() {});
   }
 
   public StreamRequest<QueryBannedUsersResponse> queryBannedUsers() throws StreamException {
@@ -1372,7 +1443,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/search",
         request,
-        null);
+        null,
+        new TypeReference<SearchResponse>() {});
   }
 
   public StreamRequest<SearchResponse> search() throws StreamException {
@@ -1390,7 +1462,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/segments/query",
         request,
-        null);
+        null,
+        new TypeReference<QuerySegmentsResponse>() {});
   }
 
   @NotNull
@@ -1405,7 +1478,8 @@ public class ChatImpl implements Chat {
         "DELETE",
         "/api/v2/chat/segments/{id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<Response>() {});
   }
 
   public StreamRequest<Response> deleteSegment(@NotNull String id) throws StreamException {
@@ -1424,7 +1498,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/segments/{id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<GetSegmentResponse>() {});
   }
 
   public StreamRequest<GetSegmentResponse> getSegment(@NotNull String id) throws StreamException {
@@ -1443,7 +1518,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/segments/{id}/deletetargets",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<Response>() {});
   }
 
   @NotNull
@@ -1462,7 +1538,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/segments/{id}/target/{target_id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<Response>() {});
   }
 
   public StreamRequest<Response> segmentTargetExists(@NotNull String id, @NotNull String targetID)
@@ -1482,7 +1559,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/segments/{id}/targets/query",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<QuerySegmentTargetsResponse>() {});
   }
 
   public StreamRequest<QuerySegmentTargetsResponse> querySegmentTargets(@NotNull String id)
@@ -1501,7 +1579,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/threads",
         request,
-        null);
+        null,
+        new TypeReference<QueryThreadsResponse>() {});
   }
 
   public StreamRequest<QueryThreadsResponse> queryThreads() throws StreamException {
@@ -1520,7 +1599,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/threads/{message_id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<GetThreadResponse>() {});
   }
 
   public StreamRequest<GetThreadResponse> getThread(@NotNull String messageID)
@@ -1540,7 +1620,8 @@ public class ChatImpl implements Chat {
         "PATCH",
         "/api/v2/chat/threads/{message_id}",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<UpdateThreadPartialResponse>() {});
   }
 
   public StreamRequest<UpdateThreadPartialResponse> updateThreadPartial(@NotNull String messageID)
@@ -1559,7 +1640,8 @@ public class ChatImpl implements Chat {
         "GET",
         "/api/v2/chat/unread",
         request,
-        null);
+        null,
+        new TypeReference<WrappedUnreadCountsResponse>() {});
   }
 
   public StreamRequest<WrappedUnreadCountsResponse> unreadCounts() throws StreamException {
@@ -1577,7 +1659,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/unread_batch",
         request,
-        null);
+        null,
+        new TypeReference<UnreadCountsBatchResponse>() {});
   }
 
   @NotNull
@@ -1592,7 +1675,8 @@ public class ChatImpl implements Chat {
         "POST",
         "/api/v2/chat/users/{user_id}/event",
         request,
-        pathParams);
+        pathParams,
+        new TypeReference<Response>() {});
   }
 
   @NotNull
