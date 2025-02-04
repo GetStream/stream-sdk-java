@@ -2,8 +2,8 @@ package io.getstream.services;
 
 import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
-import io.getstream.services.framework.StreamRequest;
 import io.getstream.services.framework.StreamHTTPClient;
+import io.getstream.services.framework.StreamRequest;
 import java.util.*;
 import org.jetbrains.annotations.NotNull;
 

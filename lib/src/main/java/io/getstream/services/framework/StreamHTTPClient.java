@@ -3,25 +3,20 @@ package io.getstream.services.framework;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.StdDateFormat;
-import io.getstream.models.framework.CallTokenClaims;
 import io.getstream.services.*;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
-import java.time.Instant;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import javax.crypto.spec.SecretKeySpec;
-
-import io.jsonwebtoken.security.Keys;
 import okhttp3.ConnectionPool;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class StreamHTTPClient {
   public static final String API_KEY_PROP_NAME = "io.getstream.apiKey";
@@ -32,6 +27,7 @@ public class StreamHTTPClient {
   private static final String API_DEFAULT_URL = "https://chat.stream-io-api.com";
 
   @NotNull private final String sdkVersion = readSdkVersion();
+
   @NotNull
   private final ObjectMapper objectMapper =
       new ObjectMapper()
