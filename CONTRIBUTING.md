@@ -67,7 +67,7 @@ They are data objects. They correspond to the formats of the API responses.
 
 ### Service interfaces
 
-They are Retrofit service interfaces, that describe the API endpoints.
+They are the interfaces that define the API endpoints. 
 
 ### The StreamServiceGenerator class
 

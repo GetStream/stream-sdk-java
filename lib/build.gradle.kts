@@ -6,7 +6,7 @@ plugins {
     `java-library`
     `maven-publish`
     signing
-    id("com.diffplug.spotless") version "7.0.0.BETA1"
+    id("com.diffplug.spotless") version "7.0.2"
 }
 
 group = "io.getstream"
@@ -16,7 +16,16 @@ description = "Stream official Java SDK"
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
+    gradlePluginPortal()
 }
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
 
 dependencies {
     // Use JUnit Jupiter for testing.
@@ -31,12 +40,9 @@ dependencies {
     implementation(libs.guava)
 
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
-
-    // define any required OkHttp artifacts without version
     implementation("com.squareup.okhttp3:okhttp")
-
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation("com.squareup.retrofit2:converter-jackson:2.11.0")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.18.2")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:2.18.2")
     implementation("io.jsonwebtoken:jjwt-api:0.12.6")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.6")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.6")
@@ -44,17 +50,10 @@ dependencies {
     testImplementation("org.apache.commons:commons-lang3:3.12.0")
     compileOnly("org.projectlombok:lombok:1.18.32")
     annotationProcessor("org.projectlombok:lombok:1.18.32")
-
     testCompileOnly("org.projectlombok:lombok:1.18.32")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.32")
 }
 
-// Apply a specific Java toolchain to ease working on different environments.
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
 
 val localProperties = Properties()
 val localPropertiesFile = project.rootProject.file("local.properties")
@@ -98,46 +97,37 @@ tasks.register("generateVersionProperties") {
         propertiesFile.writer().use { properties.store(it, null) }
     }
 }
+
 tasks.named("processResources").configure {
     dependsOn("generateVersionProperties")
 }
 
-//extra["ossrhUsername"] = ""
-//extra["ossrhPassword"] = ""
-//extra["signing.keyId"] = ""
-//extra["signing.password"] = ""
-//extra["signing.secretKeyRingFile"] = ""
-//extra["sonatypeStagingProfileId"] = ""
-//
-//val secretPropsFile = project.rootProject.file("local.properties")
-//if (secretPropsFile.exists()) {
-//    // Read local.properties file first if it exists
-//    val properties = Properties()
-//    FileInputStream(secretPropsFile).use { properties.load(it) }
-//    properties.forEach { (name, value) -> extra[name.toString()] = value.toString() }
-//} else {
-//    // Use system environment variables
-//    extra["ossrhUsername"] = System.getenv("OSSRH_USERNAME") ?: ""
-//    extra["ossrhPassword"] = System.getenv("OSSRH_PASSWORD") ?: ""
-//    extra["signing.keyId"] = System.getenv("SIGNING_KEY_ID") ?: ""
-//    extra["signing.password"] = System.getenv("SIGNING_PASSWORD") ?: ""
-//    extra["signing.secretKeyRingFile"] = System.getenv("SIGNING_SECRET_KEY_RING_FILE") ?: ""
-//    extra["sonatypeStagingProfileId"] = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: ""
-//}
-//
-//nexusPublishing {
-//    repositories {
-//        sonatype {
-//            stagingProfileId.set(sonatypeStagingProfileId as String)
-//            username.set(ossrhUsername as String)
-//            password.set(ossrhPassword as String)
-//        }
-//    }
-//}
-//
-//signing {
-//    sign(publishing.publications)
-//}
+extra["ossrhUsername"] = ""
+extra["ossrhPassword"] = ""
+extra["signing.keyId"] = ""
+extra["signing.password"] = ""
+extra["signing.secretKeyRingFile"] = ""
+extra["sonatypeStagingProfileId"] = ""
+
+val secretPropsFile = project.rootProject.file("local.properties")
+if (secretPropsFile.exists()) {
+    // Read local.properties file first if it exists
+    val properties = Properties()
+    FileInputStream(secretPropsFile).use { properties.load(it) }
+    properties.forEach { (name, value) -> extra[name.toString()] = value.toString() }
+} else {
+    // Use system environment variables
+    extra["ossrhUsername"] = System.getenv("OSSRH_USERNAME") ?: ""
+    extra["ossrhPassword"] = System.getenv("OSSRH_PASSWORD") ?: ""
+    extra["signing.keyId"] = System.getenv("SIGNING_KEY_ID") ?: ""
+    extra["signing.password"] = System.getenv("SIGNING_PASSWORD") ?: ""
+    extra["signing.secretKeyRingFile"] = System.getenv("SIGNING_SECRET_KEY_RING_FILE") ?: ""
+    extra["sonatypeStagingProfileId"] = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: ""
+}
+
+signing {
+    sign(publishing.publications)
+}
 
 publishing {
     publications {
@@ -169,6 +159,17 @@ publishing {
                 scm {
                     connection.set("scm:git:github.com/getstream/stream-java-sdk.git")
                 }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "ossrh"
+            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            credentials {
+                username = extra["ossrhUsername"] as String? ?: ""
+                password = extra["ossrhPassword"] as String? ?: ""
             }
         }
     }

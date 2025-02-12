@@ -1,10 +1,26 @@
 package io.getstream.models.framework;
 
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
-public interface StreamResponse {
+public class StreamResponse<T> {
+  private String duration;
+  @Setter private RateLimit rateLimit;
+  @Setter private T data;
 
-  String getDuration();
+  public String getDuration() {
+    return duration;
+  }
 
-  void setDuration(@NotNull String duration);
+  public void setDuration(@NotNull String duration) {
+    this.duration = duration;
+  }
+
+  public RateLimit getRateLimit() {
+    return rateLimit;
+  }
+
+  public T getData() {
+    return data;
+  }
 }

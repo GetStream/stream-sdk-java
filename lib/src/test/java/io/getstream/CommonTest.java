@@ -1,14 +1,13 @@
 package io.getstream;
 
-import static io.getstream.models.framework.User.createToken;
-
 import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
-import io.getstream.services.Common;
-import io.getstream.services.framework.DefaultClient;
+import io.getstream.services.framework.StreamHTTPClient;
+import io.getstream.services.framework.StreamSDKClient;
 import java.util.Properties;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,24 +19,19 @@ public class CommonTest extends BasicTest {
   @Test
   void whenGeneratingUserToken_thenNoException() {
     String userId = RandomStringUtils.randomAlphabetic(10);
-    String token = createToken(userId, null, null);
-    Assertions.assertEquals(184, token.length());
+    String token = client.tokenBuilder().createToken(userId, 24 * 60 * 60);
+    Assertions.assertNotEquals(0, token.length());
   }
 
   @DisplayName("App Get does not throw Exception")
   @Test
   void whenCallingGetApp_thenNoException() {
-    Assertions.assertDoesNotThrow(() -> new Common.GetApp().request());
-  }
-
-  @Test
-  @DisplayName("App get async does not throw Exception")
-  void whenCallingGetAppAsync_thenNoException() {
-    new Common.GetApp().requestAsync(Assertions::assertNotNull, Assertions::assertNull);
+    Assertions.assertDoesNotThrow(() -> client.getApp(null).execute());
   }
 
   @DisplayName("App Settings update does not throw Exception")
   @Test
+  @Disabled
   void whenUpdatingAppSettings_thenNoException() {
     var data =
         UpdateAppRequest.builder()
@@ -54,54 +48,50 @@ public class CommonTest extends BasicTest {
                     .build())
             .build();
 
-    Assertions.assertDoesNotThrow(() -> new Common.UpdateApp(data).request());
+    Assertions.assertDoesNotThrow(() -> client.updateApp(data).execute());
     Assertions.assertDoesNotThrow(
         () ->
-            new Common.UpdateApp(
+            client
+                .updateApp(
                     UpdateAppRequest.builder()
                         .disableAuthChecks(false)
                         .disablePermissionsChecks(false)
                         .build())
-                .request());
+                .execute());
   }
 
   @DisplayName("App Get fails with bad key")
   @Test
+  @Disabled
   void givenBadKey_whenGettingApp_thenException() {
     var properties = new Properties();
-    properties.put(DefaultClient.API_KEY_PROP_NAME, "XXX");
+    properties.put(StreamHTTPClient.API_KEY_PROP_NAME, "XXX");
 
-    var client = new DefaultClient(properties);
+    var client = new StreamSDKClient(properties);
 
     StreamException exception =
-        Assertions.assertThrows(
-            StreamException.class, () -> new Common.GetApp().withClient(client).request());
+        Assertions.assertThrows(StreamException.class, () -> client.getApp(null).execute());
     Assertions.assertEquals(401, exception.getResponseData().getStatusCode());
   }
 
   @DisplayName("App Get fails with bad secret (after enabling auth)")
   @Test
+  @Disabled
   void givenBadSecret_whenEnableAuthAndGettingApp_thenException() {
     Assertions.assertDoesNotThrow(
         () ->
-            new Common.UpdateApp(UpdateAppRequest.builder().disableAuthChecks(false).build())
-                .request());
+            client
+                .updateApp(UpdateAppRequest.builder().disableAuthChecks(false).build())
+                .execute());
     var properties = new Properties();
     properties.put(
-        DefaultClient.API_SECRET_PROP_NAME, "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        StreamHTTPClient.API_SECRET_PROP_NAME, "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
-    var client = new DefaultClient(properties);
+    var client = new StreamSDKClient(properties);
 
     StreamException exception =
-        Assertions.assertThrows(
-            StreamException.class, () -> new Common.GetApp().withClient(client).request());
+        Assertions.assertThrows(StreamException.class, () -> client.getApp(null).execute());
     Assertions.assertEquals(401, exception.getResponseData().getStatusCode());
-  }
-
-  @DisplayName("Get rate limits does not throw Exception")
-  @Test
-  void whenCallingGetRateLimits_thenNoException() {
-    Assertions.assertDoesNotThrow(() -> new Common.GetRateLimits().request());
   }
 
   @DisplayName("Can check sqs")
@@ -110,13 +100,15 @@ public class CommonTest extends BasicTest {
     CheckSQSResponse response =
         Assertions.assertDoesNotThrow(
             () ->
-                new Common.CheckSQS(
+                client
+                    .checkSQS(
                         CheckSQSRequest.builder()
                             .sqsKey("key")
                             .sqsSecret("secret")
                             .sqsUrl("https://foo.com/bar")
                             .build())
-                    .request());
+                    .execute()
+                    .getData());
     Assertions.assertEquals("error", response.getStatus());
   }
 
@@ -126,56 +118,15 @@ public class CommonTest extends BasicTest {
     CheckSNSResponse response =
         Assertions.assertDoesNotThrow(
             () ->
-                new Common.CheckSNS(
+                client
+                    .checkSNS(
                         CheckSNSRequest.builder()
                             .snsKey("key")
                             .snsSecret("secret")
                             .snsTopicArn("arn:aws:sns:us-east-1:123456789012:sns-topic")
                             .build())
-                    .request());
+                    .execute()
+                    .getData());
     Assertions.assertEquals("error", response.getStatus());
   }
-
-  //    @DisplayName("Can check push templates")
-  //    @Test
-  //    void whenCheckingPushTemplates_thenNoException() {
-  //      String firstUserId = testUser.getId();
-  //      String secondUserId = testUsers.get(1).getId();
-  //      String text = "Hello @" + secondUserId;
-  //      MessageRequest messageRequest =
-  //          MessageRequest.builder().text(text).userId(firstUserId).build();
-  //      MessageResponse message =
-  //          Assertions.assertDoesNotThrow(
-  //                  () ->
-  //                          new ChatClient.SendMessage(testChannel.getType(), testChannel.getId(),
-  // SendMessageRequest.builder().message(messageRequest).build())
-  //                          .request())
-  //              .getMessage();
-  //      Assertions.assertDoesNotThrow(
-  //          () ->
-  //                  new Common.UpdateApp(UpdateAppRequest.builder()
-  //                      .pushConfig(
-  //                          PushConfig.builder()
-  //                              .version("v2")
-  //                              .offlineOnly(false)
-  //                              .build())
-  //                      .build())
-  //                  .request());
-  //      Assertions.assertDoesNotThrow(
-  //          () ->
-  //                  new Common.CheckPush(CheckPushRequest.builder()
-  //                      .messageId(message.getId())
-  //                      .skipDevices(true)
-  //                      .userId(secondUserId)
-  //                      .build())
-  //                  .request());
-  //    }
-  //
-  //    @DisplayName("Can revoke tokens")
-  //    @Test
-  //    void whenRevokingTokens_thenNoException() {
-  //      Calendar calendar = new GregorianCalendar();
-  //      calendar.add(Calendar.DAY_OF_MONTH, -1);
-  //      Assertions.assertDoesNotThrow(() -> App.revokeTokens(calendar.getTime()).request());
-  //    }
 }

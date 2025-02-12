@@ -14,119 +14,102 @@ Check out our:
 
 ## Installation
 
-To install the Stream Client Library, run the following command:
-
-```sh
-pip install getstream
+```gradle
+dependencies {
+    implementation "io.getstream:stream-sdk-java:$stream_version"
+}
 ```
 
-## Usage
+## ✨ Getting started
 
-To get started, you need to import the `Stream` class from the library and create a new instance with your API key and secret:
+### Configuration
 
-```python
-from getstream import Stream
+To configure the SDK you need to provide required properties.
 
-client = Stream(api_key="your_api_key", api_secret="your_api_secret")
-```
+| Property               | ENV                | Default                      | Required |
+| ---------------------- |--------------------|------------------------------| -------- |
+| io.getstream.apiKey    | STREAM_API_KEY     | -                            | Yes      |
+| io.getstream.apiSecret | STREAM_API_SECRET  | -                            | Yes      |
+| io.getstream.timeout   | STREAM_API_TIMEOUT | 10000                          | No       |
 
 ### Users and Authentication
 
-```python
-from getstream.models import UserRequest
+```java
+import io.getstream.models.UserRequest;
 
-# sync two users using the update_users method, both users will get insert or updated
-client.upsert_users(
-    UserRequest(
-        id="tommaso-id", name="tommaso", role="admin", custom={"country": "NL"}
-    ),
-    UserRequest(
-        id="thierry-id", name="thierry", role="admin", custom={"country": "US"}
-    ),
-)
+// sync two users using the UpdateUsers method, both users will get inserted or updated
+List<UserRequest> userRequests =
+    List.of(
+        UserRequest.builder()
+            .id("tommaso-id")
+            .name("tommaso")
+            .role("admin")
+            .custom(Map.of("country", "NL"))
+            .build(),
+        UserRequest.builder()
+            .id("thierry-id")
+            .name("thierry")
+            .custom(Map.of("country", "US"))
+            .build());
 
-# Create a JWT token for the user to connect client-side (e.g. browser/mobile app)
-token = client.create_token("tommaso-id")
+UpdateUsersRequest updateUsersRequest =
+    UpdateUsersRequest.builder()
+        .users(userRequests.stream().collect(Collectors.toMap(UserRequest::getId, x -> x)))
+        .build();
+
+client.common().UpdateUsers(updateUsersRequest).request();
+
+// Create a JWT token for the user to connect client-side (e.g. browser/mobile app)
+// token expires in 24 hours
+String token = createToken(userId, 24*60*60);
+```
+
+// Token does not expire
+String token = createToken(userId);
 ```
 
 ### Video API - Calls
 
 To create a video call, use the `client.video.call` method:
 
-```python
-import uuid
-from getstream.models import (
-    CallRequest,
-    MemberRequest,
-)
+```java
+var testCall = new Call("default", UUID.randomUUID().toString());
 
-call = client.video.call("default", uuid.uuid4())
-call.get_or_create(
-    data=CallRequest(
-        created_by_id="tommaso-id",
-        members=[
-            MemberRequest(user_id="thierry-id"),
-            MemberRequest(user_id="tommaso-id"),
-        ],
-    ),
-)
-```
-
-### App configuration
-
-```python
-# Video: update settings for a call type
-
-# Chat: update settings for a channel type
-```
-
-
-### Chat API - Channels
-
-To work with chat sessions, use the `client.chat` object and implement the desired chat methods in the `Chat` class:
-
-```python
-chat_instance = client.chat
-
-# TODO: implement and call chat-related methods with chat_instance
+// create call if it doesn't exist or get the existing one
+call.getOrCreate(
+    GetOrCreateCallRequest.builder()
+        .data(
+            CallRequest.builder()
+                .createdByID("sacha")
+                .members(members)
+                .custom(Map.of("color", "blue"))
+                .build())
+        .build());
 ```
 
 ## Development
 
-We use poetry to manage dependencies and run tests. It's a package manager for Python that allows you to declare the libraries your project depends on and manage them.
-To install the development dependencies, run the following command:
+To run tests, create the `local.properties` file using the `local.properties.example` and adjust it to have valid API credentials:
 
 ```sh
-poetry install
-pre-commit install
+cp local.properties.example local.properties
 ```
 
-To activate the virtual environment, run the following command:
+Then run the tests:
 
 ```sh
-poetry shell
+ ./gradlew test
 ```
 
-To run tests, create a `.env` using the `.env.example` and adjust it to have valid API credentials
-```sh
-poetry run pytest tests/ getstream/
-```
-
-Before pushing changes make sure to have git hooks installed correctly, so that you get linting done locally `pre-commit install`
-
-You can also run the code formatting yourself if needed:
+Format the code:
 
 ```sh
-poetry run ruff format getstream/ tests/
+./gradlew spotlessApply
 ```
-
-### Writing new tests
-
-pytest is used to run tests and to inject fixtures, simple tests can be written as simple python functions making assert calls. Make sure to have a look at the available test fixtures under `tests/fixtures.py`
 
 ### Generate code from spec
 
-To regenerate the Python source from OpenAPI, just run the `./generate.sh` script from this repo.
+To regenerate the Java source from OpenAPI, just run the `./generate.sh` script from this repo.
 
 > [!NOTE]
 > Code generation currently relies on tooling that is not publicly available, only Stream devs can regenerate SDK source code from the OpenAPI spec.
