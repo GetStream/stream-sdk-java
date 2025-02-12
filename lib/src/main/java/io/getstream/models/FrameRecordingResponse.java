@@ -13,26 +13,13 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
-import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class EgressResponse {
+public class FrameRecordingResponse {
 
-  @JsonProperty("broadcasting")
-  private Boolean broadcasting;
-
-  @JsonProperty("rtmps")
-  private List<EgressRTMPResponse> rtmps;
-
-  @Nullable
-  @JsonProperty("frame_recording")
-  private FrameRecordingResponse frameRecording;
-
-  @Nullable
-  @JsonProperty("hls")
-  private EgressHLSResponse hls;
+  @JsonProperty("status")
+  private String status;
 }

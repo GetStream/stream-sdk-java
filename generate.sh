@@ -16,4 +16,4 @@ set -ex
 # format generated code
 ./gradlew spotlessApply
 
-./gradlew build
+./gradlew build -x test

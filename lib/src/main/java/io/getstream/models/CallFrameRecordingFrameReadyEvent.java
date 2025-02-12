@@ -31,6 +31,9 @@ public class CallFrameRecordingFrameReadyEvent {
   @JsonProperty("created_at")
   private Date createdAt;
 
+  @JsonProperty("egress_id")
+  private String egressID;
+
   @JsonProperty("session_id")
   private String sessionID;
 

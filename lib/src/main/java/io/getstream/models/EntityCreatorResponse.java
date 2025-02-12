@@ -36,6 +36,9 @@ public class EntityCreatorResponse {
   @JsonProperty("deleted_content_count")
   private Integer deletedContentCount;
 
+  @JsonProperty("flagged_count")
+  private Integer flaggedCount;
+
   @JsonProperty("id")
   private String id;
 

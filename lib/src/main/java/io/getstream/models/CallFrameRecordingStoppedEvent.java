@@ -27,6 +27,12 @@ public class CallFrameRecordingStoppedEvent {
   @JsonProperty("created_at")
   private Date createdAt;
 
+  @JsonProperty("egress_id")
+  private String egressID;
+
+  @JsonProperty("call")
+  private CallResponse call;
+
   @JsonProperty("type")
   private String type;
 }

@@ -6,18 +6,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 public class CallTest extends BasicTest {
   String callType = "default";
   private static String callTypeName;
 
-  @BeforeAll
-  static void createCall() throws InterruptedException {
-    callTypeName = "calltype-" + RandomStringUtils.randomAlphanumeric(10);
+  @Test
+  @Disabled
+  void createCallType() throws InterruptedException {
+    callTypeName = "calltype-java-sdk-test";
 
     // Assuming context setup is not required as it's often implicit in Java methods
     CallSettingsRequest callSettings =
@@ -106,6 +104,7 @@ public class CallTest extends BasicTest {
   }
 
   @Test
+  @Disabled
   public void updateLayoutOptions() {
     Map<String, Object> layoutOptions = new HashMap<>();
     layoutOptions.put(

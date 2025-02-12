@@ -72,6 +72,9 @@ public class SearchResultMessage {
   @JsonProperty("own_reactions")
   private List<ReactionResponse> ownReactions;
 
+  @JsonProperty("restricted_visibility")
+  private List<String> restrictedVisibility;
+
   @JsonProperty("custom")
   private Map<String, Object> custom;
 

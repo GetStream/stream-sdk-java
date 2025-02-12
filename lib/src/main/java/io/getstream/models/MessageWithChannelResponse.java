@@ -72,6 +72,9 @@ public class MessageWithChannelResponse {
   @JsonProperty("own_reactions")
   private List<ReactionResponse> ownReactions;
 
+  @JsonProperty("restricted_visibility")
+  private List<String> restrictedVisibility;
+
   @JsonProperty("channel")
   private ChannelResponse channel;
 

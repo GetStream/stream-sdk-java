@@ -89,6 +89,10 @@ public class MessageRequest {
   private List<String> mentionedUsers;
 
   @Nullable
+  @JsonProperty("restricted_visibility")
+  private List<String> restrictedVisibility;
+
+  @Nullable
   @JsonProperty("custom")
   private Map<String, Object> custom;
 
