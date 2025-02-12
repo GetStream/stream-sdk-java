@@ -2,30 +2,30 @@ import java.io.FileInputStream
 import java.util.*
 
 plugins {
-    // Apply the java-library plugin for API and implementation separation.
-    `java-library`
-    `maven-publish`
+    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
     signing
+    `maven-publish`
+    `java-library`
     id("com.diffplug.spotless") version "7.0.2"
 }
 
 group = "io.getstream"
-version = "0.0.1"
+version = "0.1.0"
 description = "Stream official Java SDK"
 
 repositories {
-    // Use Maven Central for resolving dependencies.
     mavenCentral()
     gradlePluginPortal()
 }
 
-    java {
-        toolchain {
-            languageVersion = JavaLanguageVersion.of(17)
-        }
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
     }
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
 dependencies {
     // Use JUnit Jupiter for testing.
@@ -75,18 +75,6 @@ tasks.named<Test>("test") {
 
 val generatedVersionDir = layout.buildDirectory.dir("generated-version")
 
-sourceSets {
-    main {
-        output.dir(mapOf("builtBy" to "generateVersionProperties"), generatedVersionDir)
-    }
-}
-
-spotless {
-    java {
-        googleJavaFormat()
-    }
-}
-
 tasks.register("generateVersionProperties") {
     doLast {
         val f = layout.buildDirectory.file("generated-version/version.properties")
@@ -98,8 +86,16 @@ tasks.register("generateVersionProperties") {
     }
 }
 
-tasks.named("processResources").configure {
-    dependsOn("generateVersionProperties")
+sourceSets {
+    main {
+        output.dir(mapOf("builtBy" to "generateVersionProperties"), generatedVersionDir)
+    }
+}
+
+spotless {
+    java {
+        googleJavaFormat()
+    }
 }
 
 extra["ossrhUsername"] = ""
@@ -123,10 +119,6 @@ if (secretPropsFile.exists()) {
     extra["signing.password"] = System.getenv("SIGNING_PASSWORD") ?: ""
     extra["signing.secretKeyRingFile"] = System.getenv("SIGNING_SECRET_KEY_RING_FILE") ?: ""
     extra["sonatypeStagingProfileId"] = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: ""
-}
-
-signing {
-    sign(publishing.publications)
 }
 
 publishing {
@@ -162,15 +154,35 @@ publishing {
             }
         }
     }
+}
 
+signing {
+    useInMemoryPgpKeys(
+        extra["signing.keyId"] as String,
+        extra["signing.secretKeyRingFile"] as String,
+        extra["signing.password"] as String
+    )
+    sign(publishing.publications["maven"])
+}
+
+nexusPublishing {
     repositories {
-        maven {
-            name = "ossrh"
-            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-            credentials {
-                username = extra["ossrhUsername"] as String? ?: ""
-                password = extra["ossrhPassword"] as String? ?: ""
-            }
+        sonatype {
+            username.set(extra["ossrhUsername"] as String)
+            password.set(extra["ossrhPassword"] as String)
+            stagingProfileId.set(extra["sonatypeStagingProfileId"] as String)
         }
     }
+}
+
+// Optional: configure tasks for releases
+tasks.register("prepareRelease") {
+    group = "publishing"
+    description = "Prepares the project for release"
+
+    dependsOn("clean")
+    dependsOn("build")
+    dependsOn("javadoc")
+    dependsOn("sourcesJar")
+    dependsOn("publishToMavenLocal") // Test locally first
 }
