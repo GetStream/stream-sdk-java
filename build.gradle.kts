@@ -152,7 +152,9 @@ publishing {
                 }
 
                 scm {
-                    connection.set("scm:git:github.com/getstream/stream-java-sdk.git")
+                    url = "https://github.com/GetStream/stream-sdk-java"
+                    connection = "scm:git:github.com/getstream/stream-java-sdk.git"
+                    developerConnection = "scm:git:github.com/getstream/stream-java-sdk.git"
                 }
             }
         }
