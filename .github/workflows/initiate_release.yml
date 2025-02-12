@@ -41,4 +41,4 @@ jobs:
             Make sure to use squash & merge when merging!
             Once this is merged, another job will kick off automatically and publish the package.
             # :memo: Changelog
-            ${{ env.CHANGELOG }}"
+            $(cat CHANGELOG.md)"
