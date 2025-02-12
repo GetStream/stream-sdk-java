@@ -6,6 +6,8 @@ on:
       version:
         description: "The new version number. Example: 1.40.1"
         required: true
+        type: string
+        pattern: "^[0-9]+\\.[0-9]+\\.[0-9]+$"
 
 jobs:
   init_release:
@@ -21,9 +23,11 @@ jobs:
           VERSION: ${{ github.event.inputs.version }}
         run: |
           npx --yes standard-version@9.3.2 --release-as "$VERSION" --skip.tag --skip.commit --tag-prefix=
+          echo "version=$VERSION" >> gradle.properties
           git config --global user.name 'github-actions' 
           git config --global user.email 'release@getstream.io'
           git checkout -q -b "release-$VERSION"
+          git add CHANGELOG.md gradle.properties
           git commit -am "chore(release): $VERSION"
           git push -q -u origin "release-$VERSION"
 

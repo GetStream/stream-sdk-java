@@ -10,7 +10,6 @@ plugins {
 }
 
 group = "io.getstream"
-version = "0.1.0"
 description = "Stream official Java SDK"
 
 repositories {
