@@ -63,10 +63,10 @@ public class CallTest extends BasicTest {
     java.lang.Thread.sleep(3000);
   }
 
-//  @AfterAll
-//  static void tearDown() throws Exception {
-//    video.deleteCallType(callTypeName).execute();
-//  }
+  //  @AfterAll
+  //  static void tearDown() throws Exception {
+  //    video.deleteCallType(callTypeName).execute();
+  //  }
 
   @Test
   @Disabled
