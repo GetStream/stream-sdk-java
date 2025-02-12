@@ -114,10 +114,6 @@ To regenerate the Java source from OpenAPI, just run the `./generate.sh` script 
 > [!NOTE]
 > Code generation currently relies on tooling that is not publicly available, only Stream devs can regenerate SDK source code from the OpenAPI spec.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
 ## Contributing
 
 Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTING.md) to get started.
