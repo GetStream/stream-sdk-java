@@ -16,7 +16,7 @@ Check out our:
 
 ```gradle
 dependencies {
-    implementation "io.getstream:stream-sdk-java:$stream_version"
+    implementation("io.getstream:stream-sdk-java:$streamVersion")
 }
 ```
 
@@ -35,7 +35,10 @@ To configure the SDK you need to provide required properties.
 ### Users and Authentication
 
 ```java
+import io.getstream.services.frameworks.StreamSDKClient;
 import io.getstream.models.UserRequest;
+
+var client = new StreamSDKClient("apiKey", "apiSecret");
 
 // sync two users using the UpdateUsers method, both users will get inserted or updated
 List<UserRequest> userRequests =
@@ -57,23 +60,20 @@ UpdateUsersRequest updateUsersRequest =
         .users(userRequests.stream().collect(Collectors.toMap(UserRequest::getId, x -> x)))
         .build();
 
-client.common().UpdateUsers(updateUsersRequest).request();
+client.updateUsers(updateUsersRequest).execute();
 
 // Create a JWT token for the user to connect client-side (e.g. browser/mobile app)
 // token expires in 24 hours
-String token = createToken(userId, 24*60*60);
+client.tokenBuilder().createToken("john", 24 * 60 * 60);
 ```
 
-// Token does not expire
-String token = createToken(userId);
-```
 
 ### Video API - Calls
 
 To create a video call, use the `client.video.call` method:
 
 ```java
-var testCall = new Call("default", UUID.randomUUID().toString());
+var testCall = client.video().call("default", UUID.randomUUID().toString());
 
 // create call if it doesn't exist or get the existing one
 call.getOrCreate(
