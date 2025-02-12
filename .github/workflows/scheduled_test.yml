@@ -8,12 +8,13 @@ on:
 
 jobs:
   test:
+    environment: ci
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - name: Run tests
         env:
+          STREAM_BASE_URL: ${{ vars.STREAM_BASE_URL }}
           STREAM_API_KEY: ${{ vars.STREAM_API_KEY }}
           STREAM_API_SECRET: ${{ secrets.STREAM_API_SECRET }}
         run: |
