@@ -31,13 +31,6 @@ jobs:
           git commit -am "chore(release): $VERSION"
           git push -q -u origin "release-$VERSION"
 
-      - name: Get changelog diff
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const get_change_log_diff = require('./scripts/get_changelog_diff.js')
-            core.exportVariable('CHANGELOG', get_change_log_diff())
-
       - name: Open pull request
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
