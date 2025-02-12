@@ -103,6 +103,7 @@ extra["signing.keyId"] = ""
 extra["signing.password"] = ""
 extra["signing.secretKeyRingFile"] = ""
 extra["sonatypeStagingProfileId"] = ""
+extra["signing.gpgkeycontents"] = ""
 
 val secretPropsFile = project.rootProject.file("local.properties")
 if (secretPropsFile.exists()) {
@@ -117,6 +118,7 @@ if (secretPropsFile.exists()) {
     extra["signing.keyId"] = System.getenv("SIGNING_KEY_ID") ?: ""
     extra["signing.password"] = System.getenv("SIGNING_PASSWORD") ?: ""
     extra["signing.secretKeyRingFile"] = System.getenv("SIGNING_SECRET_KEY_RING_FILE") ?: ""
+    extra["signing.gpgkeycontents"] = System.getenv("GPG_KEY_CONTENTS") ?: ""
     extra["sonatypeStagingProfileId"] = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: ""
 }
 
@@ -158,7 +160,7 @@ publishing {
 signing {
     useInMemoryPgpKeys(
         extra["signing.keyId"] as String,
-        extra["signing.secretKeyRingFile"] as String,
+        extra["signing.gpgkeycontents"] as String,
         extra["signing.password"] as String
     )
     sign(publishing.publications)
