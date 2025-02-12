@@ -24,6 +24,8 @@ java {
     }
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
+    withSourcesJar()
+    withJavadocJar()
 }
 
 dependencies {
@@ -117,7 +119,7 @@ if (secretPropsFile.exists()) {
     extra["ossrhPassword"] = System.getenv("OSSRH_PASSWORD") ?: ""
     extra["signing.keyId"] = System.getenv("SIGNING_KEY_ID") ?: ""
     extra["signing.password"] = System.getenv("SIGNING_PASSWORD") ?: ""
-    extra["signing.secretKeyRingFile"] = System.getenv("SIGNING_SECRET_KEY_RING_FILE") ?: ""
+//    extra["signing.secretKeyRingFile"] = System.getenv("SIGNING_SECRET_KEY_RING_FILE") ?: ""
     extra["signing.gpgkeycontents"] = System.getenv("GPG_KEY_CONTENTS") ?: ""
     extra["sonatypeStagingProfileId"] = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: ""
 }
@@ -155,6 +157,17 @@ publishing {
             }
         }
     }
+}
+
+
+if (extra["signing.keyId"] == "") {
+    throw IllegalArgumentException("Please provide signing.keyId")
+}
+if (extra["signing.password"] == "") {
+    throw IllegalArgumentException("Please provide signing.password")
+}
+if (extra["signing.gpgkeycontents"] == "") {
+    throw IllegalArgumentException("Please provide signing.gpgkeycontents")
 }
 
 signing {
