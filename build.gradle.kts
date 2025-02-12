@@ -162,27 +162,15 @@ signing {
         extra["signing.secretKeyRingFile"] as String,
         extra["signing.password"] as String
     )
-    sign(publishing.publications["maven"])
+    sign(publishing.publications)
 }
 
 nexusPublishing {
     repositories {
         sonatype {
-            username.set(extra["ossrhUsername"] as String)
-            password.set(extra["ossrhPassword"] as String)
-            stagingProfileId.set(extra["sonatypeStagingProfileId"] as String)
+            username = extra["ossrhUsername"] as String
+            password = extra["ossrhPassword"] as String
+            stagingProfileId = extra["sonatypeStagingProfileId"] as String
         }
     }
-}
-
-// Optional: configure tasks for releases
-tasks.register("prepareRelease") {
-    group = "publishing"
-    description = "Prepares the project for release"
-
-    dependsOn("clean")
-    dependsOn("build")
-    dependsOn("javadoc")
-    dependsOn("sourcesJar")
-    dependsOn("publishToMavenLocal") // Test locally first
 }
