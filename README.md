@@ -1,5 +1,8 @@
 # Official Java SDK for [Stream](https://getstream.io/)
 
+[![Build](https://github.com/GetStream/stream-sdk-java/actions/workflows/ci.yml/badge.svg)](https://github.com/GetStream/stream-sdk-java/actions/workflows/ci.yml) ![Maven Central Version](https://img.shields.io/maven-central/v/io.getstream/stream-sdk-java) ![Java Version](https://img.shields.io/badge/Java-17%2B-orange)
+
+
 Check out our:
 
 - ⭐ [Chat API](https://getstream.io/chat/)
