@@ -1,0 +1,13 @@
+ossrhUsername=
+ossrhPassword=
+signing.keyId=
+signing.password=
+signing.secretKeyRingFile=
+sonatypeStagingProfileId=
+io.getstream.apiKey=
+io.getstream.apiSecret=
+io.getstream.url=https://chat.stream-io-api.com
+io.getstream.timeout=10000
+# https://square.github.io/okhttp/3.x/logging-interceptor/okhttp3/logging/HttpLoggingInterceptor.Level.html
+# NONE, BASIC, HEADERS, BODY
+io.getstream.debug.logLevel=NONE

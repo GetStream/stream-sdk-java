@@ -1,0 +1,35 @@
+name: Scheduled tests
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Monday at 9:00 UTC
+    - cron: "0 9 * * 1"
+
+jobs:
+  test:
+    environment: ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run tests
+        env:
+          STREAM_BASE_URL: ${{ vars.STREAM_BASE_URL }}
+          STREAM_API_KEY: ${{ vars.STREAM_API_KEY }}
+          STREAM_API_SECRET: ${{ secrets.STREAM_API_SECRET }}
+        run: |
+          # Retry 3 times because tests can be flaky
+          for _ in 1 2 3;
+          do
+              ./gradlew test --no-daemon && break
+          done
+
+      - name: Notify Slack if failed
+        uses: voxmedia/github-action-slack-notify-build@v1
+        if: failure()
+        with:
+          channel_id: C02RPDF7T63
+          color: danger
+          status: FAILED
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
