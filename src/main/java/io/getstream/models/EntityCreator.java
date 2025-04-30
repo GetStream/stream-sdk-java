@@ -45,6 +45,9 @@ public class EntityCreator {
   @JsonProperty("custom")
   private Map<String, Object> custom;
 
+  @JsonProperty("teams_role")
+  private Map<String, String> teamsRole;
+
   @Nullable
   @JsonProperty("ban_expires")
   private Date banExpires;

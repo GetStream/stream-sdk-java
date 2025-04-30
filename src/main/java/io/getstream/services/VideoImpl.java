@@ -350,6 +350,32 @@ public class VideoImpl implements Video {
   }
 
   @NotNull
+  public StreamRequest<QueryCallParticipantsResponse> queryCallParticipants(
+      @NotNull String id, @NotNull String type, QueryCallParticipantsRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "id", id,
+            "type", type);
+
+    return new StreamRequest<QueryCallParticipantsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/video/call/{type}/{id}/participants",
+        request,
+        pathParams,
+        new TypeReference<QueryCallParticipantsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryCallParticipantsResponse> queryCallParticipants(
+      @NotNull String id, @NotNull String type) throws StreamException {
+    return queryCallParticipants(id, type, new QueryCallParticipantsRequest());
+  }
+
+  @NotNull
   public StreamRequest<PinResponse> videoPin(
       @NotNull String type, @NotNull String id, VideoPinRequest request) throws StreamException {
     var pathParams =
@@ -624,36 +650,6 @@ public class VideoImpl implements Video {
   public StreamRequest<StartTranscriptionResponse> startTranscription(
       @NotNull String type, @NotNull String id) throws StreamException {
     return startTranscription(type, id, new StartTranscriptionRequest());
-  }
-
-  @NotNull
-  public StreamRequest<GetCallStatsResponse> getCallStats(
-      @NotNull String type,
-      @NotNull String id,
-      @NotNull String session,
-      GetCallStatsRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "type", type,
-            "id", id,
-            "session", session);
-
-    return new StreamRequest<GetCallStatsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "GET",
-        "/api/v2/video/call/{type}/{id}/stats/{session}",
-        request,
-        pathParams,
-        new TypeReference<GetCallStatsResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<GetCallStatsResponse> getCallStats(
-      @NotNull String type, @NotNull String id, @NotNull String session) throws StreamException {
-    return getCallStats(type, id, session, new GetCallStatsRequest());
   }
 
   @NotNull

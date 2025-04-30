@@ -67,6 +67,10 @@ public class ChannelStateResponse {
   private ChannelResponse channel;
 
   @Nullable
+  @JsonProperty("draft")
+  private DraftResponse draft;
+
+  @Nullable
   @JsonProperty("membership")
   private ChannelMember membership;
 

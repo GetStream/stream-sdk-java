@@ -77,4 +77,8 @@ public class UserResponseCommonFields {
   @Nullable
   @JsonProperty("revoke_tokens_issued_before")
   private Date revokeTokensIssuedBefore;
+
+  @Nullable
+  @JsonProperty("teams_role")
+  private Map<String, String> teamsRole;
 }

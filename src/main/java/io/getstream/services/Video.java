@@ -122,6 +122,15 @@ public interface Video {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<QueryCallParticipantsResponse> queryCallParticipants(
+      @NotNull String id, @NotNull String type, QueryCallParticipantsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryCallParticipantsResponse> queryCallParticipants(
+      @NotNull String id, @NotNull String type) throws StreamException;
+
+  @NotNull
   public StreamRequest<PinResponse> videoPin(
       @NotNull String type, @NotNull String id, VideoPinRequest request) throws StreamException;
 
@@ -213,18 +222,6 @@ public interface Video {
   @NotNull
   public StreamRequest<StartTranscriptionResponse> startTranscription(
       @NotNull String type, @NotNull String id) throws StreamException;
-
-  @NotNull
-  public StreamRequest<GetCallStatsResponse> getCallStats(
-      @NotNull String type,
-      @NotNull String id,
-      @NotNull String session,
-      GetCallStatsRequest request)
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<GetCallStatsResponse> getCallStats(
-      @NotNull String type, @NotNull String id, @NotNull String session) throws StreamException;
 
   @NotNull
   public StreamRequest<StopHLSBroadcastingResponse> stopHLSBroadcasting(

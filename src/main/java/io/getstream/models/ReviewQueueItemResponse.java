@@ -35,6 +35,9 @@ public class ReviewQueueItemResponse {
   @JsonProperty("entity_type")
   private String entityType;
 
+  @JsonProperty("flags_count")
+  private Integer flagsCount;
+
   @JsonProperty("id")
   private String id;
 
@@ -60,7 +63,7 @@ public class ReviewQueueItemResponse {
   private List<Ban> bans;
 
   @JsonProperty("flags")
-  private List<Flag2Response> flags;
+  private List<FlagResponse> flags;
 
   @JsonProperty("languages")
   private List<String> languages;
@@ -68,6 +71,10 @@ public class ReviewQueueItemResponse {
   @Nullable
   @JsonProperty("completed_at")
   private Date completedAt;
+
+  @Nullable
+  @JsonProperty("config_key")
+  private String configKey;
 
   @Nullable
   @JsonProperty("entity_creator_id")
@@ -80,6 +87,10 @@ public class ReviewQueueItemResponse {
   @Nullable
   @JsonProperty("teams")
   private List<String> teams;
+
+  @Nullable
+  @JsonProperty("activity")
+  private EnrichedActivity activity;
 
   @Nullable
   @JsonProperty("assigned_to")
@@ -104,4 +115,8 @@ public class ReviewQueueItemResponse {
   @Nullable
   @JsonProperty("moderation_payload")
   private ModerationPayload moderationPayload;
+
+  @Nullable
+  @JsonProperty("reaction")
+  private Reaction reaction;
 }

@@ -49,4 +49,8 @@ public class SearchPayload {
   @Nullable
   @JsonProperty("message_filter_conditions")
   private Map<String, Object> messageFilterConditions;
+
+  @Nullable
+  @JsonProperty("message_options")
+  private MessageOptions messageOptions;
 }

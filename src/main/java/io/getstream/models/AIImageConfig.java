@@ -25,6 +25,9 @@ public class AIImageConfig {
   @JsonProperty("enabled")
   private Boolean enabled;
 
+  @JsonProperty("ocr_rules")
+  private List<OCRRule> ocrRules;
+
   @JsonProperty("rules")
   private List<AWSRekognitionRule> rules;
 

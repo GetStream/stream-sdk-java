@@ -35,4 +35,10 @@ public class CampaignStatsResponse {
 
   @JsonProperty("stats_started_at")
   private Date statsStartedAt;
+
+  @JsonProperty("stats_users_read")
+  private Integer statsUsersRead;
+
+  @JsonProperty("stats_users_sent")
+  private Integer statsUsersSent;
 }

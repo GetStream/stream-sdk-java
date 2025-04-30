@@ -45,6 +45,9 @@ public class VelocityFilterConfigRule {
   @JsonProperty("ip_ban")
   private Boolean ipBan;
 
+  @JsonProperty("probation_period")
+  private Integer probationPeriod;
+
   @JsonProperty("shadow_ban")
   private Boolean shadowBan;
 
@@ -53,6 +56,9 @@ public class VelocityFilterConfigRule {
 
   @JsonProperty("slow_spam_ttl")
   private Integer slowSpamTtl;
+
+  @JsonProperty("url_only")
+  private Boolean urlOnly;
 
   @Nullable
   @JsonProperty("slow_spam_ban_duration")

@@ -135,6 +135,10 @@ public class MessageWithChannelResponse {
   private List<UserResponse> threadParticipants;
 
   @Nullable
+  @JsonProperty("draft")
+  private DraftResponse draft;
+
+  @Nullable
   @JsonProperty("i18n")
   private Map<String, String> i18n;
 

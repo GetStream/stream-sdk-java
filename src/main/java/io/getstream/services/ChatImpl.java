@@ -268,6 +268,56 @@ public class ChatImpl implements Chat {
   }
 
   @NotNull
+  public StreamRequest<Response> deleteDraft(
+      @NotNull String type, @NotNull String id, DeleteDraftRequest request) throws StreamException {
+    var pathParams =
+        Map.of(
+            "type", type,
+            "id", id);
+
+    return new StreamRequest<Response>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "DELETE",
+        "/api/v2/chat/channels/{type}/{id}/draft",
+        request,
+        pathParams,
+        new TypeReference<Response>() {});
+  }
+
+  @NotNull
+  public StreamRequest<Response> deleteDraft(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return deleteDraft(type, id, new DeleteDraftRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GetDraftResponse> getDraft(
+      @NotNull String type, @NotNull String id, GetDraftRequest request) throws StreamException {
+    var pathParams =
+        Map.of(
+            "type", type,
+            "id", id);
+
+    return new StreamRequest<GetDraftResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/chat/channels/{type}/{id}/draft",
+        request,
+        pathParams,
+        new TypeReference<GetDraftResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetDraftResponse> getDraft(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return getDraft(type, id, new GetDraftRequest());
+  }
+
+  @NotNull
   public StreamRequest<EventResponse> sendEvent(
       @NotNull String type, @NotNull String id, SendEventRequest request) throws StreamException {
     var pathParams =
@@ -413,14 +463,10 @@ public class ChatImpl implements Chat {
 
   @NotNull
   public StreamRequest<UpdateMemberPartialResponse> updateMemberPartial(
-      @NotNull String userID,
-      @NotNull String type,
-      @NotNull String id,
-      UpdateMemberPartialRequest request)
+      @NotNull String type, @NotNull String id, UpdateMemberPartialRequest request)
       throws StreamException {
     var pathParams =
         Map.of(
-            "user_id", userID,
             "type", type,
             "id", id);
 
@@ -429,7 +475,7 @@ public class ChatImpl implements Chat {
         client.getObjectMapper(),
         client.getBaseUrl(),
         "PATCH",
-        "/api/v2/chat/channels/{type}/{id}/member/{user_id}",
+        "/api/v2/chat/channels/{type}/{id}/member",
         request,
         pathParams,
         new TypeReference<UpdateMemberPartialResponse>() {});
@@ -437,8 +483,8 @@ public class ChatImpl implements Chat {
 
   @NotNull
   public StreamRequest<UpdateMemberPartialResponse> updateMemberPartial(
-      @NotNull String userID, @NotNull String type, @NotNull String id) throws StreamException {
-    return updateMemberPartial(userID, type, id, new UpdateMemberPartialRequest());
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return updateMemberPartial(type, id, new UpdateMemberPartialRequest());
   }
 
   @NotNull
@@ -793,6 +839,26 @@ public class ChatImpl implements Chat {
         request,
         pathParams,
         new TypeReference<UpdateCommandResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryDraftsResponse> queryDrafts(QueryDraftsRequest request)
+      throws StreamException {
+
+    return new StreamRequest<QueryDraftsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/chat/drafts/query",
+        request,
+        null,
+        new TypeReference<QueryDraftsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryDraftsResponse> queryDrafts() throws StreamException {
+    return queryDrafts(new QueryDraftsRequest());
   }
 
   @NotNull

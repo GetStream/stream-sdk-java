@@ -12,7 +12,9 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.annotations.Query;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -30,4 +32,8 @@ public class UpdateMemberPartialRequest {
   @Nullable
   @JsonProperty("set")
   private Map<String, Object> set;
+
+  @Query("user_id")
+  @JsonIgnore
+  private String UserID;
 }

@@ -36,6 +36,10 @@ public class QueryCampaignsRequest {
   private String prev;
 
   @Nullable
+  @JsonProperty("user_limit")
+  private Integer userLimit;
+
+  @Nullable
   @JsonProperty("sort")
   private List<SortParamRequest> sort;
 

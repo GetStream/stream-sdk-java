@@ -15,7 +15,6 @@ package io.getstream.services;
 import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
 import io.getstream.models.framework.StreamResponse;
-import org.jetbrains.annotations.NotNull;
 
 public class Channel {
   private String channelType;
@@ -56,6 +55,22 @@ public class Channel {
 
   public StreamResponse<UpdateChannelResponse> update() throws StreamException {
     return this.update(new UpdateChannelRequest());
+  }
+
+  public StreamResponse<Response> deleteDraft(DeleteDraftRequest request) throws StreamException {
+    return service.deleteDraft(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<Response> deleteDraft() throws StreamException {
+    return this.deleteDraft(new DeleteDraftRequest());
+  }
+
+  public StreamResponse<GetDraftResponse> getDraft(GetDraftRequest request) throws StreamException {
+    return service.getDraft(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<GetDraftResponse> getDraft() throws StreamException {
+    return this.getDraft(new GetDraftRequest());
   }
 
   public StreamResponse<EventResponse> sendEvent(SendEventRequest request) throws StreamException {
@@ -106,13 +121,12 @@ public class Channel {
   }
 
   public StreamResponse<UpdateMemberPartialResponse> updateMemberPartial(
-      @NotNull String userID, UpdateMemberPartialRequest request) throws StreamException {
-    return service.updateMemberPartial(this.channelType, this.channelID, userID, request).execute();
+      UpdateMemberPartialRequest request) throws StreamException {
+    return service.updateMemberPartial(this.channelType, this.channelID, request).execute();
   }
 
-  public StreamResponse<UpdateMemberPartialResponse> updateMemberPartial(@NotNull String userID)
-      throws StreamException {
-    return this.updateMemberPartial(userID, new UpdateMemberPartialRequest());
+  public StreamResponse<UpdateMemberPartialResponse> updateMemberPartial() throws StreamException {
+    return this.updateMemberPartial(new UpdateMemberPartialRequest());
   }
 
   public StreamResponse<SendMessageResponse> sendMessage(SendMessageRequest request)

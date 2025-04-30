@@ -114,4 +114,8 @@ public class OwnUserResponse {
   @Nullable
   @JsonProperty("push_preferences")
   private PushPreferences pushPreferences;
+
+  @Nullable
+  @JsonProperty("teams_role")
+  private Map<String, String> teamsRole;
 }

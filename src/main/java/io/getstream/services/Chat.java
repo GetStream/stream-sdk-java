@@ -103,6 +103,22 @@ public interface Chat {
       @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
+  public StreamRequest<Response> deleteDraft(
+      @NotNull String type, @NotNull String id, DeleteDraftRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deleteDraft(@NotNull String type, @NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetDraftResponse> getDraft(
+      @NotNull String type, @NotNull String id, GetDraftRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetDraftResponse> getDraft(@NotNull String type, @NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<EventResponse> sendEvent(
       @NotNull String type, @NotNull String id, SendEventRequest request) throws StreamException;
 
@@ -148,15 +164,12 @@ public interface Chat {
 
   @NotNull
   public StreamRequest<UpdateMemberPartialResponse> updateMemberPartial(
-      @NotNull String userID,
-      @NotNull String type,
-      @NotNull String id,
-      UpdateMemberPartialRequest request)
+      @NotNull String type, @NotNull String id, UpdateMemberPartialRequest request)
       throws StreamException;
 
   @NotNull
   public StreamRequest<UpdateMemberPartialResponse> updateMemberPartial(
-      @NotNull String userID, @NotNull String type, @NotNull String id) throws StreamException;
+      @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<SendMessageResponse> sendMessage(
@@ -268,6 +281,13 @@ public interface Chat {
   @NotNull
   public StreamRequest<UpdateCommandResponse> updateCommand(
       @NotNull String name, UpdateCommandRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryDraftsResponse> queryDrafts(QueryDraftsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryDraftsResponse> queryDrafts() throws StreamException;
 
   @NotNull
   public StreamRequest<ExportChannelsResponse> exportChannels(ExportChannelsRequest request)

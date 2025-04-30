@@ -28,6 +28,9 @@ public class CallType {
   @JsonProperty("CreatedAt")
   private Date createdAt;
 
+  @JsonProperty("EnableLiveInsights")
+  private Boolean enableLiveInsights;
+
   @JsonProperty("ExternalStorage")
   private String externalStorage;
 
