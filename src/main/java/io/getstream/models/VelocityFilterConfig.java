@@ -22,8 +22,14 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class VelocityFilterConfig {
 
+  @JsonProperty("advanced_filters")
+  private Boolean advancedFilters;
+
   @JsonProperty("cascading_actions")
   private Boolean cascadingActions;
+
+  @JsonProperty("cids_per_user")
+  private Integer cidsPerUser;
 
   @JsonProperty("enabled")
   private Boolean enabled;

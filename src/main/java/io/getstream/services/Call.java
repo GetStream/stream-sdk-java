@@ -129,6 +129,17 @@ public class Call {
   }
 
   @NotNull
+  public StreamResponse<QueryCallParticipantsResponse> queryCallParticipants(
+      QueryCallParticipantsRequest request) throws StreamException {
+    return service.queryCallParticipants(this.callType, this.callID, request).execute();
+  }
+
+  public StreamResponse<QueryCallParticipantsResponse> queryCallParticipants()
+      throws StreamException {
+    return this.queryCallParticipants(new QueryCallParticipantsRequest());
+  }
+
+  @NotNull
   public StreamResponse<PinResponse> videoPin(VideoPinRequest request) throws StreamException {
     return service.videoPin(this.callType, this.callID, request).execute();
   }
@@ -230,17 +241,6 @@ public class Call {
 
   public StreamResponse<StartTranscriptionResponse> startTranscription() throws StreamException {
     return this.startTranscription(new StartTranscriptionRequest());
-  }
-
-  @NotNull
-  public StreamResponse<GetCallStatsResponse> getCallStats(
-      @NotNull String session, GetCallStatsRequest request) throws StreamException {
-    return service.getCallStats(this.callType, this.callID, session, request).execute();
-  }
-
-  public StreamResponse<GetCallStatsResponse> getCallStats(@NotNull String session)
-      throws StreamException {
-    return this.getCallStats(session, new GetCallStatsRequest());
   }
 
   @NotNull

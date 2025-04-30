@@ -25,6 +25,10 @@ import org.jetbrains.annotations.Nullable;
 public class CallRequest {
 
   @Nullable
+  @JsonProperty("channel_cid")
+  private String channelCid;
+
+  @Nullable
   @JsonProperty("created_by_id")
   private String createdByID;
 

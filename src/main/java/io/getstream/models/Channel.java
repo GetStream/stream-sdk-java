@@ -64,6 +64,10 @@ public class Channel {
   private Date deletedAt;
 
   @Nullable
+  @JsonProperty("last_campaigns")
+  private String lastCampaigns;
+
+  @Nullable
   @JsonProperty("last_message_at")
   private Date lastMessageAt;
 

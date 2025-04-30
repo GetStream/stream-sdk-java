@@ -85,6 +85,10 @@ public class ThreadStateResponse {
   private UserResponse createdBy;
 
   @Nullable
+  @JsonProperty("draft")
+  private DraftResponse draft;
+
+  @Nullable
   @JsonProperty("parent_message")
   private MessageResponse parentMessage;
 }

@@ -44,6 +44,9 @@ public class CampaignResponse {
   @JsonProperty("sender_mode")
   private String senderMode;
 
+  @JsonProperty("show_channels")
+  private Boolean showChannels;
+
   @JsonProperty("skip_push")
   private Boolean skipPush;
 

@@ -13,6 +13,8 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -25,4 +27,36 @@ public class ParticipantReportResponse {
 
   @JsonProperty("unique")
   private Integer unique;
+
+  @Nullable
+  @JsonProperty("max_concurrent")
+  private Integer maxConcurrent;
+
+  @Nullable
+  @JsonProperty("by_browser")
+  private List<GroupedStatsResponse> byBrowser;
+
+  @Nullable
+  @JsonProperty("by_country")
+  private List<GroupedStatsResponse> byCountry;
+
+  @Nullable
+  @JsonProperty("by_device")
+  private List<GroupedStatsResponse> byDevice;
+
+  @Nullable
+  @JsonProperty("by_operating_system")
+  private List<GroupedStatsResponse> byOperatingSystem;
+
+  @Nullable
+  @JsonProperty("count_over_time")
+  private ParticipantCountOverTimeResponse countOverTime;
+
+  @Nullable
+  @JsonProperty("publishers")
+  private PublisherStatsResponse publishers;
+
+  @Nullable
+  @JsonProperty("subscribers")
+  private SubscriberStatsResponse subscribers;
 }

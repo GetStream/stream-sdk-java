@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -28,4 +29,8 @@ public class GetCallReportResponse {
 
   @JsonProperty("report")
   private ReportResponse report;
+
+  @Nullable
+  @JsonProperty("chat_activity")
+  private ChatActivityStatsResponse chatActivity;
 }

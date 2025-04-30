@@ -27,6 +27,9 @@ public class CallRecording {
   @JsonProperty("filename")
   private String filename;
 
+  @JsonProperty("session_id")
+  private String sessionID;
+
   @JsonProperty("start_time")
   private Date startTime;
 

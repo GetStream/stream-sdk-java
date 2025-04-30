@@ -99,4 +99,8 @@ public class UserResponse {
   @Nullable
   @JsonProperty("push_notifications")
   private PushNotificationSettingsResponse pushNotifications;
+
+  @Nullable
+  @JsonProperty("teams_role")
+  private Map<String, String> teamsRole;
 }

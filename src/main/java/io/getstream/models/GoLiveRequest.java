@@ -34,10 +34,6 @@ public class GoLiveRequest {
   private Boolean startHLS;
 
   @Nullable
-  @JsonProperty("start_rtmp_broadcasts")
-  private Boolean startRTMPBroadcasts;
-
-  @Nullable
   @JsonProperty("start_recording")
   private Boolean startRecording;
 

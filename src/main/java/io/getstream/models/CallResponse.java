@@ -73,6 +73,10 @@ public class CallResponse {
   private CallSettingsResponse settings;
 
   @Nullable
+  @JsonProperty("channel_cid")
+  private String channelCid;
+
+  @Nullable
   @JsonProperty("ended_at")
   private Date endedAt;
 

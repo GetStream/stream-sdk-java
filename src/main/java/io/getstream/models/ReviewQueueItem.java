@@ -29,6 +29,9 @@ public class ReviewQueueItem {
   @JsonProperty("bounce_count")
   private Integer bounceCount;
 
+  @JsonProperty("config_key")
+  private String configKey;
+
   @JsonProperty("content_changed")
   private Boolean contentChanged;
 
@@ -40,6 +43,9 @@ public class ReviewQueueItem {
 
   @JsonProperty("entity_type")
   private String entityType;
+
+  @JsonProperty("flags_count")
+  private Integer flagsCount;
 
   @JsonProperty("has_image")
   private Boolean hasImage;
@@ -78,7 +84,7 @@ public class ReviewQueueItem {
   private List<Ban> bans;
 
   @JsonProperty("flags")
-  private List<Flag2> flags;
+  private List<Flag> flags;
 
   @JsonProperty("languages")
   private List<String> languages;
@@ -88,6 +94,10 @@ public class ReviewQueueItem {
 
   @JsonProperty("reviewed_at")
   private NullTime reviewedAt;
+
+  @Nullable
+  @JsonProperty("activity")
+  private EnrichedActivity activity;
 
   @Nullable
   @JsonProperty("assigned_to")
@@ -112,4 +122,8 @@ public class ReviewQueueItem {
   @Nullable
   @JsonProperty("moderation_payload")
   private ModerationPayload moderationPayload;
+
+  @Nullable
+  @JsonProperty("reaction")
+  private Reaction reaction;
 }

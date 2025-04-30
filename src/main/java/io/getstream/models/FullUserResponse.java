@@ -82,6 +82,10 @@ public class FullUserResponse {
   private Map<String, Object> custom;
 
   @Nullable
+  @JsonProperty("ban_expires")
+  private Date banExpires;
+
+  @Nullable
   @JsonProperty("deactivated_at")
   private Date deactivatedAt;
 
@@ -112,4 +116,8 @@ public class FullUserResponse {
   @Nullable
   @JsonProperty("privacy_settings")
   private PrivacySettingsResponse privacySettings;
+
+  @Nullable
+  @JsonProperty("teams_role")
+  private Map<String, String> teamsRole;
 }

@@ -27,4 +27,8 @@ public class GetCampaignResponse {
   @Nullable
   @JsonProperty("campaign")
   private CampaignResponse campaign;
+
+  @Nullable
+  @JsonProperty("users")
+  private PagerResponse users;
 }
