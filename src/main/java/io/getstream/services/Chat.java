@@ -274,14 +274,6 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
-  public StreamRequest<GetExportChannelsStatusResponse> getExportChannelsStatus(
-      @NotNull String id, GetExportChannelsStatusRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<GetExportChannelsStatusResponse> getExportChannelsStatus(@NotNull String id)
-      throws StreamException;
-
-  @NotNull
   public StreamRequest<MembersResponse> queryMembers(QueryMembersRequest request)
       throws StreamException;
 

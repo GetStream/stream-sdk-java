@@ -811,28 +811,6 @@ public class ChatImpl implements Chat {
   }
 
   @NotNull
-  public StreamRequest<GetExportChannelsStatusResponse> getExportChannelsStatus(
-      @NotNull String id, GetExportChannelsStatusRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<GetExportChannelsStatusResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "GET",
-        "/api/v2/chat/export_channels/{id}",
-        request,
-        pathParams,
-        new TypeReference<GetExportChannelsStatusResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<GetExportChannelsStatusResponse> getExportChannelsStatus(@NotNull String id)
-      throws StreamException {
-    return getExportChannelsStatus(id, new GetExportChannelsStatusRequest());
-  }
-
-  @NotNull
   public StreamRequest<MembersResponse> queryMembers(QueryMembersRequest request)
       throws StreamException {
 
