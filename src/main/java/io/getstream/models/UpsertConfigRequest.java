@@ -77,6 +77,10 @@ public class UpsertConfigRequest {
   private GoogleVisionConfig googleVisionConfig;
 
   @Nullable
+  @JsonProperty("rule_builder_config")
+  private RuleBuilderConfig ruleBuilderConfig;
+
+  @Nullable
   @JsonProperty("user")
   private UserRequest user;
 
