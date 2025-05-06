@@ -13,26 +13,32 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class S3Request {
-
-  @JsonProperty("s3_region")
-  private String s3Region;
+public class RuleBuilderRule {
 
   @Nullable
-  @JsonProperty("s3_api_key")
-  private String s3APIKey;
+  @JsonProperty("enabled")
+  private Boolean enabled;
 
   @Nullable
-  @JsonProperty("s3_custom_endpoint_url")
-  private String s3CustomEndpointUrl;
+  @JsonProperty("id")
+  private String id;
 
   @Nullable
-  @JsonProperty("s3_secret")
-  private String s3Secret;
+  @JsonProperty("name")
+  private String name;
+
+  @Nullable
+  @JsonProperty("conditions")
+  private List<RuleBuilderCondition> conditions;
+
+  @Nullable
+  @JsonProperty("action")
+  private RuleBuilderAction action;
 }

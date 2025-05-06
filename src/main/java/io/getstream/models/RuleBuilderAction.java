@@ -19,20 +19,25 @@ import org.jetbrains.annotations.Nullable;
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class S3Request {
-
-  @JsonProperty("s3_region")
-  private String s3Region;
+public class RuleBuilderAction {
 
   @Nullable
-  @JsonProperty("s3_api_key")
-  private String s3APIKey;
+  @JsonProperty("duration")
+  private Integer duration;
 
   @Nullable
-  @JsonProperty("s3_custom_endpoint_url")
-  private String s3CustomEndpointUrl;
+  @JsonProperty("ip_ban")
+  private Boolean ipBan;
 
   @Nullable
-  @JsonProperty("s3_secret")
-  private String s3Secret;
+  @JsonProperty("reason")
+  private String reason;
+
+  @Nullable
+  @JsonProperty("shadow_ban")
+  private Boolean shadowBan;
+
+  @Nullable
+  @JsonProperty("type")
+  private String type;
 }
