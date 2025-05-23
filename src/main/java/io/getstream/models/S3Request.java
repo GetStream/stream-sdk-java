@@ -29,6 +29,10 @@ public class S3Request {
   private String s3APIKey;
 
   @Nullable
+  @JsonProperty("s3_custom_endpoint_url")
+  private String s3CustomEndpointUrl;
+
+  @Nullable
   @JsonProperty("s3_secret")
   private String s3Secret;
 }

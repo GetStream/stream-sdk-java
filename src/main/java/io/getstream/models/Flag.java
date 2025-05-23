@@ -44,6 +44,10 @@ public class Flag {
   private String entityCreatorID;
 
   @Nullable
+  @JsonProperty("is_streamed_content")
+  private Boolean isStreamedContent;
+
+  @Nullable
   @JsonProperty("moderation_payload_hash")
   private String moderationPayloadHash;
 
@@ -70,6 +74,10 @@ public class Flag {
   @Nullable
   @JsonProperty("moderation_payload")
   private ModerationPayload moderationPayload;
+
+  @Nullable
+  @JsonProperty("review_queue_item")
+  private ReviewQueueItem reviewQueueItem;
 
   @Nullable
   @JsonProperty("user")

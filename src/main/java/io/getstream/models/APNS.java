@@ -13,6 +13,8 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -25,4 +27,20 @@ public class APNS {
 
   @JsonProperty("title")
   private String title;
+
+  @Nullable
+  @JsonProperty("content-available")
+  private Integer contentAvailable;
+
+  @Nullable
+  @JsonProperty("mutable-content")
+  private Integer mutableContent;
+
+  @Nullable
+  @JsonProperty("sound")
+  private String sound;
+
+  @Nullable
+  @JsonProperty("data")
+  private Map<String, Object> data;
 }

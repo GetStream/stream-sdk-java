@@ -155,4 +155,8 @@ public class AppResponseFields {
   @Nullable
   @JsonProperty("datadog_info")
   private DataDogInfo datadogInfo;
+
+  @Nullable
+  @JsonProperty("moderation_dashboard_preferences")
+  private ModerationDashboardPreferences moderationDashboardPreferences;
 }

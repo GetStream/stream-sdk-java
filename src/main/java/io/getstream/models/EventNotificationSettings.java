@@ -25,4 +25,7 @@ public class EventNotificationSettings {
 
   @JsonProperty("apns")
   private APNS apns;
+
+  @JsonProperty("fcm")
+  private FCM fcm;
 }

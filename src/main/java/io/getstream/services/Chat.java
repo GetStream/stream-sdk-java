@@ -504,6 +504,14 @@ public interface Chat {
       UpdatePushNotificationPreferencesRequest request) throws StreamException;
 
   @NotNull
+  public StreamRequest<GetPushTemplatesResponse> getPushTemplates(GetPushTemplatesRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpsertPushTemplateResponse> upsertPushTemplate(
+      UpsertPushTemplateRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryBannedUsersResponse> queryBannedUsers(QueryBannedUsersRequest request)
       throws StreamException;
 

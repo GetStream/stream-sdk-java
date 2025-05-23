@@ -808,6 +808,41 @@ public class CommonImpl implements Common {
   }
 
   @NotNull
+  public StreamRequest<SharedLocationResponse> updateLiveLocation(UpdateLiveLocationRequest request)
+      throws StreamException {
+
+    return new StreamRequest<SharedLocationResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PUT",
+        "/api/v2/users/location",
+        request,
+        null,
+        new TypeReference<SharedLocationResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<SharedLocationsResponse> getUserLiveLocations(
+      GetUserLiveLocationsRequest request) throws StreamException {
+
+    return new StreamRequest<SharedLocationsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/users/locations",
+        request,
+        null,
+        new TypeReference<SharedLocationsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<SharedLocationsResponse> getUserLiveLocations() throws StreamException {
+    return getUserLiveLocations(new GetUserLiveLocationsRequest());
+  }
+
+  @NotNull
   public StreamRequest<ReactivateUsersResponse> reactivateUsers(ReactivateUsersRequest request)
       throws StreamException {
 

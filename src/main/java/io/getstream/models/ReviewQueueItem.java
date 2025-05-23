@@ -104,6 +104,10 @@ public class ReviewQueueItem {
   private User assignedTo;
 
   @Nullable
+  @JsonProperty("call")
+  private Call call;
+
+  @Nullable
   @JsonProperty("entity_creator")
   private EntityCreator entityCreator;
 

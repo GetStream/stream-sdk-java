@@ -97,6 +97,10 @@ public class MessageRequest {
   private Map<String, Object> custom;
 
   @Nullable
+  @JsonProperty("shared_location")
+  private SharedLocation sharedLocation;
+
+  @Nullable
   @JsonProperty("user")
   private UserRequest user;
 }

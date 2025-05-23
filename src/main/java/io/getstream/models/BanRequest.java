@@ -33,6 +33,10 @@ public class BanRequest {
   private String channelCid;
 
   @Nullable
+  @JsonProperty("delete_messages")
+  private String deleteMessages;
+
+  @Nullable
   @JsonProperty("ip_ban")
   private Boolean ipBan;
 

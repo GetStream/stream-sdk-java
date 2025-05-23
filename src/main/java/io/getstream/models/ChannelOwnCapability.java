@@ -68,6 +68,8 @@ public class ChannelOwnCapability {
   public static ChannelOwnCapability SEND_REPLY = new ChannelOwnCapability("send-reply");
   public static ChannelOwnCapability SEND_RESTRICTED_VISIBILITY_MESSAGE =
       new ChannelOwnCapability("send-restricted-visibility-message");
+  public static ChannelOwnCapability SEND_SHARED_LOCATION =
+      new ChannelOwnCapability("send-shared-location");
   public static ChannelOwnCapability SEND_TYPING_EVENTS =
       new ChannelOwnCapability("send-typing-events");
   public static ChannelOwnCapability SET_CHANNEL_COOLDOWN =

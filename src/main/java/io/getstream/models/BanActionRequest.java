@@ -26,6 +26,10 @@ public class BanActionRequest {
   private Boolean channelBanOnly;
 
   @Nullable
+  @JsonProperty("delete_messages")
+  private String deleteMessages;
+
+  @Nullable
   @JsonProperty("ip_ban")
   private Boolean ipBan;
 

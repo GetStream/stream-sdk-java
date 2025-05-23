@@ -1520,6 +1520,36 @@ public class ChatImpl implements Chat {
   }
 
   @NotNull
+  public StreamRequest<GetPushTemplatesResponse> getPushTemplates(GetPushTemplatesRequest request)
+      throws StreamException {
+
+    return new StreamRequest<GetPushTemplatesResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/chat/push_templates",
+        request,
+        null,
+        new TypeReference<GetPushTemplatesResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpsertPushTemplateResponse> upsertPushTemplate(
+      UpsertPushTemplateRequest request) throws StreamException {
+
+    return new StreamRequest<UpsertPushTemplateResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/chat/push_templates",
+        request,
+        null,
+        new TypeReference<UpsertPushTemplateResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<QueryBannedUsersResponse> queryBannedUsers(QueryBannedUsersRequest request)
       throws StreamException {
 

@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -37,6 +38,10 @@ public class TruncateChannelRequest {
   @Nullable
   @JsonProperty("user_id")
   private String userID;
+
+  @Nullable
+  @JsonProperty("member_ids")
+  private List<String> memberIds;
 
   @Nullable
   @JsonProperty("message")

@@ -80,6 +80,10 @@ public class Channel {
   private String team;
 
   @Nullable
+  @JsonProperty("active_live_locations")
+  private List<SharedLocation> activeLiveLocations;
+
+  @Nullable
   @JsonProperty("invites")
   private List<ChannelMember> invites;
 

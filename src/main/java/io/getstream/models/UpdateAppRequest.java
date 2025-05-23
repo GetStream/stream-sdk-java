@@ -189,6 +189,10 @@ public class UpdateAppRequest {
   private FileUploadConfig imageUploadConfig;
 
   @Nullable
+  @JsonProperty("moderation_dashboard_preferences")
+  private ModerationDashboardPreferences moderationDashboardPreferences;
+
+  @Nullable
   @JsonProperty("push_config")
   private PushConfig pushConfig;
 

@@ -269,6 +269,17 @@ public interface Common {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<SharedLocationResponse> updateLiveLocation(UpdateLiveLocationRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<SharedLocationsResponse> getUserLiveLocations(
+      GetUserLiveLocationsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<SharedLocationsResponse> getUserLiveLocations() throws StreamException;
+
+  @NotNull
   public StreamRequest<ReactivateUsersResponse> reactivateUsers(ReactivateUsersRequest request)
       throws StreamException;
 
