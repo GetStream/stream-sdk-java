@@ -257,6 +257,23 @@ public class CallTest extends BasicTest {
   }
 
   @Test
+  public void testEndCall() {
+    var callRequest =
+        GetOrCreateCallRequest.builder()
+            .data(CallRequest.builder().createdByID(testUser.getId()).build())
+            .build();
+
+    var callId = "call-" + RandomStringUtils.randomAlphabetic(10);
+    Assertions.assertDoesNotThrow(
+        () -> video.getOrCreateCall("default", callId, callRequest).execute());
+
+    Call call = video.call(callType, callId);
+
+    var response = Assertions.assertDoesNotThrow(() -> call.end());
+    Assertions.assertNotNull(response.getData().getDuration());
+  }
+
+  @Test
   void testSendCustomEvent() {
     Assertions.assertNotNull(testUser, "User should not be null");
     String callID = "call-" + RandomStringUtils.randomAlphanumeric(10);
