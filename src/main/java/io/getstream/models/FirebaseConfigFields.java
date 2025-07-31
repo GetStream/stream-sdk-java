@@ -21,21 +21,24 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class FirebaseConfigFields {
 
-  @JsonProperty("apn_template")
-  private String apnTemplate;
-
-  @JsonProperty("data_template")
-  private String dataTemplate;
-
   @JsonProperty("enabled")
   private Boolean enabled;
 
-  @JsonProperty("notification_template")
-  private String notificationTemplate;
+  @Nullable
+  @JsonProperty("apn_template")
+  private String apnTemplate;
 
   @Nullable
   @JsonProperty("credentials_json")
   private String credentialsJson;
+
+  @Nullable
+  @JsonProperty("data_template")
+  private String dataTemplate;
+
+  @Nullable
+  @JsonProperty("notification_template")
+  private String notificationTemplate;
 
   @Nullable
   @JsonProperty("server_key")

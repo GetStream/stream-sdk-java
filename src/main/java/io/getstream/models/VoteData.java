@@ -28,8 +28,4 @@ public class VoteData {
   @Nullable
   @JsonProperty("option_id")
   private String optionID;
-
-  @Nullable
-  @JsonProperty("Option")
-  private PollOptionResponseData option;
 }

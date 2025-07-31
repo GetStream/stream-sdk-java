@@ -69,6 +69,13 @@ public class OwnUser {
   @JsonProperty("custom")
   private Map<String, Object> custom;
 
+  @JsonProperty("total_unread_count_by_team")
+  private Map<String, Integer> totalUnreadCountByTeam;
+
+  @Nullable
+  @JsonProperty("avg_response_time")
+  private Integer avgResponseTime;
+
   @Nullable
   @JsonProperty("deactivated_at")
   private Date deactivatedAt;

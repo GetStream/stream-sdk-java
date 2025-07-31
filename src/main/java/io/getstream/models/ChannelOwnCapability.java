@@ -72,6 +72,7 @@ public class ChannelOwnCapability {
       new ChannelOwnCapability("send-typing-events");
   public static ChannelOwnCapability SET_CHANNEL_COOLDOWN =
       new ChannelOwnCapability("set-channel-cooldown");
+  public static ChannelOwnCapability SHARE_LOCATION = new ChannelOwnCapability("share-location");
   public static ChannelOwnCapability SKIP_SLOW_MODE = new ChannelOwnCapability("skip-slow-mode");
   public static ChannelOwnCapability SLOW_MODE = new ChannelOwnCapability("slow-mode");
   public static ChannelOwnCapability TYPING_EVENTS = new ChannelOwnCapability("typing-events");

@@ -46,7 +46,7 @@ public class ActionLogResponse {
 
   @Nullable
   @JsonProperty("review_queue_item")
-  private ReviewQueueItem reviewQueueItem;
+  private ReviewQueueItemResponse reviewQueueItem;
 
   @Nullable
   @JsonProperty("target_user")

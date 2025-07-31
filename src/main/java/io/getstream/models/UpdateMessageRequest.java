@@ -27,4 +27,8 @@ public class UpdateMessageRequest {
   @Nullable
   @JsonProperty("skip_enrich_url")
   private Boolean skipEnrichUrl;
+
+  @Nullable
+  @JsonProperty("skip_push")
+  private Boolean skipPush;
 }

@@ -69,7 +69,7 @@ public class PollResponseData {
   @JsonProperty("own_votes")
   private List<PollVoteResponseData> ownVotes;
 
-  @JsonProperty("Custom")
+  @JsonProperty("custom")
   private Map<String, Object> custom;
 
   @JsonProperty("latest_votes_by_option")

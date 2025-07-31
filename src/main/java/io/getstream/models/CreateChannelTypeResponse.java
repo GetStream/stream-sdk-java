@@ -78,6 +78,9 @@ public class CreateChannelTypeResponse {
   @JsonProperty("search")
   private Boolean search;
 
+  @JsonProperty("shared_locations")
+  private Boolean sharedLocations;
+
   @JsonProperty("skip_last_msg_update_for_system_msgs")
   private Boolean skipLastMsgUpdateForSystemMsgs;
 
@@ -92,6 +95,9 @@ public class CreateChannelTypeResponse {
 
   @JsonProperty("url_enrichment")
   private Boolean urlEnrichment;
+
+  @JsonProperty("user_message_reminders")
+  private Boolean userMessageReminders;
 
   @JsonProperty("commands")
   private List<String> commands;

@@ -97,6 +97,10 @@ public class ReviewQueueItemResponse {
   private UserResponse assignedTo;
 
   @Nullable
+  @JsonProperty("call")
+  private CallResponse call;
+
+  @Nullable
   @JsonProperty("entity_creator")
   private EntityCreatorResponse entityCreator;
 

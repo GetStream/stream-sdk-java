@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -121,4 +122,8 @@ public class PushProvider {
   @Nullable
   @JsonProperty("xiaomi_package_name")
   private String xiaomiPackageName;
+
+  @Nullable
+  @JsonProperty("push_templates")
+  private List<PushTemplate> pushTemplates;
 }

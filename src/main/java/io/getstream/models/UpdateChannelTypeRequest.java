@@ -97,6 +97,10 @@ public class UpdateChannelTypeRequest {
   private Boolean search;
 
   @Nullable
+  @JsonProperty("shared_locations")
+  private Boolean sharedLocations;
+
+  @Nullable
   @JsonProperty("skip_last_msg_update_for_system_msgs")
   private Boolean skipLastMsgUpdateForSystemMsgs;
 
@@ -111,6 +115,10 @@ public class UpdateChannelTypeRequest {
   @Nullable
   @JsonProperty("url_enrichment")
   private Boolean urlEnrichment;
+
+  @Nullable
+  @JsonProperty("user_message_reminders")
+  private Boolean userMessageReminders;
 
   @Nullable
   @JsonProperty("allowed_flag_reasons")

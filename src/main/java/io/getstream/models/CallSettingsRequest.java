@@ -42,6 +42,10 @@ public class CallSettingsRequest {
   private GeofenceSettingsRequest geofencing;
 
   @Nullable
+  @JsonProperty("ingress")
+  private IngressSettingsRequest ingress;
+
+  @Nullable
   @JsonProperty("limits")
   private LimitsSettingsRequest limits;
 

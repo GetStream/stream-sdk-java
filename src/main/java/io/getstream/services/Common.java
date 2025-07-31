@@ -180,6 +180,75 @@ public interface Common {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<PollResponse> createPoll(CreatePollRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<PollResponse> updatePoll(UpdatePollRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryPollsResponse> queryPolls(QueryPollsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryPollsResponse> queryPolls() throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deletePoll(@NotNull String pollID, DeletePollRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deletePoll(@NotNull String pollID) throws StreamException;
+
+  @NotNull
+  public StreamRequest<PollResponse> getPoll(@NotNull String pollID, GetPollRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<PollResponse> getPoll(@NotNull String pollID) throws StreamException;
+
+  @NotNull
+  public StreamRequest<PollResponse> updatePollPartial(
+      @NotNull String pollID, UpdatePollPartialRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<PollResponse> updatePollPartial(@NotNull String pollID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<PollOptionResponse> createPollOption(
+      @NotNull String pollID, CreatePollOptionRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<PollOptionResponse> updatePollOption(
+      @NotNull String pollID, UpdatePollOptionRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deletePollOption(
+      @NotNull String pollID, @NotNull String optionID, DeletePollOptionRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deletePollOption(@NotNull String pollID, @NotNull String optionID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<PollOptionResponse> getPollOption(
+      @NotNull String pollID, @NotNull String optionID, GetPollOptionRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<PollOptionResponse> getPollOption(
+      @NotNull String pollID, @NotNull String optionID) throws StreamException;
+
+  @NotNull
+  public StreamRequest<PollVotesResponse> queryPollVotes(
+      @NotNull String pollID, QueryPollVotesRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<PollVotesResponse> queryPollVotes(@NotNull String pollID)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<ListPushProvidersResponse> listPushProviders(
       ListPushProvidersRequest request) throws StreamException;
 
@@ -235,6 +304,32 @@ public interface Common {
   public StreamRequest<GetTaskResponse> getTask(@NotNull String id) throws StreamException;
 
   @NotNull
+  public StreamRequest<Response> deleteFile(DeleteFileRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deleteFile() throws StreamException;
+
+  @NotNull
+  public StreamRequest<FileUploadResponse> uploadFile(UploadFileRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<FileUploadResponse> uploadFile() throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deleteImage(DeleteImageRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deleteImage() throws StreamException;
+
+  @NotNull
+  public StreamRequest<ImageUploadResponse> uploadImage(UploadImageRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<ImageUploadResponse> uploadImage() throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryUsersResponse> queryUsers(QueryUsersRequest request)
       throws StreamException;
 
@@ -266,6 +361,17 @@ public interface Common {
 
   @NotNull
   public StreamRequest<DeleteUsersResponse> deleteUsers(DeleteUsersRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<SharedLocationsResponse> getUserLiveLocations(
+      GetUserLiveLocationsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<SharedLocationsResponse> getUserLiveLocations() throws StreamException;
+
+  @NotNull
+  public StreamRequest<SharedLocationResponse> updateLiveLocation(UpdateLiveLocationRequest request)
       throws StreamException;
 
   @NotNull

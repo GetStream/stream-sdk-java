@@ -27,6 +27,10 @@ public class CheckPushResponse {
   private String duration;
 
   @Nullable
+  @JsonProperty("event_type")
+  private String eventType;
+
+  @Nullable
   @JsonProperty("rendered_apn_template")
   private String renderedApnTemplate;
 

@@ -389,16 +389,40 @@ public interface Chat {
       @NotNull String messageID, @NotNull String pollID) throws StreamException;
 
   @NotNull
-  public StreamRequest<PollVoteResponse> removePollVote(
+  public StreamRequest<PollVoteResponse> deletePollVote(
       @NotNull String messageID,
       @NotNull String pollID,
       @NotNull String voteID,
-      RemovePollVoteRequest request)
+      DeletePollVoteRequest request)
       throws StreamException;
 
   @NotNull
-  public StreamRequest<PollVoteResponse> removePollVote(
+  public StreamRequest<PollVoteResponse> deletePollVote(
       @NotNull String messageID, @NotNull String pollID, @NotNull String voteID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteReminderResponse> deleteReminder(
+      @NotNull String messageID, DeleteReminderRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteReminderResponse> deleteReminder(@NotNull String messageID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateReminderResponse> updateReminder(
+      @NotNull String messageID, UpdateReminderRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateReminderResponse> updateReminder(@NotNull String messageID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<ReminderResponseData> createReminder(
+      @NotNull String messageID, CreateReminderRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ReminderResponseData> createReminder(@NotNull String messageID)
       throws StreamException;
 
   @NotNull
@@ -431,77 +455,16 @@ public interface Chat {
   public StreamRequest<UnmuteResponse> unmuteChannel() throws StreamException;
 
   @NotNull
-  public StreamRequest<PollResponse> createPoll(CreatePollRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<PollResponse> updatePoll(UpdatePollRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<QueryPollsResponse> queryPolls(QueryPollsRequest request)
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<QueryPollsResponse> queryPolls() throws StreamException;
-
-  @NotNull
-  public StreamRequest<Response> deletePoll(@NotNull String pollID, DeletePollRequest request)
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<Response> deletePoll(@NotNull String pollID) throws StreamException;
-
-  @NotNull
-  public StreamRequest<PollResponse> getPoll(@NotNull String pollID, GetPollRequest request)
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<PollResponse> getPoll(@NotNull String pollID) throws StreamException;
-
-  @NotNull
-  public StreamRequest<PollResponse> updatePollPartial(
-      @NotNull String pollID, UpdatePollPartialRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<PollResponse> updatePollPartial(@NotNull String pollID)
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<PollOptionResponse> createPollOption(
-      @NotNull String pollID, CreatePollOptionRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<PollOptionResponse> updatePollOption(
-      @NotNull String pollID, UpdatePollOptionRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<Response> deletePollOption(
-      @NotNull String pollID, @NotNull String optionID, DeletePollOptionRequest request)
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<Response> deletePollOption(@NotNull String pollID, @NotNull String optionID)
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<PollOptionResponse> getPollOption(
-      @NotNull String pollID, @NotNull String optionID, GetPollOptionRequest request)
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<PollOptionResponse> getPollOption(
-      @NotNull String pollID, @NotNull String optionID) throws StreamException;
-
-  @NotNull
-  public StreamRequest<PollVotesResponse> queryPollVotes(
-      @NotNull String pollID, QueryPollVotesRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<PollVotesResponse> queryPollVotes(@NotNull String pollID)
-      throws StreamException;
-
-  @NotNull
   public StreamRequest<UpsertPushPreferencesResponse> updatePushNotificationPreferences(
       UpdatePushNotificationPreferencesRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetPushTemplatesResponse> getPushTemplates(GetPushTemplatesRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpsertPushTemplateResponse> upsertPushTemplate(
+      UpsertPushTemplateRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryBannedUsersResponse> queryBannedUsers(QueryBannedUsersRequest request)
@@ -509,6 +472,13 @@ public interface Chat {
 
   @NotNull
   public StreamRequest<QueryBannedUsersResponse> queryBannedUsers() throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryRemindersResponse> queryReminders(QueryRemindersRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryRemindersResponse> queryReminders() throws StreamException;
 
   @NotNull
   public StreamRequest<SearchResponse> search(SearchRequest request) throws StreamException;

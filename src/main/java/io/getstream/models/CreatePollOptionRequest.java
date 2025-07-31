@@ -26,10 +26,6 @@ public class CreatePollOptionRequest {
   private String text;
 
   @Nullable
-  @JsonProperty("position")
-  private Integer position;
-
-  @Nullable
   @JsonProperty("user_id")
   private String userID;
 

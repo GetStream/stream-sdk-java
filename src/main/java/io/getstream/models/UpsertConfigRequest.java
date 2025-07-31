@@ -77,10 +77,18 @@ public class UpsertConfigRequest {
   private GoogleVisionConfig googleVisionConfig;
 
   @Nullable
+  @JsonProperty("rule_builder_config")
+  private RuleBuilderConfig ruleBuilderConfig;
+
+  @Nullable
   @JsonProperty("user")
   private UserRequest user;
 
   @Nullable
   @JsonProperty("velocity_filter_config")
   private VelocityFilterConfig velocityFilterConfig;
+
+  @Nullable
+  @JsonProperty("video_call_rule_config")
+  private VideoCallRuleConfig videoCallRuleConfig;
 }

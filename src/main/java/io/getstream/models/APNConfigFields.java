@@ -27,9 +27,6 @@ public class APNConfigFields {
   @JsonProperty("enabled")
   private Boolean enabled;
 
-  @JsonProperty("notification_template")
-  private String notificationTemplate;
-
   @Nullable
   @JsonProperty("auth_key")
   private String authKey;
@@ -49,6 +46,10 @@ public class APNConfigFields {
   @Nullable
   @JsonProperty("key_id")
   private String keyID;
+
+  @Nullable
+  @JsonProperty("notification_template")
+  private String notificationTemplate;
 
   @Nullable
   @JsonProperty("p12_cert")

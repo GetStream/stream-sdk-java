@@ -55,6 +55,10 @@ public class UserResponseCommonFields {
   private Map<String, Object> custom;
 
   @Nullable
+  @JsonProperty("avg_response_time")
+  private Integer avgResponseTime;
+
+  @Nullable
   @JsonProperty("deactivated_at")
   private Date deactivatedAt;
 

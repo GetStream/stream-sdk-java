@@ -26,6 +26,10 @@ public class CheckPushRequest {
   private String apnTemplate;
 
   @Nullable
+  @JsonProperty("event_type")
+  private String eventType;
+
+  @Nullable
   @JsonProperty("firebase_data_template")
   private String firebaseDataTemplate;
 

@@ -74,6 +74,9 @@ public class ChannelConfig {
   @JsonProperty("search")
   private Boolean search;
 
+  @JsonProperty("shared_locations")
+  private Boolean sharedLocations;
+
   @JsonProperty("skip_last_msg_update_for_system_msgs")
   private Boolean skipLastMsgUpdateForSystemMsgs;
 
@@ -88,6 +91,9 @@ public class ChannelConfig {
 
   @JsonProperty("url_enrichment")
   private Boolean urlEnrichment;
+
+  @JsonProperty("user_message_reminders")
+  private Boolean userMessageReminders;
 
   @JsonProperty("commands")
   private List<String> commands;
@@ -106,7 +112,7 @@ public class ChannelConfig {
 
   @Nullable
   @JsonProperty("partition_ttl")
-  private String partitionTtl;
+  private Integer partitionTtl;
 
   @Nullable
   @JsonProperty("allowed_flag_reasons")

@@ -28,6 +28,26 @@ public class VideoImpl implements Video {
   }
 
   @NotNull
+  public StreamRequest<GetActiveCallsStatusResponse> getActiveCallsStatus(
+      GetActiveCallsStatusRequest request) throws StreamException {
+
+    return new StreamRequest<GetActiveCallsStatusResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/video/active_calls_status",
+        request,
+        null,
+        new TypeReference<GetActiveCallsStatusResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetActiveCallsStatusResponse> getActiveCallsStatus() throws StreamException {
+    return getActiveCallsStatus(new GetActiveCallsStatusRequest());
+  }
+
+  @NotNull
   public StreamRequest<QueryUserFeedbackResponse> queryUserFeedback(
       QueryUserFeedbackRequest request) throws StreamException {
 

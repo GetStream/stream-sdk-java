@@ -133,12 +133,20 @@ public class UpdateAppRequest {
   private String sqsUrl;
 
   @Nullable
+  @JsonProperty("user_response_time_enabled")
+  private Boolean userResponseTimeEnabled;
+
+  @Nullable
   @JsonProperty("webhook_url")
   private String webhookUrl;
 
   @Nullable
   @JsonProperty("allowed_flag_reasons")
   private List<String> allowedFlagReasons;
+
+  @Nullable
+  @JsonProperty("event_hooks")
+  private List<EventHook> eventHooks;
 
   @Nullable
   @JsonProperty("image_moderation_block_labels")
@@ -187,6 +195,10 @@ public class UpdateAppRequest {
   @Nullable
   @JsonProperty("image_upload_config")
   private FileUploadConfig imageUploadConfig;
+
+  @Nullable
+  @JsonProperty("moderation_dashboard_preferences")
+  private ModerationDashboardPreferences moderationDashboardPreferences;
 
   @Nullable
   @JsonProperty("push_config")

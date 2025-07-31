@@ -530,6 +530,224 @@ public class CommonImpl implements Common {
   }
 
   @NotNull
+  public StreamRequest<PollResponse> createPoll(CreatePollRequest request) throws StreamException {
+
+    return new StreamRequest<PollResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/polls",
+        request,
+        null,
+        new TypeReference<PollResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<PollResponse> updatePoll(UpdatePollRequest request) throws StreamException {
+
+    return new StreamRequest<PollResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PUT",
+        "/api/v2/polls",
+        request,
+        null,
+        new TypeReference<PollResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryPollsResponse> queryPolls(QueryPollsRequest request)
+      throws StreamException {
+
+    return new StreamRequest<QueryPollsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/polls/query",
+        request,
+        null,
+        new TypeReference<QueryPollsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryPollsResponse> queryPolls() throws StreamException {
+    return queryPolls(new QueryPollsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<Response> deletePoll(@NotNull String pollID, DeletePollRequest request)
+      throws StreamException {
+    var pathParams = Map.of("poll_id", pollID);
+
+    return new StreamRequest<Response>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "DELETE",
+        "/api/v2/polls/{poll_id}",
+        request,
+        pathParams,
+        new TypeReference<Response>() {});
+  }
+
+  @NotNull
+  public StreamRequest<Response> deletePoll(@NotNull String pollID) throws StreamException {
+    return deletePoll(pollID, new DeletePollRequest());
+  }
+
+  @NotNull
+  public StreamRequest<PollResponse> getPoll(@NotNull String pollID, GetPollRequest request)
+      throws StreamException {
+    var pathParams = Map.of("poll_id", pollID);
+
+    return new StreamRequest<PollResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/polls/{poll_id}",
+        request,
+        pathParams,
+        new TypeReference<PollResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<PollResponse> getPoll(@NotNull String pollID) throws StreamException {
+    return getPoll(pollID, new GetPollRequest());
+  }
+
+  @NotNull
+  public StreamRequest<PollResponse> updatePollPartial(
+      @NotNull String pollID, UpdatePollPartialRequest request) throws StreamException {
+    var pathParams = Map.of("poll_id", pollID);
+
+    return new StreamRequest<PollResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PATCH",
+        "/api/v2/polls/{poll_id}",
+        request,
+        pathParams,
+        new TypeReference<PollResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<PollResponse> updatePollPartial(@NotNull String pollID)
+      throws StreamException {
+    return updatePollPartial(pollID, new UpdatePollPartialRequest());
+  }
+
+  @NotNull
+  public StreamRequest<PollOptionResponse> createPollOption(
+      @NotNull String pollID, CreatePollOptionRequest request) throws StreamException {
+    var pathParams = Map.of("poll_id", pollID);
+
+    return new StreamRequest<PollOptionResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/polls/{poll_id}/options",
+        request,
+        pathParams,
+        new TypeReference<PollOptionResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<PollOptionResponse> updatePollOption(
+      @NotNull String pollID, UpdatePollOptionRequest request) throws StreamException {
+    var pathParams = Map.of("poll_id", pollID);
+
+    return new StreamRequest<PollOptionResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PUT",
+        "/api/v2/polls/{poll_id}/options",
+        request,
+        pathParams,
+        new TypeReference<PollOptionResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<Response> deletePollOption(
+      @NotNull String pollID, @NotNull String optionID, DeletePollOptionRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "poll_id", pollID,
+            "option_id", optionID);
+
+    return new StreamRequest<Response>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "DELETE",
+        "/api/v2/polls/{poll_id}/options/{option_id}",
+        request,
+        pathParams,
+        new TypeReference<Response>() {});
+  }
+
+  @NotNull
+  public StreamRequest<Response> deletePollOption(@NotNull String pollID, @NotNull String optionID)
+      throws StreamException {
+    return deletePollOption(pollID, optionID, new DeletePollOptionRequest());
+  }
+
+  @NotNull
+  public StreamRequest<PollOptionResponse> getPollOption(
+      @NotNull String pollID, @NotNull String optionID, GetPollOptionRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "poll_id", pollID,
+            "option_id", optionID);
+
+    return new StreamRequest<PollOptionResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/polls/{poll_id}/options/{option_id}",
+        request,
+        pathParams,
+        new TypeReference<PollOptionResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<PollOptionResponse> getPollOption(
+      @NotNull String pollID, @NotNull String optionID) throws StreamException {
+    return getPollOption(pollID, optionID, new GetPollOptionRequest());
+  }
+
+  @NotNull
+  public StreamRequest<PollVotesResponse> queryPollVotes(
+      @NotNull String pollID, QueryPollVotesRequest request) throws StreamException {
+    var pathParams = Map.of("poll_id", pollID);
+
+    return new StreamRequest<PollVotesResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/polls/{poll_id}/votes",
+        request,
+        pathParams,
+        new TypeReference<PollVotesResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<PollVotesResponse> queryPollVotes(@NotNull String pollID)
+      throws StreamException {
+    return queryPollVotes(pollID, new QueryPollVotesRequest());
+  }
+
+  @NotNull
   public StreamRequest<ListPushProvidersResponse> listPushProviders(
       ListPushProvidersRequest request) throws StreamException {
 
@@ -693,6 +911,84 @@ public class CommonImpl implements Common {
   }
 
   @NotNull
+  public StreamRequest<Response> deleteFile(DeleteFileRequest request) throws StreamException {
+
+    return new StreamRequest<Response>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "DELETE",
+        "/api/v2/uploads/file",
+        request,
+        null,
+        new TypeReference<Response>() {});
+  }
+
+  @NotNull
+  public StreamRequest<Response> deleteFile() throws StreamException {
+    return deleteFile(new DeleteFileRequest());
+  }
+
+  @NotNull
+  public StreamRequest<FileUploadResponse> uploadFile(UploadFileRequest request)
+      throws StreamException {
+
+    return new StreamRequest<FileUploadResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/uploads/file",
+        request,
+        null,
+        new TypeReference<FileUploadResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<FileUploadResponse> uploadFile() throws StreamException {
+    return uploadFile(new UploadFileRequest());
+  }
+
+  @NotNull
+  public StreamRequest<Response> deleteImage(DeleteImageRequest request) throws StreamException {
+
+    return new StreamRequest<Response>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "DELETE",
+        "/api/v2/uploads/image",
+        request,
+        null,
+        new TypeReference<Response>() {});
+  }
+
+  @NotNull
+  public StreamRequest<Response> deleteImage() throws StreamException {
+    return deleteImage(new DeleteImageRequest());
+  }
+
+  @NotNull
+  public StreamRequest<ImageUploadResponse> uploadImage(UploadImageRequest request)
+      throws StreamException {
+
+    return new StreamRequest<ImageUploadResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/uploads/image",
+        request,
+        null,
+        new TypeReference<ImageUploadResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ImageUploadResponse> uploadImage() throws StreamException {
+    return uploadImage(new UploadImageRequest());
+  }
+
+  @NotNull
   public StreamRequest<QueryUsersResponse> queryUsers(QueryUsersRequest request)
       throws StreamException {
 
@@ -805,6 +1101,41 @@ public class CommonImpl implements Common {
         request,
         null,
         new TypeReference<DeleteUsersResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<SharedLocationsResponse> getUserLiveLocations(
+      GetUserLiveLocationsRequest request) throws StreamException {
+
+    return new StreamRequest<SharedLocationsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/users/live_locations",
+        request,
+        null,
+        new TypeReference<SharedLocationsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<SharedLocationsResponse> getUserLiveLocations() throws StreamException {
+    return getUserLiveLocations(new GetUserLiveLocationsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<SharedLocationResponse> updateLiveLocation(UpdateLiveLocationRequest request)
+      throws StreamException {
+
+    return new StreamRequest<SharedLocationResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PUT",
+        "/api/v2/users/live_locations",
+        request,
+        null,
+        new TypeReference<SharedLocationResponse>() {});
   }
 
   @NotNull

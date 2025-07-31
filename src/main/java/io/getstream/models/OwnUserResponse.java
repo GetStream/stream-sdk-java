@@ -76,6 +76,10 @@ public class OwnUserResponse {
   private Map<String, Object> custom;
 
   @Nullable
+  @JsonProperty("avg_response_time")
+  private Integer avgResponseTime;
+
+  @Nullable
   @JsonProperty("deactivated_at")
   private Date deactivatedAt;
 
@@ -118,4 +122,8 @@ public class OwnUserResponse {
   @Nullable
   @JsonProperty("teams_role")
   private Map<String, String> teamsRole;
+
+  @Nullable
+  @JsonProperty("total_unread_count_by_team")
+  private Map<String, Integer> totalUnreadCountByTeam;
 }

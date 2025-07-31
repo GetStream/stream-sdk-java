@@ -160,6 +160,14 @@ public class Message {
   private Message quotedMessage;
 
   @Nullable
+  @JsonProperty("reminder")
+  private MessageReminder reminder;
+
+  @Nullable
+  @JsonProperty("shared_location")
+  private SharedLocation sharedLocation;
+
+  @Nullable
   @JsonProperty("user")
   private User user;
 }
