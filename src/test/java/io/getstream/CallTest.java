@@ -33,15 +33,15 @@ public class CallTest extends BasicTest {
         new NotificationSettings(
             true,
             new EventNotificationSettings(
-                true, new APNS("{{ user.display_name }} invites you to a call", "")),
+                true, new APNS("{{ user.display_name }} invites you to a call", "", 0, 0, "", null), null),
             new EventNotificationSettings(
-                false, new APNS("", "{{ user.display_name }} invites you to a call")),
+                    true, new APNS("{{ user.display_name }} invites you to a call", "", 0, 0, "", null), null),
             new EventNotificationSettings(
-                false, new APNS("", "{{ user.display_name }} invites you to a call")),
+                    true, new APNS("{{ user.display_name }} invites you to a call", "", 0, 0, "", null), null),
             new EventNotificationSettings(
-                false, new APNS("", "{{ user.display_name }} invites you to a call")),
+                    true, new APNS("{{ user.display_name }} invites you to a call", "", 0, 0, "", null), null),
             new EventNotificationSettings(
-                false, new APNS("", "{{ user.display_name }} invites you to a call")));
+                    true, new APNS("{{ user.display_name }} invites you to a call", "", 0, 0, "", null), null));
 
     Map<String, List<String>> grants =
         Map.of(

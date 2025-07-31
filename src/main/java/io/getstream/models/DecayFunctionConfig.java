@@ -12,7 +12,36 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class DecayFunctionConfig {
+
+  @Nullable
+  @JsonProperty("base")
+  private String base;
+
+  @Nullable
+  @JsonProperty("decay")
+  private String decay;
+
+  @Nullable
+  @JsonProperty("direction")
+  private String direction;
+
+  @Nullable
+  @JsonProperty("offset")
+  private String offset;
+
+  @Nullable
+  @JsonProperty("origin")
+  private String origin;
+
+  @Nullable
+  @JsonProperty("scale")
+  private String scale;
+}

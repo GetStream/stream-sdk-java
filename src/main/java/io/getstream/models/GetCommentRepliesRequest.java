@@ -12,7 +12,36 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.annotations.Query;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class GetCommentRepliesRequest {
+
+  @Query("depth")
+  @JsonIgnore
+  private Integer Depth;
+
+  @Query("sort")
+  @JsonIgnore
+  private String Sort;
+
+  @Query("replies_limit")
+  @JsonIgnore
+  private Integer RepliesLimit;
+
+  @Query("limit")
+  @JsonIgnore
+  private Integer Limit;
+
+  @Query("prev")
+  @JsonIgnore
+  private String Prev;
+
+  @Query("next")
+  @JsonIgnore
+  private String Next;
+}

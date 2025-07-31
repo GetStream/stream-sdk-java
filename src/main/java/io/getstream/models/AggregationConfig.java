@@ -12,7 +12,16 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class AggregationConfig {
+
+  @Nullable
+  @JsonProperty("format")
+  private String format;
+}

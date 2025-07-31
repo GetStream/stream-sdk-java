@@ -12,7 +12,20 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class StoriesConfig {
+
+  @Nullable
+  @JsonProperty("expiration_behaviour")
+  private String expirationBehaviour;
+
+  @Nullable
+  @JsonProperty("skip_watched")
+  private Boolean skipWatched;
+}

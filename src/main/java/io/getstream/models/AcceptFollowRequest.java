@@ -12,7 +12,22 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class AcceptFollowRequest {
+
+  @JsonProperty("source_fid")
+  private String sourceFid;
+
+  @JsonProperty("target_fid")
+  private String targetFid;
+
+  @Nullable
+  @JsonProperty("follower_role")
+  private String followerRole;
+}

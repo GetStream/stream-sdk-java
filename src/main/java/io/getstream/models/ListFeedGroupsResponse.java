@@ -12,7 +12,18 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class ListFeedGroupsResponse {
+
+  @JsonProperty("duration")
+  private String duration;
+
+  @JsonProperty("groups")
+  private Map<String, FeedGroupResponse> groups;
+}

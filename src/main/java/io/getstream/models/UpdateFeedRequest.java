@@ -12,7 +12,21 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
+import org.jetbrains.annotations.Nullable;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class UpdateFeedRequest {
+
+  @Nullable
+  @JsonProperty("created_by_id")
+  private String createdByID;
+
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+}

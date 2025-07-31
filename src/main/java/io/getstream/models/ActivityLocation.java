@@ -12,7 +12,17 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class ActivityLocation {
+
+  @JsonProperty("lat")
+  private Double lat;
+
+  @JsonProperty("lng")
+  private Double lng;
+}

@@ -12,7 +12,18 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class FollowBatchResponse {
+
+  @JsonProperty("duration")
+  private String duration;
+
+  @JsonProperty("follows")
+  private List<FollowResponse> follows;
+}

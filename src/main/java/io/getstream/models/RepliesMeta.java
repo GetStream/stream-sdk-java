@@ -12,7 +12,25 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class RepliesMeta {
+
+  @JsonProperty("depth_truncated")
+  private Boolean depthTruncated;
+
+  @JsonProperty("has_more")
+  private Boolean hasMore;
+
+  @JsonProperty("remaining")
+  private Integer remaining;
+
+  @Nullable
+  @JsonProperty("next_cursor")
+  private String nextCursor;
+}

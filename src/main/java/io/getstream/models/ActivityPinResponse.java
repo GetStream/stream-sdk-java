@@ -12,7 +12,27 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class ActivityPinResponse {
+
+  @JsonProperty("created_at")
+  private Date createdAt;
+
+  @JsonProperty("feed")
+  private String feed;
+
+  @JsonProperty("updated_at")
+  private Date updatedAt;
+
+  @JsonProperty("activity")
+  private ActivityResponse activity;
+
+  @JsonProperty("user")
+  private UserResponse user;
+}

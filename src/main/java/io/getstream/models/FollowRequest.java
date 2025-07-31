@@ -12,7 +12,31 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
+import org.jetbrains.annotations.Nullable;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class FollowRequest {
+
+  @JsonProperty("source_fid")
+  private String sourceFid;
+
+  @JsonProperty("target_fid")
+  private String targetFid;
+
+  @Nullable
+  @JsonProperty("create_notification_activity")
+  private Boolean createNotificationActivity;
+
+  @Nullable
+  @JsonProperty("push_preference")
+  private String pushPreference;
+
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+}

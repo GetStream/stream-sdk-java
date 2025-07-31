@@ -12,7 +12,20 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class NotificationConfig {
+
+  @Nullable
+  @JsonProperty("track_read")
+  private Boolean trackRead;
+
+  @Nullable
+  @JsonProperty("track_seen")
+  private Boolean trackSeen;
+}

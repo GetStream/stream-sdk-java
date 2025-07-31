@@ -36,7 +36,7 @@ public class CallParticipant {
   @JsonProperty("online")
   private Boolean online;
 
-  @JsonProperty("Role")
+  @JsonProperty("role")
   private String role;
 
   @JsonProperty("UserSessionID")

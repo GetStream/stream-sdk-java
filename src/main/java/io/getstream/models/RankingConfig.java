@@ -12,7 +12,29 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
+import org.jetbrains.annotations.Nullable;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class RankingConfig {
+
+  @Nullable
+  @JsonProperty("score")
+  private String score;
+
+  @Nullable
+  @JsonProperty("type")
+  private String type;
+
+  @Nullable
+  @JsonProperty("defaults")
+  private Map<String, Object> defaults;
+
+  @Nullable
+  @JsonProperty("functions")
+  private Map<String, DecayFunctionConfig> functions;
+}

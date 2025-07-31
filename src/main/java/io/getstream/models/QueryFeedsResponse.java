@@ -12,7 +12,27 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
+import org.jetbrains.annotations.Nullable;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class QueryFeedsResponse {
+
+  @JsonProperty("duration")
+  private String duration;
+
+  @JsonProperty("feeds")
+  private List<FeedResponse> feeds;
+
+  @Nullable
+  @JsonProperty("next")
+  private String next;
+
+  @Nullable
+  @JsonProperty("prev")
+  private String prev;
+}

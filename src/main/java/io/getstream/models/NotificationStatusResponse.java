@@ -12,7 +12,28 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
+import java.util.List;
+import org.jetbrains.annotations.Nullable;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class NotificationStatusResponse {
+
+  @JsonProperty("unread")
+  private Integer unread;
+
+  @JsonProperty("unseen")
+  private Integer unseen;
+
+  @Nullable
+  @JsonProperty("last_seen_at")
+  private Date lastSeenAt;
+
+  @Nullable
+  @JsonProperty("read_activities")
+  private List<String> readActivities;
+}

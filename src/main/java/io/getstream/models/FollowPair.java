@@ -12,7 +12,17 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class FollowPair {
+
+  @JsonProperty("source_fid")
+  private String sourceFid;
+
+  @JsonProperty("target_fid")
+  private String targetFid;
+}

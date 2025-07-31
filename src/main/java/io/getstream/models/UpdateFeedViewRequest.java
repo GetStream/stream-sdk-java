@@ -12,7 +12,29 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
+import org.jetbrains.annotations.Nullable;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class UpdateFeedViewRequest {
+
+  @Nullable
+  @JsonProperty("activity_processors")
+  private List<ActivityProcessorConfig> activityProcessors;
+
+  @Nullable
+  @JsonProperty("activity_selectors")
+  private List<ActivitySelectorConfig> activitySelectors;
+
+  @Nullable
+  @JsonProperty("aggregation")
+  private AggregationConfig aggregation;
+
+  @Nullable
+  @JsonProperty("ranking")
+  private RankingConfig ranking;
+}

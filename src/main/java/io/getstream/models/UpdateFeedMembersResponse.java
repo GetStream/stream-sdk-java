@@ -12,7 +12,24 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class UpdateFeedMembersResponse {
+
+  @JsonProperty("duration")
+  private String duration;
+
+  @JsonProperty("added")
+  private List<FeedMemberResponse> added;
+
+  @JsonProperty("removed_ids")
+  private List<String> removedIds;
+
+  @JsonProperty("updated")
+  private List<FeedMemberResponse> updated;
+}

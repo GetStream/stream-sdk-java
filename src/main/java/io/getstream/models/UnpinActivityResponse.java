@@ -12,7 +12,23 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class UnpinActivityResponse {
+
+  @JsonProperty("duration")
+  private String duration;
+
+  @JsonProperty("fid")
+  private String fid;
+
+  @JsonProperty("user_id")
+  private String userID;
+
+  @JsonProperty("activity")
+  private ActivityResponse activity;
+}

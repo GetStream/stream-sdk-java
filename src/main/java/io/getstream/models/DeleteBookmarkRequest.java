@@ -12,7 +12,20 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.annotations.Query;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteActivityRequest {}
+@lombok.AllArgsConstructor
+public class DeleteBookmarkRequest {
+
+  @Query("folder_id")
+  @JsonIgnore
+  private String FolderID;
+
+  @Query("user_id")
+  @JsonIgnore
+  private String UserID;
+}
