@@ -195,6 +195,11 @@ public class StreamHTTPClient {
   }
 
   @NotNull
+  public Feeds feeds() {
+    return new FeedsImpl(this);
+  }
+
+  @NotNull
   public Common common() {
     return new CommonImpl(this);
   }

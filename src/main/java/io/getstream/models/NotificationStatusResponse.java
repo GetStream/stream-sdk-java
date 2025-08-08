@@ -30,10 +30,18 @@ public class NotificationStatusResponse {
   private Integer unseen;
 
   @Nullable
+  @JsonProperty("last_read_at")
+  private Date lastReadAt;
+
+  @Nullable
   @JsonProperty("last_seen_at")
   private Date lastSeenAt;
 
   @Nullable
   @JsonProperty("read_activities")
   private List<String> readActivities;
+
+  @Nullable
+  @JsonProperty("seen_activities")
+  private List<String> seenActivities;
 }

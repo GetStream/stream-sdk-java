@@ -30,6 +30,10 @@ public class FeedMemberRequest {
   private Boolean invite;
 
   @Nullable
+  @JsonProperty("membership_level")
+  private String membershipLevel;
+
+  @Nullable
   @JsonProperty("role")
   private String role;
 

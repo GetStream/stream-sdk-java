@@ -81,10 +81,6 @@ public class UpdateAppRequest {
   private Boolean migratePermissionsToV2;
 
   @Nullable
-  @JsonProperty("moderation_bulk_submit_action_enabled")
-  private Boolean moderationBulkSubmitActionEnabled;
-
-  @Nullable
   @JsonProperty("moderation_enabled")
   private Boolean moderationEnabled;
 

@@ -1386,4 +1386,9 @@ public class FeedsImpl implements Feeds {
       throws StreamException {
     return exportFeedUserData(userID, new ExportFeedUserDataRequest());
   }
+
+  @NotNull
+  public Feed feed(String channelType, String channelID) {
+    return new Feed(channelType, channelID, client.feeds());
+  }
 }

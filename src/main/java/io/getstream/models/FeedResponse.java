@@ -73,6 +73,10 @@ public class FeedResponse {
   private List<String> filterTags;
 
   @Nullable
+  @JsonProperty("own_follows")
+  private List<FollowResponse> ownFollows;
+
+  @Nullable
   @JsonProperty("custom")
   private Map<String, Object> custom;
 }

@@ -42,6 +42,10 @@ public class ActivityReactionAddedEvent {
   private String type;
 
   @Nullable
+  @JsonProperty("feed_visibility")
+  private String feedVisibility;
+
+  @Nullable
   @JsonProperty("received_at")
   private Date receivedAt;
 

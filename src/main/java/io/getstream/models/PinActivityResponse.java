@@ -27,8 +27,8 @@ public class PinActivityResponse {
   @JsonProperty("duration")
   private String duration;
 
-  @JsonProperty("fid")
-  private String fid;
+  @JsonProperty("feed")
+  private String feed;
 
   @JsonProperty("user_id")
   private String userID;

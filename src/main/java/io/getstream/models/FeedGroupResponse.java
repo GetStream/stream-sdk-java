@@ -27,11 +27,15 @@ public class FeedGroupResponse {
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @JsonProperty("id")
-  private String id;
+  @JsonProperty("feed_group_id")
+  private String feedGroupID;
 
   @JsonProperty("updated_at")
   private Date updatedAt;
+
+  @Nullable
+  @JsonProperty("default_view_id")
+  private String defaultViewID;
 
   @Nullable
   @JsonProperty("default_visibility")

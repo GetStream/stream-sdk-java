@@ -109,6 +109,10 @@ public class ActivityResponse {
   private Date expiresAt;
 
   @Nullable
+  @JsonProperty("hidden")
+  private Boolean hidden;
+
+  @Nullable
   @JsonProperty("text")
   private String text;
 
@@ -129,8 +133,8 @@ public class ActivityResponse {
   private ModerationV2Response moderation;
 
   @Nullable
-  @JsonProperty("object")
-  private Map<String, Object> object;
+  @JsonProperty("notification_context")
+  private Map<String, Object> notificationContext;
 
   @Nullable
   @JsonProperty("parent")

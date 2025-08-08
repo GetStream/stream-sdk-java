@@ -39,6 +39,10 @@ public class MarkActivityRequest {
   private List<String> markRead;
 
   @Nullable
+  @JsonProperty("mark_seen")
+  private List<String> markSeen;
+
+  @Nullable
   @JsonProperty("mark_watched")
   private List<String> markWatched;
 

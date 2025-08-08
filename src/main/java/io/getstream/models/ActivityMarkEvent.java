@@ -37,6 +37,10 @@ public class ActivityMarkEvent {
   private String type;
 
   @Nullable
+  @JsonProperty("feed_visibility")
+  private String feedVisibility;
+
+  @Nullable
   @JsonProperty("mark_all_read")
   private Boolean markAllRead;
 
@@ -51,6 +55,10 @@ public class ActivityMarkEvent {
   @Nullable
   @JsonProperty("mark_read")
   private List<String> markRead;
+
+  @Nullable
+  @JsonProperty("mark_seen")
+  private List<String> markSeen;
 
   @Nullable
   @JsonProperty("mark_watched")

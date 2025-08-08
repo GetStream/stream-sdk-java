@@ -20,9 +20,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @lombok.AllArgsConstructor
 public class FollowPair {
 
-  @JsonProperty("source_fid")
-  private String sourceFid;
+  @JsonProperty("source")
+  private String source;
 
-  @JsonProperty("target_fid")
-  private String targetFid;
+  @JsonProperty("target")
+  private String target;
 }
