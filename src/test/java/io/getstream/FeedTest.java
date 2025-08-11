@@ -64,7 +64,8 @@ public class FeedTest extends BasicTest {
 
     Assertions.assertDoesNotThrow(() -> feeds.follow(followRequest).execute());
 
-    // Add activity to origin feed (similar to Go code's AddActivity)
+    // snippet-start: AddActivity
+    // Add activity to origin feed
     AddActivityRequest activityRequest =
         AddActivityRequest.builder()
             .type("post1")
@@ -75,6 +76,8 @@ public class FeedTest extends BasicTest {
 
     AddActivityResponse addActivityResponse =
         Assertions.assertDoesNotThrow(() -> feeds.addActivity(activityRequest).execute().getData());
+
+    // snippet-end: AddActivity
 
     // Fetch both feeds to verify activity propagation
     GetOrCreateFeedResponse originActivitiesResponse =
