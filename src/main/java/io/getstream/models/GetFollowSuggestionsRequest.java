@@ -24,4 +24,8 @@ public class GetFollowSuggestionsRequest {
   @Query("limit")
   @JsonIgnore
   private Integer Limit;
+
+  @Query("user_id")
+  @JsonIgnore
+  private String UserID;
 }

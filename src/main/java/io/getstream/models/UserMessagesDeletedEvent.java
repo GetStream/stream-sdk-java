@@ -21,58 +21,51 @@ import org.jetbrains.annotations.Nullable;
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class Flag {
+public class UserMessagesDeletedEvent {
 
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @JsonProperty("created_by_automod")
-  private Boolean createdByAutomod;
+  @JsonProperty("hard_delete")
+  private Boolean hardDelete;
 
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+  @JsonProperty("soft_delete")
+  private Boolean softDelete;
 
-  @Nullable
-  @JsonProperty("approved_at")
-  private Date approvedAt;
-
-  @Nullable
-  @JsonProperty("reason")
-  private String reason;
-
-  @Nullable
-  @JsonProperty("rejected_at")
-  private Date rejectedAt;
-
-  @Nullable
-  @JsonProperty("reviewed_at")
-  private Date reviewedAt;
-
-  @Nullable
-  @JsonProperty("reviewed_by")
-  private String reviewedBy;
-
-  @Nullable
-  @JsonProperty("target_message_id")
-  private String targetMessageID;
-
-  @Nullable
   @JsonProperty("custom")
   private Map<String, Object> custom;
 
-  @Nullable
-  @JsonProperty("details")
-  private FlagDetails details;
-
-  @Nullable
-  @JsonProperty("target_message")
-  private Message targetMessage;
-
-  @Nullable
-  @JsonProperty("target_user")
-  private User targetUser;
-
-  @Nullable
   @JsonProperty("user")
-  private User user;
+  private UserResponseCommonFields user;
+
+  @JsonProperty("type")
+  private String type;
+
+  @Nullable
+  @JsonProperty("channel_id")
+  private String channelID;
+
+  @Nullable
+  @JsonProperty("channel_member_count")
+  private Integer channelMemberCount;
+
+  @Nullable
+  @JsonProperty("channel_type")
+  private String channelType;
+
+  @Nullable
+  @JsonProperty("cid")
+  private String cid;
+
+  @Nullable
+  @JsonProperty("received_at")
+  private Date receivedAt;
+
+  @Nullable
+  @JsonProperty("team")
+  private String team;
+
+  @Nullable
+  @JsonProperty("channel_custom")
+  private Map<String, Object> channelCustom;
 }

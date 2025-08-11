@@ -12,16 +12,20 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class DeleteFeedRequest {
+public class GetOrCreateFeedGroupResponse {
 
-  @Query("hard_delete")
-  @JsonIgnore
-  private Boolean HardDelete;
+  @JsonProperty("duration")
+  private String duration;
+
+  @JsonProperty("was_created")
+  private Boolean wasCreated;
+
+  @JsonProperty("feed_group")
+  private FeedGroupResponse feedGroup;
 }

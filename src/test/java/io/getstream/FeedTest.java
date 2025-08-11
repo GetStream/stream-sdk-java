@@ -1,9 +1,13 @@
 package io.getstream;
 
 import io.getstream.models.*;
+import io.getstream.services.Common;
+import io.getstream.services.CommonImpl;
 import io.getstream.services.Feeds;
 import io.getstream.services.FeedsImpl;
 import io.getstream.services.framework.StreamHTTPClient;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,11 +17,14 @@ import org.junit.jupiter.api.*;
 public class FeedTest extends BasicTest {
 
   private static Feeds feeds;
+  private static Common comm;
+
 
   @BeforeAll
   static void setupFeeds() {
     // Create feeds service instance using the same HTTP client setup as the main client
     feeds = new FeedsImpl(new StreamHTTPClient());
+    comm= new CommonImpl(new StreamHTTPClient());
   }
 
   @Test
@@ -48,8 +55,8 @@ public class FeedTest extends BasicTest {
         Assertions.assertDoesNotThrow(
             () -> feeds.getOrCreateFeed("user", userID2, feedRequest2).execute().getData());
 
-    String originFid = feedOriginResponse.getFeed().getFid();
-    String followerFid = feedFollowerResponse.getFeed().getFid();
+    String originFid = feedOriginResponse.getFeed().getFeed();
+    String followerFid = feedFollowerResponse.getFeed().getFeed();
 
     // Create follow relationship (follower follows origin, similar to Go code's Follow)
     FollowRequest followRequest =
@@ -127,7 +134,7 @@ public class FeedTest extends BasicTest {
     GetOrCreateFeedResponse feedResponse =
         Assertions.assertDoesNotThrow(
             () -> feeds.getOrCreateFeed("user", userID, feedRequest).execute().getData());
-    String feedFid = feedResponse.getFeed().getFid();
+    String feedFid = feedResponse.getFeed().getFeed();
 
     // Test addActivity
     AddActivityRequest activityRequest =
@@ -153,7 +160,7 @@ public class FeedTest extends BasicTest {
     UpdateActivityRequest updateRequest =
         UpdateActivityRequest.builder()
             .text("Updated activity content")
-            .userID(userID) // $$
+            .userID(userID)
             .build();
     UpdateActivityResponse updateResponse =
         Assertions.assertDoesNotThrow(
@@ -162,7 +169,10 @@ public class FeedTest extends BasicTest {
 
     // Test updateActivityPartial
     UpdateActivityPartialRequest partialRequest =
-        UpdateActivityPartialRequest.builder().set(Map.of("custom_field", "custom_value")).userID("sara").build();
+        UpdateActivityPartialRequest.builder()
+            .set(Map.of("custom_field", "custom_value"))
+            .userID("sara")
+            .build();
     Assertions.assertDoesNotThrow(
         () -> feeds.updateActivityPartial(activityId, partialRequest).execute());
 
@@ -191,7 +201,7 @@ public class FeedTest extends BasicTest {
     GetOrCreateFeedResponse feedResponse =
         Assertions.assertDoesNotThrow(
             () -> feeds.getOrCreateFeed("user", userID, feedRequest).execute().getData());
-    String feedFid = feedResponse.getFeed().getFid();
+    String feedFid = feedResponse.getFeed().getFeed();
 
     // Create activity to bookmark
     AddActivityRequest activityRequest =
@@ -218,12 +228,12 @@ public class FeedTest extends BasicTest {
     Assertions.assertFalse(queryResponse.getBookmarks().isEmpty());
 
     // Test updateBookmark
-    UpdateBookmarkRequest updateRequest =
-        UpdateBookmarkRequest.builder().userID(userID).build();
+    UpdateBookmarkRequest updateRequest = UpdateBookmarkRequest.builder().userID(userID).build();
     Assertions.assertDoesNotThrow(() -> feeds.updateBookmark(activityId, updateRequest).execute());
 
     // Test deleteBookmark
-    Assertions.assertDoesNotThrow(() -> feeds.deleteBookmark(activityId).execute());
+    DeleteBookmarkRequest deleteRequest = DeleteBookmarkRequest.builder().UserID(userID).build();
+    Assertions.assertDoesNotThrow(() -> feeds.deleteBookmark(activityId, deleteRequest).execute());
   }
 
   @Test
@@ -259,7 +269,7 @@ public class FeedTest extends BasicTest {
     GetOrCreateFeedResponse feedResponse =
         Assertions.assertDoesNotThrow(
             () -> feeds.getOrCreateFeed("user", userID, feedRequest).execute().getData());
-    String feedFid = feedResponse.getFeed().getFid();
+    String feedFid = feedResponse.getFeed().getFeed();
 
     AddActivityRequest activityRequest =
         AddActivityRequest.builder()
@@ -289,7 +299,8 @@ public class FeedTest extends BasicTest {
     // Test deleteActivityReaction
     DeleteActivityReactionRequest deleteReactionRequest =
         DeleteActivityReactionRequest.builder().UserID(userID).build();
-    Assertions.assertDoesNotThrow(() -> feeds.deleteActivityReaction(activityId, "like", deleteReactionRequest).execute());
+    Assertions.assertDoesNotThrow(
+        () -> feeds.deleteActivityReaction(activityId, "like", deleteReactionRequest).execute());
   }
 
   @Test
@@ -306,7 +317,7 @@ public class FeedTest extends BasicTest {
     GetOrCreateFeedResponse feedResponse =
         Assertions.assertDoesNotThrow(
             () -> feeds.getOrCreateFeed("user", userID, feedRequest).execute().getData());
-    String feedFid = feedResponse.getFeed().getFid();
+    String feedFid = feedResponse.getFeed().getFeed();
 
     AddActivityRequest activityRequest =
         AddActivityRequest.builder()
@@ -358,7 +369,7 @@ public class FeedTest extends BasicTest {
         QueryCommentsRequest.builder().filter(Map.of("activity_id", activityId)).build();
     QueryCommentsResponse queryResponse =
         Assertions.assertDoesNotThrow(() -> feeds.queryComments(queryRequest).execute().getData());
-    Assertions.assertFalse(queryResponse.getComments().isEmpty());//$$
+    Assertions.assertFalse(queryResponse.getComments().isEmpty()); // $$
 
     // Test deleteComment
     Assertions.assertDoesNotThrow(() -> feeds.deleteComment(commentId).execute());
@@ -378,7 +389,7 @@ public class FeedTest extends BasicTest {
     GetOrCreateFeedResponse feedResponse =
         Assertions.assertDoesNotThrow(
             () -> feeds.getOrCreateFeed("user", userID, feedRequest).execute().getData());
-    String feedFid = feedResponse.getFeed().getFid();
+    String feedFid = feedResponse.getFeed().getFeed();
 
     AddActivityRequest activityRequest =
         AddActivityRequest.builder()
@@ -418,26 +429,28 @@ public class FeedTest extends BasicTest {
 
     // Test deleteCommentReaction
     DeleteCommentReactionRequest deleteCommentReactionRequest =
-            DeleteCommentReactionRequest.builder().UserID(userID).build();
-    Assertions.assertDoesNotThrow(() -> feeds.deleteCommentReaction(commentId, "like", deleteCommentReactionRequest).execute());
+        DeleteCommentReactionRequest.builder().UserID(userID).build();
+    Assertions.assertDoesNotThrow(
+        () ->
+            feeds.deleteCommentReaction(commentId, "like", deleteCommentReactionRequest).execute());
   }
 
-  @Test//$$
+  @Test // $$
   public void testFeedGroupOperations() {
     String feedGroupId = RandomStringUtils.randomAlphanumeric(10);
 
     // Test createFeedGroup
     CreateFeedGroupRequest createRequest =
-        CreateFeedGroupRequest.builder().feedGroupID(feedGroupId).build();
+        CreateFeedGroupRequest.builder().id(feedGroupId).build();
     CreateFeedGroupResponse createResponse =
         Assertions.assertDoesNotThrow(
             () -> feeds.createFeedGroup(createRequest).execute().getData());
-    Assertions.assertEquals(feedGroupId, createResponse.getFeedGroup().getFeedGroupID());
+    Assertions.assertEquals(feedGroupId, createResponse.getFeedGroup().getId());
 
     // Test getFeedGroup
     GetFeedGroupResponse getResponse =
         Assertions.assertDoesNotThrow(() -> feeds.getFeedGroup(feedGroupId).execute().getData());
-    Assertions.assertEquals("Test Feed Group", getResponse.getFeedGroup().getFeedGroupID());
+    Assertions.assertEquals("Test Feed Group", getResponse.getFeedGroup().getId());
 
     // Test listFeedGroups
     ListFeedGroupsResponse listResponse =
@@ -484,7 +497,7 @@ public class FeedTest extends BasicTest {
     //    Assertions.assertNotNull(updateResponse.getFeed());
 
     // Create activity for pin/unpin tests
-    String feedFid = createResponse.getFeed().getFid();
+    String feedFid = createResponse.getFeed().getFeed();
     AddActivityRequest activityRequest =
         AddActivityRequest.builder()
             .type("post")
@@ -548,8 +561,8 @@ public class FeedTest extends BasicTest {
         Assertions.assertDoesNotThrow(
             () -> feeds.getOrCreateFeed("user", userID2, feedRequest2).execute().getData());
 
-    String fid1 = feedResponse1.getFeed().getFid();
-    String fid2 = feedResponse2.getFeed().getFid();
+    String fid1 = feedResponse1.getFeed().getFeed();
+    String fid2 = feedResponse2.getFeed().getFeed();
 
     // Test follow
     FollowRequest followRequest = FollowRequest.builder().source(fid2).target(fid1).build();
@@ -560,8 +573,8 @@ public class FeedTest extends BasicTest {
     // Test queryFollows
     QueryFollowsRequest queryRequest =
         QueryFollowsRequest.builder()
-//            .filter(Map.of("source", fid2)) // $$
-//                    .filter(Map.of("source_fid", fid2))
+            //            .filter(Map.of("source", fid2)) // $$
+            //                    .filter(Map.of("source_fid", fid2))
             .build();
     QueryFollowsResponse queryResponse =
         Assertions.assertDoesNotThrow(() -> feeds.queryFollows(queryRequest).execute().getData());
@@ -587,19 +600,19 @@ public class FeedTest extends BasicTest {
     // Test createFeedView
     CreateFeedViewRequest createRequest =
         CreateFeedViewRequest.builder()
-            .id(viewId)//$$
+            .id(viewId) // $$
             //        .name("Test Feed View")
             //        .description("A test feed view")
             .build();
     CreateFeedViewResponse createResponse =
         Assertions.assertDoesNotThrow(
             () -> feeds.createFeedView(createRequest).execute().getData());
-    Assertions.assertEquals(viewId, createResponse.getFeedView().getViewID());
+    Assertions.assertEquals(viewId, createResponse.getFeedView().getId());
 
     // Test getFeedView
     GetFeedViewResponse getResponse =
         Assertions.assertDoesNotThrow(() -> feeds.getFeedView(viewId).execute().getData());
-    Assertions.assertEquals(viewId, getResponse.getFeedView().getViewID());
+    Assertions.assertEquals(viewId, getResponse.getFeedView().getId());
 
     // Test listFeedViews
     ListFeedViewsResponse listResponse =
@@ -670,7 +683,7 @@ public class FeedTest extends BasicTest {
     // Test deleteActivities
     DeleteActivitiesRequest deleteRequest =
         DeleteActivitiesRequest.builder()
-            .activityIds(List.of(upsertResponse.getActivities().get(0).getId()))
+            .ids(List.of(upsertResponse.getActivities().get(0).getId()))
             .build();
     Assertions.assertDoesNotThrow(() -> feeds.deleteActivities(deleteRequest).execute());
   }
@@ -714,16 +727,27 @@ public class FeedTest extends BasicTest {
     GetOrCreateFeedResponse feedResponse =
         Assertions.assertDoesNotThrow(
             () -> feeds.getOrCreateFeed("user", userID, feedRequest).execute().getData());
-    String feedFid = feedResponse.getFeed().getFid();
+    String feedFid = feedResponse.getFeed().getFeed();
 
     // Create activity with poll (assuming poll functionality exists)
-    String pollId = RandomStringUtils.randomAlphanumeric(10);
+    List<PollOptionInput> pl=new ArrayList<>();
+    pl.add(PollOptionInput.builder().text("Red").build());
+    pl.add(PollOptionInput.builder().text("Blue").build());
+    pl.add(PollOptionInput.builder().text("Green").build());
+    CreatePollRequest cp= CreatePollRequest.builder()
+            .name("What is your favorite color?")
+            .options(pl)
+            .userID(userID)
+            .build();
+
+    PollResponse createPollResponse =
+        Assertions.assertDoesNotThrow(() -> comm.createPoll(cp).execute().getData());
     AddActivityRequest activityRequest =
         AddActivityRequest.builder()
             .type("poll")
             .feeds(List.of(feedFid))
             .text("Poll activity")
-            .pollID(pollId)
+            .pollID(createPollResponse.getPoll().getId())
             .userID(userID)
             .build();
     AddActivityResponse addResponse =
@@ -741,14 +765,14 @@ public class FeedTest extends BasicTest {
     // These tests assume the poll infrastructure is properly configured
     try {
       PollVoteResponse voteResponse =
-          feeds.castPollVote(activityId, pollId, voteRequest).execute().getData();
+          feeds.castPollVote(activityId, createPollResponse.getPoll().getId(), voteRequest).execute().getData();
       Assertions.assertNotNull(voteResponse);
 
       // Test deletePollVote if vote was successful
       String voteId = voteResponse.getVote().getId();
       if (voteId != null) {
         Assertions.assertDoesNotThrow(
-            () -> feeds.deletePollVote(activityId, pollId, voteId).execute());
+            () -> feeds.deletePollVote(activityId, createPollResponse.getPoll().getId(), voteId).execute());
       }
     } catch (Exception e) {
       // Poll operations might not be fully configured in test environment
@@ -770,7 +794,7 @@ public class FeedTest extends BasicTest {
     GetOrCreateFeedResponse feedResponse =
         Assertions.assertDoesNotThrow(
             () -> feeds.getOrCreateFeed("user", userID, feedRequest).execute().getData());
-    String feedFid = feedResponse.getFeed().getFid();
+    String feedFid = feedResponse.getFeed().getFeed();
 
     AddActivityRequest activityRequest =
         AddActivityRequest.builder()
@@ -873,7 +897,7 @@ public class FeedTest extends BasicTest {
 
     // Test getFollowSuggestions
     GetFollowSuggestionsRequest suggestionsRequest =
-        GetFollowSuggestionsRequest.builder().Limit(10).build();
+        GetFollowSuggestionsRequest.builder().UserID(userID).Limit(10).build();
     GetFollowSuggestionsResponse suggestionsResponse =
         Assertions.assertDoesNotThrow(
             () -> feeds.getFollowSuggestions(feedGroupId, suggestionsRequest).execute().getData());

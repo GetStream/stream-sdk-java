@@ -39,38 +39,6 @@ public interface Feeds {
   public StreamRequest<QueryActivitiesResponse> queryActivities() throws StreamException;
 
   @NotNull
-  public StreamRequest<DeleteActivityResponse> deleteActivity(
-      @NotNull String activityID, DeleteActivityRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<DeleteActivityResponse> deleteActivity(@NotNull String activityID)
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<GetActivityResponse> getActivity(
-      @NotNull String activityID, GetActivityRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<GetActivityResponse> getActivity(@NotNull String activityID)
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<UpdateActivityPartialResponse> updateActivityPartial(
-      @NotNull String activityID, UpdateActivityPartialRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<UpdateActivityPartialResponse> updateActivityPartial(
-      @NotNull String activityID) throws StreamException;
-
-  @NotNull
-  public StreamRequest<UpdateActivityResponse> updateActivity(
-      @NotNull String activityID, UpdateActivityRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<UpdateActivityResponse> updateActivity(@NotNull String activityID)
-      throws StreamException;
-
-  @NotNull
   public StreamRequest<DeleteBookmarkResponse> deleteBookmark(
       @NotNull String activityID, DeleteBookmarkRequest request) throws StreamException;
 
@@ -146,6 +114,37 @@ public interface Feeds {
       @NotNull String activityID, @NotNull String type) throws StreamException;
 
   @NotNull
+  public StreamRequest<DeleteActivityResponse> deleteActivity(
+      @NotNull String id, DeleteActivityRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteActivityResponse> deleteActivity(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetActivityResponse> getActivity(
+      @NotNull String id, GetActivityRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetActivityResponse> getActivity(@NotNull String id) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateActivityPartialResponse> updateActivityPartial(
+      @NotNull String id, UpdateActivityPartialRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateActivityPartialResponse> updateActivityPartial(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateActivityResponse> updateActivity(
+      @NotNull String id, UpdateActivityRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateActivityResponse> updateActivity(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryBookmarkFoldersResponse> queryBookmarkFolders(
       QueryBookmarkFoldersRequest request) throws StreamException;
 
@@ -193,55 +192,54 @@ public interface Feeds {
 
   @NotNull
   public StreamRequest<DeleteCommentResponse> deleteComment(
-      @NotNull String commentID, DeleteCommentRequest request) throws StreamException;
+      @NotNull String id, DeleteCommentRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<DeleteCommentResponse> deleteComment(@NotNull String commentID)
+  public StreamRequest<DeleteCommentResponse> deleteComment(@NotNull String id)
       throws StreamException;
 
   @NotNull
-  public StreamRequest<GetCommentResponse> getComment(
-      @NotNull String commentID, GetCommentRequest request) throws StreamException;
+  public StreamRequest<GetCommentResponse> getComment(@NotNull String id, GetCommentRequest request)
+      throws StreamException;
 
   @NotNull
-  public StreamRequest<GetCommentResponse> getComment(@NotNull String commentID)
-      throws StreamException;
+  public StreamRequest<GetCommentResponse> getComment(@NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<UpdateCommentResponse> updateComment(
-      @NotNull String commentID, UpdateCommentRequest request) throws StreamException;
+      @NotNull String id, UpdateCommentRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<UpdateCommentResponse> updateComment(@NotNull String commentID)
+  public StreamRequest<UpdateCommentResponse> updateComment(@NotNull String id)
       throws StreamException;
 
   @NotNull
   public StreamRequest<AddCommentReactionResponse> addCommentReaction(
-      @NotNull String commentID, AddCommentReactionRequest request) throws StreamException;
+      @NotNull String id, AddCommentReactionRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryCommentReactionsResponse> queryCommentReactions(
-      @NotNull String commentID, QueryCommentReactionsRequest request) throws StreamException;
+      @NotNull String id, QueryCommentReactionsRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<QueryCommentReactionsResponse> queryCommentReactions(
-      @NotNull String commentID) throws StreamException;
-
-  @NotNull
-  public StreamRequest<DeleteCommentReactionResponse> deleteCommentReaction(
-      @NotNull String commentID, @NotNull String type, DeleteCommentReactionRequest request)
+  public StreamRequest<QueryCommentReactionsResponse> queryCommentReactions(@NotNull String id)
       throws StreamException;
 
   @NotNull
   public StreamRequest<DeleteCommentReactionResponse> deleteCommentReaction(
-      @NotNull String commentID, @NotNull String type) throws StreamException;
+      @NotNull String id, @NotNull String type, DeleteCommentReactionRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteCommentReactionResponse> deleteCommentReaction(
+      @NotNull String id, @NotNull String type) throws StreamException;
 
   @NotNull
   public StreamRequest<GetCommentRepliesResponse> getCommentReplies(
-      @NotNull String commentID, GetCommentRepliesRequest request) throws StreamException;
+      @NotNull String id, GetCommentRepliesRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<GetCommentRepliesResponse> getCommentReplies(@NotNull String commentID)
+  public StreamRequest<GetCommentRepliesResponse> getCommentReplies(@NotNull String id)
       throws StreamException;
 
   @NotNull
@@ -253,30 +251,6 @@ public interface Feeds {
 
   @NotNull
   public StreamRequest<CreateFeedGroupResponse> createFeedGroup(CreateFeedGroupRequest request)
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<DeleteFeedGroupResponse> deleteFeedGroup(
-      @NotNull String feedGroupID, DeleteFeedGroupRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<DeleteFeedGroupResponse> deleteFeedGroup(@NotNull String feedGroupID)
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<GetFeedGroupResponse> getFeedGroup(
-      @NotNull String feedGroupID, GetFeedGroupRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<GetFeedGroupResponse> getFeedGroup(@NotNull String feedGroupID)
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<UpdateFeedGroupResponse> updateFeedGroup(
-      @NotNull String feedGroupID, UpdateFeedGroupRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<UpdateFeedGroupResponse> updateFeedGroup(@NotNull String feedGroupID)
       throws StreamException;
 
   @NotNull
@@ -382,6 +356,38 @@ public interface Feeds {
       @NotNull String feedGroupID) throws StreamException;
 
   @NotNull
+  public StreamRequest<DeleteFeedGroupResponse> deleteFeedGroup(
+      @NotNull String id, DeleteFeedGroupRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteFeedGroupResponse> deleteFeedGroup(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedGroupResponse> getFeedGroup(
+      @NotNull String id, GetFeedGroupRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedGroupResponse> getFeedGroup(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetOrCreateFeedGroupResponse> getOrCreateFeedGroup(
+      @NotNull String id, GetOrCreateFeedGroupRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetOrCreateFeedGroupResponse> getOrCreateFeedGroup(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateFeedGroupResponse> updateFeedGroup(
+      @NotNull String id, UpdateFeedGroupRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateFeedGroupResponse> updateFeedGroup(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<ListFeedViewsResponse> listFeedViews(ListFeedViewsRequest request)
       throws StreamException;
 
@@ -394,26 +400,33 @@ public interface Feeds {
 
   @NotNull
   public StreamRequest<DeleteFeedViewResponse> deleteFeedView(
-      @NotNull String viewID, DeleteFeedViewRequest request) throws StreamException;
+      @NotNull String id, DeleteFeedViewRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<DeleteFeedViewResponse> deleteFeedView(@NotNull String viewID)
+  public StreamRequest<DeleteFeedViewResponse> deleteFeedView(@NotNull String id)
       throws StreamException;
 
   @NotNull
   public StreamRequest<GetFeedViewResponse> getFeedView(
-      @NotNull String viewID, GetFeedViewRequest request) throws StreamException;
+      @NotNull String id, GetFeedViewRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<GetFeedViewResponse> getFeedView(@NotNull String viewID)
+  public StreamRequest<GetFeedViewResponse> getFeedView(@NotNull String id) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetOrCreateFeedViewResponse> getOrCreateFeedView(
+      @NotNull String id, GetOrCreateFeedViewRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetOrCreateFeedViewResponse> getOrCreateFeedView(@NotNull String id)
       throws StreamException;
 
   @NotNull
   public StreamRequest<UpdateFeedViewResponse> updateFeedView(
-      @NotNull String viewID, UpdateFeedViewRequest request) throws StreamException;
+      @NotNull String id, UpdateFeedViewRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<UpdateFeedViewResponse> updateFeedView(@NotNull String viewID)
+  public StreamRequest<UpdateFeedViewResponse> updateFeedView(@NotNull String id)
       throws StreamException;
 
   @NotNull
@@ -477,8 +490,4 @@ public interface Feeds {
   @NotNull
   public StreamRequest<ExportFeedUserDataResponse> exportFeedUserData(
       @NotNull String userID, ExportFeedUserDataRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<ExportFeedUserDataResponse> exportFeedUserData(@NotNull String userID)
-      throws StreamException;
 }

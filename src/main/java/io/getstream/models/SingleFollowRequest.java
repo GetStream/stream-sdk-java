@@ -12,16 +12,31 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class DeleteFeedRequest {
+public class SingleFollowRequest {
 
-  @Query("hard_delete")
-  @JsonIgnore
-  private Boolean HardDelete;
+  @JsonProperty("source")
+  private String source;
+
+  @JsonProperty("target")
+  private String target;
+
+  @Nullable
+  @JsonProperty("create_notification_activity")
+  private Boolean createNotificationActivity;
+
+  @Nullable
+  @JsonProperty("push_preference")
+  private String pushPreference;
+
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 }
