@@ -39,7 +39,7 @@ public class ReviewQueueItemUpdatedEvent {
 
   @Nullable
   @JsonProperty("flags")
-  private List<FlagResponse> flags;
+  private List<ModerationFlagResponse> flags;
 
   @Nullable
   @JsonProperty("action")

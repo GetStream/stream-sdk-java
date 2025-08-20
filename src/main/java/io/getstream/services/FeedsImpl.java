@@ -1370,6 +1370,85 @@ public class FeedsImpl implements Feeds {
   }
 
   @NotNull
+  public StreamRequest<CreateMembershipLevelResponse> createMembershipLevel(
+      CreateMembershipLevelRequest request) throws StreamException {
+
+    return new StreamRequest<CreateMembershipLevelResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/membership_levels",
+        request,
+        null,
+        new TypeReference<CreateMembershipLevelResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryMembershipLevelsResponse> queryMembershipLevels(
+      QueryMembershipLevelsRequest request) throws StreamException {
+
+    return new StreamRequest<QueryMembershipLevelsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/membership_levels/query",
+        request,
+        null,
+        new TypeReference<QueryMembershipLevelsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryMembershipLevelsResponse> queryMembershipLevels()
+      throws StreamException {
+    return queryMembershipLevels(new QueryMembershipLevelsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<Response> deleteMembershipLevel(
+      @NotNull String id, DeleteMembershipLevelRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<Response>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "DELETE",
+        "/api/v2/feeds/membership_levels/{id}",
+        request,
+        pathParams,
+        new TypeReference<Response>() {});
+  }
+
+  @NotNull
+  public StreamRequest<Response> deleteMembershipLevel(@NotNull String id) throws StreamException {
+    return deleteMembershipLevel(id, new DeleteMembershipLevelRequest());
+  }
+
+  @NotNull
+  public StreamRequest<UpdateMembershipLevelResponse> updateMembershipLevel(
+      @NotNull String id, UpdateMembershipLevelRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<UpdateMembershipLevelResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PATCH",
+        "/api/v2/feeds/membership_levels/{id}",
+        request,
+        pathParams,
+        new TypeReference<UpdateMembershipLevelResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpdateMembershipLevelResponse> updateMembershipLevel(@NotNull String id)
+      throws StreamException {
+    return updateMembershipLevel(id, new UpdateMembershipLevelRequest());
+  }
+
+  @NotNull
   public StreamRequest<UnfollowBatchResponse> unfollowBatch(UnfollowBatchRequest request)
       throws StreamException {
 

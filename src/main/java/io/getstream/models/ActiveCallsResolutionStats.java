@@ -13,36 +13,16 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
-import java.util.List;
-import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class FeedViewResponse {
+public class ActiveCallsResolutionStats {
 
-  @JsonProperty("id")
-  private String id;
+  @JsonProperty("p10")
+  private Double p10;
 
-  @Nullable
-  @JsonProperty("last_used_at")
-  private Date lastUsedAt;
-
-  @Nullable
-  @JsonProperty("activity_processors")
-  private List<ActivityProcessorConfig> activityProcessors;
-
-  @Nullable
-  @JsonProperty("activity_selectors")
-  private List<ActivitySelectorConfig> activitySelectors;
-
-  @Nullable
-  @JsonProperty("aggregation")
-  private AggregationConfig aggregation;
-
-  @Nullable
-  @JsonProperty("ranking")
-  private RankingConfig ranking;
+  @JsonProperty("p50")
+  private Double p50;
 }

@@ -21,11 +21,11 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class AcceptFollowRequest {
 
-  @JsonProperty("source_fid")
-  private String sourceFid;
+  @JsonProperty("source")
+  private String source;
 
-  @JsonProperty("target_fid")
-  private String targetFid;
+  @JsonProperty("target")
+  private String target;
 
   @Nullable
   @JsonProperty("follower_role")

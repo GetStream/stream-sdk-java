@@ -13,7 +13,6 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -22,59 +21,25 @@ import org.jetbrains.annotations.Nullable;
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class FeedResponse {
-
-  @JsonProperty("created_at")
-  private Date createdAt;
-
-  @JsonProperty("description")
-  private String description;
-
-  @JsonProperty("feed")
-  private String feed;
-
-  @JsonProperty("follower_count")
-  private Integer followerCount;
-
-  @JsonProperty("following_count")
-  private Integer followingCount;
-
-  @JsonProperty("group_id")
-  private String groupID;
+public class CreateMembershipLevelRequest {
 
   @JsonProperty("id")
   private String id;
 
-  @JsonProperty("member_count")
-  private Integer memberCount;
-
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("pin_count")
-  private Integer pinCount;
-
-  @JsonProperty("updated_at")
-  private Date updatedAt;
-
-  @JsonProperty("created_by")
-  private UserResponse createdBy;
+  @Nullable
+  @JsonProperty("description")
+  private String description;
 
   @Nullable
-  @JsonProperty("deleted_at")
-  private Date deletedAt;
+  @JsonProperty("priority")
+  private Integer priority;
 
   @Nullable
-  @JsonProperty("visibility")
-  private String visibility;
-
-  @Nullable
-  @JsonProperty("filter_tags")
-  private List<String> filterTags;
-
-  @Nullable
-  @JsonProperty("own_follows")
-  private List<FollowResponse> ownFollows;
+  @JsonProperty("tags")
+  private List<String> tags;
 
   @Nullable
   @JsonProperty("custom")

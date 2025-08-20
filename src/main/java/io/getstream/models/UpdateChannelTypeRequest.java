@@ -45,6 +45,10 @@ public class UpdateChannelTypeRequest {
   private Boolean connectEvents;
 
   @Nullable
+  @JsonProperty("count_messages")
+  private Boolean countMessages;
+
+  @Nullable
   @JsonProperty("custom_events")
   private Boolean customEvents;
 

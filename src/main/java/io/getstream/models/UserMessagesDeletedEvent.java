@@ -26,9 +26,6 @@ public class UserMessagesDeletedEvent {
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @JsonProperty("hard_delete")
-  private Boolean hardDelete;
-
   @JsonProperty("soft_delete")
   private Boolean softDelete;
 
@@ -56,6 +53,10 @@ public class UserMessagesDeletedEvent {
   @Nullable
   @JsonProperty("cid")
   private String cid;
+
+  @Nullable
+  @JsonProperty("hard_delete")
+  private Boolean hardDelete;
 
   @Nullable
   @JsonProperty("received_at")

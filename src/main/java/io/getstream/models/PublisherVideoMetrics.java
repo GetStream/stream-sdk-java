@@ -22,6 +22,10 @@ import org.jetbrains.annotations.Nullable;
 public class PublisherVideoMetrics {
 
   @Nullable
+  @JsonProperty("bitrate")
+  private ActiveCallsBitrateStats bitrate;
+
+  @Nullable
   @JsonProperty("fps_30")
   private ActiveCallsFPSStats fps30;
 
@@ -32,4 +36,8 @@ public class PublisherVideoMetrics {
   @Nullable
   @JsonProperty("jitter_ms")
   private ActiveCallsLatencyStats jitterMs;
+
+  @Nullable
+  @JsonProperty("resolution")
+  private ActiveCallsResolutionStats resolution;
 }

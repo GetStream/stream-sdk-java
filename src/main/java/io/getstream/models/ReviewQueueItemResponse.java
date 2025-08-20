@@ -63,7 +63,7 @@ public class ReviewQueueItemResponse {
   private List<Ban> bans;
 
   @JsonProperty("flags")
-  private List<FlagResponse> flags;
+  private List<ModerationFlagResponse> flags;
 
   @JsonProperty("languages")
   private List<String> languages;

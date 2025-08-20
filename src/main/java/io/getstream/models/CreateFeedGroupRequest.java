@@ -23,8 +23,8 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class CreateFeedGroupRequest {
 
-  @JsonProperty("feed_group_id")
-  private String feedGroupID;
+  @JsonProperty("id")
+  private String id;
 
   @Nullable
   @JsonProperty("default_visibility")

@@ -38,6 +38,10 @@ public class ConfigOverrides {
   private String blocklistBehavior;
 
   @Nullable
+  @JsonProperty("count_messages")
+  private Boolean countMessages;
+
+  @Nullable
   @JsonProperty("max_message_length")
   private Integer maxMessageLength;
 

@@ -22,59 +22,29 @@ import org.jetbrains.annotations.Nullable;
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class FeedResponse {
+public class MembershipLevelResponse {
 
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @JsonProperty("description")
-  private String description;
-
-  @JsonProperty("feed")
-  private String feed;
-
-  @JsonProperty("follower_count")
-  private Integer followerCount;
-
-  @JsonProperty("following_count")
-  private Integer followingCount;
-
-  @JsonProperty("group_id")
-  private String groupID;
-
   @JsonProperty("id")
   private String id;
-
-  @JsonProperty("member_count")
-  private Integer memberCount;
 
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("pin_count")
-  private Integer pinCount;
+  @JsonProperty("priority")
+  private Integer priority;
 
   @JsonProperty("updated_at")
   private Date updatedAt;
 
-  @JsonProperty("created_by")
-  private UserResponse createdBy;
+  @JsonProperty("tags")
+  private List<String> tags;
 
   @Nullable
-  @JsonProperty("deleted_at")
-  private Date deletedAt;
-
-  @Nullable
-  @JsonProperty("visibility")
-  private String visibility;
-
-  @Nullable
-  @JsonProperty("filter_tags")
-  private List<String> filterTags;
-
-  @Nullable
-  @JsonProperty("own_follows")
-  private List<FollowResponse> ownFollows;
+  @JsonProperty("description")
+  private String description;
 
   @Nullable
   @JsonProperty("custom")

@@ -32,14 +32,17 @@ public class ModerationFlagResponse {
   @JsonProperty("entity_type")
   private String entityType;
 
-  @JsonProperty("id")
-  private String id;
-
   @JsonProperty("type")
   private String type;
 
   @JsonProperty("updated_at")
   private String updatedAt;
+
+  @JsonProperty("user_id")
+  private String userID;
+
+  @JsonProperty("result")
+  private List<Map<String, Object>> result;
 
   @Nullable
   @JsonProperty("entity_creator_id")
@@ -56,10 +59,6 @@ public class ModerationFlagResponse {
   @Nullable
   @JsonProperty("labels")
   private List<String> labels;
-
-  @Nullable
-  @JsonProperty("result")
-  private List<Map<String, Object>> result;
 
   @Nullable
   @JsonProperty("custom")

@@ -60,6 +60,9 @@ public class AppResponseFields {
   @JsonProperty("moderation_enabled")
   private Boolean moderationEnabled;
 
+  @JsonProperty("moderation_llm_configurability_enabled")
+  private Boolean moderationLlmConfigurabilityEnabled;
+
   @JsonProperty("moderation_multitenant_blocklist_enabled")
   private Boolean moderationMultitenantBlocklistEnabled;
 

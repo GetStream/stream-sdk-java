@@ -66,6 +66,10 @@ public class ConfigResponse {
   private BlockListConfig blockListConfig;
 
   @Nullable
+  @JsonProperty("llm_config")
+  private LLMConfig llmConfig;
+
+  @Nullable
   @JsonProperty("rule_builder_config")
   private RuleBuilderConfig ruleBuilderConfig;
 

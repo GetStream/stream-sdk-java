@@ -21,33 +21,19 @@ import org.jetbrains.annotations.Nullable;
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetOrCreateFeedGroupRequest {
+public class LLMConfig {
+
+  @JsonProperty("enabled")
+  private Boolean enabled;
+
+  @JsonProperty("rules")
+  private List<LLMRule> rules;
 
   @Nullable
-  @JsonProperty("default_visibility")
-  private String defaultVisibility;
+  @JsonProperty("async")
+  private Boolean async;
 
   @Nullable
-  @JsonProperty("activity_processors")
-  private List<ActivityProcessorConfig> activityProcessors;
-
-  @Nullable
-  @JsonProperty("activity_selectors")
-  private List<ActivitySelectorConfig> activitySelectors;
-
-  @Nullable
-  @JsonProperty("aggregation")
-  private AggregationConfig aggregation;
-
-  @Nullable
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
-
-  @Nullable
-  @JsonProperty("notification")
-  private NotificationConfig notification;
-
-  @Nullable
-  @JsonProperty("ranking")
-  private RankingConfig ranking;
+  @JsonProperty("severity_descriptions")
+  private Map<String, String> severityDescriptions;
 }

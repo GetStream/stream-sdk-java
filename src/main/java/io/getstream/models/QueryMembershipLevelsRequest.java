@@ -21,33 +21,25 @@ import org.jetbrains.annotations.Nullable;
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetOrCreateFeedGroupRequest {
+public class QueryMembershipLevelsRequest {
 
   @Nullable
-  @JsonProperty("default_visibility")
-  private String defaultVisibility;
+  @JsonProperty("limit")
+  private Integer limit;
 
   @Nullable
-  @JsonProperty("activity_processors")
-  private List<ActivityProcessorConfig> activityProcessors;
+  @JsonProperty("next")
+  private String next;
 
   @Nullable
-  @JsonProperty("activity_selectors")
-  private List<ActivitySelectorConfig> activitySelectors;
+  @JsonProperty("prev")
+  private String prev;
 
   @Nullable
-  @JsonProperty("aggregation")
-  private AggregationConfig aggregation;
+  @JsonProperty("sort")
+  private List<SortParamRequest> sort;
 
   @Nullable
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
-
-  @Nullable
-  @JsonProperty("notification")
-  private NotificationConfig notification;
-
-  @Nullable
-  @JsonProperty("ranking")
-  private RankingConfig ranking;
+  @JsonProperty("filter")
+  private Map<String, Object> filter;
 }

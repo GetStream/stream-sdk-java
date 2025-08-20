@@ -100,6 +100,10 @@ public class Message {
   private Date deletedAt;
 
   @Nullable
+  @JsonProperty("deleted_for_me")
+  private Boolean deletedForMe;
+
+  @Nullable
   @JsonProperty("message_text_updated_at")
   private Date messageTextUpdatedAt;
 

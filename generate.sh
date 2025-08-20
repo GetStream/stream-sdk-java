@@ -13,6 +13,8 @@ set -ex
 # cd in API repo, generate new spec and then generate code from it
 ( cd $SOURCE_PATH ; make openapi ; go run ./cmd/chat-manager openapi generate-client --language java --spec ./releases/v2/serverside-api.yaml --output ../stream-sdk-java/src/main/java/io/getstream )
 
+sed -i '' '/^    @JsonProperty("Role")$/N;/\n    private String role;$/d' src/main/java/io/getstream/models/CallParticipant.java
+
 # format generated code
 ./gradlew spotlessApply
 

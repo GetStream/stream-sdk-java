@@ -55,6 +55,10 @@ public class ChannelStateResponse {
   private List<SharedLocationResponseData> activeLiveLocations;
 
   @Nullable
+  @JsonProperty("deleted_messages")
+  private List<String> deletedMessages;
+
+  @Nullable
   @JsonProperty("pending_messages")
   private List<PendingMessageResponse> pendingMessages;
 

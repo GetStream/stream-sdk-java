@@ -14,40 +14,25 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
-import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetOrCreateFeedGroupRequest {
+public class QueryMembershipLevelsResponse {
+
+  @JsonProperty("duration")
+  private String duration;
+
+  @JsonProperty("membership_levels")
+  private List<MembershipLevelResponse> membershipLevels;
 
   @Nullable
-  @JsonProperty("default_visibility")
-  private String defaultVisibility;
+  @JsonProperty("next")
+  private String next;
 
   @Nullable
-  @JsonProperty("activity_processors")
-  private List<ActivityProcessorConfig> activityProcessors;
-
-  @Nullable
-  @JsonProperty("activity_selectors")
-  private List<ActivitySelectorConfig> activitySelectors;
-
-  @Nullable
-  @JsonProperty("aggregation")
-  private AggregationConfig aggregation;
-
-  @Nullable
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
-
-  @Nullable
-  @JsonProperty("notification")
-  private NotificationConfig notification;
-
-  @Nullable
-  @JsonProperty("ranking")
-  private RankingConfig ranking;
+  @JsonProperty("prev")
+  private String prev;
 }

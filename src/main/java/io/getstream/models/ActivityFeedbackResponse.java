@@ -25,7 +25,4 @@ public class ActivityFeedbackResponse {
 
   @JsonProperty("duration")
   private String duration;
-
-  @JsonProperty("success")
-  private Boolean success;
 }

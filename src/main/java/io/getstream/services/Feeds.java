@@ -476,6 +476,33 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<CreateMembershipLevelResponse> createMembershipLevel(
+      CreateMembershipLevelRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryMembershipLevelsResponse> queryMembershipLevels(
+      QueryMembershipLevelsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryMembershipLevelsResponse> queryMembershipLevels()
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deleteMembershipLevel(
+      @NotNull String id, DeleteMembershipLevelRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deleteMembershipLevel(@NotNull String id) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateMembershipLevelResponse> updateMembershipLevel(
+      @NotNull String id, UpdateMembershipLevelRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateMembershipLevelResponse> updateMembershipLevel(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<UnfollowBatchResponse> unfollowBatch(UnfollowBatchRequest request)
       throws StreamException;
 

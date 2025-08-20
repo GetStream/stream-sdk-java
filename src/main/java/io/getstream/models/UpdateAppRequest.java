@@ -77,6 +77,10 @@ public class UpdateAppRequest {
   private Boolean imageModerationEnabled;
 
   @Nullable
+  @JsonProperty("max_aggregated_activities_length")
+  private Integer maxAggregatedActivitiesLength;
+
+  @Nullable
   @JsonProperty("migrate_permissions_to_v2")
   private Boolean migratePermissionsToV2;
 

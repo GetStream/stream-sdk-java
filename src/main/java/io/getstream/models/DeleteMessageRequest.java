@@ -28,4 +28,8 @@ public class DeleteMessageRequest {
   @Query("deleted_by")
   @JsonIgnore
   private String DeletedBy;
+
+  @Query("delete_for_me")
+  @JsonIgnore
+  private Boolean DeleteForMe;
 }

@@ -33,6 +33,9 @@ public class ChannelConfigWithInfo {
   @JsonProperty("connect_events")
   private Boolean connectEvents;
 
+  @JsonProperty("count_messages")
+  private Boolean countMessages;
+
   @JsonProperty("created_at")
   private Date createdAt;
 

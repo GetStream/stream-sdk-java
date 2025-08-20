@@ -22,8 +22,8 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class DeleteActivitiesRequest {
 
-  @JsonProperty("activity_ids")
-  private List<String> activityIds;
+  @JsonProperty("ids")
+  private List<String> ids;
 
   @Nullable
   @JsonProperty("hard_delete")
