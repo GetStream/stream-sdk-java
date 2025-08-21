@@ -29,6 +29,8 @@ class FeedIntegrationTests {
 
   private static String testUserId;
   private static String testUserId2; // For follow operations
+  private static Feed testFeed;
+  private static Feed testFeed2; // For follow operations
   private static String testFeedId;
   private static String testFeedId2;
 
@@ -84,17 +86,19 @@ class FeedIntegrationTests {
 
       // Create feeds
       // snippet-start: GetOrCreateFeed
+      testFeed = new Feed("user", testUserId, feeds);
+      testFeed2 = new Feed("user", testUserId2, feeds);
+
       GetOrCreateFeedRequest feedRequest1 =
           GetOrCreateFeedRequest.builder().userID(testUserId).build();
       GetOrCreateFeedRequest feedRequest2 =
           GetOrCreateFeedRequest.builder().userID(testUserId2).build();
 
-      GetOrCreateFeedResponse feedResponse1 =
-          feeds.getOrCreateFeed("user", testUserId, feedRequest1).execute().getData();
-      GetOrCreateFeedResponse feedResponse2 =
-          feeds.getOrCreateFeed("user", testUserId2, feedRequest2).execute().getData();
+      GetOrCreateFeedResponse feedResponse1 = testFeed.getOrCreate(feedRequest1).getData();
+      GetOrCreateFeedResponse feedResponse2 = testFeed2.getOrCreate(feedRequest2).getData();
       testFeedId = feedResponse1.getFeed().getFeed();
       testFeedId2 = feedResponse2.getFeed().getFeed();
+
       // snippet-end: GetOrCreateFeed
     } catch (Exception e) {
       System.err.println("⚠️ Setup failed: " + e.getMessage());
@@ -785,8 +789,7 @@ class FeedIntegrationTests {
     // snippet-start: PinActivity
     PinActivityRequest pinRequest = PinActivityRequest.builder().userID(testUserId).build();
 
-    PinActivityResponse response =
-        feeds.pinActivity("user", testUserId, activityId, pinRequest).execute().getData();
+    PinActivityResponse response = testFeed.pinActivity(activityId, pinRequest).getData();
     // snippet-end: PinActivity
 
     Assertions.assertNotNull(response.getActivity());
@@ -814,13 +817,12 @@ class FeedIntegrationTests {
     // Pin it first
     PinActivityRequest pinRequest = PinActivityRequest.builder().userID(testUserId).build();
 
-    feeds.pinActivity("user", testUserId, activityId, pinRequest).execute();
+    testFeed.pinActivity(activityId, pinRequest);
 
     // snippet-start: UnpinActivity
     UnpinActivityRequest unpinRequest = UnpinActivityRequest.builder().UserID(testUserId).build();
 
-    UnpinActivityResponse response =
-        feeds.unpinActivity("user", testUserId, activityId, unpinRequest).execute().getData();
+    UnpinActivityResponse response = testFeed.unpinActivity(activityId, unpinRequest).getData();
     // snippet-end: UnpinActivity
 
     Assertions.assertNotNull(response.getActivity());
