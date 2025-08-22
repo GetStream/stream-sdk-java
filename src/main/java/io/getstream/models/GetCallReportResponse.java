@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -29,6 +30,10 @@ public class GetCallReportResponse {
 
   @JsonProperty("report")
   private ReportResponse report;
+
+  @Nullable
+  @JsonProperty("video_reactions")
+  private List<VideoReactionsResponse> videoReactions;
 
   @Nullable
   @JsonProperty("chat_activity")

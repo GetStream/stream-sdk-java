@@ -66,14 +66,6 @@ public class GetOGResponse {
   private String imageUrl;
 
   @Nullable
-  @JsonProperty("latitude")
-  private Double latitude;
-
-  @Nullable
-  @JsonProperty("longitude")
-  private Double longitude;
-
-  @Nullable
   @JsonProperty("og_scrape_url")
   private String ogScrapeUrl;
 
@@ -88,10 +80,6 @@ public class GetOGResponse {
   @Nullable
   @JsonProperty("pretext")
   private String pretext;
-
-  @Nullable
-  @JsonProperty("stopped_sharing")
-  private Boolean stoppedSharing;
 
   @Nullable
   @JsonProperty("text")

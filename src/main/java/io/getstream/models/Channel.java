@@ -76,8 +76,20 @@ public class Channel {
   private Integer memberCount;
 
   @Nullable
+  @JsonProperty("message_count")
+  private Integer messageCount;
+
+  @Nullable
+  @JsonProperty("message_count_updated_at")
+  private Date messageCountUpdatedAt;
+
+  @Nullable
   @JsonProperty("team")
   private String team;
+
+  @Nullable
+  @JsonProperty("active_live_locations")
+  private List<SharedLocation> activeLiveLocations;
 
   @Nullable
   @JsonProperty("invites")

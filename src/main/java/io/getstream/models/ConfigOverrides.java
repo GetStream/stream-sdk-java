@@ -38,6 +38,10 @@ public class ConfigOverrides {
   private String blocklistBehavior;
 
   @Nullable
+  @JsonProperty("count_messages")
+  private Boolean countMessages;
+
+  @Nullable
   @JsonProperty("max_message_length")
   private Integer maxMessageLength;
 
@@ -54,6 +58,10 @@ public class ConfigOverrides {
   private Boolean replies;
 
   @Nullable
+  @JsonProperty("shared_locations")
+  private Boolean sharedLocations;
+
+  @Nullable
   @JsonProperty("typing_events")
   private Boolean typingEvents;
 
@@ -64,4 +72,8 @@ public class ConfigOverrides {
   @Nullable
   @JsonProperty("url_enrichment")
   private Boolean urlEnrichment;
+
+  @Nullable
+  @JsonProperty("user_message_reminders")
+  private Boolean userMessageReminders;
 }

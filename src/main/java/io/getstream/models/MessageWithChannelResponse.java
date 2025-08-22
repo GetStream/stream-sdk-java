@@ -99,6 +99,10 @@ public class MessageWithChannelResponse {
   private Date deletedAt;
 
   @Nullable
+  @JsonProperty("deleted_for_me")
+  private Boolean deletedForMe;
+
+  @Nullable
   @JsonProperty("message_text_updated_at")
   private Date messageTextUpdatedAt;
 
@@ -165,4 +169,12 @@ public class MessageWithChannelResponse {
   @Nullable
   @JsonProperty("reaction_groups")
   private Map<String, ReactionGroupResponse> reactionGroups;
+
+  @Nullable
+  @JsonProperty("reminder")
+  private ReminderResponseData reminder;
+
+  @Nullable
+  @JsonProperty("shared_location")
+  private SharedLocationResponseData sharedLocation;
 }

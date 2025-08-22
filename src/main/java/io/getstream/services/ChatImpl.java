@@ -1174,11 +1174,11 @@ public class ChatImpl implements Chat {
   }
 
   @NotNull
-  public StreamRequest<PollVoteResponse> removePollVote(
+  public StreamRequest<PollVoteResponse> deletePollVote(
       @NotNull String messageID,
       @NotNull String pollID,
       @NotNull String voteID,
-      RemovePollVoteRequest request)
+      DeletePollVoteRequest request)
       throws StreamException {
     var pathParams =
         Map.of(
@@ -1198,10 +1198,76 @@ public class ChatImpl implements Chat {
   }
 
   @NotNull
-  public StreamRequest<PollVoteResponse> removePollVote(
+  public StreamRequest<PollVoteResponse> deletePollVote(
       @NotNull String messageID, @NotNull String pollID, @NotNull String voteID)
       throws StreamException {
-    return removePollVote(messageID, pollID, voteID, new RemovePollVoteRequest());
+    return deletePollVote(messageID, pollID, voteID, new DeletePollVoteRequest());
+  }
+
+  @NotNull
+  public StreamRequest<DeleteReminderResponse> deleteReminder(
+      @NotNull String messageID, DeleteReminderRequest request) throws StreamException {
+    var pathParams = Map.of("message_id", messageID);
+
+    return new StreamRequest<DeleteReminderResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "DELETE",
+        "/api/v2/chat/messages/{message_id}/reminders",
+        request,
+        pathParams,
+        new TypeReference<DeleteReminderResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteReminderResponse> deleteReminder(@NotNull String messageID)
+      throws StreamException {
+    return deleteReminder(messageID, new DeleteReminderRequest());
+  }
+
+  @NotNull
+  public StreamRequest<UpdateReminderResponse> updateReminder(
+      @NotNull String messageID, UpdateReminderRequest request) throws StreamException {
+    var pathParams = Map.of("message_id", messageID);
+
+    return new StreamRequest<UpdateReminderResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PATCH",
+        "/api/v2/chat/messages/{message_id}/reminders",
+        request,
+        pathParams,
+        new TypeReference<UpdateReminderResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpdateReminderResponse> updateReminder(@NotNull String messageID)
+      throws StreamException {
+    return updateReminder(messageID, new UpdateReminderRequest());
+  }
+
+  @NotNull
+  public StreamRequest<ReminderResponseData> createReminder(
+      @NotNull String messageID, CreateReminderRequest request) throws StreamException {
+    var pathParams = Map.of("message_id", messageID);
+
+    return new StreamRequest<ReminderResponseData>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/chat/messages/{message_id}/reminders",
+        request,
+        pathParams,
+        new TypeReference<ReminderResponseData>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ReminderResponseData> createReminder(@NotNull String messageID)
+      throws StreamException {
+    return createReminder(messageID, new CreateReminderRequest());
   }
 
   @NotNull
@@ -1287,224 +1353,6 @@ public class ChatImpl implements Chat {
   }
 
   @NotNull
-  public StreamRequest<PollResponse> createPoll(CreatePollRequest request) throws StreamException {
-
-    return new StreamRequest<PollResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/chat/polls",
-        request,
-        null,
-        new TypeReference<PollResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<PollResponse> updatePoll(UpdatePollRequest request) throws StreamException {
-
-    return new StreamRequest<PollResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "PUT",
-        "/api/v2/chat/polls",
-        request,
-        null,
-        new TypeReference<PollResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryPollsResponse> queryPolls(QueryPollsRequest request)
-      throws StreamException {
-
-    return new StreamRequest<QueryPollsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/chat/polls/query",
-        request,
-        null,
-        new TypeReference<QueryPollsResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryPollsResponse> queryPolls() throws StreamException {
-    return queryPolls(new QueryPollsRequest());
-  }
-
-  @NotNull
-  public StreamRequest<Response> deletePoll(@NotNull String pollID, DeletePollRequest request)
-      throws StreamException {
-    var pathParams = Map.of("poll_id", pollID);
-
-    return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/chat/polls/{poll_id}",
-        request,
-        pathParams,
-        new TypeReference<Response>() {});
-  }
-
-  @NotNull
-  public StreamRequest<Response> deletePoll(@NotNull String pollID) throws StreamException {
-    return deletePoll(pollID, new DeletePollRequest());
-  }
-
-  @NotNull
-  public StreamRequest<PollResponse> getPoll(@NotNull String pollID, GetPollRequest request)
-      throws StreamException {
-    var pathParams = Map.of("poll_id", pollID);
-
-    return new StreamRequest<PollResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "GET",
-        "/api/v2/chat/polls/{poll_id}",
-        request,
-        pathParams,
-        new TypeReference<PollResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<PollResponse> getPoll(@NotNull String pollID) throws StreamException {
-    return getPoll(pollID, new GetPollRequest());
-  }
-
-  @NotNull
-  public StreamRequest<PollResponse> updatePollPartial(
-      @NotNull String pollID, UpdatePollPartialRequest request) throws StreamException {
-    var pathParams = Map.of("poll_id", pollID);
-
-    return new StreamRequest<PollResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "PATCH",
-        "/api/v2/chat/polls/{poll_id}",
-        request,
-        pathParams,
-        new TypeReference<PollResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<PollResponse> updatePollPartial(@NotNull String pollID)
-      throws StreamException {
-    return updatePollPartial(pollID, new UpdatePollPartialRequest());
-  }
-
-  @NotNull
-  public StreamRequest<PollOptionResponse> createPollOption(
-      @NotNull String pollID, CreatePollOptionRequest request) throws StreamException {
-    var pathParams = Map.of("poll_id", pollID);
-
-    return new StreamRequest<PollOptionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/chat/polls/{poll_id}/options",
-        request,
-        pathParams,
-        new TypeReference<PollOptionResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<PollOptionResponse> updatePollOption(
-      @NotNull String pollID, UpdatePollOptionRequest request) throws StreamException {
-    var pathParams = Map.of("poll_id", pollID);
-
-    return new StreamRequest<PollOptionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "PUT",
-        "/api/v2/chat/polls/{poll_id}/options",
-        request,
-        pathParams,
-        new TypeReference<PollOptionResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<Response> deletePollOption(
-      @NotNull String pollID, @NotNull String optionID, DeletePollOptionRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "poll_id", pollID,
-            "option_id", optionID);
-
-    return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/chat/polls/{poll_id}/options/{option_id}",
-        request,
-        pathParams,
-        new TypeReference<Response>() {});
-  }
-
-  @NotNull
-  public StreamRequest<Response> deletePollOption(@NotNull String pollID, @NotNull String optionID)
-      throws StreamException {
-    return deletePollOption(pollID, optionID, new DeletePollOptionRequest());
-  }
-
-  @NotNull
-  public StreamRequest<PollOptionResponse> getPollOption(
-      @NotNull String pollID, @NotNull String optionID, GetPollOptionRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "poll_id", pollID,
-            "option_id", optionID);
-
-    return new StreamRequest<PollOptionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "GET",
-        "/api/v2/chat/polls/{poll_id}/options/{option_id}",
-        request,
-        pathParams,
-        new TypeReference<PollOptionResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<PollOptionResponse> getPollOption(
-      @NotNull String pollID, @NotNull String optionID) throws StreamException {
-    return getPollOption(pollID, optionID, new GetPollOptionRequest());
-  }
-
-  @NotNull
-  public StreamRequest<PollVotesResponse> queryPollVotes(
-      @NotNull String pollID, QueryPollVotesRequest request) throws StreamException {
-    var pathParams = Map.of("poll_id", pollID);
-
-    return new StreamRequest<PollVotesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/chat/polls/{poll_id}/votes",
-        request,
-        pathParams,
-        new TypeReference<PollVotesResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<PollVotesResponse> queryPollVotes(@NotNull String pollID)
-      throws StreamException {
-    return queryPollVotes(pollID, new QueryPollVotesRequest());
-  }
-
-  @NotNull
   public StreamRequest<UpsertPushPreferencesResponse> updatePushNotificationPreferences(
       UpdatePushNotificationPreferencesRequest request) throws StreamException {
 
@@ -1517,6 +1365,36 @@ public class ChatImpl implements Chat {
         request,
         null,
         new TypeReference<UpsertPushPreferencesResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetPushTemplatesResponse> getPushTemplates(GetPushTemplatesRequest request)
+      throws StreamException {
+
+    return new StreamRequest<GetPushTemplatesResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/chat/push_templates",
+        request,
+        null,
+        new TypeReference<GetPushTemplatesResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpsertPushTemplateResponse> upsertPushTemplate(
+      UpsertPushTemplateRequest request) throws StreamException {
+
+    return new StreamRequest<UpsertPushTemplateResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/chat/push_templates",
+        request,
+        null,
+        new TypeReference<UpsertPushTemplateResponse>() {});
   }
 
   @NotNull
@@ -1537,6 +1415,26 @@ public class ChatImpl implements Chat {
   @NotNull
   public StreamRequest<QueryBannedUsersResponse> queryBannedUsers() throws StreamException {
     return queryBannedUsers(new QueryBannedUsersRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueryRemindersResponse> queryReminders(QueryRemindersRequest request)
+      throws StreamException {
+
+    return new StreamRequest<QueryRemindersResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/chat/reminders/query",
+        request,
+        null,
+        new TypeReference<QueryRemindersResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryRemindersResponse> queryReminders() throws StreamException {
+    return queryReminders(new QueryRemindersRequest());
   }
 
   @NotNull

@@ -23,6 +23,10 @@ import org.jetbrains.annotations.Nullable;
 public class PushPreferenceInput {
 
   @Nullable
+  @JsonProperty("call_level")
+  private String callLevel;
+
+  @Nullable
   @JsonProperty("channel_cid")
   private String channelCid;
 

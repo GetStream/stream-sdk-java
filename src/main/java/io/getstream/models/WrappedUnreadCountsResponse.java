@@ -14,6 +14,8 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -38,4 +40,8 @@ public class WrappedUnreadCountsResponse {
 
   @JsonProperty("threads")
   private List<UnreadCountsThread> threads;
+
+  @Nullable
+  @JsonProperty("total_unread_count_by_team")
+  private Map<String, Integer> totalUnreadCountByTeam;
 }

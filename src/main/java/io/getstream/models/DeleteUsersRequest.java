@@ -34,6 +34,10 @@ public class DeleteUsersRequest {
   private String conversations;
 
   @Nullable
+  @JsonProperty("files")
+  private Boolean files;
+
+  @Nullable
   @JsonProperty("messages")
   private String messages;
 

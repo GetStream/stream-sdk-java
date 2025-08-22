@@ -36,5 +36,5 @@ public class CheckResponse {
 
   @Nullable
   @JsonProperty("item")
-  private ReviewQueueItem item;
+  private ReviewQueueItemResponse item;
 }

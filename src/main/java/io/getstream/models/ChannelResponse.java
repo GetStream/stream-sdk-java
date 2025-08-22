@@ -85,6 +85,10 @@ public class ChannelResponse {
   private Integer memberCount;
 
   @Nullable
+  @JsonProperty("message_count")
+  private Integer messageCount;
+
+  @Nullable
   @JsonProperty("mute_expires_at")
   private Date muteExpiresAt;
 

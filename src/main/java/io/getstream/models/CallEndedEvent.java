@@ -35,6 +35,10 @@ public class CallEndedEvent {
   private String type;
 
   @Nullable
+  @JsonProperty("reason")
+  private String reason;
+
+  @Nullable
   @JsonProperty("user")
   private UserResponse user;
 }

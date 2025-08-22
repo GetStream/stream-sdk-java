@@ -83,14 +83,29 @@ public class ReviewQueueItem {
   @JsonProperty("bans")
   private List<Ban> bans;
 
+  @JsonProperty("flag_labels")
+  private List<String> flagLabels;
+
+  @JsonProperty("flag_types")
+  private List<String> flagTypes;
+
   @JsonProperty("flags")
   private List<Flag> flags;
 
   @JsonProperty("languages")
   private List<String> languages;
 
+  @JsonProperty("reporter_ids")
+  private List<String> reporterIds;
+
   @JsonProperty("teams")
   private List<String> teams;
+
+  @JsonProperty("archived_at")
+  private NullTime archivedAt;
+
+  @JsonProperty("completed_at")
+  private NullTime completedAt;
 
   @JsonProperty("reviewed_at")
   private NullTime reviewedAt;
@@ -102,6 +117,10 @@ public class ReviewQueueItem {
   @Nullable
   @JsonProperty("assigned_to")
   private User assignedTo;
+
+  @Nullable
+  @JsonProperty("call")
+  private Call call;
 
   @Nullable
   @JsonProperty("entity_creator")

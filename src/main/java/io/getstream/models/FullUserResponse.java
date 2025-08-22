@@ -82,6 +82,10 @@ public class FullUserResponse {
   private Map<String, Object> custom;
 
   @Nullable
+  @JsonProperty("avg_response_time")
+  private Integer avgResponseTime;
+
+  @Nullable
   @JsonProperty("ban_expires")
   private Date banExpires;
 

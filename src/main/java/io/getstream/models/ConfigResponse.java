@@ -66,6 +66,18 @@ public class ConfigResponse {
   private BlockListConfig blockListConfig;
 
   @Nullable
+  @JsonProperty("llm_config")
+  private LLMConfig llmConfig;
+
+  @Nullable
+  @JsonProperty("rule_builder_config")
+  private RuleBuilderConfig ruleBuilderConfig;
+
+  @Nullable
   @JsonProperty("velocity_filter_config")
   private VelocityFilterConfig velocityFilterConfig;
+
+  @Nullable
+  @JsonProperty("video_call_rule_config")
+  private VideoCallRuleConfig videoCallRuleConfig;
 }

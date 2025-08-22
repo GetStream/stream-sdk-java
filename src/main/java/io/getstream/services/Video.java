@@ -20,6 +20,13 @@ import org.jetbrains.annotations.NotNull;
 
 public interface Video {
   @NotNull
+  public StreamRequest<GetActiveCallsStatusResponse> getActiveCallsStatus(
+      GetActiveCallsStatusRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetActiveCallsStatusResponse> getActiveCallsStatus() throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryUserFeedbackResponse> queryUserFeedback(
       QueryUserFeedbackRequest request) throws StreamException;
 

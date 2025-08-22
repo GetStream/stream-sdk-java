@@ -100,6 +100,10 @@ public class Message {
   private Date deletedAt;
 
   @Nullable
+  @JsonProperty("deleted_for_me")
+  private Boolean deletedForMe;
+
+  @Nullable
   @JsonProperty("message_text_updated_at")
   private Date messageTextUpdatedAt;
 
@@ -158,6 +162,14 @@ public class Message {
   @Nullable
   @JsonProperty("quoted_message")
   private Message quotedMessage;
+
+  @Nullable
+  @JsonProperty("reminder")
+  private MessageReminder reminder;
+
+  @Nullable
+  @JsonProperty("shared_location")
+  private SharedLocation sharedLocation;
 
   @Nullable
   @JsonProperty("user")

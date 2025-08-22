@@ -54,8 +54,14 @@ public class AppResponseFields {
   @JsonProperty("image_moderation_enabled")
   private Boolean imageModerationEnabled;
 
+  @JsonProperty("moderation_bulk_submit_action_enabled")
+  private Boolean moderationBulkSubmitActionEnabled;
+
   @JsonProperty("moderation_enabled")
   private Boolean moderationEnabled;
+
+  @JsonProperty("moderation_llm_configurability_enabled")
+  private Boolean moderationLlmConfigurabilityEnabled;
 
   @JsonProperty("moderation_multitenant_blocklist_enabled")
   private Boolean moderationMultitenantBlocklistEnabled;
@@ -102,8 +108,17 @@ public class AppResponseFields {
   @JsonProperty("suspended_explanation")
   private String suspendedExplanation;
 
+  @JsonProperty("use_hook_v2")
+  private Boolean useHookV2;
+
+  @JsonProperty("user_response_time_enabled")
+  private Boolean userResponseTimeEnabled;
+
   @JsonProperty("webhook_url")
   private String webhookUrl;
+
+  @JsonProperty("event_hooks")
+  private List<EventHook> eventHooks;
 
   @JsonProperty("user_search_disallowed_roles")
   private List<String> userSearchDisallowedRoles;
@@ -155,4 +170,8 @@ public class AppResponseFields {
   @Nullable
   @JsonProperty("datadog_info")
   private DataDogInfo datadogInfo;
+
+  @Nullable
+  @JsonProperty("moderation_dashboard_preferences")
+  private ModerationDashboardPreferences moderationDashboardPreferences;
 }

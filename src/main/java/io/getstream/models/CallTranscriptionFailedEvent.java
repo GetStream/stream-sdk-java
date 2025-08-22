@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -32,4 +33,8 @@ public class CallTranscriptionFailedEvent {
 
   @JsonProperty("type")
   private String type;
+
+  @Nullable
+  @JsonProperty("error")
+  private String error;
 }

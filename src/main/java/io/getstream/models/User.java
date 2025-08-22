@@ -43,6 +43,10 @@ public class User {
   private Map<String, String> teamsRole;
 
   @Nullable
+  @JsonProperty("avg_response_time")
+  private Integer avgResponseTime;
+
+  @Nullable
   @JsonProperty("ban_expires")
   private Date banExpires;
 

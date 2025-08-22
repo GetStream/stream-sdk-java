@@ -48,6 +48,14 @@ public class ChannelStateResponseFields {
   private Integer watcherCount;
 
   @Nullable
+  @JsonProperty("active_live_locations")
+  private List<SharedLocationResponseData> activeLiveLocations;
+
+  @Nullable
+  @JsonProperty("deleted_messages")
+  private List<String> deletedMessages;
+
+  @Nullable
   @JsonProperty("pending_messages")
   private List<PendingMessageResponse> pendingMessages;
 

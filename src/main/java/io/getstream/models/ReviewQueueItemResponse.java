@@ -63,7 +63,7 @@ public class ReviewQueueItemResponse {
   private List<Ban> bans;
 
   @JsonProperty("flags")
-  private List<FlagResponse> flags;
+  private List<ModerationFlagResponse> flags;
 
   @JsonProperty("languages")
   private List<String> languages;
@@ -95,6 +95,10 @@ public class ReviewQueueItemResponse {
   @Nullable
   @JsonProperty("assigned_to")
   private UserResponse assignedTo;
+
+  @Nullable
+  @JsonProperty("call")
+  private CallResponse call;
 
   @Nullable
   @JsonProperty("entity_creator")
