@@ -24,7 +24,7 @@ class FeedIntegrationTests {
   private static final String POLL_QUESTION = "What's your favorite programming language?";
 
   private static StreamSDKClient client;
-  private static Feeds feeds;
+  private static Feeds feedsClient;
   private static Common common;
 
   private static String testUserId;
@@ -44,7 +44,7 @@ class FeedIntegrationTests {
   static void setUp() throws Exception {
     // snippet-start: Getting_Started
     client = new StreamSDKClient();
-    feeds = new FeedsImpl(new StreamHTTPClient());
+    feedsClient = new FeedsImpl(new StreamHTTPClient());
     common = new CommonImpl(new StreamHTTPClient());
     // snippet-end: Getting_Started
     testUserId = "test-user-" + RandomStringUtils.randomAlphanumeric(8);
@@ -86,8 +86,8 @@ class FeedIntegrationTests {
 
       // Create feeds
       // snippet-start: GetOrCreateFeed
-      testFeed = new Feed("user", testUserId, feeds);
-      testFeed2 = new Feed("user", testUserId2, feeds);
+      testFeed = new Feed("user", testUserId, feedsClient);
+      testFeed2 = new Feed("user", testUserId2, feedsClient);
 
       GetOrCreateFeedRequest feedRequest1 =
           GetOrCreateFeedRequest.builder().userID(testUserId).build();
@@ -139,7 +139,7 @@ class FeedIntegrationTests {
             .userID(testUserId)
             .build();
 
-    AddActivityResponse response = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse response = feedsClient.addActivity(activity).execute().getData();
     // snippet-end: AddActivity
 
     Assertions.assertNotNull(response.getActivity());
@@ -179,7 +179,7 @@ class FeedIntegrationTests {
             .custom(customData)
             .build();
 
-    AddActivityResponse response = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse response = feedsClient.addActivity(activity).execute().getData();
     // snippet-end: AddActivityWithImageAttachment
 
     Assertions.assertNotNull(response.getActivity());
@@ -203,7 +203,7 @@ class FeedIntegrationTests {
             .userID(testUserId)
             .build();
 
-    AddActivityResponse response = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse response = feedsClient.addActivity(activity).execute().getData();
     // snippet-end: AddVideoActivity
 
     Assertions.assertNotNull(response.getActivity());
@@ -248,7 +248,7 @@ class FeedIntegrationTests {
             .custom(customData)
             .build();
 
-    AddActivityResponse response = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse response = feedsClient.addActivity(activity).execute().getData();
     // snippet-end: AddStoryActivityWithExpiration
 
     Assertions.assertNotNull(response.getActivity());
@@ -277,7 +277,7 @@ class FeedIntegrationTests {
             .custom(customData)
             .build();
 
-    AddActivityResponse response = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse response = feedsClient.addActivity(activity).execute().getData();
     // snippet-end: AddActivityToMultipleFeeds
 
     Assertions.assertNotNull(response.getActivity());
@@ -299,7 +299,7 @@ class FeedIntegrationTests {
     QueryActivitiesRequest request =
         QueryActivitiesRequest.builder().limit(10).filter(filter).build();
 
-    QueryActivitiesResponse response = feeds.queryActivities(request).execute().getData();
+    QueryActivitiesResponse response = feedsClient.queryActivities(request).execute().getData();
     // snippet-end: QueryActivities
 
     Assertions.assertNotNull(response.getActivities());
@@ -320,12 +320,12 @@ class FeedIntegrationTests {
             .feeds(List.of(testFeedId))
             .build();
 
-    AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
     String activityId = createResponse.getActivity().getId();
     createdActivityIds.add(activityId);
 
     // snippet-start: GetActivity
-    GetActivityResponse response = feeds.getActivity(activityId).execute().getData();
+    GetActivityResponse response = feedsClient.getActivity(activityId).execute().getData();
     // snippet-end: GetActivity
 
     Assertions.assertNotNull(response.getActivity());
@@ -347,7 +347,7 @@ class FeedIntegrationTests {
             .feeds(List.of(testFeedId))
             .build();
 
-    AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
     String activityId = createResponse.getActivity().getId();
     createdActivityIds.add(activityId);
 
@@ -364,7 +364,7 @@ class FeedIntegrationTests {
             .build();
 
     UpdateActivityResponse response =
-        feeds.updateActivity(activityId, updateRequest).execute().getData();
+        feedsClient.updateActivity(activityId, updateRequest).execute().getData();
     // snippet-end: UpdateActivity
 
     Assertions.assertNotNull(response.getActivity());
@@ -389,7 +389,7 @@ class FeedIntegrationTests {
             .feeds(List.of(testFeedId))
             .build();
 
-    AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
     String activityId = createResponse.getActivity().getId();
     createdActivityIds.add(activityId);
 
@@ -398,7 +398,7 @@ class FeedIntegrationTests {
         AddReactionRequest.builder().type("like").userID(testUserId).build();
 
     AddReactionResponse response =
-        feeds.addReaction(activityId, reactionRequest).execute().getData();
+        feedsClient.addReaction(activityId, reactionRequest).execute().getData();
     // snippet-end: AddReaction
 
     Assertions.assertNotNull(response.getReaction());
@@ -419,7 +419,7 @@ class FeedIntegrationTests {
             .feeds(List.of(testFeedId))
             .build();
 
-    AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
     String activityId = createResponse.getActivity().getId();
     createdActivityIds.add(activityId);
 
@@ -427,7 +427,7 @@ class FeedIntegrationTests {
     AddReactionRequest reactionRequest =
         AddReactionRequest.builder().type("like").userID(testUserId).build();
 
-    feeds.addReaction(activityId, reactionRequest).execute();
+    feedsClient.addReaction(activityId, reactionRequest).execute();
 
     try {
       // snippet-start: QueryActivityReactions
@@ -438,7 +438,7 @@ class FeedIntegrationTests {
           QueryActivityReactionsRequest.builder().limit(10).filter(filter).build();
 
       QueryActivityReactionsResponse response =
-          feeds.queryActivityReactions(activityId, queryRequest).execute().getData();
+          feedsClient.queryActivityReactions(activityId, queryRequest).execute().getData();
       // snippet-end: QueryActivityReactions
 
       Assertions.assertNotNull(response.getReactions());
@@ -466,7 +466,7 @@ class FeedIntegrationTests {
             .userID(testUserId)
             .build();
 
-    AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
     String activityId = createResponse.getActivity().getId();
     createdActivityIds.add(activityId);
 
@@ -479,7 +479,7 @@ class FeedIntegrationTests {
             .userID(testUserId)
             .build();
 
-    AddCommentResponse response = feeds.addComment(commentRequest).execute().getData();
+    AddCommentResponse response = feedsClient.addComment(commentRequest).execute().getData();
     // snippet-end: AddComment
 
     Assertions.assertNotNull(response.getComment());
@@ -506,7 +506,7 @@ class FeedIntegrationTests {
             .feeds(List.of(testFeedId))
             .build();
 
-    AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
     String activityId = createResponse.getActivity().getId();
     createdActivityIds.add(activityId);
 
@@ -519,7 +519,7 @@ class FeedIntegrationTests {
             .userID(testUserId)
             .build();
 
-    feeds.addComment(commentRequest).execute();
+    feedsClient.addComment(commentRequest).execute();
 
     // snippet-start: QueryComments
     Map<String, Object> filter = new HashMap<>();
@@ -528,7 +528,7 @@ class FeedIntegrationTests {
     QueryCommentsRequest queryRequest =
         QueryCommentsRequest.builder().filter(filter).limit(10).build();
 
-    QueryCommentsResponse response = feeds.queryComments(queryRequest).execute().getData();
+    QueryCommentsResponse response = feedsClient.queryComments(queryRequest).execute().getData();
     // snippet-end: QueryComments
 
     Assertions.assertNotNull(response.getComments());
@@ -549,7 +549,7 @@ class FeedIntegrationTests {
             .feeds(List.of(testFeedId))
             .build();
 
-    AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
     String activityId = createResponse.getActivity().getId();
     createdActivityIds.add(activityId);
 
@@ -562,7 +562,7 @@ class FeedIntegrationTests {
             .userID(testUserId)
             .build();
 
-    AddCommentResponse commentResponse = feeds.addComment(commentRequest).execute().getData();
+    AddCommentResponse commentResponse = feedsClient.addComment(commentRequest).execute().getData();
     String commentId =
         commentResponse.getComment().getId() != null
             ? commentResponse.getComment().getId()
@@ -573,7 +573,7 @@ class FeedIntegrationTests {
         UpdateCommentRequest.builder().comment("Updated comment text from Java SDK").build();
 
     UpdateCommentResponse response =
-        feeds.updateComment(commentId, updateRequest).execute().getData();
+        feedsClient.updateComment(commentId, updateRequest).execute().getData();
     // snippet-end: UpdateComment
 
     Assertions.assertNotNull(response.getComment());
@@ -598,7 +598,7 @@ class FeedIntegrationTests {
             .feeds(List.of(testFeedId))
             .build();
 
-    AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
     String activityId = createResponse.getActivity().getId();
     createdActivityIds.add(activityId);
 
@@ -611,7 +611,7 @@ class FeedIntegrationTests {
               .build();
 
       AddBookmarkResponse response =
-          feeds.addBookmark(activityId, bookmarkRequest).execute().getData();
+          feedsClient.addBookmark(activityId, bookmarkRequest).execute().getData();
       // snippet-end: AddBookmark
 
       Assertions.assertNotNull(response.getBookmark());
@@ -633,7 +633,7 @@ class FeedIntegrationTests {
     QueryBookmarksRequest request =
         QueryBookmarksRequest.builder().limit(10).filter(filter).build();
 
-    QueryBookmarksResponse response = feeds.queryBookmarks(request).execute().getData();
+    QueryBookmarksResponse response = feedsClient.queryBookmarks(request).execute().getData();
     // snippet-end: QueryBookmarks
 
     Assertions.assertNotNull(response.getBookmarks());
@@ -654,7 +654,7 @@ class FeedIntegrationTests {
             .userID(testUserId)
             .build();
 
-    AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
     String activityId = createResponse.getActivity().getId();
     createdActivityIds.add(activityId);
 
@@ -666,7 +666,7 @@ class FeedIntegrationTests {
             .build();
 
     AddBookmarkResponse bookmarkResponse =
-        feeds.addBookmark(activityId, bookmarkRequest).execute().getData();
+        feedsClient.addBookmark(activityId, bookmarkRequest).execute().getData();
     String folderID = bookmarkResponse.getBookmark().getFolder().getId();
 
     // snippet-start: UpdateBookmark
@@ -674,7 +674,7 @@ class FeedIntegrationTests {
         UpdateBookmarkRequest.builder().folderID(folderID).userID(testUserId).build();
 
     UpdateBookmarkResponse response =
-        feeds.updateBookmark(activityId, updateRequest).execute().getData();
+        feedsClient.updateBookmark(activityId, updateRequest).execute().getData();
     // snippet-end: UpdateBookmark
 
     Assertions.assertNotNull(response.getBookmark());
@@ -698,7 +698,7 @@ class FeedIntegrationTests {
               .target(USER_FEED_TYPE + testUserId2)
               .build();
 
-      SingleFollowResponse response = feeds.follow(followRequest).execute().getData();
+      SingleFollowResponse response = feedsClient.follow(followRequest).execute().getData();
       // snippet-end: Follow
 
       Assertions.assertNotNull(response.getFollow());
@@ -716,7 +716,7 @@ class FeedIntegrationTests {
     // snippet-start: QueryFollows
     QueryFollowsRequest request = QueryFollowsRequest.builder().limit(10).build();
 
-    QueryFollowsResponse response = feeds.queryFollows(request).execute().getData();
+    QueryFollowsResponse response = feedsClient.queryFollows(request).execute().getData();
     // snippet-end: QueryFollows
 
     Assertions.assertNotNull(response.getFollows());
@@ -749,7 +749,7 @@ class FeedIntegrationTests {
     UpsertActivitiesRequest request =
         UpsertActivitiesRequest.builder().activities(activities).build();
 
-    UpsertActivitiesResponse response = feeds.upsertActivities(request).execute().getData();
+    UpsertActivitiesResponse response = feedsClient.upsertActivities(request).execute().getData();
     // snippet-end: UpsertActivities
 
     Assertions.assertNotNull(response.getActivities());
@@ -782,7 +782,7 @@ class FeedIntegrationTests {
             .userID(testUserId)
             .build();
 
-    AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
     String activityId = createResponse.getActivity().getId();
     createdActivityIds.add(activityId);
 
@@ -810,7 +810,7 @@ class FeedIntegrationTests {
             .userID(testUserId)
             .build();
 
-    AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
     String activityId = createResponse.getActivity().getId();
     createdActivityIds.add(activityId);
 
@@ -847,7 +847,7 @@ class FeedIntegrationTests {
             .feeds(List.of(testFeedId))
             .build();
 
-    AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
     String activityId = createResponse.getActivity().getId();
     createdActivityIds.add(activityId);
 
@@ -859,7 +859,7 @@ class FeedIntegrationTests {
             .build();
 
     AddBookmarkResponse bookmarkResponse =
-        feeds.addBookmark(activityId, bookmarkRequest).execute().getData();
+        feedsClient.addBookmark(activityId, bookmarkRequest).execute().getData();
     String folderId = bookmarkResponse.getBookmark().getFolder().getId();
 
     // snippet-start: DeleteBookmark
@@ -867,7 +867,7 @@ class FeedIntegrationTests {
         DeleteBookmarkRequest.builder().FolderID(folderId).UserID(testUserId).build();
 
     DeleteBookmarkResponse response =
-        feeds.deleteBookmark(activityId, deleteRequest).execute().getData();
+        feedsClient.deleteBookmark(activityId, deleteRequest).execute().getData();
     // snippet-end: DeleteBookmark
 
     Assertions.assertNotNull(response);
@@ -888,7 +888,7 @@ class FeedIntegrationTests {
             .feeds(List.of(testFeedId))
             .build();
 
-    AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
     String activityId = createResponse.getActivity().getId();
     createdActivityIds.add(activityId);
 
@@ -896,14 +896,14 @@ class FeedIntegrationTests {
     AddReactionRequest reactionRequest =
         AddReactionRequest.builder().type("like").userID(testUserId).build();
 
-    feeds.addReaction(activityId, reactionRequest).execute();
+    feedsClient.addReaction(activityId, reactionRequest).execute();
 
     // snippet-start: DeleteActivityReaction
     DeleteActivityReactionRequest deleteRequest =
         DeleteActivityReactionRequest.builder().UserID(testUserId).build();
 
     DeleteActivityReactionResponse response =
-        feeds.deleteActivityReaction(activityId, "like", deleteRequest).execute().getData();
+        feedsClient.deleteActivityReaction(activityId, "like", deleteRequest).execute().getData();
     // snippet-end: DeleteActivityReaction
 
     Assertions.assertNotNull(response);
@@ -924,7 +924,7 @@ class FeedIntegrationTests {
             .feeds(List.of(testFeedId))
             .build();
 
-    AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
     String activityId = createResponse.getActivity().getId();
     createdActivityIds.add(activityId);
 
@@ -937,7 +937,7 @@ class FeedIntegrationTests {
             .userID(testUserId)
             .build();
 
-    AddCommentResponse commentResponse = feeds.addComment(commentRequest).execute().getData();
+    AddCommentResponse commentResponse = feedsClient.addComment(commentRequest).execute().getData();
     String commentId =
         commentResponse.getComment().getId() != null
             ? commentResponse.getComment().getId()
@@ -946,7 +946,7 @@ class FeedIntegrationTests {
     // snippet-start: DeleteComment
     DeleteCommentRequest deleteRequest = DeleteCommentRequest.builder().build();
     DeleteCommentResponse response =
-        feeds.deleteComment(commentId, deleteRequest).execute().getData();
+        feedsClient.deleteComment(commentId, deleteRequest).execute().getData();
     // snippet-end: DeleteComment
 
     Assertions.assertNotNull(response);
@@ -966,12 +966,12 @@ class FeedIntegrationTests {
               .target(USER_FEED_TYPE + testUserId2)
               .build();
 
-      feeds.follow(followRequest).execute();
+      feedsClient.follow(followRequest).execute();
 
       // snippet-start: Unfollow
       UnfollowRequest unfollowRequest = UnfollowRequest.builder().build();
       UnfollowResponse response =
-          feeds
+          feedsClient
               .unfollow(USER_FEED_TYPE + testUserId, USER_FEED_TYPE + testUserId2, unfollowRequest)
               .execute()
               .getData();
@@ -1000,7 +1000,7 @@ class FeedIntegrationTests {
               .feeds(List.of(testFeedId))
               .build();
 
-      AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+      AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
       String activityId = createResponse.getActivity().getId();
       activitiesToDelete.add(activityId);
       createdActivityIds.add(activityId);
@@ -1010,7 +1010,7 @@ class FeedIntegrationTests {
       // snippet-start: DeleteActivity
       DeleteActivityRequest deleteRequest = DeleteActivityRequest.builder().build();
       DeleteActivityResponse response =
-          feeds.deleteActivity(activityId, deleteRequest).execute().getData();
+          feedsClient.deleteActivity(activityId, deleteRequest).execute().getData();
       // snippet-end: DeleteActivity
 
       Assertions.assertNotNull(response);
@@ -1065,7 +1065,7 @@ class FeedIntegrationTests {
               .custom(customData)
               .build();
 
-      AddActivityResponse response = feeds.addActivity(pollActivity).execute().getData();
+      AddActivityResponse response = feedsClient.addActivity(pollActivity).execute().getData();
       // snippet-end: CreatePoll
 
       Assertions.assertNotNull(response.getActivity());
@@ -1119,7 +1119,7 @@ class FeedIntegrationTests {
               .custom(customData)
               .build();
 
-      AddActivityResponse createResponse = feeds.addActivity(pollActivity).execute().getData();
+      AddActivityResponse createResponse = feedsClient.addActivity(pollActivity).execute().getData();
       String activityId = createResponse.getActivity().getId();
       createdActivityIds.add(activityId);
 
@@ -1138,7 +1138,7 @@ class FeedIntegrationTests {
               CastPollVoteRequest.builder().userID(testUserId).vote(voteData).build();
 
           PollVoteResponse voteResponse =
-              feeds.castPollVote(activityId, pollId, voteRequest).execute().getData();
+              feedsClient.castPollVote(activityId, pollId, voteRequest).execute().getData();
           // snippet-end: VotePoll
 
           Assertions.assertNotNull(voteResponse.getVote());
@@ -1168,7 +1168,7 @@ class FeedIntegrationTests {
             .feeds(List.of(testFeedId))
             .build();
 
-    AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
     String activityId = createResponse.getActivity().getId();
     createdActivityIds.add(activityId);
 
@@ -1182,7 +1182,7 @@ class FeedIntegrationTests {
               .build();
 
       ActivityFeedbackResponse moderationResponse =
-          feeds.activityFeedback(activityId, moderationRequest).execute().getData();
+          feedsClient.activityFeedback(activityId, moderationRequest).execute().getData();
       // snippet-end: ModerateActivity
 
       Assertions.assertNotNull(moderationResponse);
@@ -1249,7 +1249,7 @@ class FeedIntegrationTests {
               .custom(customData)
               .build();
 
-      AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+      AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
       createdActivityIds.add(createResponse.getActivity().getId());
     }
 
@@ -1266,10 +1266,10 @@ class FeedIntegrationTests {
       QueryActivitiesRequest request =
           QueryActivitiesRequest.builder().limit(10).filter(filter).sort(sort).build();
 
-      feeds.queryActivities(request).execute().getData();
+      feedsClient.queryActivities(request).execute().getData();
       // snippet-end: QueryActivitiesWithTypeFilter
 
-      QueryActivitiesResponse response = feeds.queryActivities(request).execute().getData();
+      QueryActivitiesResponse response = feedsClient.queryActivities(request).execute().getData();
       Assertions.assertNotNull(response.getActivities());
     } catch (Exception e) {
       System.out.println("Query activities with type filter skipped: " + e.getMessage());
@@ -1287,11 +1287,11 @@ class FeedIntegrationTests {
       QueryActivitiesRequest customFilterRequest =
           QueryActivitiesRequest.builder().limit(10).filter(customFilter).build();
 
-      feeds.queryActivities(customFilterRequest).execute().getData();
+      feedsClient.queryActivities(customFilterRequest).execute().getData();
       // snippet-end: QueryActivitiesWithCustomFilter
 
       QueryActivitiesResponse customFilterResponse =
-          feeds.queryActivities(customFilterRequest).execute().getData();
+          feedsClient.queryActivities(customFilterRequest).execute().getData();
       Assertions.assertNotNull(customFilterResponse.getActivities());
     } catch (Exception e) {
       System.out.println("Query activities with custom filter skipped: " + e.getMessage());
@@ -1315,7 +1315,7 @@ class FeedIntegrationTests {
               .feeds(List.of(testFeedId))
               .build();
 
-      AddActivityResponse createResponse = feeds.addActivity(activity).execute().getData();
+      AddActivityResponse createResponse = feedsClient.addActivity(activity).execute().getData();
       createdActivityIds.add(createResponse.getActivity().getId());
     }
 
@@ -1328,7 +1328,7 @@ class FeedIntegrationTests {
         QueryActivitiesRequest.builder().limit(3).filter(filter).build();
 
     QueryActivitiesResponse firstPageResponse =
-        feeds.queryActivities(firstPageRequest).execute().getData();
+        feedsClient.queryActivities(firstPageRequest).execute().getData();
     // snippet-end: GetFeedActivitiesWithPagination
 
     Assertions.assertNotNull(firstPageResponse.getActivities());
@@ -1342,7 +1342,7 @@ class FeedIntegrationTests {
           QueryActivitiesRequest.builder().limit(3).next(nextToken).filter(filter).build();
 
       QueryActivitiesResponse secondPageResponse =
-          feeds.queryActivities(secondPageRequest).execute().getData();
+          feedsClient.queryActivities(secondPageRequest).execute().getData();
       Assertions.assertNotNull(secondPageResponse.getActivities());
     } else {
       System.out.println("⚠️ No next page available");
@@ -1361,7 +1361,7 @@ class FeedIntegrationTests {
     // Test 1: Invalid activity ID
     try {
       // snippet-start: HandleInvalidActivityId
-      feeds.getActivity("invalid-activity-id-12345").execute().getData();
+      feedsClient.getActivity("invalid-activity-id-12345").execute().getData();
       // snippet-end: HandleInvalidActivityId
 
       // If we get here without exception, check if response indicates failure
@@ -1381,7 +1381,7 @@ class FeedIntegrationTests {
               .feeds(List.of(testFeedId))
               .build();
 
-      feeds.addActivity(emptyActivity).execute().getData();
+      feedsClient.addActivity(emptyActivity).execute().getData();
       // snippet-end: HandleEmptyActivityText
 
       System.out.println("✅ Handled empty activity text gracefully");
@@ -1400,7 +1400,7 @@ class FeedIntegrationTests {
               .feeds(List.of(testFeedId))
               .build();
 
-      feeds.addActivity(invalidUserActivity).execute().getData();
+      feedsClient.addActivity(invalidUserActivity).execute().getData();
       // snippet-end: HandleInvalidUserId
 
       System.out.println("✅ Handled invalid user ID gracefully");
@@ -1427,7 +1427,7 @@ class FeedIntegrationTests {
             .feeds(List.of(testFeedId))
             .build();
 
-    AddActivityResponse response = feeds.addActivity(activity).execute().getData();
+    AddActivityResponse response = feedsClient.addActivity(activity).execute().getData();
     // snippet-end: ValidUserAuthentication
 
     Assertions.assertNotNull(response.getActivity());
@@ -1445,7 +1445,7 @@ class FeedIntegrationTests {
             .build();
 
     UpdateActivityResponse updateResponse =
-        feeds.updateActivity(activityId, updateRequest).execute().getData();
+        feedsClient.updateActivity(activityId, updateRequest).execute().getData();
     // snippet-end: UserPermissionUpdate
 
     Assertions.assertNotNull(updateResponse.getActivity());
@@ -1483,7 +1483,7 @@ class FeedIntegrationTests {
             .custom(customData)
             .build();
 
-    AddActivityResponse postResponse = feeds.addActivity(postActivity).execute().getData();
+    AddActivityResponse postResponse = feedsClient.addActivity(postActivity).execute().getData();
     String postId = postResponse.getActivity().getId();
     createdActivityIds.add(postId);
 
@@ -1493,7 +1493,7 @@ class FeedIntegrationTests {
       AddReactionRequest reactionRequest =
           AddReactionRequest.builder().type(reactionType).userID(testUserId2).build();
 
-      feeds.addReaction(postId, reactionRequest).execute();
+      feedsClient.addReaction(postId, reactionRequest).execute();
     }
 
     // 3. Users comment on the post
@@ -1512,7 +1512,7 @@ class FeedIntegrationTests {
               .userID(testUserId2)
               .build();
 
-      feeds.addComment(commentRequest).execute();
+      feedsClient.addComment(commentRequest).execute();
     }
 
     // 4. User bookmarks the post
@@ -1523,13 +1523,13 @@ class FeedIntegrationTests {
               .newFolder(AddFolderRequest.builder().name("favorite-places").build())
               .build();
 
-      feeds.addBookmark(postId, bookmarkRequest).execute();
+      feedsClient.addBookmark(postId, bookmarkRequest).execute();
     } catch (Exception e) {
       System.out.println("Bookmark operation skipped: " + e.getMessage());
     }
 
     // 5. Query the activity with all its interactions
-    GetActivityResponse enrichedResponse = feeds.getActivity(postId).execute().getData();
+    GetActivityResponse enrichedResponse = feedsClient.getActivity(postId).execute().getData();
     Assertions.assertNotNull(enrichedResponse.getActivity());
 
     // snippet-end: RealWorldScenario
@@ -1548,7 +1548,7 @@ class FeedIntegrationTests {
     // Test 1: List Feed Groups
     System.out.println("\n📋 Testing list feed groups...");
     // snippet-start: ListFeedGroups
-    ListFeedGroupsResponse listResponse = feeds.listFeedGroups(new ListFeedGroupsRequest()).execute().getData();
+    ListFeedGroupsResponse listResponse = feedsClient.listFeedGroups(new ListFeedGroupsRequest()).execute().getData();
     // snippet-end: ListFeedGroups
     
     Assertions.assertNotNull(listResponse);
@@ -1557,7 +1557,7 @@ class FeedIntegrationTests {
     // Test 2: Create Feed Group
     System.out.println("\n➕ Testing create feed group...");
     // snippet-start: CreateFeedGroup
-    CreateFeedGroupResponse createResponse = feeds.createFeedGroup(
+    CreateFeedGroupResponse createResponse = feedsClient.createFeedGroup(
         CreateFeedGroupRequest.builder()
             .id(feedGroupId)
             .defaultVisibility("public")
@@ -1575,7 +1575,7 @@ class FeedIntegrationTests {
     // Test 3: Get Feed Group
     System.out.println("\n🔍 Testing get feed group...");
     // snippet-start: GetFeedGroup
-    GetFeedGroupResponse getResponse = feeds.getFeedGroup("feed_group_id", new GetFeedGroupRequest()).execute().getData();
+    GetFeedGroupResponse getResponse = feedsClient.getFeedGroup("feed_group_id", new GetFeedGroupRequest()).execute().getData();
     // snippet-end: GetFeedGroup
 
     Assertions.assertNotNull(getResponse);
@@ -1585,7 +1585,7 @@ class FeedIntegrationTests {
     // Test 4: Update Feed Group
     System.out.println("\n✏️ Testing update feed group...");
     // snippet-start: UpdateFeedGroup
-    UpdateFeedGroupResponse updateResponse = feeds.updateFeedGroup("feed_group_id",
+    UpdateFeedGroupResponse updateResponse = feedsClient.updateFeedGroup("feed_group_id",
         UpdateFeedGroupRequest.builder()
             .activityProcessors(List.of(
                 ActivityProcessorConfig.builder().type("default").build()
@@ -1601,7 +1601,7 @@ class FeedIntegrationTests {
     // Test 5: Get or Create Feed Group (should get existing)
     System.out.println("\n🔄 Testing get or create feed group (existing)...");
     // snippet-start: GetOrCreateFeedGroupExisting
-    GetOrCreateFeedGroupResponse getOrCreateResponse = feeds.getOrCreateFeedGroup("feed_group_id",
+    GetOrCreateFeedGroupResponse getOrCreateResponse = feedsClient.getOrCreateFeedGroup("feed_group_id",
         GetOrCreateFeedGroupRequest.builder()
             .defaultVisibility("public")
             .build()
@@ -1614,20 +1614,48 @@ class FeedIntegrationTests {
 
     // Test 6: Delete Feed Group
     System.out.println("\n🗑️ Testing delete feed group...");
-
     try {
       // snippet-start: DeleteFeedGroup
-      feeds.deleteFeedGroup("groupID-123",
+      feedsClient.deleteFeedGroup("groupID-123",
               DeleteFeedGroupRequest.builder().build()
       ).execute();
       // snippet-end: DeleteFeedGroup
     } catch (Exception e) {
-      System.out.println("Delete feed group skipped: " + e.getMessage());
+
     }
 
 
-    System.out.println("✅ Completed Feed Group CRUD operations");
-  }
+            System.out.println("✅ Completed Feed Group CRUD operations");
+
+        // Additional Feed Group Creation Examples
+        System.out.println("\n📊 Testing create feed group with aggregation...");
+        // snippet-start: CreateFeedGroupWithAggregation
+        feedsClient.createFeedGroup(CreateFeedGroupRequest.builder()
+            .id("aggregated-group")
+            .defaultVisibility("public")
+            .activityProcessors(List.of(
+                ActivityProcessorConfig.builder()
+                    .type("default")
+                    .build()
+            ))
+            .aggregation(AggregationConfig.builder()
+                .format("{{ type }}-{{ time.strftime(\"%Y-%m-%d\") }}")
+                .build())
+            .build());
+        // snippet-end: CreateFeedGroupWithAggregation
+
+        System.out.println("\n🏆 Testing create feed group with ranking...");
+        // snippet-start: CreateFeedGroupWithRanking
+        feedsClient.createFeedGroup(CreateFeedGroupRequest.builder()
+            .id("ranked-group")
+            .defaultVisibility("public")
+            .ranking(RankingConfig.builder()
+                .type("default")
+                .score("decay_linear(time) * popularity")
+                .build())
+            .build());
+        // snippet-end: CreateFeedGroupWithRanking
+    }
 
   /** Test 34: Feed View CRUD Operations */
   @Test
@@ -1640,7 +1668,7 @@ class FeedIntegrationTests {
     // Test 1: List Feed Views
     System.out.println("\n📋 Testing list feed views...");
     // snippet-start: ListFeedViews
-    ListFeedViewsResponse listResponse = feeds.listFeedViews(new ListFeedViewsRequest()).execute().getData();
+    ListFeedViewsResponse listResponse = feedsClient.listFeedViews(new ListFeedViewsRequest()).execute().getData();
     // snippet-end: ListFeedViews
 
     Assertions.assertNotNull(listResponse);
@@ -1649,7 +1677,7 @@ class FeedIntegrationTests {
     // Test 2: Create Feed View
     System.out.println("\n➕ Testing create feed view...");
     // snippet-start: CreateFeedView
-    CreateFeedViewResponse createResponse = feeds.createFeedView(
+    CreateFeedViewResponse createResponse = feedsClient.createFeedView(
         CreateFeedViewRequest.builder()
             .id(feedViewId)
             .activitySelectors(List.of(
@@ -1670,7 +1698,7 @@ class FeedIntegrationTests {
     // Test 3: Get Feed View
     System.out.println("\n🔍 Testing get feed view...");
     // snippet-start: GetFeedView
-    GetFeedViewResponse getResponse = feeds.getFeedView("feedViewID", new GetFeedViewRequest()).execute().getData();
+    GetFeedViewResponse getResponse = feedsClient.getFeedView("feedViewID", new GetFeedViewRequest()).execute().getData();
     // snippet-end: GetFeedView
 
     Assertions.assertNotNull(getResponse);
@@ -1680,7 +1708,7 @@ class FeedIntegrationTests {
     // Test 4: Update Feed View
     System.out.println("\n✏️ Testing update feed view...");
     // snippet-start: UpdateFeedView
-    UpdateFeedViewResponse updateResponse = feeds.updateFeedView("feedViewID",
+    UpdateFeedViewResponse updateResponse = feedsClient.updateFeedView("feedViewID",
         UpdateFeedViewRequest.builder()
             .activitySelectors(List.of(
                 ActivitySelectorConfig.builder()
@@ -1699,7 +1727,7 @@ class FeedIntegrationTests {
     // Test 5: Get or Create Feed View (should get existing)
     System.out.println("\n🔄 Testing get or create feed view (existing)...");
     // snippet-start: GetOrCreateFeedViewExisting
-    GetOrCreateFeedViewResponse getOrCreateResponse = feeds.getOrCreateFeedView(feedViewId,
+    GetOrCreateFeedViewResponse getOrCreateResponse = feedsClient.getOrCreateFeedView(feedViewId,
         GetOrCreateFeedViewRequest.builder()
             .activitySelectors(List.of(
                 ActivitySelectorConfig.builder().type("recent").build()
@@ -1717,10 +1745,10 @@ class FeedIntegrationTests {
 
     try {
       // snippet-start: DeleteFeedView
-      feeds.deleteFeedView("viewID-123", new DeleteFeedViewRequest()).execute();
+      feedsClient.deleteFeedView("viewID-123", new DeleteFeedViewRequest()).execute();
       // snippet-end: DeleteFeedView
     } catch (Exception e) {
-      System.out.println("Delete feed group skipped: " + e.getMessage());
+
     }
 
     System.out.println("✅ Completed Feed View CRUD operations");
@@ -1738,7 +1766,7 @@ class FeedIntegrationTests {
       for (String activityId : createdActivityIds) {
         try {
           DeleteActivityRequest deleteRequest = DeleteActivityRequest.builder().build();
-          feeds.deleteActivity(activityId, deleteRequest).execute();
+          feedsClient.deleteActivity(activityId, deleteRequest).execute();
         } catch (Exception e) {
           // Ignore cleanup errors
           System.out.println(
@@ -1752,7 +1780,7 @@ class FeedIntegrationTests {
       for (String commentId : createdCommentIds) {
         try {
           DeleteCommentRequest deleteRequest = DeleteCommentRequest.builder().build();
-          feeds.deleteComment(commentId, deleteRequest).execute();
+          feedsClient.deleteComment(commentId, deleteRequest).execute();
         } catch (Exception e) {
           // Ignore cleanup errors
           System.out.println(
