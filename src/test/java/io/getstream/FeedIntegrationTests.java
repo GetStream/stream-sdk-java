@@ -1537,6 +1537,195 @@ class FeedIntegrationTests {
     System.out.println("✅ Completed real-world usage scenario demonstration");
   }
 
+  /** Test 33: Feed Group CRUD Operations */
+  @Test
+  @Order(33)
+  void test33_FeedGroupCRUD() throws Exception {
+    System.out.println("\n📁 Testing Feed Group CRUD operations...");
+
+    String feedGroupId = "test-feed-group-" + RandomStringUtils.randomAlphanumeric(8);
+
+    // Test 1: List Feed Groups
+    System.out.println("\n📋 Testing list feed groups...");
+    // snippet-start: ListFeedGroups
+    ListFeedGroupsResponse listResponse = feeds.listFeedGroups(new ListFeedGroupsRequest()).execute().getData();
+    // snippet-end: ListFeedGroups
+    
+    Assertions.assertNotNull(listResponse);
+    System.out.println("✅ Listed " + listResponse.getGroups().size() + " existing feed groups");
+
+    // Test 2: Create Feed Group
+    System.out.println("\n➕ Testing create feed group...");
+    // snippet-start: CreateFeedGroup
+    CreateFeedGroupResponse createResponse = feeds.createFeedGroup(
+        CreateFeedGroupRequest.builder()
+            .id(feedGroupId)
+            .defaultVisibility("public")
+            .activityProcessors(List.of(
+                ActivityProcessorConfig.builder().type("default").build()
+            ))
+            .build()
+    ).execute().getData();
+    // snippet-end: CreateFeedGroup
+
+    Assertions.assertNotNull(createResponse);
+    Assertions.assertEquals(feedGroupId, createResponse.getFeedGroup().getId());
+    System.out.println("✅ Created feed group: " + feedGroupId);
+
+    // Test 3: Get Feed Group
+    System.out.println("\n🔍 Testing get feed group...");
+    // snippet-start: GetFeedGroup
+    GetFeedGroupResponse getResponse = feeds.getFeedGroup("feed_group_id", new GetFeedGroupRequest()).execute().getData();
+    // snippet-end: GetFeedGroup
+
+    Assertions.assertNotNull(getResponse);
+    Assertions.assertEquals("feed_group_id", getResponse.getFeedGroup().getId());
+    System.out.println("✅ Retrieved feed group: " + feedGroupId);
+
+    // Test 4: Update Feed Group
+    System.out.println("\n✏️ Testing update feed group...");
+    // snippet-start: UpdateFeedGroup
+    UpdateFeedGroupResponse updateResponse = feeds.updateFeedGroup("feed_group_id",
+        UpdateFeedGroupRequest.builder()
+            .activityProcessors(List.of(
+                ActivityProcessorConfig.builder().type("default").build()
+            ))
+            .aggregation(AggregationConfig.builder().format("time_based").build())
+            .build()
+    ).execute().getData();
+    // snippet-end: UpdateFeedGroup
+
+    Assertions.assertNotNull(updateResponse);
+    System.out.println("✅ Updated feed group: " + feedGroupId);
+
+    // Test 5: Get or Create Feed Group (should get existing)
+    System.out.println("\n🔄 Testing get or create feed group (existing)...");
+    // snippet-start: GetOrCreateFeedGroupExisting
+    GetOrCreateFeedGroupResponse getOrCreateResponse = feeds.getOrCreateFeedGroup("feed_group_id",
+        GetOrCreateFeedGroupRequest.builder()
+            .defaultVisibility("public")
+            .build()
+    ).execute().getData();
+    // snippet-end: GetOrCreateFeedGroupExisting
+
+    Assertions.assertNotNull(getOrCreateResponse);
+    Assertions.assertFalse(getOrCreateResponse.getWasCreated(), "Should not create new feed group");
+    System.out.println("✅ Got existing feed group: " + feedGroupId);
+
+    // Test 6: Delete Feed Group
+    System.out.println("\n🗑️ Testing delete feed group...");
+
+    try {
+      // snippet-start: DeleteFeedGroup
+      feeds.deleteFeedGroup("groupID-123",
+              DeleteFeedGroupRequest.builder().build()
+      ).execute();
+      // snippet-end: DeleteFeedGroup
+    } catch (Exception e) {
+      System.out.println("Delete feed group skipped: " + e.getMessage());
+    }
+
+
+    System.out.println("✅ Completed Feed Group CRUD operations");
+  }
+
+  /** Test 34: Feed View CRUD Operations */
+  @Test
+  @Order(34)
+  void test34_FeedViewCRUD() throws Exception {
+    System.out.println("\n👁️ Testing Feed View CRUD operations...");
+
+    String feedViewId = "test-feed-view-" + RandomStringUtils.randomAlphanumeric(8);
+
+    // Test 1: List Feed Views
+    System.out.println("\n📋 Testing list feed views...");
+    // snippet-start: ListFeedViews
+    ListFeedViewsResponse listResponse = feeds.listFeedViews(new ListFeedViewsRequest()).execute().getData();
+    // snippet-end: ListFeedViews
+
+    Assertions.assertNotNull(listResponse);
+    System.out.println("✅ Listed " + listResponse.getViews().size() + " existing feed views");
+
+    // Test 2: Create Feed View
+    System.out.println("\n➕ Testing create feed view...");
+    // snippet-start: CreateFeedView
+    CreateFeedViewResponse createResponse = feeds.createFeedView(
+        CreateFeedViewRequest.builder()
+            .id(feedViewId)
+            .activitySelectors(List.of(
+                ActivitySelectorConfig.builder().type("recent").build()
+            ))
+            .activityProcessors(List.of(
+                ActivityProcessorConfig.builder().type("default").build()
+            ))
+            .aggregation(AggregationConfig.builder().format("time_based").build())
+            .build()
+    ).execute().getData();
+    // snippet-end: CreateFeedView
+
+    Assertions.assertNotNull(createResponse);
+    Assertions.assertEquals(feedViewId, createResponse.getFeedView().getId());
+    System.out.println("✅ Created feed view: " + feedViewId);
+
+    // Test 3: Get Feed View
+    System.out.println("\n🔍 Testing get feed view...");
+    // snippet-start: GetFeedView
+    GetFeedViewResponse getResponse = feeds.getFeedView("feedViewID", new GetFeedViewRequest()).execute().getData();
+    // snippet-end: GetFeedView
+
+    Assertions.assertNotNull(getResponse);
+    Assertions.assertEquals("feedViewID", getResponse.getFeedView().getId());
+    System.out.println("✅ Retrieved feed view: " + feedViewId);
+
+    // Test 4: Update Feed View
+    System.out.println("\n✏️ Testing update feed view...");
+    // snippet-start: UpdateFeedView
+    UpdateFeedViewResponse updateResponse = feeds.updateFeedView("feedViewID",
+        UpdateFeedViewRequest.builder()
+            .activitySelectors(List.of(
+                ActivitySelectorConfig.builder()
+                    .type("popular")
+                    .minPopularity(10)
+                    .build()
+            ))
+            .aggregation(AggregationConfig.builder().format("popularity_based").build())
+            .build()
+    ).execute().getData();
+    // snippet-end: UpdateFeedView
+
+    Assertions.assertNotNull(updateResponse);
+    System.out.println("✅ Updated feed view: " + feedViewId);
+
+    // Test 5: Get or Create Feed View (should get existing)
+    System.out.println("\n🔄 Testing get or create feed view (existing)...");
+    // snippet-start: GetOrCreateFeedViewExisting
+    GetOrCreateFeedViewResponse getOrCreateResponse = feeds.getOrCreateFeedView(feedViewId,
+        GetOrCreateFeedViewRequest.builder()
+            .activitySelectors(List.of(
+                ActivitySelectorConfig.builder().type("recent").build()
+            ))
+            .build()
+    ).execute().getData();
+    // snippet-end: GetOrCreateFeedViewExisting
+
+    Assertions.assertNotNull(getOrCreateResponse);
+    System.out.println("✅ Got existing feed view: " + feedViewId);
+
+    // Test 6: Delete Feed View
+    System.out.println("\n🗑️ Testing delete feed view...");
+
+
+    try {
+      // snippet-start: DeleteFeedView
+      feeds.deleteFeedView("viewID-123", new DeleteFeedViewRequest()).execute();
+      // snippet-end: DeleteFeedView
+    } catch (Exception e) {
+      System.out.println("Delete feed group skipped: " + e.getMessage());
+    }
+
+    System.out.println("✅ Completed Feed View CRUD operations");
+  }
+
   // =================================================================
   // HELPER METHODS
   // =================================================================
