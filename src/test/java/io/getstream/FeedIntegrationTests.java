@@ -729,7 +729,7 @@ class FeedIntegrationTests {
 
   @Test
   @Order(20)
-  @Disabled 
+  @Disabled
   void test16_UpsertActivities() throws Exception {
     System.out.println("\n📝 Testing batch activity upsert...");
 
