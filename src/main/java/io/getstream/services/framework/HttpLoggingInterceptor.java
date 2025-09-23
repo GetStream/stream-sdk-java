@@ -24,7 +24,6 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 import okhttp3.*;
-import okhttp3.internal.http.HttpHeaders;
 import okhttp3.internal.platform.Platform;
 import okio.Buffer;
 import okio.BufferedSource;
@@ -285,10 +284,10 @@ public final class HttpLoggingInterceptor implements Interceptor {
       Charset charset = UTF8;
       MediaType contentType = responseBody.contentType();
       if (contentType != null) {
-          Charset ctCharset = contentType.charset(UTF8);
-          if (ctCharset != null) {
-            charset = ctCharset;
-          }
+        Charset ctCharset = contentType.charset(UTF8);
+        if (ctCharset != null) {
+          charset = ctCharset;
+        }
       }
 
       if (!isPlaintext(buffer)) {
