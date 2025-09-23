@@ -13,36 +13,46 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
 
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class CreateExternalStorageRequest {
+    
+    @JsonProperty("bucket")
+    private String bucket;
+    
+    @JsonProperty("name")
+    private String name;
+    
+    @JsonProperty("storage_type")
+    private String storageType;
+    
+    @Nullable
+    @JsonProperty("gcs_credentials")
+    private String gcsCredentials;
+    
+    @Nullable
+    @JsonProperty("path")
+    private String path;
+    
+    @Nullable
+    @JsonProperty("aws_s3")
+    private S3Request awsS3;
+    
+    @Nullable
+    @JsonProperty("azure_blob")
+    private AzureRequest azureBlob;
 
-  @JsonProperty("bucket")
-  private String bucket;
-
-  @JsonProperty("name")
-  private String name;
-
-  @JsonProperty("storage_type")
-  private String storageType;
-
-  @Nullable
-  @JsonProperty("gcs_credentials")
-  private String gcsCredentials;
-
-  @Nullable
-  @JsonProperty("path")
-  private String path;
-
-  @Nullable
-  @JsonProperty("aws_s3")
-  private S3Request awsS3;
-
-  @Nullable
-  @JsonProperty("azure_blob")
-  private AzureRequest azureBlob;
 }

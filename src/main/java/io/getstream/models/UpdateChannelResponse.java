@@ -13,26 +13,32 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UpdateChannelResponse {
+public class UpdateChannelResponse{
 
-  @JsonProperty("duration")
-  private String duration;
+    @JsonProperty("duration")
+    private String duration;
 
-  @JsonProperty("members")
-  private List<ChannelMember> members;
+    @JsonProperty("members")
+    private List<ChannelMember> members;
 
-  @Nullable
-  @JsonProperty("channel")
-  private ChannelResponse channel;
+    @Nullable
+    @JsonProperty("channel")
+    private ChannelResponse channel;
 
-  @Nullable
-  @JsonProperty("message")
-  private MessageResponse message;
+    @Nullable
+    @JsonProperty("message")
+    private MessageResponse message;
 }

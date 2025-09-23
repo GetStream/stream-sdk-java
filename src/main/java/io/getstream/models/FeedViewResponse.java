@@ -13,36 +13,41 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class FeedViewResponse {
+public class FeedViewResponse{
 
-  @JsonProperty("id")
-  private String id;
+    @JsonProperty("id")
+    private String id;
 
-  @Nullable
-  @JsonProperty("last_used_at")
-  private Date lastUsedAt;
+    @Nullable
+    @JsonProperty("last_used_at")
+    private Date lastUsedAt;
 
-  @Nullable
-  @JsonProperty("activity_processors")
-  private List<ActivityProcessorConfig> activityProcessors;
+    @Nullable
+    @JsonProperty("activity_processors")
+    private List<ActivityProcessorConfig> activityProcessors;
 
-  @Nullable
-  @JsonProperty("activity_selectors")
-  private List<ActivitySelectorConfig> activitySelectors;
+    @Nullable
+    @JsonProperty("activity_selectors")
+    private List<ActivitySelectorConfig> activitySelectors;
 
-  @Nullable
-  @JsonProperty("aggregation")
-  private AggregationConfig aggregation;
+    @Nullable
+    @JsonProperty("aggregation")
+    private AggregationConfig aggregation;
 
-  @Nullable
-  @JsonProperty("ranking")
-  private RankingConfig ranking;
+    @Nullable
+    @JsonProperty("ranking")
+    private RankingConfig ranking;
 }

@@ -13,35 +13,42 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class DecayFunctionConfig {
+public class DecayFunctionConfig{
 
-  @Nullable
-  @JsonProperty("base")
-  private String base;
+    @Nullable
+    @JsonProperty("base")
+    private String base;
 
-  @Nullable
-  @JsonProperty("decay")
-  private String decay;
+    @Nullable
+    @JsonProperty("decay")
+    private String decay;
 
-  @Nullable
-  @JsonProperty("direction")
-  private String direction;
+    @Nullable
+    @JsonProperty("direction")
+    private String direction;
 
-  @Nullable
-  @JsonProperty("offset")
-  private String offset;
+    @Nullable
+    @JsonProperty("offset")
+    private String offset;
 
-  @Nullable
-  @JsonProperty("origin")
-  private String origin;
+    @Nullable
+    @JsonProperty("origin")
+    private String origin;
 
-  @Nullable
-  @JsonProperty("scale")
-  private String scale;
+    @Nullable
+    @JsonProperty("scale")
+    private String scale;
 }

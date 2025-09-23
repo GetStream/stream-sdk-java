@@ -13,84 +13,92 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CampaignResponse {
+public class CampaignResponse{
 
-  @JsonProperty("create_channels")
-  private Boolean createChannels;
+    @JsonProperty("create_channels")
+    private Boolean createChannels;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("description")
-  private String description;
+    @JsonProperty("description")
+    private String description;
 
-  @JsonProperty("id")
-  private String id;
+    @JsonProperty("id")
+    private String id;
 
-  @JsonProperty("name")
-  private String name;
+    @JsonProperty("name")
+    private String name;
 
-  @JsonProperty("sender_id")
-  private String senderID;
+    @JsonProperty("sender_id")
+    private String senderID;
 
-  @JsonProperty("sender_mode")
-  private String senderMode;
+    @JsonProperty("sender_mode")
+    private String senderMode;
 
-  @JsonProperty("show_channels")
-  private Boolean showChannels;
+    @JsonProperty("sender_visibility")
+    private String senderVisibility;
 
-  @JsonProperty("skip_push")
-  private Boolean skipPush;
+    @JsonProperty("show_channels")
+    private Boolean showChannels;
 
-  @JsonProperty("skip_webhook")
-  private Boolean skipWebhook;
+    @JsonProperty("skip_push")
+    private Boolean skipPush;
 
-  @JsonProperty("status")
-  private String status;
+    @JsonProperty("skip_webhook")
+    private Boolean skipWebhook;
 
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+    @JsonProperty("status")
+    private String status;
 
-  @JsonProperty("segment_ids")
-  private List<String> segmentIds;
+    @JsonProperty("updated_at")
+    private Date updatedAt;
 
-  @JsonProperty("segments")
-  private List<Segment> segments;
+    @JsonProperty("segment_ids")
+    private List<String> segmentIds;
 
-  @JsonProperty("user_ids")
-  private List<String> userIds;
+    @JsonProperty("segments")
+    private List<Segment> segments;
 
-  @JsonProperty("users")
-  private List<UserResponse> users;
+    @JsonProperty("user_ids")
+    private List<String> userIds;
 
-  @JsonProperty("stats")
-  private CampaignStatsResponse stats;
+    @JsonProperty("users")
+    private List<UserResponse> users;
 
-  @Nullable
-  @JsonProperty("scheduled_for")
-  private Date scheduledFor;
+    @JsonProperty("stats")
+    private CampaignStatsResponse stats;
 
-  @Nullable
-  @JsonProperty("stop_at")
-  private Date stopAt;
+    @Nullable
+    @JsonProperty("scheduled_for")
+    private Date scheduledFor;
 
-  @Nullable
-  @JsonProperty("channel_template")
-  private CampaignChannelTemplate channelTemplate;
+    @Nullable
+    @JsonProperty("stop_at")
+    private Date stopAt;
 
-  @Nullable
-  @JsonProperty("message_template")
-  private CampaignMessageTemplate messageTemplate;
+    @Nullable
+    @JsonProperty("channel_template")
+    private CampaignChannelTemplate channelTemplate;
 
-  @Nullable
-  @JsonProperty("sender")
-  private UserResponse sender;
+    @Nullable
+    @JsonProperty("message_template")
+    private CampaignMessageTemplate messageTemplate;
+
+    @Nullable
+    @JsonProperty("sender")
+    private UserResponse sender;
 }

@@ -13,40 +13,49 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class FeedMemberResponse {
+public class FeedMemberResponse{
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("role")
-  private String role;
+    @JsonProperty("role")
+    private String role;
 
-  @JsonProperty("status")
-  private String status;
+    @JsonProperty("status")
+    private String status;
 
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+    @JsonProperty("updated_at")
+    private Date updatedAt;
 
-  @JsonProperty("user")
-  private UserResponse user;
+    @JsonProperty("user")
+    private UserResponse user;
 
-  @Nullable
-  @JsonProperty("invite_accepted_at")
-  private Date inviteAcceptedAt;
+    @Nullable
+    @JsonProperty("invite_accepted_at")
+    private Date inviteAcceptedAt;
 
-  @Nullable
-  @JsonProperty("invite_rejected_at")
-  private Date inviteRejectedAt;
+    @Nullable
+    @JsonProperty("invite_rejected_at")
+    private Date inviteRejectedAt;
 
-  @Nullable
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
+    @Nullable
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
+
+    @Nullable
+    @JsonProperty("membership_level")
+    private MembershipLevelResponse membershipLevel;
 }

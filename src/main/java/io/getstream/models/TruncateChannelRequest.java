@@ -13,41 +13,49 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
 
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class TruncateChannelRequest {
+    
+    @Nullable
+    @JsonProperty("hard_delete")
+    private Boolean hardDelete;
+    
+    @Nullable
+    @JsonProperty("skip_push")
+    private Boolean skipPush;
+    
+    @Nullable
+    @JsonProperty("truncated_at")
+    private Date truncatedAt;
+    
+    @Nullable
+    @JsonProperty("user_id")
+    private String userID;
+    
+    @Nullable
+    @JsonProperty("member_ids")
+    private List<String> memberIds;
+    
+    @Nullable
+    @JsonProperty("message")
+    private MessageRequest message;
+    
+    @Nullable
+    @JsonProperty("user")
+    private UserRequest user;
 
-  @Nullable
-  @JsonProperty("hard_delete")
-  private Boolean hardDelete;
-
-  @Nullable
-  @JsonProperty("skip_push")
-  private Boolean skipPush;
-
-  @Nullable
-  @JsonProperty("truncated_at")
-  private Date truncatedAt;
-
-  @Nullable
-  @JsonProperty("user_id")
-  private String userID;
-
-  @Nullable
-  @JsonProperty("member_ids")
-  private List<String> memberIds;
-
-  @Nullable
-  @JsonProperty("message")
-  private MessageRequest message;
-
-  @Nullable
-  @JsonProperty("user")
-  private UserRequest user;
 }

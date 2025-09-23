@@ -13,47 +13,52 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class QueryMembersPayload {
+public class QueryMembersPayload{
 
-  @JsonProperty("type")
-  private String type;
+    @JsonProperty("type")
+    private String type;
 
-  @JsonProperty("filter_conditions")
-  private Map<String, Object> filterConditions;
+    @JsonProperty("filter_conditions")
+    private Map<String, Object> filterConditions;
 
-  @Nullable
-  @JsonProperty("id")
-  private String id;
+    @Nullable
+    @JsonProperty("id")
+    private String id;
 
-  @Nullable
-  @JsonProperty("limit")
-  private Integer limit;
+    @Nullable
+    @JsonProperty("limit")
+    private Integer limit;
 
-  @Nullable
-  @JsonProperty("offset")
-  private Integer offset;
+    @Nullable
+    @JsonProperty("offset")
+    private Integer offset;
 
-  @Nullable
-  @JsonProperty("user_id")
-  private String userID;
+    @Nullable
+    @JsonProperty("user_id")
+    private String userID;
 
-  @Nullable
-  @JsonProperty("members")
-  private List<ChannelMember> members;
+    @Nullable
+    @JsonProperty("members")
+    private List<ChannelMember> members;
 
-  @Nullable
-  @JsonProperty("sort")
-  private List<SortParamRequest> sort;
+    @Nullable
+    @JsonProperty("sort")
+    private List<SortParamRequest> sort;
 
-  @Nullable
-  @JsonProperty("user")
-  private UserRequest user;
+    @Nullable
+    @JsonProperty("user")
+    private UserRequest user;
 }

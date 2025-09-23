@@ -13,90 +13,97 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallResponse {
+public class CallResponse{
 
-  @JsonProperty("backstage")
-  private Boolean backstage;
+    @JsonProperty("backstage")
+    private Boolean backstage;
 
-  @JsonProperty("captioning")
-  private Boolean captioning;
+    @JsonProperty("captioning")
+    private Boolean captioning;
 
-  @JsonProperty("cid")
-  private String cid;
+    @JsonProperty("cid")
+    private String cid;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("current_session_id")
-  private String currentSessionID;
+    @JsonProperty("current_session_id")
+    private String currentSessionID;
 
-  @JsonProperty("id")
-  private String id;
+    @JsonProperty("id")
+    private String id;
 
-  @JsonProperty("recording")
-  private Boolean recording;
+    @JsonProperty("recording")
+    private Boolean recording;
 
-  @JsonProperty("transcribing")
-  private Boolean transcribing;
+    @JsonProperty("transcribing")
+    private Boolean transcribing;
 
-  @JsonProperty("type")
-  private String type;
+    @JsonProperty("translating")
+    private Boolean translating;
 
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+    @JsonProperty("type")
+    private String type;
 
-  @JsonProperty("blocked_user_ids")
-  private List<String> blockedUserIds;
+    @JsonProperty("updated_at")
+    private Date updatedAt;
 
-  @JsonProperty("created_by")
-  private UserResponse createdBy;
+    @JsonProperty("blocked_user_ids")
+    private List<String> blockedUserIds;
 
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
+    @JsonProperty("created_by")
+    private UserResponse createdBy;
 
-  @JsonProperty("egress")
-  private EgressResponse egress;
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
 
-  @JsonProperty("ingress")
-  private CallIngressResponse ingress;
+    @JsonProperty("egress")
+    private EgressResponse egress;
 
-  @JsonProperty("settings")
-  private CallSettingsResponse settings;
+    @JsonProperty("ingress")
+    private CallIngressResponse ingress;
 
-  @Nullable
-  @JsonProperty("channel_cid")
-  private String channelCid;
+    @JsonProperty("settings")
+    private CallSettingsResponse settings;
 
-  @Nullable
-  @JsonProperty("ended_at")
-  private Date endedAt;
+    @Nullable
+    @JsonProperty("channel_cid")
+    private String channelCid;
 
-  @Nullable
-  @JsonProperty("join_ahead_time_seconds")
-  private Integer joinAheadTimeSeconds;
+    @Nullable
+    @JsonProperty("ended_at")
+    private Date endedAt;
 
-  @Nullable
-  @JsonProperty("starts_at")
-  private Date startsAt;
+    @Nullable
+    @JsonProperty("join_ahead_time_seconds")
+    private Integer joinAheadTimeSeconds;
 
-  @Nullable
-  @JsonProperty("team")
-  private String team;
+    @Nullable
+    @JsonProperty("starts_at")
+    private Date startsAt;
 
-  @Nullable
-  @JsonProperty("session")
-  private CallSessionResponse session;
+    @Nullable
+    @JsonProperty("team")
+    private String team;
 
-  @Nullable
-  @JsonProperty("thumbnails")
-  private ThumbnailResponse thumbnails;
+    @Nullable
+    @JsonProperty("session")
+    private CallSessionResponse session;
+
+    @Nullable
+    @JsonProperty("thumbnails")
+    private ThumbnailResponse thumbnails;
 }

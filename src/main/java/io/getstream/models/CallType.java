@@ -13,38 +13,44 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallType {
+public class CallType{
 
-  @JsonProperty("AppPK")
-  private Integer appPK;
+    @JsonProperty("AppPK")
+    private Integer appPK;
 
-  @JsonProperty("CreatedAt")
-  private Date createdAt;
+    @JsonProperty("CreatedAt")
+    private Date createdAt;
 
-  @JsonProperty("ExternalStorage")
-  private String externalStorage;
+    @JsonProperty("ExternalStorage")
+    private String externalStorage;
 
-  @JsonProperty("Name")
-  private String name;
+    @JsonProperty("Name")
+    private String name;
 
-  @JsonProperty("PK")
-  private Integer pK;
+    @JsonProperty("PK")
+    private Integer pK;
 
-  @JsonProperty("UpdatedAt")
-  private Date updatedAt;
+    @JsonProperty("UpdatedAt")
+    private Date updatedAt;
 
-  @Nullable
-  @JsonProperty("NotificationSettings")
-  private NotificationSettings notificationSettings;
+    @Nullable
+    @JsonProperty("NotificationSettings")
+    private NotificationSettings notificationSettings;
 
-  @Nullable
-  @JsonProperty("Settings")
-  private CallSettings settings;
+    @Nullable
+    @JsonProperty("Settings")
+    private CallSettings settings;
 }

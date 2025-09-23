@@ -13,58 +13,62 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ActivityMarkEvent {
+public class ActivityMarkEvent{
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("fid")
-  private String fid;
+    @JsonProperty("fid")
+    private String fid;
 
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
 
-  @JsonProperty("type")
-  private String type;
+    @JsonProperty("type")
+    private String type;
 
-  @Nullable
-  @JsonProperty("feed_visibility")
-  private String feedVisibility;
+    @Nullable
+    @JsonProperty("feed_visibility")
+    private String feedVisibility;
 
-  @Nullable
-  @JsonProperty("mark_all_read")
-  private Boolean markAllRead;
+    @Nullable
+    @JsonProperty("mark_all_read")
+    private Boolean markAllRead;
 
-  @Nullable
-  @JsonProperty("mark_all_seen")
-  private Boolean markAllSeen;
+    @Nullable
+    @JsonProperty("mark_all_seen")
+    private Boolean markAllSeen;
 
-  @Nullable
-  @JsonProperty("received_at")
-  private Date receivedAt;
+    @Nullable
+    @JsonProperty("received_at")
+    private Date receivedAt;
 
-  @Nullable
-  @JsonProperty("mark_read")
-  private List<String> markRead;
+    @Nullable
+    @JsonProperty("mark_read")
+    private List<String> markRead;
 
-  @Nullable
-  @JsonProperty("mark_seen")
-  private List<String> markSeen;
+    @Nullable
+    @JsonProperty("mark_seen")
+    private List<String> markSeen;
 
-  @Nullable
-  @JsonProperty("mark_watched")
-  private List<String> markWatched;
+    @Nullable
+    @JsonProperty("mark_watched")
+    private List<String> markWatched;
 
-  @Nullable
-  @JsonProperty("user")
-  private UserResponseCommonFields user;
+    @Nullable
+    @JsonProperty("user")
+    private UserResponseCommonFields user;
 }

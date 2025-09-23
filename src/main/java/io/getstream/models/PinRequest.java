@@ -13,16 +13,24 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class PinRequest {
+public class PinRequest{
 
-  @JsonProperty("session_id")
-  private String sessionID;
+    @JsonProperty("session_id")
+    private String sessionID;
 
-  @JsonProperty("user_id")
-  private String userID;
+    @JsonProperty("user_id")
+    private String userID;
 }

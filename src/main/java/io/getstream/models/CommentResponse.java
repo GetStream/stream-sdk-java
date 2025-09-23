@@ -13,95 +13,99 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CommentResponse {
+public class CommentResponse{
 
-  @JsonProperty("confidence_score")
-  private Double confidenceScore;
+    @JsonProperty("confidence_score")
+    private Double confidenceScore;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("downvote_count")
-  private Integer downvoteCount;
+    @JsonProperty("downvote_count")
+    private Integer downvoteCount;
 
-  @JsonProperty("id")
-  private String id;
+    @JsonProperty("id")
+    private String id;
 
-  @JsonProperty("object_id")
-  private String objectID;
+    @JsonProperty("object_id")
+    private String objectID;
 
-  @JsonProperty("object_type")
-  private String objectType;
+    @JsonProperty("object_type")
+    private String objectType;
 
-  @JsonProperty("reaction_count")
-  private Integer reactionCount;
+    @JsonProperty("reaction_count")
+    private Integer reactionCount;
 
-  @JsonProperty("reply_count")
-  private Integer replyCount;
+    @JsonProperty("reply_count")
+    private Integer replyCount;
 
-  @JsonProperty("score")
-  private Integer score;
+    @JsonProperty("score")
+    private Integer score;
 
-  @JsonProperty("status")
-  private String status;
+    @JsonProperty("status")
+    private String status;
 
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+    @JsonProperty("updated_at")
+    private Date updatedAt;
 
-  @JsonProperty("upvote_count")
-  private Integer upvoteCount;
+    @JsonProperty("upvote_count")
+    private Integer upvoteCount;
 
-  @JsonProperty("mentioned_users")
-  private List<UserResponse> mentionedUsers;
+    @JsonProperty("mentioned_users")
+    private List<UserResponse> mentionedUsers;
 
-  @JsonProperty("own_reactions")
-  private List<FeedsReactionResponse> ownReactions;
+    @JsonProperty("own_reactions")
+    private List<FeedsReactionResponse> ownReactions;
 
-  @JsonProperty("user")
-  private UserResponse user;
+    @JsonProperty("user")
+    private UserResponse user;
 
-  @Nullable
-  @JsonProperty("controversy_score")
-  private Double controversyScore;
+    @Nullable
+    @JsonProperty("controversy_score")
+    private Double controversyScore;
 
-  @Nullable
-  @JsonProperty("deleted_at")
-  private Date deletedAt;
+    @Nullable
+    @JsonProperty("deleted_at")
+    private Date deletedAt;
 
-  @Nullable
-  @JsonProperty("parent_id")
-  private String parentID;
+    @Nullable
+    @JsonProperty("parent_id")
+    private String parentID;
 
-  @Nullable
-  @JsonProperty("text")
-  private String text;
+    @Nullable
+    @JsonProperty("text")
+    private String text;
 
-  @Nullable
-  @JsonProperty("attachments")
-  private List<Attachment> attachments;
+    @Nullable
+    @JsonProperty("attachments")
+    private List<Attachment> attachments;
 
-  @Nullable
-  @JsonProperty("latest_reactions")
-  private List<FeedsReactionResponse> latestReactions;
+    @Nullable
+    @JsonProperty("latest_reactions")
+    private List<FeedsReactionResponse> latestReactions;
 
-  @Nullable
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
+    @Nullable
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
 
-  @Nullable
-  @JsonProperty("moderation")
-  private ModerationV2Response moderation;
+    @Nullable
+    @JsonProperty("moderation")
+    private ModerationV2Response moderation;
 
-  @Nullable
-  @JsonProperty("reaction_groups")
-  private Map<String, ReactionGroupResponse> reactionGroups;
+    @Nullable
+    @JsonProperty("reaction_groups")
+    private Map<String, ReactionGroupResponse> reactionGroups;
 }

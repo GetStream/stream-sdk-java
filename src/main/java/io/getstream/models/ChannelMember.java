@@ -13,87 +13,91 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ChannelMember {
+public class ChannelMember{
 
-  @JsonProperty("banned")
-  private Boolean banned;
+    @JsonProperty("banned")
+    private Boolean banned;
 
-  @JsonProperty("channel_role")
-  private String channelRole;
+    @JsonProperty("channel_role")
+    private String channelRole;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("notifications_muted")
-  private Boolean notificationsMuted;
+    @JsonProperty("notifications_muted")
+    private Boolean notificationsMuted;
 
-  @JsonProperty("shadow_banned")
-  private Boolean shadowBanned;
+    @JsonProperty("shadow_banned")
+    private Boolean shadowBanned;
 
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+    @JsonProperty("updated_at")
+    private Date updatedAt;
 
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
 
-  @Nullable
-  @JsonProperty("archived_at")
-  private Date archivedAt;
+    @Nullable
+    @JsonProperty("archived_at")
+    private Date archivedAt;
 
-  @Nullable
-  @JsonProperty("ban_expires")
-  private Date banExpires;
+    @Nullable
+    @JsonProperty("ban_expires")
+    private Date banExpires;
 
-  @Nullable
-  @JsonProperty("deleted_at")
-  private Date deletedAt;
+    @Nullable
+    @JsonProperty("deleted_at")
+    private Date deletedAt;
 
-  @Nullable
-  @JsonProperty("invite_accepted_at")
-  private Date inviteAcceptedAt;
+    @Nullable
+    @JsonProperty("invite_accepted_at")
+    private Date inviteAcceptedAt;
 
-  @Nullable
-  @JsonProperty("invite_rejected_at")
-  private Date inviteRejectedAt;
+    @Nullable
+    @JsonProperty("invite_rejected_at")
+    private Date inviteRejectedAt;
 
-  @Nullable
-  @JsonProperty("invited")
-  private Boolean invited;
+    @Nullable
+    @JsonProperty("invited")
+    private Boolean invited;
 
-  @Nullable
-  @JsonProperty("is_moderator")
-  private Boolean isModerator;
+    @Nullable
+    @JsonProperty("is_moderator")
+    private Boolean isModerator;
 
-  @Nullable
-  @JsonProperty("pinned_at")
-  private Date pinnedAt;
+    @Nullable
+    @JsonProperty("pinned_at")
+    private Date pinnedAt;
 
-  @Nullable
-  @JsonProperty("role")
-  private String role;
+    @Nullable
+    @JsonProperty("role")
+    private String role;
 
-  @Nullable
-  @JsonProperty("status")
-  private String status;
+    @Nullable
+    @JsonProperty("status")
+    private String status;
 
-  @Nullable
-  @JsonProperty("user_id")
-  private String userID;
+    @Nullable
+    @JsonProperty("user_id")
+    private String userID;
 
-  @Nullable
-  @JsonProperty("deleted_messages")
-  private List<String> deletedMessages;
+    @Nullable
+    @JsonProperty("deleted_messages")
+    private List<String> deletedMessages;
 
-  @Nullable
-  @JsonProperty("user")
-  private UserResponse user;
+    @Nullable
+    @JsonProperty("user")
+    private UserResponse user;
 }

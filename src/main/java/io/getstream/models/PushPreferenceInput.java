@@ -13,36 +13,50 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class PushPreferenceInput {
+public class PushPreferenceInput{
 
-  @Nullable
-  @JsonProperty("call_level")
-  private String callLevel;
+    @Nullable
+    @JsonProperty("call_level")
+    private String callLevel;
 
-  @Nullable
-  @JsonProperty("channel_cid")
-  private String channelCid;
+    @Nullable
+    @JsonProperty("channel_cid")
+    private String channelCid;
 
-  @Nullable
-  @JsonProperty("chat_level")
-  private String chatLevel;
+    @Nullable
+    @JsonProperty("chat_level")
+    private String chatLevel;
 
-  @Nullable
-  @JsonProperty("disabled_until")
-  private Date disabledUntil;
+    @Nullable
+    @JsonProperty("disabled_until")
+    private Date disabledUntil;
 
-  @Nullable
-  @JsonProperty("remove_disable")
-  private Boolean removeDisable;
+    @Nullable
+    @JsonProperty("feeds_level")
+    private String feedsLevel;
 
-  @Nullable
-  @JsonProperty("user_id")
-  private String userID;
+    @Nullable
+    @JsonProperty("remove_disable")
+    private Boolean removeDisable;
+
+    @Nullable
+    @JsonProperty("user_id")
+    private String userID;
+
+    @Nullable
+    @JsonProperty("feeds_preferences")
+    private FeedsPreferences feedsPreferences;
 }

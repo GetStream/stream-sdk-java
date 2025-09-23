@@ -13,26 +13,33 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
-
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ParticipantCountByMinuteResponse {
+public class ParticipantCountByMinuteResponse{
 
-  @JsonProperty("first")
-  private Integer first;
+    @JsonProperty("first")
+    private Integer first;
 
-  @JsonProperty("last")
-  private Integer last;
+    @JsonProperty("last")
+    private Integer last;
 
-  @JsonProperty("max")
-  private Integer max;
+    @JsonProperty("max")
+    private Integer max;
 
-  @JsonProperty("min")
-  private Integer min;
+    @JsonProperty("min")
+    private Integer min;
 
-  @JsonProperty("start_ts")
-  private Date startTs;
+    @JsonProperty("start_ts")
+    private Date startTs;
 }

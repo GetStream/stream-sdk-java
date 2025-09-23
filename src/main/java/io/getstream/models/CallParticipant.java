@@ -13,90 +13,95 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallParticipant {
+public class CallParticipant{
 
-  @JsonProperty("banned")
-  private Boolean banned;
+    @JsonProperty("banned")
+    private Boolean banned;
 
-  @JsonProperty("id")
-  private String id;
+    @JsonProperty("id")
+    private String id;
 
-  @JsonProperty("JoinedAt")
-  private Date joinedAt;
+    @JsonProperty("JoinedAt")
+    private Date joinedAt;
 
-  @JsonProperty("online")
-  private Boolean online;
+    @JsonProperty("online")
+    private Boolean online;
 
-  @JsonProperty("role")
-  private String role;
+    @JsonProperty("role")
+    private String role;
 
-  @JsonProperty("UserSessionID")
-  private String userSessionID;
 
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
+    @JsonProperty("UserSessionID")
+    private String userSessionID;
 
-  @JsonProperty("teams_role")
-  private Map<String, String> teamsRole;
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
 
-  @Nullable
-  @JsonProperty("avg_response_time")
-  private Integer avgResponseTime;
+    @JsonProperty("teams_role")
+    private Map<String, String> teamsRole;
 
-  @Nullable
-  @JsonProperty("ban_expires")
-  private Date banExpires;
+    @Nullable
+    @JsonProperty("avg_response_time")
+    private Integer avgResponseTime;
 
-  @Nullable
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @Nullable
+    @JsonProperty("ban_expires")
+    private Date banExpires;
 
-  @Nullable
-  @JsonProperty("deactivated_at")
-  private Date deactivatedAt;
+    @Nullable
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @Nullable
-  @JsonProperty("deleted_at")
-  private Date deletedAt;
+    @Nullable
+    @JsonProperty("deactivated_at")
+    private Date deactivatedAt;
 
-  @Nullable
-  @JsonProperty("invisible")
-  private Boolean invisible;
+    @Nullable
+    @JsonProperty("deleted_at")
+    private Date deletedAt;
 
-  @Nullable
-  @JsonProperty("language")
-  private String language;
+    @Nullable
+    @JsonProperty("invisible")
+    private Boolean invisible;
 
-  @Nullable
-  @JsonProperty("last_active")
-  private Date lastActive;
+    @Nullable
+    @JsonProperty("language")
+    private String language;
 
-  @Nullable
-  @JsonProperty("last_engaged_at")
-  private Date lastEngagedAt;
+    @Nullable
+    @JsonProperty("last_active")
+    private Date lastActive;
 
-  @Nullable
-  @JsonProperty("revoke_tokens_issued_before")
-  private Date revokeTokensIssuedBefore;
+    @Nullable
+    @JsonProperty("last_engaged_at")
+    private Date lastEngagedAt;
 
-  @Nullable
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+    @Nullable
+    @JsonProperty("revoke_tokens_issued_before")
+    private Date revokeTokensIssuedBefore;
 
-  @Nullable
-  @JsonProperty("teams")
-  private List<String> teams;
+    @Nullable
+    @JsonProperty("updated_at")
+    private Date updatedAt;
 
-  @Nullable
-  @JsonProperty("privacy_settings")
-  private PrivacySettings privacySettings;
+    @Nullable
+    @JsonProperty("teams")
+    private List<String> teams;
+
+    @Nullable
+    @JsonProperty("privacy_settings")
+    private PrivacySettings privacySettings;
 }

@@ -13,20 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
-
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UnreadCountsChannel {
+public class UnreadCountsChannel{
 
-  @JsonProperty("channel_id")
-  private String channelID;
+    @JsonProperty("channel_id")
+    private String channelID;
 
-  @JsonProperty("last_read")
-  private Date lastRead;
+    @JsonProperty("last_read")
+    private Date lastRead;
 
-  @JsonProperty("unread_count")
-  private Integer unreadCount;
+    @JsonProperty("unread_count")
+    private Integer unreadCount;
 }

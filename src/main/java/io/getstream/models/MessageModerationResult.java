@@ -13,50 +13,56 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class MessageModerationResult {
+public class MessageModerationResult{
 
-  @JsonProperty("action")
-  private String action;
+    @JsonProperty("action")
+    private String action;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("message_id")
-  private String messageID;
+    @JsonProperty("message_id")
+    private String messageID;
 
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+    @JsonProperty("updated_at")
+    private Date updatedAt;
 
-  @JsonProperty("user_bad_karma")
-  private Boolean userBadKarma;
+    @JsonProperty("user_bad_karma")
+    private Boolean userBadKarma;
 
-  @JsonProperty("user_karma")
-  private Double userKarma;
+    @JsonProperty("user_karma")
+    private Double userKarma;
 
-  @Nullable
-  @JsonProperty("blocked_word")
-  private String blockedWord;
+    @Nullable
+    @JsonProperty("blocked_word")
+    private String blockedWord;
 
-  @Nullable
-  @JsonProperty("blocklist_name")
-  private String blocklistName;
+    @Nullable
+    @JsonProperty("blocklist_name")
+    private String blocklistName;
 
-  @Nullable
-  @JsonProperty("moderated_by")
-  private String moderatedBy;
+    @Nullable
+    @JsonProperty("moderated_by")
+    private String moderatedBy;
 
-  @Nullable
-  @JsonProperty("ai_moderation_response")
-  private ModerationResponse aiModerationResponse;
+    @Nullable
+    @JsonProperty("ai_moderation_response")
+    private ModerationResponse aiModerationResponse;
 
-  @Nullable
-  @JsonProperty("moderation_thresholds")
-  private Thresholds moderationThresholds;
+    @Nullable
+    @JsonProperty("moderation_thresholds")
+    private Thresholds moderationThresholds;
 }

@@ -13,24 +13,30 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ImageUploadRequest {
+public class ImageUploadRequest{
 
-  @Nullable
-  @JsonProperty("file")
-  private String file;
+    @Nullable
+    @JsonProperty("file")
+    private String file;
 
-  @Nullable
-  @JsonProperty("upload_sizes")
-  private List<ImageSize> uploadSizes;
+    @Nullable
+    @JsonProperty("upload_sizes")
+    private List<ImageSize> uploadSizes;
 
-  @Nullable
-  @JsonProperty("user")
-  private OnlyUserID user;
+    @Nullable
+    @JsonProperty("user")
+    private OnlyUserID user;
 }

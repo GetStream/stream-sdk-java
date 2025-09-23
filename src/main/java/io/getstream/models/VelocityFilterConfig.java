@@ -13,34 +13,46 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class VelocityFilterConfig {
+public class VelocityFilterConfig{
 
-  @JsonProperty("advanced_filters")
-  private Boolean advancedFilters;
+    @Nullable
+    @JsonProperty("advanced_filters")
+    private Boolean advancedFilters;
 
-  @JsonProperty("cascading_actions")
-  private Boolean cascadingActions;
+    @Nullable
+    @JsonProperty("async")
+    private Boolean async;
 
-  @JsonProperty("cids_per_user")
-  private Integer cidsPerUser;
+    @Nullable
+    @JsonProperty("cascading_actions")
+    private Boolean cascadingActions;
 
-  @JsonProperty("enabled")
-  private Boolean enabled;
+    @Nullable
+    @JsonProperty("cids_per_user")
+    private Integer cidsPerUser;
 
-  @JsonProperty("first_message_only")
-  private Boolean firstMessageOnly;
+    @Nullable
+    @JsonProperty("enabled")
+    private Boolean enabled;
 
-  @JsonProperty("rules")
-  private List<VelocityFilterConfigRule> rules;
+    @Nullable
+    @JsonProperty("first_message_only")
+    private Boolean firstMessageOnly;
 
-  @Nullable
-  @JsonProperty("async")
-  private Boolean async;
+    @Nullable
+    @JsonProperty("rules")
+    private List<VelocityFilterConfigRule> rules;
 }

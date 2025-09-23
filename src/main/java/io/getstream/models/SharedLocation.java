@@ -13,50 +13,56 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class SharedLocation {
+public class SharedLocation{
 
-  @JsonProperty("channel_cid")
-  private String channelCid;
+    @JsonProperty("channel_cid")
+    private String channelCid;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("created_by_device_id")
-  private String createdByDeviceID;
+    @JsonProperty("created_by_device_id")
+    private String createdByDeviceID;
 
-  @JsonProperty("message_id")
-  private String messageID;
+    @JsonProperty("message_id")
+    private String messageID;
 
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+    @JsonProperty("updated_at")
+    private Date updatedAt;
 
-  @JsonProperty("user_id")
-  private String userID;
+    @JsonProperty("user_id")
+    private String userID;
 
-  @Nullable
-  @JsonProperty("end_at")
-  private Date endAt;
+    @Nullable
+    @JsonProperty("end_at")
+    private Date endAt;
 
-  @Nullable
-  @JsonProperty("latitude")
-  private Double latitude;
+    @Nullable
+    @JsonProperty("latitude")
+    private Double latitude;
 
-  @Nullable
-  @JsonProperty("longitude")
-  private Double longitude;
+    @Nullable
+    @JsonProperty("longitude")
+    private Double longitude;
 
-  @Nullable
-  @JsonProperty("channel")
-  private Channel channel;
+    @Nullable
+    @JsonProperty("channel")
+    private Channel channel;
 
-  @Nullable
-  @JsonProperty("message")
-  private Message message;
+    @Nullable
+    @JsonProperty("message")
+    private Message message;
 }

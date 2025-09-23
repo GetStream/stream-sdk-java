@@ -12,1497 +12,1595 @@
  */
 package io.getstream.services;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import io.getstream.exceptions.StreamException;
-import io.getstream.models.*;
-import io.getstream.services.framework.StreamHTTPClient;
-import io.getstream.services.framework.StreamRequest;
 import java.util.*;
+import io.getstream.models.*;
+import io.getstream.services.framework.StreamRequest;
+import io.getstream.services.framework.StreamHTTPClient;
+import io.getstream.exceptions.StreamException;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 public class FeedsImpl implements Feeds {
-  private StreamHTTPClient client;
-
-  public FeedsImpl(StreamHTTPClient client) {
-    this.client = client;
-  }
-
-  @NotNull
-  public StreamRequest<AddActivityResponse> addActivity(AddActivityRequest request)
-      throws StreamException {
-
-    return new StreamRequest<AddActivityResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/activities",
-        request,
-        null,
-        new TypeReference<AddActivityResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<UpsertActivitiesResponse> upsertActivities(UpsertActivitiesRequest request)
-      throws StreamException {
-
-    return new StreamRequest<UpsertActivitiesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/activities/batch",
-        request,
-        null,
-        new TypeReference<UpsertActivitiesResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<DeleteActivitiesResponse> deleteActivities(DeleteActivitiesRequest request)
-      throws StreamException {
-
-    return new StreamRequest<DeleteActivitiesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/activities/delete",
-        request,
-        null,
-        new TypeReference<DeleteActivitiesResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryActivitiesResponse> queryActivities(QueryActivitiesRequest request)
-      throws StreamException {
-
-    return new StreamRequest<QueryActivitiesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/activities/query",
-        request,
-        null,
-        new TypeReference<QueryActivitiesResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryActivitiesResponse> queryActivities() throws StreamException {
-    return queryActivities(new QueryActivitiesRequest());
-  }
-
-  @NotNull
-  public StreamRequest<DeleteBookmarkResponse> deleteBookmark(
-      @NotNull String activityID, DeleteBookmarkRequest request) throws StreamException {
-    var pathParams = Map.of("activity_id", activityID);
-
-    return new StreamRequest<DeleteBookmarkResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/feeds/activities/{activity_id}/bookmarks",
-        request,
-        pathParams,
-        new TypeReference<DeleteBookmarkResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<DeleteBookmarkResponse> deleteBookmark(@NotNull String activityID)
-      throws StreamException {
-    return deleteBookmark(activityID, new DeleteBookmarkRequest());
-  }
-
-  @NotNull
-  public StreamRequest<UpdateBookmarkResponse> updateBookmark(
-      @NotNull String activityID, UpdateBookmarkRequest request) throws StreamException {
-    var pathParams = Map.of("activity_id", activityID);
-
-    return new StreamRequest<UpdateBookmarkResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "PATCH",
-        "/api/v2/feeds/activities/{activity_id}/bookmarks",
-        request,
-        pathParams,
-        new TypeReference<UpdateBookmarkResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<UpdateBookmarkResponse> updateBookmark(@NotNull String activityID)
-      throws StreamException {
-    return updateBookmark(activityID, new UpdateBookmarkRequest());
-  }
-
-  @NotNull
-  public StreamRequest<AddBookmarkResponse> addBookmark(
-      @NotNull String activityID, AddBookmarkRequest request) throws StreamException {
-    var pathParams = Map.of("activity_id", activityID);
-
-    return new StreamRequest<AddBookmarkResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/activities/{activity_id}/bookmarks",
-        request,
-        pathParams,
-        new TypeReference<AddBookmarkResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<AddBookmarkResponse> addBookmark(@NotNull String activityID)
-      throws StreamException {
-    return addBookmark(activityID, new AddBookmarkRequest());
-  }
-
-  @NotNull
-  public StreamRequest<ActivityFeedbackResponse> activityFeedback(
-      @NotNull String activityID, ActivityFeedbackRequest request) throws StreamException {
-    var pathParams = Map.of("activity_id", activityID);
-
-    return new StreamRequest<ActivityFeedbackResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/activities/{activity_id}/feedback",
-        request,
-        pathParams,
-        new TypeReference<ActivityFeedbackResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<ActivityFeedbackResponse> activityFeedback(@NotNull String activityID)
-      throws StreamException {
-    return activityFeedback(activityID, new ActivityFeedbackRequest());
-  }
-
-  @NotNull
-  public StreamRequest<PollVoteResponse> castPollVote(
-      @NotNull String activityID, @NotNull String pollID, CastPollVoteRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "activity_id", activityID,
-            "poll_id", pollID);
-
-    return new StreamRequest<PollVoteResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/activities/{activity_id}/polls/{poll_id}/vote",
-        request,
-        pathParams,
-        new TypeReference<PollVoteResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<PollVoteResponse> castPollVote(
-      @NotNull String activityID, @NotNull String pollID) throws StreamException {
-    return castPollVote(activityID, pollID, new CastPollVoteRequest());
-  }
-
-  @NotNull
-  public StreamRequest<PollVoteResponse> deletePollVote(
-      @NotNull String activityID,
-      @NotNull String pollID,
-      @NotNull String voteID,
-      DeletePollVoteRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "activity_id", activityID,
-            "poll_id", pollID,
-            "vote_id", voteID);
-
-    return new StreamRequest<PollVoteResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/feeds/activities/{activity_id}/polls/{poll_id}/vote/{vote_id}",
-        request,
-        pathParams,
-        new TypeReference<PollVoteResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<PollVoteResponse> deletePollVote(
-      @NotNull String activityID, @NotNull String pollID, @NotNull String voteID)
-      throws StreamException {
-    return deletePollVote(activityID, pollID, voteID, new DeletePollVoteRequest());
-  }
-
-  @NotNull
-  public StreamRequest<AddReactionResponse> addReaction(
-      @NotNull String activityID, AddReactionRequest request) throws StreamException {
-    var pathParams = Map.of("activity_id", activityID);
-
-    return new StreamRequest<AddReactionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/activities/{activity_id}/reactions",
-        request,
-        pathParams,
-        new TypeReference<AddReactionResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryActivityReactionsResponse> queryActivityReactions(
-      @NotNull String activityID, QueryActivityReactionsRequest request) throws StreamException {
-    var pathParams = Map.of("activity_id", activityID);
-
-    return new StreamRequest<QueryActivityReactionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/activities/{activity_id}/reactions/query",
-        request,
-        pathParams,
-        new TypeReference<QueryActivityReactionsResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryActivityReactionsResponse> queryActivityReactions(
-      @NotNull String activityID) throws StreamException {
-    return queryActivityReactions(activityID, new QueryActivityReactionsRequest());
-  }
-
-  @NotNull
-  public StreamRequest<DeleteActivityReactionResponse> deleteActivityReaction(
-      @NotNull String activityID, @NotNull String type, DeleteActivityReactionRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "activity_id", activityID,
-            "type", type);
-
-    return new StreamRequest<DeleteActivityReactionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/feeds/activities/{activity_id}/reactions/{type}",
-        request,
-        pathParams,
-        new TypeReference<DeleteActivityReactionResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<DeleteActivityReactionResponse> deleteActivityReaction(
-      @NotNull String activityID, @NotNull String type) throws StreamException {
-    return deleteActivityReaction(activityID, type, new DeleteActivityReactionRequest());
-  }
-
-  @NotNull
-  public StreamRequest<DeleteActivityResponse> deleteActivity(
-      @NotNull String id, DeleteActivityRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<DeleteActivityResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/feeds/activities/{id}",
-        request,
-        pathParams,
-        new TypeReference<DeleteActivityResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<DeleteActivityResponse> deleteActivity(@NotNull String id)
-      throws StreamException {
-    return deleteActivity(id, new DeleteActivityRequest());
-  }
-
-  @NotNull
-  public StreamRequest<GetActivityResponse> getActivity(
-      @NotNull String id, GetActivityRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<GetActivityResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "GET",
-        "/api/v2/feeds/activities/{id}",
-        request,
-        pathParams,
-        new TypeReference<GetActivityResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<GetActivityResponse> getActivity(@NotNull String id) throws StreamException {
-    return getActivity(id, new GetActivityRequest());
-  }
-
-  @NotNull
-  public StreamRequest<UpdateActivityPartialResponse> updateActivityPartial(
-      @NotNull String id, UpdateActivityPartialRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<UpdateActivityPartialResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "PATCH",
-        "/api/v2/feeds/activities/{id}",
-        request,
-        pathParams,
-        new TypeReference<UpdateActivityPartialResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<UpdateActivityPartialResponse> updateActivityPartial(@NotNull String id)
-      throws StreamException {
-    return updateActivityPartial(id, new UpdateActivityPartialRequest());
-  }
-
-  @NotNull
-  public StreamRequest<UpdateActivityResponse> updateActivity(
-      @NotNull String id, UpdateActivityRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<UpdateActivityResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "PUT",
-        "/api/v2/feeds/activities/{id}",
-        request,
-        pathParams,
-        new TypeReference<UpdateActivityResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<UpdateActivityResponse> updateActivity(@NotNull String id)
-      throws StreamException {
-    return updateActivity(id, new UpdateActivityRequest());
-  }
-
-  @NotNull
-  public StreamRequest<QueryBookmarkFoldersResponse> queryBookmarkFolders(
-      QueryBookmarkFoldersRequest request) throws StreamException {
-
-    return new StreamRequest<QueryBookmarkFoldersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/bookmark_folders/query",
-        request,
-        null,
-        new TypeReference<QueryBookmarkFoldersResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryBookmarkFoldersResponse> queryBookmarkFolders() throws StreamException {
-    return queryBookmarkFolders(new QueryBookmarkFoldersRequest());
-  }
-
-  @NotNull
-  public StreamRequest<DeleteBookmarkFolderResponse> deleteBookmarkFolder(
-      @NotNull String folderID, DeleteBookmarkFolderRequest request) throws StreamException {
-    var pathParams = Map.of("folder_id", folderID);
-
-    return new StreamRequest<DeleteBookmarkFolderResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/feeds/bookmark_folders/{folder_id}",
-        request,
-        pathParams,
-        new TypeReference<DeleteBookmarkFolderResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<DeleteBookmarkFolderResponse> deleteBookmarkFolder(@NotNull String folderID)
-      throws StreamException {
-    return deleteBookmarkFolder(folderID, new DeleteBookmarkFolderRequest());
-  }
-
-  @NotNull
-  public StreamRequest<UpdateBookmarkFolderResponse> updateBookmarkFolder(
-      @NotNull String folderID, UpdateBookmarkFolderRequest request) throws StreamException {
-    var pathParams = Map.of("folder_id", folderID);
-
-    return new StreamRequest<UpdateBookmarkFolderResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "PATCH",
-        "/api/v2/feeds/bookmark_folders/{folder_id}",
-        request,
-        pathParams,
-        new TypeReference<UpdateBookmarkFolderResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<UpdateBookmarkFolderResponse> updateBookmarkFolder(@NotNull String folderID)
-      throws StreamException {
-    return updateBookmarkFolder(folderID, new UpdateBookmarkFolderRequest());
-  }
-
-  @NotNull
-  public StreamRequest<QueryBookmarksResponse> queryBookmarks(QueryBookmarksRequest request)
-      throws StreamException {
-
-    return new StreamRequest<QueryBookmarksResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/bookmarks/query",
-        request,
-        null,
-        new TypeReference<QueryBookmarksResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryBookmarksResponse> queryBookmarks() throws StreamException {
-    return queryBookmarks(new QueryBookmarksRequest());
-  }
-
-  @NotNull
-  public StreamRequest<GetCommentsResponse> getComments(GetCommentsRequest request)
-      throws StreamException {
-
-    return new StreamRequest<GetCommentsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "GET",
-        "/api/v2/feeds/comments",
-        request,
-        null,
-        new TypeReference<GetCommentsResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<AddCommentResponse> addComment(AddCommentRequest request)
-      throws StreamException {
-
-    return new StreamRequest<AddCommentResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/comments",
-        request,
-        null,
-        new TypeReference<AddCommentResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<AddCommentsBatchResponse> addCommentsBatch(AddCommentsBatchRequest request)
-      throws StreamException {
-
-    return new StreamRequest<AddCommentsBatchResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/comments/batch",
-        request,
-        null,
-        new TypeReference<AddCommentsBatchResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryCommentsResponse> queryComments(QueryCommentsRequest request)
-      throws StreamException {
-
-    return new StreamRequest<QueryCommentsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/comments/query",
-        request,
-        null,
-        new TypeReference<QueryCommentsResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<DeleteCommentResponse> deleteComment(
-      @NotNull String id, DeleteCommentRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<DeleteCommentResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/feeds/comments/{id}",
-        request,
-        pathParams,
-        new TypeReference<DeleteCommentResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<DeleteCommentResponse> deleteComment(@NotNull String id)
-      throws StreamException {
-    return deleteComment(id, new DeleteCommentRequest());
-  }
-
-  @NotNull
-  public StreamRequest<GetCommentResponse> getComment(@NotNull String id, GetCommentRequest request)
-      throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<GetCommentResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "GET",
-        "/api/v2/feeds/comments/{id}",
-        request,
-        pathParams,
-        new TypeReference<GetCommentResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<GetCommentResponse> getComment(@NotNull String id) throws StreamException {
-    return getComment(id, new GetCommentRequest());
-  }
-
-  @NotNull
-  public StreamRequest<UpdateCommentResponse> updateComment(
-      @NotNull String id, UpdateCommentRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<UpdateCommentResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "PATCH",
-        "/api/v2/feeds/comments/{id}",
-        request,
-        pathParams,
-        new TypeReference<UpdateCommentResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<UpdateCommentResponse> updateComment(@NotNull String id)
-      throws StreamException {
-    return updateComment(id, new UpdateCommentRequest());
-  }
-
-  @NotNull
-  public StreamRequest<AddCommentReactionResponse> addCommentReaction(
-      @NotNull String id, AddCommentReactionRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<AddCommentReactionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/comments/{id}/reactions",
-        request,
-        pathParams,
-        new TypeReference<AddCommentReactionResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryCommentReactionsResponse> queryCommentReactions(
-      @NotNull String id, QueryCommentReactionsRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<QueryCommentReactionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/comments/{id}/reactions/query",
-        request,
-        pathParams,
-        new TypeReference<QueryCommentReactionsResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryCommentReactionsResponse> queryCommentReactions(@NotNull String id)
-      throws StreamException {
-    return queryCommentReactions(id, new QueryCommentReactionsRequest());
-  }
-
-  @NotNull
-  public StreamRequest<DeleteCommentReactionResponse> deleteCommentReaction(
-      @NotNull String id, @NotNull String type, DeleteCommentReactionRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "id", id,
-            "type", type);
-
-    return new StreamRequest<DeleteCommentReactionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/feeds/comments/{id}/reactions/{type}",
-        request,
-        pathParams,
-        new TypeReference<DeleteCommentReactionResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<DeleteCommentReactionResponse> deleteCommentReaction(
-      @NotNull String id, @NotNull String type) throws StreamException {
-    return deleteCommentReaction(id, type, new DeleteCommentReactionRequest());
-  }
-
-  @NotNull
-  public StreamRequest<GetCommentRepliesResponse> getCommentReplies(
-      @NotNull String id, GetCommentRepliesRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<GetCommentRepliesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "GET",
-        "/api/v2/feeds/comments/{id}/replies",
-        request,
-        pathParams,
-        new TypeReference<GetCommentRepliesResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<GetCommentRepliesResponse> getCommentReplies(@NotNull String id)
-      throws StreamException {
-    return getCommentReplies(id, new GetCommentRepliesRequest());
-  }
-
-  @NotNull
-  public StreamRequest<ListFeedGroupsResponse> listFeedGroups(ListFeedGroupsRequest request)
-      throws StreamException {
-
-    return new StreamRequest<ListFeedGroupsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "GET",
-        "/api/v2/feeds/feed_groups",
-        request,
-        null,
-        new TypeReference<ListFeedGroupsResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<ListFeedGroupsResponse> listFeedGroups() throws StreamException {
-    return listFeedGroups(new ListFeedGroupsRequest());
-  }
-
-  @NotNull
-  public StreamRequest<CreateFeedGroupResponse> createFeedGroup(CreateFeedGroupRequest request)
-      throws StreamException {
-
-    return new StreamRequest<CreateFeedGroupResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/feed_groups",
-        request,
-        null,
-        new TypeReference<CreateFeedGroupResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<DeleteFeedResponse> deleteFeed(
-      @NotNull String feedGroupID, @NotNull String feedID, DeleteFeedRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "feed_group_id", feedGroupID,
-            "feed_id", feedID);
-
-    return new StreamRequest<DeleteFeedResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}",
-        request,
-        pathParams,
-        new TypeReference<DeleteFeedResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<DeleteFeedResponse> deleteFeed(
-      @NotNull String feedGroupID, @NotNull String feedID) throws StreamException {
-    return deleteFeed(feedGroupID, feedID, new DeleteFeedRequest());
-  }
-
-  @NotNull
-  public StreamRequest<GetOrCreateFeedResponse> getOrCreateFeed(
-      @NotNull String feedGroupID, @NotNull String feedID, GetOrCreateFeedRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "feed_group_id", feedGroupID,
-            "feed_id", feedID);
-
-    return new StreamRequest<GetOrCreateFeedResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}",
-        request,
-        pathParams,
-        new TypeReference<GetOrCreateFeedResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<GetOrCreateFeedResponse> getOrCreateFeed(
-      @NotNull String feedGroupID, @NotNull String feedID) throws StreamException {
-    return getOrCreateFeed(feedGroupID, feedID, new GetOrCreateFeedRequest());
-  }
-
-  @NotNull
-  public StreamRequest<UpdateFeedResponse> updateFeed(
-      @NotNull String feedGroupID, @NotNull String feedID, UpdateFeedRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "feed_group_id", feedGroupID,
-            "feed_id", feedID);
-
-    return new StreamRequest<UpdateFeedResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "PUT",
-        "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}",
-        request,
-        pathParams,
-        new TypeReference<UpdateFeedResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<UpdateFeedResponse> updateFeed(
-      @NotNull String feedGroupID, @NotNull String feedID) throws StreamException {
-    return updateFeed(feedGroupID, feedID, new UpdateFeedRequest());
-  }
-
-  @NotNull
-  public StreamRequest<Response> markActivity(
-      @NotNull String feedGroupID, @NotNull String feedID, MarkActivityRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "feed_group_id", feedGroupID,
-            "feed_id", feedID);
-
-    return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/activities/mark/batch",
-        request,
-        pathParams,
-        new TypeReference<Response>() {});
-  }
-
-  @NotNull
-  public StreamRequest<Response> markActivity(@NotNull String feedGroupID, @NotNull String feedID)
-      throws StreamException {
-    return markActivity(feedGroupID, feedID, new MarkActivityRequest());
-  }
-
-  @NotNull
-  public StreamRequest<UnpinActivityResponse> unpinActivity(
-      @NotNull String feedGroupID,
-      @NotNull String feedID,
-      @NotNull String activityID,
-      UnpinActivityRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "feed_group_id", feedGroupID,
-            "feed_id", feedID,
-            "activity_id", activityID);
-
-    return new StreamRequest<UnpinActivityResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/activities/{activity_id}/pin",
-        request,
-        pathParams,
-        new TypeReference<UnpinActivityResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<UnpinActivityResponse> unpinActivity(
-      @NotNull String feedGroupID, @NotNull String feedID, @NotNull String activityID)
-      throws StreamException {
-    return unpinActivity(feedGroupID, feedID, activityID, new UnpinActivityRequest());
-  }
-
-  @NotNull
-  public StreamRequest<PinActivityResponse> pinActivity(
-      @NotNull String feedGroupID,
-      @NotNull String feedID,
-      @NotNull String activityID,
-      PinActivityRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "feed_group_id", feedGroupID,
-            "feed_id", feedID,
-            "activity_id", activityID);
-
-    return new StreamRequest<PinActivityResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/activities/{activity_id}/pin",
-        request,
-        pathParams,
-        new TypeReference<PinActivityResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<PinActivityResponse> pinActivity(
-      @NotNull String feedGroupID, @NotNull String feedID, @NotNull String activityID)
-      throws StreamException {
-    return pinActivity(feedGroupID, feedID, activityID, new PinActivityRequest());
-  }
-
-  @NotNull
-  public StreamRequest<UpdateFeedMembersResponse> updateFeedMembers(
-      @NotNull String feedGroupID, @NotNull String feedID, UpdateFeedMembersRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "feed_group_id", feedGroupID,
-            "feed_id", feedID);
-
-    return new StreamRequest<UpdateFeedMembersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "PATCH",
-        "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members",
-        request,
-        pathParams,
-        new TypeReference<UpdateFeedMembersResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<AcceptFeedMemberInviteResponse> acceptFeedMemberInvite(
-      @NotNull String feedID, @NotNull String feedGroupID, AcceptFeedMemberInviteRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "feed_id", feedID,
-            "feed_group_id", feedGroupID);
-
-    return new StreamRequest<AcceptFeedMemberInviteResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members/accept",
-        request,
-        pathParams,
-        new TypeReference<AcceptFeedMemberInviteResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<AcceptFeedMemberInviteResponse> acceptFeedMemberInvite(
-      @NotNull String feedID, @NotNull String feedGroupID) throws StreamException {
-    return acceptFeedMemberInvite(feedID, feedGroupID, new AcceptFeedMemberInviteRequest());
-  }
-
-  @NotNull
-  public StreamRequest<QueryFeedMembersResponse> queryFeedMembers(
-      @NotNull String feedGroupID, @NotNull String feedID, QueryFeedMembersRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "feed_group_id", feedGroupID,
-            "feed_id", feedID);
-
-    return new StreamRequest<QueryFeedMembersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members/query",
-        request,
-        pathParams,
-        new TypeReference<QueryFeedMembersResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryFeedMembersResponse> queryFeedMembers(
-      @NotNull String feedGroupID, @NotNull String feedID) throws StreamException {
-    return queryFeedMembers(feedGroupID, feedID, new QueryFeedMembersRequest());
-  }
-
-  @NotNull
-  public StreamRequest<RejectFeedMemberInviteResponse> rejectFeedMemberInvite(
-      @NotNull String feedGroupID, @NotNull String feedID, RejectFeedMemberInviteRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "feed_group_id", feedGroupID,
-            "feed_id", feedID);
-
-    return new StreamRequest<RejectFeedMemberInviteResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members/reject",
-        request,
-        pathParams,
-        new TypeReference<RejectFeedMemberInviteResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<RejectFeedMemberInviteResponse> rejectFeedMemberInvite(
-      @NotNull String feedGroupID, @NotNull String feedID) throws StreamException {
-    return rejectFeedMemberInvite(feedGroupID, feedID, new RejectFeedMemberInviteRequest());
-  }
-
-  @NotNull
-  public StreamRequest<GetFollowSuggestionsResponse> getFollowSuggestions(
-      @NotNull String feedGroupID, GetFollowSuggestionsRequest request) throws StreamException {
-    var pathParams = Map.of("feed_group_id", feedGroupID);
-
-    return new StreamRequest<GetFollowSuggestionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "GET",
-        "/api/v2/feeds/feed_groups/{feed_group_id}/follow_suggestions",
-        request,
-        pathParams,
-        new TypeReference<GetFollowSuggestionsResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<GetFollowSuggestionsResponse> getFollowSuggestions(
-      @NotNull String feedGroupID) throws StreamException {
-    return getFollowSuggestions(feedGroupID, new GetFollowSuggestionsRequest());
-  }
-
-  @NotNull
-  public StreamRequest<DeleteFeedGroupResponse> deleteFeedGroup(
-      @NotNull String id, DeleteFeedGroupRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<DeleteFeedGroupResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/feeds/feed_groups/{id}",
-        request,
-        pathParams,
-        new TypeReference<DeleteFeedGroupResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<DeleteFeedGroupResponse> deleteFeedGroup(@NotNull String id)
-      throws StreamException {
-    return deleteFeedGroup(id, new DeleteFeedGroupRequest());
-  }
-
-  @NotNull
-  public StreamRequest<GetFeedGroupResponse> getFeedGroup(
-      @NotNull String id, GetFeedGroupRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<GetFeedGroupResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "GET",
-        "/api/v2/feeds/feed_groups/{id}",
-        request,
-        pathParams,
-        new TypeReference<GetFeedGroupResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<GetFeedGroupResponse> getFeedGroup(@NotNull String id)
-      throws StreamException {
-    return getFeedGroup(id, new GetFeedGroupRequest());
-  }
-
-  @NotNull
-  public StreamRequest<GetOrCreateFeedGroupResponse> getOrCreateFeedGroup(
-      @NotNull String id, GetOrCreateFeedGroupRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<GetOrCreateFeedGroupResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/feed_groups/{id}",
-        request,
-        pathParams,
-        new TypeReference<GetOrCreateFeedGroupResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<GetOrCreateFeedGroupResponse> getOrCreateFeedGroup(@NotNull String id)
-      throws StreamException {
-    return getOrCreateFeedGroup(id, new GetOrCreateFeedGroupRequest());
-  }
-
-  @NotNull
-  public StreamRequest<UpdateFeedGroupResponse> updateFeedGroup(
-      @NotNull String id, UpdateFeedGroupRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<UpdateFeedGroupResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "PUT",
-        "/api/v2/feeds/feed_groups/{id}",
-        request,
-        pathParams,
-        new TypeReference<UpdateFeedGroupResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<UpdateFeedGroupResponse> updateFeedGroup(@NotNull String id)
-      throws StreamException {
-    return updateFeedGroup(id, new UpdateFeedGroupRequest());
-  }
-
-  @NotNull
-  public StreamRequest<ListFeedViewsResponse> listFeedViews(ListFeedViewsRequest request)
-      throws StreamException {
-
-    return new StreamRequest<ListFeedViewsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "GET",
-        "/api/v2/feeds/feed_views",
-        request,
-        null,
-        new TypeReference<ListFeedViewsResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<ListFeedViewsResponse> listFeedViews() throws StreamException {
-    return listFeedViews(new ListFeedViewsRequest());
-  }
-
-  @NotNull
-  public StreamRequest<CreateFeedViewResponse> createFeedView(CreateFeedViewRequest request)
-      throws StreamException {
-
-    return new StreamRequest<CreateFeedViewResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/feed_views",
-        request,
-        null,
-        new TypeReference<CreateFeedViewResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<DeleteFeedViewResponse> deleteFeedView(
-      @NotNull String id, DeleteFeedViewRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<DeleteFeedViewResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/feeds/feed_views/{id}",
-        request,
-        pathParams,
-        new TypeReference<DeleteFeedViewResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<DeleteFeedViewResponse> deleteFeedView(@NotNull String id)
-      throws StreamException {
-    return deleteFeedView(id, new DeleteFeedViewRequest());
-  }
-
-  @NotNull
-  public StreamRequest<GetFeedViewResponse> getFeedView(
-      @NotNull String id, GetFeedViewRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<GetFeedViewResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "GET",
-        "/api/v2/feeds/feed_views/{id}",
-        request,
-        pathParams,
-        new TypeReference<GetFeedViewResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<GetFeedViewResponse> getFeedView(@NotNull String id) throws StreamException {
-    return getFeedView(id, new GetFeedViewRequest());
-  }
-
-  @NotNull
-  public StreamRequest<GetOrCreateFeedViewResponse> getOrCreateFeedView(
-      @NotNull String id, GetOrCreateFeedViewRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<GetOrCreateFeedViewResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/feed_views/{id}",
-        request,
-        pathParams,
-        new TypeReference<GetOrCreateFeedViewResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<GetOrCreateFeedViewResponse> getOrCreateFeedView(@NotNull String id)
-      throws StreamException {
-    return getOrCreateFeedView(id, new GetOrCreateFeedViewRequest());
-  }
-
-  @NotNull
-  public StreamRequest<UpdateFeedViewResponse> updateFeedView(
-      @NotNull String id, UpdateFeedViewRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<UpdateFeedViewResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "PUT",
-        "/api/v2/feeds/feed_views/{id}",
-        request,
-        pathParams,
-        new TypeReference<UpdateFeedViewResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<UpdateFeedViewResponse> updateFeedView(@NotNull String id)
-      throws StreamException {
-    return updateFeedView(id, new UpdateFeedViewRequest());
-  }
-
-  @NotNull
-  public StreamRequest<CreateFeedsBatchResponse> createFeedsBatch(CreateFeedsBatchRequest request)
-      throws StreamException {
-
-    return new StreamRequest<CreateFeedsBatchResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/feeds/batch",
-        request,
-        null,
-        new TypeReference<CreateFeedsBatchResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryFeedsResponse> queryFeeds(QueryFeedsRequest request)
-      throws StreamException {
-
-    return new StreamRequest<QueryFeedsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/feeds/query",
-        request,
-        null,
-        new TypeReference<QueryFeedsResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryFeedsResponse> queryFeeds() throws StreamException {
-    return queryFeeds(new QueryFeedsRequest());
-  }
-
-  @NotNull
-  public StreamRequest<UpdateFollowResponse> updateFollow(UpdateFollowRequest request)
-      throws StreamException {
-
-    return new StreamRequest<UpdateFollowResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "PATCH",
-        "/api/v2/feeds/follows",
-        request,
-        null,
-        new TypeReference<UpdateFollowResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<SingleFollowResponse> follow(FollowRequest request) throws StreamException {
-
-    return new StreamRequest<SingleFollowResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/follows",
-        request,
-        null,
-        new TypeReference<SingleFollowResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<AcceptFollowResponse> acceptFollow(AcceptFollowRequest request)
-      throws StreamException {
-
-    return new StreamRequest<AcceptFollowResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/follows/accept",
-        request,
-        null,
-        new TypeReference<AcceptFollowResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<FollowBatchResponse> followBatch(FollowBatchRequest request)
-      throws StreamException {
-
-    return new StreamRequest<FollowBatchResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/follows/batch",
-        request,
-        null,
-        new TypeReference<FollowBatchResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryFollowsResponse> queryFollows(QueryFollowsRequest request)
-      throws StreamException {
-
-    return new StreamRequest<QueryFollowsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/follows/query",
-        request,
-        null,
-        new TypeReference<QueryFollowsResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryFollowsResponse> queryFollows() throws StreamException {
-    return queryFollows(new QueryFollowsRequest());
-  }
-
-  @NotNull
-  public StreamRequest<RejectFollowResponse> rejectFollow(RejectFollowRequest request)
-      throws StreamException {
-
-    return new StreamRequest<RejectFollowResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/follows/reject",
-        request,
-        null,
-        new TypeReference<RejectFollowResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<UnfollowResponse> unfollow(
-      @NotNull String source, @NotNull String target, UnfollowRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "source", source,
-            "target", target);
-
-    return new StreamRequest<UnfollowResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/feeds/follows/{source}/{target}",
-        request,
-        pathParams,
-        new TypeReference<UnfollowResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<UnfollowResponse> unfollow(@NotNull String source, @NotNull String target)
-      throws StreamException {
-    return unfollow(source, target, new UnfollowRequest());
-  }
-
-  @NotNull
-  public StreamRequest<CreateMembershipLevelResponse> createMembershipLevel(
-      CreateMembershipLevelRequest request) throws StreamException {
-
-    return new StreamRequest<CreateMembershipLevelResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/membership_levels",
-        request,
-        null,
-        new TypeReference<CreateMembershipLevelResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryMembershipLevelsResponse> queryMembershipLevels(
-      QueryMembershipLevelsRequest request) throws StreamException {
-
-    return new StreamRequest<QueryMembershipLevelsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/membership_levels/query",
-        request,
-        null,
-        new TypeReference<QueryMembershipLevelsResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<QueryMembershipLevelsResponse> queryMembershipLevels()
-      throws StreamException {
-    return queryMembershipLevels(new QueryMembershipLevelsRequest());
-  }
-
-  @NotNull
-  public StreamRequest<Response> deleteMembershipLevel(
-      @NotNull String id, DeleteMembershipLevelRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/feeds/membership_levels/{id}",
-        request,
-        pathParams,
-        new TypeReference<Response>() {});
-  }
-
-  @NotNull
-  public StreamRequest<Response> deleteMembershipLevel(@NotNull String id) throws StreamException {
-    return deleteMembershipLevel(id, new DeleteMembershipLevelRequest());
-  }
-
-  @NotNull
-  public StreamRequest<UpdateMembershipLevelResponse> updateMembershipLevel(
-      @NotNull String id, UpdateMembershipLevelRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<UpdateMembershipLevelResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "PATCH",
-        "/api/v2/feeds/membership_levels/{id}",
-        request,
-        pathParams,
-        new TypeReference<UpdateMembershipLevelResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<UpdateMembershipLevelResponse> updateMembershipLevel(@NotNull String id)
-      throws StreamException {
-    return updateMembershipLevel(id, new UpdateMembershipLevelRequest());
-  }
-
-  @NotNull
-  public StreamRequest<UnfollowBatchResponse> unfollowBatch(UnfollowBatchRequest request)
-      throws StreamException {
-
-    return new StreamRequest<UnfollowBatchResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/unfollow/batch",
-        request,
-        null,
-        new TypeReference<UnfollowBatchResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<DeleteFeedUserDataResponse> deleteFeedUserData(
-      @NotNull String userID, DeleteFeedUserDataRequest request) throws StreamException {
-    var pathParams = Map.of("user_id", userID);
-
-    return new StreamRequest<DeleteFeedUserDataResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/feeds/users/{user_id}/delete",
-        request,
-        pathParams,
-        new TypeReference<DeleteFeedUserDataResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<DeleteFeedUserDataResponse> deleteFeedUserData(@NotNull String userID)
-      throws StreamException {
-    return deleteFeedUserData(userID, new DeleteFeedUserDataRequest());
-  }
-
-  @NotNull
-  public StreamRequest<ExportFeedUserDataResponse> exportFeedUserData(
-      @NotNull String userID, ExportFeedUserDataRequest request) throws StreamException {
-    var pathParams = Map.of("user_id", userID);
-
-    return new StreamRequest<ExportFeedUserDataResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/feeds/users/{user_id}/export",
-        request,
-        pathParams,
-        new TypeReference<ExportFeedUserDataResponse>() {});
-  }
-
-  @NotNull
-  public Feed feed(String channelType, String channelID) {
-    return new Feed(channelType, channelID, client.feeds());
-  }
+    private StreamHTTPClient client;
+
+    public FeedsImpl (StreamHTTPClient client) {
+        this.client = client;
+    }
+
+    
+    @NotNull
+    public StreamRequest<AddActivityResponse> addActivity( AddActivityRequest request ) throws StreamException{
+
+
+        return new StreamRequest<AddActivityResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/activities", request,null,
+            new TypeReference<AddActivityResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<UpsertActivitiesResponse> upsertActivities( UpsertActivitiesRequest request ) throws StreamException{
+
+
+        return new StreamRequest<UpsertActivitiesResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/activities/batch", request,null,
+            new TypeReference<UpsertActivitiesResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<DeleteActivitiesResponse> deleteActivities( DeleteActivitiesRequest request ) throws StreamException{
+
+
+        return new StreamRequest<DeleteActivitiesResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/activities/delete", request,null,
+            new TypeReference<DeleteActivitiesResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<QueryActivitiesResponse> queryActivities( QueryActivitiesRequest request ) throws StreamException{
+
+
+        return new StreamRequest<QueryActivitiesResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/activities/query", request,null,
+            new TypeReference<QueryActivitiesResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<QueryActivitiesResponse> queryActivities() throws StreamException {
+     return queryActivities(new QueryActivitiesRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<DeleteBookmarkResponse> deleteBookmark(@NotNull  String activityID, DeleteBookmarkRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "activity_id", activityID
+	        );
+	
+
+
+        return new StreamRequest<DeleteBookmarkResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "DELETE", "/api/v2/feeds/activities/{activity_id}/bookmarks", request,pathParams,
+            new TypeReference<DeleteBookmarkResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<DeleteBookmarkResponse> deleteBookmark(@NotNull  String activityID) throws StreamException {
+     return deleteBookmark(activityID,new DeleteBookmarkRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<UpdateBookmarkResponse> updateBookmark(@NotNull  String activityID, UpdateBookmarkRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "activity_id", activityID
+	        );
+	
+
+
+        return new StreamRequest<UpdateBookmarkResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "PATCH", "/api/v2/feeds/activities/{activity_id}/bookmarks", request,pathParams,
+            new TypeReference<UpdateBookmarkResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<UpdateBookmarkResponse> updateBookmark(@NotNull  String activityID) throws StreamException {
+     return updateBookmark(activityID,new UpdateBookmarkRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<AddBookmarkResponse> addBookmark(@NotNull  String activityID, AddBookmarkRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "activity_id", activityID
+	        );
+	
+
+
+        return new StreamRequest<AddBookmarkResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/activities/{activity_id}/bookmarks", request,pathParams,
+            new TypeReference<AddBookmarkResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<AddBookmarkResponse> addBookmark(@NotNull  String activityID) throws StreamException {
+     return addBookmark(activityID,new AddBookmarkRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<ActivityFeedbackResponse> activityFeedback(@NotNull  String activityID, ActivityFeedbackRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "activity_id", activityID
+	        );
+	
+
+
+        return new StreamRequest<ActivityFeedbackResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/activities/{activity_id}/feedback", request,pathParams,
+            new TypeReference<ActivityFeedbackResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<ActivityFeedbackResponse> activityFeedback(@NotNull  String activityID) throws StreamException {
+     return activityFeedback(activityID,new ActivityFeedbackRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<PollVoteResponse> castPollVote(@NotNull  String activityID, @NotNull  String pollID, CastPollVoteRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "activity_id", activityID, 
+		  "poll_id", pollID
+	        );
+	
+
+
+        return new StreamRequest<PollVoteResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/activities/{activity_id}/polls/{poll_id}/vote", request,pathParams,
+            new TypeReference<PollVoteResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<PollVoteResponse> castPollVote(@NotNull  String activityID, @NotNull  String pollID) throws StreamException {
+     return castPollVote(activityID, pollID,new CastPollVoteRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<PollVoteResponse> deletePollVote(@NotNull  String activityID, @NotNull  String pollID, @NotNull  String voteID, DeletePollVoteRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "activity_id", activityID, 
+		  "poll_id", pollID, 
+		  "vote_id", voteID
+	        );
+	
+
+
+        return new StreamRequest<PollVoteResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "DELETE", "/api/v2/feeds/activities/{activity_id}/polls/{poll_id}/vote/{vote_id}", request,pathParams,
+            new TypeReference<PollVoteResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<PollVoteResponse> deletePollVote(@NotNull  String activityID, @NotNull  String pollID, @NotNull  String voteID) throws StreamException {
+     return deletePollVote(activityID, pollID, voteID,new DeletePollVoteRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<AddReactionResponse> addReaction(@NotNull  String activityID, AddReactionRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "activity_id", activityID
+	        );
+	
+
+
+        return new StreamRequest<AddReactionResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/activities/{activity_id}/reactions", request,pathParams,
+            new TypeReference<AddReactionResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<QueryActivityReactionsResponse> queryActivityReactions(@NotNull  String activityID, QueryActivityReactionsRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "activity_id", activityID
+	        );
+	
+
+
+        return new StreamRequest<QueryActivityReactionsResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/activities/{activity_id}/reactions/query", request,pathParams,
+            new TypeReference<QueryActivityReactionsResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<QueryActivityReactionsResponse> queryActivityReactions(@NotNull  String activityID) throws StreamException {
+     return queryActivityReactions(activityID,new QueryActivityReactionsRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<DeleteActivityReactionResponse> deleteActivityReaction(@NotNull  String activityID, @NotNull  String type, DeleteActivityReactionRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "activity_id", activityID, 
+		  "type", type
+	        );
+	
+
+
+        return new StreamRequest<DeleteActivityReactionResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "DELETE", "/api/v2/feeds/activities/{activity_id}/reactions/{type}", request,pathParams,
+            new TypeReference<DeleteActivityReactionResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<DeleteActivityReactionResponse> deleteActivityReaction(@NotNull  String activityID, @NotNull  String type) throws StreamException {
+     return deleteActivityReaction(activityID, type,new DeleteActivityReactionRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<DeleteActivityResponse> deleteActivity(@NotNull  String id, DeleteActivityRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<DeleteActivityResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "DELETE", "/api/v2/feeds/activities/{id}", request,pathParams,
+            new TypeReference<DeleteActivityResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<DeleteActivityResponse> deleteActivity(@NotNull  String id) throws StreamException {
+     return deleteActivity(id,new DeleteActivityRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<GetActivityResponse> getActivity(@NotNull  String id, GetActivityRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<GetActivityResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "GET", "/api/v2/feeds/activities/{id}", request,pathParams,
+            new TypeReference<GetActivityResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<GetActivityResponse> getActivity(@NotNull  String id) throws StreamException {
+     return getActivity(id,new GetActivityRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<UpdateActivityPartialResponse> updateActivityPartial(@NotNull  String id, UpdateActivityPartialRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<UpdateActivityPartialResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "PATCH", "/api/v2/feeds/activities/{id}", request,pathParams,
+            new TypeReference<UpdateActivityPartialResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<UpdateActivityPartialResponse> updateActivityPartial(@NotNull  String id) throws StreamException {
+     return updateActivityPartial(id,new UpdateActivityPartialRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<UpdateActivityResponse> updateActivity(@NotNull  String id, UpdateActivityRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<UpdateActivityResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "PUT", "/api/v2/feeds/activities/{id}", request,pathParams,
+            new TypeReference<UpdateActivityResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<UpdateActivityResponse> updateActivity(@NotNull  String id) throws StreamException {
+     return updateActivity(id,new UpdateActivityRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<QueryBookmarkFoldersResponse> queryBookmarkFolders( QueryBookmarkFoldersRequest request ) throws StreamException{
+
+
+        return new StreamRequest<QueryBookmarkFoldersResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/bookmark_folders/query", request,null,
+            new TypeReference<QueryBookmarkFoldersResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<QueryBookmarkFoldersResponse> queryBookmarkFolders() throws StreamException {
+     return queryBookmarkFolders(new QueryBookmarkFoldersRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<DeleteBookmarkFolderResponse> deleteBookmarkFolder(@NotNull  String folderID, DeleteBookmarkFolderRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "folder_id", folderID
+	        );
+	
+
+
+        return new StreamRequest<DeleteBookmarkFolderResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "DELETE", "/api/v2/feeds/bookmark_folders/{folder_id}", request,pathParams,
+            new TypeReference<DeleteBookmarkFolderResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<DeleteBookmarkFolderResponse> deleteBookmarkFolder(@NotNull  String folderID) throws StreamException {
+     return deleteBookmarkFolder(folderID,new DeleteBookmarkFolderRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<UpdateBookmarkFolderResponse> updateBookmarkFolder(@NotNull  String folderID, UpdateBookmarkFolderRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "folder_id", folderID
+	        );
+	
+
+
+        return new StreamRequest<UpdateBookmarkFolderResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "PATCH", "/api/v2/feeds/bookmark_folders/{folder_id}", request,pathParams,
+            new TypeReference<UpdateBookmarkFolderResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<UpdateBookmarkFolderResponse> updateBookmarkFolder(@NotNull  String folderID) throws StreamException {
+     return updateBookmarkFolder(folderID,new UpdateBookmarkFolderRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<QueryBookmarksResponse> queryBookmarks( QueryBookmarksRequest request ) throws StreamException{
+
+
+        return new StreamRequest<QueryBookmarksResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/bookmarks/query", request,null,
+            new TypeReference<QueryBookmarksResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<QueryBookmarksResponse> queryBookmarks() throws StreamException {
+     return queryBookmarks(new QueryBookmarksRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<GetCommentsResponse> getComments( GetCommentsRequest request ) throws StreamException{
+
+
+        return new StreamRequest<GetCommentsResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "GET", "/api/v2/feeds/comments", request,null,
+            new TypeReference<GetCommentsResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<AddCommentResponse> addComment( AddCommentRequest request ) throws StreamException{
+
+
+        return new StreamRequest<AddCommentResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/comments", request,null,
+            new TypeReference<AddCommentResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<AddCommentsBatchResponse> addCommentsBatch( AddCommentsBatchRequest request ) throws StreamException{
+
+
+        return new StreamRequest<AddCommentsBatchResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/comments/batch", request,null,
+            new TypeReference<AddCommentsBatchResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<QueryCommentsResponse> queryComments( QueryCommentsRequest request ) throws StreamException{
+
+
+        return new StreamRequest<QueryCommentsResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/comments/query", request,null,
+            new TypeReference<QueryCommentsResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<DeleteCommentResponse> deleteComment(@NotNull  String id, DeleteCommentRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<DeleteCommentResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "DELETE", "/api/v2/feeds/comments/{id}", request,pathParams,
+            new TypeReference<DeleteCommentResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<DeleteCommentResponse> deleteComment(@NotNull  String id) throws StreamException {
+     return deleteComment(id,new DeleteCommentRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<GetCommentResponse> getComment(@NotNull  String id, GetCommentRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<GetCommentResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "GET", "/api/v2/feeds/comments/{id}", request,pathParams,
+            new TypeReference<GetCommentResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<GetCommentResponse> getComment(@NotNull  String id) throws StreamException {
+     return getComment(id,new GetCommentRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<UpdateCommentResponse> updateComment(@NotNull  String id, UpdateCommentRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<UpdateCommentResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "PATCH", "/api/v2/feeds/comments/{id}", request,pathParams,
+            new TypeReference<UpdateCommentResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<UpdateCommentResponse> updateComment(@NotNull  String id) throws StreamException {
+     return updateComment(id,new UpdateCommentRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<AddCommentReactionResponse> addCommentReaction(@NotNull  String id, AddCommentReactionRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<AddCommentReactionResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/comments/{id}/reactions", request,pathParams,
+            new TypeReference<AddCommentReactionResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<QueryCommentReactionsResponse> queryCommentReactions(@NotNull  String id, QueryCommentReactionsRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<QueryCommentReactionsResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/comments/{id}/reactions/query", request,pathParams,
+            new TypeReference<QueryCommentReactionsResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<QueryCommentReactionsResponse> queryCommentReactions(@NotNull  String id) throws StreamException {
+     return queryCommentReactions(id,new QueryCommentReactionsRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<DeleteCommentReactionResponse> deleteCommentReaction(@NotNull  String id, @NotNull  String type, DeleteCommentReactionRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id, 
+		  "type", type
+	        );
+	
+
+
+        return new StreamRequest<DeleteCommentReactionResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "DELETE", "/api/v2/feeds/comments/{id}/reactions/{type}", request,pathParams,
+            new TypeReference<DeleteCommentReactionResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<DeleteCommentReactionResponse> deleteCommentReaction(@NotNull  String id, @NotNull  String type) throws StreamException {
+     return deleteCommentReaction(id, type,new DeleteCommentReactionRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<GetCommentRepliesResponse> getCommentReplies(@NotNull  String id, GetCommentRepliesRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<GetCommentRepliesResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "GET", "/api/v2/feeds/comments/{id}/replies", request,pathParams,
+            new TypeReference<GetCommentRepliesResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<GetCommentRepliesResponse> getCommentReplies(@NotNull  String id) throws StreamException {
+     return getCommentReplies(id,new GetCommentRepliesRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<ListFeedGroupsResponse> listFeedGroups( ListFeedGroupsRequest request ) throws StreamException{
+
+
+        return new StreamRequest<ListFeedGroupsResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "GET", "/api/v2/feeds/feed_groups", request,null,
+            new TypeReference<ListFeedGroupsResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<ListFeedGroupsResponse> listFeedGroups() throws StreamException {
+     return listFeedGroups(new ListFeedGroupsRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<CreateFeedGroupResponse> createFeedGroup( CreateFeedGroupRequest request ) throws StreamException{
+
+
+        return new StreamRequest<CreateFeedGroupResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/feed_groups", request,null,
+            new TypeReference<CreateFeedGroupResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<DeleteFeedResponse> deleteFeed(@NotNull  String feedGroupID, @NotNull  String feedID, DeleteFeedRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "feed_group_id", feedGroupID, 
+		  "feed_id", feedID
+	        );
+	
+
+
+        return new StreamRequest<DeleteFeedResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "DELETE", "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}", request,pathParams,
+            new TypeReference<DeleteFeedResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<DeleteFeedResponse> deleteFeed(@NotNull  String feedGroupID, @NotNull  String feedID) throws StreamException {
+     return deleteFeed(feedGroupID, feedID,new DeleteFeedRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<GetOrCreateFeedResponse> getOrCreateFeed(@NotNull  String feedGroupID, @NotNull  String feedID, GetOrCreateFeedRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "feed_group_id", feedGroupID, 
+		  "feed_id", feedID
+	        );
+	
+
+
+        return new StreamRequest<GetOrCreateFeedResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}", request,pathParams,
+            new TypeReference<GetOrCreateFeedResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<GetOrCreateFeedResponse> getOrCreateFeed(@NotNull  String feedGroupID, @NotNull  String feedID) throws StreamException {
+     return getOrCreateFeed(feedGroupID, feedID,new GetOrCreateFeedRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<UpdateFeedResponse> updateFeed(@NotNull  String feedGroupID, @NotNull  String feedID, UpdateFeedRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "feed_group_id", feedGroupID, 
+		  "feed_id", feedID
+	        );
+	
+
+
+        return new StreamRequest<UpdateFeedResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "PUT", "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}", request,pathParams,
+            new TypeReference<UpdateFeedResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<UpdateFeedResponse> updateFeed(@NotNull  String feedGroupID, @NotNull  String feedID) throws StreamException {
+     return updateFeed(feedGroupID, feedID,new UpdateFeedRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<Response> markActivity(@NotNull  String feedGroupID, @NotNull  String feedID, MarkActivityRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "feed_group_id", feedGroupID, 
+		  "feed_id", feedID
+	        );
+	
+
+
+        return new StreamRequest<Response>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/activities/mark/batch", request,pathParams,
+            new TypeReference<Response>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<Response> markActivity(@NotNull  String feedGroupID, @NotNull  String feedID) throws StreamException {
+     return markActivity(feedGroupID, feedID,new MarkActivityRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<UnpinActivityResponse> unpinActivity(@NotNull  String feedGroupID, @NotNull  String feedID, @NotNull  String activityID, UnpinActivityRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "feed_group_id", feedGroupID, 
+		  "feed_id", feedID, 
+		  "activity_id", activityID
+	        );
+	
+
+
+        return new StreamRequest<UnpinActivityResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "DELETE", "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/activities/{activity_id}/pin", request,pathParams,
+            new TypeReference<UnpinActivityResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<UnpinActivityResponse> unpinActivity(@NotNull  String feedGroupID, @NotNull  String feedID, @NotNull  String activityID) throws StreamException {
+     return unpinActivity(feedGroupID, feedID, activityID,new UnpinActivityRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<PinActivityResponse> pinActivity(@NotNull  String feedGroupID, @NotNull  String feedID, @NotNull  String activityID, PinActivityRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "feed_group_id", feedGroupID, 
+		  "feed_id", feedID, 
+		  "activity_id", activityID
+	        );
+	
+
+
+        return new StreamRequest<PinActivityResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/activities/{activity_id}/pin", request,pathParams,
+            new TypeReference<PinActivityResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<PinActivityResponse> pinActivity(@NotNull  String feedGroupID, @NotNull  String feedID, @NotNull  String activityID) throws StreamException {
+     return pinActivity(feedGroupID, feedID, activityID,new PinActivityRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<UpdateFeedMembersResponse> updateFeedMembers(@NotNull  String feedGroupID, @NotNull  String feedID, UpdateFeedMembersRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "feed_group_id", feedGroupID, 
+		  "feed_id", feedID
+	        );
+	
+
+
+        return new StreamRequest<UpdateFeedMembersResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "PATCH", "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members", request,pathParams,
+            new TypeReference<UpdateFeedMembersResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<AcceptFeedMemberInviteResponse> acceptFeedMemberInvite(@NotNull  String feedID, @NotNull  String feedGroupID, AcceptFeedMemberInviteRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "feed_id", feedID, 
+		  "feed_group_id", feedGroupID
+	        );
+	
+
+
+        return new StreamRequest<AcceptFeedMemberInviteResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members/accept", request,pathParams,
+            new TypeReference<AcceptFeedMemberInviteResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<AcceptFeedMemberInviteResponse> acceptFeedMemberInvite(@NotNull  String feedID, @NotNull  String feedGroupID) throws StreamException {
+     return acceptFeedMemberInvite(feedID, feedGroupID,new AcceptFeedMemberInviteRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<QueryFeedMembersResponse> queryFeedMembers(@NotNull  String feedGroupID, @NotNull  String feedID, QueryFeedMembersRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "feed_group_id", feedGroupID, 
+		  "feed_id", feedID
+	        );
+	
+
+
+        return new StreamRequest<QueryFeedMembersResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members/query", request,pathParams,
+            new TypeReference<QueryFeedMembersResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<QueryFeedMembersResponse> queryFeedMembers(@NotNull  String feedGroupID, @NotNull  String feedID) throws StreamException {
+     return queryFeedMembers(feedGroupID, feedID,new QueryFeedMembersRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<RejectFeedMemberInviteResponse> rejectFeedMemberInvite(@NotNull  String feedGroupID, @NotNull  String feedID, RejectFeedMemberInviteRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "feed_group_id", feedGroupID, 
+		  "feed_id", feedID
+	        );
+	
+
+
+        return new StreamRequest<RejectFeedMemberInviteResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members/reject", request,pathParams,
+            new TypeReference<RejectFeedMemberInviteResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<RejectFeedMemberInviteResponse> rejectFeedMemberInvite(@NotNull  String feedGroupID, @NotNull  String feedID) throws StreamException {
+     return rejectFeedMemberInvite(feedGroupID, feedID,new RejectFeedMemberInviteRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<GetFollowSuggestionsResponse> getFollowSuggestions(@NotNull  String feedGroupID, GetFollowSuggestionsRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "feed_group_id", feedGroupID
+	        );
+	
+
+
+        return new StreamRequest<GetFollowSuggestionsResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "GET", "/api/v2/feeds/feed_groups/{feed_group_id}/follow_suggestions", request,pathParams,
+            new TypeReference<GetFollowSuggestionsResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<GetFollowSuggestionsResponse> getFollowSuggestions(@NotNull  String feedGroupID) throws StreamException {
+     return getFollowSuggestions(feedGroupID,new GetFollowSuggestionsRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<DeleteFeedGroupResponse> deleteFeedGroup(@NotNull  String id, DeleteFeedGroupRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<DeleteFeedGroupResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "DELETE", "/api/v2/feeds/feed_groups/{id}", request,pathParams,
+            new TypeReference<DeleteFeedGroupResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<DeleteFeedGroupResponse> deleteFeedGroup(@NotNull  String id) throws StreamException {
+     return deleteFeedGroup(id,new DeleteFeedGroupRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<GetFeedGroupResponse> getFeedGroup(@NotNull  String id, GetFeedGroupRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<GetFeedGroupResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "GET", "/api/v2/feeds/feed_groups/{id}", request,pathParams,
+            new TypeReference<GetFeedGroupResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<GetFeedGroupResponse> getFeedGroup(@NotNull  String id) throws StreamException {
+     return getFeedGroup(id,new GetFeedGroupRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<GetOrCreateFeedGroupResponse> getOrCreateFeedGroup(@NotNull  String id, GetOrCreateFeedGroupRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<GetOrCreateFeedGroupResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/feed_groups/{id}", request,pathParams,
+            new TypeReference<GetOrCreateFeedGroupResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<GetOrCreateFeedGroupResponse> getOrCreateFeedGroup(@NotNull  String id) throws StreamException {
+     return getOrCreateFeedGroup(id,new GetOrCreateFeedGroupRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<UpdateFeedGroupResponse> updateFeedGroup(@NotNull  String id, UpdateFeedGroupRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<UpdateFeedGroupResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "PUT", "/api/v2/feeds/feed_groups/{id}", request,pathParams,
+            new TypeReference<UpdateFeedGroupResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<UpdateFeedGroupResponse> updateFeedGroup(@NotNull  String id) throws StreamException {
+     return updateFeedGroup(id,new UpdateFeedGroupRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<ListFeedViewsResponse> listFeedViews( ListFeedViewsRequest request ) throws StreamException{
+
+
+        return new StreamRequest<ListFeedViewsResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "GET", "/api/v2/feeds/feed_views", request,null,
+            new TypeReference<ListFeedViewsResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<ListFeedViewsResponse> listFeedViews() throws StreamException {
+     return listFeedViews(new ListFeedViewsRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<CreateFeedViewResponse> createFeedView( CreateFeedViewRequest request ) throws StreamException{
+
+
+        return new StreamRequest<CreateFeedViewResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/feed_views", request,null,
+            new TypeReference<CreateFeedViewResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<DeleteFeedViewResponse> deleteFeedView(@NotNull  String id, DeleteFeedViewRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<DeleteFeedViewResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "DELETE", "/api/v2/feeds/feed_views/{id}", request,pathParams,
+            new TypeReference<DeleteFeedViewResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<DeleteFeedViewResponse> deleteFeedView(@NotNull  String id) throws StreamException {
+     return deleteFeedView(id,new DeleteFeedViewRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<GetFeedViewResponse> getFeedView(@NotNull  String id, GetFeedViewRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<GetFeedViewResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "GET", "/api/v2/feeds/feed_views/{id}", request,pathParams,
+            new TypeReference<GetFeedViewResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<GetFeedViewResponse> getFeedView(@NotNull  String id) throws StreamException {
+     return getFeedView(id,new GetFeedViewRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<GetOrCreateFeedViewResponse> getOrCreateFeedView(@NotNull  String id, GetOrCreateFeedViewRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<GetOrCreateFeedViewResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/feed_views/{id}", request,pathParams,
+            new TypeReference<GetOrCreateFeedViewResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<GetOrCreateFeedViewResponse> getOrCreateFeedView(@NotNull  String id) throws StreamException {
+     return getOrCreateFeedView(id,new GetOrCreateFeedViewRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<UpdateFeedViewResponse> updateFeedView(@NotNull  String id, UpdateFeedViewRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<UpdateFeedViewResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "PUT", "/api/v2/feeds/feed_views/{id}", request,pathParams,
+            new TypeReference<UpdateFeedViewResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<UpdateFeedViewResponse> updateFeedView(@NotNull  String id) throws StreamException {
+     return updateFeedView(id,new UpdateFeedViewRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<ListFeedVisibilitiesResponse> listFeedVisibilities( ListFeedVisibilitiesRequest request ) throws StreamException{
+
+
+        return new StreamRequest<ListFeedVisibilitiesResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "GET", "/api/v2/feeds/feed_visibilities", request,null,
+            new TypeReference<ListFeedVisibilitiesResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<ListFeedVisibilitiesResponse> listFeedVisibilities() throws StreamException {
+     return listFeedVisibilities(new ListFeedVisibilitiesRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<GetFeedVisibilityResponse> getFeedVisibility(@NotNull  String name, GetFeedVisibilityRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "name", name
+	        );
+	
+
+
+        return new StreamRequest<GetFeedVisibilityResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "GET", "/api/v2/feeds/feed_visibilities/{name}", request,pathParams,
+            new TypeReference<GetFeedVisibilityResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<GetFeedVisibilityResponse> getFeedVisibility(@NotNull  String name) throws StreamException {
+     return getFeedVisibility(name,new GetFeedVisibilityRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<CreateFeedsBatchResponse> createFeedsBatch( CreateFeedsBatchRequest request ) throws StreamException{
+
+
+        return new StreamRequest<CreateFeedsBatchResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/feeds/batch", request,null,
+            new TypeReference<CreateFeedsBatchResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<QueryFeedsResponse> queryFeeds( QueryFeedsRequest request ) throws StreamException{
+
+
+        return new StreamRequest<QueryFeedsResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/feeds/query", request,null,
+            new TypeReference<QueryFeedsResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<QueryFeedsResponse> queryFeeds() throws StreamException {
+     return queryFeeds(new QueryFeedsRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<UpdateFollowResponse> updateFollow( UpdateFollowRequest request ) throws StreamException{
+
+
+        return new StreamRequest<UpdateFollowResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "PATCH", "/api/v2/feeds/follows", request,null,
+            new TypeReference<UpdateFollowResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<SingleFollowResponse> follow( FollowRequest request ) throws StreamException{
+
+
+        return new StreamRequest<SingleFollowResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/follows", request,null,
+            new TypeReference<SingleFollowResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<AcceptFollowResponse> acceptFollow( AcceptFollowRequest request ) throws StreamException{
+
+
+        return new StreamRequest<AcceptFollowResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/follows/accept", request,null,
+            new TypeReference<AcceptFollowResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<FollowBatchResponse> followBatch( FollowBatchRequest request ) throws StreamException{
+
+
+        return new StreamRequest<FollowBatchResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/follows/batch", request,null,
+            new TypeReference<FollowBatchResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<QueryFollowsResponse> queryFollows( QueryFollowsRequest request ) throws StreamException{
+
+
+        return new StreamRequest<QueryFollowsResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/follows/query", request,null,
+            new TypeReference<QueryFollowsResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<QueryFollowsResponse> queryFollows() throws StreamException {
+     return queryFollows(new QueryFollowsRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<RejectFollowResponse> rejectFollow( RejectFollowRequest request ) throws StreamException{
+
+
+        return new StreamRequest<RejectFollowResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/follows/reject", request,null,
+            new TypeReference<RejectFollowResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<UnfollowResponse> unfollow(@NotNull  String source, @NotNull  String target, UnfollowRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "source", source, 
+		  "target", target
+	        );
+	
+
+
+        return new StreamRequest<UnfollowResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "DELETE", "/api/v2/feeds/follows/{source}/{target}", request,pathParams,
+            new TypeReference<UnfollowResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<UnfollowResponse> unfollow(@NotNull  String source, @NotNull  String target) throws StreamException {
+     return unfollow(source, target,new UnfollowRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<CreateMembershipLevelResponse> createMembershipLevel( CreateMembershipLevelRequest request ) throws StreamException{
+
+
+        return new StreamRequest<CreateMembershipLevelResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/membership_levels", request,null,
+            new TypeReference<CreateMembershipLevelResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<QueryMembershipLevelsResponse> queryMembershipLevels( QueryMembershipLevelsRequest request ) throws StreamException{
+
+
+        return new StreamRequest<QueryMembershipLevelsResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/membership_levels/query", request,null,
+            new TypeReference<QueryMembershipLevelsResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<QueryMembershipLevelsResponse> queryMembershipLevels() throws StreamException {
+     return queryMembershipLevels(new QueryMembershipLevelsRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<Response> deleteMembershipLevel(@NotNull  String id, DeleteMembershipLevelRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<Response>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "DELETE", "/api/v2/feeds/membership_levels/{id}", request,pathParams,
+            new TypeReference<Response>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<Response> deleteMembershipLevel(@NotNull  String id) throws StreamException {
+     return deleteMembershipLevel(id,new DeleteMembershipLevelRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<UpdateMembershipLevelResponse> updateMembershipLevel(@NotNull  String id, UpdateMembershipLevelRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "id", id
+	        );
+	
+
+
+        return new StreamRequest<UpdateMembershipLevelResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "PATCH", "/api/v2/feeds/membership_levels/{id}", request,pathParams,
+            new TypeReference<UpdateMembershipLevelResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<UpdateMembershipLevelResponse> updateMembershipLevel(@NotNull  String id) throws StreamException {
+     return updateMembershipLevel(id,new UpdateMembershipLevelRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<UnfollowBatchResponse> unfollowBatch( UnfollowBatchRequest request ) throws StreamException{
+
+
+        return new StreamRequest<UnfollowBatchResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/unfollow/batch", request,null,
+            new TypeReference<UnfollowBatchResponse>() {}
+        );
+    }
+
+
+    
+
+    
+    @NotNull
+    public StreamRequest<DeleteFeedUserDataResponse> deleteFeedUserData(@NotNull  String userID, DeleteFeedUserDataRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "user_id", userID
+	        );
+	
+
+
+        return new StreamRequest<DeleteFeedUserDataResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "DELETE", "/api/v2/feeds/users/{user_id}/delete", request,pathParams,
+            new TypeReference<DeleteFeedUserDataResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<DeleteFeedUserDataResponse> deleteFeedUserData(@NotNull  String userID) throws StreamException {
+     return deleteFeedUserData(userID,new DeleteFeedUserDataRequest());
+    }
+    
+
+    
+    @NotNull
+    public StreamRequest<ExportFeedUserDataResponse> exportFeedUserData(@NotNull  String userID, ExportFeedUserDataRequest request ) throws StreamException{
+	     var pathParams = Map.of(
+		  "user_id", userID
+	        );
+	
+
+
+        return new StreamRequest<ExportFeedUserDataResponse>(
+            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
+        "POST", "/api/v2/feeds/users/{user_id}/export", request,pathParams,
+            new TypeReference<ExportFeedUserDataResponse>() {}
+        );
+    }
+
+
+    
+    @NotNull
+    public StreamRequest<ExportFeedUserDataResponse> exportFeedUserData(@NotNull  String userID) throws StreamException {
+     return exportFeedUserData(userID,new ExportFeedUserDataRequest());
+    }
+    
+
+    
+
+
+    
+    @NotNull
+    public Feed feed(String channelType, String channelID) {
+        return new Feed(channelType, channelID, client.feeds());
+    }
+    
 }

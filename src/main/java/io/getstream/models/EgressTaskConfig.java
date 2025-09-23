@@ -13,35 +13,42 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class EgressTaskConfig {
+public class EgressTaskConfig{
 
-  @Nullable
-  @JsonProperty("egress_user")
-  private EgressUser egressUser;
+    @Nullable
+    @JsonProperty("egress_user")
+    private EgressUser egressUser;
 
-  @Nullable
-  @JsonProperty("frame_recording_egress_config")
-  private FrameRecordingEgressConfig frameRecordingEgressConfig;
+    @Nullable
+    @JsonProperty("frame_recording_egress_config")
+    private FrameRecordingEgressConfig frameRecordingEgressConfig;
 
-  @Nullable
-  @JsonProperty("hls_egress_config")
-  private HLSEgressConfig hlsEgressConfig;
+    @Nullable
+    @JsonProperty("hls_egress_config")
+    private HLSEgressConfig hlsEgressConfig;
 
-  @Nullable
-  @JsonProperty("recording_egress_config")
-  private RecordingEgressConfig recordingEgressConfig;
+    @Nullable
+    @JsonProperty("recording_egress_config")
+    private RecordingEgressConfig recordingEgressConfig;
 
-  @Nullable
-  @JsonProperty("rtmp_egress_config")
-  private RTMPEgressConfig rtmpEgressConfig;
+    @Nullable
+    @JsonProperty("rtmp_egress_config")
+    private RTMPEgressConfig rtmpEgressConfig;
 
-  @Nullable
-  @JsonProperty("stt_egress_config")
-  private STTEgressConfig sttEgressConfig;
+    @Nullable
+    @JsonProperty("stt_egress_config")
+    private STTEgressConfig sttEgressConfig;
 }

@@ -13,35 +13,45 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
 
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class GoLiveRequest {
+    
+    @Nullable
+    @JsonProperty("recording_storage_name")
+    private String recordingStorageName;
+    
+    @Nullable
+    @JsonProperty("start_closed_caption")
+    private Boolean startClosedCaption;
+    
+    @Nullable
+    @JsonProperty("start_hls")
+    private Boolean startHLS;
+    
+    @Nullable
+    @JsonProperty("start_recording")
+    private Boolean startRecording;
+    
+    @Nullable
+    @JsonProperty("start_transcription")
+    private Boolean startTranscription;
+    
+    @Nullable
+    @JsonProperty("transcription_storage_name")
+    private String transcriptionStorageName;
 
-  @Nullable
-  @JsonProperty("recording_storage_name")
-  private String recordingStorageName;
-
-  @Nullable
-  @JsonProperty("start_closed_caption")
-  private Boolean startClosedCaption;
-
-  @Nullable
-  @JsonProperty("start_hls")
-  private Boolean startHLS;
-
-  @Nullable
-  @JsonProperty("start_recording")
-  private Boolean startRecording;
-
-  @Nullable
-  @JsonProperty("start_transcription")
-  private Boolean startTranscription;
-
-  @Nullable
-  @JsonProperty("transcription_storage_name")
-  private String transcriptionStorageName;
 }

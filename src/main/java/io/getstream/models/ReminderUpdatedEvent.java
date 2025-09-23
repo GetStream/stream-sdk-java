@@ -13,43 +13,48 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ReminderUpdatedEvent {
+public class ReminderUpdatedEvent{
 
-  @JsonProperty("cid")
-  private String cid;
+    @JsonProperty("cid")
+    private String cid;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("message_id")
-  private String messageID;
+    @JsonProperty("message_id")
+    private String messageID;
 
-  @JsonProperty("user_id")
-  private String userID;
+    @JsonProperty("user_id")
+    private String userID;
 
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
 
-  @JsonProperty("type")
-  private String type;
+    @JsonProperty("type")
+    private String type;
 
-  @Nullable
-  @JsonProperty("parent_id")
-  private String parentID;
+    @Nullable
+    @JsonProperty("parent_id")
+    private String parentID;
 
-  @Nullable
-  @JsonProperty("received_at")
-  private Date receivedAt;
+    @Nullable
+    @JsonProperty("received_at")
+    private Date receivedAt;
 
-  @Nullable
-  @JsonProperty("reminder")
-  private ReminderResponseData reminder;
+    @Nullable
+    @JsonProperty("reminder")
+    private ReminderResponseData reminder;
 }

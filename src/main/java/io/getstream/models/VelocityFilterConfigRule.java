@@ -13,54 +13,73 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class VelocityFilterConfigRule {
+public class VelocityFilterConfigRule{
 
-  @JsonProperty("action")
-  private String action;
+    @JsonProperty("action")
+    private String action;
 
-  @JsonProperty("ban_duration")
-  private Integer banDuration;
+    @Nullable
+    @JsonProperty("ban_duration")
+    private Integer banDuration;
 
-  @JsonProperty("cascading_action")
-  private String cascadingAction;
+    @Nullable
+    @JsonProperty("cascading_action")
+    private String cascadingAction;
 
-  @JsonProperty("cascading_threshold")
-  private Integer cascadingThreshold;
+    @Nullable
+    @JsonProperty("cascading_threshold")
+    private Integer cascadingThreshold;
 
-  @JsonProperty("check_message_context")
-  private Boolean checkMessageContext;
+    @Nullable
+    @JsonProperty("check_message_context")
+    private Boolean checkMessageContext;
 
-  @JsonProperty("fast_spam_threshold")
-  private Integer fastSpamThreshold;
+    @Nullable
+    @JsonProperty("fast_spam_threshold")
+    private Integer fastSpamThreshold;
 
-  @JsonProperty("fast_spam_ttl")
-  private Integer fastSpamTtl;
+    @Nullable
+    @JsonProperty("fast_spam_ttl")
+    private Integer fastSpamTtl;
 
-  @JsonProperty("ip_ban")
-  private Boolean ipBan;
+    @Nullable
+    @JsonProperty("ip_ban")
+    private Boolean ipBan;
 
-  @JsonProperty("probation_period")
-  private Integer probationPeriod;
+    @Nullable
+    @JsonProperty("probation_period")
+    private Integer probationPeriod;
 
-  @JsonProperty("shadow_ban")
-  private Boolean shadowBan;
+    @Nullable
+    @JsonProperty("shadow_ban")
+    private Boolean shadowBan;
 
-  @JsonProperty("slow_spam_threshold")
-  private Integer slowSpamThreshold;
+    @Nullable
+    @JsonProperty("slow_spam_ban_duration")
+    private Integer slowSpamBanDuration;
 
-  @JsonProperty("slow_spam_ttl")
-  private Integer slowSpamTtl;
+    @Nullable
+    @JsonProperty("slow_spam_threshold")
+    private Integer slowSpamThreshold;
 
-  @JsonProperty("url_only")
-  private Boolean urlOnly;
+    @Nullable
+    @JsonProperty("slow_spam_ttl")
+    private Integer slowSpamTtl;
 
-  @Nullable
-  @JsonProperty("slow_spam_ban_duration")
-  private Integer slowSpamBanDuration;
+    @Nullable
+    @JsonProperty("url_only")
+    private Boolean urlOnly;
 }

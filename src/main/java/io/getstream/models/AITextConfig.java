@@ -13,28 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class AITextConfig {
+public class AITextConfig{
 
-  @JsonProperty("enabled")
-  private Boolean enabled;
+    @Nullable
+    @JsonProperty("async")
+    private Boolean async;
 
-  @JsonProperty("profile")
-  private String profile;
+    @Nullable
+    @JsonProperty("enabled")
+    private Boolean enabled;
 
-  @JsonProperty("rules")
-  private List<BodyguardRule> rules;
+    @Nullable
+    @JsonProperty("profile")
+    private String profile;
 
-  @JsonProperty("severity_rules")
-  private List<BodyguardSeverityRule> severityRules;
+    @Nullable
+    @JsonProperty("rules")
+    private List<BodyguardRule> rules;
 
-  @Nullable
-  @JsonProperty("async")
-  private Boolean async;
+    @Nullable
+    @JsonProperty("severity_rules")
+    private List<BodyguardSeverityRule> severityRules;
 }

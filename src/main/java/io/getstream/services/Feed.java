@@ -12,112 +12,114 @@
  */
 package io.getstream.services;
 
-import io.getstream.exceptions.StreamException;
-import io.getstream.models.*;
-import io.getstream.models.framework.StreamResponse;
+import java.util.List;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import io.getstream.models.*;
+import io.getstream.exceptions.StreamException;
+import io.getstream.services.Chat;
+import io.getstream.models.framework.StreamResponse;
+
 
 public class Feed {
-  private String feedGroup;
-  private String feedID;
-  private Feeds service;
+    private String feedGroup;
+    private String feedID;
+    private Feeds service;
 
-  public Feed(String feedGroup, String feedID, Feeds service) {
-    this.feedGroup = feedGroup;
-    this.feedID = feedID;
-    this.service = service;
-  }
+    public Feed(String feedGroup, String feedID, Feeds service) {
+        this.feedGroup = feedGroup;
+        this.feedID = feedID;
+        this.service = service;
+    }
 
-  // Operations
+    // Operations
+    
+    public StreamResponse<DeleteFeedResponse> delete( DeleteFeedRequest request) throws StreamException {
+        return service.deleteFeed(this.feedGroup, this.feedID, request).execute();
+    }
+    
+        public StreamResponse<DeleteFeedResponse> delete() throws StreamException {
+        return this.delete(new DeleteFeedRequest());
+        }
+    
+    
+    public StreamResponse<GetOrCreateFeedResponse> getOrCreate( GetOrCreateFeedRequest request) throws StreamException {
+        return service.getOrCreateFeed(this.feedGroup, this.feedID, request).execute();
+    }
+    
+        public StreamResponse<GetOrCreateFeedResponse> getOrCreate() throws StreamException {
+        return this.getOrCreate(new GetOrCreateFeedRequest());
+        }
+    
+    
+    public StreamResponse<UpdateFeedResponse> update( UpdateFeedRequest request) throws StreamException {
+        return service.updateFeed(this.feedGroup, this.feedID, request).execute();
+    }
+    
+        public StreamResponse<UpdateFeedResponse> update() throws StreamException {
+        return this.update(new UpdateFeedRequest());
+        }
+    
+    
+    public StreamResponse<Response> markActivity( MarkActivityRequest request) throws StreamException {
+        return service.markActivity(this.feedGroup, this.feedID, request).execute();
+    }
+    
+        public StreamResponse<Response> markActivity() throws StreamException {
+        return this.markActivity(new MarkActivityRequest());
+        }
+    
+    
+    public StreamResponse<UnpinActivityResponse> unpinActivity(@NotNull  String activityID,  UnpinActivityRequest request) throws StreamException {
+        return service.unpinActivity(this.feedGroup, this.feedID, activityID, request).execute();
+    }
+    
+        public StreamResponse<UnpinActivityResponse> unpinActivity(@NotNull  String activityID) throws StreamException {
+        return this.unpinActivity(activityID,new UnpinActivityRequest());
+        }
+    
+    
+    public StreamResponse<PinActivityResponse> pinActivity(@NotNull  String activityID,  PinActivityRequest request) throws StreamException {
+        return service.pinActivity(this.feedGroup, this.feedID, activityID, request).execute();
+    }
+    
+        public StreamResponse<PinActivityResponse> pinActivity(@NotNull  String activityID) throws StreamException {
+        return this.pinActivity(activityID,new PinActivityRequest());
+        }
+    
+    
+    public StreamResponse<UpdateFeedMembersResponse> updateFeedMembers( UpdateFeedMembersRequest request) throws StreamException {
+        return service.updateFeedMembers(this.feedGroup, this.feedID, request).execute();
+    }
+    
+    
+    public StreamResponse<AcceptFeedMemberInviteResponse> acceptFeedMemberInvite( AcceptFeedMemberInviteRequest request) throws StreamException {
+        return service.acceptFeedMemberInvite(this.feedGroup, this.feedID, request).execute();
+    }
+    
+        public StreamResponse<AcceptFeedMemberInviteResponse> acceptFeedMemberInvite() throws StreamException {
+        return this.acceptFeedMemberInvite(new AcceptFeedMemberInviteRequest());
+        }
+    
+    
+    public StreamResponse<QueryFeedMembersResponse> queryFeedMembers( QueryFeedMembersRequest request) throws StreamException {
+        return service.queryFeedMembers(this.feedGroup, this.feedID, request).execute();
+    }
+    
+        public StreamResponse<QueryFeedMembersResponse> queryFeedMembers() throws StreamException {
+        return this.queryFeedMembers(new QueryFeedMembersRequest());
+        }
+    
+    
+    public StreamResponse<RejectFeedMemberInviteResponse> rejectFeedMemberInvite( RejectFeedMemberInviteRequest request) throws StreamException {
+        return service.rejectFeedMemberInvite(this.feedGroup, this.feedID, request).execute();
+    }
+    
+        public StreamResponse<RejectFeedMemberInviteResponse> rejectFeedMemberInvite() throws StreamException {
+        return this.rejectFeedMemberInvite(new RejectFeedMemberInviteRequest());
+        }
+    
+    
 
-  public StreamResponse<DeleteFeedResponse> delete(DeleteFeedRequest request)
-      throws StreamException {
-    return service.deleteFeed(this.feedGroup, this.feedID, request).execute();
-  }
-
-  public StreamResponse<DeleteFeedResponse> delete() throws StreamException {
-    return this.delete(new DeleteFeedRequest());
-  }
-
-  public StreamResponse<GetOrCreateFeedResponse> getOrCreate(GetOrCreateFeedRequest request)
-      throws StreamException {
-    return service.getOrCreateFeed(this.feedGroup, this.feedID, request).execute();
-  }
-
-  public StreamResponse<GetOrCreateFeedResponse> getOrCreate() throws StreamException {
-    return this.getOrCreate(new GetOrCreateFeedRequest());
-  }
-
-  public StreamResponse<UpdateFeedResponse> update(UpdateFeedRequest request)
-      throws StreamException {
-    return service.updateFeed(this.feedGroup, this.feedID, request).execute();
-  }
-
-  public StreamResponse<UpdateFeedResponse> update() throws StreamException {
-    return this.update(new UpdateFeedRequest());
-  }
-
-  public StreamResponse<Response> markActivity(MarkActivityRequest request) throws StreamException {
-    return service.markActivity(this.feedGroup, this.feedID, request).execute();
-  }
-
-  public StreamResponse<Response> markActivity() throws StreamException {
-    return this.markActivity(new MarkActivityRequest());
-  }
-
-  public StreamResponse<UnpinActivityResponse> unpinActivity(
-      @NotNull String activityID, UnpinActivityRequest request) throws StreamException {
-    return service.unpinActivity(this.feedGroup, this.feedID, activityID, request).execute();
-  }
-
-  public StreamResponse<UnpinActivityResponse> unpinActivity(@NotNull String activityID)
-      throws StreamException {
-    return this.unpinActivity(activityID, new UnpinActivityRequest());
-  }
-
-  public StreamResponse<PinActivityResponse> pinActivity(
-      @NotNull String activityID, PinActivityRequest request) throws StreamException {
-    return service.pinActivity(this.feedGroup, this.feedID, activityID, request).execute();
-  }
-
-  public StreamResponse<PinActivityResponse> pinActivity(@NotNull String activityID)
-      throws StreamException {
-    return this.pinActivity(activityID, new PinActivityRequest());
-  }
-
-  public StreamResponse<UpdateFeedMembersResponse> updateFeedMembers(
-      UpdateFeedMembersRequest request) throws StreamException {
-    return service.updateFeedMembers(this.feedGroup, this.feedID, request).execute();
-  }
-
-  public StreamResponse<AcceptFeedMemberInviteResponse> acceptFeedMemberInvite(
-      AcceptFeedMemberInviteRequest request) throws StreamException {
-    return service.acceptFeedMemberInvite(this.feedGroup, this.feedID, request).execute();
-  }
-
-  public StreamResponse<AcceptFeedMemberInviteResponse> acceptFeedMemberInvite()
-      throws StreamException {
-    return this.acceptFeedMemberInvite(new AcceptFeedMemberInviteRequest());
-  }
-
-  public StreamResponse<QueryFeedMembersResponse> queryFeedMembers(QueryFeedMembersRequest request)
-      throws StreamException {
-    return service.queryFeedMembers(this.feedGroup, this.feedID, request).execute();
-  }
-
-  public StreamResponse<QueryFeedMembersResponse> queryFeedMembers() throws StreamException {
-    return this.queryFeedMembers(new QueryFeedMembersRequest());
-  }
-
-  public StreamResponse<RejectFeedMemberInviteResponse> rejectFeedMemberInvite(
-      RejectFeedMemberInviteRequest request) throws StreamException {
-    return service.rejectFeedMemberInvite(this.feedGroup, this.feedID, request).execute();
-  }
-
-  public StreamResponse<RejectFeedMemberInviteResponse> rejectFeedMemberInvite()
-      throws StreamException {
-    return this.rejectFeedMemberInvite(new RejectFeedMemberInviteRequest());
-  }
-
-  // Helper templates for parameter signatures and calls in Java
+    // Helper templates for parameter signatures and calls in Java
 }

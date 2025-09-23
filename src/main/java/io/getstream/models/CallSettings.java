@@ -13,67 +13,74 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallSettings {
+public class CallSettings{
 
-  @Nullable
-  @JsonProperty("audio")
-  private AudioSettings audio;
+    @Nullable
+    @JsonProperty("audio")
+    private AudioSettings audio;
 
-  @Nullable
-  @JsonProperty("backstage")
-  private BackstageSettings backstage;
+    @Nullable
+    @JsonProperty("backstage")
+    private BackstageSettings backstage;
 
-  @Nullable
-  @JsonProperty("broadcasting")
-  private BroadcastSettings broadcasting;
+    @Nullable
+    @JsonProperty("broadcasting")
+    private BroadcastSettings broadcasting;
 
-  @Nullable
-  @JsonProperty("frame_recording")
-  private FrameRecordSettings frameRecording;
+    @Nullable
+    @JsonProperty("frame_recording")
+    private FrameRecordSettings frameRecording;
 
-  @Nullable
-  @JsonProperty("geofencing")
-  private GeofenceSettings geofencing;
+    @Nullable
+    @JsonProperty("geofencing")
+    private GeofenceSettings geofencing;
 
-  @Nullable
-  @JsonProperty("ingress")
-  private IngressSettings ingress;
+    @Nullable
+    @JsonProperty("ingress")
+    private IngressSettings ingress;
 
-  @Nullable
-  @JsonProperty("limits")
-  private LimitsSettings limits;
+    @Nullable
+    @JsonProperty("limits")
+    private LimitsSettings limits;
 
-  @Nullable
-  @JsonProperty("recording")
-  private RecordSettings recording;
+    @Nullable
+    @JsonProperty("recording")
+    private RecordSettings recording;
 
-  @Nullable
-  @JsonProperty("ring")
-  private RingSettings ring;
+    @Nullable
+    @JsonProperty("ring")
+    private RingSettings ring;
 
-  @Nullable
-  @JsonProperty("screensharing")
-  private ScreensharingSettings screensharing;
+    @Nullable
+    @JsonProperty("screensharing")
+    private ScreensharingSettings screensharing;
 
-  @Nullable
-  @JsonProperty("session")
-  private SessionSettings session;
+    @Nullable
+    @JsonProperty("session")
+    private SessionSettings session;
 
-  @Nullable
-  @JsonProperty("thumbnails")
-  private ThumbnailsSettings thumbnails;
+    @Nullable
+    @JsonProperty("thumbnails")
+    private ThumbnailsSettings thumbnails;
 
-  @Nullable
-  @JsonProperty("transcription")
-  private TranscriptionSettings transcription;
+    @Nullable
+    @JsonProperty("transcription")
+    private TranscriptionSettings transcription;
 
-  @Nullable
-  @JsonProperty("video")
-  private VideoSettings video;
+    @Nullable
+    @JsonProperty("video")
+    private VideoSettings video;
 }

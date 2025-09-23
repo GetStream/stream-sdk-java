@@ -13,25 +13,31 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ReadStateResponse {
+public class ReadStateResponse{
 
-  @JsonProperty("last_read")
-  private Date lastRead;
+    @JsonProperty("last_read")
+    private Date lastRead;
 
-  @JsonProperty("unread_messages")
-  private Integer unreadMessages;
+    @JsonProperty("unread_messages")
+    private Integer unreadMessages;
 
-  @JsonProperty("user")
-  private UserResponse user;
+    @JsonProperty("user")
+    private UserResponse user;
 
-  @Nullable
-  @JsonProperty("last_read_message_id")
-  private String lastReadMessageID;
+    @Nullable
+    @JsonProperty("last_read_message_id")
+    private String lastReadMessageID;
 }

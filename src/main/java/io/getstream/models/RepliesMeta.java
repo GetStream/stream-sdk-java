@@ -13,24 +13,31 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class RepliesMeta {
+public class RepliesMeta{
 
-  @JsonProperty("depth_truncated")
-  private Boolean depthTruncated;
+    @JsonProperty("depth_truncated")
+    private Boolean depthTruncated;
 
-  @JsonProperty("has_more")
-  private Boolean hasMore;
+    @JsonProperty("has_more")
+    private Boolean hasMore;
 
-  @JsonProperty("remaining")
-  private Integer remaining;
+    @JsonProperty("remaining")
+    private Integer remaining;
 
-  @Nullable
-  @JsonProperty("next_cursor")
-  private String nextCursor;
+    @Nullable
+    @JsonProperty("next_cursor")
+    private String nextCursor;
 }

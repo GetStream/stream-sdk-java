@@ -13,38 +13,45 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class AudioSettingsRequest {
+public class AudioSettingsRequest{
 
-  @JsonProperty("default_device")
-  private String defaultDevice;
+    @JsonProperty("default_device")
+    private String defaultDevice;
 
-  @Nullable
-  @JsonProperty("access_request_enabled")
-  private Boolean accessRequestEnabled;
+    @Nullable
+    @JsonProperty("access_request_enabled")
+    private Boolean accessRequestEnabled;
 
-  @Nullable
-  @JsonProperty("mic_default_on")
-  private Boolean micDefaultOn;
+    @Nullable
+    @JsonProperty("mic_default_on")
+    private Boolean micDefaultOn;
 
-  @Nullable
-  @JsonProperty("opus_dtx_enabled")
-  private Boolean opusDtxEnabled;
+    @Nullable
+    @JsonProperty("opus_dtx_enabled")
+    private Boolean opusDtxEnabled;
 
-  @Nullable
-  @JsonProperty("redundant_coding_enabled")
-  private Boolean redundantCodingEnabled;
+    @Nullable
+    @JsonProperty("redundant_coding_enabled")
+    private Boolean redundantCodingEnabled;
 
-  @Nullable
-  @JsonProperty("speaker_default_on")
-  private Boolean speakerDefaultOn;
+    @Nullable
+    @JsonProperty("speaker_default_on")
+    private Boolean speakerDefaultOn;
 
-  @Nullable
-  @JsonProperty("noise_cancellation")
-  private NoiseCancellationSettings noiseCancellation;
+    @Nullable
+    @JsonProperty("noise_cancellation")
+    private NoiseCancellationSettings noiseCancellation;
 }

@@ -13,25 +13,33 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class VideoSettings {
+public class VideoSettings{
 
-  @JsonProperty("access_request_enabled")
-  private Boolean accessRequestEnabled;
+    @JsonProperty("access_request_enabled")
+    private Boolean accessRequestEnabled;
 
-  @JsonProperty("camera_default_on")
-  private Boolean cameraDefaultOn;
+    @JsonProperty("camera_default_on")
+    private Boolean cameraDefaultOn;
 
-  @JsonProperty("camera_facing")
-  private String cameraFacing;
+    @JsonProperty("camera_facing")
+    private String cameraFacing;
 
-  @JsonProperty("enabled")
-  private Boolean enabled;
+    @JsonProperty("enabled")
+    private Boolean enabled;
 
-  @JsonProperty("target_resolution")
-  private TargetResolution targetResolution;
+    @JsonProperty("target_resolution")
+    private TargetResolution targetResolution;
 }

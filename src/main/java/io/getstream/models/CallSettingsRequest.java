@@ -13,67 +13,74 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallSettingsRequest {
+public class CallSettingsRequest{
 
-  @Nullable
-  @JsonProperty("audio")
-  private AudioSettingsRequest audio;
+    @Nullable
+    @JsonProperty("audio")
+    private AudioSettingsRequest audio;
 
-  @Nullable
-  @JsonProperty("backstage")
-  private BackstageSettingsRequest backstage;
+    @Nullable
+    @JsonProperty("backstage")
+    private BackstageSettingsRequest backstage;
 
-  @Nullable
-  @JsonProperty("broadcasting")
-  private BroadcastSettingsRequest broadcasting;
+    @Nullable
+    @JsonProperty("broadcasting")
+    private BroadcastSettingsRequest broadcasting;
 
-  @Nullable
-  @JsonProperty("frame_recording")
-  private FrameRecordingSettingsRequest frameRecording;
+    @Nullable
+    @JsonProperty("frame_recording")
+    private FrameRecordingSettingsRequest frameRecording;
 
-  @Nullable
-  @JsonProperty("geofencing")
-  private GeofenceSettingsRequest geofencing;
+    @Nullable
+    @JsonProperty("geofencing")
+    private GeofenceSettingsRequest geofencing;
 
-  @Nullable
-  @JsonProperty("ingress")
-  private IngressSettingsRequest ingress;
+    @Nullable
+    @JsonProperty("ingress")
+    private IngressSettingsRequest ingress;
 
-  @Nullable
-  @JsonProperty("limits")
-  private LimitsSettingsRequest limits;
+    @Nullable
+    @JsonProperty("limits")
+    private LimitsSettingsRequest limits;
 
-  @Nullable
-  @JsonProperty("recording")
-  private RecordSettingsRequest recording;
+    @Nullable
+    @JsonProperty("recording")
+    private RecordSettingsRequest recording;
 
-  @Nullable
-  @JsonProperty("ring")
-  private RingSettingsRequest ring;
+    @Nullable
+    @JsonProperty("ring")
+    private RingSettingsRequest ring;
 
-  @Nullable
-  @JsonProperty("screensharing")
-  private ScreensharingSettingsRequest screensharing;
+    @Nullable
+    @JsonProperty("screensharing")
+    private ScreensharingSettingsRequest screensharing;
 
-  @Nullable
-  @JsonProperty("session")
-  private SessionSettingsRequest session;
+    @Nullable
+    @JsonProperty("session")
+    private SessionSettingsRequest session;
 
-  @Nullable
-  @JsonProperty("thumbnails")
-  private ThumbnailsSettingsRequest thumbnails;
+    @Nullable
+    @JsonProperty("thumbnails")
+    private ThumbnailsSettingsRequest thumbnails;
 
-  @Nullable
-  @JsonProperty("transcription")
-  private TranscriptionSettingsRequest transcription;
+    @Nullable
+    @JsonProperty("transcription")
+    private TranscriptionSettingsRequest transcription;
 
-  @Nullable
-  @JsonProperty("video")
-  private VideoSettingsRequest video;
+    @Nullable
+    @JsonProperty("video")
+    private VideoSettingsRequest video;
 }

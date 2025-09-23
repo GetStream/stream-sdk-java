@@ -13,22 +13,30 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class AzureRequest {
+public class AzureRequest{
 
-  @JsonProperty("abs_account_name")
-  private String absAccountName;
+    @JsonProperty("abs_account_name")
+    private String absAccountName;
 
-  @JsonProperty("abs_client_id")
-  private String absClientID;
+    @JsonProperty("abs_client_id")
+    private String absClientID;
 
-  @JsonProperty("abs_client_secret")
-  private String absClientSecret;
+    @JsonProperty("abs_client_secret")
+    private String absClientSecret;
 
-  @JsonProperty("abs_tenant_id")
-  private String absTenantID;
+    @JsonProperty("abs_tenant_id")
+    private String absTenantID;
 }

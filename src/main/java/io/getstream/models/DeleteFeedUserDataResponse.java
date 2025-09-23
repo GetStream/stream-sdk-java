@@ -13,25 +13,33 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class DeleteFeedUserDataResponse {
+public class DeleteFeedUserDataResponse{
 
-  @JsonProperty("deleted_activities")
-  private Integer deletedActivities;
+    @JsonProperty("deleted_activities")
+    private Integer deletedActivities;
 
-  @JsonProperty("deleted_bookmarks")
-  private Integer deletedBookmarks;
+    @JsonProperty("deleted_bookmarks")
+    private Integer deletedBookmarks;
 
-  @JsonProperty("deleted_comments")
-  private Integer deletedComments;
+    @JsonProperty("deleted_comments")
+    private Integer deletedComments;
 
-  @JsonProperty("deleted_reactions")
-  private Integer deletedReactions;
+    @JsonProperty("deleted_reactions")
+    private Integer deletedReactions;
 
-  @JsonProperty("duration")
-  private String duration;
+    @JsonProperty("duration")
+    private String duration;
 }

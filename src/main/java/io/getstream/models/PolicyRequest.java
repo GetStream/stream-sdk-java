@@ -13,29 +13,36 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class PolicyRequest {
+public class PolicyRequest{
 
-  @JsonProperty("action")
-  private String action;
+    @JsonProperty("action")
+    private String action;
 
-  @JsonProperty("name")
-  private String name;
+    @JsonProperty("name")
+    private String name;
 
-  @JsonProperty("owner")
-  private Boolean owner;
+    @JsonProperty("owner")
+    private Boolean owner;
 
-  @JsonProperty("priority")
-  private Integer priority;
+    @JsonProperty("priority")
+    private Integer priority;
 
-  @JsonProperty("resources")
-  private List<String> resources;
+    @JsonProperty("resources")
+    private List<String> resources;
 
-  @JsonProperty("roles")
-  private List<String> roles;
+    @JsonProperty("roles")
+    private List<String> roles;
 }

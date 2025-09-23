@@ -13,54 +13,61 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallSettingsResponse {
+public class CallSettingsResponse{
 
-  @JsonProperty("audio")
-  private AudioSettingsResponse audio;
+    @JsonProperty("audio")
+    private AudioSettingsResponse audio;
 
-  @JsonProperty("backstage")
-  private BackstageSettingsResponse backstage;
+    @JsonProperty("backstage")
+    private BackstageSettingsResponse backstage;
 
-  @JsonProperty("broadcasting")
-  private BroadcastSettingsResponse broadcasting;
+    @JsonProperty("broadcasting")
+    private BroadcastSettingsResponse broadcasting;
 
-  @JsonProperty("frame_recording")
-  private FrameRecordingSettingsResponse frameRecording;
+    @JsonProperty("frame_recording")
+    private FrameRecordingSettingsResponse frameRecording;
 
-  @JsonProperty("geofencing")
-  private GeofenceSettingsResponse geofencing;
+    @JsonProperty("geofencing")
+    private GeofenceSettingsResponse geofencing;
 
-  @JsonProperty("limits")
-  private LimitsSettingsResponse limits;
+    @JsonProperty("limits")
+    private LimitsSettingsResponse limits;
 
-  @JsonProperty("recording")
-  private RecordSettingsResponse recording;
+    @JsonProperty("recording")
+    private RecordSettingsResponse recording;
 
-  @JsonProperty("ring")
-  private RingSettingsResponse ring;
+    @JsonProperty("ring")
+    private RingSettingsResponse ring;
 
-  @JsonProperty("screensharing")
-  private ScreensharingSettingsResponse screensharing;
+    @JsonProperty("screensharing")
+    private ScreensharingSettingsResponse screensharing;
 
-  @JsonProperty("session")
-  private SessionSettingsResponse session;
+    @JsonProperty("session")
+    private SessionSettingsResponse session;
 
-  @JsonProperty("thumbnails")
-  private ThumbnailsSettingsResponse thumbnails;
+    @JsonProperty("thumbnails")
+    private ThumbnailsSettingsResponse thumbnails;
 
-  @JsonProperty("transcription")
-  private TranscriptionSettingsResponse transcription;
+    @JsonProperty("transcription")
+    private TranscriptionSettingsResponse transcription;
 
-  @JsonProperty("video")
-  private VideoSettingsResponse video;
+    @JsonProperty("video")
+    private VideoSettingsResponse video;
 
-  @Nullable
-  @JsonProperty("ingress")
-  private IngressSettingsResponse ingress;
+    @Nullable
+    @JsonProperty("ingress")
+    private IngressSettingsResponse ingress;
 }

@@ -13,26 +13,32 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class QueryCallStatsResponse {
+public class QueryCallStatsResponse{
 
-  @JsonProperty("duration")
-  private String duration;
+    @JsonProperty("duration")
+    private String duration;
 
-  @JsonProperty("reports")
-  private List<CallStatsReportSummaryResponse> reports;
+    @JsonProperty("reports")
+    private List<CallStatsReportSummaryResponse> reports;
 
-  @Nullable
-  @JsonProperty("next")
-  private String next;
+    @Nullable
+    @JsonProperty("next")
+    private String next;
 
-  @Nullable
-  @JsonProperty("prev")
-  private String prev;
+    @Nullable
+    @JsonProperty("prev")
+    private String prev;
 }

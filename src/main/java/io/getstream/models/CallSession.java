@@ -13,84 +13,88 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallSession {
+public class CallSession{
 
-  @JsonProperty("AnonymousParticipantCount")
-  private Integer anonymousParticipantCount;
+    @JsonProperty("AnonymousParticipantCount")
+    private Integer anonymousParticipantCount;
 
-  @JsonProperty("AppPK")
-  private Integer appPK;
+    @JsonProperty("AppPK")
+    private Integer appPK;
 
-  @JsonProperty("CallID")
-  private String callID;
+    @JsonProperty("CallID")
+    private String callID;
 
-  @JsonProperty("CallType")
-  private String callType;
+    @JsonProperty("CallType")
+    private String callType;
 
-  @JsonProperty("CreatedAt")
-  private Date createdAt;
+    @JsonProperty("CreatedAt")
+    private Date createdAt;
 
-  @JsonProperty("SessionID")
-  private String sessionID;
+    @JsonProperty("SessionID")
+    private String sessionID;
 
-  @JsonProperty("ActiveSFUs")
-  private List<SFUIDLastSeen> activeSFUs;
+    @JsonProperty("ActiveSFUs")
+    private List<SFUIDLastSeen> activeSFUs;
 
-  @JsonProperty("Participants")
-  private List<CallParticipant> participants;
+    @JsonProperty("Participants")
+    private List<CallParticipant> participants;
 
-  @JsonProperty("SFUIDs")
-  private List<String> sFUIDs;
+    @JsonProperty("SFUIDs")
+    private List<String> sFUIDs;
 
-  @JsonProperty("AcceptedBy")
-  private Map<String, Date> acceptedBy;
+    @JsonProperty("AcceptedBy")
+    private Map<String, Date> acceptedBy;
 
-  @JsonProperty("MissedBy")
-  private Map<String, Date> missedBy;
+    @JsonProperty("MissedBy")
+    private Map<String, Date> missedBy;
 
-  @JsonProperty("ParticipantsCountByRole")
-  private Map<String, Integer> participantsCountByRole;
+    @JsonProperty("ParticipantsCountByRole")
+    private Map<String, Integer> participantsCountByRole;
 
-  @JsonProperty("RejectedBy")
-  private Map<String, Date> rejectedBy;
+    @JsonProperty("RejectedBy")
+    private Map<String, Date> rejectedBy;
 
-  @JsonProperty("UserPermissionOverrides")
-  private Map<String, Map<String, Boolean>> userPermissionOverrides;
+    @JsonProperty("UserPermissionOverrides")
+    private Map<String, Map<String, Boolean>> userPermissionOverrides;
 
-  @Nullable
-  @JsonProperty("DeletedAt")
-  private Date deletedAt;
+    @Nullable
+    @JsonProperty("DeletedAt")
+    private Date deletedAt;
 
-  @Nullable
-  @JsonProperty("EndedAt")
-  private Date endedAt;
+    @Nullable
+    @JsonProperty("EndedAt")
+    private Date endedAt;
 
-  @Nullable
-  @JsonProperty("LiveEndedAt")
-  private Date liveEndedAt;
+    @Nullable
+    @JsonProperty("LiveEndedAt")
+    private Date liveEndedAt;
 
-  @Nullable
-  @JsonProperty("LiveStartedAt")
-  private Date liveStartedAt;
+    @Nullable
+    @JsonProperty("LiveStartedAt")
+    private Date liveStartedAt;
 
-  @Nullable
-  @JsonProperty("RingAt")
-  private Date ringAt;
+    @Nullable
+    @JsonProperty("RingAt")
+    private Date ringAt;
 
-  @Nullable
-  @JsonProperty("StartedAt")
-  private Date startedAt;
+    @Nullable
+    @JsonProperty("StartedAt")
+    private Date startedAt;
 
-  @Nullable
-  @JsonProperty("TimerEndsAt")
-  private Date timerEndsAt;
+    @Nullable
+    @JsonProperty("TimerEndsAt")
+    private Date timerEndsAt;
 }

@@ -13,43 +13,44 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class RuleBuilderRule {
+public class RuleBuilderRule{
 
-  @JsonProperty("enabled")
-  private Boolean enabled;
+    @JsonProperty("rule_type")
+    private String ruleType;
 
-  @JsonProperty("id")
-  private String id;
+    @JsonProperty("action")
+    private RuleBuilderAction action;
 
-  @JsonProperty("name")
-  private String name;
+    @Nullable
+    @JsonProperty("cooldown_period")
+    private String cooldownPeriod;
 
-  @JsonProperty("rule_type")
-  private String ruleType;
+    @Nullable
+    @JsonProperty("id")
+    private String id;
 
-  @JsonProperty("action")
-  private RuleBuilderAction action;
+    @Nullable
+    @JsonProperty("logic")
+    private String logic;
 
-  @Nullable
-  @JsonProperty("cooldown_period")
-  private String cooldownPeriod;
+    @Nullable
+    @JsonProperty("conditions")
+    private List<RuleBuilderCondition> conditions;
 
-  @Nullable
-  @JsonProperty("logic")
-  private String logic;
-
-  @Nullable
-  @JsonProperty("conditions")
-  private List<RuleBuilderCondition> conditions;
-
-  @Nullable
-  @JsonProperty("groups")
-  private List<RuleBuilderConditionGroup> groups;
+    @Nullable
+    @JsonProperty("groups")
+    private List<RuleBuilderConditionGroup> groups;
 }

@@ -13,47 +13,53 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallEgress {
+public class CallEgress{
 
-  @JsonProperty("app_pk")
-  private Integer appPk;
+    @JsonProperty("app_pk")
+    private Integer appPk;
 
-  @JsonProperty("call_id")
-  private String callID;
+    @JsonProperty("call_id")
+    private String callID;
 
-  @JsonProperty("call_type")
-  private String callType;
+    @JsonProperty("call_type")
+    private String callType;
 
-  @JsonProperty("egress_id")
-  private String egressID;
+    @JsonProperty("egress_id")
+    private String egressID;
 
-  @JsonProperty("egress_type")
-  private String egressType;
+    @JsonProperty("egress_type")
+    private String egressType;
 
-  @JsonProperty("instance_ip")
-  private String instanceIp;
+    @JsonProperty("instance_ip")
+    private String instanceIp;
 
-  @JsonProperty("started_at")
-  private Date startedAt;
+    @JsonProperty("started_at")
+    private Date startedAt;
 
-  @JsonProperty("state")
-  private String state;
+    @JsonProperty("state")
+    private String state;
 
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+    @JsonProperty("updated_at")
+    private Date updatedAt;
 
-  @Nullable
-  @JsonProperty("stopped_at")
-  private Date stoppedAt;
+    @Nullable
+    @JsonProperty("stopped_at")
+    private Date stoppedAt;
 
-  @Nullable
-  @JsonProperty("config")
-  private EgressTaskConfig config;
+    @Nullable
+    @JsonProperty("config")
+    private EgressTaskConfig config;
 }

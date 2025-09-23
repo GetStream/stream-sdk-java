@@ -13,26 +13,33 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class RTMPSettings {
+public class RTMPSettings{
 
-  @JsonProperty("enabled")
-  private Boolean enabled;
+    @JsonProperty("enabled")
+    private Boolean enabled;
 
-  @Nullable
-  @JsonProperty("quality_name")
-  private String qualityName;
+    @Nullable
+    @JsonProperty("quality_name")
+    private String qualityName;
 
-  @Nullable
-  @JsonProperty("layout")
-  private LayoutSettings layout;
+    @Nullable
+    @JsonProperty("layout")
+    private LayoutSettings layout;
 
-  @Nullable
-  @JsonProperty("location")
-  private RTMPLocation location;
+    @Nullable
+    @JsonProperty("location")
+    private RTMPLocation location;
 }

@@ -12,65 +12,67 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
 public class FeedOwnCapability {
-  private final String value;
+    private final String value;
 
-  private FeedOwnCapability(String value) {
-    this.value = value;
-  }
+    private  FeedOwnCapability(String value) {
+        this.value = value;
+    }
 
-  @Override
-  public String toString() {
-    return value;
-  }
+    @Override
+    public String toString() {
+        return value;
+    }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    FeedOwnCapability that = (FeedOwnCapability) o;
-    return value.equals(that.value);
-  }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FeedOwnCapability that = (FeedOwnCapability) o;
+        return value.equals(that.value);
+    }
 
-  @Override
-  public int hashCode() {
-    return value.hashCode();
-  }
-
-  public static FeedOwnCapability ADD_ACTIVITY = new FeedOwnCapability("add-activity");
-  public static FeedOwnCapability ADD_ACTIVITY_REACTION =
-      new FeedOwnCapability("add-activity-reaction");
-  public static FeedOwnCapability ADD_COMMENT = new FeedOwnCapability("add-comment");
-  public static FeedOwnCapability ADD_COMMENT_REACTION =
-      new FeedOwnCapability("add-comment-reaction");
-  public static FeedOwnCapability BOOKMARK_ACTIVITY = new FeedOwnCapability("bookmark-activity");
-  public static FeedOwnCapability CREATE_FEED = new FeedOwnCapability("create-feed");
-  public static FeedOwnCapability DELETE_BOOKMARK = new FeedOwnCapability("delete-bookmark");
-  public static FeedOwnCapability DELETE_COMMENT = new FeedOwnCapability("delete-comment");
-  public static FeedOwnCapability DELETE_FEED = new FeedOwnCapability("delete-feed");
-  public static FeedOwnCapability EDIT_BOOKMARK = new FeedOwnCapability("edit-bookmark");
-  public static FeedOwnCapability FOLLOW = new FeedOwnCapability("follow");
-  public static FeedOwnCapability INVITE_FEED = new FeedOwnCapability("invite-feed");
-  public static FeedOwnCapability JOIN_FEED = new FeedOwnCapability("join-feed");
-  public static FeedOwnCapability LEAVE_FEED = new FeedOwnCapability("leave-feed");
-  public static FeedOwnCapability MANAGE_FEED_GROUP = new FeedOwnCapability("manage-feed-group");
-  public static FeedOwnCapability MARK_ACTIVITY = new FeedOwnCapability("mark-activity");
-  public static FeedOwnCapability PIN_ACTIVITY = new FeedOwnCapability("pin-activity");
-  public static FeedOwnCapability QUERY_FEED_MEMBERS = new FeedOwnCapability("query-feed-members");
-  public static FeedOwnCapability QUERY_FOLLOWS = new FeedOwnCapability("query-follows");
-  public static FeedOwnCapability READ_ACTIVITIES = new FeedOwnCapability("read-activities");
-  public static FeedOwnCapability READ_FEED = new FeedOwnCapability("read-feed");
-  public static FeedOwnCapability REMOVE_ACTIVITY = new FeedOwnCapability("remove-activity");
-  public static FeedOwnCapability REMOVE_ACTIVITY_REACTION =
-      new FeedOwnCapability("remove-activity-reaction");
-  public static FeedOwnCapability REMOVE_COMMENT_REACTION =
-      new FeedOwnCapability("remove-comment-reaction");
-  public static FeedOwnCapability UNFOLLOW = new FeedOwnCapability("unfollow");
-  public static FeedOwnCapability UPDATE_ACTIVITY = new FeedOwnCapability("update-activity");
-  public static FeedOwnCapability UPDATE_COMMENT = new FeedOwnCapability("update-comment");
-  public static FeedOwnCapability UPDATE_FEED = new FeedOwnCapability("update-feed");
-  public static FeedOwnCapability UPDATE_FEED_FOLLOWERS =
-      new FeedOwnCapability("update-feed-followers");
-  public static FeedOwnCapability UPDATE_FEED_MEMBERS =
-      new FeedOwnCapability("update-feed-members");
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
+    public static FeedOwnCapability ADD_ACTIVITY = new FeedOwnCapability("add-activity");
+    public static FeedOwnCapability ADD_ACTIVITY_BOOKMARK = new FeedOwnCapability("add-activity-bookmark");
+    public static FeedOwnCapability ADD_ACTIVITY_REACTION = new FeedOwnCapability("add-activity-reaction");
+    public static FeedOwnCapability ADD_COMMENT = new FeedOwnCapability("add-comment");
+    public static FeedOwnCapability ADD_COMMENT_REACTION = new FeedOwnCapability("add-comment-reaction");
+    public static FeedOwnCapability CREATE_FEED = new FeedOwnCapability("create-feed");
+    public static FeedOwnCapability DELETE_ANY_ACTIVITY = new FeedOwnCapability("delete-any-activity");
+    public static FeedOwnCapability DELETE_ANY_COMMENT = new FeedOwnCapability("delete-any-comment");
+    public static FeedOwnCapability DELETE_FEED = new FeedOwnCapability("delete-feed");
+    public static FeedOwnCapability DELETE_OWN_ACTIVITY = new FeedOwnCapability("delete-own-activity");
+    public static FeedOwnCapability DELETE_OWN_ACTIVITY_BOOKMARK = new FeedOwnCapability("delete-own-activity-bookmark");
+    public static FeedOwnCapability DELETE_OWN_ACTIVITY_REACTION = new FeedOwnCapability("delete-own-activity-reaction");
+    public static FeedOwnCapability DELETE_OWN_COMMENT = new FeedOwnCapability("delete-own-comment");
+    public static FeedOwnCapability DELETE_OWN_COMMENT_REACTION = new FeedOwnCapability("delete-own-comment-reaction");
+    public static FeedOwnCapability FOLLOW = new FeedOwnCapability("follow");
+    public static FeedOwnCapability PIN_ACTIVITY = new FeedOwnCapability("pin-activity");
+    public static FeedOwnCapability QUERY_FEED_MEMBERS = new FeedOwnCapability("query-feed-members");
+    public static FeedOwnCapability QUERY_FOLLOWS = new FeedOwnCapability("query-follows");
+    public static FeedOwnCapability READ_ACTIVITIES = new FeedOwnCapability("read-activities");
+    public static FeedOwnCapability READ_FEED = new FeedOwnCapability("read-feed");
+    public static FeedOwnCapability UNFOLLOW = new FeedOwnCapability("unfollow");
+    public static FeedOwnCapability UPDATE_ANY_ACTIVITY = new FeedOwnCapability("update-any-activity");
+    public static FeedOwnCapability UPDATE_ANY_COMMENT = new FeedOwnCapability("update-any-comment");
+    public static FeedOwnCapability UPDATE_FEED = new FeedOwnCapability("update-feed");
+    public static FeedOwnCapability UPDATE_FEED_FOLLOWERS = new FeedOwnCapability("update-feed-followers");
+    public static FeedOwnCapability UPDATE_FEED_MEMBERS = new FeedOwnCapability("update-feed-members");
+    public static FeedOwnCapability UPDATE_OWN_ACTIVITY = new FeedOwnCapability("update-own-activity");
+    public static FeedOwnCapability UPDATE_OWN_ACTIVITY_BOOKMARK = new FeedOwnCapability("update-own-activity-bookmark");
+    public static FeedOwnCapability UPDATE_OWN_COMMENT = new FeedOwnCapability("update-own-comment");
 }

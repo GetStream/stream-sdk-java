@@ -13,44 +13,54 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class STTEgressConfig {
+public class STTEgressConfig{
 
-  @Nullable
-  @JsonProperty("closed_captions_enabled")
-  private Boolean closedCaptionsEnabled;
+    @Nullable
+    @JsonProperty("closed_captions_enabled")
+    private Boolean closedCaptionsEnabled;
 
-  @Nullable
-  @JsonProperty("language")
-  private String language;
+    @Nullable
+    @JsonProperty("language")
+    private String language;
 
-  @Nullable
-  @JsonProperty("storage_name")
-  private String storageName;
+    @Nullable
+    @JsonProperty("storage_name")
+    private String storageName;
 
-  @Nullable
-  @JsonProperty("translations_enabled")
-  private Boolean translationsEnabled;
+    @Nullable
+    @JsonProperty("translations_enabled")
+    private Boolean translationsEnabled;
 
-  @Nullable
-  @JsonProperty("upload_transcriptions")
-  private Boolean uploadTranscriptions;
+    @Nullable
+    @JsonProperty("upload_transcriptions")
+    private Boolean uploadTranscriptions;
 
-  @Nullable
-  @JsonProperty("whisper_server_base_url")
-  private String whisperServerBaseUrl;
+    @Nullable
+    @JsonProperty("whisper_server_base_url")
+    private String whisperServerBaseUrl;
 
-  @Nullable
-  @JsonProperty("translation_languages")
-  private List<String> translationLanguages;
+    @Nullable
+    @JsonProperty("translation_languages")
+    private List<String> translationLanguages;
 
-  @Nullable
-  @JsonProperty("external_storage")
-  private ExternalStorage externalStorage;
+    @Nullable
+    @JsonProperty("external_storage")
+    private ExternalStorage externalStorage;
+
+    @Nullable
+    @JsonProperty("speech_segment_config")
+    private SpeechSegmentConfig speechSegmentConfig;
 }

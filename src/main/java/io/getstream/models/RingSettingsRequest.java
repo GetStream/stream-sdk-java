@@ -13,21 +13,28 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class RingSettingsRequest {
+public class RingSettingsRequest{
 
-  @JsonProperty("auto_cancel_timeout_ms")
-  private Integer autoCancelTimeoutMs;
+    @JsonProperty("auto_cancel_timeout_ms")
+    private Integer autoCancelTimeoutMs;
 
-  @JsonProperty("incoming_call_timeout_ms")
-  private Integer incomingCallTimeoutMs;
+    @JsonProperty("incoming_call_timeout_ms")
+    private Integer incomingCallTimeoutMs;
 
-  @Nullable
-  @JsonProperty("missed_call_timeout_ms")
-  private Integer missedCallTimeoutMs;
+    @Nullable
+    @JsonProperty("missed_call_timeout_ms")
+    private Integer missedCallTimeoutMs;
 }

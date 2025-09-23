@@ -13,47 +13,52 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallUserFeedbackSubmittedEvent {
+public class CallUserFeedbackSubmittedEvent{
 
-  @JsonProperty("call_cid")
-  private String callCid;
+    @JsonProperty("call_cid")
+    private String callCid;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("rating")
-  private Integer rating;
+    @JsonProperty("rating")
+    private Integer rating;
 
-  @JsonProperty("session_id")
-  private String sessionID;
+    @JsonProperty("session_id")
+    private String sessionID;
 
-  @JsonProperty("user")
-  private UserResponse user;
+    @JsonProperty("user")
+    private UserResponse user;
 
-  @JsonProperty("type")
-  private String type;
+    @JsonProperty("type")
+    private String type;
 
-  @Nullable
-  @JsonProperty("reason")
-  private String reason;
+    @Nullable
+    @JsonProperty("reason")
+    private String reason;
 
-  @Nullable
-  @JsonProperty("sdk")
-  private String sdk;
+    @Nullable
+    @JsonProperty("sdk")
+    private String sdk;
 
-  @Nullable
-  @JsonProperty("sdk_version")
-  private String sdkVersion;
+    @Nullable
+    @JsonProperty("sdk_version")
+    private String sdkVersion;
 
-  @Nullable
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
+    @Nullable
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
 }

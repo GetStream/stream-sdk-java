@@ -13,57 +13,67 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
 
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class SubmitActionRequest {
+    
+    @JsonProperty("action_type")
+    private String actionType;
+    
+    @JsonProperty("item_id")
+    private String itemID;
+    
+    @Nullable
+    @JsonProperty("user_id")
+    private String userID;
+    
+    @Nullable
+    @JsonProperty("ban")
+    private BanActionRequest ban;
+    
+    @Nullable
+    @JsonProperty("custom")
+    private CustomActionRequest custom;
+    
+    @Nullable
+    @JsonProperty("delete_activity")
+    private DeleteActivityRequest deleteActivity;
+    
+    @Nullable
+    @JsonProperty("delete_message")
+    private DeleteMessageRequest deleteMessage;
+    
+    @Nullable
+    @JsonProperty("delete_reaction")
+    private DeleteReactionRequest deleteReaction;
+    
+    @Nullable
+    @JsonProperty("delete_user")
+    private DeleteUserRequest deleteUser;
+    
+    @Nullable
+    @JsonProperty("mark_reviewed")
+    private MarkReviewedRequest markReviewed;
+    
+    @Nullable
+    @JsonProperty("unban")
+    private UnbanActionRequest unban;
+    
+    @Nullable
+    @JsonProperty("user")
+    private UserRequest user;
 
-  @JsonProperty("action_type")
-  private String actionType;
-
-  @JsonProperty("item_id")
-  private String itemID;
-
-  @Nullable
-  @JsonProperty("user_id")
-  private String userID;
-
-  @Nullable
-  @JsonProperty("ban")
-  private BanActionRequest ban;
-
-  @Nullable
-  @JsonProperty("custom")
-  private CustomActionRequest custom;
-
-  @Nullable
-  @JsonProperty("delete_activity")
-  private DeleteActivityRequest deleteActivity;
-
-  @Nullable
-  @JsonProperty("delete_message")
-  private DeleteMessageRequest deleteMessage;
-
-  @Nullable
-  @JsonProperty("delete_reaction")
-  private DeleteReactionRequest deleteReaction;
-
-  @Nullable
-  @JsonProperty("delete_user")
-  private DeleteUserRequest deleteUser;
-
-  @Nullable
-  @JsonProperty("mark_reviewed")
-  private MarkReviewedRequest markReviewed;
-
-  @Nullable
-  @JsonProperty("unban")
-  private UnbanActionRequest unban;
-
-  @Nullable
-  @JsonProperty("user")
-  private UserRequest user;
 }

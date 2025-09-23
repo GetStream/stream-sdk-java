@@ -13,42 +13,49 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class QueryAggregateCallStatsResponse {
+public class QueryAggregateCallStatsResponse{
 
-  @JsonProperty("duration")
-  private String duration;
+    @JsonProperty("duration")
+    private String duration;
 
-  @Nullable
-  @JsonProperty("call_duration_report")
-  private CallDurationReportResponse callDurationReport;
+    @Nullable
+    @JsonProperty("call_duration_report")
+    private CallDurationReportResponse callDurationReport;
 
-  @Nullable
-  @JsonProperty("call_participant_count_report")
-  private CallParticipantCountReportResponse callParticipantCountReport;
+    @Nullable
+    @JsonProperty("call_participant_count_report")
+    private CallParticipantCountReportResponse callParticipantCountReport;
 
-  @Nullable
-  @JsonProperty("calls_per_day_report")
-  private CallsPerDayReportResponse callsPerDayReport;
+    @Nullable
+    @JsonProperty("calls_per_day_report")
+    private CallsPerDayReportResponse callsPerDayReport;
 
-  @Nullable
-  @JsonProperty("network_metrics_report")
-  private NetworkMetricsReportResponse networkMetricsReport;
+    @Nullable
+    @JsonProperty("network_metrics_report")
+    private NetworkMetricsReportResponse networkMetricsReport;
 
-  @Nullable
-  @JsonProperty("quality_score_report")
-  private QualityScoreReportResponse qualityScoreReport;
+    @Nullable
+    @JsonProperty("quality_score_report")
+    private QualityScoreReportResponse qualityScoreReport;
 
-  @Nullable
-  @JsonProperty("sdk_usage_report")
-  private SDKUsageReportResponse sdkUsageReport;
+    @Nullable
+    @JsonProperty("sdk_usage_report")
+    private SDKUsageReportResponse sdkUsageReport;
 
-  @Nullable
-  @JsonProperty("user_feedback_report")
-  private UserFeedbackReportResponse userFeedbackReport;
+    @Nullable
+    @JsonProperty("user_feedback_report")
+    private UserFeedbackReportResponse userFeedbackReport;
 }

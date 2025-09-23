@@ -13,23 +13,30 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
-
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ReactionGroupResponse {
+public class ReactionGroupResponse{
 
-  @JsonProperty("count")
-  private Integer count;
+    @JsonProperty("count")
+    private Integer count;
 
-  @JsonProperty("first_reaction_at")
-  private Date firstReactionAt;
+    @JsonProperty("first_reaction_at")
+    private Date firstReactionAt;
 
-  @JsonProperty("last_reaction_at")
-  private Date lastReactionAt;
+    @JsonProperty("last_reaction_at")
+    private Date lastReactionAt;
 
-  @JsonProperty("sum_scores")
-  private Integer sumScores;
+    @JsonProperty("sum_scores")
+    private Integer sumScores;
 }

@@ -13,120 +13,124 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class Call {
+public class Call{
 
-  @JsonProperty("AppPK")
-  private Integer appPK;
+    @JsonProperty("AppPK")
+    private Integer appPK;
 
-  @JsonProperty("Backstage")
-  private Boolean backstage;
+    @JsonProperty("Backstage")
+    private Boolean backstage;
 
-  @JsonProperty("CID")
-  private String cID;
+    @JsonProperty("CID")
+    private String cID;
 
-  @JsonProperty("ChannelCID")
-  private String channelCID;
+    @JsonProperty("ChannelCID")
+    private String channelCID;
 
-  @JsonProperty("CreatedAt")
-  private Date createdAt;
+    @JsonProperty("CreatedAt")
+    private Date createdAt;
 
-  @JsonProperty("CreatedByUserID")
-  private String createdByUserID;
+    @JsonProperty("CreatedByUserID")
+    private String createdByUserID;
 
-  @JsonProperty("CurrentSessionID")
-  private String currentSessionID;
+    @JsonProperty("CurrentSessionID")
+    private String currentSessionID;
 
-  @JsonProperty("ID")
-  private String iD;
+    @JsonProperty("ID")
+    private String iD;
 
-  @JsonProperty("LastSessionID")
-  private String lastSessionID;
+    @JsonProperty("LastSessionID")
+    private String lastSessionID;
 
-  @JsonProperty("Team")
-  private String team;
+    @JsonProperty("Team")
+    private String team;
 
-  @JsonProperty("ThumbnailURL")
-  private String thumbnailURL;
+    @JsonProperty("ThumbnailURL")
+    private String thumbnailURL;
 
-  @JsonProperty("Type")
-  private String type;
+    @JsonProperty("Type")
+    private String type;
 
-  @JsonProperty("UpdatedAt")
-  private Date updatedAt;
+    @JsonProperty("UpdatedAt")
+    private Date updatedAt;
 
-  @JsonProperty("BlockedUserIDs")
-  private List<String> blockedUserIDs;
+    @JsonProperty("BlockedUserIDs")
+    private List<String> blockedUserIDs;
 
-  @JsonProperty("BlockedUsers")
-  private List<User> blockedUsers;
+    @JsonProperty("BlockedUsers")
+    private List<User> blockedUsers;
 
-  @JsonProperty("Egresses")
-  private List<CallEgress> egresses;
+    @JsonProperty("Egresses")
+    private List<CallEgress> egresses;
 
-  @JsonProperty("Members")
-  private List<CallMember> members;
+    @JsonProperty("Members")
+    private List<CallMember> members;
 
-  @JsonProperty("Custom")
-  private Map<String, Object> custom;
+    @JsonProperty("Custom")
+    private Map<String, Object> custom;
 
-  @Nullable
-  @JsonProperty("DeletedAt")
-  private Date deletedAt;
+    @Nullable
+    @JsonProperty("DeletedAt")
+    private Date deletedAt;
 
-  @Nullable
-  @JsonProperty("EgressUpdatedAt")
-  private Date egressUpdatedAt;
+    @Nullable
+    @JsonProperty("EgressUpdatedAt")
+    private Date egressUpdatedAt;
 
-  @Nullable
-  @JsonProperty("EndedAt")
-  private Date endedAt;
+    @Nullable
+    @JsonProperty("EndedAt")
+    private Date endedAt;
 
-  @Nullable
-  @JsonProperty("JoinAheadTimeSeconds")
-  private Integer joinAheadTimeSeconds;
+    @Nullable
+    @JsonProperty("JoinAheadTimeSeconds")
+    private Integer joinAheadTimeSeconds;
 
-  @Nullable
-  @JsonProperty("LastHeartbeatAt")
-  private Date lastHeartbeatAt;
+    @Nullable
+    @JsonProperty("LastHeartbeatAt")
+    private Date lastHeartbeatAt;
 
-  @Nullable
-  @JsonProperty("MemberCount")
-  private Integer memberCount;
+    @Nullable
+    @JsonProperty("MemberCount")
+    private Integer memberCount;
 
-  @Nullable
-  @JsonProperty("StartsAt")
-  private Date startsAt;
+    @Nullable
+    @JsonProperty("StartsAt")
+    private Date startsAt;
 
-  @Nullable
-  @JsonProperty("CallType")
-  private CallType callType;
+    @Nullable
+    @JsonProperty("CallType")
+    private CallType callType;
 
-  @Nullable
-  @JsonProperty("CreatedBy")
-  private User createdBy;
+    @Nullable
+    @JsonProperty("CreatedBy")
+    private User createdBy;
 
-  @Nullable
-  @JsonProperty("MemberLookup")
-  private MemberLookup memberLookup;
+    @Nullable
+    @JsonProperty("MemberLookup")
+    private MemberLookup memberLookup;
 
-  @Nullable
-  @JsonProperty("Session")
-  private CallSession session;
+    @Nullable
+    @JsonProperty("Session")
+    private CallSession session;
 
-  @Nullable
-  @JsonProperty("Settings")
-  private CallSettings settings;
+    @Nullable
+    @JsonProperty("Settings")
+    private CallSettings settings;
 
-  @Nullable
-  @JsonProperty("SettingsOverrides")
-  private CallSettings settingsOverrides;
+    @Nullable
+    @JsonProperty("SettingsOverrides")
+    private CallSettings settingsOverrides;
 }
