@@ -12,468 +12,528 @@
  */
 package io.getstream.services;
 
-import java.util.*;
+import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
 import io.getstream.services.framework.StreamRequest;
-import io.getstream.exceptions.StreamException;
+import java.util.*;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import io.getstream.services.Channel;
-
 
 public interface Feeds {
-    @NotNull
-    public StreamRequest<AddActivityResponse> addActivity( AddActivityRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<UpsertActivitiesResponse> upsertActivities( UpsertActivitiesRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<DeleteActivitiesResponse> deleteActivities( DeleteActivitiesRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<QueryActivitiesResponse> queryActivities( QueryActivitiesRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<QueryActivitiesResponse> queryActivities() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<DeleteBookmarkResponse> deleteBookmark(@NotNull  String activityID, DeleteBookmarkRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<DeleteBookmarkResponse> deleteBookmark(@NotNull  String activityID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<UpdateBookmarkResponse> updateBookmark(@NotNull  String activityID, UpdateBookmarkRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<UpdateBookmarkResponse> updateBookmark(@NotNull  String activityID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<AddBookmarkResponse> addBookmark(@NotNull  String activityID, AddBookmarkRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<AddBookmarkResponse> addBookmark(@NotNull  String activityID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<ActivityFeedbackResponse> activityFeedback(@NotNull  String activityID, ActivityFeedbackRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<ActivityFeedbackResponse> activityFeedback(@NotNull  String activityID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<PollVoteResponse> castPollVote(@NotNull  String activityID, @NotNull  String pollID, CastPollVoteRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<PollVoteResponse> castPollVote(@NotNull  String activityID, @NotNull  String pollID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<PollVoteResponse> deletePollVote(@NotNull  String activityID, @NotNull  String pollID, @NotNull  String voteID, DeletePollVoteRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<PollVoteResponse> deletePollVote(@NotNull  String activityID, @NotNull  String pollID, @NotNull  String voteID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<AddReactionResponse> addReaction(@NotNull  String activityID, AddReactionRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<QueryActivityReactionsResponse> queryActivityReactions(@NotNull  String activityID, QueryActivityReactionsRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<QueryActivityReactionsResponse> queryActivityReactions(@NotNull  String activityID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<DeleteActivityReactionResponse> deleteActivityReaction(@NotNull  String activityID, @NotNull  String type, DeleteActivityReactionRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<DeleteActivityReactionResponse> deleteActivityReaction(@NotNull  String activityID, @NotNull  String type) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<DeleteActivityResponse> deleteActivity(@NotNull  String id, DeleteActivityRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<DeleteActivityResponse> deleteActivity(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<GetActivityResponse> getActivity(@NotNull  String id, GetActivityRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<GetActivityResponse> getActivity(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<UpdateActivityPartialResponse> updateActivityPartial(@NotNull  String id, UpdateActivityPartialRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<UpdateActivityPartialResponse> updateActivityPartial(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<UpdateActivityResponse> updateActivity(@NotNull  String id, UpdateActivityRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<UpdateActivityResponse> updateActivity(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<QueryBookmarkFoldersResponse> queryBookmarkFolders( QueryBookmarkFoldersRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<QueryBookmarkFoldersResponse> queryBookmarkFolders() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<DeleteBookmarkFolderResponse> deleteBookmarkFolder(@NotNull  String folderID, DeleteBookmarkFolderRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<DeleteBookmarkFolderResponse> deleteBookmarkFolder(@NotNull  String folderID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<UpdateBookmarkFolderResponse> updateBookmarkFolder(@NotNull  String folderID, UpdateBookmarkFolderRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<UpdateBookmarkFolderResponse> updateBookmarkFolder(@NotNull  String folderID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<QueryBookmarksResponse> queryBookmarks( QueryBookmarksRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<QueryBookmarksResponse> queryBookmarks() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<GetCommentsResponse> getComments( GetCommentsRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<AddCommentResponse> addComment( AddCommentRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<AddCommentsBatchResponse> addCommentsBatch( AddCommentsBatchRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<QueryCommentsResponse> queryComments( QueryCommentsRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<DeleteCommentResponse> deleteComment(@NotNull  String id, DeleteCommentRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<DeleteCommentResponse> deleteComment(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<GetCommentResponse> getComment(@NotNull  String id, GetCommentRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<GetCommentResponse> getComment(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<UpdateCommentResponse> updateComment(@NotNull  String id, UpdateCommentRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<UpdateCommentResponse> updateComment(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<AddCommentReactionResponse> addCommentReaction(@NotNull  String id, AddCommentReactionRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<QueryCommentReactionsResponse> queryCommentReactions(@NotNull  String id, QueryCommentReactionsRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<QueryCommentReactionsResponse> queryCommentReactions(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<DeleteCommentReactionResponse> deleteCommentReaction(@NotNull  String id, @NotNull  String type, DeleteCommentReactionRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<DeleteCommentReactionResponse> deleteCommentReaction(@NotNull  String id, @NotNull  String type) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<GetCommentRepliesResponse> getCommentReplies(@NotNull  String id, GetCommentRepliesRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<GetCommentRepliesResponse> getCommentReplies(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<ListFeedGroupsResponse> listFeedGroups( ListFeedGroupsRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<ListFeedGroupsResponse> listFeedGroups() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<CreateFeedGroupResponse> createFeedGroup( CreateFeedGroupRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<DeleteFeedResponse> deleteFeed(@NotNull  String feedGroupID, @NotNull  String feedID, DeleteFeedRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<DeleteFeedResponse> deleteFeed(@NotNull  String feedGroupID, @NotNull  String feedID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<GetOrCreateFeedResponse> getOrCreateFeed(@NotNull  String feedGroupID, @NotNull  String feedID, GetOrCreateFeedRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<GetOrCreateFeedResponse> getOrCreateFeed(@NotNull  String feedGroupID, @NotNull  String feedID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<UpdateFeedResponse> updateFeed(@NotNull  String feedGroupID, @NotNull  String feedID, UpdateFeedRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<UpdateFeedResponse> updateFeed(@NotNull  String feedGroupID, @NotNull  String feedID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<Response> markActivity(@NotNull  String feedGroupID, @NotNull  String feedID, MarkActivityRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<Response> markActivity(@NotNull  String feedGroupID, @NotNull  String feedID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<UnpinActivityResponse> unpinActivity(@NotNull  String feedGroupID, @NotNull  String feedID, @NotNull  String activityID, UnpinActivityRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<UnpinActivityResponse> unpinActivity(@NotNull  String feedGroupID, @NotNull  String feedID, @NotNull  String activityID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<PinActivityResponse> pinActivity(@NotNull  String feedGroupID, @NotNull  String feedID, @NotNull  String activityID, PinActivityRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<PinActivityResponse> pinActivity(@NotNull  String feedGroupID, @NotNull  String feedID, @NotNull  String activityID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<UpdateFeedMembersResponse> updateFeedMembers(@NotNull  String feedGroupID, @NotNull  String feedID, UpdateFeedMembersRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<AcceptFeedMemberInviteResponse> acceptFeedMemberInvite(@NotNull  String feedID, @NotNull  String feedGroupID, AcceptFeedMemberInviteRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<AcceptFeedMemberInviteResponse> acceptFeedMemberInvite(@NotNull  String feedID, @NotNull  String feedGroupID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<QueryFeedMembersResponse> queryFeedMembers(@NotNull  String feedGroupID, @NotNull  String feedID, QueryFeedMembersRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<QueryFeedMembersResponse> queryFeedMembers(@NotNull  String feedGroupID, @NotNull  String feedID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<RejectFeedMemberInviteResponse> rejectFeedMemberInvite(@NotNull  String feedGroupID, @NotNull  String feedID, RejectFeedMemberInviteRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<RejectFeedMemberInviteResponse> rejectFeedMemberInvite(@NotNull  String feedGroupID, @NotNull  String feedID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<GetFollowSuggestionsResponse> getFollowSuggestions(@NotNull  String feedGroupID, GetFollowSuggestionsRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<GetFollowSuggestionsResponse> getFollowSuggestions(@NotNull  String feedGroupID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<DeleteFeedGroupResponse> deleteFeedGroup(@NotNull  String id, DeleteFeedGroupRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<DeleteFeedGroupResponse> deleteFeedGroup(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<GetFeedGroupResponse> getFeedGroup(@NotNull  String id, GetFeedGroupRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<GetFeedGroupResponse> getFeedGroup(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<GetOrCreateFeedGroupResponse> getOrCreateFeedGroup(@NotNull  String id, GetOrCreateFeedGroupRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<GetOrCreateFeedGroupResponse> getOrCreateFeedGroup(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<UpdateFeedGroupResponse> updateFeedGroup(@NotNull  String id, UpdateFeedGroupRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<UpdateFeedGroupResponse> updateFeedGroup(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<ListFeedViewsResponse> listFeedViews( ListFeedViewsRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<ListFeedViewsResponse> listFeedViews() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<CreateFeedViewResponse> createFeedView( CreateFeedViewRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<DeleteFeedViewResponse> deleteFeedView(@NotNull  String id, DeleteFeedViewRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<DeleteFeedViewResponse> deleteFeedView(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<GetFeedViewResponse> getFeedView(@NotNull  String id, GetFeedViewRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<GetFeedViewResponse> getFeedView(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<GetOrCreateFeedViewResponse> getOrCreateFeedView(@NotNull  String id, GetOrCreateFeedViewRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<GetOrCreateFeedViewResponse> getOrCreateFeedView(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<UpdateFeedViewResponse> updateFeedView(@NotNull  String id, UpdateFeedViewRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<UpdateFeedViewResponse> updateFeedView(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<ListFeedVisibilitiesResponse> listFeedVisibilities( ListFeedVisibilitiesRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<ListFeedVisibilitiesResponse> listFeedVisibilities() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<GetFeedVisibilityResponse> getFeedVisibility(@NotNull  String name, GetFeedVisibilityRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<GetFeedVisibilityResponse> getFeedVisibility(@NotNull  String name) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<CreateFeedsBatchResponse> createFeedsBatch( CreateFeedsBatchRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<QueryFeedsResponse> queryFeeds( QueryFeedsRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<QueryFeedsResponse> queryFeeds() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<UpdateFollowResponse> updateFollow( UpdateFollowRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<SingleFollowResponse> follow( FollowRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<AcceptFollowResponse> acceptFollow( AcceptFollowRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<FollowBatchResponse> followBatch( FollowBatchRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<QueryFollowsResponse> queryFollows( QueryFollowsRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<QueryFollowsResponse> queryFollows() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<RejectFollowResponse> rejectFollow( RejectFollowRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<UnfollowResponse> unfollow(@NotNull  String source, @NotNull  String target, UnfollowRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<UnfollowResponse> unfollow(@NotNull  String source, @NotNull  String target) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<CreateMembershipLevelResponse> createMembershipLevel( CreateMembershipLevelRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<QueryMembershipLevelsResponse> queryMembershipLevels( QueryMembershipLevelsRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<QueryMembershipLevelsResponse> queryMembershipLevels() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<Response> deleteMembershipLevel(@NotNull  String id, DeleteMembershipLevelRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<Response> deleteMembershipLevel(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<UpdateMembershipLevelResponse> updateMembershipLevel(@NotNull  String id, UpdateMembershipLevelRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<UpdateMembershipLevelResponse> updateMembershipLevel(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<UnfollowBatchResponse> unfollowBatch( UnfollowBatchRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<DeleteFeedUserDataResponse> deleteFeedUserData(@NotNull  String userID, DeleteFeedUserDataRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<DeleteFeedUserDataResponse> deleteFeedUserData(@NotNull  String userID) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<ExportFeedUserDataResponse> exportFeedUserData(@NotNull  String userID, ExportFeedUserDataRequest request ) throws StreamException;
-
-    
-    @NotNull
-    public StreamRequest<ExportFeedUserDataResponse> exportFeedUserData(@NotNull  String userID) throws StreamException;
-    
+  @NotNull
+  public StreamRequest<AddActivityResponse> addActivity(AddActivityRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpsertActivitiesResponse> upsertActivities(UpsertActivitiesRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteActivitiesResponse> deleteActivities(DeleteActivitiesRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryActivitiesResponse> queryActivities(QueryActivitiesRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryActivitiesResponse> queryActivities() throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteBookmarkResponse> deleteBookmark(
+      @NotNull String activityID, DeleteBookmarkRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteBookmarkResponse> deleteBookmark(@NotNull String activityID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateBookmarkResponse> updateBookmark(
+      @NotNull String activityID, UpdateBookmarkRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateBookmarkResponse> updateBookmark(@NotNull String activityID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<AddBookmarkResponse> addBookmark(
+      @NotNull String activityID, AddBookmarkRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<AddBookmarkResponse> addBookmark(@NotNull String activityID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<ActivityFeedbackResponse> activityFeedback(
+      @NotNull String activityID, ActivityFeedbackRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ActivityFeedbackResponse> activityFeedback(@NotNull String activityID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<PollVoteResponse> castPollVote(
+      @NotNull String activityID, @NotNull String pollID, CastPollVoteRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<PollVoteResponse> castPollVote(
+      @NotNull String activityID, @NotNull String pollID) throws StreamException;
+
+  @NotNull
+  public StreamRequest<PollVoteResponse> deletePollVote(
+      @NotNull String activityID,
+      @NotNull String pollID,
+      @NotNull String voteID,
+      DeletePollVoteRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<PollVoteResponse> deletePollVote(
+      @NotNull String activityID, @NotNull String pollID, @NotNull String voteID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<AddReactionResponse> addReaction(
+      @NotNull String activityID, AddReactionRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryActivityReactionsResponse> queryActivityReactions(
+      @NotNull String activityID, QueryActivityReactionsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryActivityReactionsResponse> queryActivityReactions(
+      @NotNull String activityID) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteActivityReactionResponse> deleteActivityReaction(
+      @NotNull String activityID, @NotNull String type, DeleteActivityReactionRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteActivityReactionResponse> deleteActivityReaction(
+      @NotNull String activityID, @NotNull String type) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteActivityResponse> deleteActivity(
+      @NotNull String id, DeleteActivityRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteActivityResponse> deleteActivity(@NotNull String id)
+      throws StreamException;
 
+  @NotNull
+  public StreamRequest<GetActivityResponse> getActivity(
+      @NotNull String id, GetActivityRequest request) throws StreamException;
 
+  @NotNull
+  public StreamRequest<GetActivityResponse> getActivity(@NotNull String id) throws StreamException;
 
+  @NotNull
+  public StreamRequest<UpdateActivityPartialResponse> updateActivityPartial(
+      @NotNull String id, UpdateActivityPartialRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateActivityPartialResponse> updateActivityPartial(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateActivityResponse> updateActivity(
+      @NotNull String id, UpdateActivityRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateActivityResponse> updateActivity(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryBookmarkFoldersResponse> queryBookmarkFolders(
+      QueryBookmarkFoldersRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryBookmarkFoldersResponse> queryBookmarkFolders() throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteBookmarkFolderResponse> deleteBookmarkFolder(
+      @NotNull String folderID, DeleteBookmarkFolderRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteBookmarkFolderResponse> deleteBookmarkFolder(@NotNull String folderID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateBookmarkFolderResponse> updateBookmarkFolder(
+      @NotNull String folderID, UpdateBookmarkFolderRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateBookmarkFolderResponse> updateBookmarkFolder(@NotNull String folderID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryBookmarksResponse> queryBookmarks(QueryBookmarksRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryBookmarksResponse> queryBookmarks() throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetCommentsResponse> getComments(GetCommentsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<AddCommentResponse> addComment(AddCommentRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<AddCommentsBatchResponse> addCommentsBatch(AddCommentsBatchRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryCommentsResponse> queryComments(QueryCommentsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteCommentResponse> deleteComment(
+      @NotNull String id, DeleteCommentRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteCommentResponse> deleteComment(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetCommentResponse> getComment(@NotNull String id, GetCommentRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetCommentResponse> getComment(@NotNull String id) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateCommentResponse> updateComment(
+      @NotNull String id, UpdateCommentRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateCommentResponse> updateComment(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<AddCommentReactionResponse> addCommentReaction(
+      @NotNull String id, AddCommentReactionRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryCommentReactionsResponse> queryCommentReactions(
+      @NotNull String id, QueryCommentReactionsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryCommentReactionsResponse> queryCommentReactions(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteCommentReactionResponse> deleteCommentReaction(
+      @NotNull String id, @NotNull String type, DeleteCommentReactionRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteCommentReactionResponse> deleteCommentReaction(
+      @NotNull String id, @NotNull String type) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetCommentRepliesResponse> getCommentReplies(
+      @NotNull String id, GetCommentRepliesRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetCommentRepliesResponse> getCommentReplies(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListFeedGroupsResponse> listFeedGroups(ListFeedGroupsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListFeedGroupsResponse> listFeedGroups() throws StreamException;
+
+  @NotNull
+  public StreamRequest<CreateFeedGroupResponse> createFeedGroup(CreateFeedGroupRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteFeedResponse> deleteFeed(
+      @NotNull String feedGroupID, @NotNull String feedID, DeleteFeedRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteFeedResponse> deleteFeed(
+      @NotNull String feedGroupID, @NotNull String feedID) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetOrCreateFeedResponse> getOrCreateFeed(
+      @NotNull String feedGroupID, @NotNull String feedID, GetOrCreateFeedRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetOrCreateFeedResponse> getOrCreateFeed(
+      @NotNull String feedGroupID, @NotNull String feedID) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateFeedResponse> updateFeed(
+      @NotNull String feedGroupID, @NotNull String feedID, UpdateFeedRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateFeedResponse> updateFeed(
+      @NotNull String feedGroupID, @NotNull String feedID) throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> markActivity(
+      @NotNull String feedGroupID, @NotNull String feedID, MarkActivityRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> markActivity(@NotNull String feedGroupID, @NotNull String feedID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UnpinActivityResponse> unpinActivity(
+      @NotNull String feedGroupID,
+      @NotNull String feedID,
+      @NotNull String activityID,
+      UnpinActivityRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UnpinActivityResponse> unpinActivity(
+      @NotNull String feedGroupID, @NotNull String feedID, @NotNull String activityID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<PinActivityResponse> pinActivity(
+      @NotNull String feedGroupID,
+      @NotNull String feedID,
+      @NotNull String activityID,
+      PinActivityRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<PinActivityResponse> pinActivity(
+      @NotNull String feedGroupID, @NotNull String feedID, @NotNull String activityID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateFeedMembersResponse> updateFeedMembers(
+      @NotNull String feedGroupID, @NotNull String feedID, UpdateFeedMembersRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<AcceptFeedMemberInviteResponse> acceptFeedMemberInvite(
+      @NotNull String feedID, @NotNull String feedGroupID, AcceptFeedMemberInviteRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<AcceptFeedMemberInviteResponse> acceptFeedMemberInvite(
+      @NotNull String feedID, @NotNull String feedGroupID) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryFeedMembersResponse> queryFeedMembers(
+      @NotNull String feedGroupID, @NotNull String feedID, QueryFeedMembersRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryFeedMembersResponse> queryFeedMembers(
+      @NotNull String feedGroupID, @NotNull String feedID) throws StreamException;
+
+  @NotNull
+  public StreamRequest<RejectFeedMemberInviteResponse> rejectFeedMemberInvite(
+      @NotNull String feedGroupID, @NotNull String feedID, RejectFeedMemberInviteRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<RejectFeedMemberInviteResponse> rejectFeedMemberInvite(
+      @NotNull String feedGroupID, @NotNull String feedID) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFollowSuggestionsResponse> getFollowSuggestions(
+      @NotNull String feedGroupID, GetFollowSuggestionsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFollowSuggestionsResponse> getFollowSuggestions(
+      @NotNull String feedGroupID) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteFeedGroupResponse> deleteFeedGroup(
+      @NotNull String id, DeleteFeedGroupRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteFeedGroupResponse> deleteFeedGroup(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedGroupResponse> getFeedGroup(
+      @NotNull String id, GetFeedGroupRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedGroupResponse> getFeedGroup(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetOrCreateFeedGroupResponse> getOrCreateFeedGroup(
+      @NotNull String id, GetOrCreateFeedGroupRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetOrCreateFeedGroupResponse> getOrCreateFeedGroup(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateFeedGroupResponse> updateFeedGroup(
+      @NotNull String id, UpdateFeedGroupRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateFeedGroupResponse> updateFeedGroup(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListFeedViewsResponse> listFeedViews(ListFeedViewsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListFeedViewsResponse> listFeedViews() throws StreamException;
+
+  @NotNull
+  public StreamRequest<CreateFeedViewResponse> createFeedView(CreateFeedViewRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteFeedViewResponse> deleteFeedView(
+      @NotNull String id, DeleteFeedViewRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteFeedViewResponse> deleteFeedView(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedViewResponse> getFeedView(
+      @NotNull String id, GetFeedViewRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedViewResponse> getFeedView(@NotNull String id) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetOrCreateFeedViewResponse> getOrCreateFeedView(
+      @NotNull String id, GetOrCreateFeedViewRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetOrCreateFeedViewResponse> getOrCreateFeedView(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateFeedViewResponse> updateFeedView(
+      @NotNull String id, UpdateFeedViewRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateFeedViewResponse> updateFeedView(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListFeedVisibilitiesResponse> listFeedVisibilities(
+      ListFeedVisibilitiesRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListFeedVisibilitiesResponse> listFeedVisibilities() throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedVisibilityResponse> getFeedVisibility(
+      @NotNull String name, GetFeedVisibilityRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedVisibilityResponse> getFeedVisibility(@NotNull String name)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<CreateFeedsBatchResponse> createFeedsBatch(CreateFeedsBatchRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryFeedsResponse> queryFeeds(QueryFeedsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryFeedsResponse> queryFeeds() throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateFollowResponse> updateFollow(UpdateFollowRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<SingleFollowResponse> follow(FollowRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<AcceptFollowResponse> acceptFollow(AcceptFollowRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<FollowBatchResponse> followBatch(FollowBatchRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryFollowsResponse> queryFollows(QueryFollowsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryFollowsResponse> queryFollows() throws StreamException;
+
+  @NotNull
+  public StreamRequest<RejectFollowResponse> rejectFollow(RejectFollowRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UnfollowResponse> unfollow(
+      @NotNull String source, @NotNull String target, UnfollowRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UnfollowResponse> unfollow(@NotNull String source, @NotNull String target)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<CreateMembershipLevelResponse> createMembershipLevel(
+      CreateMembershipLevelRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryMembershipLevelsResponse> queryMembershipLevels(
+      QueryMembershipLevelsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryMembershipLevelsResponse> queryMembershipLevels()
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deleteMembershipLevel(
+      @NotNull String id, DeleteMembershipLevelRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deleteMembershipLevel(@NotNull String id) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateMembershipLevelResponse> updateMembershipLevel(
+      @NotNull String id, UpdateMembershipLevelRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateMembershipLevelResponse> updateMembershipLevel(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UnfollowBatchResponse> unfollowBatch(UnfollowBatchRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteFeedUserDataResponse> deleteFeedUserData(
+      @NotNull String userID, DeleteFeedUserDataRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteFeedUserDataResponse> deleteFeedUserData(@NotNull String userID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<ExportFeedUserDataResponse> exportFeedUserData(
+      @NotNull String userID, ExportFeedUserDataRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ExportFeedUserDataResponse> exportFeedUserData(@NotNull String userID)
+      throws StreamException;
 }

@@ -13,41 +13,35 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetCommandResponse{
+public class GetCommandResponse {
 
-    @JsonProperty("args")
-    private String args;
+  @JsonProperty("args")
+  private String args;
 
-    @JsonProperty("description")
-    private String description;
+  @JsonProperty("description")
+  private String description;
 
-    @JsonProperty("duration")
-    private String duration;
+  @JsonProperty("duration")
+  private String duration;
 
-    @JsonProperty("name")
-    private String name;
+  @JsonProperty("name")
+  private String name;
 
-    @JsonProperty("set")
-    private String set;
+  @JsonProperty("set")
+  private String set;
 
-    @Nullable
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @Nullable
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @Nullable
-    @JsonProperty("updated_at")
-    private Date updatedAt;
+  @Nullable
+  @JsonProperty("updated_at")
+  private Date updatedAt;
 }

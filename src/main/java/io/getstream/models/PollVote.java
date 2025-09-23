@@ -13,49 +13,43 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class PollVote{
+public class PollVote {
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("id")
-    private String id;
+  @JsonProperty("id")
+  private String id;
 
-    @JsonProperty("option_id")
-    private String optionID;
+  @JsonProperty("option_id")
+  private String optionID;
 
-    @JsonProperty("poll_id")
-    private String pollID;
+  @JsonProperty("poll_id")
+  private String pollID;
 
-    @JsonProperty("updated_at")
-    private Date updatedAt;
+  @JsonProperty("updated_at")
+  private Date updatedAt;
 
-    @Nullable
-    @JsonProperty("answer_text")
-    private String answerText;
+  @Nullable
+  @JsonProperty("answer_text")
+  private String answerText;
 
-    @Nullable
-    @JsonProperty("is_answer")
-    private Boolean isAnswer;
+  @Nullable
+  @JsonProperty("is_answer")
+  private Boolean isAnswer;
 
-    @Nullable
-    @JsonProperty("user_id")
-    private String userID;
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
 
-    @Nullable
-    @JsonProperty("user")
-    private User user;
+  @Nullable
+  @JsonProperty("user")
+  private User user;
 }

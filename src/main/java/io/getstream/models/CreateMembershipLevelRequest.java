@@ -13,43 +13,35 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
 
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class CreateMembershipLevelRequest {
-    
-    @JsonProperty("id")
-    private String id;
-    
-    @JsonProperty("name")
-    private String name;
-    
-    @Nullable
-    @JsonProperty("description")
-    private String description;
-    
-    @Nullable
-    @JsonProperty("priority")
-    private Integer priority;
-    
-    @Nullable
-    @JsonProperty("tags")
-    private List<String> tags;
-    
-    @Nullable
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
 
+  @JsonProperty("id")
+  private String id;
+
+  @JsonProperty("name")
+  private String name;
+
+  @Nullable
+  @JsonProperty("description")
+  private String description;
+
+  @Nullable
+  @JsonProperty("priority")
+  private Integer priority;
+
+  @Nullable
+  @JsonProperty("tags")
+  private List<String> tags;
+
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 }

@@ -13,47 +13,41 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ReactionUpdatedEvent{
+public class ReactionUpdatedEvent {
 
-    @JsonProperty("channel_id")
-    private String channelID;
+  @JsonProperty("channel_id")
+  private String channelID;
 
-    @JsonProperty("channel_type")
-    private String channelType;
+  @JsonProperty("channel_type")
+  private String channelType;
 
-    @JsonProperty("cid")
-    private String cid;
+  @JsonProperty("cid")
+  private String cid;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("message")
-    private Message message;
+  @JsonProperty("message")
+  private Message message;
 
-    @JsonProperty("reaction")
-    private Reaction reaction;
+  @JsonProperty("reaction")
+  private Reaction reaction;
 
-    @JsonProperty("type")
-    private String type;
+  @JsonProperty("type")
+  private String type;
 
-    @Nullable
-    @JsonProperty("team")
-    private String team;
+  @Nullable
+  @JsonProperty("team")
+  private String team;
 
-    @Nullable
-    @JsonProperty("user")
-    private User user;
+  @Nullable
+  @JsonProperty("user")
+  private User user;
 }

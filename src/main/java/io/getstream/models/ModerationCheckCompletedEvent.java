@@ -13,43 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ModerationCheckCompletedEvent{
+public class ModerationCheckCompletedEvent {
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("entity_id")
-    private String entityID;
+  @JsonProperty("entity_id")
+  private String entityID;
 
-    @JsonProperty("entity_type")
-    private String entityType;
+  @JsonProperty("entity_type")
+  private String entityType;
 
-    @JsonProperty("recommended_action")
-    private String recommendedAction;
+  @JsonProperty("recommended_action")
+  private String recommendedAction;
 
-    @JsonProperty("review_queue_item_id")
-    private String reviewQueueItemID;
+  @JsonProperty("review_queue_item_id")
+  private String reviewQueueItemID;
 
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 
-    @JsonProperty("type")
-    private String type;
+  @JsonProperty("type")
+  private String type;
 
-    @Nullable
-    @JsonProperty("received_at")
-    private Date receivedAt;
+  @Nullable
+  @JsonProperty("received_at")
+  private Date receivedAt;
 }

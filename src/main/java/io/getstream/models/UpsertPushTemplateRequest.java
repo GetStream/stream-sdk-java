@@ -13,39 +13,29 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
 
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class UpsertPushTemplateRequest {
-    
-    @JsonProperty("event_type")
-    private String eventType;
-    
-    @JsonProperty("push_provider_type")
-    private String pushProviderType;
-    
-    @Nullable
-    @JsonProperty("enable_push")
-    private Boolean enablePush;
-    
-    @Nullable
-    @JsonProperty("push_provider_name")
-    private String pushProviderName;
-    
-    @Nullable
-    @JsonProperty("template")
-    private String template;
 
+  @JsonProperty("event_type")
+  private String eventType;
+
+  @JsonProperty("push_provider_type")
+  private String pushProviderType;
+
+  @Nullable
+  @JsonProperty("enable_push")
+  private Boolean enablePush;
+
+  @Nullable
+  @JsonProperty("push_provider_name")
+  private String pushProviderName;
+
+  @Nullable
+  @JsonProperty("template")
+  private String template;
 }

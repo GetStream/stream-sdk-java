@@ -13,41 +13,31 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
 
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class StopLiveRequest {
-    
-    @Nullable
-    @JsonProperty("continue_closed_caption")
-    private Boolean continueClosedCaption;
-    
-    @Nullable
-    @JsonProperty("continue_hls")
-    private Boolean continueHLS;
-    
-    @Nullable
-    @JsonProperty("continue_rtmp_broadcasts")
-    private Boolean continueRTMPBroadcasts;
-    
-    @Nullable
-    @JsonProperty("continue_recording")
-    private Boolean continueRecording;
-    
-    @Nullable
-    @JsonProperty("continue_transcription")
-    private Boolean continueTranscription;
 
+  @Nullable
+  @JsonProperty("continue_closed_caption")
+  private Boolean continueClosedCaption;
+
+  @Nullable
+  @JsonProperty("continue_hls")
+  private Boolean continueHLS;
+
+  @Nullable
+  @JsonProperty("continue_rtmp_broadcasts")
+  private Boolean continueRTMPBroadcasts;
+
+  @Nullable
+  @JsonProperty("continue_recording")
+  private Boolean continueRecording;
+
+  @Nullable
+  @JsonProperty("continue_transcription")
+  private Boolean continueTranscription;
 }

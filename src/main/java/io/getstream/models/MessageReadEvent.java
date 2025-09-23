@@ -13,57 +13,51 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class MessageReadEvent{
+public class MessageReadEvent {
 
-    @JsonProperty("channel_id")
-    private String channelID;
+  @JsonProperty("channel_id")
+  private String channelID;
 
-    @JsonProperty("channel_type")
-    private String channelType;
+  @JsonProperty("channel_type")
+  private String channelType;
 
-    @JsonProperty("cid")
-    private String cid;
+  @JsonProperty("cid")
+  private String cid;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("type")
-    private String type;
+  @JsonProperty("type")
+  private String type;
 
-    @Nullable
-    @JsonProperty("channel_last_message_at")
-    private Date channelLastMessageAt;
+  @Nullable
+  @JsonProperty("channel_last_message_at")
+  private Date channelLastMessageAt;
 
-    @Nullable
-    @JsonProperty("last_read_message_id")
-    private String lastReadMessageID;
+  @Nullable
+  @JsonProperty("last_read_message_id")
+  private String lastReadMessageID;
 
-    @Nullable
-    @JsonProperty("team")
-    private String team;
+  @Nullable
+  @JsonProperty("team")
+  private String team;
 
-    @Nullable
-    @JsonProperty("channel")
-    private ChannelResponse channel;
+  @Nullable
+  @JsonProperty("channel")
+  private ChannelResponse channel;
 
-    @Nullable
-    @JsonProperty("thread")
-    private ThreadResponse thread;
+  @Nullable
+  @JsonProperty("thread")
+  private ThreadResponse thread;
 
-    @Nullable
-    @JsonProperty("user")
-    private UserResponseCommonFields user;
+  @Nullable
+  @JsonProperty("user")
+  private UserResponseCommonFields user;
 }

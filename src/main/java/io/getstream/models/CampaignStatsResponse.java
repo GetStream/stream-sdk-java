@@ -13,39 +13,32 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CampaignStatsResponse{
+public class CampaignStatsResponse {
 
-    @JsonProperty("progress")
-    private Double progress;
+  @JsonProperty("progress")
+  private Double progress;
 
-    @JsonProperty("stats_channels_created")
-    private Integer statsChannelsCreated;
+  @JsonProperty("stats_channels_created")
+  private Integer statsChannelsCreated;
 
-    @JsonProperty("stats_completed_at")
-    private Date statsCompletedAt;
+  @JsonProperty("stats_completed_at")
+  private Date statsCompletedAt;
 
-    @JsonProperty("stats_messages_sent")
-    private Integer statsMessagesSent;
+  @JsonProperty("stats_messages_sent")
+  private Integer statsMessagesSent;
 
-    @JsonProperty("stats_started_at")
-    private Date statsStartedAt;
+  @JsonProperty("stats_started_at")
+  private Date statsStartedAt;
 
-    @JsonProperty("stats_users_read")
-    private Integer statsUsersRead;
+  @JsonProperty("stats_users_read")
+  private Integer statsUsersRead;
 
-    @JsonProperty("stats_users_sent")
-    private Integer statsUsersSent;
+  @JsonProperty("stats_users_sent")
+  private Integer statsUsersSent;
 }

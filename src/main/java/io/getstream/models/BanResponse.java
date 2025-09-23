@@ -13,45 +13,39 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class BanResponse{
+public class BanResponse {
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @Nullable
-    @JsonProperty("expires")
-    private Date expires;
+  @Nullable
+  @JsonProperty("expires")
+  private Date expires;
 
-    @Nullable
-    @JsonProperty("reason")
-    private String reason;
+  @Nullable
+  @JsonProperty("reason")
+  private String reason;
 
-    @Nullable
-    @JsonProperty("shadow")
-    private Boolean shadow;
+  @Nullable
+  @JsonProperty("shadow")
+  private Boolean shadow;
 
-    @Nullable
-    @JsonProperty("banned_by")
-    private UserResponse bannedBy;
+  @Nullable
+  @JsonProperty("banned_by")
+  private UserResponse bannedBy;
 
-    @Nullable
-    @JsonProperty("channel")
-    private ChannelResponse channel;
+  @Nullable
+  @JsonProperty("channel")
+  private ChannelResponse channel;
 
-    @Nullable
-    @JsonProperty("user")
-    private UserResponse user;
+  @Nullable
+  @JsonProperty("user")
+  private UserResponse user;
 }

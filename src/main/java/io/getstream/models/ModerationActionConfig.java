@@ -13,36 +13,29 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ModerationActionConfig{
+public class ModerationActionConfig {
 
-    @JsonProperty("action")
-    private String action;
+  @JsonProperty("action")
+  private String action;
 
-    @JsonProperty("description")
-    private String description;
+  @JsonProperty("description")
+  private String description;
 
-    @JsonProperty("entity_type")
-    private String entityType;
+  @JsonProperty("entity_type")
+  private String entityType;
 
-    @JsonProperty("icon")
-    private String icon;
+  @JsonProperty("icon")
+  private String icon;
 
-    @JsonProperty("order")
-    private Integer order;
+  @JsonProperty("order")
+  private Integer order;
 
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 }

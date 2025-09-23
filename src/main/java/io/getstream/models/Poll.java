@@ -13,85 +13,81 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class Poll{
+public class Poll {
 
-    @JsonProperty("allow_answers")
-    private Boolean allowAnswers;
+  @JsonProperty("allow_answers")
+  private Boolean allowAnswers;
 
-    @JsonProperty("allow_user_suggested_options")
-    private Boolean allowUserSuggestedOptions;
+  @JsonProperty("allow_user_suggested_options")
+  private Boolean allowUserSuggestedOptions;
 
-    @JsonProperty("answers_count")
-    private Integer answersCount;
+  @JsonProperty("answers_count")
+  private Integer answersCount;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("created_by_id")
-    private String createdByID;
+  @JsonProperty("created_by_id")
+  private String createdByID;
 
-    @JsonProperty("description")
-    private String description;
+  @JsonProperty("description")
+  private String description;
 
-    @JsonProperty("enforce_unique_vote")
-    private Boolean enforceUniqueVote;
+  @JsonProperty("enforce_unique_vote")
+  private Boolean enforceUniqueVote;
 
-    @JsonProperty("id")
-    private String id;
+  @JsonProperty("id")
+  private String id;
 
-    @JsonProperty("name")
-    private String name;
+  @JsonProperty("name")
+  private String name;
 
-    @JsonProperty("updated_at")
-    private Date updatedAt;
+  @JsonProperty("updated_at")
+  private Date updatedAt;
 
-    @JsonProperty("vote_count")
-    private Integer voteCount;
+  @JsonProperty("vote_count")
+  private Integer voteCount;
 
-    @JsonProperty("latest_answers")
-    private List<PollVote> latestAnswers;
+  @JsonProperty("latest_answers")
+  private List<PollVote> latestAnswers;
 
-    @JsonProperty("options")
-    private List<PollOption> options;
+  @JsonProperty("options")
+  private List<PollOption> options;
 
-    @JsonProperty("own_votes")
-    private List<PollVote> ownVotes;
+  @JsonProperty("own_votes")
+  private List<PollVote> ownVotes;
 
-    @JsonProperty("Custom")
-    private Map<String, Object> custom;
+  @JsonProperty("Custom")
+  private Map<String, Object> custom;
 
-    @JsonProperty("latest_votes_by_option")
-    private Map<String, List<PollVote>> latestVotesByOption;
+  @JsonProperty("latest_votes_by_option")
+  private Map<String, List<PollVote>> latestVotesByOption;
 
-    @JsonProperty("vote_counts_by_option")
-    private Map<String, Integer> voteCountsByOption;
+  @JsonProperty("vote_counts_by_option")
+  private Map<String, Integer> voteCountsByOption;
 
-    @Nullable
-    @JsonProperty("is_closed")
-    private Boolean isClosed;
+  @Nullable
+  @JsonProperty("is_closed")
+  private Boolean isClosed;
 
-    @Nullable
-    @JsonProperty("max_votes_allowed")
-    private Integer maxVotesAllowed;
+  @Nullable
+  @JsonProperty("max_votes_allowed")
+  private Integer maxVotesAllowed;
 
-    @Nullable
-    @JsonProperty("voting_visibility")
-    private String votingVisibility;
+  @Nullable
+  @JsonProperty("voting_visibility")
+  private String votingVisibility;
 
-    @Nullable
-    @JsonProperty("created_by")
-    private User createdBy;
+  @Nullable
+  @JsonProperty("created_by")
+  private User createdBy;
 }

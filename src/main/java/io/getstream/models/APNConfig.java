@@ -13,58 +13,51 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class APNConfig{
+public class APNConfig {
 
-    @Nullable
-    @JsonProperty("auth_key")
-    private String authKey;
+  @Nullable
+  @JsonProperty("auth_key")
+  private String authKey;
 
-    @Nullable
-    @JsonProperty("auth_type")
-    private String authType;
+  @Nullable
+  @JsonProperty("auth_type")
+  private String authType;
 
-    @Nullable
-    @JsonProperty("bundle_id")
-    private String bundleID;
+  @Nullable
+  @JsonProperty("bundle_id")
+  private String bundleID;
 
-    @Nullable
-    @JsonProperty("development")
-    private Boolean development;
+  @Nullable
+  @JsonProperty("development")
+  private Boolean development;
 
-    @Nullable
-    @JsonProperty("Disabled")
-    private Boolean disabled;
+  @Nullable
+  @JsonProperty("Disabled")
+  private Boolean disabled;
 
-    @Nullable
-    @JsonProperty("host")
-    private String host;
+  @Nullable
+  @JsonProperty("host")
+  private String host;
 
-    @Nullable
-    @JsonProperty("key_id")
-    private String keyID;
+  @Nullable
+  @JsonProperty("key_id")
+  private String keyID;
 
-    @Nullable
-    @JsonProperty("notification_template")
-    private String notificationTemplate;
+  @Nullable
+  @JsonProperty("notification_template")
+  private String notificationTemplate;
 
-    @Nullable
-    @JsonProperty("p12_cert")
-    private String p12Cert;
+  @Nullable
+  @JsonProperty("p12_cert")
+  private String p12Cert;
 
-    @Nullable
-    @JsonProperty("team_id")
-    private String teamID;
+  @Nullable
+  @JsonProperty("team_id")
+  private String teamID;
 }

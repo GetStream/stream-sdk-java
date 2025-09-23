@@ -13,77 +13,73 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class Flag{
+public class Flag {
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("entity_id")
-    private String entityID;
+  @JsonProperty("entity_id")
+  private String entityID;
 
-    @JsonProperty("entity_type")
-    private String entityType;
+  @JsonProperty("entity_type")
+  private String entityType;
 
-    @JsonProperty("updated_at")
-    private Date updatedAt;
+  @JsonProperty("updated_at")
+  private Date updatedAt;
 
-    @JsonProperty("result")
-    private List<Map<String, Object>> result;
+  @JsonProperty("result")
+  private List<Map<String, Object>> result;
 
-    @Nullable
-    @JsonProperty("entity_creator_id")
-    private String entityCreatorID;
+  @Nullable
+  @JsonProperty("entity_creator_id")
+  private String entityCreatorID;
 
-    @Nullable
-    @JsonProperty("is_streamed_content")
-    private Boolean isStreamedContent;
+  @Nullable
+  @JsonProperty("is_streamed_content")
+  private Boolean isStreamedContent;
 
-    @Nullable
-    @JsonProperty("moderation_payload_hash")
-    private String moderationPayloadHash;
+  @Nullable
+  @JsonProperty("moderation_payload_hash")
+  private String moderationPayloadHash;
 
-    @Nullable
-    @JsonProperty("reason")
-    private String reason;
+  @Nullable
+  @JsonProperty("reason")
+  private String reason;
 
-    @Nullable
-    @JsonProperty("review_queue_item_id")
-    private String reviewQueueItemID;
+  @Nullable
+  @JsonProperty("review_queue_item_id")
+  private String reviewQueueItemID;
 
-    @Nullable
-    @JsonProperty("type")
-    private String type;
+  @Nullable
+  @JsonProperty("type")
+  private String type;
 
-    @Nullable
-    @JsonProperty("labels")
-    private List<String> labels;
+  @Nullable
+  @JsonProperty("labels")
+  private List<String> labels;
 
-    @Nullable
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 
-    @Nullable
-    @JsonProperty("moderation_payload")
-    private ModerationPayload moderationPayload;
+  @Nullable
+  @JsonProperty("moderation_payload")
+  private ModerationPayload moderationPayload;
 
-    @Nullable
-    @JsonProperty("review_queue_item")
-    private ReviewQueueItem reviewQueueItem;
+  @Nullable
+  @JsonProperty("review_queue_item")
+  private ReviewQueueItem reviewQueueItem;
 
-    @Nullable
-    @JsonProperty("user")
-    private User user;
+  @Nullable
+  @JsonProperty("user")
+  private User user;
 }

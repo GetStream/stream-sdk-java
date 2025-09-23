@@ -13,34 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class FlagMessageDetails{
+public class FlagMessageDetails {
 
-    @Nullable
-    @JsonProperty("pin_changed")
-    private Boolean pinChanged;
+  @Nullable
+  @JsonProperty("pin_changed")
+  private Boolean pinChanged;
 
-    @Nullable
-    @JsonProperty("should_enrich")
-    private Boolean shouldEnrich;
+  @Nullable
+  @JsonProperty("should_enrich")
+  private Boolean shouldEnrich;
 
-    @Nullable
-    @JsonProperty("skip_push")
-    private Boolean skipPush;
+  @Nullable
+  @JsonProperty("skip_push")
+  private Boolean skipPush;
 
-    @Nullable
-    @JsonProperty("updated_by_id")
-    private String updatedByID;
+  @Nullable
+  @JsonProperty("updated_by_id")
+  private String updatedByID;
 }

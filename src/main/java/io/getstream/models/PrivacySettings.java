@@ -13,26 +13,19 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class PrivacySettings{
+public class PrivacySettings {
 
-    @Nullable
-    @JsonProperty("read_receipts")
-    private ReadReceipts readReceipts;
+  @Nullable
+  @JsonProperty("read_receipts")
+  private ReadReceipts readReceipts;
 
-    @Nullable
-    @JsonProperty("typing_indicators")
-    private TypingIndicators typingIndicators;
+  @Nullable
+  @JsonProperty("typing_indicators")
+  private TypingIndicators typingIndicators;
 }

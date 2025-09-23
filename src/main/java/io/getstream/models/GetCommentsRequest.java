@@ -12,46 +12,44 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import io.getstream.annotations.Query;
 
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class GetCommentsRequest {
 
-@Query("object_id")
-           @JsonIgnore
-           private String ObjectID;
-@Query("object_type")
-           @JsonIgnore
-           private String ObjectType;
-@Query("depth")
-           @JsonIgnore
-           private Integer Depth;
-@Query("sort")
-           @JsonIgnore
-           private String Sort;
-@Query("replies_limit")
-           @JsonIgnore
-           private Integer RepliesLimit;
-@Query("limit")
-           @JsonIgnore
-           private Integer Limit;
-@Query("prev")
-           @JsonIgnore
-           private String Prev;
-@Query("next")
-           @JsonIgnore
-           private String Next;
+  @Query("object_id")
+  @JsonIgnore
+  private String ObjectID;
+
+  @Query("object_type")
+  @JsonIgnore
+  private String ObjectType;
+
+  @Query("depth")
+  @JsonIgnore
+  private Integer Depth;
+
+  @Query("sort")
+  @JsonIgnore
+  private String Sort;
+
+  @Query("replies_limit")
+  @JsonIgnore
+  private Integer RepliesLimit;
+
+  @Query("limit")
+  @JsonIgnore
+  private Integer Limit;
+
+  @Query("prev")
+  @JsonIgnore
+  private String Prev;
+
+  @Query("next")
+  @JsonIgnore
+  private String Next;
 }

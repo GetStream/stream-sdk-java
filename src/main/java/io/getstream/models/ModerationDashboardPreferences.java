@@ -13,30 +13,23 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ModerationDashboardPreferences{
+public class ModerationDashboardPreferences {
 
-    @Nullable
-    @JsonProperty("disable_flagging_reviewed_entity")
-    private Boolean disableFlaggingReviewedEntity;
+  @Nullable
+  @JsonProperty("disable_flagging_reviewed_entity")
+  private Boolean disableFlaggingReviewedEntity;
 
-    @Nullable
-    @JsonProperty("flag_user_on_flagged_content")
-    private Boolean flagUserOnFlaggedContent;
+  @Nullable
+  @JsonProperty("flag_user_on_flagged_content")
+  private Boolean flagUserOnFlaggedContent;
 
-    @Nullable
-    @JsonProperty("media_queue_blur_enabled")
-    private Boolean mediaQueueBlurEnabled;
+  @Nullable
+  @JsonProperty("media_queue_blur_enabled")
+  private Boolean mediaQueueBlurEnabled;
 }

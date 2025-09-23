@@ -13,39 +13,33 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetCallReportResponse{
+public class GetCallReportResponse {
 
-    @JsonProperty("duration")
-    private String duration;
+  @JsonProperty("duration")
+  private String duration;
 
-    @JsonProperty("session_id")
-    private String sessionID;
+  @JsonProperty("session_id")
+  private String sessionID;
 
-    @JsonProperty("report")
-    private ReportResponse report;
+  @JsonProperty("report")
+  private ReportResponse report;
 
-    @Nullable
-    @JsonProperty("video_reactions")
-    private List<VideoReactionsResponse> videoReactions;
+  @Nullable
+  @JsonProperty("video_reactions")
+  private List<VideoReactionsResponse> videoReactions;
 
-    @Nullable
-    @JsonProperty("chat_activity")
-    private ChatActivityStatsResponse chatActivity;
+  @Nullable
+  @JsonProperty("chat_activity")
+  private ChatActivityStatsResponse chatActivity;
 
-    @Nullable
-    @JsonProperty("session")
-    private CallSessionResponse session;
+  @Nullable
+  @JsonProperty("session")
+  private CallSessionResponse session;
 }

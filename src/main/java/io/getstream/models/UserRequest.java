@@ -13,57 +13,52 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UserRequest{
+public class UserRequest {
 
-    @JsonProperty("id")
-    private String id;
+  @JsonProperty("id")
+  private String id;
 
-    @Nullable
-    @JsonProperty("image")
-    private String image;
+  @Nullable
+  @JsonProperty("image")
+  private String image;
 
-    @Nullable
-    @JsonProperty("invisible")
-    private Boolean invisible;
+  @Nullable
+  @JsonProperty("invisible")
+  private Boolean invisible;
 
-    @Nullable
-    @JsonProperty("language")
-    private String language;
+  @Nullable
+  @JsonProperty("language")
+  private String language;
 
-    @Nullable
-    @JsonProperty("name")
-    private String name;
+  @Nullable
+  @JsonProperty("name")
+  private String name;
 
-    @Nullable
-    @JsonProperty("role")
-    private String role;
+  @Nullable
+  @JsonProperty("role")
+  private String role;
 
-    @Nullable
-    @JsonProperty("teams")
-    private List<String> teams;
+  @Nullable
+  @JsonProperty("teams")
+  private List<String> teams;
 
-    @Nullable
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 
-    @Nullable
-    @JsonProperty("privacy_settings")
-    private PrivacySettingsResponse privacySettings;
+  @Nullable
+  @JsonProperty("privacy_settings")
+  private PrivacySettingsResponse privacySettings;
 
-    @Nullable
-    @JsonProperty("teams_role")
-    private Map<String, String> teamsRole;
+  @Nullable
+  @JsonProperty("teams_role")
+  private Map<String, String> teamsRole;
 }

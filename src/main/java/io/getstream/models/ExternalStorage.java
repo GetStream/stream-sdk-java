@@ -13,70 +13,63 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ExternalStorage{
+public class ExternalStorage {
 
-    @Nullable
-    @JsonProperty("abs_account_name")
-    private String absAccountName;
+  @Nullable
+  @JsonProperty("abs_account_name")
+  private String absAccountName;
 
-    @Nullable
-    @JsonProperty("abs_client_id")
-    private String absClientID;
+  @Nullable
+  @JsonProperty("abs_client_id")
+  private String absClientID;
 
-    @Nullable
-    @JsonProperty("abs_client_secret")
-    private String absClientSecret;
+  @Nullable
+  @JsonProperty("abs_client_secret")
+  private String absClientSecret;
 
-    @Nullable
-    @JsonProperty("abs_tenant_id")
-    private String absTenantID;
+  @Nullable
+  @JsonProperty("abs_tenant_id")
+  private String absTenantID;
 
-    @Nullable
-    @JsonProperty("bucket")
-    private String bucket;
+  @Nullable
+  @JsonProperty("bucket")
+  private String bucket;
 
-    @Nullable
-    @JsonProperty("gcs_credentials")
-    private String gcsCredentials;
+  @Nullable
+  @JsonProperty("gcs_credentials")
+  private String gcsCredentials;
 
-    @Nullable
-    @JsonProperty("path")
-    private String path;
+  @Nullable
+  @JsonProperty("path")
+  private String path;
 
-    @Nullable
-    @JsonProperty("s3_api_key")
-    private String s3APIKey;
+  @Nullable
+  @JsonProperty("s3_api_key")
+  private String s3APIKey;
 
-    @Nullable
-    @JsonProperty("s3_custom_endpoint")
-    private String s3CustomEndpoint;
+  @Nullable
+  @JsonProperty("s3_custom_endpoint")
+  private String s3CustomEndpoint;
 
-    @Nullable
-    @JsonProperty("s3_region")
-    private String s3Region;
+  @Nullable
+  @JsonProperty("s3_region")
+  private String s3Region;
 
-    @Nullable
-    @JsonProperty("s3_secret_key")
-    private String s3SecretKey;
+  @Nullable
+  @JsonProperty("s3_secret_key")
+  private String s3SecretKey;
 
-    @Nullable
-    @JsonProperty("storage_name")
-    private String storageName;
+  @Nullable
+  @JsonProperty("storage_name")
+  private String storageName;
 
-    @Nullable
-    @JsonProperty("storage_type")
-    private Integer storageType;
+  @Nullable
+  @JsonProperty("storage_type")
+  private Integer storageType;
 }

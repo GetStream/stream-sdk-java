@@ -13,141 +13,136 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ReviewQueueItem{
+public class ReviewQueueItem {
 
-    @JsonProperty("ai_text_severity")
-    private String aiTextSeverity;
+  @JsonProperty("ai_text_severity")
+  private String aiTextSeverity;
 
-    @JsonProperty("bounce_count")
-    private Integer bounceCount;
+  @JsonProperty("bounce_count")
+  private Integer bounceCount;
 
-    @JsonProperty("config_key")
-    private String configKey;
+  @JsonProperty("config_key")
+  private String configKey;
 
-    @JsonProperty("content_changed")
-    private Boolean contentChanged;
+  @JsonProperty("content_changed")
+  private Boolean contentChanged;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("entity_id")
-    private String entityID;
+  @JsonProperty("entity_id")
+  private String entityID;
 
-    @JsonProperty("entity_type")
-    private String entityType;
+  @JsonProperty("entity_type")
+  private String entityType;
 
-    @JsonProperty("flags_count")
-    private Integer flagsCount;
+  @JsonProperty("flags_count")
+  private Integer flagsCount;
 
-    @JsonProperty("has_image")
-    private Boolean hasImage;
+  @JsonProperty("has_image")
+  private Boolean hasImage;
 
-    @JsonProperty("has_text")
-    private Boolean hasText;
+  @JsonProperty("has_text")
+  private Boolean hasText;
 
-    @JsonProperty("has_video")
-    private Boolean hasVideo;
+  @JsonProperty("has_video")
+  private Boolean hasVideo;
 
-    @JsonProperty("id")
-    private String id;
+  @JsonProperty("id")
+  private String id;
 
-    @JsonProperty("moderation_payload_hash")
-    private String moderationPayloadHash;
+  @JsonProperty("moderation_payload_hash")
+  private String moderationPayloadHash;
 
-    @JsonProperty("recommended_action")
-    private String recommendedAction;
+  @JsonProperty("recommended_action")
+  private String recommendedAction;
 
-    @JsonProperty("reviewed_by")
-    private String reviewedBy;
+  @JsonProperty("reviewed_by")
+  private String reviewedBy;
 
-    @JsonProperty("severity")
-    private Integer severity;
+  @JsonProperty("severity")
+  private Integer severity;
 
-    @JsonProperty("status")
-    private String status;
+  @JsonProperty("status")
+  private String status;
 
-    @JsonProperty("updated_at")
-    private Date updatedAt;
+  @JsonProperty("updated_at")
+  private Date updatedAt;
 
-    @JsonProperty("actions")
-    private List<ActionLog> actions;
+  @JsonProperty("actions")
+  private List<ActionLog> actions;
 
-    @JsonProperty("bans")
-    private List<Ban> bans;
+  @JsonProperty("bans")
+  private List<Ban> bans;
 
-    @JsonProperty("flag_labels")
-    private List<String> flagLabels;
+  @JsonProperty("flag_labels")
+  private List<String> flagLabels;
 
-    @JsonProperty("flag_types")
-    private List<String> flagTypes;
+  @JsonProperty("flag_types")
+  private List<String> flagTypes;
 
-    @JsonProperty("flags")
-    private List<Flag> flags;
+  @JsonProperty("flags")
+  private List<Flag> flags;
 
-    @JsonProperty("languages")
-    private List<String> languages;
+  @JsonProperty("languages")
+  private List<String> languages;
 
-    @JsonProperty("reporter_ids")
-    private List<String> reporterIds;
+  @JsonProperty("reporter_ids")
+  private List<String> reporterIds;
 
-    @JsonProperty("teams")
-    private List<String> teams;
+  @JsonProperty("teams")
+  private List<String> teams;
 
-    @JsonProperty("archived_at")
-    private NullTime archivedAt;
+  @JsonProperty("archived_at")
+  private NullTime archivedAt;
 
-    @JsonProperty("completed_at")
-    private NullTime completedAt;
+  @JsonProperty("completed_at")
+  private NullTime completedAt;
 
-    @JsonProperty("reviewed_at")
-    private NullTime reviewedAt;
+  @JsonProperty("reviewed_at")
+  private NullTime reviewedAt;
 
-    @Nullable
-    @JsonProperty("activity")
-    private EnrichedActivity activity;
+  @Nullable
+  @JsonProperty("activity")
+  private EnrichedActivity activity;
 
-    @Nullable
-    @JsonProperty("assigned_to")
-    private User assignedTo;
+  @Nullable
+  @JsonProperty("assigned_to")
+  private User assignedTo;
 
-    @Nullable
-    @JsonProperty("call")
-    private Call call;
+  @Nullable
+  @JsonProperty("call")
+  private Call call;
 
-    @Nullable
-    @JsonProperty("entity_creator")
-    private EntityCreator entityCreator;
+  @Nullable
+  @JsonProperty("entity_creator")
+  private EntityCreator entityCreator;
 
-    @Nullable
-    @JsonProperty("feeds_v2_activity")
-    private EnrichedActivity feedsV2Activity;
+  @Nullable
+  @JsonProperty("feeds_v2_activity")
+  private EnrichedActivity feedsV2Activity;
 
-    @Nullable
-    @JsonProperty("feeds_v2_reaction")
-    private Reaction feedsV2Reaction;
+  @Nullable
+  @JsonProperty("feeds_v2_reaction")
+  private Reaction feedsV2Reaction;
 
-    @Nullable
-    @JsonProperty("message")
-    private Message message;
+  @Nullable
+  @JsonProperty("message")
+  private Message message;
 
-    @Nullable
-    @JsonProperty("moderation_payload")
-    private ModerationPayload moderationPayload;
+  @Nullable
+  @JsonProperty("moderation_payload")
+  private ModerationPayload moderationPayload;
 
-    @Nullable
-    @JsonProperty("reaction")
-    private Reaction reaction;
+  @Nullable
+  @JsonProperty("reaction")
+  private Reaction reaction;
 }

@@ -13,84 +13,79 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ActivityRequest{
+public class ActivityRequest {
 
-    @JsonProperty("type")
-    private String type;
+  @JsonProperty("type")
+  private String type;
 
-    @JsonProperty("feeds")
-    private List<String> feeds;
+  @JsonProperty("feeds")
+  private List<String> feeds;
 
-    @Nullable
-    @JsonProperty("expires_at")
-    private String expiresAt;
+  @Nullable
+  @JsonProperty("expires_at")
+  private String expiresAt;
 
-    @Nullable
-    @JsonProperty("id")
-    private String id;
+  @Nullable
+  @JsonProperty("id")
+  private String id;
 
-    @Nullable
-    @JsonProperty("parent_id")
-    private String parentID;
+  @Nullable
+  @JsonProperty("parent_id")
+  private String parentID;
 
-    @Nullable
-    @JsonProperty("poll_id")
-    private String pollID;
+  @Nullable
+  @JsonProperty("poll_id")
+  private String pollID;
 
-    @Nullable
-    @JsonProperty("text")
-    private String text;
+  @Nullable
+  @JsonProperty("text")
+  private String text;
 
-    @Nullable
-    @JsonProperty("user_id")
-    private String userID;
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
 
-    @Nullable
-    @JsonProperty("visibility")
-    private String visibility;
+  @Nullable
+  @JsonProperty("visibility")
+  private String visibility;
 
-    @Nullable
-    @JsonProperty("visibility_tag")
-    private String visibilityTag;
+  @Nullable
+  @JsonProperty("visibility_tag")
+  private String visibilityTag;
 
-    @Nullable
-    @JsonProperty("attachments")
-    private List<Attachment> attachments;
+  @Nullable
+  @JsonProperty("attachments")
+  private List<Attachment> attachments;
 
-    @Nullable
-    @JsonProperty("filter_tags")
-    private List<String> filterTags;
+  @Nullable
+  @JsonProperty("filter_tags")
+  private List<String> filterTags;
 
-    @Nullable
-    @JsonProperty("interest_tags")
-    private List<String> interestTags;
+  @Nullable
+  @JsonProperty("interest_tags")
+  private List<String> interestTags;
 
-    @Nullable
-    @JsonProperty("mentioned_user_ids")
-    private List<String> mentionedUserIds;
+  @Nullable
+  @JsonProperty("mentioned_user_ids")
+  private List<String> mentionedUserIds;
 
-    @Nullable
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 
-    @Nullable
-    @JsonProperty("location")
-    private ActivityLocation location;
+  @Nullable
+  @JsonProperty("location")
+  private ActivityLocation location;
 
-    @Nullable
-    @JsonProperty("search_data")
-    private Map<String, Object> searchData;
+  @Nullable
+  @JsonProperty("search_data")
+  private Map<String, Object> searchData;
 }

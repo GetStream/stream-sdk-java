@@ -13,71 +13,66 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class MessageFlagResponse{
+public class MessageFlagResponse {
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("created_by_automod")
-    private Boolean createdByAutomod;
+  @JsonProperty("created_by_automod")
+  private Boolean createdByAutomod;
 
-    @JsonProperty("updated_at")
-    private Date updatedAt;
+  @JsonProperty("updated_at")
+  private Date updatedAt;
 
-    @Nullable
-    @JsonProperty("approved_at")
-    private Date approvedAt;
+  @Nullable
+  @JsonProperty("approved_at")
+  private Date approvedAt;
 
-    @Nullable
-    @JsonProperty("reason")
-    private String reason;
+  @Nullable
+  @JsonProperty("reason")
+  private String reason;
 
-    @Nullable
-    @JsonProperty("rejected_at")
-    private Date rejectedAt;
+  @Nullable
+  @JsonProperty("rejected_at")
+  private Date rejectedAt;
 
-    @Nullable
-    @JsonProperty("reviewed_at")
-    private Date reviewedAt;
+  @Nullable
+  @JsonProperty("reviewed_at")
+  private Date reviewedAt;
 
-    @Nullable
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 
-    @Nullable
-    @JsonProperty("details")
-    private FlagDetails details;
+  @Nullable
+  @JsonProperty("details")
+  private FlagDetails details;
 
-    @Nullable
-    @JsonProperty("message")
-    private Message message;
+  @Nullable
+  @JsonProperty("message")
+  private Message message;
 
-    @Nullable
-    @JsonProperty("moderation_feedback")
-    private FlagFeedback moderationFeedback;
+  @Nullable
+  @JsonProperty("moderation_feedback")
+  private FlagFeedback moderationFeedback;
 
-    @Nullable
-    @JsonProperty("moderation_result")
-    private MessageModerationResult moderationResult;
+  @Nullable
+  @JsonProperty("moderation_result")
+  private MessageModerationResult moderationResult;
 
-    @Nullable
-    @JsonProperty("reviewed_by")
-    private UserResponse reviewedBy;
+  @Nullable
+  @JsonProperty("reviewed_by")
+  private UserResponse reviewedBy;
 
-    @Nullable
-    @JsonProperty("user")
-    private UserResponse user;
+  @Nullable
+  @JsonProperty("user")
+  private UserResponse user;
 }

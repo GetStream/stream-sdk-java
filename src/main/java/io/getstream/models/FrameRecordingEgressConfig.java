@@ -13,34 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class FrameRecordingEgressConfig{
+public class FrameRecordingEgressConfig {
 
-    @Nullable
-    @JsonProperty("capture_interval_in_seconds")
-    private Integer captureIntervalInSeconds;
+  @Nullable
+  @JsonProperty("capture_interval_in_seconds")
+  private Integer captureIntervalInSeconds;
 
-    @Nullable
-    @JsonProperty("storage_name")
-    private String storageName;
+  @Nullable
+  @JsonProperty("storage_name")
+  private String storageName;
 
-    @Nullable
-    @JsonProperty("external_storage")
-    private ExternalStorage externalStorage;
+  @Nullable
+  @JsonProperty("external_storage")
+  private ExternalStorage externalStorage;
 
-    @Nullable
-    @JsonProperty("quality")
-    private Quality quality;
+  @Nullable
+  @JsonProperty("quality")
+  private Quality quality;
 }

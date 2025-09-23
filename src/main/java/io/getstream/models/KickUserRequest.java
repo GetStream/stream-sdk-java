@@ -13,36 +13,26 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
 
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class KickUserRequest {
-    
-    @JsonProperty("user_id")
-    private String userID;
-    
-    @Nullable
-    @JsonProperty("block")
-    private Boolean block;
-    
-    @Nullable
-    @JsonProperty("kicked_by_id")
-    private String kickedByID;
-    
-    @Nullable
-    @JsonProperty("kicked_by")
-    private UserRequest kickedBy;
 
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
+  @JsonProperty("block")
+  private Boolean block;
+
+  @Nullable
+  @JsonProperty("kicked_by_id")
+  private String kickedByID;
+
+  @Nullable
+  @JsonProperty("kicked_by")
+  private UserRequest kickedBy;
 }

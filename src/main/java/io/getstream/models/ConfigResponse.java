@@ -13,76 +13,71 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ConfigResponse{
+public class ConfigResponse {
 
-    @JsonProperty("async")
-    private Boolean async;
+  @JsonProperty("async")
+  private Boolean async;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("key")
-    private String key;
+  @JsonProperty("key")
+  private String key;
 
-    @JsonProperty("team")
-    private String team;
+  @JsonProperty("team")
+  private String team;
 
-    @JsonProperty("updated_at")
-    private Date updatedAt;
+  @JsonProperty("updated_at")
+  private Date updatedAt;
 
-    @JsonProperty("supported_video_call_harm_types")
-    private List<String> supportedVideoCallHarmTypes;
+  @JsonProperty("supported_video_call_harm_types")
+  private List<String> supportedVideoCallHarmTypes;
 
-    @Nullable
-    @JsonProperty("ai_image_config")
-    private AIImageConfig aiImageConfig;
+  @Nullable
+  @JsonProperty("ai_image_config")
+  private AIImageConfig aiImageConfig;
 
-    @Nullable
-    @JsonProperty("ai_text_config")
-    private AITextConfig aiTextConfig;
+  @Nullable
+  @JsonProperty("ai_text_config")
+  private AITextConfig aiTextConfig;
 
-    @Nullable
-    @JsonProperty("ai_video_config")
-    private AIVideoConfig aiVideoConfig;
+  @Nullable
+  @JsonProperty("ai_video_config")
+  private AIVideoConfig aiVideoConfig;
 
-    @Nullable
-    @JsonProperty("automod_platform_circumvention_config")
-    private AutomodPlatformCircumventionConfig automodPlatformCircumventionConfig;
+  @Nullable
+  @JsonProperty("automod_platform_circumvention_config")
+  private AutomodPlatformCircumventionConfig automodPlatformCircumventionConfig;
 
-    @Nullable
-    @JsonProperty("automod_semantic_filters_config")
-    private AutomodSemanticFiltersConfig automodSemanticFiltersConfig;
+  @Nullable
+  @JsonProperty("automod_semantic_filters_config")
+  private AutomodSemanticFiltersConfig automodSemanticFiltersConfig;
 
-    @Nullable
-    @JsonProperty("automod_toxicity_config")
-    private AutomodToxicityConfig automodToxicityConfig;
+  @Nullable
+  @JsonProperty("automod_toxicity_config")
+  private AutomodToxicityConfig automodToxicityConfig;
 
-    @Nullable
-    @JsonProperty("block_list_config")
-    private BlockListConfig blockListConfig;
+  @Nullable
+  @JsonProperty("block_list_config")
+  private BlockListConfig blockListConfig;
 
-    @Nullable
-    @JsonProperty("llm_config")
-    private LLMConfig llmConfig;
+  @Nullable
+  @JsonProperty("llm_config")
+  private LLMConfig llmConfig;
 
-    @Nullable
-    @JsonProperty("velocity_filter_config")
-    private VelocityFilterConfig velocityFilterConfig;
+  @Nullable
+  @JsonProperty("velocity_filter_config")
+  private VelocityFilterConfig velocityFilterConfig;
 
-    @Nullable
-    @JsonProperty("video_call_rule_config")
-    private VideoCallRuleConfig videoCallRuleConfig;
+  @Nullable
+  @JsonProperty("video_call_rule_config")
+  private VideoCallRuleConfig videoCallRuleConfig;
 }

@@ -13,27 +13,19 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class PlatformDataResponse{
+public class PlatformDataResponse {
 
-    @JsonProperty("browser")
-    private BrowserDataResponse browser;
+  @JsonProperty("browser")
+  private BrowserDataResponse browser;
 
-    @JsonProperty("device")
-    private DeviceDataResponse device;
+  @JsonProperty("device")
+  private DeviceDataResponse device;
 
-    @JsonProperty("os")
-    private ClientOSDataResponse os;
+  @JsonProperty("os")
+  private ClientOSDataResponse os;
 }

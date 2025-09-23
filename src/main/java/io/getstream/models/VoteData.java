@@ -13,26 +13,19 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class VoteData{
+public class VoteData {
 
-    @Nullable
-    @JsonProperty("answer_text")
-    private String answerText;
+  @Nullable
+  @JsonProperty("answer_text")
+  private String answerText;
 
-    @Nullable
-    @JsonProperty("option_id")
-    private String optionID;
+  @Nullable
+  @JsonProperty("option_id")
+  private String optionID;
 }

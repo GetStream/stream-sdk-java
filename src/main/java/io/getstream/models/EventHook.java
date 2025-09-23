@@ -13,106 +13,101 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class EventHook{
+public class EventHook {
 
-    @Nullable
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @Nullable
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @Nullable
-    @JsonProperty("enabled")
-    private Boolean enabled;
+  @Nullable
+  @JsonProperty("enabled")
+  private Boolean enabled;
 
-    @Nullable
-    @JsonProperty("hook_type")
-    private String hookType;
+  @Nullable
+  @JsonProperty("hook_type")
+  private String hookType;
 
-    @Nullable
-    @JsonProperty("id")
-    private String id;
+  @Nullable
+  @JsonProperty("id")
+  private String id;
 
-    @Nullable
-    @JsonProperty("product")
-    private String product;
+  @Nullable
+  @JsonProperty("product")
+  private String product;
 
-    @Nullable
-    @JsonProperty("sns_auth_type")
-    private String snsAuthType;
+  @Nullable
+  @JsonProperty("sns_auth_type")
+  private String snsAuthType;
 
-    @Nullable
-    @JsonProperty("sns_key")
-    private String snsKey;
+  @Nullable
+  @JsonProperty("sns_key")
+  private String snsKey;
 
-    @Nullable
-    @JsonProperty("sns_region")
-    private String snsRegion;
+  @Nullable
+  @JsonProperty("sns_region")
+  private String snsRegion;
 
-    @Nullable
-    @JsonProperty("sns_role_arn")
-    private String snsRoleArn;
+  @Nullable
+  @JsonProperty("sns_role_arn")
+  private String snsRoleArn;
 
-    @Nullable
-    @JsonProperty("sns_secret")
-    private String snsSecret;
+  @Nullable
+  @JsonProperty("sns_secret")
+  private String snsSecret;
 
-    @Nullable
-    @JsonProperty("sns_topic_arn")
-    private String snsTopicArn;
+  @Nullable
+  @JsonProperty("sns_topic_arn")
+  private String snsTopicArn;
 
-    @Nullable
-    @JsonProperty("sqs_auth_type")
-    private String sqsAuthType;
+  @Nullable
+  @JsonProperty("sqs_auth_type")
+  private String sqsAuthType;
 
-    @Nullable
-    @JsonProperty("sqs_key")
-    private String sqsKey;
+  @Nullable
+  @JsonProperty("sqs_key")
+  private String sqsKey;
 
-    @Nullable
-    @JsonProperty("sqs_queue_url")
-    private String sqsQueueUrl;
+  @Nullable
+  @JsonProperty("sqs_queue_url")
+  private String sqsQueueUrl;
 
-    @Nullable
-    @JsonProperty("sqs_region")
-    private String sqsRegion;
+  @Nullable
+  @JsonProperty("sqs_region")
+  private String sqsRegion;
 
-    @Nullable
-    @JsonProperty("sqs_role_arn")
-    private String sqsRoleArn;
+  @Nullable
+  @JsonProperty("sqs_role_arn")
+  private String sqsRoleArn;
 
-    @Nullable
-    @JsonProperty("sqs_secret")
-    private String sqsSecret;
+  @Nullable
+  @JsonProperty("sqs_secret")
+  private String sqsSecret;
 
-    @Nullable
-    @JsonProperty("timeout_ms")
-    private Integer timeoutMs;
+  @Nullable
+  @JsonProperty("timeout_ms")
+  private Integer timeoutMs;
 
-    @Nullable
-    @JsonProperty("updated_at")
-    private Date updatedAt;
+  @Nullable
+  @JsonProperty("updated_at")
+  private Date updatedAt;
 
-    @Nullable
-    @JsonProperty("webhook_url")
-    private String webhookUrl;
+  @Nullable
+  @JsonProperty("webhook_url")
+  private String webhookUrl;
 
-    @Nullable
-    @JsonProperty("event_types")
-    private List<String> eventTypes;
+  @Nullable
+  @JsonProperty("event_types")
+  private List<String> eventTypes;
 
-    @Nullable
-    @JsonProperty("callback")
-    private AsyncModerationCallbackConfig callback;
+  @Nullable
+  @JsonProperty("callback")
+  private AsyncModerationCallbackConfig callback;
 }

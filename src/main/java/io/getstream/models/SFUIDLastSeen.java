@@ -13,27 +13,20 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class SFUIDLastSeen{
+public class SFUIDLastSeen {
 
-    @JsonProperty("id")
-    private String id;
+  @JsonProperty("id")
+  private String id;
 
-    @JsonProperty("last_seen")
-    private Date lastSeen;
+  @JsonProperty("last_seen")
+  private Date lastSeen;
 
-    @JsonProperty("process_start_time")
-    private Integer processStartTime;
+  @JsonProperty("process_start_time")
+  private Integer processStartTime;
 }

@@ -13,34 +13,28 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class HLSEgressConfig{
+public class HLSEgressConfig {
 
-    @Nullable
-    @JsonProperty("playlist_url")
-    private String playlistUrl;
+  @Nullable
+  @JsonProperty("playlist_url")
+  private String playlistUrl;
 
-    @Nullable
-    @JsonProperty("start_unix_nano")
-    private Integer startUnixNano;
+  @Nullable
+  @JsonProperty("start_unix_nano")
+  private Integer startUnixNano;
 
-    @Nullable
-    @JsonProperty("qualities")
-    private List<Quality> qualities;
+  @Nullable
+  @JsonProperty("qualities")
+  private List<Quality> qualities;
 
-    @Nullable
-    @JsonProperty("composite_app_settings")
-    private CompositeAppSettings compositeAppSettings;
+  @Nullable
+  @JsonProperty("composite_app_settings")
+  private CompositeAppSettings compositeAppSettings;
 }

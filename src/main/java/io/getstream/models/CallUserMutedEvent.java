@@ -13,36 +13,30 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallUserMutedEvent{
+public class CallUserMutedEvent {
 
-    @JsonProperty("call_cid")
-    private String callCid;
+  @JsonProperty("call_cid")
+  private String callCid;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("from_user_id")
-    private String fromUserID;
+  @JsonProperty("from_user_id")
+  private String fromUserID;
 
-    @JsonProperty("reason")
-    private String reason;
+  @JsonProperty("reason")
+  private String reason;
 
-    @JsonProperty("muted_user_ids")
-    private List<String> mutedUserIds;
+  @JsonProperty("muted_user_ids")
+  private List<String> mutedUserIds;
 
-    @JsonProperty("type")
-    private String type;
+  @JsonProperty("type")
+  private String type;
 }

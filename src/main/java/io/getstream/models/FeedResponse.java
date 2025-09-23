@@ -13,74 +13,70 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class FeedResponse{
+public class FeedResponse {
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("description")
-    private String description;
+  @JsonProperty("description")
+  private String description;
 
-    @JsonProperty("feed")
-    private String feed;
+  @JsonProperty("feed")
+  private String feed;
 
-    @JsonProperty("follower_count")
-    private Integer followerCount;
+  @JsonProperty("follower_count")
+  private Integer followerCount;
 
-    @JsonProperty("following_count")
-    private Integer followingCount;
+  @JsonProperty("following_count")
+  private Integer followingCount;
 
-    @JsonProperty("group_id")
-    private String groupID;
+  @JsonProperty("group_id")
+  private String groupID;
 
-    @JsonProperty("id")
-    private String id;
+  @JsonProperty("id")
+  private String id;
 
-    @JsonProperty("member_count")
-    private Integer memberCount;
+  @JsonProperty("member_count")
+  private Integer memberCount;
 
-    @JsonProperty("name")
-    private String name;
+  @JsonProperty("name")
+  private String name;
 
-    @JsonProperty("pin_count")
-    private Integer pinCount;
+  @JsonProperty("pin_count")
+  private Integer pinCount;
 
-    @JsonProperty("updated_at")
-    private Date updatedAt;
+  @JsonProperty("updated_at")
+  private Date updatedAt;
 
-    @JsonProperty("created_by")
-    private UserResponse createdBy;
+  @JsonProperty("created_by")
+  private UserResponse createdBy;
 
-    @Nullable
-    @JsonProperty("deleted_at")
-    private Date deletedAt;
+  @Nullable
+  @JsonProperty("deleted_at")
+  private Date deletedAt;
 
-    @Nullable
-    @JsonProperty("visibility")
-    private String visibility;
+  @Nullable
+  @JsonProperty("visibility")
+  private String visibility;
 
-    @Nullable
-    @JsonProperty("filter_tags")
-    private List<String> filterTags;
+  @Nullable
+  @JsonProperty("filter_tags")
+  private List<String> filterTags;
 
-    @Nullable
-    @JsonProperty("own_follows")
-    private List<FollowResponse> ownFollows;
+  @Nullable
+  @JsonProperty("own_follows")
+  private List<FollowResponse> ownFollows;
 
-    @Nullable
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 }

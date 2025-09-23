@@ -13,43 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ImportTask{
+public class ImportTask {
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("id")
-    private String id;
+  @JsonProperty("id")
+  private String id;
 
-    @JsonProperty("mode")
-    private String mode;
+  @JsonProperty("mode")
+  private String mode;
 
-    @JsonProperty("path")
-    private String path;
+  @JsonProperty("path")
+  private String path;
 
-    @JsonProperty("state")
-    private String state;
+  @JsonProperty("state")
+  private String state;
 
-    @JsonProperty("updated_at")
-    private Date updatedAt;
+  @JsonProperty("updated_at")
+  private Date updatedAt;
 
-    @JsonProperty("history")
-    private List<ImportTaskHistory> history;
+  @JsonProperty("history")
+  private List<ImportTaskHistory> history;
 
-    @Nullable
-    @JsonProperty("size")
-    private Integer size;
+  @Nullable
+  @JsonProperty("size")
+  private Integer size;
 }

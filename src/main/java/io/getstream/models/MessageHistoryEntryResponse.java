@@ -13,39 +13,34 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class MessageHistoryEntryResponse{
+public class MessageHistoryEntryResponse {
 
-    @JsonProperty("is_deleted")
-    private Boolean isDeleted;
+  @JsonProperty("is_deleted")
+  private Boolean isDeleted;
 
-    @JsonProperty("message_id")
-    private String messageID;
+  @JsonProperty("message_id")
+  private String messageID;
 
-    @JsonProperty("message_updated_at")
-    private Date messageUpdatedAt;
+  @JsonProperty("message_updated_at")
+  private Date messageUpdatedAt;
 
-    @JsonProperty("message_updated_by_id")
-    private String messageUpdatedByID;
+  @JsonProperty("message_updated_by_id")
+  private String messageUpdatedByID;
 
-    @JsonProperty("text")
-    private String text;
+  @JsonProperty("text")
+  private String text;
 
-    @JsonProperty("attachments")
-    private List<Attachment> attachments;
+  @JsonProperty("attachments")
+  private List<Attachment> attachments;
 
-    @JsonProperty("Custom")
-    private Map<String, Object> custom;
+  @JsonProperty("Custom")
+  private Map<String, Object> custom;
 }

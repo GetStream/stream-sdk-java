@@ -13,62 +13,53 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
 
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class CheckRequest {
-    
-    @JsonProperty("entity_creator_id")
-    private String entityCreatorID;
-    
-    @JsonProperty("entity_id")
-    private String entityID;
-    
-    @JsonProperty("entity_type")
-    private String entityType;
-    
-    @Nullable
-    @JsonProperty("config_key")
-    private String configKey;
-    
-    @Nullable
-    @JsonProperty("config_team")
-    private String configTeam;
-    
-    @Nullable
-    @JsonProperty("test_mode")
-    private Boolean testMode;
-    
-    @Nullable
-    @JsonProperty("user_id")
-    private String userID;
-    
-    @Nullable
-    @JsonProperty("config")
-    private ModerationConfig config;
-    
-    @Nullable
-    @JsonProperty("moderation_payload")
-    private ModerationPayload moderationPayload;
-    
-    @Nullable
-    @JsonProperty("options")
-    private Map<String, Object> options;
-    
-    @Nullable
-    @JsonProperty("user")
-    private UserRequest user;
 
+  @JsonProperty("entity_creator_id")
+  private String entityCreatorID;
+
+  @JsonProperty("entity_id")
+  private String entityID;
+
+  @JsonProperty("entity_type")
+  private String entityType;
+
+  @Nullable
+  @JsonProperty("config_key")
+  private String configKey;
+
+  @Nullable
+  @JsonProperty("config_team")
+  private String configTeam;
+
+  @Nullable
+  @JsonProperty("test_mode")
+  private Boolean testMode;
+
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
+  @JsonProperty("config")
+  private ModerationConfig config;
+
+  @Nullable
+  @JsonProperty("moderation_payload")
+  private ModerationPayload moderationPayload;
+
+  @Nullable
+  @JsonProperty("options")
+  private Map<String, Object> options;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

@@ -13,40 +13,35 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class NotificationStatusResponse{
+public class NotificationStatusResponse {
 
-    @JsonProperty("unread")
-    private Integer unread;
+  @JsonProperty("unread")
+  private Integer unread;
 
-    @JsonProperty("unseen")
-    private Integer unseen;
+  @JsonProperty("unseen")
+  private Integer unseen;
 
-    @Nullable
-    @JsonProperty("last_read_at")
-    private Date lastReadAt;
+  @Nullable
+  @JsonProperty("last_read_at")
+  private Date lastReadAt;
 
-    @Nullable
-    @JsonProperty("last_seen_at")
-    private Date lastSeenAt;
+  @Nullable
+  @JsonProperty("last_seen_at")
+  private Date lastSeenAt;
 
-    @Nullable
-    @JsonProperty("read_activities")
-    private List<String> readActivities;
+  @Nullable
+  @JsonProperty("read_activities")
+  private List<String> readActivities;
 
-    @Nullable
-    @JsonProperty("seen_activities")
-    private List<String> seenActivities;
+  @Nullable
+  @JsonProperty("seen_activities")
+  private List<String> seenActivities;
 }

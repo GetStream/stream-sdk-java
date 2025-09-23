@@ -13,46 +13,40 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallClosedCaption{
+public class CallClosedCaption {
 
-    @JsonProperty("end_time")
-    private Date endTime;
+  @JsonProperty("end_time")
+  private Date endTime;
 
-    @JsonProperty("id")
-    private String id;
+  @JsonProperty("id")
+  private String id;
 
-    @JsonProperty("language")
-    private String language;
+  @JsonProperty("language")
+  private String language;
 
-    @JsonProperty("speaker_id")
-    private String speakerID;
+  @JsonProperty("speaker_id")
+  private String speakerID;
 
-    @JsonProperty("start_time")
-    private Date startTime;
+  @JsonProperty("start_time")
+  private Date startTime;
 
-    @JsonProperty("text")
-    private String text;
+  @JsonProperty("text")
+  private String text;
 
-    @JsonProperty("translated")
-    private Boolean translated;
+  @JsonProperty("translated")
+  private Boolean translated;
 
-    @JsonProperty("user")
-    private UserResponse user;
+  @JsonProperty("user")
+  private UserResponse user;
 
-    @Nullable
-    @JsonProperty("service")
-    private String service;
+  @Nullable
+  @JsonProperty("service")
+  private String service;
 }

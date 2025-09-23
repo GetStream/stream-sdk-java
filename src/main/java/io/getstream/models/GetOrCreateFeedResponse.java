@@ -13,80 +13,74 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetOrCreateFeedResponse{
+public class GetOrCreateFeedResponse {
 
-    @JsonProperty("created")
-    private Boolean created;
+  @JsonProperty("created")
+  private Boolean created;
 
-    @JsonProperty("duration")
-    private String duration;
+  @JsonProperty("duration")
+  private String duration;
 
-    @JsonProperty("activities")
-    private List<ActivityResponse> activities;
+  @JsonProperty("activities")
+  private List<ActivityResponse> activities;
 
-    @JsonProperty("aggregated_activities")
-    private List<AggregatedActivityResponse> aggregatedActivities;
+  @JsonProperty("aggregated_activities")
+  private List<AggregatedActivityResponse> aggregatedActivities;
 
-    @JsonProperty("followers")
-    private List<FollowResponse> followers;
+  @JsonProperty("followers")
+  private List<FollowResponse> followers;
 
-    @JsonProperty("following")
-    private List<FollowResponse> following;
+  @JsonProperty("following")
+  private List<FollowResponse> following;
 
-    @JsonProperty("members")
-    private List<FeedMemberResponse> members;
+  @JsonProperty("members")
+  private List<FeedMemberResponse> members;
 
-    @JsonProperty("own_capabilities")
-    private List<FeedOwnCapability> ownCapabilities;
+  @JsonProperty("own_capabilities")
+  private List<FeedOwnCapability> ownCapabilities;
 
-    @JsonProperty("pinned_activities")
-    private List<ActivityPinResponse> pinnedActivities;
+  @JsonProperty("pinned_activities")
+  private List<ActivityPinResponse> pinnedActivities;
 
-    @JsonProperty("feed")
-    private FeedResponse feed;
+  @JsonProperty("feed")
+  private FeedResponse feed;
 
-    @Nullable
-    @JsonProperty("next")
-    private String next;
+  @Nullable
+  @JsonProperty("next")
+  private String next;
 
-    @Nullable
-    @JsonProperty("prev")
-    private String prev;
+  @Nullable
+  @JsonProperty("prev")
+  private String prev;
 
-    @Nullable
-    @JsonProperty("own_follows")
-    private List<FollowResponse> ownFollows;
+  @Nullable
+  @JsonProperty("own_follows")
+  private List<FollowResponse> ownFollows;
 
-    @Nullable
-    @JsonProperty("followers_pagination")
-    private PagerResponse followersPagination;
+  @Nullable
+  @JsonProperty("followers_pagination")
+  private PagerResponse followersPagination;
 
-    @Nullable
-    @JsonProperty("following_pagination")
-    private PagerResponse followingPagination;
+  @Nullable
+  @JsonProperty("following_pagination")
+  private PagerResponse followingPagination;
 
-    @Nullable
-    @JsonProperty("member_pagination")
-    private PagerResponse memberPagination;
+  @Nullable
+  @JsonProperty("member_pagination")
+  private PagerResponse memberPagination;
 
-    @Nullable
-    @JsonProperty("notification_status")
-    private NotificationStatusResponse notificationStatus;
+  @Nullable
+  @JsonProperty("notification_status")
+  private NotificationStatusResponse notificationStatus;
 
-    @Nullable
-    @JsonProperty("own_membership")
-    private FeedMemberResponse ownMembership;
+  @Nullable
+  @JsonProperty("own_membership")
+  private FeedMemberResponse ownMembership;
 }

@@ -13,46 +13,39 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ActionSequence{
+public class ActionSequence {
 
-    @Nullable
-    @JsonProperty("action")
-    private String action;
+  @Nullable
+  @JsonProperty("action")
+  private String action;
 
-    @Nullable
-    @JsonProperty("blur")
-    private Boolean blur;
+  @Nullable
+  @JsonProperty("blur")
+  private Boolean blur;
 
-    @Nullable
-    @JsonProperty("cooldown_period")
-    private Integer cooldownPeriod;
+  @Nullable
+  @JsonProperty("cooldown_period")
+  private Integer cooldownPeriod;
 
-    @Nullable
-    @JsonProperty("threshold")
-    private Integer threshold;
+  @Nullable
+  @JsonProperty("threshold")
+  private Integer threshold;
 
-    @Nullable
-    @JsonProperty("time_window")
-    private Integer timeWindow;
+  @Nullable
+  @JsonProperty("time_window")
+  private Integer timeWindow;
 
-    @Nullable
-    @JsonProperty("warning")
-    private Boolean warning;
+  @Nullable
+  @JsonProperty("warning")
+  private Boolean warning;
 
-    @Nullable
-    @JsonProperty("warning_text")
-    private String warningText;
+  @Nullable
+  @JsonProperty("warning_text")
+  private String warningText;
 }

@@ -13,48 +13,40 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class EdgeResponse{
+public class EdgeResponse {
 
-    @JsonProperty("continent_code")
-    private String continentCode;
+  @JsonProperty("continent_code")
+  private String continentCode;
 
-    @JsonProperty("country_iso_code")
-    private String countryIsoCode;
+  @JsonProperty("country_iso_code")
+  private String countryIsoCode;
 
-    @JsonProperty("green")
-    private Integer green;
+  @JsonProperty("green")
+  private Integer green;
 
-    @JsonProperty("id")
-    private String id;
+  @JsonProperty("id")
+  private String id;
 
-    @JsonProperty("latency_test_url")
-    private String latencyTestUrl;
+  @JsonProperty("latency_test_url")
+  private String latencyTestUrl;
 
-    @JsonProperty("latitude")
-    private Double latitude;
+  @JsonProperty("latitude")
+  private Double latitude;
 
-    @JsonProperty("longitude")
-    private Double longitude;
+  @JsonProperty("longitude")
+  private Double longitude;
 
-    @JsonProperty("red")
-    private Integer red;
+  @JsonProperty("red")
+  private Integer red;
 
-    @JsonProperty("subdivision_iso_code")
-    private String subdivisionIsoCode;
+  @JsonProperty("subdivision_iso_code")
+  private String subdivisionIsoCode;
 
-    @JsonProperty("yellow")
-    private Integer yellow;
+  @JsonProperty("yellow")
+  private Integer yellow;
 }

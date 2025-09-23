@@ -13,27 +13,21 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class FlagFeedback{
+public class FlagFeedback {
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("message_id")
-    private String messageID;
+  @JsonProperty("message_id")
+  private String messageID;
 
-    @JsonProperty("labels")
-    private List<Label> labels;
+  @JsonProperty("labels")
+  private List<Label> labels;
 }

@@ -13,55 +13,46 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
 
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class SendClosedCaptionRequest {
-    
-    @JsonProperty("speaker_id")
-    private String speakerID;
-    
-    @JsonProperty("text")
-    private String text;
-    
-    @Nullable
-    @JsonProperty("end_time")
-    private Date endTime;
-    
-    @Nullable
-    @JsonProperty("language")
-    private String language;
-    
-    @Nullable
-    @JsonProperty("service")
-    private String service;
-    
-    @Nullable
-    @JsonProperty("start_time")
-    private Date startTime;
-    
-    @Nullable
-    @JsonProperty("translated")
-    private Boolean translated;
-    
-    @Nullable
-    @JsonProperty("user_id")
-    private String userID;
-    
-    @Nullable
-    @JsonProperty("user")
-    private UserRequest user;
 
+  @JsonProperty("speaker_id")
+  private String speakerID;
+
+  @JsonProperty("text")
+  private String text;
+
+  @Nullable
+  @JsonProperty("end_time")
+  private Date endTime;
+
+  @Nullable
+  @JsonProperty("language")
+  private String language;
+
+  @Nullable
+  @JsonProperty("service")
+  private String service;
+
+  @Nullable
+  @JsonProperty("start_time")
+  private Date startTime;
+
+  @Nullable
+  @JsonProperty("translated")
+  private Boolean translated;
+
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

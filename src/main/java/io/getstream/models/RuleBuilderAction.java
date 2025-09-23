@@ -13,30 +13,23 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class RuleBuilderAction{
+public class RuleBuilderAction {
 
-    @Nullable
-    @JsonProperty("type")
-    private String type;
+  @Nullable
+  @JsonProperty("type")
+  private String type;
 
-    @Nullable
-    @JsonProperty("ban_options")
-    private BanOptions banOptions;
+  @Nullable
+  @JsonProperty("ban_options")
+  private BanOptions banOptions;
 
-    @Nullable
-    @JsonProperty("flag_user_options")
-    private FlagUserOptions flagUserOptions;
+  @Nullable
+  @JsonProperty("flag_user_options")
+  private FlagUserOptions flagUserOptions;
 }

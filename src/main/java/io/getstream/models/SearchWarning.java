@@ -13,32 +13,26 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class SearchWarning{
+public class SearchWarning {
 
-    @JsonProperty("warning_code")
-    private Integer warningCode;
+  @JsonProperty("warning_code")
+  private Integer warningCode;
 
-    @JsonProperty("warning_description")
-    private String warningDescription;
+  @JsonProperty("warning_description")
+  private String warningDescription;
 
-    @Nullable
-    @JsonProperty("channel_search_count")
-    private Integer channelSearchCount;
+  @Nullable
+  @JsonProperty("channel_search_count")
+  private Integer channelSearchCount;
 
-    @Nullable
-    @JsonProperty("channel_search_cids")
-    private List<String> channelSearchCids;
+  @Nullable
+  @JsonProperty("channel_search_cids")
+  private List<String> channelSearchCids;
 }

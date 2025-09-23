@@ -13,42 +13,36 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class AggregatedActivityResponse{
+public class AggregatedActivityResponse {
 
-    @JsonProperty("activity_count")
-    private Integer activityCount;
+  @JsonProperty("activity_count")
+  private Integer activityCount;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("group")
-    private String group;
+  @JsonProperty("group")
+  private String group;
 
-    @JsonProperty("score")
-    private Double score;
+  @JsonProperty("score")
+  private Double score;
 
-    @JsonProperty("updated_at")
-    private Date updatedAt;
+  @JsonProperty("updated_at")
+  private Date updatedAt;
 
-    @JsonProperty("user_count")
-    private Integer userCount;
+  @JsonProperty("user_count")
+  private Integer userCount;
 
-    @JsonProperty("user_count_truncated")
-    private Boolean userCountTruncated;
+  @JsonProperty("user_count_truncated")
+  private Boolean userCountTruncated;
 
-    @JsonProperty("activities")
-    private List<ActivityResponse> activities;
+  @JsonProperty("activities")
+  private List<ActivityResponse> activities;
 }

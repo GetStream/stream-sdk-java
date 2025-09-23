@@ -13,42 +13,35 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class Quality{
+public class Quality {
 
-    @Nullable
-    @JsonProperty("bitdepth")
-    private Integer bitdepth;
+  @Nullable
+  @JsonProperty("bitdepth")
+  private Integer bitdepth;
 
-    @Nullable
-    @JsonProperty("framerate")
-    private Integer framerate;
+  @Nullable
+  @JsonProperty("framerate")
+  private Integer framerate;
 
-    @Nullable
-    @JsonProperty("height")
-    private Integer height;
+  @Nullable
+  @JsonProperty("height")
+  private Integer height;
 
-    @Nullable
-    @JsonProperty("name")
-    private String name;
+  @Nullable
+  @JsonProperty("name")
+  private String name;
 
-    @Nullable
-    @JsonProperty("video_bitrate")
-    private Integer videoBitrate;
+  @Nullable
+  @JsonProperty("video_bitrate")
+  private Integer videoBitrate;
 
-    @Nullable
-    @JsonProperty("width")
-    private Integer width;
+  @Nullable
+  @JsonProperty("width")
+  private Integer width;
 }

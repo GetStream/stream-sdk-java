@@ -13,38 +13,33 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class TextContentParameters{
+public class TextContentParameters {
 
-    @Nullable
-    @JsonProperty("contains_url")
-    private Boolean containsUrl;
+  @Nullable
+  @JsonProperty("contains_url")
+  private Boolean containsUrl;
 
-    @Nullable
-    @JsonProperty("severity")
-    private String severity;
+  @Nullable
+  @JsonProperty("severity")
+  private String severity;
 
-    @Nullable
-    @JsonProperty("blocklist_match")
-    private List<String> blocklistMatch;
+  @Nullable
+  @JsonProperty("blocklist_match")
+  private List<String> blocklistMatch;
 
-    @Nullable
-    @JsonProperty("harm_labels")
-    private List<String> harmLabels;
+  @Nullable
+  @JsonProperty("harm_labels")
+  private List<String> harmLabels;
 
-    @Nullable
-    @JsonProperty("llm_harm_labels")
-    private Map<String, String> llmHarmLabels;
+  @Nullable
+  @JsonProperty("llm_harm_labels")
+  private Map<String, String> llmHarmLabels;
 }

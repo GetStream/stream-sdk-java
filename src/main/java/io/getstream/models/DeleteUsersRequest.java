@@ -13,52 +13,43 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
 
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class DeleteUsersRequest {
-    
-    @JsonProperty("user_ids")
-    private List<String> userIds;
-    
-    @Nullable
-    @JsonProperty("calls")
-    private String calls;
-    
-    @Nullable
-    @JsonProperty("conversations")
-    private String conversations;
-    
-    @Nullable
-    @JsonProperty("files")
-    private Boolean files;
-    
-    @Nullable
-    @JsonProperty("messages")
-    private String messages;
-    
-    @Nullable
-    @JsonProperty("new_call_owner_id")
-    private String newCallOwnerID;
-    
-    @Nullable
-    @JsonProperty("new_channel_owner_id")
-    private String newChannelOwnerID;
-    
-    @Nullable
-    @JsonProperty("user")
-    private String user;
 
+  @JsonProperty("user_ids")
+  private List<String> userIds;
+
+  @Nullable
+  @JsonProperty("calls")
+  private String calls;
+
+  @Nullable
+  @JsonProperty("conversations")
+  private String conversations;
+
+  @Nullable
+  @JsonProperty("files")
+  private Boolean files;
+
+  @Nullable
+  @JsonProperty("messages")
+  private String messages;
+
+  @Nullable
+  @JsonProperty("new_call_owner_id")
+  private String newCallOwnerID;
+
+  @Nullable
+  @JsonProperty("new_channel_owner_id")
+  private String newChannelOwnerID;
+
+  @Nullable
+  @JsonProperty("user")
+  private String user;
 }

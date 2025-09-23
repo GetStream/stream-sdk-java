@@ -13,42 +13,36 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ChannelMemberLookup{
+public class ChannelMemberLookup {
 
-    @JsonProperty("archived")
-    private Boolean archived;
+  @JsonProperty("archived")
+  private Boolean archived;
 
-    @JsonProperty("banned")
-    private Boolean banned;
+  @JsonProperty("banned")
+  private Boolean banned;
 
-    @JsonProperty("hidden")
-    private Boolean hidden;
+  @JsonProperty("hidden")
+  private Boolean hidden;
 
-    @JsonProperty("pinned")
-    private Boolean pinned;
+  @JsonProperty("pinned")
+  private Boolean pinned;
 
-    @Nullable
-    @JsonProperty("archived_at")
-    private Date archivedAt;
+  @Nullable
+  @JsonProperty("archived_at")
+  private Date archivedAt;
 
-    @Nullable
-    @JsonProperty("ban_expires")
-    private Date banExpires;
+  @Nullable
+  @JsonProperty("ban_expires")
+  private Date banExpires;
 
-    @Nullable
-    @JsonProperty("pinned_at")
-    private Date pinnedAt;
+  @Nullable
+  @JsonProperty("pinned_at")
+  private Date pinnedAt;
 }
