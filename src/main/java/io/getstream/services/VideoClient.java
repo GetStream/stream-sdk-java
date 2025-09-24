@@ -8,6 +8,7 @@ public class VideoClient extends VideoImpl implements Video {
 
   public VideoClient(StreamSDKClient client) {
     super(client.getHttpClient());
+    this.client = client;
   }
 
   @Override
