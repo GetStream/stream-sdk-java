@@ -291,7 +291,12 @@ public class CallTest extends BasicTest {
     Assertions.assertNotNull(testUser, "User should not be null");
     String callID = "call-" + RandomStringUtils.randomAlphanumeric(10);
     Call testCall = video.call(callType, callID);
-    Assertions.assertDoesNotThrow(() -> testCall.getOrCreate());
+    Assertions.assertDoesNotThrow(
+        () ->
+            testCall.getOrCreate(
+                GetOrCreateCallRequest.builder()
+                    .data(CallRequest.builder().createdByID(testUser.getId()).build())
+                    .build()));
     String srtToken = "";
     srtToken = Assertions.assertDoesNotThrow(() -> testCall.createSRTToken(testUser.getId()));
     Assertions.assertNotNull(srtToken);
