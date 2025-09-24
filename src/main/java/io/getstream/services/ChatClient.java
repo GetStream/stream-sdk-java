@@ -8,6 +8,7 @@ public class ChatClient extends ChatImpl implements Chat {
 
   public ChatClient(StreamSDKClient client) {
     super(client.getHttpClient());
+    this.client = client;
   }
 
   public StreamSDKClient getSDKClient() {
