@@ -48,7 +48,7 @@ public class Call extends CallGenerated {
     }
 
     String token = this.service.getSDKClient().tokenBuilder().createToken(userID);
-    String[] segments = token.split("$.", 3);
+    String[] segments = token.split("\\.");
     String passphrase = segments[2];
 
     return data.getIngress()
