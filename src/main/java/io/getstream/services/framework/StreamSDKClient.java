@@ -19,13 +19,17 @@ public class StreamSDKClient extends CommonImpl implements Common {
     this(new StreamHTTPClient(properties));
   }
 
-  private StreamSDKClient(StreamHTTPClient httpClient) {
+  public StreamSDKClient(StreamHTTPClient httpClient) {
     super(httpClient);
     this.httpClient = httpClient;
   }
 
   public Video video() {
-    return new VideoImpl(httpClient);
+    return new VideoImpl(this);
+  }
+
+  public StreamHTTPClient getHttpClient() {
+    return httpClient;
   }
 
   public Chat chat() {

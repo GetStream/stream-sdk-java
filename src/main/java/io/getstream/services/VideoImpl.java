@@ -17,14 +17,26 @@ import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
 import io.getstream.services.framework.StreamHTTPClient;
 import io.getstream.services.framework.StreamRequest;
+import io.getstream.services.framework.StreamSDKClient;
 import java.util.*;
 import org.jetbrains.annotations.NotNull;
 
 public class VideoImpl implements Video {
   private StreamHTTPClient client;
+  private StreamSDKClient sdkClient;
 
   public VideoImpl(StreamHTTPClient client) {
     this.client = client;
+    this.sdkClient = new StreamSDKClient(client);
+  }
+
+  public VideoImpl(StreamSDKClient client) {
+    this.sdkClient = client;
+    this.client = client.getHttpClient();
+  }
+
+  public StreamSDKClient getClient() {
+    return sdkClient;
   }
 
   @NotNull

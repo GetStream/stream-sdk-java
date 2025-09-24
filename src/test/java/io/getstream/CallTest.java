@@ -285,4 +285,16 @@ public class CallTest extends BasicTest {
         SendCallEventRequest.builder().userID(testUser.getId()).custom(customEvent).build();
     Assertions.assertDoesNotThrow(() -> testCall.sendCallEvent(sendEventRequest));
   }
+
+  @Test
+  void testGenerateSRTToken() {
+    Assertions.assertNotNull(testUser, "User should not be null");
+    String callID = "call-" + RandomStringUtils.randomAlphanumeric(10);
+    Call testCall = video.call(callType, callID);
+    Assertions.assertDoesNotThrow(() -> testCall.getOrCreate());
+    String srtToken = "";
+    srtToken = Assertions.assertDoesNotThrow(() -> testCall.createSRTToken(testUser.getId()));
+    Assertions.assertNotNull(srtToken);
+    Assertions.assertNotEquals("", srtToken);
+  }
 }

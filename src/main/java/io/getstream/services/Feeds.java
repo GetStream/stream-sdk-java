@@ -15,10 +15,13 @@ package io.getstream.services;
 import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
 import io.getstream.services.framework.StreamRequest;
+import io.getstream.services.framework.StreamSDKClient;
 import java.util.*;
 import org.jetbrains.annotations.NotNull;
 
 public interface Feeds {
+  public StreamSDKClient getClient();
+
   @NotNull
   public StreamRequest<AddActivityResponse> addActivity(AddActivityRequest request)
       throws StreamException;

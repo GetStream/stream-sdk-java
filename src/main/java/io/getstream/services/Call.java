@@ -29,6 +29,22 @@ public class Call {
     this.service = service;
   }
 
+  public String createSRTToken(@NotNull String userID) throws StreamException {
+    StreamResponse<GetCallResponse> data = this.get();
+
+    String token = this.service.getClient().tokenBuilder().createToken(userID);
+    String[] segments = token.split("$.", 3);
+    String passphrase = segments[2];
+
+    return data.getData()
+        .getCall()
+        .getIngress()
+        .getSrt()
+        .getAddress()
+        .replace("{passphrase}", passphrase)
+        .replace("{token}", token);
+  }
+
   @NotNull
   public StreamResponse<GetCallResponse> get(GetCallRequest request) throws StreamException {
     return service.getCall(this.callType, this.callID, request).execute();
