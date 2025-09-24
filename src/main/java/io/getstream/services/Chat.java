@@ -20,7 +20,7 @@ import java.util.*;
 import org.jetbrains.annotations.NotNull;
 
 public interface Chat {
-  public StreamSDKClient getClient();
+  public StreamSDKClient getSDKClient();
 
   @NotNull
   public StreamRequest<QueryCampaignsResponse> queryCampaigns(QueryCampaignsRequest request)

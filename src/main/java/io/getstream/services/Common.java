@@ -20,7 +20,7 @@ import java.util.*;
 import org.jetbrains.annotations.NotNull;
 
 public interface Common {
-  public StreamSDKClient getClient();
+  public StreamSDKClient getSDKClient();
 
   @NotNull
   public StreamRequest<GetApplicationResponse> getApp(GetAppRequest request) throws StreamException;

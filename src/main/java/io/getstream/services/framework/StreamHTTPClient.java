@@ -185,26 +185,6 @@ public class StreamHTTPClient {
   }
 
   @NotNull
-  public Video video() {
-    return new VideoImpl(this);
-  }
-
-  @NotNull
-  public Chat chat() {
-    return new ChatImpl(this);
-  }
-
-  @NotNull
-  public Feeds feeds() {
-    return new FeedsImpl(this);
-  }
-
-  @NotNull
-  public Common common() {
-    return new CommonImpl(this);
-  }
-
-  @NotNull
   public String getApiSecret() {
     return apiSecret;
   }

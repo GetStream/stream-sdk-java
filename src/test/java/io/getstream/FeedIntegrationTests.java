@@ -2,7 +2,6 @@ package io.getstream;
 
 import io.getstream.models.*;
 import io.getstream.services.*;
-import io.getstream.services.framework.StreamHTTPClient;
 import io.getstream.services.framework.StreamSDKClient;
 import java.util.*;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -44,8 +43,8 @@ class FeedIntegrationTests {
   static void setUp() throws Exception {
     // snippet-start: Getting_Started
     client = new StreamSDKClient();
-    feeds = new FeedsImpl(new StreamHTTPClient());
-    common = new CommonImpl(new StreamHTTPClient());
+    feeds = client.feeds();
+    common = client;
     // snippet-end: Getting_Started
     testUserId = "test-user-" + RandomStringUtils.randomAlphanumeric(8);
     testUserId2 = "test-user-2-" + RandomStringUtils.randomAlphanumeric(8);
