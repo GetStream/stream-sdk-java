@@ -6,11 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 public class CallTest extends BasicTest {
-  String callType = "default";
   private static String callTypeName;
+  String callType = "default";
 
   @Test
   @Disabled
@@ -301,5 +303,18 @@ public class CallTest extends BasicTest {
     srtToken = Assertions.assertDoesNotThrow(() -> testCall.createSRTToken(testUser.getId()));
     Assertions.assertNotNull(srtToken);
     Assertions.assertNotEquals("", srtToken);
+  }
+
+  @Test
+  void testEndCall() {
+    String callID = "call-" + RandomStringUtils.randomAlphanumeric(10);
+    Call testCall = video.call(callType, callID);
+    Assertions.assertDoesNotThrow(
+        () ->
+            testCall.getOrCreate(
+                GetOrCreateCallRequest.builder()
+                    .data(CallRequest.builder().createdByID(testUser.getId()).build())
+                    .build()));
+    Assertions.assertDoesNotThrow(() -> testCall.end());
   }
 }

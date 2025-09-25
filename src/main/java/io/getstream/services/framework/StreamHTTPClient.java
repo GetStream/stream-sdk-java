@@ -2,8 +2,8 @@ package io.getstream.services.framework;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.util.StdDateFormat;
-import io.getstream.services.*;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.io.IOException;
@@ -36,7 +36,8 @@ public class StreamHTTPClient {
               new StdDateFormat()
                   .withColonInTimeZone(true)
                   .withTimeZone(TimeZone.getTimeZone("UTC")))
-          .enable(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE);
+          .enable(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE)
+          .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 
   @NotNull private String apiSecret;
   @NotNull private String apiKey;
