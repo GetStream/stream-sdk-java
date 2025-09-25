@@ -38,8 +38,6 @@ public class TokenBuilder {
         Jwts.builder()
             .claim("user_id", userId)
             .issuedAt(Date.from(issuedAt))
-            .issuer("Stream Java SDK")
-            .subject("Stream Java SDK")
             .signWith(key, Jwts.SIG.HS256);
 
     if (validity != null) {
