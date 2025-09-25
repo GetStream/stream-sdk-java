@@ -17,12 +17,12 @@ import io.getstream.models.*;
 import io.getstream.models.framework.StreamResponse;
 import org.jetbrains.annotations.NotNull;
 
-class CallGenerated {
+class BaseCall {
   protected Video service;
   protected String callType;
   protected String callID;
 
-  public CallGenerated(String callType, String callID, Video service) {
+  public BaseCall(String callType, String callID, Video service) {
     this.callType = callType;
     this.callID = callID;
     this.service = service;

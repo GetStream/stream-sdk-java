@@ -5,7 +5,7 @@ import io.getstream.models.*;
 import io.getstream.models.framework.StreamResponse;
 import org.jetbrains.annotations.NotNull;
 
-public class Call extends CallGenerated {
+public class Call extends BaseCall {
   private CallResponse data;
 
   public Call(String type, String id, Video service) {
