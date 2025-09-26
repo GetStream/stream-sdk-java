@@ -2,6 +2,7 @@ package io.getstream.services;
 
 import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
+import io.getstream.models.framework.SRTCredentials;
 import io.getstream.models.framework.StreamResponse;
 import org.jetbrains.annotations.NotNull;
 
@@ -41,7 +42,7 @@ public class Call extends BaseCall {
     return this.getOrCreate(new GetOrCreateCallRequest());
   }
 
-  public String createSRTToken(@NotNull String userID) throws StreamException {
+  public SRTCredentials createSRTCredentials(@NotNull String userID) throws StreamException {
     if (this.data == null) {
       throw StreamException.build(
           "Call object is not initialized, please call get() or getOrCreate() first");
@@ -51,10 +52,13 @@ public class Call extends BaseCall {
     String[] segments = token.split("\\.");
     String passphrase = segments[2];
 
-    return data.getIngress()
-        .getSrt()
-        .getAddress()
-        .replace("{passphrase}", passphrase)
-        .replace("{token}", token);
+    return SRTCredentials.builder()
+        .address(
+                data.getIngress()
+                        .getSrt()
+                        .getAddress()
+                        .replace("{passphrase}", passphrase)
+                        .replace("{token}", token))
+        .build();
   }
 }
