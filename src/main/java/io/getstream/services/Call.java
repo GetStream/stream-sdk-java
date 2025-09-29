@@ -54,11 +54,11 @@ public class Call extends BaseCall {
 
     return SRTCredentials.builder()
         .address(
-                data.getIngress()
-                        .getSrt()
-                        .getAddress()
-                        .replace("{passphrase}", passphrase)
-                        .replace("{token}", token))
+            data.getIngress()
+                .getSrt()
+                .getAddress()
+                .replace("{passphrase}", passphrase)
+                .replace("{token}", token))
         .build();
   }
 }

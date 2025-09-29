@@ -6,5 +6,5 @@ import lombok.Getter;
 @Builder
 @Getter
 public class SRTCredentials {
-    String address;
+  String address;
 }
