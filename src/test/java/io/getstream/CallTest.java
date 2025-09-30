@@ -312,11 +312,12 @@ public class CallTest extends BasicTest {
   void testEndCall() {
     String callID = "call-" + RandomStringUtils.randomAlphanumeric(10);
     Call testCall = video.call(callType, callID);
-    Assertions.assertDoesNotThrow(() -> testCall.getOrCreate(
-            GetOrCreateCallRequest.builder().data(
-                    CallRequest.builder().createdByID(testUser.getId()).build()
-            ).build()
-    ));
+    Assertions.assertDoesNotThrow(
+        () ->
+            testCall.getOrCreate(
+                GetOrCreateCallRequest.builder()
+                    .data(CallRequest.builder().createdByID(testUser.getId()).build())
+                    .build()));
     Assertions.assertDoesNotThrow(() -> testCall.end());
   }
 }
