@@ -47,12 +47,15 @@ public class OwnCapability {
   public static OwnCapability JOIN_BACKSTAGE = new OwnCapability("join-backstage");
   public static OwnCapability JOIN_CALL = new OwnCapability("join-call");
   public static OwnCapability JOIN_ENDED_CALL = new OwnCapability("join-ended-call");
+  public static OwnCapability KICK_USER = new OwnCapability("kick-user");
   public static OwnCapability MUTE_USERS = new OwnCapability("mute-users");
   public static OwnCapability PIN_FOR_EVERYONE = new OwnCapability("pin-for-everyone");
   public static OwnCapability READ_CALL = new OwnCapability("read-call");
   public static OwnCapability REMOVE_CALL_MEMBER = new OwnCapability("remove-call-member");
   public static OwnCapability SCREENSHARE = new OwnCapability("screenshare");
   public static OwnCapability SEND_AUDIO = new OwnCapability("send-audio");
+  public static OwnCapability SEND_CLOSED_CAPTIONS_CALL =
+      new OwnCapability("send-closed-captions-call");
   public static OwnCapability SEND_VIDEO = new OwnCapability("send-video");
   public static OwnCapability START_BROADCAST_CALL = new OwnCapability("start-broadcast-call");
   public static OwnCapability START_CLOSED_CAPTIONS_CALL =

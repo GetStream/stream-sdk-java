@@ -42,6 +42,10 @@ public class MessageDeletedEvent {
   private String type;
 
   @Nullable
+  @JsonProperty("deleted_for_me")
+  private Boolean deletedForMe;
+
+  @Nullable
   @JsonProperty("team")
   private String team;
 

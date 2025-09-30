@@ -29,6 +29,9 @@ public class CommentAddedEvent {
   @JsonProperty("fid")
   private String fid;
 
+  @JsonProperty("activity")
+  private ActivityResponse activity;
+
   @JsonProperty("comment")
   private CommentResponse comment;
 

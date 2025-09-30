@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -20,24 +21,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @lombok.AllArgsConstructor
 public class ActionSequence {
 
+  @Nullable
   @JsonProperty("action")
   private String action;
 
+  @Nullable
   @JsonProperty("blur")
   private Boolean blur;
 
+  @Nullable
   @JsonProperty("cooldown_period")
   private Integer cooldownPeriod;
 
+  @Nullable
   @JsonProperty("threshold")
   private Integer threshold;
 
+  @Nullable
   @JsonProperty("time_window")
   private Integer timeWindow;
 
+  @Nullable
   @JsonProperty("warning")
   private Boolean warning;
 
+  @Nullable
   @JsonProperty("warning_text")
   private String warningText;
 }

@@ -20,7 +20,7 @@ import io.getstream.services.framework.StreamRequest;
 import java.util.*;
 import org.jetbrains.annotations.NotNull;
 
-public class FeedsImpl implements Feeds {
+public class FeedsImpl {
   private StreamHTTPClient client;
 
   public FeedsImpl(StreamHTTPClient client) {
@@ -1215,6 +1215,48 @@ public class FeedsImpl implements Feeds {
   }
 
   @NotNull
+  public StreamRequest<ListFeedVisibilitiesResponse> listFeedVisibilities(
+      ListFeedVisibilitiesRequest request) throws StreamException {
+
+    return new StreamRequest<ListFeedVisibilitiesResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/feeds/feed_visibilities",
+        request,
+        null,
+        new TypeReference<ListFeedVisibilitiesResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ListFeedVisibilitiesResponse> listFeedVisibilities() throws StreamException {
+    return listFeedVisibilities(new ListFeedVisibilitiesRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GetFeedVisibilityResponse> getFeedVisibility(
+      @NotNull String name, GetFeedVisibilityRequest request) throws StreamException {
+    var pathParams = Map.of("name", name);
+
+    return new StreamRequest<GetFeedVisibilityResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/feeds/feed_visibilities/{name}",
+        request,
+        pathParams,
+        new TypeReference<GetFeedVisibilityResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetFeedVisibilityResponse> getFeedVisibility(@NotNull String name)
+      throws StreamException {
+    return getFeedVisibility(name, new GetFeedVisibilityRequest());
+  }
+
+  @NotNull
   public StreamRequest<CreateFeedsBatchResponse> createFeedsBatch(CreateFeedsBatchRequest request)
       throws StreamException {
 
@@ -1502,7 +1544,8 @@ public class FeedsImpl implements Feeds {
   }
 
   @NotNull
-  public Feed feed(String channelType, String channelID) {
-    return new Feed(channelType, channelID, client.feeds());
+  public StreamRequest<ExportFeedUserDataResponse> exportFeedUserData(@NotNull String userID)
+      throws StreamException {
+    return exportFeedUserData(userID, new ExportFeedUserDataRequest());
   }
 }

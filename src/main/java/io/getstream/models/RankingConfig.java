@@ -22,13 +22,12 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class RankingConfig {
 
+  @JsonProperty("type")
+  private String type;
+
   @Nullable
   @JsonProperty("score")
   private String score;
-
-  @Nullable
-  @JsonProperty("type")
-  private String type;
 
   @Nullable
   @JsonProperty("defaults")

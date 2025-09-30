@@ -44,6 +44,10 @@ public class UpdateFeedGroupRequest {
   private NotificationConfig notification;
 
   @Nullable
+  @JsonProperty("push_notification")
+  private PushNotificationConfig pushNotification;
+
+  @Nullable
   @JsonProperty("ranking")
   private RankingConfig ranking;
 }

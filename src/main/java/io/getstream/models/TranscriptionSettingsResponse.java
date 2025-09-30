@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -28,4 +29,12 @@ public class TranscriptionSettingsResponse {
 
   @JsonProperty("mode")
   private String mode;
+
+  @Nullable
+  @JsonProperty("speech_segment_config")
+  private SpeechSegmentConfig speechSegmentConfig;
+
+  @Nullable
+  @JsonProperty("translation")
+  private TranslationSettings translation;
 }

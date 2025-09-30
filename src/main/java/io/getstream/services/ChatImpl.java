@@ -20,7 +20,7 @@ import io.getstream.services.framework.StreamRequest;
 import java.util.*;
 import org.jetbrains.annotations.NotNull;
 
-public class ChatImpl implements Chat {
+public class ChatImpl {
   private StreamHTTPClient client;
 
   public ChatImpl(StreamHTTPClient client) {
@@ -1030,6 +1030,28 @@ public class ChatImpl implements Chat {
   }
 
   @NotNull
+  public StreamRequest<UpdateMessagePartialResponse> ephemeralMessageUpdate(
+      @NotNull String id, EphemeralMessageUpdateRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<UpdateMessagePartialResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PATCH",
+        "/api/v2/chat/messages/{id}/ephemeral",
+        request,
+        pathParams,
+        new TypeReference<UpdateMessagePartialResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpdateMessagePartialResponse> ephemeralMessageUpdate(@NotNull String id)
+      throws StreamException {
+    return ephemeralMessageUpdate(id, new EphemeralMessageUpdateRequest());
+  }
+
+  @NotNull
   public StreamRequest<SendReactionResponse> sendReaction(
       @NotNull String id, SendReactionRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
@@ -1353,51 +1375,6 @@ public class ChatImpl implements Chat {
   }
 
   @NotNull
-  public StreamRequest<UpsertPushPreferencesResponse> updatePushNotificationPreferences(
-      UpdatePushNotificationPreferencesRequest request) throws StreamException {
-
-    return new StreamRequest<UpsertPushPreferencesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/chat/push_preferences",
-        request,
-        null,
-        new TypeReference<UpsertPushPreferencesResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<GetPushTemplatesResponse> getPushTemplates(GetPushTemplatesRequest request)
-      throws StreamException {
-
-    return new StreamRequest<GetPushTemplatesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "GET",
-        "/api/v2/chat/push_templates",
-        request,
-        null,
-        new TypeReference<GetPushTemplatesResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<UpsertPushTemplateResponse> upsertPushTemplate(
-      UpsertPushTemplateRequest request) throws StreamException {
-
-    return new StreamRequest<UpsertPushTemplateResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/chat/push_templates",
-        request,
-        null,
-        new TypeReference<UpsertPushTemplateResponse>() {});
-  }
-
-  @NotNull
   public StreamRequest<QueryBannedUsersResponse> queryBannedUsers(QueryBannedUsersRequest request)
       throws StreamException {
 
@@ -1690,10 +1667,5 @@ public class ChatImpl implements Chat {
         request,
         pathParams,
         new TypeReference<Response>() {});
-  }
-
-  @NotNull
-  public Channel channel(String channelType, String channelID) {
-    return new Channel(channelType, channelID, client.chat());
   }
 }

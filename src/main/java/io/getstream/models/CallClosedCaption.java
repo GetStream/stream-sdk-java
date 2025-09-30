@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -24,6 +25,12 @@ public class CallClosedCaption {
   @JsonProperty("end_time")
   private Date endTime;
 
+  @JsonProperty("id")
+  private String id;
+
+  @JsonProperty("language")
+  private String language;
+
   @JsonProperty("speaker_id")
   private String speakerID;
 
@@ -33,6 +40,13 @@ public class CallClosedCaption {
   @JsonProperty("text")
   private String text;
 
+  @JsonProperty("translated")
+  private Boolean translated;
+
   @JsonProperty("user")
   private UserResponse user;
+
+  @Nullable
+  @JsonProperty("service")
+  private String service;
 }

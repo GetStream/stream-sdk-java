@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -36,6 +37,9 @@ public class ConfigResponse {
 
   @JsonProperty("updated_at")
   private Date updatedAt;
+
+  @JsonProperty("supported_video_call_harm_types")
+  private List<String> supportedVideoCallHarmTypes;
 
   @Nullable
   @JsonProperty("ai_image_config")
@@ -68,10 +72,6 @@ public class ConfigResponse {
   @Nullable
   @JsonProperty("llm_config")
   private LLMConfig llmConfig;
-
-  @Nullable
-  @JsonProperty("rule_builder_config")
-  private RuleBuilderConfig ruleBuilderConfig;
 
   @Nullable
   @JsonProperty("velocity_filter_config")

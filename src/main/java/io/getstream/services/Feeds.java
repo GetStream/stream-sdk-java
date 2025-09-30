@@ -15,10 +15,13 @@ package io.getstream.services;
 import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
 import io.getstream.services.framework.StreamRequest;
+import io.getstream.services.framework.StreamSDKClient;
 import java.util.*;
 import org.jetbrains.annotations.NotNull;
 
 public interface Feeds {
+  public StreamSDKClient getSDKClient();
+
   @NotNull
   public StreamRequest<AddActivityResponse> addActivity(AddActivityRequest request)
       throws StreamException;
@@ -430,6 +433,21 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<ListFeedVisibilitiesResponse> listFeedVisibilities(
+      ListFeedVisibilitiesRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListFeedVisibilitiesResponse> listFeedVisibilities() throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedVisibilityResponse> getFeedVisibility(
+      @NotNull String name, GetFeedVisibilityRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedVisibilityResponse> getFeedVisibility(@NotNull String name)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<CreateFeedsBatchResponse> createFeedsBatch(CreateFeedsBatchRequest request)
       throws StreamException;
 
@@ -517,4 +535,8 @@ public interface Feeds {
   @NotNull
   public StreamRequest<ExportFeedUserDataResponse> exportFeedUserData(
       @NotNull String userID, ExportFeedUserDataRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ExportFeedUserDataResponse> exportFeedUserData(@NotNull String userID)
+      throws StreamException;
 }

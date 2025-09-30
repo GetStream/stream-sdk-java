@@ -15,10 +15,13 @@ package io.getstream.services;
 import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
 import io.getstream.services.framework.StreamRequest;
+import io.getstream.services.framework.StreamSDKClient;
 import java.util.*;
 import org.jetbrains.annotations.NotNull;
 
 public interface Video {
+  public StreamSDKClient getSDKClient();
+
   @NotNull
   public StreamRequest<GetActiveCallsStatusResponse> getActiveCallsStatus(
       GetActiveCallsStatusRequest request) throws StreamException;
@@ -74,6 +77,11 @@ public interface Video {
       @NotNull String type, @NotNull String id, BlockUserRequest request) throws StreamException;
 
   @NotNull
+  public StreamRequest<SendClosedCaptionResponse> sendClosedCaption(
+      @NotNull String type, @NotNull String id, SendClosedCaptionRequest request)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<DeleteCallResponse> deleteCall(
       @NotNull String type, @NotNull String id, DeleteCallRequest request) throws StreamException;
 
@@ -102,6 +110,10 @@ public interface Video {
   @NotNull
   public StreamRequest<GoLiveResponse> goLive(@NotNull String type, @NotNull String id)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<KickUserResponse> kickUser(
+      @NotNull String type, @NotNull String id, KickUserRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<EndCallResponse> endCall(

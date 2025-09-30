@@ -22,16 +22,19 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class AIImageConfig {
 
-  @JsonProperty("enabled")
-  private Boolean enabled;
-
-  @JsonProperty("ocr_rules")
-  private List<OCRRule> ocrRules;
-
-  @JsonProperty("rules")
-  private List<AWSRekognitionRule> rules;
-
   @Nullable
   @JsonProperty("async")
   private Boolean async;
+
+  @Nullable
+  @JsonProperty("enabled")
+  private Boolean enabled;
+
+  @Nullable
+  @JsonProperty("ocr_rules")
+  private List<OCRRule> ocrRules;
+
+  @Nullable
+  @JsonProperty("rules")
+  private List<AWSRekognitionRule> rules;
 }

@@ -22,6 +22,10 @@ import org.jetbrains.annotations.Nullable;
 public class ModerationDashboardPreferences {
 
   @Nullable
+  @JsonProperty("disable_flagging_reviewed_entity")
+  private Boolean disableFlaggingReviewedEntity;
+
+  @Nullable
   @JsonProperty("flag_user_on_flagged_content")
   private Boolean flagUserOnFlaggedContent;
 

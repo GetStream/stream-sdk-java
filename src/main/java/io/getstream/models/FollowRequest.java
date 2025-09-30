@@ -37,6 +37,10 @@ public class FollowRequest {
   private String pushPreference;
 
   @Nullable
+  @JsonProperty("skip_push")
+  private Boolean skipPush;
+
+  @Nullable
   @JsonProperty("custom")
   private Map<String, Object> custom;
 }

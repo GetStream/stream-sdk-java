@@ -26,9 +26,6 @@ public class UserMessagesDeletedEvent {
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @JsonProperty("soft_delete")
-  private Boolean softDelete;
-
   @JsonProperty("custom")
   private Map<String, Object> custom;
 
@@ -45,6 +42,10 @@ public class UserMessagesDeletedEvent {
   @Nullable
   @JsonProperty("channel_member_count")
   private Integer channelMemberCount;
+
+  @Nullable
+  @JsonProperty("channel_message_count")
+  private Integer channelMessageCount;
 
   @Nullable
   @JsonProperty("channel_type")

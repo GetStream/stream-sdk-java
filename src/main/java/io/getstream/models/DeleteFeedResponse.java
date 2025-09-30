@@ -22,4 +22,7 @@ public class DeleteFeedResponse {
 
   @JsonProperty("duration")
   private String duration;
+
+  @JsonProperty("task_id")
+  private String taskID;
 }

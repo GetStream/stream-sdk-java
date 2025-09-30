@@ -23,15 +23,21 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class LLMConfig {
 
-  @JsonProperty("enabled")
-  private Boolean enabled;
-
-  @JsonProperty("rules")
-  private List<LLMRule> rules;
+  @Nullable
+  @JsonProperty("app_context")
+  private String appContext;
 
   @Nullable
   @JsonProperty("async")
   private Boolean async;
+
+  @Nullable
+  @JsonProperty("enabled")
+  private Boolean enabled;
+
+  @Nullable
+  @JsonProperty("rules")
+  private List<LLMRule> rules;
 
   @Nullable
   @JsonProperty("severity_descriptions")

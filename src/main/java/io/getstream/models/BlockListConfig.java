@@ -22,13 +22,15 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class BlockListConfig {
 
-  @JsonProperty("enabled")
-  private Boolean enabled;
-
-  @JsonProperty("rules")
-  private List<BlockListRule> rules;
-
   @Nullable
   @JsonProperty("async")
   private Boolean async;
+
+  @Nullable
+  @JsonProperty("enabled")
+  private Boolean enabled;
+
+  @Nullable
+  @JsonProperty("rules")
+  private List<BlockListRule> rules;
 }

@@ -40,6 +40,9 @@ public class AggregatedActivityResponse {
   @JsonProperty("user_count")
   private Integer userCount;
 
+  @JsonProperty("user_count_truncated")
+  private Boolean userCountTruncated;
+
   @JsonProperty("activities")
   private List<ActivityResponse> activities;
 }

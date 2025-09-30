@@ -22,4 +22,10 @@ public class CallIngressResponse {
 
   @JsonProperty("rtmp")
   private RTMPIngress rtmp;
+
+  @JsonProperty("srt")
+  private SRTIngress srt;
+
+  @JsonProperty("whip")
+  private WHIPIngress whip;
 }

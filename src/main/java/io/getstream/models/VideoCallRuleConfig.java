@@ -13,7 +13,8 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
+import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -21,6 +22,15 @@ import java.util.Map;
 @lombok.AllArgsConstructor
 public class VideoCallRuleConfig {
 
+  @Nullable
+  @JsonProperty("flag_all_labels")
+  private Boolean flagAllLabels;
+
+  @Nullable
+  @JsonProperty("flagged_labels")
+  private List<String> flaggedLabels;
+
+  @Nullable
   @JsonProperty("rules")
-  private Map<String, HarmConfig> rules;
+  private List<HarmConfig> rules;
 }

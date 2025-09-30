@@ -41,6 +41,10 @@ public class AddCommentRequest {
   private String parentID;
 
   @Nullable
+  @JsonProperty("skip_push")
+  private Boolean skipPush;
+
+  @Nullable
   @JsonProperty("user_id")
   private String userID;
 

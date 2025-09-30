@@ -148,6 +148,10 @@ public class Message {
   private Map<String, List<String>> imageLabels;
 
   @Nullable
+  @JsonProperty("member")
+  private ChannelMember member;
+
+  @Nullable
   @JsonProperty("moderation")
   private ModerationV2Response moderation;
 

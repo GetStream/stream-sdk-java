@@ -21,12 +21,13 @@ import static okhttp3.internal.platform.Platform.INFO;
 import java.io.EOFException;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 import okhttp3.*;
-import okhttp3.internal.http.HttpHeaders;
 import okhttp3.internal.platform.Platform;
 import okio.Buffer;
 import okio.BufferedSource;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * An OkHttp interceptor which logs request and response information. Can be applied as an
@@ -37,7 +38,7 @@ import okio.BufferedSource;
  * slightly between releases. If you need a stable logging format, use your own interceptor.
  */
 public final class HttpLoggingInterceptor implements Interceptor {
-  private static final Charset UTF8 = Charset.forName("UTF-8");
+  private static final Charset UTF8 = StandardCharsets.UTF_8;
 
   public enum Level {
     /** No logs. */
@@ -142,7 +143,6 @@ public final class HttpLoggingInterceptor implements Interceptor {
   private volatile Level level = Level.NONE;
 
   /** Change the level at which this interceptor logs. */
-  @SuppressWarnings("javadoc")
   public HttpLoggingInterceptor setLevel(Level level) {
     if (level == null) throw new NullPointerException("level == null. Use Level.NONE instead.");
     this.level = level;
@@ -154,6 +154,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
   }
 
   @Override
+  @NotNull
   public Response intercept(Chain chain) throws IOException {
     Level level = this.level;
 
@@ -190,7 +191,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
     if (logHeaders) {
       if (hasRequestBody) {
         // Request body headers are only present when installed as a network interceptor. Force
-        // them to be included (when available) so there values are known.
+        // them to be included (when available) so their values are known.
         if (requestBody.contentType() != null) {
           logger.log("Content-Type: " + requestBody.contentType());
         }
@@ -219,7 +220,10 @@ public final class HttpLoggingInterceptor implements Interceptor {
       Charset charset = UTF8;
       MediaType contentType = requestBody.contentType();
       if (contentType != null) {
-        charset = contentType.charset(UTF8);
+        Charset ctCharset = contentType.charset(UTF8);
+        if (ctCharset != null) {
+          charset = ctCharset;
+        }
       }
 
       logger.log("Request body:");
@@ -248,7 +252,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
     long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
 
     ResponseBody responseBody = response.body();
-    long contentLength = responseBody.contentLength();
+    long contentLength = responseBody != null ? responseBody.contentLength() : -1;
     String bodySize = contentLength != -1 ? contentLength + "-byte" : "unknown-length";
     logger.log(
         "<-- "
@@ -268,7 +272,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
         logger.log(headers.name(i) + ": " + headers.value(i));
       }
     }
-    if (!logResponseBody || !HttpHeaders.hasBody(response)) {
+    if (!logResponseBody || response.body() == null) {
       logger.log("<-- END HTTP");
     } else if (bodyEncoded(response.headers())) {
       logger.log("<-- END HTTP (encoded body omitted)");
@@ -280,7 +284,10 @@ public final class HttpLoggingInterceptor implements Interceptor {
       Charset charset = UTF8;
       MediaType contentType = responseBody.contentType();
       if (contentType != null) {
-        charset = contentType.charset(UTF8);
+        Charset ctCharset = contentType.charset(UTF8);
+        if (ctCharset != null) {
+          charset = ctCharset;
+        }
       }
 
       if (!isPlaintext(buffer)) {
@@ -301,8 +308,8 @@ public final class HttpLoggingInterceptor implements Interceptor {
   }
 
   /**
-   * Returns true if the body in question probably contains human readable text. Uses a small sample
-   * of code points to detect unicode control characters commonly used in binary file signatures.
+   * Returns true if the body in question probably contains human-readable text. Uses a small sample
+   * of code points to detect Unicode control characters commonly used in binary file signatures.
    */
   static boolean isPlaintext(Buffer buffer) {
     try {

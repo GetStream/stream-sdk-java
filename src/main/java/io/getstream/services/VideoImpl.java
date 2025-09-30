@@ -20,7 +20,7 @@ import io.getstream.services.framework.StreamRequest;
 import java.util.*;
 import org.jetbrains.annotations.NotNull;
 
-public class VideoImpl implements Video {
+public class VideoImpl {
   private StreamHTTPClient client;
 
   public VideoImpl(StreamHTTPClient client) {
@@ -198,6 +198,26 @@ public class VideoImpl implements Video {
   }
 
   @NotNull
+  public StreamRequest<SendClosedCaptionResponse> sendClosedCaption(
+      @NotNull String type, @NotNull String id, SendClosedCaptionRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "type", type,
+            "id", id);
+
+    return new StreamRequest<SendClosedCaptionResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/video/call/{type}/{id}/closed_captions",
+        request,
+        pathParams,
+        new TypeReference<SendClosedCaptionResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<DeleteCallResponse> deleteCall(
       @NotNull String type, @NotNull String id, DeleteCallRequest request) throws StreamException {
     var pathParams =
@@ -291,6 +311,25 @@ public class VideoImpl implements Video {
   public StreamRequest<GoLiveResponse> goLive(@NotNull String type, @NotNull String id)
       throws StreamException {
     return goLive(type, id, new GoLiveRequest());
+  }
+
+  @NotNull
+  public StreamRequest<KickUserResponse> kickUser(
+      @NotNull String type, @NotNull String id, KickUserRequest request) throws StreamException {
+    var pathParams =
+        Map.of(
+            "type", type,
+            "id", id);
+
+    return new StreamRequest<KickUserResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/video/call/{type}/{id}/kick",
+        request,
+        pathParams,
+        new TypeReference<KickUserResponse>() {});
   }
 
   @NotNull
@@ -1135,10 +1174,5 @@ public class VideoImpl implements Video {
   public StreamRequest<QueryAggregateCallStatsResponse> queryAggregateCallStats()
       throws StreamException {
     return queryAggregateCallStats(new QueryAggregateCallStatsRequest());
-  }
-
-  @NotNull
-  public Call call(String callType, String callID) {
-    return new Call(callType, callID, client.video());
   }
 }

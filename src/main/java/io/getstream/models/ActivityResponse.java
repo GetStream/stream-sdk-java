@@ -134,7 +134,7 @@ public class ActivityResponse {
 
   @Nullable
   @JsonProperty("notification_context")
-  private Map<String, Object> notificationContext;
+  private NotificationContext notificationContext;
 
   @Nullable
   @JsonProperty("parent")

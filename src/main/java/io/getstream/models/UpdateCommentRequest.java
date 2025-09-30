@@ -27,6 +27,10 @@ public class UpdateCommentRequest {
   private String comment;
 
   @Nullable
+  @JsonProperty("skip_push")
+  private Boolean skipPush;
+
+  @Nullable
   @JsonProperty("custom")
   private Map<String, Object> custom;
 }

@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -21,9 +22,23 @@ import java.util.List;
 @lombok.AllArgsConstructor
 public class HarmConfig {
 
+  @Nullable
+  @JsonProperty("cooldown_period")
+  private Integer cooldownPeriod;
+
+  @Nullable
   @JsonProperty("severity")
   private Integer severity;
 
+  @Nullable
+  @JsonProperty("threshold")
+  private Integer threshold;
+
+  @Nullable
   @JsonProperty("action_sequences")
   private List<ActionSequence> actionSequences;
+
+  @Nullable
+  @JsonProperty("harm_types")
+  private List<String> harmTypes;
 }

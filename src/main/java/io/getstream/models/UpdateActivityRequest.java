@@ -49,6 +49,10 @@ public class UpdateActivityRequest {
   private List<Attachment> attachments;
 
   @Nullable
+  @JsonProperty("feeds")
+  private List<String> feeds;
+
+  @Nullable
   @JsonProperty("filter_tags")
   private List<String> filterTags;
 

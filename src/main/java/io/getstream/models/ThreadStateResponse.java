@@ -24,6 +24,9 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class ThreadStateResponse {
 
+  @JsonProperty("active_participant_count")
+  private Integer activeParticipantCount;
+
   @JsonProperty("channel_cid")
   private String channelCid;
 
@@ -35,6 +38,9 @@ public class ThreadStateResponse {
 
   @JsonProperty("parent_message_id")
   private String parentMessageID;
+
+  @JsonProperty("participant_count")
+  private Integer participantCount;
 
   @JsonProperty("title")
   private String title;
@@ -49,20 +55,12 @@ public class ThreadStateResponse {
   private Map<String, Object> custom;
 
   @Nullable
-  @JsonProperty("active_participant_count")
-  private Integer activeParticipantCount;
-
-  @Nullable
   @JsonProperty("deleted_at")
   private Date deletedAt;
 
   @Nullable
   @JsonProperty("last_message_at")
   private Date lastMessageAt;
-
-  @Nullable
-  @JsonProperty("participant_count")
-  private Integer participantCount;
 
   @Nullable
   @JsonProperty("reply_count")

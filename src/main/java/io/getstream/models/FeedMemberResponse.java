@@ -49,4 +49,8 @@ public class FeedMemberResponse {
   @Nullable
   @JsonProperty("custom")
   private Map<String, Object> custom;
+
+  @Nullable
+  @JsonProperty("membership_level")
+  private MembershipLevelResponse membershipLevel;
 }

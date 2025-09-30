@@ -21,12 +21,13 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class RuleBuilderCondition {
 
-  @JsonProperty("type")
-  private String type;
-
   @Nullable
   @JsonProperty("confidence")
   private Double confidence;
+
+  @Nullable
+  @JsonProperty("type")
+  private String type;
 
   @Nullable
   @JsonProperty("content_count_rule_params")
@@ -51,6 +52,10 @@ public class RuleBuilderCondition {
   @Nullable
   @JsonProperty("user_created_within_params")
   private UserCreatedWithinParameters userCreatedWithinParams;
+
+  @Nullable
+  @JsonProperty("user_custom_property_params")
+  private UserCustomPropertyParameters userCustomPropertyParams;
 
   @Nullable
   @JsonProperty("user_rule_params")

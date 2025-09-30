@@ -22,13 +22,15 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class AIVideoConfig {
 
-  @JsonProperty("enabled")
-  private Boolean enabled;
-
-  @JsonProperty("rules")
-  private List<AWSRekognitionRule> rules;
-
   @Nullable
   @JsonProperty("async")
   private Boolean async;
+
+  @Nullable
+  @JsonProperty("enabled")
+  private Boolean enabled;
+
+  @Nullable
+  @JsonProperty("rules")
+  private List<AWSRekognitionRule> rules;
 }

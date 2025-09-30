@@ -40,6 +40,10 @@ public class EventHook {
   private String id;
 
   @Nullable
+  @JsonProperty("product")
+  private String product;
+
+  @Nullable
   @JsonProperty("sns_auth_type")
   private String snsAuthType;
 

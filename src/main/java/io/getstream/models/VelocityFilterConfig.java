@@ -22,25 +22,31 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class VelocityFilterConfig {
 
+  @Nullable
   @JsonProperty("advanced_filters")
   private Boolean advancedFilters;
-
-  @JsonProperty("cascading_actions")
-  private Boolean cascadingActions;
-
-  @JsonProperty("cids_per_user")
-  private Integer cidsPerUser;
-
-  @JsonProperty("enabled")
-  private Boolean enabled;
-
-  @JsonProperty("first_message_only")
-  private Boolean firstMessageOnly;
-
-  @JsonProperty("rules")
-  private List<VelocityFilterConfigRule> rules;
 
   @Nullable
   @JsonProperty("async")
   private Boolean async;
+
+  @Nullable
+  @JsonProperty("cascading_actions")
+  private Boolean cascadingActions;
+
+  @Nullable
+  @JsonProperty("cids_per_user")
+  private Integer cidsPerUser;
+
+  @Nullable
+  @JsonProperty("enabled")
+  private Boolean enabled;
+
+  @Nullable
+  @JsonProperty("first_message_only")
+  private Boolean firstMessageOnly;
+
+  @Nullable
+  @JsonProperty("rules")
+  private List<VelocityFilterConfigRule> rules;
 }

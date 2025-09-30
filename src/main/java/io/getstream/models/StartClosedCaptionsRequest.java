@@ -32,4 +32,8 @@ public class StartClosedCaptionsRequest {
   @Nullable
   @JsonProperty("language")
   private String language;
+
+  @Nullable
+  @JsonProperty("speech_segment_config")
+  private SpeechSegmentConfig speechSegmentConfig;
 }

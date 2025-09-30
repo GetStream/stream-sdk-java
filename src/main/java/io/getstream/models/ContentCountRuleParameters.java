@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -20,9 +21,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @lombok.AllArgsConstructor
 public class ContentCountRuleParameters {
 
+  @Nullable
   @JsonProperty("threshold")
   private Integer threshold;
 
+  @Nullable
   @JsonProperty("time_window")
   private String timeWindow;
 }

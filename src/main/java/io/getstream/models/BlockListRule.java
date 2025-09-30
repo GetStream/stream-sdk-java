@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -23,9 +24,11 @@ public class BlockListRule {
   @JsonProperty("action")
   private String action;
 
+  @Nullable
   @JsonProperty("name")
   private String name;
 
+  @Nullable
   @JsonProperty("team")
   private String team;
 }

@@ -152,6 +152,10 @@ public class SearchResultMessage {
   private Map<String, List<String>> imageLabels;
 
   @Nullable
+  @JsonProperty("member")
+  private ChannelMemberResponse member;
+
+  @Nullable
   @JsonProperty("moderation")
   private ModerationV2Response moderation;
 

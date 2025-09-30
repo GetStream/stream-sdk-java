@@ -20,7 +20,7 @@ import io.getstream.services.framework.StreamRequest;
 import java.util.*;
 import org.jetbrains.annotations.NotNull;
 
-public class CommonImpl implements Common {
+public class CommonImpl {
   private StreamHTTPClient client;
 
   public CommonImpl(StreamHTTPClient client) {
@@ -748,6 +748,21 @@ public class CommonImpl implements Common {
   }
 
   @NotNull
+  public StreamRequest<UpsertPushPreferencesResponse> updatePushNotificationPreferences(
+      UpdatePushNotificationPreferencesRequest request) throws StreamException {
+
+    return new StreamRequest<UpsertPushPreferencesResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/push_preferences",
+        request,
+        null,
+        new TypeReference<UpsertPushPreferencesResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<ListPushProvidersResponse> listPushProviders(
       ListPushProvidersRequest request) throws StreamException {
 
@@ -811,6 +826,36 @@ public class CommonImpl implements Common {
   public StreamRequest<Response> deletePushProvider(@NotNull String type, @NotNull String name)
       throws StreamException {
     return deletePushProvider(type, name, new DeletePushProviderRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GetPushTemplatesResponse> getPushTemplates(GetPushTemplatesRequest request)
+      throws StreamException {
+
+    return new StreamRequest<GetPushTemplatesResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/push_templates",
+        request,
+        null,
+        new TypeReference<GetPushTemplatesResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpsertPushTemplateResponse> upsertPushTemplate(
+      UpsertPushTemplateRequest request) throws StreamException {
+
+    return new StreamRequest<UpsertPushTemplateResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/push_templates",
+        request,
+        null,
+        new TypeReference<UpsertPushTemplateResponse>() {});
   }
 
   @NotNull

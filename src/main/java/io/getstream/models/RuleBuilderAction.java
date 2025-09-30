@@ -21,6 +21,7 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class RuleBuilderAction {
 
+  @Nullable
   @JsonProperty("type")
   private String type;
 
@@ -29,14 +30,6 @@ public class RuleBuilderAction {
   private BanOptions banOptions;
 
   @Nullable
-  @JsonProperty("flag_content_options")
-  private FlagContentOptions flagContentOptions;
-
-  @Nullable
   @JsonProperty("flag_user_options")
   private FlagUserOptions flagUserOptions;
-
-  @Nullable
-  @JsonProperty("remove_content_options")
-  private BlockContentOptions removeContentOptions;
 }

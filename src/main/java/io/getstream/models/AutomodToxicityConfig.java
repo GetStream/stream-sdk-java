@@ -22,13 +22,15 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class AutomodToxicityConfig {
 
-  @JsonProperty("enabled")
-  private Boolean enabled;
-
-  @JsonProperty("rules")
-  private List<AutomodRule> rules;
-
   @Nullable
   @JsonProperty("async")
   private Boolean async;
+
+  @Nullable
+  @JsonProperty("enabled")
+  private Boolean enabled;
+
+  @Nullable
+  @JsonProperty("rules")
+  private List<AutomodRule> rules;
 }

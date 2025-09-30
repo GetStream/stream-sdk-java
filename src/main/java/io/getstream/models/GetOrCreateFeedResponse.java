@@ -43,9 +43,6 @@ public class GetOrCreateFeedResponse {
   @JsonProperty("members")
   private List<FeedMemberResponse> members;
 
-  @JsonProperty("own_capabilities")
-  private List<FeedOwnCapability> ownCapabilities;
-
   @JsonProperty("pinned_activities")
   private List<ActivityPinResponse> pinnedActivities;
 
@@ -59,10 +56,6 @@ public class GetOrCreateFeedResponse {
   @Nullable
   @JsonProperty("prev")
   private String prev;
-
-  @Nullable
-  @JsonProperty("own_follows")
-  private List<FollowResponse> ownFollows;
 
   @Nullable
   @JsonProperty("followers_pagination")
@@ -79,8 +72,4 @@ public class GetOrCreateFeedResponse {
   @Nullable
   @JsonProperty("notification_status")
   private NotificationStatusResponse notificationStatus;
-
-  @Nullable
-  @JsonProperty("own_membership")
-  private FeedMemberResponse ownMembership;
 }

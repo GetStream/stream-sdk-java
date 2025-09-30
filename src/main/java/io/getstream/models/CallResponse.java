@@ -48,6 +48,9 @@ public class CallResponse {
   @JsonProperty("transcribing")
   private Boolean transcribing;
 
+  @JsonProperty("translating")
+  private Boolean translating;
+
   @JsonProperty("type")
   private String type;
 

@@ -39,10 +39,18 @@ public class PushPreferenceInput {
   private Date disabledUntil;
 
   @Nullable
+  @JsonProperty("feeds_level")
+  private String feedsLevel;
+
+  @Nullable
   @JsonProperty("remove_disable")
   private Boolean removeDisable;
 
   @Nullable
   @JsonProperty("user_id")
   private String userID;
+
+  @Nullable
+  @JsonProperty("feeds_preferences")
+  private FeedsPreferences feedsPreferences;
 }

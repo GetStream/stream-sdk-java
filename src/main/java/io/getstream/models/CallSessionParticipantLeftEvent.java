@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -38,4 +39,8 @@ public class CallSessionParticipantLeftEvent {
 
   @JsonProperty("type")
   private String type;
+
+  @Nullable
+  @JsonProperty("reason")
+  private String reason;
 }

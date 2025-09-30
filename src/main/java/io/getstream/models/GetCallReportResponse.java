@@ -38,4 +38,8 @@ public class GetCallReportResponse {
   @Nullable
   @JsonProperty("chat_activity")
   private ChatActivityStatsResponse chatActivity;
+
+  @Nullable
+  @JsonProperty("session")
+  private CallSessionResponse session;
 }

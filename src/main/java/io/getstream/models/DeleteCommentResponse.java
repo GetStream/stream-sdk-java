@@ -22,4 +22,10 @@ public class DeleteCommentResponse {
 
   @JsonProperty("duration")
   private String duration;
+
+  @JsonProperty("activity")
+  private ActivityResponse activity;
+
+  @JsonProperty("comment")
+  private CommentResponse comment;
 }

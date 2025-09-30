@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -21,12 +22,14 @@ import java.util.List;
 @lombok.AllArgsConstructor
 public class BodyguardRule {
 
-  @JsonProperty("action")
-  private String action;
-
   @JsonProperty("label")
   private String label;
 
+  @Nullable
+  @JsonProperty("action")
+  private String action;
+
+  @Nullable
   @JsonProperty("severity_rules")
   private List<BodyguardSeverityRule> severityRules;
 }

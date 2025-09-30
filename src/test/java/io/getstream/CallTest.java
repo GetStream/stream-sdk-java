@@ -6,11 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 public class CallTest extends BasicTest {
-  String callType = "default";
   private static String callTypeName;
+  String callType = "default";
 
   @Test
   @Disabled
@@ -284,5 +286,38 @@ public class CallTest extends BasicTest {
     SendCallEventRequest sendEventRequest =
         SendCallEventRequest.builder().userID(testUser.getId()).custom(customEvent).build();
     Assertions.assertDoesNotThrow(() -> testCall.sendCallEvent(sendEventRequest));
+  }
+
+  @Test
+  void testGenerateSRTToken() {
+    Assertions.assertNotNull(testUser, "User should not be null");
+    String callID = "call-" + RandomStringUtils.randomAlphanumeric(10);
+    Call testCall = video.call(callType, callID);
+    Assertions.assertDoesNotThrow(
+        () ->
+            testCall.getOrCreate(
+                GetOrCreateCallRequest.builder()
+                    .data(CallRequest.builder().createdByID(testUser.getId()).build())
+                    .build()));
+    String srtToken = "";
+    srtToken =
+        Assertions.assertDoesNotThrow(
+            () -> testCall.createSRTCredentials(testUser.getId()).getAddress());
+    Assertions.assertNotNull(srtToken);
+    Assertions.assertNotEquals("", srtToken);
+    System.out.println("SRT Token: " + srtToken);
+  }
+
+  @Test
+  void testEndCall() {
+    String callID = "call-" + RandomStringUtils.randomAlphanumeric(10);
+    Call testCall = video.call(callType, callID);
+    Assertions.assertDoesNotThrow(
+        () ->
+            testCall.getOrCreate(
+                GetOrCreateCallRequest.builder()
+                    .data(CallRequest.builder().createdByID(testUser.getId()).build())
+                    .build()));
+    Assertions.assertDoesNotThrow(() -> testCall.end());
   }
 }

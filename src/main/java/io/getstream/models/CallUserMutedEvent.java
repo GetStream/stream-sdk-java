@@ -31,6 +31,9 @@ public class CallUserMutedEvent {
   @JsonProperty("from_user_id")
   private String fromUserID;
 
+  @JsonProperty("reason")
+  private String reason;
+
   @JsonProperty("muted_user_ids")
   private List<String> mutedUserIds;
 

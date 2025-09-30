@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -21,9 +22,11 @@ import java.util.List;
 @lombok.AllArgsConstructor
 public class RuleBuilderConditionGroup {
 
+  @Nullable
   @JsonProperty("logic")
   private String logic;
 
+  @Nullable
   @JsonProperty("conditions")
   private List<RuleBuilderCondition> conditions;
 }

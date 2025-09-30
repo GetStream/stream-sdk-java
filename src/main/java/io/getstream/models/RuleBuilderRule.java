@@ -22,15 +22,6 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class RuleBuilderRule {
 
-  @JsonProperty("enabled")
-  private Boolean enabled;
-
-  @JsonProperty("id")
-  private String id;
-
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("rule_type")
   private String ruleType;
 
@@ -40,6 +31,10 @@ public class RuleBuilderRule {
   @Nullable
   @JsonProperty("cooldown_period")
   private String cooldownPeriod;
+
+  @Nullable
+  @JsonProperty("id")
+  private String id;
 
   @Nullable
   @JsonProperty("logic")

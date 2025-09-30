@@ -34,12 +34,6 @@ dependencies {
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-    // This dependency is exported to consumers, that is to say found on their compile classpath.
-    api(libs.commons.math3)
-
-    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    implementation(libs.guava)
-
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.18.2")
@@ -48,7 +42,7 @@ dependencies {
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.6")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.6")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
-    testImplementation("org.apache.commons:commons-lang3:3.12.0")
+    testImplementation("org.apache.commons:commons-lang3:3.18.0")
     compileOnly("org.projectlombok:lombok:1.18.32")
     annotationProcessor("org.projectlombok:lombok:1.18.32")
     testCompileOnly("org.projectlombok:lombok:1.18.32")
@@ -68,7 +62,7 @@ tasks.named<Test>("test") {
 
     doFirst {
         // Inject local properties into tests runtime system properties
-        localProperties.forEach { k, v ->
+        localProperties.forEach { (k, v) ->
             systemProperty(k.toString(), v.toString())
         }
     }
@@ -95,7 +89,7 @@ sourceSets {
 
 spotless {
     java {
-        googleJavaFormat()
+        googleJavaFormat("1.28.0")
     }
 }
 

@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -37,4 +38,8 @@ public class TextContentParameters {
   @Nullable
   @JsonProperty("harm_labels")
   private List<String> harmLabels;
+
+  @Nullable
+  @JsonProperty("llm_harm_labels")
+  private Map<String, String> llmHarmLabels;
 }

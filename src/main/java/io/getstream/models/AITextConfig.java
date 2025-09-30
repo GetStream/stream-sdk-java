@@ -22,19 +22,23 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class AITextConfig {
 
-  @JsonProperty("enabled")
-  private Boolean enabled;
-
-  @JsonProperty("profile")
-  private String profile;
-
-  @JsonProperty("rules")
-  private List<BodyguardRule> rules;
-
-  @JsonProperty("severity_rules")
-  private List<BodyguardSeverityRule> severityRules;
-
   @Nullable
   @JsonProperty("async")
   private Boolean async;
+
+  @Nullable
+  @JsonProperty("enabled")
+  private Boolean enabled;
+
+  @Nullable
+  @JsonProperty("profile")
+  private String profile;
+
+  @Nullable
+  @JsonProperty("rules")
+  private List<BodyguardRule> rules;
+
+  @Nullable
+  @JsonProperty("severity_rules")
+  private List<BodyguardSeverityRule> severityRules;
 }

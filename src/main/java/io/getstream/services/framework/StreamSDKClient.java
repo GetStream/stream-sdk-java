@@ -19,21 +19,33 @@ public class StreamSDKClient extends CommonImpl implements Common {
     this(new StreamHTTPClient(properties));
   }
 
-  private StreamSDKClient(StreamHTTPClient httpClient) {
+  public StreamSDKClient(StreamHTTPClient httpClient) {
     super(httpClient);
     this.httpClient = httpClient;
   }
 
   public Video video() {
-    return new VideoImpl(httpClient);
+    return new VideoClient(this);
+  }
+
+  public StreamHTTPClient getHttpClient() {
+    return httpClient;
   }
 
   public Chat chat() {
-    return new ChatImpl(httpClient);
+    return new ChatClient(this);
+  }
+
+  public Feeds feeds() {
+    return new FeedsClient(this);
   }
 
   public TokenBuilder tokenBuilder() {
     var tb = new TokenBuilder(httpClient.getApiSecret());
     return tb;
+  }
+
+  public StreamSDKClient getSDKClient() {
+    return this;
   }
 }

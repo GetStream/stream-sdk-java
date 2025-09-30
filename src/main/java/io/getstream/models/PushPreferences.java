@@ -33,4 +33,12 @@ public class PushPreferences {
   @Nullable
   @JsonProperty("disabled_until")
   private Date disabledUntil;
+
+  @Nullable
+  @JsonProperty("feeds_level")
+  private String feedsLevel;
+
+  @Nullable
+  @JsonProperty("feeds_preferences")
+  private FeedsPreferences feedsPreferences;
 }

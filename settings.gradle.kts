@@ -6,4 +6,3 @@
  */
 
 rootProject.name = "stream-sdk-java"
-include("lib")

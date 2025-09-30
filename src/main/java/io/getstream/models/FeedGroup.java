@@ -68,6 +68,10 @@ public class FeedGroup {
   private NotificationConfig notification;
 
   @Nullable
+  @JsonProperty("PushNotification")
+  private PushNotificationConfig pushNotification;
+
+  @Nullable
   @JsonProperty("Ranking")
   private RankingConfig ranking;
 

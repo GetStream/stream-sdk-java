@@ -22,9 +22,11 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class VideoRuleParameters {
 
+  @Nullable
   @JsonProperty("threshold")
   private Integer threshold;
 
+  @Nullable
   @JsonProperty("time_window")
   private String timeWindow;
 

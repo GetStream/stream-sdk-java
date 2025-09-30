@@ -22,9 +22,6 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class CheckRequest {
 
-  @JsonProperty("config_key")
-  private String configKey;
-
   @JsonProperty("entity_creator_id")
   private String entityCreatorID;
 
@@ -33,6 +30,10 @@ public class CheckRequest {
 
   @JsonProperty("entity_type")
   private String entityType;
+
+  @Nullable
+  @JsonProperty("config_key")
+  private String configKey;
 
   @Nullable
   @JsonProperty("config_team")
@@ -45,6 +46,10 @@ public class CheckRequest {
   @Nullable
   @JsonProperty("user_id")
   private String userID;
+
+  @Nullable
+  @JsonProperty("config")
+  private ModerationConfig config;
 
   @Nullable
   @JsonProperty("moderation_payload")

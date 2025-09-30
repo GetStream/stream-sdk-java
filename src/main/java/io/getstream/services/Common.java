@@ -15,10 +15,13 @@ package io.getstream.services;
 import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
 import io.getstream.services.framework.StreamRequest;
+import io.getstream.services.framework.StreamSDKClient;
 import java.util.*;
 import org.jetbrains.annotations.NotNull;
 
 public interface Common {
+  public StreamSDKClient getSDKClient();
+
   @NotNull
   public StreamRequest<GetApplicationResponse> getApp(GetAppRequest request) throws StreamException;
 
@@ -249,6 +252,10 @@ public interface Common {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<UpsertPushPreferencesResponse> updatePushNotificationPreferences(
+      UpdatePushNotificationPreferencesRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<ListPushProvidersResponse> listPushProviders(
       ListPushProvidersRequest request) throws StreamException;
 
@@ -270,6 +277,14 @@ public interface Common {
   @NotNull
   public StreamRequest<Response> deletePushProvider(@NotNull String type, @NotNull String name)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetPushTemplatesResponse> getPushTemplates(GetPushTemplatesRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpsertPushTemplateResponse> upsertPushTemplate(
+      UpsertPushTemplateRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<GetRateLimitsResponse> getRateLimits(GetRateLimitsRequest request)

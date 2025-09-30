@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -21,12 +22,6 @@ import org.jetbrains.annotations.Nullable;
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class TextRuleParameters {
-
-  @JsonProperty("threshold")
-  private Integer threshold;
-
-  @JsonProperty("time_window")
-  private String timeWindow;
 
   @Nullable
   @JsonProperty("contains_url")
@@ -37,10 +32,22 @@ public class TextRuleParameters {
   private String severity;
 
   @Nullable
+  @JsonProperty("threshold")
+  private Integer threshold;
+
+  @Nullable
+  @JsonProperty("time_window")
+  private String timeWindow;
+
+  @Nullable
   @JsonProperty("blocklist_match")
   private List<String> blocklistMatch;
 
   @Nullable
   @JsonProperty("harm_labels")
   private List<String> harmLabels;
+
+  @Nullable
+  @JsonProperty("llm_harm_labels")
+  private Map<String, String> llmHarmLabels;
 }

@@ -24,43 +24,55 @@ public class VelocityFilterConfigRule {
   @JsonProperty("action")
   private String action;
 
+  @Nullable
   @JsonProperty("ban_duration")
   private Integer banDuration;
 
+  @Nullable
   @JsonProperty("cascading_action")
   private String cascadingAction;
 
+  @Nullable
   @JsonProperty("cascading_threshold")
   private Integer cascadingThreshold;
 
+  @Nullable
   @JsonProperty("check_message_context")
   private Boolean checkMessageContext;
 
+  @Nullable
   @JsonProperty("fast_spam_threshold")
   private Integer fastSpamThreshold;
 
+  @Nullable
   @JsonProperty("fast_spam_ttl")
   private Integer fastSpamTtl;
 
+  @Nullable
   @JsonProperty("ip_ban")
   private Boolean ipBan;
 
+  @Nullable
   @JsonProperty("probation_period")
   private Integer probationPeriod;
 
+  @Nullable
   @JsonProperty("shadow_ban")
   private Boolean shadowBan;
-
-  @JsonProperty("slow_spam_threshold")
-  private Integer slowSpamThreshold;
-
-  @JsonProperty("slow_spam_ttl")
-  private Integer slowSpamTtl;
-
-  @JsonProperty("url_only")
-  private Boolean urlOnly;
 
   @Nullable
   @JsonProperty("slow_spam_ban_duration")
   private Integer slowSpamBanDuration;
+
+  @Nullable
+  @JsonProperty("slow_spam_threshold")
+  private Integer slowSpamThreshold;
+
+  @Nullable
+  @JsonProperty("slow_spam_ttl")
+  private Integer slowSpamTtl;
+
+  @Nullable
+  @JsonProperty("url_only")
+  private Boolean urlOnly;
 }

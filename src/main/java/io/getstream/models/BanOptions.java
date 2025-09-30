@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -20,15 +21,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @lombok.AllArgsConstructor
 public class BanOptions {
 
+  @Nullable
+  @JsonProperty("delete_messages")
+  private String deleteMessages;
+
+  @Nullable
   @JsonProperty("duration")
   private Integer duration;
 
+  @Nullable
   @JsonProperty("ip_ban")
   private Boolean ipBan;
 
+  @Nullable
   @JsonProperty("reason")
   private String reason;
 
+  @Nullable
   @JsonProperty("shadow_ban")
   private Boolean shadowBan;
 }

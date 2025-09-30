@@ -112,6 +112,10 @@ public class Channel {
   private User createdBy;
 
   @Nullable
+  @JsonProperty("members_lookup")
+  private Map<String, ChannelMemberLookup> membersLookup;
+
+  @Nullable
   @JsonProperty("truncated_by")
   private User truncatedBy;
 }

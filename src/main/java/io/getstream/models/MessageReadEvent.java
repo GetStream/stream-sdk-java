@@ -50,6 +50,10 @@ public class MessageReadEvent {
   private String team;
 
   @Nullable
+  @JsonProperty("channel")
+  private ChannelResponse channel;
+
+  @Nullable
   @JsonProperty("thread")
   private ThreadResponse thread;
 

@@ -21,9 +21,6 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class TranscriptionSettingsRequest {
 
-  @JsonProperty("mode")
-  private String mode;
-
   @Nullable
   @JsonProperty("closed_caption_mode")
   private String closedCaptionMode;
@@ -31,4 +28,16 @@ public class TranscriptionSettingsRequest {
   @Nullable
   @JsonProperty("language")
   private String language;
+
+  @Nullable
+  @JsonProperty("mode")
+  private String mode;
+
+  @Nullable
+  @JsonProperty("speech_segment_config")
+  private SpeechSegmentConfig speechSegmentConfig;
+
+  @Nullable
+  @JsonProperty("translation")
+  private TranslationSettings translation;
 }

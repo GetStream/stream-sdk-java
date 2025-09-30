@@ -53,4 +53,8 @@ public class STTEgressConfig {
   @Nullable
   @JsonProperty("external_storage")
   private ExternalStorage externalStorage;
+
+  @Nullable
+  @JsonProperty("speech_segment_config")
+  private SpeechSegmentConfig speechSegmentConfig;
 }

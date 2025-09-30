@@ -22,10 +22,11 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class RuleBuilderConfig {
 
-  @JsonProperty("rules")
-  private List<RuleBuilderRule> rules;
-
   @Nullable
   @JsonProperty("async")
   private Boolean async;
+
+  @Nullable
+  @JsonProperty("rules")
+  private List<RuleBuilderRule> rules;
 }

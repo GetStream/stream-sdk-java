@@ -30,6 +30,14 @@ public class AddCommentReactionRequest {
   private Boolean createNotificationActivity;
 
   @Nullable
+  @JsonProperty("enforce_unique")
+  private Boolean enforceUnique;
+
+  @Nullable
+  @JsonProperty("skip_push")
+  private Boolean skipPush;
+
+  @Nullable
   @JsonProperty("user_id")
   private String userID;
 

@@ -15,10 +15,13 @@ package io.getstream.services;
 import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
 import io.getstream.services.framework.StreamRequest;
+import io.getstream.services.framework.StreamSDKClient;
 import java.util.*;
 import org.jetbrains.annotations.NotNull;
 
 public interface Chat {
+  public StreamSDKClient getSDKClient();
+
   @NotNull
   public StreamRequest<QueryCampaignsResponse> queryCampaigns(QueryCampaignsRequest request)
       throws StreamException;
@@ -343,6 +346,14 @@ public interface Chat {
   public StreamRequest<MessageResponse> commitMessage(@NotNull String id) throws StreamException;
 
   @NotNull
+  public StreamRequest<UpdateMessagePartialResponse> ephemeralMessageUpdate(
+      @NotNull String id, EphemeralMessageUpdateRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateMessagePartialResponse> ephemeralMessageUpdate(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<SendReactionResponse> sendReaction(
       @NotNull String id, SendReactionRequest request) throws StreamException;
 
@@ -453,18 +464,6 @@ public interface Chat {
 
   @NotNull
   public StreamRequest<UnmuteResponse> unmuteChannel() throws StreamException;
-
-  @NotNull
-  public StreamRequest<UpsertPushPreferencesResponse> updatePushNotificationPreferences(
-      UpdatePushNotificationPreferencesRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<GetPushTemplatesResponse> getPushTemplates(GetPushTemplatesRequest request)
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<UpsertPushTemplateResponse> upsertPushTemplate(
-      UpsertPushTemplateRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryBannedUsersResponse> queryBannedUsers(QueryBannedUsersRequest request)
