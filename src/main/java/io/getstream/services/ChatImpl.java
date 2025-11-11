@@ -148,6 +148,26 @@ public class ChatImpl {
   }
 
   @NotNull
+  public StreamRequest<MarkDeliveredResponse> markDelivered(MarkDeliveredRequest request)
+      throws StreamException {
+
+    return new StreamRequest<MarkDeliveredResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/chat/channels/delivered",
+        request,
+        null,
+        new TypeReference<MarkDeliveredResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<MarkDeliveredResponse> markDelivered() throws StreamException {
+    return markDelivered(new MarkDeliveredRequest());
+  }
+
+  @NotNull
   public StreamRequest<MarkReadResponse> markChannelsRead(MarkChannelsReadRequest request)
       throws StreamException {
 
@@ -337,8 +357,9 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<Response> deleteFile(
-      @NotNull String type, @NotNull String id, DeleteFileRequest request) throws StreamException {
+  public StreamRequest<Response> deleteChannelFile(
+      @NotNull String type, @NotNull String id, DeleteChannelFileRequest request)
+      throws StreamException {
     var pathParams =
         Map.of(
             "type", type,
@@ -356,20 +377,21 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<Response> deleteFile(@NotNull String type, @NotNull String id)
+  public StreamRequest<Response> deleteChannelFile(@NotNull String type, @NotNull String id)
       throws StreamException {
-    return deleteFile(type, id, new DeleteFileRequest());
+    return deleteChannelFile(type, id, new DeleteChannelFileRequest());
   }
 
   @NotNull
-  public StreamRequest<FileUploadResponse> uploadFile(
-      @NotNull String type, @NotNull String id, UploadFileRequest request) throws StreamException {
+  public StreamRequest<UploadChannelFileResponse> uploadChannelFile(
+      @NotNull String type, @NotNull String id, UploadChannelFileRequest request)
+      throws StreamException {
     var pathParams =
         Map.of(
             "type", type,
             "id", id);
 
-    return new StreamRequest<FileUploadResponse>(
+    return new StreamRequest<UploadChannelFileResponse>(
         client.getHttpClient(),
         client.getObjectMapper(),
         client.getBaseUrl(),
@@ -377,13 +399,13 @@ public class ChatImpl {
         "/api/v2/chat/channels/{type}/{id}/file",
         request,
         pathParams,
-        new TypeReference<FileUploadResponse>() {});
+        new TypeReference<UploadChannelFileResponse>() {});
   }
 
   @NotNull
-  public StreamRequest<FileUploadResponse> uploadFile(@NotNull String type, @NotNull String id)
-      throws StreamException {
-    return uploadFile(type, id, new UploadFileRequest());
+  public StreamRequest<UploadChannelFileResponse> uploadChannelFile(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return uploadChannelFile(type, id, new UploadChannelFileRequest());
   }
 
   @NotNull
@@ -412,8 +434,9 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<Response> deleteImage(
-      @NotNull String type, @NotNull String id, DeleteImageRequest request) throws StreamException {
+  public StreamRequest<Response> deleteChannelImage(
+      @NotNull String type, @NotNull String id, DeleteChannelImageRequest request)
+      throws StreamException {
     var pathParams =
         Map.of(
             "type", type,
@@ -431,20 +454,21 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<Response> deleteImage(@NotNull String type, @NotNull String id)
+  public StreamRequest<Response> deleteChannelImage(@NotNull String type, @NotNull String id)
       throws StreamException {
-    return deleteImage(type, id, new DeleteImageRequest());
+    return deleteChannelImage(type, id, new DeleteChannelImageRequest());
   }
 
   @NotNull
-  public StreamRequest<ImageUploadResponse> uploadImage(
-      @NotNull String type, @NotNull String id, UploadImageRequest request) throws StreamException {
+  public StreamRequest<UploadChannelResponse> uploadChannelImage(
+      @NotNull String type, @NotNull String id, UploadChannelImageRequest request)
+      throws StreamException {
     var pathParams =
         Map.of(
             "type", type,
             "id", id);
 
-    return new StreamRequest<ImageUploadResponse>(
+    return new StreamRequest<UploadChannelResponse>(
         client.getHttpClient(),
         client.getObjectMapper(),
         client.getBaseUrl(),
@@ -452,13 +476,13 @@ public class ChatImpl {
         "/api/v2/chat/channels/{type}/{id}/image",
         request,
         pathParams,
-        new TypeReference<ImageUploadResponse>() {});
+        new TypeReference<UploadChannelResponse>() {});
   }
 
   @NotNull
-  public StreamRequest<ImageUploadResponse> uploadImage(@NotNull String type, @NotNull String id)
-      throws StreamException {
-    return uploadImage(type, id, new UploadImageRequest());
+  public StreamRequest<UploadChannelResponse> uploadChannelImage(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return uploadChannelImage(type, id, new UploadChannelImageRequest());
   }
 
   @NotNull

@@ -52,12 +52,16 @@ public class ChannelInput {
   private String truncatedByID;
 
   @Nullable
+  @JsonProperty("filter_tags")
+  private List<String> filterTags;
+
+  @Nullable
   @JsonProperty("invites")
-  private List<ChannelMember> invites;
+  private List<ChannelMemberRequest> invites;
 
   @Nullable
   @JsonProperty("members")
-  private List<ChannelMember> members;
+  private List<ChannelMemberRequest> members;
 
   @Nullable
   @JsonProperty("config_overrides")

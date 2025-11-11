@@ -46,6 +46,10 @@ public class AddActivityRequest {
   private String pollID;
 
   @Nullable
+  @JsonProperty("restrict_replies")
+  private String restrictReplies;
+
+  @Nullable
   @JsonProperty("text")
   private String text;
 

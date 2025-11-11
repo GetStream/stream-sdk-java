@@ -175,6 +175,15 @@ class BaseCall {
   }
 
   @NotNull
+  public StreamResponse<RingCallResponse> ring(RingCallRequest request) throws StreamException {
+    return service.ringCall(this.callType, this.callID, request).execute();
+  }
+
+  public StreamResponse<RingCallResponse> ring() throws StreamException {
+    return this.ring(new RingCallRequest());
+  }
+
+  @NotNull
   public StreamResponse<StartRTMPBroadcastsResponse> startRTMPBroadcasts(
       StartRTMPBroadcastsRequest request) throws StreamException {
     return service.startRTMPBroadcasts(this.callType, this.callID, request).execute();

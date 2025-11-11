@@ -31,6 +31,14 @@ public class UpdateCommentRequest {
   private Boolean skipPush;
 
   @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
   @JsonProperty("custom")
   private Map<String, Object> custom;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

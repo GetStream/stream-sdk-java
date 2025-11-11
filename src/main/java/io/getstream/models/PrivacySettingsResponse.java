@@ -22,6 +22,10 @@ import org.jetbrains.annotations.Nullable;
 public class PrivacySettingsResponse {
 
   @Nullable
+  @JsonProperty("delivery_receipts")
+  private DeliveryReceiptsResponse deliveryReceipts;
+
+  @Nullable
   @JsonProperty("read_receipts")
   private ReadReceiptsResponse readReceipts;
 

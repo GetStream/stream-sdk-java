@@ -64,6 +64,13 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<MarkDeliveredResponse> markDelivered(MarkDeliveredRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<MarkDeliveredResponse> markDelivered() throws StreamException;
+
+  @NotNull
   public StreamRequest<MarkReadResponse> markChannelsRead(MarkChannelsReadRequest request)
       throws StreamException;
 
@@ -126,20 +133,22 @@ public interface Chat {
       @NotNull String type, @NotNull String id, SendEventRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<Response> deleteFile(
-      @NotNull String type, @NotNull String id, DeleteFileRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<Response> deleteFile(@NotNull String type, @NotNull String id)
+  public StreamRequest<Response> deleteChannelFile(
+      @NotNull String type, @NotNull String id, DeleteChannelFileRequest request)
       throws StreamException;
 
   @NotNull
-  public StreamRequest<FileUploadResponse> uploadFile(
-      @NotNull String type, @NotNull String id, UploadFileRequest request) throws StreamException;
+  public StreamRequest<Response> deleteChannelFile(@NotNull String type, @NotNull String id)
+      throws StreamException;
 
   @NotNull
-  public StreamRequest<FileUploadResponse> uploadFile(@NotNull String type, @NotNull String id)
+  public StreamRequest<UploadChannelFileResponse> uploadChannelFile(
+      @NotNull String type, @NotNull String id, UploadChannelFileRequest request)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<UploadChannelFileResponse> uploadChannelFile(
+      @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<HideChannelResponse> hideChannel(
@@ -150,20 +159,22 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
-  public StreamRequest<Response> deleteImage(
-      @NotNull String type, @NotNull String id, DeleteImageRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<Response> deleteImage(@NotNull String type, @NotNull String id)
+  public StreamRequest<Response> deleteChannelImage(
+      @NotNull String type, @NotNull String id, DeleteChannelImageRequest request)
       throws StreamException;
 
   @NotNull
-  public StreamRequest<ImageUploadResponse> uploadImage(
-      @NotNull String type, @NotNull String id, UploadImageRequest request) throws StreamException;
+  public StreamRequest<Response> deleteChannelImage(@NotNull String type, @NotNull String id)
+      throws StreamException;
 
   @NotNull
-  public StreamRequest<ImageUploadResponse> uploadImage(@NotNull String type, @NotNull String id)
+  public StreamRequest<UploadChannelResponse> uploadChannelImage(
+      @NotNull String type, @NotNull String id, UploadChannelImageRequest request)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<UploadChannelResponse> uploadChannelImage(
+      @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<UpdateMemberPartialResponse> updateMemberPartial(

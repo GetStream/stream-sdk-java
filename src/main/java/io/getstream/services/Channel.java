@@ -77,21 +77,22 @@ public class Channel {
     return service.sendEvent(this.channelType, this.channelID, request).execute();
   }
 
-  public StreamResponse<Response> deleteFile(DeleteFileRequest request) throws StreamException {
-    return service.deleteFile(this.channelType, this.channelID, request).execute();
-  }
-
-  public StreamResponse<Response> deleteFile() throws StreamException {
-    return this.deleteFile(new DeleteFileRequest());
-  }
-
-  public StreamResponse<FileUploadResponse> uploadFile(UploadFileRequest request)
+  public StreamResponse<Response> deleteChannelFile(DeleteChannelFileRequest request)
       throws StreamException {
-    return service.uploadFile(this.channelType, this.channelID, request).execute();
+    return service.deleteChannelFile(this.channelType, this.channelID, request).execute();
   }
 
-  public StreamResponse<FileUploadResponse> uploadFile() throws StreamException {
-    return this.uploadFile(new UploadFileRequest());
+  public StreamResponse<Response> deleteChannelFile() throws StreamException {
+    return this.deleteChannelFile(new DeleteChannelFileRequest());
+  }
+
+  public StreamResponse<UploadChannelFileResponse> uploadChannelFile(
+      UploadChannelFileRequest request) throws StreamException {
+    return service.uploadChannelFile(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<UploadChannelFileResponse> uploadChannelFile() throws StreamException {
+    return this.uploadChannelFile(new UploadChannelFileRequest());
   }
 
   public StreamResponse<HideChannelResponse> hide(HideChannelRequest request)
@@ -103,21 +104,22 @@ public class Channel {
     return this.hide(new HideChannelRequest());
   }
 
-  public StreamResponse<Response> deleteImage(DeleteImageRequest request) throws StreamException {
-    return service.deleteImage(this.channelType, this.channelID, request).execute();
-  }
-
-  public StreamResponse<Response> deleteImage() throws StreamException {
-    return this.deleteImage(new DeleteImageRequest());
-  }
-
-  public StreamResponse<ImageUploadResponse> uploadImage(UploadImageRequest request)
+  public StreamResponse<Response> deleteChannelImage(DeleteChannelImageRequest request)
       throws StreamException {
-    return service.uploadImage(this.channelType, this.channelID, request).execute();
+    return service.deleteChannelImage(this.channelType, this.channelID, request).execute();
   }
 
-  public StreamResponse<ImageUploadResponse> uploadImage() throws StreamException {
-    return this.uploadImage(new UploadImageRequest());
+  public StreamResponse<Response> deleteChannelImage() throws StreamException {
+    return this.deleteChannelImage(new DeleteChannelImageRequest());
+  }
+
+  public StreamResponse<UploadChannelResponse> uploadChannelImage(UploadChannelImageRequest request)
+      throws StreamException {
+    return service.uploadChannelImage(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<UploadChannelResponse> uploadChannelImage() throws StreamException {
+    return this.uploadChannelImage(new UploadChannelImageRequest());
   }
 
   public StreamResponse<UpdateMemberPartialResponse> updateMemberPartial(

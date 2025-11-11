@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -23,4 +24,8 @@ public class IngressVideoEncodingOptions {
 
   @JsonProperty("layers")
   private List<IngressVideoLayer> layers;
+
+  @Nullable
+  @JsonProperty("source")
+  private IngressSource source;
 }

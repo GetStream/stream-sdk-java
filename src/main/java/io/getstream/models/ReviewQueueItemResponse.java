@@ -41,6 +41,9 @@ public class ReviewQueueItemResponse {
   @JsonProperty("id")
   private String id;
 
+  @JsonProperty("latest_moderator_action")
+  private String latestModeratorAction;
+
   @JsonProperty("recommended_action")
   private String recommendedAction;
 
@@ -111,6 +114,14 @@ public class ReviewQueueItemResponse {
   @Nullable
   @JsonProperty("feeds_v2_reaction")
   private Reaction feedsV2Reaction;
+
+  @Nullable
+  @JsonProperty("feeds_v3_activity")
+  private ActivityResponse feedsV3Activity;
+
+  @Nullable
+  @JsonProperty("feeds_v3_comment")
+  private CommentResponse feedsV3Comment;
 
   @Nullable
   @JsonProperty("message")

@@ -41,6 +41,9 @@ public class ChannelConfig {
   @JsonProperty("custom_events")
   private Boolean customEvents;
 
+  @JsonProperty("delivery_events")
+  private Boolean deliveryEvents;
+
   @JsonProperty("mark_messages_pending")
   private Boolean markMessagesPending;
 
@@ -115,7 +118,7 @@ public class ChannelConfig {
 
   @Nullable
   @JsonProperty("partition_ttl")
-  private Integer partitionTtl;
+  private String partitionTtl;
 
   @Nullable
   @JsonProperty("allowed_flag_reasons")

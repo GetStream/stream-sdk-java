@@ -54,4 +54,8 @@ public class GetOrCreateFeedGroupRequest {
   @Nullable
   @JsonProperty("ranking")
   private RankingConfig ranking;
+
+  @Nullable
+  @JsonProperty("stories")
+  private StoriesConfig stories;
 }

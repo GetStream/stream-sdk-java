@@ -24,58 +24,58 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class FeedGroup {
 
-  @JsonProperty("AggregationVersion")
+  @JsonProperty("aggregation_version")
   private Integer aggregationVersion;
 
-  @JsonProperty("AppPK")
-  private Integer appPK;
+  @JsonProperty("app_pk")
+  private Integer appPk;
 
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @JsonProperty("DefaultVisibility")
+  @JsonProperty("default_visibility")
   private String defaultVisibility;
 
-  @JsonProperty("ID")
-  private String iD;
+  @JsonProperty("group_id")
+  private String groupID;
 
   @JsonProperty("updated_at")
   private Date updatedAt;
 
-  @JsonProperty("ActivityProcessors")
+  @JsonProperty("activity_processors")
   private List<ActivityProcessorConfig> activityProcessors;
 
-  @JsonProperty("ActivitySelectors")
+  @JsonProperty("activity_selectors")
   private List<ActivitySelectorConfig> activitySelectors;
 
-  @JsonProperty("Custom")
+  @JsonProperty("custom")
   private Map<String, Object> custom;
 
   @Nullable
-  @JsonProperty("DeletedAt")
+  @JsonProperty("deleted_at")
   private Date deletedAt;
 
   @Nullable
-  @JsonProperty("LastFeedGetAt")
+  @JsonProperty("last_feed_get_at")
   private Date lastFeedGetAt;
 
   @Nullable
-  @JsonProperty("Aggregation")
+  @JsonProperty("aggregation")
   private AggregationConfig aggregation;
 
   @Nullable
-  @JsonProperty("Notification")
+  @JsonProperty("notification")
   private NotificationConfig notification;
 
   @Nullable
-  @JsonProperty("PushNotification")
+  @JsonProperty("push_notification")
   private PushNotificationConfig pushNotification;
 
   @Nullable
-  @JsonProperty("Ranking")
+  @JsonProperty("ranking")
   private RankingConfig ranking;
 
   @Nullable
-  @JsonProperty("Stories")
+  @JsonProperty("stories")
   private StoriesConfig stories;
 }

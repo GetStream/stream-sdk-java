@@ -22,11 +22,11 @@ import java.util.Map;
 @lombok.AllArgsConstructor
 public class FeedVisibilityResponse {
 
-  @JsonProperty("description")
-  private String description;
-
   @JsonProperty("name")
   private String name;
+
+  @JsonProperty("permissions")
+  private List<Permission> permissions;
 
   @JsonProperty("grants")
   private Map<String, List<String>> grants;

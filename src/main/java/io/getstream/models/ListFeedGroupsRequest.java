@@ -12,7 +12,16 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.annotations.Query;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class ListFeedGroupsRequest {}
+@lombok.AllArgsConstructor
+public class ListFeedGroupsRequest {
+
+  @Query("include_soft_deleted")
+  @JsonIgnore
+  private Boolean IncludeSoftDeleted;
+}

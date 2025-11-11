@@ -117,7 +117,7 @@ public class OwnUserResponse {
 
   @Nullable
   @JsonProperty("push_preferences")
-  private PushPreferences pushPreferences;
+  private PushPreferencesResponse pushPreferences;
 
   @Nullable
   @JsonProperty("teams_role")

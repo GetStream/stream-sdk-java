@@ -238,8 +238,8 @@ public class FeedsImpl {
   }
 
   @NotNull
-  public StreamRequest<AddReactionResponse> addReaction(
-      @NotNull String activityID, AddReactionRequest request) throws StreamException {
+  public StreamRequest<AddReactionResponse> addActivityReaction(
+      @NotNull String activityID, AddActivityReactionRequest request) throws StreamException {
     var pathParams = Map.of("activity_id", activityID);
 
     return new StreamRequest<AddReactionResponse>(
@@ -1257,6 +1257,28 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<UpdateFeedVisibilityResponse> updateFeedVisibility(
+      @NotNull String name, UpdateFeedVisibilityRequest request) throws StreamException {
+    var pathParams = Map.of("name", name);
+
+    return new StreamRequest<UpdateFeedVisibilityResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PUT",
+        "/api/v2/feeds/feed_visibilities/{name}",
+        request,
+        pathParams,
+        new TypeReference<UpdateFeedVisibilityResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpdateFeedVisibilityResponse> updateFeedVisibility(@NotNull String name)
+      throws StreamException {
+    return updateFeedVisibility(name, new UpdateFeedVisibilityRequest());
+  }
+
+  @NotNull
   public StreamRequest<CreateFeedsBatchResponse> createFeedsBatch(CreateFeedsBatchRequest request)
       throws StreamException {
 
@@ -1269,6 +1291,21 @@ public class FeedsImpl {
         request,
         null,
         new TypeReference<CreateFeedsBatchResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<OwnCapabilitiesBatchResponse> ownCapabilitiesBatch(
+      OwnCapabilitiesBatchRequest request) throws StreamException {
+
+    return new StreamRequest<OwnCapabilitiesBatchResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/feeds/own_capabilities/batch",
+        request,
+        null,
+        new TypeReference<OwnCapabilitiesBatchResponse>() {});
   }
 
   @NotNull
@@ -1289,6 +1326,26 @@ public class FeedsImpl {
   @NotNull
   public StreamRequest<QueryFeedsResponse> queryFeeds() throws StreamException {
     return queryFeeds(new QueryFeedsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GetFeedsRateLimitsResponse> getFeedsRateLimits(
+      GetFeedsRateLimitsRequest request) throws StreamException {
+
+    return new StreamRequest<GetFeedsRateLimitsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/feeds/feeds/rate_limits",
+        request,
+        null,
+        new TypeReference<GetFeedsRateLimitsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetFeedsRateLimitsResponse> getFeedsRateLimits() throws StreamException {
+    return getFeedsRateLimits(new GetFeedsRateLimitsRequest());
   }
 
   @NotNull
@@ -1488,6 +1545,26 @@ public class FeedsImpl {
   public StreamRequest<UpdateMembershipLevelResponse> updateMembershipLevel(@NotNull String id)
       throws StreamException {
     return updateMembershipLevel(id, new UpdateMembershipLevelRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueryFeedsUsageStatsResponse> queryFeedsUsageStats(
+      QueryFeedsUsageStatsRequest request) throws StreamException {
+
+    return new StreamRequest<QueryFeedsUsageStatsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/stats/usage",
+        request,
+        null,
+        new TypeReference<QueryFeedsUsageStatsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryFeedsUsageStatsResponse> queryFeedsUsageStats() throws StreamException {
+    return queryFeedsUsageStats(new QueryFeedsUsageStatsRequest());
   }
 
   @NotNull

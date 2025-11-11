@@ -33,14 +33,23 @@ public class ActivityResponse {
   @JsonProperty("created_at")
   private Date createdAt;
 
+  @JsonProperty("hidden")
+  private Boolean hidden;
+
   @JsonProperty("id")
   private String id;
 
   @JsonProperty("popularity")
   private Integer popularity;
 
+  @JsonProperty("preview")
+  private Boolean preview;
+
   @JsonProperty("reaction_count")
   private Integer reactionCount;
+
+  @JsonProperty("restrict_replies")
+  private String restrictReplies;
 
   @JsonProperty("score")
   private Double score;
@@ -109,8 +118,12 @@ public class ActivityResponse {
   private Date expiresAt;
 
   @Nullable
-  @JsonProperty("hidden")
-  private Boolean hidden;
+  @JsonProperty("is_watched")
+  private Boolean isWatched;
+
+  @Nullable
+  @JsonProperty("moderation_action")
+  private String moderationAction;
 
   @Nullable
   @JsonProperty("text")

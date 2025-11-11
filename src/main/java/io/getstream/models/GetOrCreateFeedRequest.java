@@ -47,10 +47,6 @@ public class GetOrCreateFeedRequest {
   private Boolean watch;
 
   @Nullable
-  @JsonProperty("activity_selector_options")
-  private Map<String, Object> activitySelectorOptions;
-
-  @Nullable
   @JsonProperty("data")
   private FeedInput data;
 

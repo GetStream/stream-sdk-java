@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -22,21 +23,30 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class ModerationCustomActionEvent {
 
+  @JsonProperty("action_id")
+  private String actionID;
+
   @JsonProperty("created_at")
   private Date createdAt;
+
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
+  @JsonProperty("review_queue_item")
+  private ReviewQueueItemResponse reviewQueueItem;
 
   @JsonProperty("type")
   private String type;
 
   @Nullable
-  @JsonProperty("item")
-  private ReviewQueueItem item;
+  @JsonProperty("received_at")
+  private Date receivedAt;
+
+  @Nullable
+  @JsonProperty("action_options")
+  private Map<String, Object> actionOptions;
 
   @Nullable
   @JsonProperty("message")
-  private Message message;
-
-  @Nullable
-  @JsonProperty("user")
-  private User user;
+  private MessageResponse message;
 }

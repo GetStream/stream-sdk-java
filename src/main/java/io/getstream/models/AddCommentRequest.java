@@ -23,9 +23,6 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class AddCommentRequest {
 
-  @JsonProperty("comment")
-  private String comment;
-
   @JsonProperty("object_id")
   private String objectID;
 
@@ -33,8 +30,16 @@ public class AddCommentRequest {
   private String objectType;
 
   @Nullable
+  @JsonProperty("comment")
+  private String comment;
+
+  @Nullable
   @JsonProperty("create_notification_activity")
   private Boolean createNotificationActivity;
+
+  @Nullable
+  @JsonProperty("id")
+  private String id;
 
   @Nullable
   @JsonProperty("parent_id")

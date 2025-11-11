@@ -96,8 +96,8 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
-  public StreamRequest<AddReactionResponse> addReaction(
-      @NotNull String activityID, AddReactionRequest request) throws StreamException;
+  public StreamRequest<AddReactionResponse> addActivityReaction(
+      @NotNull String activityID, AddActivityReactionRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryActivityReactionsResponse> queryActivityReactions(
@@ -448,8 +448,20 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<UpdateFeedVisibilityResponse> updateFeedVisibility(
+      @NotNull String name, UpdateFeedVisibilityRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateFeedVisibilityResponse> updateFeedVisibility(@NotNull String name)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<CreateFeedsBatchResponse> createFeedsBatch(CreateFeedsBatchRequest request)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<OwnCapabilitiesBatchResponse> ownCapabilitiesBatch(
+      OwnCapabilitiesBatchRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryFeedsResponse> queryFeeds(QueryFeedsRequest request)
@@ -457,6 +469,13 @@ public interface Feeds {
 
   @NotNull
   public StreamRequest<QueryFeedsResponse> queryFeeds() throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedsRateLimitsResponse> getFeedsRateLimits(
+      GetFeedsRateLimitsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedsRateLimitsResponse> getFeedsRateLimits() throws StreamException;
 
   @NotNull
   public StreamRequest<UpdateFollowResponse> updateFollow(UpdateFollowRequest request)
@@ -519,6 +538,13 @@ public interface Feeds {
   @NotNull
   public StreamRequest<UpdateMembershipLevelResponse> updateMembershipLevel(@NotNull String id)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryFeedsUsageStatsResponse> queryFeedsUsageStats(
+      QueryFeedsUsageStatsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryFeedsUsageStatsResponse> queryFeedsUsageStats() throws StreamException;
 
   @NotNull
   public StreamRequest<UnfollowBatchResponse> unfollowBatch(UnfollowBatchRequest request)

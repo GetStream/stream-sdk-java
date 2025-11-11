@@ -29,6 +29,14 @@ public class CreateBlockListRequest {
   private List<String> words;
 
   @Nullable
+  @JsonProperty("is_leet_check_enabled")
+  private Boolean isLeetCheckEnabled;
+
+  @Nullable
+  @JsonProperty("is_plural_check_enabled")
+  private Boolean isPluralCheckEnabled;
+
+  @Nullable
   @JsonProperty("team")
   private String team;
 

@@ -23,10 +23,6 @@ import org.jetbrains.annotations.Nullable;
 public class GetOrCreateFeedViewRequest {
 
   @Nullable
-  @JsonProperty("activity_processors")
-  private List<ActivityProcessorConfig> activityProcessors;
-
-  @Nullable
   @JsonProperty("activity_selectors")
   private List<ActivitySelectorConfig> activitySelectors;
 
