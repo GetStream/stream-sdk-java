@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -36,7 +36,7 @@ public class PushPreferenceInput {
 
   @Nullable
   @JsonProperty("disabled_until")
-  private Date disabledUntil;
+  private Instant disabledUntil;
 
   @Nullable
   @JsonProperty("feeds_level")

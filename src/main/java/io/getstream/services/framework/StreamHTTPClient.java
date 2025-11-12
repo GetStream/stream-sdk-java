@@ -3,13 +3,15 @@ package io.getstream.services.framework;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.util.StdDateFormat;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import javax.crypto.spec.SecretKeySpec;
 import okhttp3.ConnectionPool;
@@ -32,10 +34,7 @@ public class StreamHTTPClient {
   private final ObjectMapper objectMapper =
       new ObjectMapper()
           .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-          .setDateFormat(
-              new StdDateFormat()
-                  .withColonInTimeZone(true)
-                  .withTimeZone(TimeZone.getTimeZone("UTC")))
+          .enable(DeserializationFeature.READ_DATE_TIMESTAMPS_AS_NANOSECONDS)
           .enable(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE)
           .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 

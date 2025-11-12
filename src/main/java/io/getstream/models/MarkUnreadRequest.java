@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -28,7 +28,7 @@ public class MarkUnreadRequest {
 
   @Nullable
   @JsonProperty("message_timestamp")
-  private Date messageTimestamp;
+  private Instant messageTimestamp;
 
   @Nullable
   @JsonProperty("thread_id")

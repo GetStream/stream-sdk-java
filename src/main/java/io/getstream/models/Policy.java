@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @lombok.Data
@@ -26,7 +26,7 @@ public class Policy {
   private Integer action;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("name")
   private String name;
@@ -38,7 +38,7 @@ public class Policy {
   private Integer priority;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("resources")
   private List<String> resources;

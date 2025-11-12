@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 
 @lombok.Data
 @lombok.Builder
@@ -34,5 +34,5 @@ public class ParticipantCountByMinuteResponse {
   private Integer min;
 
   @JsonProperty("start_ts")
-  private Date startTs;
+  private Instant startTs;
 }

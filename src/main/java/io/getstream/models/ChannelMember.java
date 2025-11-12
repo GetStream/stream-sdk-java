@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -24,33 +24,45 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class ChannelMember {
 
+  @JsonProperty("banned")
+  private Boolean banned;
+
+  @JsonProperty("channel_role")
+  private String channelRole;
+
+  @JsonProperty("created_at")
+  private Instant createdAt;
+
+  @JsonProperty("is_global_banned")
+  private Boolean isGlobalBanned;
+
+  @JsonProperty("notifications_muted")
+  private Boolean notificationsMuted;
+
+  @JsonProperty("shadow_banned")
+  private Boolean shadowBanned;
+
+  @JsonProperty("updated_at")
+  private Instant updatedAt;
+
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
   @Nullable
   @JsonProperty("archived_at")
-  private Date archivedAt;
+  private Instant archivedAt;
 
   @Nullable
   @JsonProperty("ban_expires")
-  private Date banExpires;
-
-  @Nullable
-  @JsonProperty("banned")
-  private Boolean banned;
+  private Instant banExpires;
 
   @Nullable
   @JsonProperty("blocked")
   private Boolean blocked;
 
   @Nullable
-  @JsonProperty("channel_role")
-  private String channelRole;
-
-  @Nullable
-  @JsonProperty("created_at")
-  private Date createdAt;
-
-  @Nullable
   @JsonProperty("deleted_at")
-  private Date deletedAt;
+  private Instant deletedAt;
 
   @Nullable
   @JsonProperty("hidden")
@@ -58,43 +70,27 @@ public class ChannelMember {
 
   @Nullable
   @JsonProperty("invite_accepted_at")
-  private Date inviteAcceptedAt;
+  private Instant inviteAcceptedAt;
 
   @Nullable
   @JsonProperty("invite_rejected_at")
-  private Date inviteRejectedAt;
+  private Instant inviteRejectedAt;
 
   @Nullable
   @JsonProperty("invited")
   private Boolean invited;
 
   @Nullable
-  @JsonProperty("is_global_banned")
-  private Boolean isGlobalBanned;
-
-  @Nullable
   @JsonProperty("is_moderator")
   private Boolean isModerator;
 
   @Nullable
-  @JsonProperty("notifications_muted")
-  private Boolean notificationsMuted;
-
-  @Nullable
   @JsonProperty("pinned_at")
-  private Date pinnedAt;
-
-  @Nullable
-  @JsonProperty("shadow_banned")
-  private Boolean shadowBanned;
+  private Instant pinnedAt;
 
   @Nullable
   @JsonProperty("status")
   private String status;
-
-  @Nullable
-  @JsonProperty("updated_at")
-  private Date updatedAt;
 
   @Nullable
   @JsonProperty("user_id")
@@ -107,10 +103,6 @@ public class ChannelMember {
   @Nullable
   @JsonProperty("channel")
   private DenormalizedChannelFields channel;
-
-  @Nullable
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
 
   @Nullable
   @JsonProperty("user")

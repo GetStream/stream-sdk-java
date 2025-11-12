@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -32,14 +32,14 @@ public class MessageReadEvent {
   private String cid;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("type")
   private String type;
 
   @Nullable
   @JsonProperty("channel_last_message_at")
-  private Date channelLastMessageAt;
+  private Instant channelLastMessageAt;
 
   @Nullable
   @JsonProperty("last_read_message_id")

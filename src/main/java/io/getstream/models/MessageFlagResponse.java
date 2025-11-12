@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,17 +24,17 @@ import org.jetbrains.annotations.Nullable;
 public class MessageFlagResponse {
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("created_by_automod")
   private Boolean createdByAutomod;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @Nullable
   @JsonProperty("approved_at")
-  private Date approvedAt;
+  private Instant approvedAt;
 
   @Nullable
   @JsonProperty("reason")
@@ -42,11 +42,11 @@ public class MessageFlagResponse {
 
   @Nullable
   @JsonProperty("rejected_at")
-  private Date rejectedAt;
+  private Instant rejectedAt;
 
   @Nullable
   @JsonProperty("reviewed_at")
-  private Date reviewedAt;
+  private Instant reviewedAt;
 
   @Nullable
   @JsonProperty("custom")

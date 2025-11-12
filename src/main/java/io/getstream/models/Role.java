@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @lombok.Data
@@ -23,7 +23,7 @@ import java.util.List;
 public class Role {
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("custom")
   private Boolean custom;
@@ -32,7 +32,7 @@ public class Role {
   private String name;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("scopes")
   private List<String> scopes;

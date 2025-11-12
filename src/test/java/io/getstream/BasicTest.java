@@ -199,9 +199,9 @@ public class BasicTest {
         "%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS %4$s %2$s %5$s%6$s%n");
   }
 
-  protected static List<ChannelMember> buildChannelMembersList() {
+  protected static List<ChannelMemberRequest> buildChannelMembersList() {
     return testUsers.stream()
-        .map(user -> ChannelMember.builder().userID(user.getId()).build())
+        .map(user -> ChannelMemberRequest.builder().userID(user.getId()).build())
         .collect(Collectors.toList());
   }
 

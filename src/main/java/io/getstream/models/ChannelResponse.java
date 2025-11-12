@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -28,7 +28,7 @@ public class ChannelResponse {
   private String cid;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("disabled")
   private Boolean disabled;
@@ -43,7 +43,7 @@ public class ChannelResponse {
   private String type;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("custom")
   private Map<String, Object> custom;
@@ -66,7 +66,7 @@ public class ChannelResponse {
 
   @Nullable
   @JsonProperty("deleted_at")
-  private Date deletedAt;
+  private Instant deletedAt;
 
   @Nullable
   @JsonProperty("hidden")
@@ -74,11 +74,11 @@ public class ChannelResponse {
 
   @Nullable
   @JsonProperty("hide_messages_before")
-  private Date hideMessagesBefore;
+  private Instant hideMessagesBefore;
 
   @Nullable
   @JsonProperty("last_message_at")
-  private Date lastMessageAt;
+  private Instant lastMessageAt;
 
   @Nullable
   @JsonProperty("member_count")
@@ -90,7 +90,7 @@ public class ChannelResponse {
 
   @Nullable
   @JsonProperty("mute_expires_at")
-  private Date muteExpiresAt;
+  private Instant muteExpiresAt;
 
   @Nullable
   @JsonProperty("muted")
@@ -102,7 +102,7 @@ public class ChannelResponse {
 
   @Nullable
   @JsonProperty("truncated_at")
-  private Date truncatedAt;
+  private Instant truncatedAt;
 
   @Nullable
   @JsonProperty("filter_tags")

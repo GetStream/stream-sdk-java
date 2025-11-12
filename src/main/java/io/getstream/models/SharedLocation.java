@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -22,17 +22,41 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class SharedLocation {
 
+  @JsonProperty("channel_cid")
+  private String channelCid;
+
+  @JsonProperty("created_at")
+  private Instant createdAt;
+
+  @JsonProperty("created_by_device_id")
+  private String createdByDeviceID;
+
+  @JsonProperty("message_id")
+  private String messageID;
+
+  @JsonProperty("updated_at")
+  private Instant updatedAt;
+
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
+  @JsonProperty("end_at")
+  private Instant endAt;
+
+  @Nullable
   @JsonProperty("latitude")
   private Double latitude;
 
+  @Nullable
   @JsonProperty("longitude")
   private Double longitude;
 
   @Nullable
-  @JsonProperty("created_by_device_id")
-  private String createdByDeviceID;
+  @JsonProperty("channel")
+  private Channel channel;
 
   @Nullable
-  @JsonProperty("end_at")
-  private Date endAt;
+  @JsonProperty("message")
+  private Message message;
 }

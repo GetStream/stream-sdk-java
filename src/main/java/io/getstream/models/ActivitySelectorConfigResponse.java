@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -29,7 +29,7 @@ public class ActivitySelectorConfigResponse {
 
   @Nullable
   @JsonProperty("cutoff_time")
-  private Date cutoffTime;
+  private Instant cutoffTime;
 
   @Nullable
   @JsonProperty("cutoff_window")

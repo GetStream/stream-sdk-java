@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -32,11 +32,11 @@ public class ChannelExport {
 
   @Nullable
   @JsonProperty("messages_since")
-  private Date messagesSince;
+  private Instant messagesSince;
 
   @Nullable
   @JsonProperty("messages_until")
-  private Date messagesUntil;
+  private Instant messagesUntil;
 
   @Nullable
   @JsonProperty("type")

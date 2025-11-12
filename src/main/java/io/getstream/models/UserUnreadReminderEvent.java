@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 public class UserUnreadReminderEvent {
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("channels")
   private Map<String, ChannelMessages> channels;

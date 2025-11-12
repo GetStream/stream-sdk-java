@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 public class ReadStateResponse {
 
   @JsonProperty("last_read")
-  private Date lastRead;
+  private Instant lastRead;
 
   @JsonProperty("unread_messages")
   private Integer unreadMessages;
@@ -33,7 +33,7 @@ public class ReadStateResponse {
 
   @Nullable
   @JsonProperty("last_delivered_at")
-  private Date lastDeliveredAt;
+  private Instant lastDeliveredAt;
 
   @Nullable
   @JsonProperty("last_delivered_message_id")

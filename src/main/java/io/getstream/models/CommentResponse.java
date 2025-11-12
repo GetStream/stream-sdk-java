@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -28,7 +28,7 @@ public class CommentResponse {
   private Double confidenceScore;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("downvote_count")
   private Integer downvoteCount;
@@ -55,7 +55,7 @@ public class CommentResponse {
   private String status;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("upvote_count")
   private Integer upvoteCount;
@@ -75,7 +75,7 @@ public class CommentResponse {
 
   @Nullable
   @JsonProperty("deleted_at")
-  private Date deletedAt;
+  private Instant deletedAt;
 
   @Nullable
   @JsonProperty("parent_id")

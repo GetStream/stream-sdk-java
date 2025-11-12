@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -25,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 public class FeedSuggestionResponse {
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("description")
   private String description;
@@ -55,14 +55,14 @@ public class FeedSuggestionResponse {
   private Integer pinCount;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("created_by")
   private UserResponse createdBy;
 
   @Nullable
   @JsonProperty("deleted_at")
-  private Date deletedAt;
+  private Instant deletedAt;
 
   @Nullable
   @JsonProperty("reason")

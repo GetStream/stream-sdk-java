@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 
 @lombok.Data
 @lombok.Builder
@@ -25,7 +25,7 @@ public class UnreadCountsChannel {
   private String channelID;
 
   @JsonProperty("last_read")
-  private Date lastRead;
+  private Instant lastRead;
 
   @JsonProperty("unread_count")
   private Integer unreadCount;

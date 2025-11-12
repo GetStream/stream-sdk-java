@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -37,7 +37,7 @@ public class ChannelTypeConfig {
   private Boolean countMessages;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("custom_events")
   private Boolean customEvents;
@@ -91,7 +91,7 @@ public class ChannelTypeConfig {
   private Boolean typingEvents;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("uploads")
   private Boolean uploads;

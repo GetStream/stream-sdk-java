@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 public class UpsertModerationTemplateResponse {
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("duration")
   private String duration;
@@ -32,7 +32,7 @@ public class UpsertModerationTemplateResponse {
   private String name;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @Nullable
   @JsonProperty("config")

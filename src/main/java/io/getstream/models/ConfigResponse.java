@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,7 +27,7 @@ public class ConfigResponse {
   private Boolean async;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("key")
   private String key;
@@ -36,7 +36,7 @@ public class ConfigResponse {
   private String team;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("supported_video_call_harm_types")
   private List<String> supportedVideoCallHarmTypes;

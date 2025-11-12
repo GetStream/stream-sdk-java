@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -26,20 +26,20 @@ public class ReminderResponseData {
   private String channelCid;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("message_id")
   private String messageID;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("user_id")
   private String userID;
 
   @Nullable
   @JsonProperty("remind_at")
-  private Date remindAt;
+  private Instant remindAt;
 
   @Nullable
   @JsonProperty("channel")
@@ -47,9 +47,9 @@ public class ReminderResponseData {
 
   @Nullable
   @JsonProperty("message")
-  private MessageResponse message;
+  private Message message;
 
   @Nullable
   @JsonProperty("user")
-  private UserResponse user;
+  private User user;
 }

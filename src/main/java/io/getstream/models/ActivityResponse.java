@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -31,7 +31,7 @@ public class ActivityResponse {
   private Integer commentCount;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("hidden")
   private Boolean hidden;
@@ -61,7 +61,7 @@ public class ActivityResponse {
   private String type;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("visibility")
   private String visibility;
@@ -107,15 +107,15 @@ public class ActivityResponse {
 
   @Nullable
   @JsonProperty("deleted_at")
-  private Date deletedAt;
+  private Instant deletedAt;
 
   @Nullable
   @JsonProperty("edited_at")
-  private Date editedAt;
+  private Instant editedAt;
 
   @Nullable
   @JsonProperty("expires_at")
-  private Date expiresAt;
+  private Instant expiresAt;
 
   @Nullable
   @JsonProperty("is_watched")

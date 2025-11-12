@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -25,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 public class ActivityMarkEvent {
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("fid")
   private String fid;
@@ -50,7 +50,7 @@ public class ActivityMarkEvent {
 
   @Nullable
   @JsonProperty("received_at")
-  private Date receivedAt;
+  private Instant receivedAt;
 
   @Nullable
   @JsonProperty("mark_read")

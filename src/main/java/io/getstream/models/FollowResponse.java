@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 public class FollowResponse {
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("follower_role")
   private String followerRole;
@@ -36,7 +36,7 @@ public class FollowResponse {
   private String status;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("source_feed")
   private FeedResponse sourceFeed;
@@ -46,11 +46,11 @@ public class FollowResponse {
 
   @Nullable
   @JsonProperty("request_accepted_at")
-  private Date requestAcceptedAt;
+  private Instant requestAcceptedAt;
 
   @Nullable
   @JsonProperty("request_rejected_at")
-  private Date requestRejectedAt;
+  private Instant requestRejectedAt;
 
   @Nullable
   @JsonProperty("custom")

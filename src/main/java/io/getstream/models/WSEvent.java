@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 public class WSEvent {
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("type")
   private String type;
@@ -42,7 +42,7 @@ public class WSEvent {
 
   @Nullable
   @JsonProperty("channel_last_message_at")
-  private Date channelLastMessageAt;
+  private Instant channelLastMessageAt;
 
   @Nullable
   @JsonProperty("channel_type")

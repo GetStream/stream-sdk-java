@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -26,7 +26,7 @@ public class EgressRTMPResponse {
   private String name;
 
   @JsonProperty("started_at")
-  private Date startedAt;
+  private Instant startedAt;
 
   @Nullable
   @JsonProperty("stream_key")

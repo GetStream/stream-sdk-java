@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
@@ -28,7 +28,7 @@ public class FeedViewResponse {
 
   @Nullable
   @JsonProperty("last_used_at")
-  private Date lastUsedAt;
+  private Instant lastUsedAt;
 
   @Nullable
   @JsonProperty("activity_selectors")

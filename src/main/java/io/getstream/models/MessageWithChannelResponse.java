@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -28,7 +28,7 @@ public class MessageWithChannelResponse {
   private String cid;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("deleted_reply_count")
   private Integer deletedReplyCount;
@@ -58,7 +58,7 @@ public class MessageWithChannelResponse {
   private String type;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("attachments")
   private List<Attachment> attachments;
@@ -96,7 +96,7 @@ public class MessageWithChannelResponse {
 
   @Nullable
   @JsonProperty("deleted_at")
-  private Date deletedAt;
+  private Instant deletedAt;
 
   @Nullable
   @JsonProperty("deleted_for_me")
@@ -104,7 +104,7 @@ public class MessageWithChannelResponse {
 
   @Nullable
   @JsonProperty("message_text_updated_at")
-  private Date messageTextUpdatedAt;
+  private Instant messageTextUpdatedAt;
 
   @Nullable
   @JsonProperty("mml")
@@ -116,11 +116,11 @@ public class MessageWithChannelResponse {
 
   @Nullable
   @JsonProperty("pin_expires")
-  private Date pinExpires;
+  private Instant pinExpires;
 
   @Nullable
   @JsonProperty("pinned_at")
-  private Date pinnedAt;
+  private Instant pinnedAt;
 
   @Nullable
   @JsonProperty("poll_id")

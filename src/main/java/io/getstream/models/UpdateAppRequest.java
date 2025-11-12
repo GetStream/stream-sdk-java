@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -110,7 +110,7 @@ public class UpdateAppRequest {
 
   @Nullable
   @JsonProperty("revoke_tokens_issued_before")
-  private Date revokeTokensIssuedBefore;
+  private Instant revokeTokensIssuedBefore;
 
   @Nullable
   @JsonProperty("sns_key")

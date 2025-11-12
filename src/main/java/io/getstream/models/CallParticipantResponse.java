@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 
 @lombok.Data
 @lombok.Builder
@@ -22,7 +22,7 @@ import java.util.Date;
 public class CallParticipantResponse {
 
   @JsonProperty("joined_at")
-  private Date joinedAt;
+  private Instant joinedAt;
 
   @JsonProperty("role")
   private String role;

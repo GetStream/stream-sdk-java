@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -39,13 +39,13 @@ public class ChannelMemberLookup {
 
   @Nullable
   @JsonProperty("archived_at")
-  private Date archivedAt;
+  private Instant archivedAt;
 
   @Nullable
   @JsonProperty("ban_expires")
-  private Date banExpires;
+  private Instant banExpires;
 
   @Nullable
   @JsonProperty("pinned_at")
-  private Date pinnedAt;
+  private Instant pinnedAt;
 }

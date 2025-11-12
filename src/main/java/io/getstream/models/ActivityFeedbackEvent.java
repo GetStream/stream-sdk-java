@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 public class ActivityFeedbackEvent {
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("activity_feedback")
   private ActivityFeedbackEventPayload activityFeedback;
@@ -37,7 +37,7 @@ public class ActivityFeedbackEvent {
 
   @Nullable
   @JsonProperty("received_at")
-  private Date receivedAt;
+  private Instant receivedAt;
 
   @Nullable
   @JsonProperty("user")

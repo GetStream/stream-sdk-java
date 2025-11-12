@@ -6,53 +6,52 @@ import io.getstream.models.framework.CallTokenClaims;
 import io.getstream.services.Call;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 // DocTest is a class that contains the code snippets from the documentation.
 // The code snippets are tested to ensure that they are correct and up-to-date.
-@Disabled
+
 public class DocTest extends BasicTest {
 
   @Test
   public void getStarted() throws Exception {
+    var currentDate = new Date();
     // upserting a user
-    client
-        .updateUsers(
-            UpdateUsersRequest.builder()
-                .users(
-                    Map.of(
-                        "john",
-                        UserRequest.builder()
-                            .id("john")
-                            .name("john")
-                            .custom(Map.of("country", "NL"))
-                            .build(),
-                        "jane",
-                        UserRequest.builder()
-                            .id("jane")
-                            .name("jane")
-                            .custom(Map.of("country", "US"))
-                            .build(),
-                        "tom",
-                        UserRequest.builder()
-                            .id("tom")
-                            .name("tom")
-                            .custom(Map.of("country", "UK"))
-                            .build(),
-                        "sacha",
-                        UserRequest.builder()
-                            .id("sacha")
-                            .name("sacha")
-                            .custom(Map.of("country", "FR"))
-                            .build()))
-                .build())
-        .execute();
+    var resp =
+        client
+            .updateUsers(
+                UpdateUsersRequest.builder()
+                    .users(
+                        Map.of(
+                            "john",
+                            UserRequest.builder()
+                                .id("john")
+                                .name("john")
+                                .custom(Map.of("country", "NL"))
+                                .build(),
+                            "jane",
+                            UserRequest.builder()
+                                .id("jane")
+                                .name("jane")
+                                .custom(Map.of("country", "US"))
+                                .build(),
+                            "tom",
+                            UserRequest.builder()
+                                .id("tom")
+                                .name("tom")
+                                .custom(Map.of("country", "UK"))
+                                .build(),
+                            "sacha",
+                            UserRequest.builder()
+                                .id("sacha")
+                                .name("sacha")
+                                .custom(Map.of("country", "FR"))
+                                .build()))
+                    .build())
+            .execute();
 
     client.tokenBuilder().createToken("john", 24 * 60 * 60);
 

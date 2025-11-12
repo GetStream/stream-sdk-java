@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
@@ -41,7 +41,7 @@ public class ChannelStateResponseFields {
 
   @Nullable
   @JsonProperty("hide_messages_before")
-  private Date hideMessagesBefore;
+  private Instant hideMessagesBefore;
 
   @Nullable
   @JsonProperty("watcher_count")
@@ -77,5 +77,5 @@ public class ChannelStateResponseFields {
 
   @Nullable
   @JsonProperty("push_preferences")
-  private ChannelPushPreferencesResponse pushPreferences;
+  private ChannelPushPreferences pushPreferences;
 }

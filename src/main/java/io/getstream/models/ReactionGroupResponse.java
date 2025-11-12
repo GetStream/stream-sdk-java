@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 
 @lombok.Data
 @lombok.Builder
@@ -25,10 +25,10 @@ public class ReactionGroupResponse {
   private Integer count;
 
   @JsonProperty("first_reaction_at")
-  private Date firstReactionAt;
+  private Instant firstReactionAt;
 
   @JsonProperty("last_reaction_at")
-  private Date lastReactionAt;
+  private Instant lastReactionAt;
 
   @JsonProperty("sum_scores")
   private Integer sumScores;

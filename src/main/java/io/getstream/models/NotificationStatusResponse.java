@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,11 +31,11 @@ public class NotificationStatusResponse {
 
   @Nullable
   @JsonProperty("last_read_at")
-  private Date lastReadAt;
+  private Instant lastReadAt;
 
   @Nullable
   @JsonProperty("last_seen_at")
-  private Date lastSeenAt;
+  private Instant lastSeenAt;
 
   @Nullable
   @JsonProperty("read_activities")

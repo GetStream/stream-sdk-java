@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +30,7 @@ public class MessageHistoryEntryResponse {
   private String messageID;
 
   @JsonProperty("message_updated_at")
-  private Date messageUpdatedAt;
+  private Instant messageUpdatedAt;
 
   @JsonProperty("message_updated_by_id")
   private String messageUpdatedByID;

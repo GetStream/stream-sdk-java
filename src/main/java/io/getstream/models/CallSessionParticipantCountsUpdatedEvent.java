@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Map;
 
 @lombok.Data
@@ -29,7 +29,7 @@ public class CallSessionParticipantCountsUpdatedEvent {
   private String callCid;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("session_id")
   private String sessionID;

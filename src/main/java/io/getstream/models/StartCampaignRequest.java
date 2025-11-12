@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -24,9 +24,9 @@ public class StartCampaignRequest {
 
   @Nullable
   @JsonProperty("scheduled_for")
-  private Date scheduledFor;
+  private Instant scheduledFor;
 
   @Nullable
   @JsonProperty("stop_at")
-  private Date stopAt;
+  private Instant stopAt;
 }

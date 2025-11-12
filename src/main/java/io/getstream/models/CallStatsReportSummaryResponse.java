@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -35,11 +35,11 @@ public class CallStatsReportSummaryResponse {
   private String callStatus;
 
   @JsonProperty("first_stats_time")
-  private Date firstStatsTime;
+  private Instant firstStatsTime;
 
   @Nullable
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @Nullable
   @JsonProperty("min_user_rating")

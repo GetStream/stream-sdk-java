@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 
 @lombok.Data
 @lombok.Builder
@@ -28,13 +28,13 @@ public class CampaignStatsResponse {
   private Integer statsChannelsCreated;
 
   @JsonProperty("stats_completed_at")
-  private Date statsCompletedAt;
+  private Instant statsCompletedAt;
 
   @JsonProperty("stats_messages_sent")
   private Integer statsMessagesSent;
 
   @JsonProperty("stats_started_at")
-  private Date statsStartedAt;
+  private Instant statsStartedAt;
 
   @JsonProperty("stats_users_read")
   private Integer statsUsersRead;

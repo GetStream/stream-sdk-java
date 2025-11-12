@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -28,7 +28,7 @@ public class UserResponsePrivacyFields {
   private Boolean banned;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("id")
   private String id;
@@ -43,7 +43,7 @@ public class UserResponsePrivacyFields {
   private String role;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("blocked_user_ids")
   private List<String> blockedUserIds;
@@ -60,11 +60,11 @@ public class UserResponsePrivacyFields {
 
   @Nullable
   @JsonProperty("deactivated_at")
-  private Date deactivatedAt;
+  private Instant deactivatedAt;
 
   @Nullable
   @JsonProperty("deleted_at")
-  private Date deletedAt;
+  private Instant deletedAt;
 
   @Nullable
   @JsonProperty("image")
@@ -76,7 +76,7 @@ public class UserResponsePrivacyFields {
 
   @Nullable
   @JsonProperty("last_active")
-  private Date lastActive;
+  private Instant lastActive;
 
   @Nullable
   @JsonProperty("name")
@@ -84,7 +84,7 @@ public class UserResponsePrivacyFields {
 
   @Nullable
   @JsonProperty("revoke_tokens_issued_before")
-  private Date revokeTokensIssuedBefore;
+  private Instant revokeTokensIssuedBefore;
 
   @Nullable
   @JsonProperty("privacy_settings")

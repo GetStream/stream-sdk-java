@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
@@ -37,7 +37,7 @@ public class UpdateChannelRequest {
 
   @Nullable
   @JsonProperty("hide_history_before")
-  private Date hideHistoryBefore;
+  private Instant hideHistoryBefore;
 
   @Nullable
   @JsonProperty("reject_invite")
@@ -85,7 +85,7 @@ public class UpdateChannelRequest {
 
   @Nullable
   @JsonProperty("data")
-  private ChannelInputRequest data;
+  private ChannelInput data;
 
   @Nullable
   @JsonProperty("message")

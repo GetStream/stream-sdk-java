@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -24,7 +24,7 @@ public class UpdateReminderRequest {
 
   @Nullable
   @JsonProperty("remind_at")
-  private Date remindAt;
+  private Instant remindAt;
 
   @Nullable
   @JsonProperty("user_id")

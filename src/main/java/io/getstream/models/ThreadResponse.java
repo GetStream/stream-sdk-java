@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -31,7 +31,7 @@ public class ThreadResponse {
   private String channelCid;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("created_by_user_id")
   private String createdByUserID;
@@ -46,18 +46,18 @@ public class ThreadResponse {
   private String title;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("custom")
   private Map<String, Object> custom;
 
   @Nullable
   @JsonProperty("deleted_at")
-  private Date deletedAt;
+  private Instant deletedAt;
 
   @Nullable
   @JsonProperty("last_message_at")
-  private Date lastMessageAt;
+  private Instant lastMessageAt;
 
   @Nullable
   @JsonProperty("reply_count")

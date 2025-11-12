@@ -15,7 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.getstream.annotations.Query;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -29,7 +29,7 @@ public class UpdateLiveLocationRequest {
 
   @Nullable
   @JsonProperty("end_at")
-  private Date endAt;
+  private Instant endAt;
 
   @Nullable
   @JsonProperty("latitude")

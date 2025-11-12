@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -32,7 +32,7 @@ public class UserBannedEvent {
   private String cid;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("shadow")
   private Boolean shadow;
@@ -45,7 +45,7 @@ public class UserBannedEvent {
 
   @Nullable
   @JsonProperty("expiration")
-  private Date expiration;
+  private Instant expiration;
 
   @Nullable
   @JsonProperty("reason")

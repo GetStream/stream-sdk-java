@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 public class FeedMemberResponse {
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("role")
   private String role;
@@ -33,18 +33,18 @@ public class FeedMemberResponse {
   private String status;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("user")
   private UserResponse user;
 
   @Nullable
   @JsonProperty("invite_accepted_at")
-  private Date inviteAcceptedAt;
+  private Instant inviteAcceptedAt;
 
   @Nullable
   @JsonProperty("invite_rejected_at")
-  private Date inviteRejectedAt;
+  private Instant inviteRejectedAt;
 
   @Nullable
   @JsonProperty("custom")

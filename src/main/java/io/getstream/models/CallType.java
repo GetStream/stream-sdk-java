@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -26,7 +26,7 @@ public class CallType {
   private Integer app;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("id")
   private Integer id;
@@ -38,7 +38,7 @@ public class CallType {
   private String recordingExternalStorage;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @Nullable
   @JsonProperty("notification_settings")

@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @lombok.Data
@@ -26,7 +26,7 @@ public class CallUserMutedEvent {
   private String callCid;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("from_user_id")
   private String fromUserID;

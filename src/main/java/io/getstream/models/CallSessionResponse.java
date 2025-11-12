@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -34,34 +34,34 @@ public class CallSessionResponse {
   private List<CallParticipantResponse> participants;
 
   @JsonProperty("accepted_by")
-  private Map<String, Date> acceptedBy;
+  private Map<String, Instant> acceptedBy;
 
   @JsonProperty("missed_by")
-  private Map<String, Date> missedBy;
+  private Map<String, Instant> missedBy;
 
   @JsonProperty("participants_count_by_role")
   private Map<String, Integer> participantsCountByRole;
 
   @JsonProperty("rejected_by")
-  private Map<String, Date> rejectedBy;
+  private Map<String, Instant> rejectedBy;
 
   @Nullable
   @JsonProperty("ended_at")
-  private Date endedAt;
+  private Instant endedAt;
 
   @Nullable
   @JsonProperty("live_ended_at")
-  private Date liveEndedAt;
+  private Instant liveEndedAt;
 
   @Nullable
   @JsonProperty("live_started_at")
-  private Date liveStartedAt;
+  private Instant liveStartedAt;
 
   @Nullable
   @JsonProperty("started_at")
-  private Date startedAt;
+  private Instant startedAt;
 
   @Nullable
   @JsonProperty("timer_ends_at")
-  private Date timerEndsAt;
+  private Instant timerEndsAt;
 }

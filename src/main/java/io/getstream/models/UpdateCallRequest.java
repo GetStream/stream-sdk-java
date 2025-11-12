@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,7 +25,7 @@ public class UpdateCallRequest {
 
   @Nullable
   @JsonProperty("starts_at")
-  private Date startsAt;
+  private Instant startsAt;
 
   @Nullable
   @JsonProperty("custom")

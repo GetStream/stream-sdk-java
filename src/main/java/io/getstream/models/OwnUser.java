@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -28,7 +28,7 @@ public class OwnUser {
   private Boolean banned;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("id")
   private String id;
@@ -55,7 +55,7 @@ public class OwnUser {
   private Integer unreadThreads;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("channel_mutes")
   private List<ChannelMute> channelMutes;
@@ -78,11 +78,11 @@ public class OwnUser {
 
   @Nullable
   @JsonProperty("deactivated_at")
-  private Date deactivatedAt;
+  private Instant deactivatedAt;
 
   @Nullable
   @JsonProperty("deleted_at")
-  private Date deletedAt;
+  private Instant deletedAt;
 
   @Nullable
   @JsonProperty("invisible")
@@ -90,11 +90,11 @@ public class OwnUser {
 
   @Nullable
   @JsonProperty("last_active")
-  private Date lastActive;
+  private Instant lastActive;
 
   @Nullable
   @JsonProperty("last_engaged_at")
-  private Date lastEngagedAt;
+  private Instant lastEngagedAt;
 
   @Nullable
   @JsonProperty("blocked_user_ids")

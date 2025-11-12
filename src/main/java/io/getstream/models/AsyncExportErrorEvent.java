@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,16 +24,16 @@ import org.jetbrains.annotations.Nullable;
 public class AsyncExportErrorEvent {
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("error")
   private String error;
 
   @JsonProperty("finished_at")
-  private Date finishedAt;
+  private Instant finishedAt;
 
   @JsonProperty("started_at")
-  private Date startedAt;
+  private Instant startedAt;
 
   @JsonProperty("task_id")
   private String taskID;
@@ -46,5 +46,5 @@ public class AsyncExportErrorEvent {
 
   @Nullable
   @JsonProperty("received_at")
-  private Date receivedAt;
+  private Instant receivedAt;
 }

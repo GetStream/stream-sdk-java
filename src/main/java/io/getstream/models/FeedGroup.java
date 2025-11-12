@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -31,7 +31,7 @@ public class FeedGroup {
   private Integer appPk;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("default_visibility")
   private String defaultVisibility;
@@ -40,7 +40,7 @@ public class FeedGroup {
   private String groupID;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("activity_processors")
   private List<ActivityProcessorConfig> activityProcessors;
@@ -53,11 +53,11 @@ public class FeedGroup {
 
   @Nullable
   @JsonProperty("deleted_at")
-  private Date deletedAt;
+  private Instant deletedAt;
 
   @Nullable
   @JsonProperty("last_feed_get_at")
-  private Date lastFeedGetAt;
+  private Instant lastFeedGetAt;
 
   @Nullable
   @JsonProperty("aggregation")

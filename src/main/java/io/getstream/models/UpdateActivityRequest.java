@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -26,7 +26,7 @@ public class UpdateActivityRequest {
 
   @Nullable
   @JsonProperty("expires_at")
-  private Date expiresAt;
+  private Instant expiresAt;
 
   @Nullable
   @JsonProperty("poll_id")

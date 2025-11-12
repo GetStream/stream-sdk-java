@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,7 +27,7 @@ public class ReviewQueueItemResponse {
   private String aiTextSeverity;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("entity_id")
   private String entityID;
@@ -57,7 +57,7 @@ public class ReviewQueueItemResponse {
   private String status;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("actions")
   private List<ActionLogResponse> actions;
@@ -73,7 +73,7 @@ public class ReviewQueueItemResponse {
 
   @Nullable
   @JsonProperty("completed_at")
-  private Date completedAt;
+  private Instant completedAt;
 
   @Nullable
   @JsonProperty("config_key")
@@ -85,7 +85,7 @@ public class ReviewQueueItemResponse {
 
   @Nullable
   @JsonProperty("reviewed_at")
-  private Date reviewedAt;
+  private Instant reviewedAt;
 
   @Nullable
   @JsonProperty("teams")

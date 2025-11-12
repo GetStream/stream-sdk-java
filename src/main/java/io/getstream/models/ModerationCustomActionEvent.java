@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,7 +27,7 @@ public class ModerationCustomActionEvent {
   private String actionID;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("custom")
   private Map<String, Object> custom;
@@ -40,7 +40,7 @@ public class ModerationCustomActionEvent {
 
   @Nullable
   @JsonProperty("received_at")
-  private Date receivedAt;
+  private Instant receivedAt;
 
   @Nullable
   @JsonProperty("action_options")

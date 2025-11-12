@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -31,7 +31,7 @@ public class ChannelMemberResponse {
   private String channelRole;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("notifications_muted")
   private Boolean notificationsMuted;
@@ -40,30 +40,30 @@ public class ChannelMemberResponse {
   private Boolean shadowBanned;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("custom")
   private Map<String, Object> custom;
 
   @Nullable
   @JsonProperty("archived_at")
-  private Date archivedAt;
+  private Instant archivedAt;
 
   @Nullable
   @JsonProperty("ban_expires")
-  private Date banExpires;
+  private Instant banExpires;
 
   @Nullable
   @JsonProperty("deleted_at")
-  private Date deletedAt;
+  private Instant deletedAt;
 
   @Nullable
   @JsonProperty("invite_accepted_at")
-  private Date inviteAcceptedAt;
+  private Instant inviteAcceptedAt;
 
   @Nullable
   @JsonProperty("invite_rejected_at")
-  private Date inviteRejectedAt;
+  private Instant inviteRejectedAt;
 
   @Nullable
   @JsonProperty("invited")
@@ -75,7 +75,7 @@ public class ChannelMemberResponse {
 
   @Nullable
   @JsonProperty("pinned_at")
-  private Date pinnedAt;
+  private Instant pinnedAt;
 
   @Nullable
   @JsonProperty("role")

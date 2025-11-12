@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 public class PushTemplate {
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("enable_push")
   private Boolean enablePush;
@@ -32,7 +32,7 @@ public class PushTemplate {
   private String eventType;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @Nullable
   @JsonProperty("template")

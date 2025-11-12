@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -35,13 +35,13 @@ public class NotificationMarkUnreadEvent {
   private String cid;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("first_unread_message_id")
   private String firstUnreadMessageID;
 
   @JsonProperty("last_read_at")
-  private Date lastReadAt;
+  private Instant lastReadAt;
 
   @JsonProperty("total_unread_count")
   private Integer totalUnreadCount;

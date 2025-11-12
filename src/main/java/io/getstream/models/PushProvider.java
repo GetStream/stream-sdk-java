@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 public class PushProvider {
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("name")
   private String name;
@@ -33,7 +33,7 @@ public class PushProvider {
   private String type;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @Nullable
   @JsonProperty("apn_auth_key")
@@ -77,7 +77,7 @@ public class PushProvider {
 
   @Nullable
   @JsonProperty("disabled_at")
-  private Date disabledAt;
+  private Instant disabledAt;
 
   @Nullable
   @JsonProperty("disabled_reason")

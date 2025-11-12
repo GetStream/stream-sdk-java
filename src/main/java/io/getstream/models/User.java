@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -24,16 +24,43 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class User {
 
+  @JsonProperty("banned")
+  private Boolean banned;
+
   @JsonProperty("id")
   private String id;
 
-  @Nullable
-  @JsonProperty("ban_expires")
-  private Date banExpires;
+  @JsonProperty("online")
+  private Boolean online;
+
+  @JsonProperty("role")
+  private String role;
+
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
+  @JsonProperty("teams_role")
+  private Map<String, String> teamsRole;
 
   @Nullable
-  @JsonProperty("banned")
-  private Boolean banned;
+  @JsonProperty("avg_response_time")
+  private Integer avgResponseTime;
+
+  @Nullable
+  @JsonProperty("ban_expires")
+  private Instant banExpires;
+
+  @Nullable
+  @JsonProperty("created_at")
+  private Instant createdAt;
+
+  @Nullable
+  @JsonProperty("deactivated_at")
+  private Instant deactivatedAt;
+
+  @Nullable
+  @JsonProperty("deleted_at")
+  private Instant deletedAt;
 
   @Nullable
   @JsonProperty("invisible")
@@ -44,26 +71,26 @@ public class User {
   private String language;
 
   @Nullable
-  @JsonProperty("revoke_tokens_issued_before")
-  private Date revokeTokensIssuedBefore;
+  @JsonProperty("last_active")
+  private Instant lastActive;
 
   @Nullable
-  @JsonProperty("role")
-  private String role;
+  @JsonProperty("last_engaged_at")
+  private Instant lastEngagedAt;
+
+  @Nullable
+  @JsonProperty("revoke_tokens_issued_before")
+  private Instant revokeTokensIssuedBefore;
+
+  @Nullable
+  @JsonProperty("updated_at")
+  private Instant updatedAt;
 
   @Nullable
   @JsonProperty("teams")
   private List<String> teams;
 
   @Nullable
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
-
-  @Nullable
   @JsonProperty("privacy_settings")
   private PrivacySettings privacySettings;
-
-  @Nullable
-  @JsonProperty("teams_role")
-  private Map<String, String> teamsRole;
 }

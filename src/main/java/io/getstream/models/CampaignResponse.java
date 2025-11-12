@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,7 +27,7 @@ public class CampaignResponse {
   private Boolean createChannels;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("description")
   private String description;
@@ -60,7 +60,7 @@ public class CampaignResponse {
   private String status;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("segment_ids")
   private List<String> segmentIds;
@@ -79,11 +79,11 @@ public class CampaignResponse {
 
   @Nullable
   @JsonProperty("scheduled_for")
-  private Date scheduledFor;
+  private Instant scheduledFor;
 
   @Nullable
   @JsonProperty("stop_at")
-  private Date stopAt;
+  private Instant stopAt;
 
   @Nullable
   @JsonProperty("channel_template")

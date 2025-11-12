@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -34,7 +34,7 @@ public class CallResponse {
   private String cid;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("current_session_id")
   private String currentSessionID;
@@ -55,7 +55,7 @@ public class CallResponse {
   private String type;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("blocked_user_ids")
   private List<String> blockedUserIds;
@@ -81,7 +81,7 @@ public class CallResponse {
 
   @Nullable
   @JsonProperty("ended_at")
-  private Date endedAt;
+  private Instant endedAt;
 
   @Nullable
   @JsonProperty("join_ahead_time_seconds")
@@ -89,7 +89,7 @@ public class CallResponse {
 
   @Nullable
   @JsonProperty("starts_at")
-  private Date startsAt;
+  private Instant startsAt;
 
   @Nullable
   @JsonProperty("team")

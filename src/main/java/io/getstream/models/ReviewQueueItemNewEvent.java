@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -25,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 public class ReviewQueueItemNewEvent {
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("custom")
   private Map<String, Object> custom;
@@ -35,7 +35,7 @@ public class ReviewQueueItemNewEvent {
 
   @Nullable
   @JsonProperty("received_at")
-  private Date receivedAt;
+  private Instant receivedAt;
 
   @Nullable
   @JsonProperty("flags")

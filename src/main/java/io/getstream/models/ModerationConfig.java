@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
@@ -29,7 +29,7 @@ public class ModerationConfig {
 
   @Nullable
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @Nullable
   @JsonProperty("key")
@@ -41,7 +41,7 @@ public class ModerationConfig {
 
   @Nullable
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @Nullable
   @JsonProperty("supported_video_call_harm_types")

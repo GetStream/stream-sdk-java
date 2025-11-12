@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,7 +31,7 @@ public class CallStatsParticipant {
 
   @Nullable
   @JsonProperty("latest_activity_at")
-  private Date latestActivityAt;
+  private Instant latestActivityAt;
 
   @Nullable
   @JsonProperty("name")

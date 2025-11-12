@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -31,7 +31,7 @@ public class Channel {
   private String cid;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("disabled")
   private Boolean disabled;
@@ -46,7 +46,7 @@ public class Channel {
   private String type;
 
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @JsonProperty("custom")
   private Map<String, Object> custom;
@@ -61,7 +61,7 @@ public class Channel {
 
   @Nullable
   @JsonProperty("deleted_at")
-  private Date deletedAt;
+  private Instant deletedAt;
 
   @Nullable
   @JsonProperty("last_campaigns")
@@ -69,7 +69,7 @@ public class Channel {
 
   @Nullable
   @JsonProperty("last_message_at")
-  private Date lastMessageAt;
+  private Instant lastMessageAt;
 
   @Nullable
   @JsonProperty("member_count")
@@ -81,7 +81,7 @@ public class Channel {
 
   @Nullable
   @JsonProperty("message_count_updated_at")
-  private Date messageCountUpdatedAt;
+  private Instant messageCountUpdatedAt;
 
   @Nullable
   @JsonProperty("team")

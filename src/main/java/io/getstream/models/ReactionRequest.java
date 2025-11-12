@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
@@ -28,7 +28,7 @@ public class ReactionRequest {
 
   @Nullable
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @Nullable
   @JsonProperty("score")
@@ -36,7 +36,7 @@ public class ReactionRequest {
 
   @Nullable
   @JsonProperty("updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @Nullable
   @JsonProperty("user_id")

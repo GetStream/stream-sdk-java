@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 
 @lombok.Data
 @lombok.Builder
@@ -22,7 +22,7 @@ import java.util.Date;
 public class CallTranscription {
 
   @JsonProperty("end_time")
-  private Date endTime;
+  private Instant endTime;
 
   @JsonProperty("filename")
   private String filename;
@@ -31,7 +31,7 @@ public class CallTranscription {
   private String sessionID;
 
   @JsonProperty("start_time")
-  private Date startTime;
+  private Instant startTime;
 
   @JsonProperty("url")
   private String url;

@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
@@ -33,7 +33,7 @@ public class TruncateChannelRequest {
 
   @Nullable
   @JsonProperty("truncated_at")
-  private Date truncatedAt;
+  private Instant truncatedAt;
 
   @Nullable
   @JsonProperty("user_id")

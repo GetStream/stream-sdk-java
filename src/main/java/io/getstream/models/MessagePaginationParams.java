@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -24,23 +24,23 @@ public class MessagePaginationParams {
 
   @Nullable
   @JsonProperty("created_at_after")
-  private Date createdAtAfter;
+  private Instant createdAtAfter;
 
   @Nullable
   @JsonProperty("created_at_after_or_equal")
-  private Date createdAtAfterOrEqual;
+  private Instant createdAtAfterOrEqual;
 
   @Nullable
   @JsonProperty("created_at_around")
-  private Date createdAtAround;
+  private Instant createdAtAround;
 
   @Nullable
   @JsonProperty("created_at_before")
-  private Date createdAtBefore;
+  private Instant createdAtBefore;
 
   @Nullable
   @JsonProperty("created_at_before_or_equal")
-  private Date createdAtBeforeOrEqual;
+  private Instant createdAtBeforeOrEqual;
 
   @Nullable
   @JsonProperty("id_around")

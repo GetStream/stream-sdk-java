@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Map;
 
 @lombok.Data
@@ -26,10 +26,10 @@ public class CallFrameRecordingFrameReadyEvent {
   private String callCid;
 
   @JsonProperty("captured_at")
-  private Date capturedAt;
+  private Instant capturedAt;
 
   @JsonProperty("created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @JsonProperty("egress_id")
   private String egressID;

@@ -13,7 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.time.Instant;
 
 @lombok.Data
 @lombok.Builder
@@ -25,11 +25,11 @@ public class ParticipantSeriesTimeframe {
   private Integer maxPoints;
 
   @JsonProperty("since")
-  private Date since;
+  private Instant since;
 
   @JsonProperty("step_seconds")
   private Integer stepSeconds;
 
   @JsonProperty("until")
-  private Date until;
+  private Instant until;
 }
