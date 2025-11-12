@@ -47,6 +47,7 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.32")
     testCompileOnly("org.projectlombok:lombok:1.18.32")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.32")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.20.1")
 }
 
 

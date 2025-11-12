@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class StreamHTTPClientTest {
 
   static class DateHolder {
-    public Date date;
+    public Instant date;
   }
 
   private ObjectMapper mapper() {
@@ -25,7 +25,7 @@ public class StreamHTTPClientTest {
   public void parsesRFC3339_Zulu() throws Exception {
     var json = "{\"date\":\"2020-01-02T03:04:05Z\"}";
     var dto = mapper().readValue(json, DateHolder.class);
-    var expected = Date.from(Instant.parse("2020-01-02T03:04:05Z"));
+    var expected = Instant.parse("2020-01-02T03:04:05Z");
     Assertions.assertEquals(expected, dto.date);
   }
 
@@ -34,16 +34,16 @@ public class StreamHTTPClientTest {
     var json = "{\"date\":\"2020-01-02T03:04:05+01:30\"}";
     var dto = mapper().readValue(json, DateHolder.class);
     var expectedInstant = OffsetDateTime.parse("2020-01-02T03:04:05+01:30").toInstant();
-    Assertions.assertEquals(Date.from(expectedInstant), dto.date);
+    Assertions.assertEquals(expectedInstant, dto.date);
   }
 
   @Test
   public void parsesRFC3339_FractionalSeconds() throws Exception {
     var json = "{\"date\":\"2020-01-02T03:04:05.678Z\"}";
     var dto = mapper().readValue(json, DateHolder.class);
-    var expected = Date.from(Instant.parse("2020-01-02T03:04:05.678Z"));
+    var expected = Instant.parse("2020-01-02T03:04:05.678Z");
     Assertions.assertEquals(expected, dto.date);
-    Assertions.assertEquals(678, dto.date.toInstant().getNano() / 1_000_000);
+    Assertions.assertEquals(678, dto.date.getNano() / 1_000_000);
   }
 
   //
@@ -51,6 +51,13 @@ public class StreamHTTPClientTest {
   public void exampleFromAPI() throws Exception {
     var json = "{\"date\":1754388527728144000}";
     var dto = mapper().readValue(json, DateHolder.class);
-    Assertions.assertEquals("Tue Aug 05 12:08:47 CEST 2025", dto.date.toString());
+    Assertions.assertEquals("2025-08-05T10:08:47.728144Z", dto.date.toString());
+  }
+
+  @Test
+  public void testEncoding() throws Exception {
+      var inst = Instant.parse("2020-01-02T03:04:05Z");
+    var encoded =  mapper().writeValueAsString(new DateHolder() {{ date = inst; }});
+      Assertions.assertEquals("{\"date\":\"2020-01-02T03:04:05Z\"}", encoded);
   }
 }

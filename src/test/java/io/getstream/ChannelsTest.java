@@ -28,12 +28,12 @@ public class ChannelsTest extends BasicTest {
             this.channel.update(
                 UpdateChannelRequest.builder()
                     .data(
-                        ChannelInputRequest.builder()
+                        ChannelInput.builder()
                             .members(
                                 testUsers.subList(0, 1).stream()
                                     .map(
                                         fullUserResponse -> {
-                                          return ChannelMember.builder()
+                                          return ChannelMemberRequest.builder()
                                               .userID(fullUserResponse.getId())
                                               .build();
                                         })
