@@ -28,7 +28,7 @@ public class ChannelsTest extends BasicTest {
             this.channel.update(
                 UpdateChannelRequest.builder()
                     .data(
-                        ChannelInput.builder()
+                        ChannelInputRequest.builder()
                             .members(
                                 testUsers.subList(0, 1).stream()
                                     .map(
