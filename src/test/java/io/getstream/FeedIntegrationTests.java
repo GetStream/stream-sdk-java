@@ -569,7 +569,7 @@ class FeedIntegrationTests {
 
     // snippet-start: UpdateComment
     UpdateCommentRequest updateRequest =
-        UpdateCommentRequest.builder().comment("Updated comment text from Java SDK").build();
+        UpdateCommentRequest.builder().comment("Updated comment text from Java SDK").userID(testUserId).build();
 
     UpdateCommentResponse response =
         feeds.updateComment(commentId, updateRequest).execute().getData();
