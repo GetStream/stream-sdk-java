@@ -25,5 +25,5 @@ public class GetReactionsResponse {
   private String duration;
 
   @JsonProperty("reactions")
-  private List<Reaction> reactions;
+  private List<ReactionResponse> reactions;
 }

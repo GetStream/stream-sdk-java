@@ -25,5 +25,5 @@ public class MembersResponse {
   private String duration;
 
   @JsonProperty("members")
-  private List<ChannelMember> members;
+  private List<ChannelMemberResponse> members;
 }

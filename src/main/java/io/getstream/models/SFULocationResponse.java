@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -31,4 +32,8 @@ public class SFULocationResponse {
 
   @JsonProperty("location")
   private Location location;
+
+  @Nullable
+  @JsonProperty("count")
+  private Integer count;
 }

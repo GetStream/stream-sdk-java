@@ -23,12 +23,6 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class ConfigOverrides {
 
-  @JsonProperty("commands")
-  private List<String> commands;
-
-  @JsonProperty("grants")
-  private Map<String, List<String>> grants;
-
   @Nullable
   @JsonProperty("blocklist")
   private String blocklist;
@@ -76,4 +70,12 @@ public class ConfigOverrides {
   @Nullable
   @JsonProperty("user_message_reminders")
   private Boolean userMessageReminders;
+
+  @Nullable
+  @JsonProperty("commands")
+  private List<String> commands;
+
+  @Nullable
+  @JsonProperty("grants")
+  private Map<String, List<String>> grants;
 }

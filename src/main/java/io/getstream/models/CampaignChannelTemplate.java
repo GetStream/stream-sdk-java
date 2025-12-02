@@ -40,4 +40,8 @@ public class CampaignChannelTemplate {
   @Nullable
   @JsonProperty("members")
   private List<String> members;
+
+  @Nullable
+  @JsonProperty("members_template")
+  private List<CampaignChannelMember> membersTemplate;
 }

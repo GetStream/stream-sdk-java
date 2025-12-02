@@ -42,6 +42,9 @@ public class UpdateChannelTypeResponse {
   @JsonProperty("custom_events")
   private Boolean customEvents;
 
+  @JsonProperty("delivery_events")
+  private Boolean deliveryEvents;
+
   @JsonProperty("duration")
   private String duration;
 

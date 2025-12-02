@@ -12,8 +12,8 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.Nullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.annotations.Query;
 
 @lombok.Data
 @lombok.Builder
@@ -21,11 +21,15 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class DeleteMessageRequest {
 
-  @Nullable
-  @JsonProperty("hard_delete")
-  private Boolean hardDelete;
+  @Query("hard")
+  @JsonIgnore
+  private Boolean Hard;
 
-  @Nullable
-  @JsonProperty("reason")
-  private String reason;
+  @Query("deleted_by")
+  @JsonIgnore
+  private String DeletedBy;
+
+  @Query("delete_for_me")
+  @JsonIgnore
+  private Boolean DeleteForMe;
 }

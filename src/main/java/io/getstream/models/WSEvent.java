@@ -98,7 +98,7 @@ public class WSEvent {
 
   @Nullable
   @JsonProperty("member")
-  private ChannelMember member;
+  private ChannelMemberResponse member;
 
   @Nullable
   @JsonProperty("message")

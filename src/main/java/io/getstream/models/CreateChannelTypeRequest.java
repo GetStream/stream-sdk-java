@@ -48,8 +48,16 @@ public class CreateChannelTypeRequest {
   private Boolean connectEvents;
 
   @Nullable
+  @JsonProperty("count_messages")
+  private Boolean countMessages;
+
+  @Nullable
   @JsonProperty("custom_events")
   private Boolean customEvents;
+
+  @Nullable
+  @JsonProperty("delivery_events")
+  private Boolean deliveryEvents;
 
   @Nullable
   @JsonProperty("mark_messages_pending")

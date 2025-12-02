@@ -12,7 +12,9 @@
  */
 package io.getstream.services;
 
+import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
+import io.getstream.models.framework.StreamResponse;
 
 public class Channel {
   private String channelType;
@@ -26,6 +28,161 @@ public class Channel {
   }
 
   // Operations
+
+  public StreamResponse<DeleteChannelResponse> delete(DeleteChannelRequest request)
+      throws StreamException {
+    return service.deleteChannel(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<DeleteChannelResponse> delete() throws StreamException {
+    return this.delete(new DeleteChannelRequest());
+  }
+
+  public StreamResponse<UpdateChannelPartialResponse> updateChannelPartial(
+      UpdateChannelPartialRequest request) throws StreamException {
+    return service.updateChannelPartial(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<UpdateChannelPartialResponse> updateChannelPartial()
+      throws StreamException {
+    return this.updateChannelPartial(new UpdateChannelPartialRequest());
+  }
+
+  public StreamResponse<UpdateChannelResponse> update(UpdateChannelRequest request)
+      throws StreamException {
+    return service.updateChannel(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<UpdateChannelResponse> update() throws StreamException {
+    return this.update(new UpdateChannelRequest());
+  }
+
+  public StreamResponse<Response> deleteDraft(DeleteDraftRequest request) throws StreamException {
+    return service.deleteDraft(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<Response> deleteDraft() throws StreamException {
+    return this.deleteDraft(new DeleteDraftRequest());
+  }
+
+  public StreamResponse<GetDraftResponse> getDraft(GetDraftRequest request) throws StreamException {
+    return service.getDraft(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<GetDraftResponse> getDraft() throws StreamException {
+    return this.getDraft(new GetDraftRequest());
+  }
+
+  public StreamResponse<EventResponse> sendEvent(SendEventRequest request) throws StreamException {
+    return service.sendEvent(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<Response> deleteChannelFile(DeleteChannelFileRequest request)
+      throws StreamException {
+    return service.deleteChannelFile(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<Response> deleteChannelFile() throws StreamException {
+    return this.deleteChannelFile(new DeleteChannelFileRequest());
+  }
+
+  public StreamResponse<UploadChannelFileResponse> uploadChannelFile(
+      UploadChannelFileRequest request) throws StreamException {
+    return service.uploadChannelFile(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<UploadChannelFileResponse> uploadChannelFile() throws StreamException {
+    return this.uploadChannelFile(new UploadChannelFileRequest());
+  }
+
+  public StreamResponse<HideChannelResponse> hide(HideChannelRequest request)
+      throws StreamException {
+    return service.hideChannel(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<HideChannelResponse> hide() throws StreamException {
+    return this.hide(new HideChannelRequest());
+  }
+
+  public StreamResponse<Response> deleteChannelImage(DeleteChannelImageRequest request)
+      throws StreamException {
+    return service.deleteChannelImage(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<Response> deleteChannelImage() throws StreamException {
+    return this.deleteChannelImage(new DeleteChannelImageRequest());
+  }
+
+  public StreamResponse<UploadChannelResponse> uploadChannelImage(UploadChannelImageRequest request)
+      throws StreamException {
+    return service.uploadChannelImage(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<UploadChannelResponse> uploadChannelImage() throws StreamException {
+    return this.uploadChannelImage(new UploadChannelImageRequest());
+  }
+
+  public StreamResponse<UpdateMemberPartialResponse> updateMemberPartial(
+      UpdateMemberPartialRequest request) throws StreamException {
+    return service.updateMemberPartial(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<UpdateMemberPartialResponse> updateMemberPartial() throws StreamException {
+    return this.updateMemberPartial(new UpdateMemberPartialRequest());
+  }
+
+  public StreamResponse<SendMessageResponse> sendMessage(SendMessageRequest request)
+      throws StreamException {
+    return service.sendMessage(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<GetManyMessagesResponse> getManyMessages(GetManyMessagesRequest request)
+      throws StreamException {
+    return service.getManyMessages(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<ChannelStateResponse> getOrCreate(GetOrCreateChannelRequest request)
+      throws StreamException {
+    return service.getOrCreateChannel(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<ChannelStateResponse> getOrCreate() throws StreamException {
+    return this.getOrCreate(new GetOrCreateChannelRequest());
+  }
+
+  public StreamResponse<MarkReadResponse> markRead(MarkReadRequest request) throws StreamException {
+    return service.markRead(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<MarkReadResponse> markRead() throws StreamException {
+    return this.markRead(new MarkReadRequest());
+  }
+
+  public StreamResponse<ShowChannelResponse> show(ShowChannelRequest request)
+      throws StreamException {
+    return service.showChannel(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<ShowChannelResponse> show() throws StreamException {
+    return this.show(new ShowChannelRequest());
+  }
+
+  public StreamResponse<TruncateChannelResponse> truncate(TruncateChannelRequest request)
+      throws StreamException {
+    return service.truncateChannel(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<TruncateChannelResponse> truncate() throws StreamException {
+    return this.truncate(new TruncateChannelRequest());
+  }
+
+  public StreamResponse<Response> markUnread(MarkUnreadRequest request) throws StreamException {
+    return service.markUnread(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<Response> markUnread() throws StreamException {
+    return this.markUnread(new MarkUnreadRequest());
+  }
 
   // Helper templates for parameter signatures and calls in Java
 }
