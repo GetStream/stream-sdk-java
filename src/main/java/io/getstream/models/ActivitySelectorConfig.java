@@ -13,7 +13,6 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -24,23 +23,30 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class ActivitySelectorConfig {
 
+  @JsonProperty("type")
+  private String type;
+
   @Nullable
   @JsonProperty("cutoff_time")
-  private Date cutoffTime;
+  private String cutoffTime;
+
+  @Nullable
+  @JsonProperty("cutoff_window")
+  private String cutoffWindow;
 
   @Nullable
   @JsonProperty("min_popularity")
   private Integer minPopularity;
 
   @Nullable
-  @JsonProperty("type")
-  private String type;
-
-  @Nullable
   @JsonProperty("sort")
-  private List<SortParam> sort;
+  private List<SortParamRequest> sort;
 
   @Nullable
   @JsonProperty("filter")
   private Map<String, Object> filter;
+
+  @Nullable
+  @JsonProperty("params")
+  private Map<String, Object> params;
 }

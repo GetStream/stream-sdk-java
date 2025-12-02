@@ -23,6 +23,12 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class BlockListResponse {
 
+  @JsonProperty("is_leet_check_enabled")
+  private Boolean isLeetCheckEnabled;
+
+  @JsonProperty("is_plural_check_enabled")
+  private Boolean isPluralCheckEnabled;
+
   @JsonProperty("name")
   private String name;
 

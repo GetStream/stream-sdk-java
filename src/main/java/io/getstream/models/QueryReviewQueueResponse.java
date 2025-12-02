@@ -42,4 +42,8 @@ public class QueryReviewQueueResponse {
   @Nullable
   @JsonProperty("prev")
   private String prev;
+
+  @Nullable
+  @JsonProperty("filter_config")
+  private FilterConfigResponse filterConfig;
 }

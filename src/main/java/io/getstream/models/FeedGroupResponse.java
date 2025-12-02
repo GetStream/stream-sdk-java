@@ -38,12 +38,16 @@ public class FeedGroupResponse {
   private String defaultVisibility;
 
   @Nullable
+  @JsonProperty("deleted_at")
+  private Date deletedAt;
+
+  @Nullable
   @JsonProperty("activity_processors")
   private List<ActivityProcessorConfig> activityProcessors;
 
   @Nullable
   @JsonProperty("activity_selectors")
-  private List<ActivitySelectorConfig> activitySelectors;
+  private List<ActivitySelectorConfigResponse> activitySelectors;
 
   @Nullable
   @JsonProperty("aggregation")

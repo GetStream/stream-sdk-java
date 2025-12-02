@@ -24,6 +24,10 @@ import org.jetbrains.annotations.Nullable;
 public class UpdateFeedGroupRequest {
 
   @Nullable
+  @JsonProperty("default_visibility")
+  private String defaultVisibility;
+
+  @Nullable
   @JsonProperty("activity_processors")
   private List<ActivityProcessorConfig> activityProcessors;
 
@@ -50,4 +54,8 @@ public class UpdateFeedGroupRequest {
   @Nullable
   @JsonProperty("ranking")
   private RankingConfig ranking;
+
+  @Nullable
+  @JsonProperty("stories")
+  private StoriesConfig stories;
 }

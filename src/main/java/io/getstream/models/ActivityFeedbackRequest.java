@@ -26,20 +26,12 @@ public class ActivityFeedbackRequest {
   private Boolean hide;
 
   @Nullable
-  @JsonProperty("mute_user")
-  private Boolean muteUser;
-
-  @Nullable
-  @JsonProperty("reason")
-  private String reason;
-
-  @Nullable
-  @JsonProperty("report")
-  private Boolean report;
-
-  @Nullable
   @JsonProperty("show_less")
   private Boolean showLess;
+
+  @Nullable
+  @JsonProperty("show_more")
+  private Boolean showMore;
 
   @Nullable
   @JsonProperty("user_id")

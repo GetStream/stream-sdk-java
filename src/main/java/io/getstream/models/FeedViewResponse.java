@@ -31,12 +31,8 @@ public class FeedViewResponse {
   private Date lastUsedAt;
 
   @Nullable
-  @JsonProperty("activity_processors")
-  private List<ActivityProcessorConfig> activityProcessors;
-
-  @Nullable
   @JsonProperty("activity_selectors")
-  private List<ActivitySelectorConfig> activitySelectors;
+  private List<ActivitySelectorConfigResponse> activitySelectors;
 
   @Nullable
   @JsonProperty("aggregation")

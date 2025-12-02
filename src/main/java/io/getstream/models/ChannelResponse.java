@@ -105,8 +105,12 @@ public class ChannelResponse {
   private Date truncatedAt;
 
   @Nullable
+  @JsonProperty("filter_tags")
+  private List<String> filterTags;
+
+  @Nullable
   @JsonProperty("members")
-  private List<ChannelMember> members;
+  private List<ChannelMemberResponse> members;
 
   @Nullable
   @JsonProperty("own_capabilities")

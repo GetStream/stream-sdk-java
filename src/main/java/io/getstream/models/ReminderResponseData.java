@@ -47,9 +47,9 @@ public class ReminderResponseData {
 
   @Nullable
   @JsonProperty("message")
-  private Message message;
+  private MessageResponse message;
 
   @Nullable
   @JsonProperty("user")
-  private User user;
+  private UserResponse user;
 }

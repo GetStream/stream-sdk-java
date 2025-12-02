@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -45,4 +46,8 @@ public class AggregatedActivityResponse {
 
   @JsonProperty("activities")
   private List<ActivityResponse> activities;
+
+  @Nullable
+  @JsonProperty("is_watched")
+  private Boolean isWatched;
 }

@@ -33,6 +33,9 @@ public class ChannelMember {
   @JsonProperty("created_at")
   private Date createdAt;
 
+  @JsonProperty("is_global_banned")
+  private Boolean isGlobalBanned;
+
   @JsonProperty("notifications_muted")
   private Boolean notificationsMuted;
 
@@ -54,8 +57,16 @@ public class ChannelMember {
   private Date banExpires;
 
   @Nullable
+  @JsonProperty("blocked")
+  private Boolean blocked;
+
+  @Nullable
   @JsonProperty("deleted_at")
   private Date deletedAt;
+
+  @Nullable
+  @JsonProperty("hidden")
+  private Boolean hidden;
 
   @Nullable
   @JsonProperty("invite_accepted_at")
@@ -78,10 +89,6 @@ public class ChannelMember {
   private Date pinnedAt;
 
   @Nullable
-  @JsonProperty("role")
-  private String role;
-
-  @Nullable
   @JsonProperty("status")
   private String status;
 
@@ -94,6 +101,10 @@ public class ChannelMember {
   private List<String> deletedMessages;
 
   @Nullable
+  @JsonProperty("channel")
+  private DenormalizedChannelFields channel;
+
+  @Nullable
   @JsonProperty("user")
-  private UserResponse user;
+  private User user;
 }

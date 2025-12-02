@@ -28,6 +28,9 @@ public class ChannelMemberLookup {
   @JsonProperty("banned")
   private Boolean banned;
 
+  @JsonProperty("blocked")
+  private Boolean blocked;
+
   @JsonProperty("hidden")
   private Boolean hidden;
 
