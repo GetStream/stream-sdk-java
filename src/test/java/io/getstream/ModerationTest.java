@@ -205,10 +205,7 @@ public class ModerationTest {
 
     // snippet-start: UnbanUser
     UnbanRequest request =
-        UnbanRequest.builder()
-            .TargetUserID(testUserId)
-            .unbannedByID(testModeratorId)
-            .build();
+        UnbanRequest.builder().TargetUserID(testUserId).unbannedByID(testModeratorId).build();
 
     UnbanResponse response = moderation.unban(request).execute().getData();
     // snippet-end: UnbanUser
@@ -229,4 +226,3 @@ public class ModerationTest {
     Assertions.assertNotNull(response);
   }
 }
-
