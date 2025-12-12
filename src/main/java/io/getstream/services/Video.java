@@ -172,6 +172,14 @@ public interface Video {
       @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
+  public StreamRequest<RingCallResponse> ringCall(
+      @NotNull String type, @NotNull String id, RingCallRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<RingCallResponse> ringCall(@NotNull String type, @NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<StartRTMPBroadcastsResponse> startRTMPBroadcasts(
       @NotNull String type, @NotNull String id, StartRTMPBroadcastsRequest request)
       throws StreamException;
@@ -346,6 +354,74 @@ public interface Video {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<QueryCallStatsMapResponse> getCallStatsMap(
+      @NotNull String callType,
+      @NotNull String callID,
+      @NotNull String session,
+      GetCallStatsMapRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryCallStatsMapResponse> getCallStatsMap(
+      @NotNull String callType, @NotNull String callID, @NotNull String session)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetCallSessionParticipantStatsDetailsResponse>
+      getCallSessionParticipantStatsDetails(
+          @NotNull String callType,
+          @NotNull String callID,
+          @NotNull String session,
+          @NotNull String user,
+          @NotNull String userSession,
+          GetCallSessionParticipantStatsDetailsRequest request)
+          throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetCallSessionParticipantStatsDetailsResponse>
+      getCallSessionParticipantStatsDetails(
+          @NotNull String callType,
+          @NotNull String callID,
+          @NotNull String session,
+          @NotNull String user,
+          @NotNull String userSession)
+          throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryCallSessionParticipantStatsResponse> queryCallSessionParticipantStats(
+      @NotNull String callType,
+      @NotNull String callID,
+      @NotNull String session,
+      QueryCallSessionParticipantStatsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryCallSessionParticipantStatsResponse> queryCallSessionParticipantStats(
+      @NotNull String callType, @NotNull String callID, @NotNull String session)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryCallSessionParticipantStatsTimelineResponse>
+      getCallSessionParticipantStatsTimeline(
+          @NotNull String callType,
+          @NotNull String callID,
+          @NotNull String session,
+          @NotNull String user,
+          @NotNull String userSession,
+          GetCallSessionParticipantStatsTimelineRequest request)
+          throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryCallSessionParticipantStatsTimelineResponse>
+      getCallSessionParticipantStatsTimeline(
+          @NotNull String callType,
+          @NotNull String callID,
+          @NotNull String session,
+          @NotNull String user,
+          @NotNull String userSession)
+          throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryCallsResponse> queryCalls(QueryCallsRequest request)
       throws StreamException;
 
@@ -391,6 +467,57 @@ public interface Video {
 
   @NotNull
   public StreamRequest<GetEdgesResponse> getEdges() throws StreamException;
+
+  @NotNull
+  public StreamRequest<ResolveSipInboundResponse> resolveSipInbound(
+      ResolveSipInboundRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListSIPInboundRoutingRuleResponse> listSIPInboundRoutingRule(
+      ListSIPInboundRoutingRuleRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListSIPInboundRoutingRuleResponse> listSIPInboundRoutingRule()
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<SIPInboundRoutingRuleResponse> createSIPInboundRoutingRule(
+      CreateSIPInboundRoutingRuleRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteSIPInboundRoutingRuleResponse> deleteSIPInboundRoutingRule(
+      @NotNull String id, DeleteSIPInboundRoutingRuleRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteSIPInboundRoutingRuleResponse> deleteSIPInboundRoutingRule(
+      @NotNull String id) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateSIPInboundRoutingRuleResponse> updateSIPInboundRoutingRule(
+      @NotNull String id, UpdateSIPInboundRoutingRuleRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListSIPTrunksResponse> listSIPTrunks(ListSIPTrunksRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListSIPTrunksResponse> listSIPTrunks() throws StreamException;
+
+  @NotNull
+  public StreamRequest<CreateSIPTrunkResponse> createSIPTrunk(CreateSIPTrunkRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteSIPTrunkResponse> deleteSIPTrunk(
+      @NotNull String id, DeleteSIPTrunkRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteSIPTrunkResponse> deleteSIPTrunk(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateSIPTrunkResponse> updateSIPTrunk(
+      @NotNull String id, UpdateSIPTrunkRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryAggregateCallStatsResponse> queryAggregateCallStats(

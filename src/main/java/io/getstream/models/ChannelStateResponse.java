@@ -27,7 +27,7 @@ public class ChannelStateResponse {
   private String duration;
 
   @JsonProperty("members")
-  private List<ChannelMember> members;
+  private List<ChannelMemberResponse> members;
 
   @JsonProperty("messages")
   private List<MessageResponse> messages;
@@ -55,10 +55,6 @@ public class ChannelStateResponse {
   private List<SharedLocationResponseData> activeLiveLocations;
 
   @Nullable
-  @JsonProperty("deleted_messages")
-  private List<String> deletedMessages;
-
-  @Nullable
   @JsonProperty("pending_messages")
   private List<PendingMessageResponse> pendingMessages;
 
@@ -80,9 +76,9 @@ public class ChannelStateResponse {
 
   @Nullable
   @JsonProperty("membership")
-  private ChannelMember membership;
+  private ChannelMemberResponse membership;
 
   @Nullable
   @JsonProperty("push_preferences")
-  private ChannelPushPreferences pushPreferences;
+  private ChannelPushPreferencesResponse pushPreferences;
 }

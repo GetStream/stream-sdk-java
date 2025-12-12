@@ -26,10 +26,6 @@ public class CreateFeedViewRequest {
   private String id;
 
   @Nullable
-  @JsonProperty("activity_processors")
-  private List<ActivityProcessorConfig> activityProcessors;
-
-  @Nullable
   @JsonProperty("activity_selectors")
   private List<ActivitySelectorConfig> activitySelectors;
 

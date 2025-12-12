@@ -92,6 +92,10 @@ public class Channel {
   private List<SharedLocation> activeLiveLocations;
 
   @Nullable
+  @JsonProperty("filter_tags")
+  private List<String> filterTags;
+
+  @Nullable
   @JsonProperty("invites")
   private List<ChannelMember> invites;
 

@@ -29,6 +29,10 @@ public class AudioSettingsRequest {
   private Boolean accessRequestEnabled;
 
   @Nullable
+  @JsonProperty("hifi_audio_enabled")
+  private Boolean hifiAudioEnabled;
+
+  @Nullable
   @JsonProperty("mic_default_on")
   private Boolean micDefaultOn;
 

@@ -116,6 +116,10 @@ public class PushProvider {
   private String huaweiAppSecret;
 
   @Nullable
+  @JsonProperty("huawei_host")
+  private String huaweiHost;
+
+  @Nullable
   @JsonProperty("xiaomi_app_secret")
   private String xiaomiAppSecret;
 

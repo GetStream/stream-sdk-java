@@ -22,41 +22,17 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class SharedLocation {
 
-  @JsonProperty("channel_cid")
-  private String channelCid;
-
-  @JsonProperty("created_at")
-  private Date createdAt;
-
-  @JsonProperty("created_by_device_id")
-  private String createdByDeviceID;
-
-  @JsonProperty("message_id")
-  private String messageID;
-
-  @JsonProperty("updated_at")
-  private Date updatedAt;
-
-  @JsonProperty("user_id")
-  private String userID;
-
-  @Nullable
-  @JsonProperty("end_at")
-  private Date endAt;
-
-  @Nullable
   @JsonProperty("latitude")
   private Double latitude;
 
-  @Nullable
   @JsonProperty("longitude")
   private Double longitude;
 
   @Nullable
-  @JsonProperty("channel")
-  private Channel channel;
+  @JsonProperty("created_by_device_id")
+  private String createdByDeviceID;
 
   @Nullable
-  @JsonProperty("message")
-  private Message message;
+  @JsonProperty("end_at")
+  private Date endAt;
 }

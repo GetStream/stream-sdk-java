@@ -36,4 +36,8 @@ public class DeleteUserRequest {
   @Nullable
   @JsonProperty("mark_messages_deleted")
   private Boolean markMessagesDeleted;
+
+  @Nullable
+  @JsonProperty("reason")
+  private String reason;
 }

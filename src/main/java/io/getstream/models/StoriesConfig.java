@@ -22,10 +22,10 @@ import org.jetbrains.annotations.Nullable;
 public class StoriesConfig {
 
   @Nullable
-  @JsonProperty("expiration_behaviour")
-  private String expirationBehaviour;
-
-  @Nullable
   @JsonProperty("skip_watched")
   private Boolean skipWatched;
+
+  @Nullable
+  @JsonProperty("track_watched")
+  private Boolean trackWatched;
 }

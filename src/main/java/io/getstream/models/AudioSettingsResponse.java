@@ -27,6 +27,9 @@ public class AudioSettingsResponse {
   @JsonProperty("default_device")
   private String defaultDevice;
 
+  @JsonProperty("hifi_audio_enabled")
+  private Boolean hifiAudioEnabled;
+
   @JsonProperty("mic_default_on")
   private Boolean micDefaultOn;
 

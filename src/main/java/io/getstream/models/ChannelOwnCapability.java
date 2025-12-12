@@ -48,6 +48,7 @@ public class ChannelOwnCapability {
   public static ChannelOwnCapability DELETE_CHANNEL = new ChannelOwnCapability("delete-channel");
   public static ChannelOwnCapability DELETE_OWN_MESSAGE =
       new ChannelOwnCapability("delete-own-message");
+  public static ChannelOwnCapability DELIVERY_EVENTS = new ChannelOwnCapability("delivery-events");
   public static ChannelOwnCapability FLAG_MESSAGE = new ChannelOwnCapability("flag-message");
   public static ChannelOwnCapability FREEZE_CHANNEL = new ChannelOwnCapability("freeze-channel");
   public static ChannelOwnCapability JOIN_CHANNEL = new ChannelOwnCapability("join-channel");

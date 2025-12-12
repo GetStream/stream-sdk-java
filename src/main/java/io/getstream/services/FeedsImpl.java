@@ -238,8 +238,8 @@ public class FeedsImpl {
   }
 
   @NotNull
-  public StreamRequest<AddReactionResponse> addReaction(
-      @NotNull String activityID, AddReactionRequest request) throws StreamException {
+  public StreamRequest<AddReactionResponse> addActivityReaction(
+      @NotNull String activityID, AddActivityReactionRequest request) throws StreamException {
     var pathParams = Map.of("activity_id", activityID);
 
     return new StreamRequest<AddReactionResponse>(
@@ -473,6 +473,81 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<DeleteCollectionsResponse> deleteCollections(
+      DeleteCollectionsRequest request) throws StreamException {
+
+    return new StreamRequest<DeleteCollectionsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "DELETE",
+        "/api/v2/feeds/collections",
+        request,
+        null,
+        new TypeReference<DeleteCollectionsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ReadCollectionsResponse> readCollections(ReadCollectionsRequest request)
+      throws StreamException {
+
+    return new StreamRequest<ReadCollectionsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/feeds/collections",
+        request,
+        null,
+        new TypeReference<ReadCollectionsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpdateCollectionsResponse> updateCollections(
+      UpdateCollectionsRequest request) throws StreamException {
+
+    return new StreamRequest<UpdateCollectionsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PATCH",
+        "/api/v2/feeds/collections",
+        request,
+        null,
+        new TypeReference<UpdateCollectionsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<CreateCollectionsResponse> createCollections(
+      CreateCollectionsRequest request) throws StreamException {
+
+    return new StreamRequest<CreateCollectionsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/collections",
+        request,
+        null,
+        new TypeReference<CreateCollectionsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpsertCollectionsResponse> upsertCollections(
+      UpsertCollectionsRequest request) throws StreamException {
+
+    return new StreamRequest<UpsertCollectionsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PUT",
+        "/api/v2/feeds/collections",
+        request,
+        null,
+        new TypeReference<UpsertCollectionsResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<GetCommentsResponse> getComments(GetCommentsRequest request)
       throws StreamException {
 
@@ -500,6 +575,11 @@ public class FeedsImpl {
         request,
         null,
         new TypeReference<AddCommentResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<AddCommentResponse> addComment() throws StreamException {
+    return addComment(new AddCommentRequest());
   }
 
   @NotNull
@@ -1257,6 +1337,28 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<UpdateFeedVisibilityResponse> updateFeedVisibility(
+      @NotNull String name, UpdateFeedVisibilityRequest request) throws StreamException {
+    var pathParams = Map.of("name", name);
+
+    return new StreamRequest<UpdateFeedVisibilityResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PUT",
+        "/api/v2/feeds/feed_visibilities/{name}",
+        request,
+        pathParams,
+        new TypeReference<UpdateFeedVisibilityResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpdateFeedVisibilityResponse> updateFeedVisibility(@NotNull String name)
+      throws StreamException {
+    return updateFeedVisibility(name, new UpdateFeedVisibilityRequest());
+  }
+
+  @NotNull
   public StreamRequest<CreateFeedsBatchResponse> createFeedsBatch(CreateFeedsBatchRequest request)
       throws StreamException {
 
@@ -1269,6 +1371,35 @@ public class FeedsImpl {
         request,
         null,
         new TypeReference<CreateFeedsBatchResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteFeedsBatchResponse> deleteFeedsBatch(DeleteFeedsBatchRequest request)
+      throws StreamException {
+
+    return new StreamRequest<DeleteFeedsBatchResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/feeds/delete",
+        request,
+        null,
+        new TypeReference<DeleteFeedsBatchResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<OwnBatchResponse> ownBatch(OwnBatchRequest request) throws StreamException {
+
+    return new StreamRequest<OwnBatchResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/feeds/own/batch",
+        request,
+        null,
+        new TypeReference<OwnBatchResponse>() {});
   }
 
   @NotNull
@@ -1289,6 +1420,26 @@ public class FeedsImpl {
   @NotNull
   public StreamRequest<QueryFeedsResponse> queryFeeds() throws StreamException {
     return queryFeeds(new QueryFeedsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GetFeedsRateLimitsResponse> getFeedsRateLimits(
+      GetFeedsRateLimitsRequest request) throws StreamException {
+
+    return new StreamRequest<GetFeedsRateLimitsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/feeds/feeds/rate_limits",
+        request,
+        null,
+        new TypeReference<GetFeedsRateLimitsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetFeedsRateLimitsResponse> getFeedsRateLimits() throws StreamException {
+    return getFeedsRateLimits(new GetFeedsRateLimitsRequest());
   }
 
   @NotNull
@@ -1345,6 +1496,21 @@ public class FeedsImpl {
         client.getBaseUrl(),
         "POST",
         "/api/v2/feeds/follows/batch",
+        request,
+        null,
+        new TypeReference<FollowBatchResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<FollowBatchResponse> getOrCreateFollows(GetOrCreateFollowsRequest request)
+      throws StreamException {
+
+    return new StreamRequest<FollowBatchResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/follows/batch/upsert",
         request,
         null,
         new TypeReference<FollowBatchResponse>() {});
@@ -1491,6 +1657,26 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<QueryFeedsUsageStatsResponse> queryFeedsUsageStats(
+      QueryFeedsUsageStatsRequest request) throws StreamException {
+
+    return new StreamRequest<QueryFeedsUsageStatsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/stats/usage",
+        request,
+        null,
+        new TypeReference<QueryFeedsUsageStatsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryFeedsUsageStatsResponse> queryFeedsUsageStats() throws StreamException {
+    return queryFeedsUsageStats(new QueryFeedsUsageStatsRequest());
+  }
+
+  @NotNull
   public StreamRequest<UnfollowBatchResponse> unfollowBatch(UnfollowBatchRequest request)
       throws StreamException {
 
@@ -1500,6 +1686,21 @@ public class FeedsImpl {
         client.getBaseUrl(),
         "POST",
         "/api/v2/feeds/unfollow/batch",
+        request,
+        null,
+        new TypeReference<UnfollowBatchResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UnfollowBatchResponse> getOrCreateUnfollows(
+      GetOrCreateUnfollowsRequest request) throws StreamException {
+
+    return new StreamRequest<UnfollowBatchResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/unfollow/batch/upsert",
         request,
         null,
         new TypeReference<UnfollowBatchResponse>() {});

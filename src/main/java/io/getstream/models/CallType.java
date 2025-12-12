@@ -22,29 +22,29 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class CallType {
 
-  @JsonProperty("AppPK")
-  private Integer appPK;
+  @JsonProperty("app")
+  private Integer app;
 
-  @JsonProperty("CreatedAt")
+  @JsonProperty("created_at")
   private Date createdAt;
 
-  @JsonProperty("ExternalStorage")
-  private String externalStorage;
+  @JsonProperty("id")
+  private Integer id;
 
-  @JsonProperty("Name")
+  @JsonProperty("name")
   private String name;
 
-  @JsonProperty("PK")
-  private Integer pK;
+  @JsonProperty("recording_external_storage")
+  private String recordingExternalStorage;
 
-  @JsonProperty("UpdatedAt")
+  @JsonProperty("updated_at")
   private Date updatedAt;
 
   @Nullable
-  @JsonProperty("NotificationSettings")
+  @JsonProperty("notification_settings")
   private NotificationSettings notificationSettings;
 
   @Nullable
-  @JsonProperty("Settings")
+  @JsonProperty("settings")
   private CallSettings settings;
 }

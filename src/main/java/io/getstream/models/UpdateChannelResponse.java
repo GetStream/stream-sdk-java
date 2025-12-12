@@ -26,7 +26,7 @@ public class UpdateChannelResponse {
   private String duration;
 
   @JsonProperty("members")
-  private List<ChannelMember> members;
+  private List<ChannelMemberResponse> members;
 
   @Nullable
   @JsonProperty("channel")

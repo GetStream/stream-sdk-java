@@ -35,6 +35,9 @@ public class BookmarkFolderResponse {
   @JsonProperty("updated_at")
   private Date updatedAt;
 
+  @JsonProperty("user")
+  private UserResponse user;
+
   @Nullable
   @JsonProperty("custom")
   private Map<String, Object> custom;

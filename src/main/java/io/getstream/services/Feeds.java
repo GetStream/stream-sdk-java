@@ -96,8 +96,8 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
-  public StreamRequest<AddReactionResponse> addReaction(
-      @NotNull String activityID, AddReactionRequest request) throws StreamException;
+  public StreamRequest<AddReactionResponse> addActivityReaction(
+      @NotNull String activityID, AddActivityReactionRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryActivityReactionsResponse> queryActivityReactions(
@@ -178,12 +178,35 @@ public interface Feeds {
   public StreamRequest<QueryBookmarksResponse> queryBookmarks() throws StreamException;
 
   @NotNull
+  public StreamRequest<DeleteCollectionsResponse> deleteCollections(
+      DeleteCollectionsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ReadCollectionsResponse> readCollections(ReadCollectionsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateCollectionsResponse> updateCollections(
+      UpdateCollectionsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<CreateCollectionsResponse> createCollections(
+      CreateCollectionsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpsertCollectionsResponse> upsertCollections(
+      UpsertCollectionsRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<GetCommentsResponse> getComments(GetCommentsRequest request)
       throws StreamException;
 
   @NotNull
   public StreamRequest<AddCommentResponse> addComment(AddCommentRequest request)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<AddCommentResponse> addComment() throws StreamException;
 
   @NotNull
   public StreamRequest<AddCommentsBatchResponse> addCommentsBatch(AddCommentsBatchRequest request)
@@ -448,8 +471,23 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<UpdateFeedVisibilityResponse> updateFeedVisibility(
+      @NotNull String name, UpdateFeedVisibilityRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateFeedVisibilityResponse> updateFeedVisibility(@NotNull String name)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<CreateFeedsBatchResponse> createFeedsBatch(CreateFeedsBatchRequest request)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteFeedsBatchResponse> deleteFeedsBatch(DeleteFeedsBatchRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<OwnBatchResponse> ownBatch(OwnBatchRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryFeedsResponse> queryFeeds(QueryFeedsRequest request)
@@ -457,6 +495,13 @@ public interface Feeds {
 
   @NotNull
   public StreamRequest<QueryFeedsResponse> queryFeeds() throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedsRateLimitsResponse> getFeedsRateLimits(
+      GetFeedsRateLimitsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedsRateLimitsResponse> getFeedsRateLimits() throws StreamException;
 
   @NotNull
   public StreamRequest<UpdateFollowResponse> updateFollow(UpdateFollowRequest request)
@@ -471,6 +516,10 @@ public interface Feeds {
 
   @NotNull
   public StreamRequest<FollowBatchResponse> followBatch(FollowBatchRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<FollowBatchResponse> getOrCreateFollows(GetOrCreateFollowsRequest request)
       throws StreamException;
 
   @NotNull
@@ -521,8 +570,19 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<QueryFeedsUsageStatsResponse> queryFeedsUsageStats(
+      QueryFeedsUsageStatsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryFeedsUsageStatsResponse> queryFeedsUsageStats() throws StreamException;
+
+  @NotNull
   public StreamRequest<UnfollowBatchResponse> unfollowBatch(UnfollowBatchRequest request)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<UnfollowBatchResponse> getOrCreateUnfollows(
+      GetOrCreateUnfollowsRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<DeleteFeedUserDataResponse> deleteFeedUserData(

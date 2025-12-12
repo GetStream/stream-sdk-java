@@ -47,7 +47,7 @@ public class QueryMembersPayload {
 
   @Nullable
   @JsonProperty("members")
-  private List<ChannelMember> members;
+  private List<ChannelMemberRequest> members;
 
   @Nullable
   @JsonProperty("sort")

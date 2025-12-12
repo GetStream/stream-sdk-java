@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
@@ -35,6 +36,10 @@ public class UpdateChannelRequest {
   private Boolean hideHistory;
 
   @Nullable
+  @JsonProperty("hide_history_before")
+  private Date hideHistoryBefore;
+
+  @Nullable
   @JsonProperty("reject_invite")
   private Boolean rejectInvite;
 
@@ -47,8 +52,12 @@ public class UpdateChannelRequest {
   private String userID;
 
   @Nullable
+  @JsonProperty("add_filter_tags")
+  private List<String> addFilterTags;
+
+  @Nullable
   @JsonProperty("add_members")
-  private List<ChannelMember> addMembers;
+  private List<ChannelMemberRequest> addMembers;
 
   @Nullable
   @JsonProperty("add_moderators")
@@ -56,7 +65,7 @@ public class UpdateChannelRequest {
 
   @Nullable
   @JsonProperty("assign_roles")
-  private List<ChannelMember> assignRoles;
+  private List<ChannelMemberRequest> assignRoles;
 
   @Nullable
   @JsonProperty("demote_moderators")
@@ -64,7 +73,11 @@ public class UpdateChannelRequest {
 
   @Nullable
   @JsonProperty("invites")
-  private List<ChannelMember> invites;
+  private List<ChannelMemberRequest> invites;
+
+  @Nullable
+  @JsonProperty("remove_filter_tags")
+  private List<String> removeFilterTags;
 
   @Nullable
   @JsonProperty("remove_members")
@@ -72,7 +85,7 @@ public class UpdateChannelRequest {
 
   @Nullable
   @JsonProperty("data")
-  private ChannelInput data;
+  private ChannelInputRequest data;
 
   @Nullable
   @JsonProperty("message")

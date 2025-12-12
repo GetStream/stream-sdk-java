@@ -23,6 +23,10 @@ import org.jetbrains.annotations.Nullable;
 public class GetOrCreateFeedRequest {
 
   @Nullable
+  @JsonProperty("id_around")
+  private String idAround;
+
+  @Nullable
   @JsonProperty("limit")
   private Integer limit;
 
@@ -47,12 +51,12 @@ public class GetOrCreateFeedRequest {
   private Boolean watch;
 
   @Nullable
-  @JsonProperty("activity_selector_options")
-  private Map<String, Object> activitySelectorOptions;
-
-  @Nullable
   @JsonProperty("data")
   private FeedInput data;
+
+  @Nullable
+  @JsonProperty("enrichment_options")
+  private EnrichmentOptions enrichmentOptions;
 
   @Nullable
   @JsonProperty("external_ranking")

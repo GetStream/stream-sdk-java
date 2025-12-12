@@ -31,6 +31,10 @@ public class FeedsPreferences {
   private String commentReaction;
 
   @Nullable
+  @JsonProperty("comment_reply")
+  private String commentReply;
+
+  @Nullable
   @JsonProperty("follow")
   private String follow;
 

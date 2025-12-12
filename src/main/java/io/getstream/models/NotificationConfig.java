@@ -22,6 +22,10 @@ import org.jetbrains.annotations.Nullable;
 public class NotificationConfig {
 
   @Nullable
+  @JsonProperty("deduplication_window")
+  private String deduplicationWindow;
+
+  @Nullable
   @JsonProperty("track_read")
   private Boolean trackRead;
 

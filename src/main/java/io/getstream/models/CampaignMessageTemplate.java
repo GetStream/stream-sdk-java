@@ -25,6 +25,9 @@ public class CampaignMessageTemplate {
   @JsonProperty("poll_id")
   private String pollID;
 
+  @JsonProperty("searchable")
+  private Boolean searchable;
+
   @JsonProperty("text")
   private String text;
 

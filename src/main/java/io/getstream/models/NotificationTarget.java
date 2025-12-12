@@ -44,4 +44,8 @@ public class NotificationTarget {
   @Nullable
   @JsonProperty("attachments")
   private List<Attachment> attachments;
+
+  @Nullable
+  @JsonProperty("comment")
+  private NotificationComment comment;
 }

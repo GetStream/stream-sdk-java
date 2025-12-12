@@ -36,12 +36,20 @@ public class SubmitActionRequest {
   private BanActionRequest ban;
 
   @Nullable
+  @JsonProperty("block")
+  private BlockActionRequest block;
+
+  @Nullable
   @JsonProperty("custom")
   private CustomActionRequest custom;
 
   @Nullable
   @JsonProperty("delete_activity")
   private DeleteActivityRequest deleteActivity;
+
+  @Nullable
+  @JsonProperty("delete_comment")
+  private DeleteCommentRequest deleteComment;
 
   @Nullable
   @JsonProperty("delete_message")
@@ -58,6 +66,10 @@ public class SubmitActionRequest {
   @Nullable
   @JsonProperty("mark_reviewed")
   private MarkReviewedRequest markReviewed;
+
+  @Nullable
+  @JsonProperty("shadow_block")
+  private ShadowBlockActionRequest shadowBlock;
 
   @Nullable
   @JsonProperty("unban")

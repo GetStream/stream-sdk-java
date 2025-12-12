@@ -393,11 +393,11 @@ class FeedIntegrationTests {
     createdActivityIds.add(activityId);
 
     // snippet-start: AddReaction
-    AddReactionRequest reactionRequest =
-        AddReactionRequest.builder().type("like").userID(testUserId).build();
+    AddActivityReactionRequest reactionRequest =
+        AddActivityReactionRequest.builder().type("like").userID(testUserId).build();
 
     AddReactionResponse response =
-        feeds.addReaction(activityId, reactionRequest).execute().getData();
+        feeds.addActivityReaction(activityId, reactionRequest).execute().getData();
     // snippet-end: AddReaction
 
     Assertions.assertNotNull(response.getReaction());
@@ -423,10 +423,10 @@ class FeedIntegrationTests {
     createdActivityIds.add(activityId);
 
     // Add a reaction first
-    AddReactionRequest reactionRequest =
-        AddReactionRequest.builder().type("like").userID(testUserId).build();
+    AddActivityReactionRequest reactionRequest =
+        AddActivityReactionRequest.builder().type("like").userID(testUserId).build();
 
-    feeds.addReaction(activityId, reactionRequest).execute();
+    feeds.addActivityReaction(activityId, reactionRequest).execute();
 
     try {
       // snippet-start: QueryActivityReactions
@@ -569,7 +569,10 @@ class FeedIntegrationTests {
 
     // snippet-start: UpdateComment
     UpdateCommentRequest updateRequest =
-        UpdateCommentRequest.builder().comment("Updated comment text from Java SDK").build();
+        UpdateCommentRequest.builder()
+            .comment("Updated comment text from Java SDK")
+            .userID(testUserId)
+            .build();
 
     UpdateCommentResponse response =
         feeds.updateComment(commentId, updateRequest).execute().getData();
@@ -893,10 +896,10 @@ class FeedIntegrationTests {
     createdActivityIds.add(activityId);
 
     // Add a reaction first
-    AddReactionRequest reactionRequest =
-        AddReactionRequest.builder().type("like").userID(testUserId).build();
+    AddActivityReactionRequest reactionRequest =
+        AddActivityReactionRequest.builder().type("like").userID(testUserId).build();
 
-    feeds.addReaction(activityId, reactionRequest).execute();
+    feeds.addActivityReaction(activityId, reactionRequest).execute();
 
     // snippet-start: DeleteActivityReaction
     DeleteActivityReactionRequest deleteRequest =
@@ -1176,8 +1179,7 @@ class FeedIntegrationTests {
       // snippet-start: ModerateActivity
       ActivityFeedbackRequest moderationRequest =
           ActivityFeedbackRequest.builder()
-              .report(true)
-              .reason("inappropriate_content")
+              .hide(true)
               .userID(testUserId2) // Different user reporting
               .build();
 
@@ -1490,10 +1492,10 @@ class FeedIntegrationTests {
     // 2. Other users react to the post
     String[] reactionTypes = {"like", "love", "wow"};
     for (String reactionType : reactionTypes) {
-      AddReactionRequest reactionRequest =
-          AddReactionRequest.builder().type(reactionType).userID(testUserId2).build();
+      AddActivityReactionRequest reactionRequest =
+          AddActivityReactionRequest.builder().type(reactionType).userID(testUserId2).build();
 
-      feeds.addReaction(postId, reactionRequest).execute();
+      feeds.addActivityReaction(postId, reactionRequest).execute();
     }
 
     // 3. Users comment on the post

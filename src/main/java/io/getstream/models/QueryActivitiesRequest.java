@@ -24,6 +24,10 @@ import org.jetbrains.annotations.Nullable;
 public class QueryActivitiesRequest {
 
   @Nullable
+  @JsonProperty("include_private_activities")
+  private Boolean includePrivateActivities;
+
+  @Nullable
   @JsonProperty("limit")
   private Integer limit;
 
@@ -36,10 +40,18 @@ public class QueryActivitiesRequest {
   private String prev;
 
   @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
   @JsonProperty("sort")
   private List<SortParamRequest> sort;
 
   @Nullable
   @JsonProperty("filter")
   private Map<String, Object> filter;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

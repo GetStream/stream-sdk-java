@@ -23,4 +23,7 @@ public class IngressVideoEncodingResponse {
 
   @JsonProperty("layers")
   private List<IngressVideoLayerResponse> layers;
+
+  @JsonProperty("source")
+  private IngressSourceResponse source;
 }

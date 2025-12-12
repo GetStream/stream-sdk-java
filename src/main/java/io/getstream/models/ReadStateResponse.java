@@ -32,6 +32,14 @@ public class ReadStateResponse {
   private UserResponse user;
 
   @Nullable
+  @JsonProperty("last_delivered_at")
+  private Date lastDeliveredAt;
+
+  @Nullable
+  @JsonProperty("last_delivered_message_id")
+  private String lastDeliveredMessageID;
+
+  @Nullable
   @JsonProperty("last_read_message_id")
   private String lastReadMessageID;
 }

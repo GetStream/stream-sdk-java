@@ -27,10 +27,22 @@ public class UpdateCommentRequest {
   private String comment;
 
   @Nullable
+  @JsonProperty("skip_enrich_url")
+  private Boolean skipEnrichUrl;
+
+  @Nullable
   @JsonProperty("skip_push")
   private Boolean skipPush;
 
   @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
   @JsonProperty("custom")
   private Map<String, Object> custom;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

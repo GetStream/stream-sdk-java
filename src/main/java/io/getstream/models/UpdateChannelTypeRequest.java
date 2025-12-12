@@ -53,6 +53,10 @@ public class UpdateChannelTypeRequest {
   private Boolean customEvents;
 
   @Nullable
+  @JsonProperty("delivery_events")
+  private Boolean deliveryEvents;
+
+  @Nullable
   @JsonProperty("mark_messages_pending")
   private Boolean markMessagesPending;
 

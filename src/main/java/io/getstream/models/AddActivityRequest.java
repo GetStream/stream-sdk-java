@@ -46,6 +46,14 @@ public class AddActivityRequest {
   private String pollID;
 
   @Nullable
+  @JsonProperty("restrict_replies")
+  private String restrictReplies;
+
+  @Nullable
+  @JsonProperty("skip_enrich_url")
+  private Boolean skipEnrichUrl;
+
+  @Nullable
   @JsonProperty("text")
   private String text;
 
@@ -64,6 +72,10 @@ public class AddActivityRequest {
   @Nullable
   @JsonProperty("attachments")
   private List<Attachment> attachments;
+
+  @Nullable
+  @JsonProperty("collection_refs")
+  private List<String> collectionRefs;
 
   @Nullable
   @JsonProperty("filter_tags")

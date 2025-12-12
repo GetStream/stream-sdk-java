@@ -24,6 +24,9 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class AppResponseFields {
 
+  @JsonProperty("allow_multi_user_devices")
+  private Boolean allowMultiUserDevices;
+
   @JsonProperty("async_url_enrich_enabled")
   private Boolean asyncUrlEnrichEnabled;
 
@@ -51,8 +54,14 @@ public class AppResponseFields {
   @JsonProperty("guest_user_creation_disabled")
   private Boolean guestUserCreationDisabled;
 
+  @JsonProperty("id")
+  private Integer id;
+
   @JsonProperty("image_moderation_enabled")
   private Boolean imageModerationEnabled;
+
+  @JsonProperty("max_aggregated_activities_length")
+  private Integer maxAggregatedActivitiesLength;
 
   @JsonProperty("moderation_bulk_submit_action_enabled")
   private Boolean moderationBulkSubmitActionEnabled;
@@ -80,6 +89,9 @@ public class AppResponseFields {
 
   @JsonProperty("permission_version")
   private String permissionVersion;
+
+  @JsonProperty("placement")
+  private String placement;
 
   @JsonProperty("reminders_interval")
   private Integer remindersInterval;
