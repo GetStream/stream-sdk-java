@@ -27,12 +27,18 @@ public class UserUnreadReminderEvent {
   private Date createdAt;
 
   @JsonProperty("channels")
-  private Map<String, ChannelMessages> channels;
+  private Map<String, ChannelMessagesResponse> channels;
+
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
+  @JsonProperty("user")
+  private UserResponseCommonFields user;
 
   @JsonProperty("type")
   private String type;
 
   @Nullable
-  @JsonProperty("user")
-  private User user;
+  @JsonProperty("received_at")
+  private Date receivedAt;
 }

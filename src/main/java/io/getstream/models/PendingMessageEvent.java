@@ -41,11 +41,11 @@ public class PendingMessageEvent {
 
   @Nullable
   @JsonProperty("channel")
-  private Channel channel;
+  private ChannelResponse channel;
 
   @Nullable
   @JsonProperty("message")
-  private Message message;
+  private MessageResponse message;
 
   @Nullable
   @JsonProperty("metadata")
@@ -53,5 +53,5 @@ public class PendingMessageEvent {
 
   @Nullable
   @JsonProperty("user")
-  private User user;
+  private UserResponse user;
 }

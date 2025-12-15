@@ -36,7 +36,7 @@ public class CreateCallTypeRequest {
 
   @Nullable
   @JsonProperty("notification_settings")
-  private NotificationSettings notificationSettings;
+  private NotificationSettingsRequest notificationSettings;
 
   @Nullable
   @JsonProperty("settings")

@@ -41,7 +41,7 @@ public class CustomCheckRequest {
 
   @Nullable
   @JsonProperty("moderation_payload")
-  private ModerationPayload moderationPayload;
+  private ModerationPayloadRequest moderationPayload;
 
   @Nullable
   @JsonProperty("user")

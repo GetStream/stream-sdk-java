@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -22,26 +23,32 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class ThreadUpdatedEvent {
 
-  @JsonProperty("channel_id")
-  private String channelID;
-
-  @JsonProperty("channel_type")
-  private String channelType;
-
-  @JsonProperty("cid")
-  private String cid;
-
   @JsonProperty("created_at")
   private Date createdAt;
+
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 
   @JsonProperty("type")
   private String type;
 
   @Nullable
-  @JsonProperty("thread")
-  private ThreadResponse thread;
+  @JsonProperty("channel_id")
+  private String channelID;
 
   @Nullable
-  @JsonProperty("user")
-  private User user;
+  @JsonProperty("channel_type")
+  private String channelType;
+
+  @Nullable
+  @JsonProperty("cid")
+  private String cid;
+
+  @Nullable
+  @JsonProperty("received_at")
+  private Date receivedAt;
+
+  @Nullable
+  @JsonProperty("thread")
+  private ThreadResponse thread;
 }

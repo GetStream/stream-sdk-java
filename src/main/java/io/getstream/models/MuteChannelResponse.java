@@ -35,5 +35,5 @@ public class MuteChannelResponse {
 
   @Nullable
   @JsonProperty("own_user")
-  private OwnUser ownUser;
+  private OwnUserResponse ownUser;
 }

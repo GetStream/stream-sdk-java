@@ -40,7 +40,7 @@ public class CreateCallTypeResponse {
   private Map<String, List<String>> grants;
 
   @JsonProperty("notification_settings")
-  private NotificationSettings notificationSettings;
+  private NotificationSettingsResponse notificationSettings;
 
   @JsonProperty("settings")
   private CallSettingsResponse settings;

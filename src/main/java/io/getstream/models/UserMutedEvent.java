@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -26,18 +27,24 @@ public class UserMutedEvent {
   @JsonProperty("created_at")
   private Date createdAt;
 
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
+  @JsonProperty("user")
+  private UserResponseCommonFields user;
+
   @JsonProperty("type")
   private String type;
 
   @Nullable
-  @JsonProperty("target_user")
-  private String targetUser;
+  @JsonProperty("received_at")
+  private Date receivedAt;
 
   @Nullable
   @JsonProperty("target_users")
-  private List<String> targetUsers;
+  private List<UserResponseCommonFields> targetUsers;
 
   @Nullable
-  @JsonProperty("user")
-  private User user;
+  @JsonProperty("target_user")
+  private UserResponseCommonFields targetUser;
 }

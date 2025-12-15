@@ -14,7 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -23,28 +23,71 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class MessageFlaggedEvent {
 
-  @JsonProperty("cid")
-  private String cid;
-
   @JsonProperty("created_at")
   private Date createdAt;
+
+  @JsonProperty("message_id")
+  private String messageID;
+
+  @JsonProperty("message")
+  private MessageResponse message;
 
   @JsonProperty("type")
   private String type;
 
   @Nullable
-  @JsonProperty("thread_participants")
-  private List<User> threadParticipants;
+  @JsonProperty("channel_id")
+  private String channelID;
+
+  @Nullable
+  @JsonProperty("channel_member_count")
+  private Integer channelMemberCount;
+
+  @Nullable
+  @JsonProperty("channel_message_count")
+  private Integer channelMessageCount;
+
+  @Nullable
+  @JsonProperty("channel_type")
+  private String channelType;
+
+  @Nullable
+  @JsonProperty("cid")
+  private String cid;
+
+  @Nullable
+  @JsonProperty("reason")
+  private String reason;
+
+  @Nullable
+  @JsonProperty("received_at")
+  private Date receivedAt;
+
+  @Nullable
+  @JsonProperty("team")
+  private String team;
+
+  @Nullable
+  @JsonProperty("total_flags")
+  private Integer totalFlags;
+
+  @Nullable
+  @JsonProperty("channel_custom")
+  private Map<String, Object> channelCustom;
+
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
+  @Nullable
+  @JsonProperty("details")
+  private MessageModerationResult details;
 
   @Nullable
   @JsonProperty("flag")
-  private Flag flag;
-
-  @Nullable
-  @JsonProperty("message")
-  private Message message;
+  private FlagResponse flag;
 
   @Nullable
   @JsonProperty("user")
-  private User user;
+  private UserResponseCommonFields user;
 }

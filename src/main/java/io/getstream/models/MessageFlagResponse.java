@@ -54,15 +54,15 @@ public class MessageFlagResponse {
 
   @Nullable
   @JsonProperty("details")
-  private FlagDetails details;
+  private FlagDetailsResponse details;
 
   @Nullable
   @JsonProperty("message")
-  private Message message;
+  private MessageResponse message;
 
   @Nullable
   @JsonProperty("moderation_feedback")
-  private FlagFeedback moderationFeedback;
+  private FlagFeedbackResponse moderationFeedback;
 
   @Nullable
   @JsonProperty("moderation_result")

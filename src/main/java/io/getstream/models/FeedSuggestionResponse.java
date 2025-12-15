@@ -24,6 +24,9 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class FeedSuggestionResponse {
 
+  @JsonProperty("activity_count")
+  private Integer activityCount;
+
   @JsonProperty("created_at")
   private Date createdAt;
 

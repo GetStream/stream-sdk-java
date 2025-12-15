@@ -36,5 +36,5 @@ public class UpsertModerationTemplateResponse {
 
   @Nullable
   @JsonProperty("config")
-  private FeedsModerationTemplateConfig config;
+  private FeedsModerationTemplateConfigPayload config;
 }
