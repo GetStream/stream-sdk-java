@@ -19,29 +19,17 @@ import org.jetbrains.annotations.Nullable;
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class NotificationSettingsRequest {
+public class EventNotificationSettingsRequest {
 
   @Nullable
   @JsonProperty("enabled")
   private Boolean enabled;
 
   @Nullable
-  @JsonProperty("call_live_started")
-  private EventNotificationSettingsRequest callLiveStarted;
+  @JsonProperty("apns")
+  private APNSResponse apns;
 
   @Nullable
-  @JsonProperty("call_missed")
-  private EventNotificationSettingsRequest callMissed;
-
-  @Nullable
-  @JsonProperty("call_notification")
-  private EventNotificationSettingsRequest callNotification;
-
-  @Nullable
-  @JsonProperty("call_ring")
-  private EventNotificationSettingsRequest callRing;
-
-  @Nullable
-  @JsonProperty("session_started")
-  private EventNotificationSettingsRequest sessionStarted;
+  @JsonProperty("fcm")
+  private FCMResponse fcm;
 }

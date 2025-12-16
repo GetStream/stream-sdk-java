@@ -13,7 +13,6 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -21,15 +20,12 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class EventNotificationSettingsResponse {
 
-  @Nullable
   @JsonProperty("enabled")
   private Boolean enabled;
 
-  @Nullable
   @JsonProperty("apns")
   private APNSResponse apns;
 
-  @Nullable
   @JsonProperty("fcm")
   private FCMResponse fcm;
 }
