@@ -31,29 +31,55 @@ public class CallTest extends BasicTest {
                     .build())
             .build();
 
-    NotificationSettings notificationSettings =
-        new NotificationSettings(
-            true,
-            new EventNotificationSettings(
-                true,
-                new APNS("{{ user.display_name }} invites you to a call", "", 0, 0, "", null),
-                null),
-            new EventNotificationSettings(
-                true,
-                new APNS("{{ user.display_name }} invites you to a call", "", 0, 0, "", null),
-                null),
-            new EventNotificationSettings(
-                true,
-                new APNS("{{ user.display_name }} invites you to a call", "", 0, 0, "", null),
-                null),
-            new EventNotificationSettings(
-                true,
-                new APNS("{{ user.display_name }} invites you to a call", "", 0, 0, "", null),
-                null),
-            new EventNotificationSettings(
-                true,
-                new APNS("{{ user.display_name }} invites you to a call", "", 0, 0, "", null),
-                null));
+    NotificationSettingsRequest notificationSettings =
+        NotificationSettingsRequest.builder()
+            .enabled(true)
+            .callLiveStarted(
+                EventNotificationSettingsRequest.builder()
+                    .enabled(true)
+                    .apns(
+                        APNSResponse.builder()
+                            .title("{{ user.display_name }} invites you to a call")
+                            .body("")
+                            .build())
+                    .build())
+            .callMissed(
+                EventNotificationSettingsRequest.builder()
+                    .enabled(true)
+                    .apns(
+                        APNSResponse.builder()
+                            .title("{{ user.display_name }} invites you to a call")
+                            .body("")
+                            .build())
+                    .build())
+            .callNotification(
+                EventNotificationSettingsRequest.builder()
+                    .enabled(true)
+                    .apns(
+                        APNSResponse.builder()
+                            .title("{{ user.display_name }} invites you to a call")
+                            .body("")
+                            .build())
+                    .build())
+            .callRing(
+                EventNotificationSettingsRequest.builder()
+                    .enabled(true)
+                    .apns(
+                        APNSResponse.builder()
+                            .title("{{ user.display_name }} invites you to a call")
+                            .body("")
+                            .build())
+                    .build())
+            .sessionStarted(
+                EventNotificationSettingsRequest.builder()
+                    .enabled(true)
+                    .apns(
+                        APNSResponse.builder()
+                            .title("{{ user.display_name }} invites you to a call")
+                            .body("")
+                            .build())
+                    .build())
+            .build();
 
     Map<String, List<String>> grants =
         Map.of(
