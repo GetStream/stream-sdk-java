@@ -37,7 +37,7 @@ public class QueryModerationFlagsRequest {
 
   @Nullable
   @JsonProperty("sort")
-  private List<SortParam> sort;
+  private List<SortParamRequest> sort;
 
   @Nullable
   @JsonProperty("filter")

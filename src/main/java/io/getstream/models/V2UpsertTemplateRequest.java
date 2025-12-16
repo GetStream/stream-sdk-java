@@ -24,5 +24,5 @@ public class V2UpsertTemplateRequest {
   private String name;
 
   @JsonProperty("config")
-  private FeedsModerationTemplateConfig config;
+  private FeedsModerationTemplateConfigPayload config;
 }

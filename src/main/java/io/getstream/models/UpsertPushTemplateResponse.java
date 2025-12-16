@@ -26,5 +26,5 @@ public class UpsertPushTemplateResponse {
 
   @Nullable
   @JsonProperty("template")
-  private PushTemplate template;
+  private PushTemplateResponse template;
 }

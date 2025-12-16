@@ -27,6 +27,10 @@ public class SearchPayload {
   private Map<String, Object> filterConditions;
 
   @Nullable
+  @JsonProperty("force_default_search")
+  private Boolean forceDefaultSearch;
+
+  @Nullable
   @JsonProperty("limit")
   private Integer limit;
 

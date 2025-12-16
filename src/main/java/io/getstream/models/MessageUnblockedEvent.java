@@ -14,7 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -23,24 +23,30 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class MessageUnblockedEvent {
 
-  @JsonProperty("cid")
-  private String cid;
-
   @JsonProperty("created_at")
   private Date createdAt;
+
+  @JsonProperty("message_id")
+  private String messageID;
+
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
+  @JsonProperty("message")
+  private MessageResponse message;
 
   @JsonProperty("type")
   private String type;
 
   @Nullable
-  @JsonProperty("thread_participants")
-  private List<User> threadParticipants;
+  @JsonProperty("cid")
+  private String cid;
 
   @Nullable
-  @JsonProperty("message")
-  private Message message;
+  @JsonProperty("received_at")
+  private Date receivedAt;
 
   @Nullable
   @JsonProperty("user")
-  private User user;
+  private UserResponseCommonFields user;
 }

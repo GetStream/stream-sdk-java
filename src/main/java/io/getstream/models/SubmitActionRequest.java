@@ -33,47 +33,47 @@ public class SubmitActionRequest {
 
   @Nullable
   @JsonProperty("ban")
-  private BanActionRequest ban;
+  private BanActionRequestPayload ban;
 
   @Nullable
   @JsonProperty("block")
-  private BlockActionRequest block;
+  private BlockActionRequestPayload block;
 
   @Nullable
   @JsonProperty("custom")
-  private CustomActionRequest custom;
+  private CustomActionRequestPayload custom;
 
   @Nullable
   @JsonProperty("delete_activity")
-  private DeleteActivityRequest deleteActivity;
+  private DeleteActivityRequestPayload deleteActivity;
 
   @Nullable
   @JsonProperty("delete_comment")
-  private DeleteCommentRequest deleteComment;
+  private DeleteCommentRequestPayload deleteComment;
 
   @Nullable
   @JsonProperty("delete_message")
-  private DeleteMessageRequest deleteMessage;
+  private DeleteMessageRequestPayload deleteMessage;
 
   @Nullable
   @JsonProperty("delete_reaction")
-  private DeleteReactionRequest deleteReaction;
+  private DeleteReactionRequestPayload deleteReaction;
 
   @Nullable
   @JsonProperty("delete_user")
-  private DeleteUserRequest deleteUser;
+  private DeleteUserRequestPayload deleteUser;
 
   @Nullable
   @JsonProperty("mark_reviewed")
-  private MarkReviewedRequest markReviewed;
+  private MarkReviewedRequestPayload markReviewed;
 
   @Nullable
   @JsonProperty("shadow_block")
-  private ShadowBlockActionRequest shadowBlock;
+  private ShadowBlockActionRequestPayload shadowBlock;
 
   @Nullable
   @JsonProperty("unban")
-  private UnbanActionRequest unban;
+  private UnbanActionRequestPayload unban;
 
   @Nullable
   @JsonProperty("user")

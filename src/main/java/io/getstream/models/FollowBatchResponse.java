@@ -24,6 +24,9 @@ public class FollowBatchResponse {
   @JsonProperty("duration")
   private String duration;
 
+  @JsonProperty("created")
+  private List<FollowResponse> created;
+
   @JsonProperty("follows")
   private List<FollowResponse> follows;
 }

@@ -14,7 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -26,18 +26,27 @@ public class UserFlaggedEvent {
   @JsonProperty("created_at")
   private Date createdAt;
 
+  @JsonProperty("reason")
+  private String reason;
+
+  @JsonProperty("total_flags")
+  private Integer totalFlags;
+
+  @JsonProperty("user")
+  private UserResponseCommonFields user;
+
   @JsonProperty("type")
   private String type;
 
   @Nullable
+  @JsonProperty("received_at")
+  private Date receivedAt;
+
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
+  @Nullable
   @JsonProperty("target_user")
-  private String targetUser;
-
-  @Nullable
-  @JsonProperty("target_users")
-  private List<String> targetUsers;
-
-  @Nullable
-  @JsonProperty("user")
-  private User user;
+  private UserResponseCommonFields targetUser;
 }

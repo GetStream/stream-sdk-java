@@ -29,7 +29,7 @@ public class ResolveSipInboundRequest {
   private String sipTrunkNumber;
 
   @JsonProperty("challenge")
-  private SIPChallenge challenge;
+  private SIPChallengeRequest challenge;
 
   @Nullable
   @JsonProperty("sip_headers")

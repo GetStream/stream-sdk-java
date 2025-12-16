@@ -30,7 +30,7 @@ public class QueryReviewQueueResponse {
   private List<ReviewQueueItemResponse> items;
 
   @JsonProperty("action_config")
-  private Map<String, List<ModerationActionConfig>> actionConfig;
+  private Map<String, List<ModerationActionConfigResponse>> actionConfig;
 
   @JsonProperty("stats")
   private Map<String, Object> stats;

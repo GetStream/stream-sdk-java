@@ -25,5 +25,5 @@ public class GetPushTemplatesResponse {
   private String duration;
 
   @JsonProperty("templates")
-  private List<PushTemplate> templates;
+  private List<PushTemplateResponse> templates;
 }

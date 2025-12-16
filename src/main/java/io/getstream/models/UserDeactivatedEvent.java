@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -25,13 +26,20 @@ public class UserDeactivatedEvent {
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @JsonProperty("created_by")
-  private User createdBy;
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
+  @JsonProperty("user")
+  private UserResponseCommonFields user;
 
   @JsonProperty("type")
   private String type;
 
   @Nullable
-  @JsonProperty("user")
-  private User user;
+  @JsonProperty("received_at")
+  private Date receivedAt;
+
+  @Nullable
+  @JsonProperty("created_by")
+  private UserResponseCommonFields createdBy;
 }
