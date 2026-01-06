@@ -62,8 +62,6 @@ public class TokenBuilder {
                 "call_cids", claims.getCallCIDs()))
         .issuedAt(Date.from(claims.getIssuedAt()))
         .expiration(Date.from(claims.getExpiresAt()))
-        .issuer("Stream Java SDK")
-        .subject("Stream Java SDK")
         .signWith(key, Jwts.SIG.HS256)
         .compact();
   }

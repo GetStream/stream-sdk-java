@@ -83,10 +83,7 @@ public class StreamHTTPClient {
     calendar.add(Calendar.SECOND, -5);
     return Jwts.builder()
         .issuedAt(new Date())
-        .issuer("Stream Chat Java SDK")
-        .subject("Stream Chat Java SDK")
         .claim("server", true)
-        .claim("scope", "admins")
         .signWith(signingKey, SignatureAlgorithm.HS256)
         .compact();
   }
