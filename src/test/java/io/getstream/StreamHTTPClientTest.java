@@ -21,13 +21,9 @@ public class StreamHTTPClientTest {
   }
 
   @Test
-  void testUnixMicrosecondTimestampParsing() throws Exception {
-    // Unix microseconds for 2024-01-06 12:00:00 UTC
-    // In seconds: 1704542400
-    // In milliseconds: 1704542400000
-    // In microseconds: 1704542400000000
-    long timestampInMicros = 1704542400000000L;
-    long timestampInMillis = 1704542400000L;
+  void testUnixNanosecondTimestampParsing() throws Exception {
+    long timestampInNanos = 1704542400000000000L;
+    long timestampInMillis = timestampInNanos / 1_000_000;
 
     // Create a JSON response with unix microsecond timestamp
     String json =
@@ -41,7 +37,7 @@ public class StreamHTTPClientTest {
           "updated_at": %d
         }
         """,
-            timestampInMicros, timestampInMicros);
+                timestampInNanos, timestampInNanos);
 
     // Parse the JSON
     MessageResponse message = objectMapper.readValue(json, MessageResponse.class);

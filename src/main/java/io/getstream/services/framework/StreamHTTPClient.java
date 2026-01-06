@@ -41,7 +41,7 @@ public class StreamHTTPClient {
           .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS)
           .registerModule(
               new SimpleModule()
-                  .addDeserializer(Date.class, new MicrosecondTimestampDeserializer()));
+                  .addDeserializer(Date.class, new NanosecondTimestampDeserializer()));
 
   @NotNull private String apiSecret;
   @NotNull private String apiKey;
