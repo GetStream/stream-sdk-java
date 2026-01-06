@@ -62,4 +62,42 @@ public class StreamHTTPClientTest {
             "Expected timestamp %d (2024-01-06) but got %d (%s)",
             expectedDate.getTime(), message.getUpdatedAt().getTime(), message.getUpdatedAt()));
   }
+
+  @Test
+  void testRFC3339TimestampParsing() throws Exception {
+    // Create a JSON response with RFC 3339 formatted timestamp
+    String json =
+        """
+        {
+          "id": "test-message-id",
+          "text": "Test message",
+          "type": "regular",
+          "created_at": "2024-01-06T12:00:00.000Z",
+          "updated_at": "2024-01-06T12:00:00Z"
+        }
+        """;
+
+    // Parse the JSON
+    MessageResponse message = objectMapper.readValue(json, MessageResponse.class);
+
+    // Expected date: 2024-01-06 12:00:00 UTC
+    Date expectedDate = new Date(1704542400000L);
+
+    // Assert that the parsed date matches the expected date
+    assertEquals(
+        expectedDate.getTime(),
+        message.getCreatedAt().getTime(),
+        1000, // Allow 1 second tolerance
+        String.format(
+            "Expected timestamp %d (2024-01-06T12:00:00Z) but got %d (%s)",
+            expectedDate.getTime(), message.getCreatedAt().getTime(), message.getCreatedAt()));
+
+    assertEquals(
+        expectedDate.getTime(),
+        message.getUpdatedAt().getTime(),
+        1000, // Allow 1 second tolerance
+        String.format(
+            "Expected timestamp %d (2024-01-06T12:00:00Z) but got %d (%s)",
+            expectedDate.getTime(), message.getUpdatedAt().getTime(), message.getUpdatedAt()));
+  }
 }
