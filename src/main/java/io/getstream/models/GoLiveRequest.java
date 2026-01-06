@@ -30,8 +30,20 @@ public class GoLiveRequest {
   private Boolean startClosedCaption;
 
   @Nullable
+  @JsonProperty("start_composite_recording")
+  private Boolean startCompositeRecording;
+
+  @Nullable
   @JsonProperty("start_hls")
   private Boolean startHLS;
+
+  @Nullable
+  @JsonProperty("start_individual_recording")
+  private Boolean startIndividualRecording;
+
+  @Nullable
+  @JsonProperty("start_raw_recording")
+  private Boolean startRawRecording;
 
   @Nullable
   @JsonProperty("start_recording")

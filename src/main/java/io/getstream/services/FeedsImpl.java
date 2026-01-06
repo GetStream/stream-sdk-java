@@ -1715,7 +1715,7 @@ public class FeedsImpl {
         client.getHttpClient(),
         client.getObjectMapper(),
         client.getBaseUrl(),
-        "DELETE",
+        "POST",
         "/api/v2/feeds/users/{user_id}/delete",
         request,
         pathParams,

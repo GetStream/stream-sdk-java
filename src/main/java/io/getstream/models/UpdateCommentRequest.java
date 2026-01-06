@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
@@ -37,6 +38,10 @@ public class UpdateCommentRequest {
   @Nullable
   @JsonProperty("user_id")
   private String userID;
+
+  @Nullable
+  @JsonProperty("attachments")
+  private List<Attachment> attachments;
 
   @Nullable
   @JsonProperty("custom")

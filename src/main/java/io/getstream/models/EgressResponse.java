@@ -29,10 +29,22 @@ public class EgressResponse {
   private List<EgressRTMPResponse> rtmps;
 
   @Nullable
+  @JsonProperty("composite_recording")
+  private CompositeRecordingResponse compositeRecording;
+
+  @Nullable
   @JsonProperty("frame_recording")
   private FrameRecordingResponse frameRecording;
 
   @Nullable
   @JsonProperty("hls")
   private EgressHLSResponse hls;
+
+  @Nullable
+  @JsonProperty("individual_recording")
+  private IndividualRecordingResponse individualRecording;
+
+  @Nullable
+  @JsonProperty("raw_recording")
+  private RawRecordingResponse rawRecording;
 }

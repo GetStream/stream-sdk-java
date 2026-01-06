@@ -28,4 +28,8 @@ public class SortParamRequest {
   @Nullable
   @JsonProperty("field")
   private String field;
+
+  @Nullable
+  @JsonProperty("type")
+  private String type;
 }

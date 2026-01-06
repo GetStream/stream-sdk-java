@@ -12,7 +12,16 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class UnbanActionRequest {}
+@lombok.AllArgsConstructor
+public class UnbanActionRequest {
+
+  @Nullable
+  @JsonProperty("decision_reason")
+  private String decisionReason;
+}

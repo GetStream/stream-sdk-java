@@ -22,6 +22,10 @@ import org.jetbrains.annotations.Nullable;
 public class EnrichmentOptions {
 
   @Nullable
+  @JsonProperty("enrich_own_followings")
+  private Boolean enrichOwnFollowings;
+
+  @Nullable
   @JsonProperty("skip_activity")
   private Boolean skipActivity;
 

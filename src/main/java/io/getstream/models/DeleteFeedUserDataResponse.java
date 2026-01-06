@@ -20,18 +20,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @lombok.AllArgsConstructor
 public class DeleteFeedUserDataResponse {
 
-  @JsonProperty("deleted_activities")
-  private Integer deletedActivities;
-
-  @JsonProperty("deleted_bookmarks")
-  private Integer deletedBookmarks;
-
-  @JsonProperty("deleted_comments")
-  private Integer deletedComments;
-
-  @JsonProperty("deleted_reactions")
-  private Integer deletedReactions;
-
   @JsonProperty("duration")
   private String duration;
+
+  @JsonProperty("task_id")
+  private String taskID;
 }

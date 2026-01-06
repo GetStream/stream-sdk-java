@@ -26,6 +26,10 @@ public class MarkReviewedRequest {
   private Integer contentToMarkAsReviewedLimit;
 
   @Nullable
+  @JsonProperty("decision_reason")
+  private String decisionReason;
+
+  @Nullable
   @JsonProperty("disable_marking_content_as_reviewed")
   private Boolean disableMarkingContentAsReviewed;
 }

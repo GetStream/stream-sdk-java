@@ -73,6 +73,10 @@ public class UpdateActivityRequest {
   private List<String> interestTags;
 
   @Nullable
+  @JsonProperty("mentioned_user_ids")
+  private List<String> mentionedUserIds;
+
+  @Nullable
   @JsonProperty("custom")
   private Map<String, Object> custom;
 

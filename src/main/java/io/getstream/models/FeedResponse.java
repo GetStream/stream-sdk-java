@@ -24,6 +24,9 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class FeedResponse {
 
+  @JsonProperty("activity_count")
+  private Integer activityCount;
+
   @JsonProperty("created_at")
   private Date createdAt;
 
@@ -75,6 +78,10 @@ public class FeedResponse {
   @Nullable
   @JsonProperty("own_capabilities")
   private List<FeedOwnCapability> ownCapabilities;
+
+  @Nullable
+  @JsonProperty("own_followings")
+  private List<FollowResponse> ownFollowings;
 
   @Nullable
   @JsonProperty("own_follows")

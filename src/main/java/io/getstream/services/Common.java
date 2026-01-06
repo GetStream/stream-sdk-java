@@ -158,6 +158,33 @@ public interface Common {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<ListImportV2TasksResponse> listImportV2Tasks(
+      ListImportV2TasksRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListImportV2TasksResponse> listImportV2Tasks() throws StreamException;
+
+  @NotNull
+  public StreamRequest<CreateImportV2TaskResponse> createImportV2Task(
+      CreateImportV2TaskRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteImportV2TaskResponse> deleteImportV2Task(
+      @NotNull String id, DeleteImportV2TaskRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteImportV2TaskResponse> deleteImportV2Task(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetImportV2TaskResponse> getImportV2Task(
+      @NotNull String id, GetImportV2TaskRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetImportV2TaskResponse> getImportV2Task(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<GetImportResponse> getImport(@NotNull String id, GetImportRequest request)
       throws StreamException;
 

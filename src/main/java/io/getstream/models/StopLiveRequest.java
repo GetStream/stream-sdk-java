@@ -26,12 +26,24 @@ public class StopLiveRequest {
   private Boolean continueClosedCaption;
 
   @Nullable
+  @JsonProperty("continue_composite_recording")
+  private Boolean continueCompositeRecording;
+
+  @Nullable
   @JsonProperty("continue_hls")
   private Boolean continueHLS;
 
   @Nullable
+  @JsonProperty("continue_individual_recording")
+  private Boolean continueIndividualRecording;
+
+  @Nullable
   @JsonProperty("continue_rtmp_broadcasts")
   private Boolean continueRTMPBroadcasts;
+
+  @Nullable
+  @JsonProperty("continue_raw_recording")
+  private Boolean continueRawRecording;
 
   @Nullable
   @JsonProperty("continue_recording")
