@@ -36,8 +36,14 @@ public class CallSettingsResponse {
   @JsonProperty("geofencing")
   private GeofenceSettingsResponse geofencing;
 
+  @JsonProperty("individual_recording")
+  private IndividualRecordingSettingsResponse individualRecording;
+
   @JsonProperty("limits")
   private LimitsSettingsResponse limits;
+
+  @JsonProperty("raw_recording")
+  private RawRecordingSettingsResponse rawRecording;
 
   @JsonProperty("recording")
   private RecordSettingsResponse recording;

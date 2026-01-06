@@ -25,6 +25,10 @@ public class PollVoteResponse {
   private String duration;
 
   @Nullable
+  @JsonProperty("poll")
+  private PollResponseData poll;
+
+  @Nullable
   @JsonProperty("vote")
   private PollVoteResponseData vote;
 }

@@ -28,6 +28,61 @@ public class ModerationImpl {
   }
 
   @NotNull
+  public StreamRequest<AppealResponse> appeal(AppealRequest request) throws StreamException {
+
+    return new StreamRequest<AppealResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/appeal",
+        request,
+        null,
+        new TypeReference<AppealResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetAppealResponse> getAppeal(@NotNull String id, GetAppealRequest request)
+      throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<GetAppealResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/moderation/appeal/{id}",
+        request,
+        pathParams,
+        new TypeReference<GetAppealResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetAppealResponse> getAppeal(@NotNull String id) throws StreamException {
+    return getAppeal(id, new GetAppealRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueryAppealsResponse> queryAppeals(QueryAppealsRequest request)
+      throws StreamException {
+
+    return new StreamRequest<QueryAppealsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/appeals",
+        request,
+        null,
+        new TypeReference<QueryAppealsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryAppealsResponse> queryAppeals() throws StreamException {
+    return queryAppeals(new QueryAppealsRequest());
+  }
+
+  @NotNull
   public StreamRequest<BanResponse> ban(BanRequest request) throws StreamException {
 
     return new StreamRequest<BanResponse>(

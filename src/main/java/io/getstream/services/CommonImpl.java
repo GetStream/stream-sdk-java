@@ -453,6 +453,85 @@ public class CommonImpl {
   }
 
   @NotNull
+  public StreamRequest<ListImportV2TasksResponse> listImportV2Tasks(
+      ListImportV2TasksRequest request) throws StreamException {
+
+    return new StreamRequest<ListImportV2TasksResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/imports/v2",
+        request,
+        null,
+        new TypeReference<ListImportV2TasksResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ListImportV2TasksResponse> listImportV2Tasks() throws StreamException {
+    return listImportV2Tasks(new ListImportV2TasksRequest());
+  }
+
+  @NotNull
+  public StreamRequest<CreateImportV2TaskResponse> createImportV2Task(
+      CreateImportV2TaskRequest request) throws StreamException {
+
+    return new StreamRequest<CreateImportV2TaskResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/imports/v2",
+        request,
+        null,
+        new TypeReference<CreateImportV2TaskResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteImportV2TaskResponse> deleteImportV2Task(
+      @NotNull String id, DeleteImportV2TaskRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<DeleteImportV2TaskResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "DELETE",
+        "/api/v2/imports/v2/{id}",
+        request,
+        pathParams,
+        new TypeReference<DeleteImportV2TaskResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteImportV2TaskResponse> deleteImportV2Task(@NotNull String id)
+      throws StreamException {
+    return deleteImportV2Task(id, new DeleteImportV2TaskRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GetImportV2TaskResponse> getImportV2Task(
+      @NotNull String id, GetImportV2TaskRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<GetImportV2TaskResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/imports/v2/{id}",
+        request,
+        pathParams,
+        new TypeReference<GetImportV2TaskResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetImportV2TaskResponse> getImportV2Task(@NotNull String id)
+      throws StreamException {
+    return getImportV2Task(id, new GetImportV2TaskRequest());
+  }
+
+  @NotNull
   public StreamRequest<GetImportResponse> getImport(@NotNull String id, GetImportRequest request)
       throws StreamException {
     var pathParams = Map.of("id", id);

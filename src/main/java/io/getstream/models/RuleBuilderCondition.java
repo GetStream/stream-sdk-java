@@ -66,6 +66,14 @@ public class RuleBuilderCondition {
   private FlagCountRuleParameters userFlagCountRuleParams;
 
   @Nullable
+  @JsonProperty("user_identical_content_count_params")
+  private UserIdenticalContentCountParameters userIdenticalContentCountParams;
+
+  @Nullable
+  @JsonProperty("user_role_params")
+  private UserRoleParameters userRoleParams;
+
+  @Nullable
   @JsonProperty("user_rule_params")
   private UserRuleParameters userRuleParams;
 

@@ -42,12 +42,20 @@ public class CallSettingsRequest {
   private GeofenceSettingsRequest geofencing;
 
   @Nullable
+  @JsonProperty("individual_recording")
+  private IndividualRecordingSettingsRequest individualRecording;
+
+  @Nullable
   @JsonProperty("ingress")
   private IngressSettingsRequest ingress;
 
   @Nullable
   @JsonProperty("limits")
   private LimitsSettingsRequest limits;
+
+  @Nullable
+  @JsonProperty("raw_recording")
+  private RawRecordingSettingsRequest rawRecording;
 
   @Nullable
   @JsonProperty("recording")

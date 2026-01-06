@@ -46,4 +46,8 @@ public class ActivitySelectorConfigResponse {
   @Nullable
   @JsonProperty("filter")
   private Map<String, Object> filter;
+
+  @Nullable
+  @JsonProperty("params")
+  private Map<String, Object> params;
 }

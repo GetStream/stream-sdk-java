@@ -25,6 +25,10 @@ public class SubmitActionResponse {
   private String duration;
 
   @Nullable
+  @JsonProperty("appeal_item")
+  private AppealItemResponse appealItem;
+
+  @Nullable
   @JsonProperty("item")
   private ReviewQueueItemResponse item;
 }

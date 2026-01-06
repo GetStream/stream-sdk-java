@@ -30,6 +30,9 @@ public class CallRecordingReadyEvent {
   @JsonProperty("egress_id")
   private String egressID;
 
+  @JsonProperty("recording_type")
+  private String recordingType;
+
   @JsonProperty("call_recording")
   private CallRecording callRecording;
 

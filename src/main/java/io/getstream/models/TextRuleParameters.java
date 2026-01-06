@@ -28,6 +28,10 @@ public class TextRuleParameters {
   private Boolean containsUrl;
 
   @Nullable
+  @JsonProperty("semantic_filter_min_threshold")
+  private Double semanticFilterMinThreshold;
+
+  @Nullable
   @JsonProperty("severity")
   private String severity;
 
@@ -46,6 +50,10 @@ public class TextRuleParameters {
   @Nullable
   @JsonProperty("harm_labels")
   private List<String> harmLabels;
+
+  @Nullable
+  @JsonProperty("semantic_filter_names")
+  private List<String> semanticFilterNames;
 
   @Nullable
   @JsonProperty("llm_harm_labels")

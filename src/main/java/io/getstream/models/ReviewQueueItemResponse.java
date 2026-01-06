@@ -96,6 +96,10 @@ public class ReviewQueueItemResponse {
   private EnrichedActivity activity;
 
   @Nullable
+  @JsonProperty("appeal")
+  private AppealItemResponse appeal;
+
+  @Nullable
   @JsonProperty("assigned_to")
   private UserResponse assignedTo;
 

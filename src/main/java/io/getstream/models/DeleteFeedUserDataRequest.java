@@ -12,7 +12,16 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteFeedUserDataRequest {}
+@lombok.AllArgsConstructor
+public class DeleteFeedUserDataRequest {
+
+  @Nullable
+  @JsonProperty("hard_delete")
+  private Boolean hardDelete;
+}

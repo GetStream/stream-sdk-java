@@ -24,6 +24,11 @@ public class SubmitActionRequest {
   @JsonProperty("action_type")
   private String actionType;
 
+  @Nullable
+  @JsonProperty("appeal_id")
+  private String appealID;
+
+  @Nullable
   @JsonProperty("item_id")
   private String itemID;
 
@@ -68,12 +73,24 @@ public class SubmitActionRequest {
   private MarkReviewedRequest markReviewed;
 
   @Nullable
+  @JsonProperty("reject_appeal")
+  private RejectAppealRequest rejectAppeal;
+
+  @Nullable
+  @JsonProperty("restore")
+  private RestoreActionRequest restore;
+
+  @Nullable
   @JsonProperty("shadow_block")
   private ShadowBlockActionRequest shadowBlock;
 
   @Nullable
   @JsonProperty("unban")
   private UnbanActionRequest unban;
+
+  @Nullable
+  @JsonProperty("unblock")
+  private UnblockActionRequest unblock;
 
   @Nullable
   @JsonProperty("user")

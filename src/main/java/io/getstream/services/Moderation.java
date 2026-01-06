@@ -23,6 +23,23 @@ public interface Moderation {
   public StreamSDKClient getSDKClient();
 
   @NotNull
+  public StreamRequest<AppealResponse> appeal(AppealRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetAppealResponse> getAppeal(@NotNull String id, GetAppealRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetAppealResponse> getAppeal(@NotNull String id) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryAppealsResponse> queryAppeals(QueryAppealsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryAppealsResponse> queryAppeals() throws StreamException;
+
+  @NotNull
   public StreamRequest<BanResponse> ban(BanRequest request) throws StreamException;
 
   @NotNull

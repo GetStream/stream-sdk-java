@@ -27,6 +27,10 @@ public class FeedOwnData {
   private List<FeedOwnCapability> ownCapabilities;
 
   @Nullable
+  @JsonProperty("own_followings")
+  private List<FollowResponse> ownFollowings;
+
+  @Nullable
   @JsonProperty("own_follows")
   private List<FollowResponse> ownFollows;
 

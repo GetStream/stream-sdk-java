@@ -62,6 +62,9 @@ public class OwnCapability {
       new OwnCapability("start-closed-captions-call");
   public static OwnCapability START_FRAME_RECORD_CALL =
       new OwnCapability("start-frame-record-call");
+  public static OwnCapability START_INDIVIDUAL_RECORD_CALL =
+      new OwnCapability("start-individual-record-call");
+  public static OwnCapability START_RAW_RECORD_CALL = new OwnCapability("start-raw-record-call");
   public static OwnCapability START_RECORD_CALL = new OwnCapability("start-record-call");
   public static OwnCapability START_TRANSCRIPTION_CALL =
       new OwnCapability("start-transcription-call");
@@ -69,6 +72,9 @@ public class OwnCapability {
   public static OwnCapability STOP_CLOSED_CAPTIONS_CALL =
       new OwnCapability("stop-closed-captions-call");
   public static OwnCapability STOP_FRAME_RECORD_CALL = new OwnCapability("stop-frame-record-call");
+  public static OwnCapability STOP_INDIVIDUAL_RECORD_CALL =
+      new OwnCapability("stop-individual-record-call");
+  public static OwnCapability STOP_RAW_RECORD_CALL = new OwnCapability("stop-raw-record-call");
   public static OwnCapability STOP_RECORD_CALL = new OwnCapability("stop-record-call");
   public static OwnCapability STOP_TRANSCRIPTION_CALL =
       new OwnCapability("stop-transcription-call");
