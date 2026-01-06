@@ -305,7 +305,6 @@ public class CallTest extends BasicTest {
             () -> testCall.createSRTCredentials(testUser.getId()).getAddress());
     Assertions.assertNotNull(srtToken);
     Assertions.assertNotEquals("", srtToken);
-    System.out.println("SRT Token: " + srtToken);
   }
 
   @Test
