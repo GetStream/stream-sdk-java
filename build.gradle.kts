@@ -12,12 +12,6 @@ plugins {
 group = "io.getstream"
 description = "Stream official Java SDK"
 
-repositories {
-    mavenCentral()
-    gradlePluginPortal()
-}
-
-
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)

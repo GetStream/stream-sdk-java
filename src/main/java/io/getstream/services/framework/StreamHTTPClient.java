@@ -3,6 +3,7 @@ package io.getstream.services.framework;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.util.StdDateFormat;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -37,7 +38,10 @@ public class StreamHTTPClient {
                   .withColonInTimeZone(true)
                   .withTimeZone(TimeZone.getTimeZone("UTC")))
           .enable(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE)
-          .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+          .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS)
+          .registerModule(
+              new SimpleModule()
+                  .addDeserializer(Date.class, new NanosecondTimestampDeserializer()));
 
   @NotNull private String apiSecret;
   @NotNull private String apiKey;
@@ -79,10 +83,7 @@ public class StreamHTTPClient {
     calendar.add(Calendar.SECOND, -5);
     return Jwts.builder()
         .issuedAt(new Date())
-        .issuer("Stream Chat Java SDK")
-        .subject("Stream Chat Java SDK")
         .claim("server", true)
-        .claim("scope", "admins")
         .signWith(signingKey, SignatureAlgorithm.HS256)
         .compact();
   }

@@ -129,4 +129,41 @@ public class CommonTest extends BasicTest {
                     .getData());
     Assertions.assertEquals("error", response.getStatus());
   }
+
+  @Test
+  void testUserTimestamps() throws Exception {
+    // Use a fixed user ID
+    String userId = "test-user-timestamps";
+    UserRequest userRequest =
+        UserRequest.builder()
+            .id(userId)
+            .name("Test User for Timestamps" + System.currentTimeMillis())
+            .build();
+
+    UpdateUsersRequest updateUsersRequest =
+        UpdateUsersRequest.builder().users(java.util.Map.of(userId, userRequest)).build();
+
+    // Upsert the user
+    var response = client.updateUsers(updateUsersRequest).execute();
+    FullUserResponse user = response.getData().getUsers().get(userId);
+
+    // Verify the user was created
+    Assertions.assertNotNull(user, "User should not be null");
+    Assertions.assertEquals(userId, user.getId(), "User ID should match");
+
+    // Verify updatedAt timestamp is not null
+    Assertions.assertNotNull(user.getUpdatedAt(), "updatedAt timestamp should not be null");
+
+    // Verify updatedAt is reasonable (not in the future, not too old)
+    long now = System.currentTimeMillis();
+    long fiveMinutesAgo = now - (5 * 60 * 1000);
+    long oneMinuteInFuture = now + (60 * 1000);
+
+    Assertions.assertTrue(
+        user.getUpdatedAt().getTime() >= fiveMinutesAgo,
+        "updatedAt should not be more than 5 minutes in the past");
+    Assertions.assertTrue(
+        user.getUpdatedAt().getTime() <= oneMinuteInFuture,
+        "updatedAt should not be in the future");
+  }
 }
