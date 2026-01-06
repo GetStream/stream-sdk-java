@@ -22,6 +22,10 @@ public class NanosecondTimestampDeserializer extends JsonDeserializer<Date> {
       return new Date(value / 1_000_000L);
     }
 
-    throw deserializationContext.wrongTokenException(jsonParser, Date.class, jsonParser.getCurrentToken(), "Expected number or string timestamp");
+    throw deserializationContext.wrongTokenException(
+        jsonParser,
+        Date.class,
+        jsonParser.getCurrentToken(),
+        "Expected number or string timestamp");
   }
 }

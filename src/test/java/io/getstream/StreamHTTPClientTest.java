@@ -37,7 +37,7 @@ public class StreamHTTPClientTest {
           "updated_at": %d
         }
         """,
-                timestampInNanos, timestampInNanos);
+            timestampInNanos, timestampInNanos);
 
     // Parse the JSON
     MessageResponse message = objectMapper.readValue(json, MessageResponse.class);

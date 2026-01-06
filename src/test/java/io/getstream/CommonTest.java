@@ -135,15 +135,13 @@ public class CommonTest extends BasicTest {
     // Use a fixed user ID
     String userId = "test-user-timestamps";
     UserRequest userRequest =
-            UserRequest.builder()
-                    .id(userId)
-                    .name("Test User for Timestamps" + System.currentTimeMillis())
-                    .build();
+        UserRequest.builder()
+            .id(userId)
+            .name("Test User for Timestamps" + System.currentTimeMillis())
+            .build();
 
     UpdateUsersRequest updateUsersRequest =
-            UpdateUsersRequest.builder()
-                    .users(java.util.Map.of(userId, userRequest))
-                    .build();
+        UpdateUsersRequest.builder().users(java.util.Map.of(userId, userRequest)).build();
 
     // Upsert the user
     var response = client.updateUsers(updateUsersRequest).execute();
@@ -162,10 +160,10 @@ public class CommonTest extends BasicTest {
     long oneMinuteInFuture = now + (60 * 1000);
 
     Assertions.assertTrue(
-            user.getUpdatedAt().getTime() >= fiveMinutesAgo,
-            "updatedAt should not be more than 5 minutes in the past");
+        user.getUpdatedAt().getTime() >= fiveMinutesAgo,
+        "updatedAt should not be more than 5 minutes in the past");
     Assertions.assertTrue(
-            user.getUpdatedAt().getTime() <= oneMinuteInFuture,
-            "updatedAt should not be in the future");
+        user.getUpdatedAt().getTime() <= oneMinuteInFuture,
+        "updatedAt should not be in the future");
   }
 }
