@@ -58,6 +58,21 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<UpdateActivitiesPartialBatchResponse> updateActivitiesPartialBatch(
+      UpdateActivitiesPartialBatchRequest request) throws StreamException {
+
+    return new StreamRequest<UpdateActivitiesPartialBatchResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PATCH",
+        "/api/v2/feeds/activities/batch/partial",
+        request,
+        null,
+        new TypeReference<UpdateActivitiesPartialBatchResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<DeleteActivitiesResponse> deleteActivities(DeleteActivitiesRequest request)
       throws StreamException {
 
