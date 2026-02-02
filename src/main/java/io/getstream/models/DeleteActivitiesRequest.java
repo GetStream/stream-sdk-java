@@ -26,6 +26,10 @@ public class DeleteActivitiesRequest {
   private List<String> ids;
 
   @Nullable
+  @JsonProperty("delete_notification_activity")
+  private Boolean deleteNotificationActivity;
+
+  @Nullable
   @JsonProperty("hard_delete")
   private Boolean hardDelete;
 

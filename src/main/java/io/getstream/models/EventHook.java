@@ -52,6 +52,10 @@ public class EventHook {
   private String snsAuthType;
 
   @Nullable
+  @JsonProperty("sns_event_based_message_group_id_enabled")
+  private Boolean snsEventBasedMessageGroupIDEnabled;
+
+  @Nullable
   @JsonProperty("sns_key")
   private String snsKey;
 

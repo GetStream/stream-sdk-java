@@ -24,4 +24,8 @@ public class DeleteActivityRequest {
   @Query("hard_delete")
   @JsonIgnore
   private Boolean HardDelete;
+
+  @Query("delete_notification_activity")
+  @JsonIgnore
+  private Boolean DeleteNotificationActivity;
 }

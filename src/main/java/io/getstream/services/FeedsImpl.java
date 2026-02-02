@@ -58,6 +58,21 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<UpdateActivitiesPartialBatchResponse> updateActivitiesPartialBatch(
+      UpdateActivitiesPartialBatchRequest request) throws StreamException {
+
+    return new StreamRequest<UpdateActivitiesPartialBatchResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PATCH",
+        "/api/v2/feeds/activities/batch/partial",
+        request,
+        null,
+        new TypeReference<UpdateActivitiesPartialBatchResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<DeleteActivitiesResponse> deleteActivities(DeleteActivitiesRequest request)
       throws StreamException {
 
@@ -386,6 +401,28 @@ public class FeedsImpl {
   public StreamRequest<UpdateActivityResponse> updateActivity(@NotNull String id)
       throws StreamException {
     return updateActivity(id, new UpdateActivityRequest());
+  }
+
+  @NotNull
+  public StreamRequest<RestoreActivityResponse> restoreActivity(
+      @NotNull String id, RestoreActivityRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<RestoreActivityResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/activities/{id}/restore",
+        request,
+        pathParams,
+        new TypeReference<RestoreActivityResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<RestoreActivityResponse> restoreActivity(@NotNull String id)
+      throws StreamException {
+    return restoreActivity(id, new RestoreActivityRequest());
   }
 
   @NotNull

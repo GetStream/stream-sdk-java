@@ -40,6 +40,10 @@ public class QueryChannelsRequest {
   private Integer offset;
 
   @Nullable
+  @JsonProperty("predefined_filter")
+  private String predefinedFilter;
+
+  @Nullable
   @JsonProperty("state")
   private Boolean state;
 
@@ -54,6 +58,14 @@ public class QueryChannelsRequest {
   @Nullable
   @JsonProperty("filter_conditions")
   private Map<String, Object> filterConditions;
+
+  @Nullable
+  @JsonProperty("filter_values")
+  private Map<String, Object> filterValues;
+
+  @Nullable
+  @JsonProperty("sort_values")
+  private Map<String, Object> sortValues;
 
   @Nullable
   @JsonProperty("user")

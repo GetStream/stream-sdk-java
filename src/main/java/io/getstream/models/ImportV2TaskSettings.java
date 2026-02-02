@@ -22,6 +22,14 @@ import org.jetbrains.annotations.Nullable;
 public class ImportV2TaskSettings {
 
   @Nullable
+  @JsonProperty("mode")
+  private String mode;
+
+  @Nullable
+  @JsonProperty("path")
+  private String path;
+
+  @Nullable
   @JsonProperty("skip_references_check")
   private Boolean skipReferencesCheck;
 

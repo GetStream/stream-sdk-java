@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -37,4 +38,8 @@ public class CallStatsParticipantCounts {
 
   @JsonProperty("sessions")
   private Integer sessions;
+
+  @Nullable
+  @JsonProperty("total_participant_duration")
+  private Integer totalParticipantDuration;
 }

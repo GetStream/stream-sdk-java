@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -28,4 +29,8 @@ public class AddReactionResponse {
 
   @JsonProperty("reaction")
   private FeedsReactionResponse reaction;
+
+  @Nullable
+  @JsonProperty("notification_created")
+  private Boolean notificationCreated;
 }

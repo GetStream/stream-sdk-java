@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -23,4 +24,8 @@ public class GetOrCreateUnfollowsRequest {
 
   @JsonProperty("follows")
   private List<FollowPair> follows;
+
+  @Nullable
+  @JsonProperty("delete_notification_activity")
+  private Boolean deleteNotificationActivity;
 }

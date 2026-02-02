@@ -133,6 +133,21 @@ public class ChatImpl {
   }
 
   @NotNull
+  public StreamRequest<ChannelBatchUpdateResponse> channelBatchUpdate(
+      ChannelBatchUpdateRequest request) throws StreamException {
+
+    return new StreamRequest<ChannelBatchUpdateResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PUT",
+        "/api/v2/chat/channels/batch",
+        request,
+        null,
+        new TypeReference<ChannelBatchUpdateResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<DeleteChannelsResponse> deleteChannels(DeleteChannelsRequest request)
       throws StreamException {
 
@@ -1416,6 +1431,27 @@ public class ChatImpl {
   @NotNull
   public StreamRequest<QueryBannedUsersResponse> queryBannedUsers() throws StreamException {
     return queryBannedUsers(new QueryBannedUsersRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueryFutureChannelBansResponse> queryFutureChannelBans(
+      QueryFutureChannelBansRequest request) throws StreamException {
+
+    return new StreamRequest<QueryFutureChannelBansResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/chat/query_future_channel_bans",
+        request,
+        null,
+        new TypeReference<QueryFutureChannelBansResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryFutureChannelBansResponse> queryFutureChannelBans()
+      throws StreamException {
+    return queryFutureChannelBans(new QueryFutureChannelBansRequest());
   }
 
   @NotNull

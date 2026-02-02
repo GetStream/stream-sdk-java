@@ -31,6 +31,10 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<UpdateActivitiesPartialBatchResponse> updateActivitiesPartialBatch(
+      UpdateActivitiesPartialBatchRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<DeleteActivitiesResponse> deleteActivities(DeleteActivitiesRequest request)
       throws StreamException;
 
@@ -145,6 +149,14 @@ public interface Feeds {
 
   @NotNull
   public StreamRequest<UpdateActivityResponse> updateActivity(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<RestoreActivityResponse> restoreActivity(
+      @NotNull String id, RestoreActivityRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<RestoreActivityResponse> restoreActivity(@NotNull String id)
       throws StreamException;
 
   @NotNull

@@ -45,6 +45,10 @@ public class UpdateFollowRequest {
   private Boolean skipPush;
 
   @Nullable
+  @JsonProperty("status")
+  private String status;
+
+  @Nullable
   @JsonProperty("custom")
   private Map<String, Object> custom;
 }

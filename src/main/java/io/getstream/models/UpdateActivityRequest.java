@@ -29,6 +29,10 @@ public class UpdateActivityRequest {
   private Date expiresAt;
 
   @Nullable
+  @JsonProperty("handle_mention_notifications")
+  private Boolean handleMentionNotifications;
+
+  @Nullable
   @JsonProperty("poll_id")
   private String pollID;
 
@@ -51,6 +55,10 @@ public class UpdateActivityRequest {
   @Nullable
   @JsonProperty("visibility")
   private String visibility;
+
+  @Nullable
+  @JsonProperty("visibility_tag")
+  private String visibilityTag;
 
   @Nullable
   @JsonProperty("attachments")

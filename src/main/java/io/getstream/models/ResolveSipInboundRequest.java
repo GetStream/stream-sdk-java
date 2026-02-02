@@ -32,6 +32,10 @@ public class ResolveSipInboundRequest {
   private SIPChallenge challenge;
 
   @Nullable
+  @JsonProperty("routing_number")
+  private String routingNumber;
+
+  @Nullable
   @JsonProperty("sip_headers")
   private Map<String, String> sipHeaders;
 }
