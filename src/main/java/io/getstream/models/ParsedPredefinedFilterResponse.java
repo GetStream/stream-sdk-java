@@ -14,18 +14,22 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UnfollowBatchRequest {
+public class ParsedPredefinedFilterResponse {
 
-  @JsonProperty("follows")
-  private List<FollowPair> follows;
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("filter")
+  private Map<String, Object> filter;
 
   @Nullable
-  @JsonProperty("delete_notification_activity")
-  private Boolean deleteNotificationActivity;
+  @JsonProperty("sort")
+  private List<SortParamRequest> sort;
 }

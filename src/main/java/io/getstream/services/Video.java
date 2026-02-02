@@ -163,6 +163,32 @@ public interface Video {
       @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
+  public StreamRequest<StartRecordingResponse> startRecording(
+      @NotNull String type,
+      @NotNull String id,
+      @NotNull String recordingType,
+      StartRecordingRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<StartRecordingResponse> startRecording(
+      @NotNull String type, @NotNull String id, @NotNull String recordingType)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<StopRecordingResponse> stopRecording(
+      @NotNull String type,
+      @NotNull String id,
+      @NotNull String recordingType,
+      StopRecordingRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<StopRecordingResponse> stopRecording(
+      @NotNull String type, @NotNull String id, @NotNull String recordingType)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<GetCallReportResponse> getCallReport(
       @NotNull String type, @NotNull String id, GetCallReportRequest request)
       throws StreamException;
@@ -206,6 +232,37 @@ public interface Video {
       @NotNull String type, @NotNull String id, @NotNull String name) throws StreamException;
 
   @NotNull
+  public StreamRequest<GetCallParticipantSessionMetricsResponse> getCallParticipantSessionMetrics(
+      @NotNull String type,
+      @NotNull String id,
+      @NotNull String session,
+      @NotNull String user,
+      @NotNull String userSession,
+      GetCallParticipantSessionMetricsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetCallParticipantSessionMetricsResponse> getCallParticipantSessionMetrics(
+      @NotNull String type,
+      @NotNull String id,
+      @NotNull String session,
+      @NotNull String user,
+      @NotNull String userSession)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryCallParticipantSessionsResponse> queryCallParticipantSessions(
+      @NotNull String type,
+      @NotNull String id,
+      @NotNull String session,
+      QueryCallParticipantSessionsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryCallParticipantSessionsResponse> queryCallParticipantSessions(
+      @NotNull String type, @NotNull String id, @NotNull String session) throws StreamException;
+
+  @NotNull
   public StreamRequest<StartHLSBroadcastingResponse> startHLSBroadcasting(
       @NotNull String type, @NotNull String id, StartHLSBroadcastingRequest request)
       throws StreamException;
@@ -230,15 +287,6 @@ public interface Video {
 
   @NotNull
   public StreamRequest<StartFrameRecordingResponse> startFrameRecording(
-      @NotNull String type, @NotNull String id) throws StreamException;
-
-  @NotNull
-  public StreamRequest<StartRecordingResponse> startRecording(
-      @NotNull String type, @NotNull String id, StartRecordingRequest request)
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<StartRecordingResponse> startRecording(
       @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
@@ -284,15 +332,6 @@ public interface Video {
   @NotNull
   public StreamRequest<StopLiveResponse> stopLive(@NotNull String type, @NotNull String id)
       throws StreamException;
-
-  @NotNull
-  public StreamRequest<StopRecordingResponse> stopRecording(
-      @NotNull String type, @NotNull String id, StopRecordingRequest request)
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<StopRecordingResponse> stopRecording(
-      @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<StopTranscriptionResponse> stopTranscription(
@@ -389,16 +428,12 @@ public interface Video {
 
   @NotNull
   public StreamRequest<QueryCallSessionParticipantStatsResponse> queryCallSessionParticipantStats(
-      @NotNull String callType,
-      @NotNull String callID,
-      @NotNull String session,
-      QueryCallSessionParticipantStatsRequest request)
+      @NotNull String session, QueryCallSessionParticipantStatsRequest request)
       throws StreamException;
 
   @NotNull
   public StreamRequest<QueryCallSessionParticipantStatsResponse> queryCallSessionParticipantStats(
-      @NotNull String callType, @NotNull String callID, @NotNull String session)
-      throws StreamException;
+      @NotNull String session) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryCallSessionParticipantStatsTimelineResponse>
@@ -469,10 +504,6 @@ public interface Video {
   public StreamRequest<GetEdgesResponse> getEdges() throws StreamException;
 
   @NotNull
-  public StreamRequest<ResolveSipInboundResponse> resolveSipInbound(
-      ResolveSipInboundRequest request) throws StreamException;
-
-  @NotNull
   public StreamRequest<ListSIPInboundRoutingRuleResponse> listSIPInboundRoutingRule(
       ListSIPInboundRoutingRuleRequest request) throws StreamException;
 
@@ -518,6 +549,10 @@ public interface Video {
   @NotNull
   public StreamRequest<UpdateSIPTrunkResponse> updateSIPTrunk(
       @NotNull String id, UpdateSIPTrunkRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ResolveSipInboundResponse> resolveSipInbound(
+      ResolveSipInboundRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryAggregateCallStatsResponse> queryAggregateCallStats(

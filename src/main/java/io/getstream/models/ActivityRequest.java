@@ -30,6 +30,10 @@ public class ActivityRequest {
   private List<String> feeds;
 
   @Nullable
+  @JsonProperty("create_notification_activity")
+  private Boolean createNotificationActivity;
+
+  @Nullable
   @JsonProperty("expires_at")
   private String expiresAt;
 
@@ -52,6 +56,10 @@ public class ActivityRequest {
   @Nullable
   @JsonProperty("skip_enrich_url")
   private Boolean skipEnrichUrl;
+
+  @Nullable
+  @JsonProperty("skip_push")
+  private Boolean skipPush;
 
   @Nullable
   @JsonProperty("text")

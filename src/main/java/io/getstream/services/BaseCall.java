@@ -165,6 +165,28 @@ class BaseCall {
   }
 
   @NotNull
+  public StreamResponse<StartRecordingResponse> startRecording(
+      @NotNull String recordingType, StartRecordingRequest request) throws StreamException {
+    return service.startRecording(this.callType, this.callID, recordingType, request).execute();
+  }
+
+  public StreamResponse<StartRecordingResponse> startRecording(@NotNull String recordingType)
+      throws StreamException {
+    return this.startRecording(recordingType, new StartRecordingRequest());
+  }
+
+  @NotNull
+  public StreamResponse<StopRecordingResponse> stopRecording(
+      @NotNull String recordingType, StopRecordingRequest request) throws StreamException {
+    return service.stopRecording(this.callType, this.callID, recordingType, request).execute();
+  }
+
+  public StreamResponse<StopRecordingResponse> stopRecording(@NotNull String recordingType)
+      throws StreamException {
+    return this.stopRecording(recordingType, new StopRecordingRequest());
+  }
+
+  @NotNull
   public StreamResponse<GetCallReportResponse> getCallReport(GetCallReportRequest request)
       throws StreamException {
     return service.getCallReport(this.callType, this.callID, request).execute();
@@ -212,6 +234,39 @@ class BaseCall {
   }
 
   @NotNull
+  public StreamResponse<GetCallParticipantSessionMetricsResponse> getCallParticipantSessionMetrics(
+      @NotNull String session,
+      @NotNull String user,
+      @NotNull String userSession,
+      GetCallParticipantSessionMetricsRequest request)
+      throws StreamException {
+    return service
+        .getCallParticipantSessionMetrics(
+            this.callType, this.callID, session, user, userSession, request)
+        .execute();
+  }
+
+  public StreamResponse<GetCallParticipantSessionMetricsResponse> getCallParticipantSessionMetrics(
+      @NotNull String session, @NotNull String user, @NotNull String userSession)
+      throws StreamException {
+    return this.getCallParticipantSessionMetrics(
+        session, user, userSession, new GetCallParticipantSessionMetricsRequest());
+  }
+
+  @NotNull
+  public StreamResponse<QueryCallParticipantSessionsResponse> queryCallParticipantSessions(
+      @NotNull String session, QueryCallParticipantSessionsRequest request) throws StreamException {
+    return service
+        .queryCallParticipantSessions(this.callType, this.callID, session, request)
+        .execute();
+  }
+
+  public StreamResponse<QueryCallParticipantSessionsResponse> queryCallParticipantSessions(
+      @NotNull String session) throws StreamException {
+    return this.queryCallParticipantSessions(session, new QueryCallParticipantSessionsRequest());
+  }
+
+  @NotNull
   public StreamResponse<StartHLSBroadcastingResponse> startHLSBroadcasting(
       StartHLSBroadcastingRequest request) throws StreamException {
     return service.startHLSBroadcasting(this.callType, this.callID, request).execute();
@@ -240,16 +295,6 @@ class BaseCall {
 
   public StreamResponse<StartFrameRecordingResponse> startFrameRecording() throws StreamException {
     return this.startFrameRecording(new StartFrameRecordingRequest());
-  }
-
-  @NotNull
-  public StreamResponse<StartRecordingResponse> startRecording(StartRecordingRequest request)
-      throws StreamException {
-    return service.startRecording(this.callType, this.callID, request).execute();
-  }
-
-  public StreamResponse<StartRecordingResponse> startRecording() throws StreamException {
-    return this.startRecording(new StartRecordingRequest());
   }
 
   @NotNull
@@ -299,16 +344,6 @@ class BaseCall {
 
   public StreamResponse<StopLiveResponse> stopLive() throws StreamException {
     return this.stopLive(new StopLiveRequest());
-  }
-
-  @NotNull
-  public StreamResponse<StopRecordingResponse> stopRecording(StopRecordingRequest request)
-      throws StreamException {
-    return service.stopRecording(this.callType, this.callID, request).execute();
-  }
-
-  public StreamResponse<StopRecordingResponse> stopRecording() throws StreamException {
-    return this.stopRecording(new StopRecordingRequest());
   }
 
   @NotNull

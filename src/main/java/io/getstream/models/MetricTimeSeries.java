@@ -20,12 +20,9 @@ import org.jetbrains.annotations.Nullable;
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UnfollowBatchRequest {
-
-  @JsonProperty("follows")
-  private List<FollowPair> follows;
+public class MetricTimeSeries {
 
   @Nullable
-  @JsonProperty("delete_notification_activity")
-  private Boolean deleteNotificationActivity;
+  @JsonProperty("data_points")
+  private List<List<Double>> dataPoints;
 }

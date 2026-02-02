@@ -33,6 +33,10 @@ public class GetCommentRepliesRequest {
   @JsonIgnore
   private Integer RepliesLimit;
 
+  @Query("user_id")
+  @JsonIgnore
+  private String UserID;
+
   @Query("limit")
   @JsonIgnore
   private Integer Limit;

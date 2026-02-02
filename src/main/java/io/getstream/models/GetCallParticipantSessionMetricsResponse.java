@@ -13,21 +13,48 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class AddActivityResponse {
+public class GetCallParticipantSessionMetricsResponse {
 
   @JsonProperty("duration")
   private String duration;
 
-  @JsonProperty("activity")
-  private ActivityResponse activity;
+  @Nullable
+  @JsonProperty("is_publisher")
+  private Boolean isPublisher;
 
   @Nullable
-  @JsonProperty("mention_notifications_created")
-  private Integer mentionNotificationsCreated;
+  @JsonProperty("is_subscriber")
+  private Boolean isSubscriber;
+
+  @Nullable
+  @JsonProperty("joined_at")
+  private Date joinedAt;
+
+  @Nullable
+  @JsonProperty("publisher_type")
+  private String publisherType;
+
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
+  @JsonProperty("user_session_id")
+  private String userSessionID;
+
+  @Nullable
+  @JsonProperty("published_tracks")
+  private List<PublishedTrackMetrics> publishedTracks;
+
+  @Nullable
+  @JsonProperty("client")
+  private SessionClient client;
 }

@@ -13,19 +13,40 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
+import java.util.Date;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UnfollowBatchRequest {
+public class ActivityRestoredEvent {
 
-  @JsonProperty("follows")
-  private List<FollowPair> follows;
+  @JsonProperty("created_at")
+  private Date createdAt;
+
+  @JsonProperty("fid")
+  private String fid;
+
+  @JsonProperty("activity")
+  private ActivityResponse activity;
+
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
+  @JsonProperty("type")
+  private String type;
 
   @Nullable
-  @JsonProperty("delete_notification_activity")
-  private Boolean deleteNotificationActivity;
+  @JsonProperty("feed_visibility")
+  private String feedVisibility;
+
+  @Nullable
+  @JsonProperty("received_at")
+  private Date receivedAt;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserResponseCommonFields user;
 }

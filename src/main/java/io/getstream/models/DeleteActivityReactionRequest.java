@@ -21,6 +21,10 @@ import io.getstream.annotations.Query;
 @lombok.AllArgsConstructor
 public class DeleteActivityReactionRequest {
 
+  @Query("delete_notification_activity")
+  @JsonIgnore
+  private Boolean DeleteNotificationActivity;
+
   @Query("user_id")
   @JsonIgnore
   private String UserID;

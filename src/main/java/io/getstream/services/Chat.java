@@ -60,6 +60,10 @@ public interface Chat {
   public StreamRequest<QueryChannelsResponse> queryChannels() throws StreamException;
 
   @NotNull
+  public StreamRequest<ChannelBatchUpdateResponse> channelBatchUpdate(
+      ChannelBatchUpdateRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<DeleteChannelsResponse> deleteChannels(DeleteChannelsRequest request)
       throws StreamException;
 
@@ -482,6 +486,14 @@ public interface Chat {
 
   @NotNull
   public StreamRequest<QueryBannedUsersResponse> queryBannedUsers() throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryFutureChannelBansResponse> queryFutureChannelBans(
+      QueryFutureChannelBansRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryFutureChannelBansResponse> queryFutureChannelBans()
+      throws StreamException;
 
   @NotNull
   public StreamRequest<QueryRemindersResponse> queryReminders(QueryRemindersRequest request)

@@ -12,7 +12,16 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.annotations.Query;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class UnfollowRequest {}
+@lombok.AllArgsConstructor
+public class UnfollowRequest {
+
+  @Query("delete_notification_activity")
+  @JsonIgnore
+  private Boolean DeleteNotificationActivity;
+}

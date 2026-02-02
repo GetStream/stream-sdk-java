@@ -389,6 +389,28 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<RestoreActivityResponse> restoreActivity(
+      @NotNull String id, RestoreActivityRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<RestoreActivityResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/activities/{id}/restore",
+        request,
+        pathParams,
+        new TypeReference<RestoreActivityResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<RestoreActivityResponse> restoreActivity(@NotNull String id)
+      throws StreamException {
+    return restoreActivity(id, new RestoreActivityRequest());
+  }
+
+  @NotNull
   public StreamRequest<QueryBookmarkFoldersResponse> queryBookmarkFolders(
       QueryBookmarkFoldersRequest request) throws StreamException {
 

@@ -24,6 +24,10 @@ import org.jetbrains.annotations.Nullable;
 public class UpdateActivityPartialRequest {
 
   @Nullable
+  @JsonProperty("handle_mention_notifications")
+  private Boolean handleMentionNotifications;
+
+  @Nullable
   @JsonProperty("user_id")
   private String userID;
 

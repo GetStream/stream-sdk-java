@@ -78,6 +78,10 @@ public class ThreadedCommentResponse {
   private Date deletedAt;
 
   @Nullable
+  @JsonProperty("edited_at")
+  private Date editedAt;
+
+  @Nullable
   @JsonProperty("parent_id")
   private String parentID;
 

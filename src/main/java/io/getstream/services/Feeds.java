@@ -148,6 +148,14 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<RestoreActivityResponse> restoreActivity(
+      @NotNull String id, RestoreActivityRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<RestoreActivityResponse> restoreActivity(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryBookmarkFoldersResponse> queryBookmarkFolders(
       QueryBookmarkFoldersRequest request) throws StreamException;
 

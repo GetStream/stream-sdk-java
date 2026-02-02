@@ -13,19 +13,26 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
-import org.jetbrains.annotations.Nullable;
+import java.util.Date;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UnfollowBatchRequest {
+public class IngressStoppedEvent {
 
-  @JsonProperty("follows")
-  private List<FollowPair> follows;
+  @JsonProperty("call_cid")
+  private String callCid;
 
-  @Nullable
-  @JsonProperty("delete_notification_activity")
-  private Boolean deleteNotificationActivity;
+  @JsonProperty("created_at")
+  private Date createdAt;
+
+  @JsonProperty("ingress_stream_id")
+  private String ingressStreamID;
+
+  @JsonProperty("user_id")
+  private String userID;
+
+  @JsonProperty("type")
+  private String type;
 }

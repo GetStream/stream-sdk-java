@@ -480,6 +480,68 @@ public class VideoImpl {
   }
 
   @NotNull
+  public StreamRequest<StartRecordingResponse> startRecording(
+      @NotNull String type,
+      @NotNull String id,
+      @NotNull String recordingType,
+      StartRecordingRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "type", type,
+            "id", id,
+            "recording_type", recordingType);
+
+    return new StreamRequest<StartRecordingResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/video/call/{type}/{id}/recordings/{recording_type}/start",
+        request,
+        pathParams,
+        new TypeReference<StartRecordingResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<StartRecordingResponse> startRecording(
+      @NotNull String type, @NotNull String id, @NotNull String recordingType)
+      throws StreamException {
+    return startRecording(type, id, recordingType, new StartRecordingRequest());
+  }
+
+  @NotNull
+  public StreamRequest<StopRecordingResponse> stopRecording(
+      @NotNull String type,
+      @NotNull String id,
+      @NotNull String recordingType,
+      StopRecordingRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "type", type,
+            "id", id,
+            "recording_type", recordingType);
+
+    return new StreamRequest<StopRecordingResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/video/call/{type}/{id}/recordings/{recording_type}/stop",
+        request,
+        pathParams,
+        new TypeReference<StopRecordingResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<StopRecordingResponse> stopRecording(
+      @NotNull String type, @NotNull String id, @NotNull String recordingType)
+      throws StreamException {
+    return stopRecording(type, id, recordingType, new StopRecordingRequest());
+  }
+
+  @NotNull
   public StreamRequest<GetCallReportResponse> getCallReport(
       @NotNull String type, @NotNull String id, GetCallReportRequest request)
       throws StreamException {
@@ -607,6 +669,77 @@ public class VideoImpl {
   }
 
   @NotNull
+  public StreamRequest<GetCallParticipantSessionMetricsResponse> getCallParticipantSessionMetrics(
+      @NotNull String type,
+      @NotNull String id,
+      @NotNull String session,
+      @NotNull String user,
+      @NotNull String userSession,
+      GetCallParticipantSessionMetricsRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "type", type,
+            "id", id,
+            "session", session,
+            "user", user,
+            "user_session", userSession);
+
+    return new StreamRequest<GetCallParticipantSessionMetricsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/video/call/{type}/{id}/session/{session}/participant/{user}/{user_session}/details/track",
+        request,
+        pathParams,
+        new TypeReference<GetCallParticipantSessionMetricsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetCallParticipantSessionMetricsResponse> getCallParticipantSessionMetrics(
+      @NotNull String type,
+      @NotNull String id,
+      @NotNull String session,
+      @NotNull String user,
+      @NotNull String userSession)
+      throws StreamException {
+    return getCallParticipantSessionMetrics(
+        type, id, session, user, userSession, new GetCallParticipantSessionMetricsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueryCallParticipantSessionsResponse> queryCallParticipantSessions(
+      @NotNull String type,
+      @NotNull String id,
+      @NotNull String session,
+      QueryCallParticipantSessionsRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "type", type,
+            "id", id,
+            "session", session);
+
+    return new StreamRequest<QueryCallParticipantSessionsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/video/call/{type}/{id}/session/{session}/participant_sessions",
+        request,
+        pathParams,
+        new TypeReference<QueryCallParticipantSessionsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryCallParticipantSessionsResponse> queryCallParticipantSessions(
+      @NotNull String type, @NotNull String id, @NotNull String session) throws StreamException {
+    return queryCallParticipantSessions(
+        type, id, session, new QueryCallParticipantSessionsRequest());
+  }
+
+  @NotNull
   public StreamRequest<StartHLSBroadcastingResponse> startHLSBroadcasting(
       @NotNull String type, @NotNull String id, StartHLSBroadcastingRequest request)
       throws StreamException {
@@ -682,32 +815,6 @@ public class VideoImpl {
   public StreamRequest<StartFrameRecordingResponse> startFrameRecording(
       @NotNull String type, @NotNull String id) throws StreamException {
     return startFrameRecording(type, id, new StartFrameRecordingRequest());
-  }
-
-  @NotNull
-  public StreamRequest<StartRecordingResponse> startRecording(
-      @NotNull String type, @NotNull String id, StartRecordingRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "type", type,
-            "id", id);
-
-    return new StreamRequest<StartRecordingResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/video/call/{type}/{id}/start_recording",
-        request,
-        pathParams,
-        new TypeReference<StartRecordingResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<StartRecordingResponse> startRecording(
-      @NotNull String type, @NotNull String id) throws StreamException {
-    return startRecording(type, id, new StartRecordingRequest());
   }
 
   @NotNull
@@ -837,32 +944,6 @@ public class VideoImpl {
   public StreamRequest<StopLiveResponse> stopLive(@NotNull String type, @NotNull String id)
       throws StreamException {
     return stopLive(type, id, new StopLiveRequest());
-  }
-
-  @NotNull
-  public StreamRequest<StopRecordingResponse> stopRecording(
-      @NotNull String type, @NotNull String id, StopRecordingRequest request)
-      throws StreamException {
-    var pathParams =
-        Map.of(
-            "type", type,
-            "id", id);
-
-    return new StreamRequest<StopRecordingResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/video/call/{type}/{id}/stop_recording",
-        request,
-        pathParams,
-        new TypeReference<StopRecordingResponse>() {});
-  }
-
-  @NotNull
-  public StreamRequest<StopRecordingResponse> stopRecording(
-      @NotNull String type, @NotNull String id) throws StreamException {
-    return stopRecording(type, id, new StopRecordingRequest());
   }
 
   @NotNull
@@ -1121,16 +1202,9 @@ public class VideoImpl {
 
   @NotNull
   public StreamRequest<QueryCallSessionParticipantStatsResponse> queryCallSessionParticipantStats(
-      @NotNull String callType,
-      @NotNull String callID,
-      @NotNull String session,
-      QueryCallSessionParticipantStatsRequest request)
+      @NotNull String session, QueryCallSessionParticipantStatsRequest request)
       throws StreamException {
-    var pathParams =
-        Map.of(
-            "call_type", callType,
-            "call_id", callID,
-            "session", session);
+    var pathParams = Map.of("session", session);
 
     return new StreamRequest<QueryCallSessionParticipantStatsResponse>(
         client.getHttpClient(),
@@ -1145,10 +1219,8 @@ public class VideoImpl {
 
   @NotNull
   public StreamRequest<QueryCallSessionParticipantStatsResponse> queryCallSessionParticipantStats(
-      @NotNull String callType, @NotNull String callID, @NotNull String session)
-      throws StreamException {
-    return queryCallSessionParticipantStats(
-        callType, callID, session, new QueryCallSessionParticipantStatsRequest());
+      @NotNull String session) throws StreamException {
+    return queryCallSessionParticipantStats(session, new QueryCallSessionParticipantStatsRequest());
   }
 
   @NotNull
@@ -1338,21 +1410,6 @@ public class VideoImpl {
   }
 
   @NotNull
-  public StreamRequest<ResolveSipInboundResponse> resolveSipInbound(
-      ResolveSipInboundRequest request) throws StreamException {
-
-    return new StreamRequest<ResolveSipInboundResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/video/sip/resolve",
-        request,
-        null,
-        new TypeReference<ResolveSipInboundResponse>() {});
-  }
-
-  @NotNull
   public StreamRequest<ListSIPInboundRoutingRuleResponse> listSIPInboundRoutingRule(
       ListSIPInboundRoutingRuleRequest request) throws StreamException {
 
@@ -1361,7 +1418,7 @@ public class VideoImpl {
         client.getObjectMapper(),
         client.getBaseUrl(),
         "GET",
-        "/api/v2/video/sip/routing_rules",
+        "/api/v2/video/sip/inbound_routing_rules",
         request,
         null,
         new TypeReference<ListSIPInboundRoutingRuleResponse>() {});
@@ -1382,7 +1439,7 @@ public class VideoImpl {
         client.getObjectMapper(),
         client.getBaseUrl(),
         "POST",
-        "/api/v2/video/sip/routing_rules",
+        "/api/v2/video/sip/inbound_routing_rules",
         request,
         null,
         new TypeReference<SIPInboundRoutingRuleResponse>() {});
@@ -1398,7 +1455,7 @@ public class VideoImpl {
         client.getObjectMapper(),
         client.getBaseUrl(),
         "DELETE",
-        "/api/v2/video/sip/routing_rules/{id}",
+        "/api/v2/video/sip/inbound_routing_rules/{id}",
         request,
         pathParams,
         new TypeReference<DeleteSIPInboundRoutingRuleResponse>() {});
@@ -1420,7 +1477,7 @@ public class VideoImpl {
         client.getObjectMapper(),
         client.getBaseUrl(),
         "PUT",
-        "/api/v2/video/sip/routing_rules/{id}",
+        "/api/v2/video/sip/inbound_routing_rules/{id}",
         request,
         pathParams,
         new TypeReference<UpdateSIPInboundRoutingRuleResponse>() {});
@@ -1435,7 +1492,7 @@ public class VideoImpl {
         client.getObjectMapper(),
         client.getBaseUrl(),
         "GET",
-        "/api/v2/video/sip/trunks",
+        "/api/v2/video/sip/inbound_trunks",
         request,
         null,
         new TypeReference<ListSIPTrunksResponse>() {});
@@ -1455,7 +1512,7 @@ public class VideoImpl {
         client.getObjectMapper(),
         client.getBaseUrl(),
         "POST",
-        "/api/v2/video/sip/trunks",
+        "/api/v2/video/sip/inbound_trunks",
         request,
         null,
         new TypeReference<CreateSIPTrunkResponse>() {});
@@ -1471,7 +1528,7 @@ public class VideoImpl {
         client.getObjectMapper(),
         client.getBaseUrl(),
         "DELETE",
-        "/api/v2/video/sip/trunks/{id}",
+        "/api/v2/video/sip/inbound_trunks/{id}",
         request,
         pathParams,
         new TypeReference<DeleteSIPTrunkResponse>() {});
@@ -1493,10 +1550,25 @@ public class VideoImpl {
         client.getObjectMapper(),
         client.getBaseUrl(),
         "PUT",
-        "/api/v2/video/sip/trunks/{id}",
+        "/api/v2/video/sip/inbound_trunks/{id}",
         request,
         pathParams,
         new TypeReference<UpdateSIPTrunkResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ResolveSipInboundResponse> resolveSipInbound(
+      ResolveSipInboundRequest request) throws StreamException {
+
+    return new StreamRequest<ResolveSipInboundResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/video/sip/resolve",
+        request,
+        null,
+        new TypeReference<ResolveSipInboundResponse>() {});
   }
 
   @NotNull

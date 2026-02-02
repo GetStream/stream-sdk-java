@@ -13,19 +13,40 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UnfollowBatchRequest {
-
-  @JsonProperty("follows")
-  private List<FollowPair> follows;
+public class ChannelDataUpdate {
 
   @Nullable
-  @JsonProperty("delete_notification_activity")
-  private Boolean deleteNotificationActivity;
+  @JsonProperty("auto_translation_enabled")
+  private Boolean autoTranslationEnabled;
+
+  @Nullable
+  @JsonProperty("auto_translation_language")
+  private String autoTranslationLanguage;
+
+  @Nullable
+  @JsonProperty("disabled")
+  private Boolean disabled;
+
+  @Nullable
+  @JsonProperty("frozen")
+  private Boolean frozen;
+
+  @Nullable
+  @JsonProperty("team")
+  private String team;
+
+  @Nullable
+  @JsonProperty("config_overrides")
+  private ChannelConfig configOverrides;
+
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 }

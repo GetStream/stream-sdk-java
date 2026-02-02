@@ -28,6 +28,10 @@ public class UpdateCommentRequest {
   private String comment;
 
   @Nullable
+  @JsonProperty("handle_mention_notifications")
+  private Boolean handleMentionNotifications;
+
+  @Nullable
   @JsonProperty("skip_enrich_url")
   private Boolean skipEnrichUrl;
 
@@ -42,6 +46,10 @@ public class UpdateCommentRequest {
   @Nullable
   @JsonProperty("attachments")
   private List<Attachment> attachments;
+
+  @Nullable
+  @JsonProperty("mentioned_user_ids")
+  private List<String> mentionedUserIds;
 
   @Nullable
   @JsonProperty("custom")

@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
@@ -20,12 +21,29 @@ import org.jetbrains.annotations.Nullable;
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UnfollowBatchRequest {
+public class ParticipantSessionDetails {
 
-  @JsonProperty("follows")
-  private List<FollowPair> follows;
+  @JsonProperty("publisher_type")
+  private String publisherType;
+
+  @JsonProperty("user_id")
+  private String userID;
+
+  @JsonProperty("user_session_id")
+  private String userSessionID;
+
+  @JsonProperty("roles")
+  private List<String> roles;
 
   @Nullable
-  @JsonProperty("delete_notification_activity")
-  private Boolean deleteNotificationActivity;
+  @JsonProperty("duration_in_seconds")
+  private Integer durationInSeconds;
+
+  @Nullable
+  @JsonProperty("joined_at")
+  private Date joinedAt;
+
+  @Nullable
+  @JsonProperty("left_at")
+  private Date leftAt;
 }

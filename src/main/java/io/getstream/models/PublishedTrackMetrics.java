@@ -20,12 +20,33 @@ import org.jetbrains.annotations.Nullable;
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UnfollowBatchRequest {
-
-  @JsonProperty("follows")
-  private List<FollowPair> follows;
+public class PublishedTrackMetrics {
 
   @Nullable
-  @JsonProperty("delete_notification_activity")
-  private Boolean deleteNotificationActivity;
+  @JsonProperty("codec")
+  private String codec;
+
+  @Nullable
+  @JsonProperty("track_id")
+  private String trackID;
+
+  @Nullable
+  @JsonProperty("track_type")
+  private String trackType;
+
+  @Nullable
+  @JsonProperty("warnings")
+  private List<SessionWarningResponse> warnings;
+
+  @Nullable
+  @JsonProperty("bitrate")
+  private MetricTimeSeries bitrate;
+
+  @Nullable
+  @JsonProperty("framerate")
+  private MetricTimeSeries framerate;
+
+  @Nullable
+  @JsonProperty("resolution")
+  private ResolutionMetricsTimeSeries resolution;
 }

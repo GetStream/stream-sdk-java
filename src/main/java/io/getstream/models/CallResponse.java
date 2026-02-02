@@ -88,6 +88,10 @@ public class CallResponse {
   private Integer joinAheadTimeSeconds;
 
   @Nullable
+  @JsonProperty("routing_number")
+  private String routingNumber;
+
+  @Nullable
   @JsonProperty("starts_at")
   private Date startsAt;
 
