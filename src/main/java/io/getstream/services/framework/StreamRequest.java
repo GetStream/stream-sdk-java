@@ -4,8 +4,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.getstream.exceptions.StreamException;
+import io.getstream.models.UploadFileRequest;
+import io.getstream.models.UploadImageRequest;
 import io.getstream.models.framework.RateLimit;
 import io.getstream.models.framework.StreamResponse;
+import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -38,6 +41,10 @@ public class StreamRequest<T> {
       RequestBody rawBody;
       if (List.of("GET", "DELETE", "HEAD", "OPTIONS").contains(method) || jRequest == null) {
         rawBody = null;
+      } else if (jRequest instanceof UploadFileRequest) {
+        rawBody = createMultipartBody((UploadFileRequest) jRequest);
+      } else if (jRequest instanceof UploadImageRequest) {
+        rawBody = createMultipartBody((UploadImageRequest) jRequest);
       } else {
         rawBody = RequestBody.create(objectMapper.writeValueAsBytes(jRequest));
       }
@@ -101,6 +108,62 @@ public class StreamRequest<T> {
     }
 
     return urlBuilder.build();
+  }
+
+  private RequestBody createMultipartBody(UploadFileRequest request) throws IOException {
+    if (request.getFile() == null || request.getFile().isEmpty()) {
+      throw new IllegalArgumentException("File path must be provided");
+    }
+
+    File file = new File(request.getFile());
+    if (!file.exists()) {
+      throw new IOException("File not found: " + request.getFile());
+    }
+
+    MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+
+    // Add file
+    RequestBody fileBody = RequestBody.create(file, MediaType.parse("application/octet-stream"));
+    builder.addFormDataPart("file", file.getName(), fileBody);
+
+    // Add user field if present
+    if (request.getUser() != null) {
+      String userJson = objectMapper.writeValueAsString(request.getUser());
+      builder.addFormDataPart("user", userJson);
+    }
+
+    return builder.build();
+  }
+
+  private RequestBody createMultipartBody(UploadImageRequest request) throws IOException {
+    if (request.getFile() == null || request.getFile().isEmpty()) {
+      throw new IllegalArgumentException("File path must be provided");
+    }
+
+    File file = new File(request.getFile());
+    if (!file.exists()) {
+      throw new IOException("File not found: " + request.getFile());
+    }
+
+    MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+
+    // Add file
+    RequestBody fileBody = RequestBody.create(file, MediaType.parse("image/*"));
+    builder.addFormDataPart("file", file.getName(), fileBody);
+
+    // Add upload_sizes field if present
+    if (request.getUploadSizes() != null && !request.getUploadSizes().isEmpty()) {
+      String uploadSizesJson = objectMapper.writeValueAsString(request.getUploadSizes());
+      builder.addFormDataPart("upload_sizes", uploadSizesJson);
+    }
+
+    // Add user field if present
+    if (request.getUser() != null) {
+      String userJson = objectMapper.writeValueAsString(request.getUser());
+      builder.addFormDataPart("user", userJson);
+    }
+
+    return builder.build();
   }
 
   public StreamResponse<T> execute() throws StreamException {

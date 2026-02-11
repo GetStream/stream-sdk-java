@@ -1539,6 +1539,75 @@ class FeedIntegrationTests {
     System.out.println("✅ Completed real-world usage scenario demonstration");
   }
 
+  /** Test file upload functionality */
+  @Test
+  @Order(37)
+  void test37_UploadImage() throws Exception {
+    System.out.println("\n🖼️ Testing image upload...");
+
+    // snippet-start: UploadImage
+    UploadImageRequest imageUploadRequest =
+        UploadImageRequest.builder()
+            .file("img.png")
+            .user(OnlyUserID.builder().id(testUserId).build())
+            .uploadSizes(
+                List.of(
+                    ImageSize.builder()
+                        .width(100)
+                        .height(100)
+                        .resize("scale")
+                        .crop("center")
+                        .build()))
+            .build();
+
+    ImageUploadResponse imageResponse = common.uploadImage(imageUploadRequest).execute().getData();
+    // snippet-end: UploadImage
+
+    Assertions.assertNotNull(imageResponse, "Image upload response should not be null");
+    Assertions.assertNotNull(imageResponse.getFile(), "Uploaded image URL should not be null");
+    Assertions.assertTrue(
+        imageResponse.getFile().contains("http"), "Image URL should be a valid HTTP URL");
+
+    System.out.println("✅ Image uploaded successfully: " + imageResponse.getFile());
+  }
+
+  /** Test file upload functionality */
+  @Test
+  @Order(38)
+  void test38_UploadFile() throws Exception {
+    System.out.println("\n📄 Testing file upload...");
+
+    // Create a temporary test file
+    java.io.File tempFile = java.io.File.createTempFile("test-file-", ".txt");
+    java.nio.file.Files.writeString(
+        tempFile.toPath(),
+        "This is a test file for integration testing\nContains multiple lines\nWith various content");
+
+    try {
+      // snippet-start: UploadFile
+      UploadFileRequest fileUploadRequest =
+          UploadFileRequest.builder()
+              .file(tempFile.getAbsolutePath())
+              .user(OnlyUserID.builder().id(testUserId).build())
+              .build();
+
+      FileUploadResponse fileResponse = common.uploadFile(fileUploadRequest).execute().getData();
+      // snippet-end: UploadFile
+
+      Assertions.assertNotNull(fileResponse, "File upload response should not be null");
+      Assertions.assertNotNull(fileResponse.getFile(), "Uploaded file URL should not be null");
+      Assertions.assertTrue(
+          fileResponse.getFile().contains("http"), "File URL should be a valid HTTP URL");
+
+      System.out.println("✅ File uploaded successfully: " + fileResponse.getFile());
+    } finally {
+      // Clean up temp file
+      if (tempFile.exists()) {
+        tempFile.delete();
+      }
+    }
+  }
+
   // =================================================================
   // HELPER METHODS
   // =================================================================
