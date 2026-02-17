@@ -32,9 +32,7 @@ public class CallTest extends BasicTest {
             .build();
 
     APNSPayload apnsPayload =
-        APNSPayload.builder()
-            .body("{{ user.display_name }} invites you to a call")
-            .build();
+        APNSPayload.builder().body("{{ user.display_name }} invites you to a call").build();
 
     EventNotificationSettingsRequest eventNotification =
         EventNotificationSettingsRequest.builder().enabled(true).apns(apnsPayload).build();
