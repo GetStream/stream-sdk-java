@@ -25,6 +25,10 @@ import org.jetbrains.annotations.Nullable;
 public class QueryActivitiesRequest {
 
   @Nullable
+  @JsonProperty("include_expired_activities")
+  private Boolean includeExpiredActivities;
+
+  @Nullable
   @JsonProperty("include_private_activities")
   private Boolean includePrivateActivities;
 
