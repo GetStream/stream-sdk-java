@@ -31,29 +31,23 @@ public class CallTest extends BasicTest {
                     .build())
             .build();
 
-    NotificationSettings notificationSettings =
-        new NotificationSettings(
-            true,
-            new EventNotificationSettings(
-                true,
-                new APNS("{{ user.display_name }} invites you to a call", "", 0, 0, "", null),
-                null),
-            new EventNotificationSettings(
-                true,
-                new APNS("{{ user.display_name }} invites you to a call", "", 0, 0, "", null),
-                null),
-            new EventNotificationSettings(
-                true,
-                new APNS("{{ user.display_name }} invites you to a call", "", 0, 0, "", null),
-                null),
-            new EventNotificationSettings(
-                true,
-                new APNS("{{ user.display_name }} invites you to a call", "", 0, 0, "", null),
-                null),
-            new EventNotificationSettings(
-                true,
-                new APNS("{{ user.display_name }} invites you to a call", "", 0, 0, "", null),
-                null));
+    APNSPayload apnsPayload =
+        APNSPayload.builder()
+            .body("{{ user.display_name }} invites you to a call")
+            .build();
+
+    EventNotificationSettingsRequest eventNotification =
+        EventNotificationSettingsRequest.builder().enabled(true).apns(apnsPayload).build();
+
+    NotificationSettingsRequest notificationSettings =
+        NotificationSettingsRequest.builder()
+            .enabled(true)
+            .callLiveStarted(eventNotification)
+            .callMissed(eventNotification)
+            .callNotification(eventNotification)
+            .callRing(eventNotification)
+            .sessionStarted(eventNotification)
+            .build();
 
     Map<String, List<String>> grants =
         Map.of(
