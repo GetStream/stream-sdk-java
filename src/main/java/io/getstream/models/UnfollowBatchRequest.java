@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Unfollow multiple feeds at once Removes multiple follows at once and broadcasts
+ * FollowRemovedEvent for each one
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

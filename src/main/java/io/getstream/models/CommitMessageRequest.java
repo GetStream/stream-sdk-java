@@ -12,6 +12,10 @@
  */
 package io.getstream.models;
 
+/**
+ * Commit message Commits a pending message, which will make it visible in the channel Sends events:
+ * - message.new - message.updated - message.new - message.updated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

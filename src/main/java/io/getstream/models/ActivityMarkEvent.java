@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Emitted when activities are marked as read, seen, or watched. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

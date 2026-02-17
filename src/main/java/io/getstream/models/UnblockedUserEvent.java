@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
+/**
+ * This event is sent when a user is unblocked on a call, this can be useful to notify the user that
+ * they can now join the call again
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

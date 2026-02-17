@@ -63,9 +63,6 @@ public class AppResponseFields {
   @JsonProperty("max_aggregated_activities_length")
   private Integer maxAggregatedActivitiesLength;
 
-  @JsonProperty("moderation_bulk_submit_action_enabled")
-  private Boolean moderationBulkSubmitActionEnabled;
-
   @JsonProperty("moderation_enabled")
   private Boolean moderationEnabled;
 

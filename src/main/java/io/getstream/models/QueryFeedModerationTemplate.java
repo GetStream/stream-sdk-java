@@ -33,5 +33,5 @@ public class QueryFeedModerationTemplate {
 
   @Nullable
   @JsonProperty("config")
-  private FeedsModerationTemplateConfig config;
+  private FeedsModerationTemplateConfigPayload config;
 }

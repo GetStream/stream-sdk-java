@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Emitted when an activity is pinned. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

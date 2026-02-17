@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/** Remove multiple activities Delete one or more activities by their IDs */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

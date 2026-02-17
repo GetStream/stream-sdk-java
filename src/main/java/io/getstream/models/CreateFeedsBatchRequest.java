@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/** Create multiple feeds at once Create multiple feeds at once for a given feed group */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -16,6 +16,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Send closed caption Sends a closed caption event to the call Sends events: - call.closed_caption
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

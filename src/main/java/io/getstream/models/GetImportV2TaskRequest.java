@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Get import v2 task Gets a single import v2 task by ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

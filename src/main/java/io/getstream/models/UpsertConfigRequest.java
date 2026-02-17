@@ -15,6 +15,11 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Create or update moderation configuration Create a new moderation configuration or update an
+ * existing one. Configure settings for content filtering, AI analysis, toxicity detection, and
+ * other moderation features.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

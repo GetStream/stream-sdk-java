@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
+/** ReactionGroupResponse contains all information about a reaction of the same type. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

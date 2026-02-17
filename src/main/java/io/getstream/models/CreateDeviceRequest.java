@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Create device Adds a new device to a user, if the same device already exists the call will have
+ * no effect
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

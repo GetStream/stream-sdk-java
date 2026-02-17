@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** List transcriptions Lists transcriptions */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

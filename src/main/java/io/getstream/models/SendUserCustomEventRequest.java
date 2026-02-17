@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** Send user event Sends a custom event to a user Sends events: - * - * */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

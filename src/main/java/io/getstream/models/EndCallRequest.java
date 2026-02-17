@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** End call Sends events: - call.ended */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -18,6 +18,9 @@ import io.getstream.annotations.Query;
 import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Update live location Updates an existing live location with new coordinates or expiration time
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

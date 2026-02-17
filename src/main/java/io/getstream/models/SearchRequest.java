@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** Search messages Search messages across channels */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

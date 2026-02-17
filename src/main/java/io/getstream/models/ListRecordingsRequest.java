@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** List recordings Lists recordings */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

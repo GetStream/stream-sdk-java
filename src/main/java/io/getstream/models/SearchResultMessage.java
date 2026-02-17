@@ -39,6 +39,9 @@ public class SearchResultMessage {
   @JsonProperty("id")
   private String id;
 
+  @JsonProperty("mentioned_channel")
+  private Boolean mentionedChannel;
+
   @JsonProperty("pinned")
   private Boolean pinned;
 

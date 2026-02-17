@@ -67,7 +67,7 @@ public class ModerationFlagResponse {
 
   @Nullable
   @JsonProperty("moderation_payload")
-  private ModerationPayload moderationPayload;
+  private ModerationPayloadResponse moderationPayload;
 
   @Nullable
   @JsonProperty("review_queue_item")

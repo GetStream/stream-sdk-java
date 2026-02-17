@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** List block lists Returns all available block lists */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

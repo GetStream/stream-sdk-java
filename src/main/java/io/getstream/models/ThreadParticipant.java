@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Represents a user that is participating in a thread. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

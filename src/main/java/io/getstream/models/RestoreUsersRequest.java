@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/** Restore users Restore soft deleted users */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

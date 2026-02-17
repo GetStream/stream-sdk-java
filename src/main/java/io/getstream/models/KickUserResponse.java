@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** KickUserResponse is the payload for kicking a user from a call. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

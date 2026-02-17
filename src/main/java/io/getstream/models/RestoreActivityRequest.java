@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Restore a soft-deleted activity Restores a soft-deleted activity by its ID. Only the activity
+ * owner can restore their own activities.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

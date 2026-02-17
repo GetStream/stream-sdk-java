@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Represents user reaction to a message */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

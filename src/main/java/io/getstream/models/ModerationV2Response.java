@@ -41,6 +41,10 @@ public class ModerationV2Response {
   private String semanticFilterMatched;
 
   @Nullable
+  @JsonProperty("blocklists_matched")
+  private List<String> blocklistsMatched;
+
+  @Nullable
   @JsonProperty("image_harms")
   private List<String> imageHarms;
 

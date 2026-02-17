@@ -17,6 +17,10 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Query review queue items Query review queue items allows you to filter the review queue items.
+ * This is used for building a moderation dashboard.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

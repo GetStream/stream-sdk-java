@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/** Custom check endpoint Custom check, add your own AI model reports to the review queue */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -41,7 +42,7 @@ public class CustomCheckRequest {
 
   @Nullable
   @JsonProperty("moderation_payload")
-  private ModerationPayload moderationPayload;
+  private ModerationPayloadRequest moderationPayload;
 
   @Nullable
   @JsonProperty("user")

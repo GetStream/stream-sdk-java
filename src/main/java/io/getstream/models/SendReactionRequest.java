@@ -15,6 +15,9 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Send reaction Sends reaction to specified message Sends events: - reaction.new - reaction.updated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -14,56 +14,60 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Emitted when a channel/thread is marked as unread. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class NotificationMarkUnreadEvent {
 
-  @JsonProperty("channel_id")
-  private String channelID;
-
-  @JsonProperty("channel_member_count")
-  private Integer channelMemberCount;
-
-  @JsonProperty("channel_type")
-  private String channelType;
-
-  @JsonProperty("cid")
-  private String cid;
-
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @JsonProperty("first_unread_message_id")
-  private String firstUnreadMessageID;
-
-  @JsonProperty("last_read_at")
-  private Date lastReadAt;
-
-  @JsonProperty("total_unread_count")
-  private Integer totalUnreadCount;
-
-  @JsonProperty("unread_channels")
-  private Integer unreadChannels;
-
-  @JsonProperty("unread_count")
-  private Integer unreadCount;
-
-  @JsonProperty("unread_messages")
-  private Integer unreadMessages;
-
-  @JsonProperty("unread_threads")
-  private Integer unreadThreads;
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 
   @JsonProperty("type")
   private String type;
 
   @Nullable
+  @JsonProperty("channel_id")
+  private String channelID;
+
+  @Nullable
+  @JsonProperty("channel_member_count")
+  private Integer channelMemberCount;
+
+  @Nullable
+  @JsonProperty("channel_message_count")
+  private Integer channelMessageCount;
+
+  @Nullable
+  @JsonProperty("channel_type")
+  private String channelType;
+
+  @Nullable
+  @JsonProperty("cid")
+  private String cid;
+
+  @Nullable
+  @JsonProperty("first_unread_message_id")
+  private String firstUnreadMessageID;
+
+  @Nullable
+  @JsonProperty("last_read_at")
+  private Date lastReadAt;
+
+  @Nullable
   @JsonProperty("last_read_message_id")
   private String lastReadMessageID;
+
+  @Nullable
+  @JsonProperty("received_at")
+  private Date receivedAt;
 
   @Nullable
   @JsonProperty("team")
@@ -74,10 +78,38 @@ public class NotificationMarkUnreadEvent {
   private String threadID;
 
   @Nullable
+  @JsonProperty("total_unread_count")
+  private Integer totalUnreadCount;
+
+  @Nullable
+  @JsonProperty("unread_channels")
+  private Integer unreadChannels;
+
+  @Nullable
+  @JsonProperty("unread_count")
+  private Integer unreadCount;
+
+  @Nullable
+  @JsonProperty("unread_messages")
+  private Integer unreadMessages;
+
+  @Nullable
+  @JsonProperty("unread_thread_messages")
+  private Integer unreadThreadMessages;
+
+  @Nullable
+  @JsonProperty("unread_threads")
+  private Integer unreadThreads;
+
+  @Nullable
   @JsonProperty("channel")
   private ChannelResponse channel;
 
   @Nullable
+  @JsonProperty("channel_custom")
+  private Map<String, Object> channelCustom;
+
+  @Nullable
   @JsonProperty("user")
-  private User user;
+  private UserResponseCommonFields user;
 }

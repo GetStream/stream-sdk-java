@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** CallTypeResponse is the payload for a call type. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -37,7 +38,7 @@ public class CallTypeResponse {
   private Map<String, List<String>> grants;
 
   @JsonProperty("notification_settings")
-  private NotificationSettings notificationSettings;
+  private NotificationSettingsResponse notificationSettings;
 
   @JsonProperty("settings")
   private CallSettingsResponse settings;

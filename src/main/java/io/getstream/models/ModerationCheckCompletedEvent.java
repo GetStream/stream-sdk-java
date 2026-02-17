@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** This event is sent when a moderation check is completed */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Collect user feedback Sends events: - call.user_feedback_submitted */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

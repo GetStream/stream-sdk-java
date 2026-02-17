@@ -17,6 +17,10 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Update membership level Update a membership level with partial updates. Only specified fields
+ * will be updated.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

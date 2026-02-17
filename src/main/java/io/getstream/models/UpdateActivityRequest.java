@@ -18,11 +18,21 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Full activity update Replaces an activity with the provided data. Use this to update text,
+ * attachments, reply restrictions (&#39;restrict_replies&#39;), mentioned users, and other activity
+ * fields. Note: This is a full update - any fields not provided will be cleared. Sends events: -
+ * feeds.activity.updated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class UpdateActivityRequest {
+
+  @Nullable
+  @JsonProperty("copy_custom_to_notification")
+  private Boolean copyCustomToNotification;
 
   @Nullable
   @JsonProperty("expires_at")
@@ -39,6 +49,10 @@ public class UpdateActivityRequest {
   @Nullable
   @JsonProperty("restrict_replies")
   private String restrictReplies;
+
+  @Nullable
+  @JsonProperty("run_activity_processors")
+  private Boolean runActivityProcessors;
 
   @Nullable
   @JsonProperty("skip_enrich_url")
@@ -91,6 +105,10 @@ public class UpdateActivityRequest {
   @Nullable
   @JsonProperty("location")
   private ActivityLocation location;
+
+  @Nullable
+  @JsonProperty("search_data")
+  private Map<String, Object> searchData;
 
   @Nullable
   @JsonProperty("user")

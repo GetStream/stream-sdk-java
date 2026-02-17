@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** MuteUsersResponse is the response payload for the mute users endpoint. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Send new message Sends new message to the specified channel Sends events: - message.new -
+ * message.updated - message.new - message.updated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

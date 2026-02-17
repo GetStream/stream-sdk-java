@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** Create role Creates custom role */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

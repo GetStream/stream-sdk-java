@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Deactivate user Deactivates user with possibility to activate it back Sends events: -
+ * user.deactivated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -15,6 +15,11 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/**
+ * Get moderation configuration Retrieve a specific moderation configuration by its key and team.
+ * This configuration contains settings for various moderation features like toxicity detection, AI
+ * analysis, and filtering rules.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

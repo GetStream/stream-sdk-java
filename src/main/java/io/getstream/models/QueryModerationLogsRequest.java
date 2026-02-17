@@ -17,6 +17,10 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Query moderation action logs Search and filter moderation action logs with support for
+ * pagination. View the history of moderation actions taken, including who performed them and when.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

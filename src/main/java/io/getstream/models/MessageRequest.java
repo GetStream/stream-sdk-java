@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Message data for creating or updating a message */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -31,6 +32,10 @@ public class MessageRequest {
   @Nullable
   @JsonProperty("id")
   private String id;
+
+  @Nullable
+  @JsonProperty("mentioned_channel")
+  private Boolean mentionedChannel;
 
   @Nullable
   @JsonProperty("mml")

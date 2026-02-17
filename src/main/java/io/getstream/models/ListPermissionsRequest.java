@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** List permissions Lists all available permissions */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

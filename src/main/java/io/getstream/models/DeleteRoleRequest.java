@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Delete role Deletes custom role */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

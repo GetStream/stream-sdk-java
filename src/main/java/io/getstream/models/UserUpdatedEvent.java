@@ -17,6 +17,10 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * This event is sent when a user gets updated. The event contains information about the updated
+ * user.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

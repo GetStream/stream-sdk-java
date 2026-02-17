@@ -16,6 +16,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Get own fields for multiple feeds Retrieves own_follows, own_capabilities, and/or own_membership
+ * for multiple feeds in a single request. If fields are not specified, all three fields are
+ * returned.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

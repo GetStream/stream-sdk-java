@@ -63,7 +63,7 @@ public class ReviewQueueItemResponse {
   private List<ActionLogResponse> actions;
 
   @JsonProperty("bans")
-  private List<Ban> bans;
+  private List<BanInfoResponse> bans;
 
   @JsonProperty("flags")
   private List<ModerationFlagResponse> flags;
@@ -133,7 +133,7 @@ public class ReviewQueueItemResponse {
 
   @Nullable
   @JsonProperty("moderation_payload")
-  private ModerationPayload moderationPayload;
+  private ModerationPayloadResponse moderationPayload;
 
   @Nullable
   @JsonProperty("reaction")

@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Start HLS broadcasting Starts HLS broadcasting */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

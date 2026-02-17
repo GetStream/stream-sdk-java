@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Update a feed group Update a feed group by ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

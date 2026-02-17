@@ -17,6 +17,10 @@ import java.util.Date;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Truncate channel Truncates messages from a channel. Can be applied to the entire channel or
+ * scoped to specific members. Sends events: - channel.truncated - channel.truncated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

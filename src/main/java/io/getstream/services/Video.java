@@ -428,12 +428,16 @@ public interface Video {
 
   @NotNull
   public StreamRequest<QueryCallSessionParticipantStatsResponse> queryCallSessionParticipantStats(
-      @NotNull String session, QueryCallSessionParticipantStatsRequest request)
+      @NotNull String callType,
+      @NotNull String callID,
+      @NotNull String session,
+      QueryCallSessionParticipantStatsRequest request)
       throws StreamException;
 
   @NotNull
   public StreamRequest<QueryCallSessionParticipantStatsResponse> queryCallSessionParticipantStats(
-      @NotNull String session) throws StreamException;
+      @NotNull String callType, @NotNull String callID, @NotNull String session)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<QueryCallSessionParticipantStatsTimelineResponse>

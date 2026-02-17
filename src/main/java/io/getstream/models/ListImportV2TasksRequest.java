@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** List import v2 tasks Lists all import v2 tasks for the app */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

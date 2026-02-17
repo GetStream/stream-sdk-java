@@ -30,6 +30,10 @@ public class ActivityRequest {
   private List<String> feeds;
 
   @Nullable
+  @JsonProperty("copy_custom_to_notification")
+  private Boolean copyCustomToNotification;
+
+  @Nullable
   @JsonProperty("create_notification_activity")
   private Boolean createNotificationActivity;
 

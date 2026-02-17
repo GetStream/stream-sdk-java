@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** Remove reaction Removes a reaction from an activity */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

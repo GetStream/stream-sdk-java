@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** RTMP input settings */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

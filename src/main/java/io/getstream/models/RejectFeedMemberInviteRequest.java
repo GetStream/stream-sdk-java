@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/** Reject an invite to become a feed member Rejects a pending feed member request */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

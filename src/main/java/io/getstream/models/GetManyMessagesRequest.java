@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 import java.util.List;
 
+/** Get many messages Returns list messages found by IDs */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

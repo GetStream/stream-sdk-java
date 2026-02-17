@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** Delete poll Deletes a poll Sends events: - feeds.poll.deleted - poll.deleted */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Get command Returns custom command by its name */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

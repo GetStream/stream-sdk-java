@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/** Create import v2 task Creates a new import v2 task */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

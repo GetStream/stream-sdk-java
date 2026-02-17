@@ -18,6 +18,7 @@ import io.getstream.annotations.Query;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Query call participants Returns a list of participants connected to the call */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

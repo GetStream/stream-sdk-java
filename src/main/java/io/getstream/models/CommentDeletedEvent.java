@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Emitted when a comment is deleted. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

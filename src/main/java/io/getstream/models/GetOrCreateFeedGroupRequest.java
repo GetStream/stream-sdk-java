@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Get or create a feed group Get an existing feed group or create a new one if it doesn&#39;t exist
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -14,6 +14,10 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Translate message Translates message to a given language using automated translation software
+ * Sends events: - message.updated - message.updated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

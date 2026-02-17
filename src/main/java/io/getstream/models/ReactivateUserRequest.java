@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Reactivate user Activates user who&#39;s been deactivated previously Sends events: -
+ * user.reactivated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Mark activities as read/seen/watched Mark activities as read/seen/watched. Can mark by timestamp
+ * (seen), activity IDs (read), or all as read.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

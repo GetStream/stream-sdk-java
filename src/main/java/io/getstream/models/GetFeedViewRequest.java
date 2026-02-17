@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Get a feed view Get a feed view by its ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

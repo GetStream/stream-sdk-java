@@ -17,6 +17,10 @@ import java.util.Date;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Update channel Change channel data Sends events: - channel.updated - member.added -
+ * member.removed - member.updated - message.new - channel.updated - message.new
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

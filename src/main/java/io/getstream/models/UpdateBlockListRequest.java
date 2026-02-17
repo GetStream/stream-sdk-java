@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/** Update block list Updates contents of the block list */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

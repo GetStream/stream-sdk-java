@@ -12,6 +12,10 @@
  */
 package io.getstream.models;
 
+/**
+ * Get active calls status Get the current status of all active calls including metrics and summary
+ * information
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

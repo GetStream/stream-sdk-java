@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** Config for creating Azure Blob Storage storage */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

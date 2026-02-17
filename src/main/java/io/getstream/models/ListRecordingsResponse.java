@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/** Response for listing recordings */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

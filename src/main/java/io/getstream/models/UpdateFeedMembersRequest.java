@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/** Update feed members Add, remove, or set members for a feed */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

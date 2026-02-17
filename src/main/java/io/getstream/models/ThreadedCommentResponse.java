@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** A comment with an optional, depth‑limited slice of nested replies. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -115,5 +116,5 @@ public class ThreadedCommentResponse {
 
   @Nullable
   @JsonProperty("reaction_groups")
-  private Map<String, ReactionGroupResponse> reactionGroups;
+  private Map<String, FeedsReactionGroupResponse> reactionGroups;
 }

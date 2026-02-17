@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Add comment reaction Adds a reaction to a comment */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -24,6 +25,10 @@ public class AddCommentReactionRequest {
 
   @JsonProperty("type")
   private String type;
+
+  @Nullable
+  @JsonProperty("copy_custom_to_notification")
+  private Boolean copyCustomToNotification;
 
   @Nullable
   @JsonProperty("create_notification_activity")

@@ -60,10 +60,6 @@ public interface Chat {
   public StreamRequest<QueryChannelsResponse> queryChannels() throws StreamException;
 
   @NotNull
-  public StreamRequest<ChannelBatchUpdateResponse> channelBatchUpdate(
-      ChannelBatchUpdateRequest request) throws StreamException;
-
-  @NotNull
   public StreamRequest<DeleteChannelsResponse> deleteChannels(DeleteChannelsRequest request)
       throws StreamException;
 
@@ -350,15 +346,16 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
-  public StreamRequest<MessageResponse> runMessageAction(
+  public StreamRequest<MessageActionResponse> runMessageAction(
       @NotNull String id, RunMessageActionRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<MessageResponse> commitMessage(
+  public StreamRequest<MessageActionResponse> commitMessage(
       @NotNull String id, CommitMessageRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<MessageResponse> commitMessage(@NotNull String id) throws StreamException;
+  public StreamRequest<MessageActionResponse> commitMessage(@NotNull String id)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<UpdateMessagePartialResponse> ephemeralMessageUpdate(
@@ -398,7 +395,7 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
-  public StreamRequest<MessageResponse> translateMessage(
+  public StreamRequest<MessageActionResponse> translateMessage(
       @NotNull String id, TranslateMessageRequest request) throws StreamException;
 
   @NotNull

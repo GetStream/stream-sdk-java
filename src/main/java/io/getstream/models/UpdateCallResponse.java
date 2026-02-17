@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/** Response for updating a call */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

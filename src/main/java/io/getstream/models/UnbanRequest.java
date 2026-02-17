@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.getstream.annotations.Query;
 import org.jetbrains.annotations.Nullable;
 
+/** Unban Unban a user from a channel or globally. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

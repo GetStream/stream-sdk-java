@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** Delete channel Deletes channel Sends events: - channel.deleted - channel.deleted */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

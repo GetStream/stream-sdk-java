@@ -25,9 +25,6 @@ public class RuleBuilderRule {
   @JsonProperty("rule_type")
   private String ruleType;
 
-  @JsonProperty("action")
-  private RuleBuilderAction action;
-
   @Nullable
   @JsonProperty("cooldown_period")
   private String cooldownPeriod;
@@ -41,10 +38,18 @@ public class RuleBuilderRule {
   private String logic;
 
   @Nullable
+  @JsonProperty("action_sequences")
+  private List<CallRuleActionSequence> actionSequences;
+
+  @Nullable
   @JsonProperty("conditions")
   private List<RuleBuilderCondition> conditions;
 
   @Nullable
   @JsonProperty("groups")
   private List<RuleBuilderConditionGroup> groups;
+
+  @Nullable
+  @JsonProperty("action")
+  private RuleBuilderAction action;
 }

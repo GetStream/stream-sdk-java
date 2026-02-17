@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Create Call Type */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -36,7 +37,7 @@ public class CreateCallTypeRequest {
 
   @Nullable
   @JsonProperty("notification_settings")
-  private NotificationSettings notificationSettings;
+  private NotificationSettingsRequest notificationSettings;
 
   @Nullable
   @JsonProperty("settings")

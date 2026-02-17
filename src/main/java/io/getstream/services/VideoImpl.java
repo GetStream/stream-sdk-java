@@ -1202,9 +1202,16 @@ public class VideoImpl {
 
   @NotNull
   public StreamRequest<QueryCallSessionParticipantStatsResponse> queryCallSessionParticipantStats(
-      @NotNull String session, QueryCallSessionParticipantStatsRequest request)
+      @NotNull String callType,
+      @NotNull String callID,
+      @NotNull String session,
+      QueryCallSessionParticipantStatsRequest request)
       throws StreamException {
-    var pathParams = Map.of("session", session);
+    var pathParams =
+        Map.of(
+            "call_type", callType,
+            "call_id", callID,
+            "session", session);
 
     return new StreamRequest<QueryCallSessionParticipantStatsResponse>(
         client.getHttpClient(),
@@ -1219,8 +1226,10 @@ public class VideoImpl {
 
   @NotNull
   public StreamRequest<QueryCallSessionParticipantStatsResponse> queryCallSessionParticipantStats(
-      @NotNull String session) throws StreamException {
-    return queryCallSessionParticipantStats(session, new QueryCallSessionParticipantStatsRequest());
+      @NotNull String callType, @NotNull String callID, @NotNull String session)
+      throws StreamException {
+    return queryCallSessionParticipantStats(
+        callType, callID, session, new QueryCallSessionParticipantStatsRequest());
   }
 
   @NotNull

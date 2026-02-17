@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/**
+ * Upsert multiple follows at once Creates or updates multiple follows at once. Does not return an
+ * error if follows already exist. Broadcasts FollowAddedEvent only for newly created follows.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

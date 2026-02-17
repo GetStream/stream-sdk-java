@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/** Update user permissions Updates user permissions Sends events: - call.permissions_updated */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

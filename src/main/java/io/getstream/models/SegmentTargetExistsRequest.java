@@ -12,6 +12,10 @@
  */
 package io.getstream.models;
 
+/**
+ * Check whether a target exists in a segment Check whether a target exists in a segment. Returns
+ * 200 if the target exists, 404 otherwise
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

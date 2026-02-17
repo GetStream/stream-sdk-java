@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** List SIP Inbound Routing Rules List all SIP Inbound Routing Rules for the application */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

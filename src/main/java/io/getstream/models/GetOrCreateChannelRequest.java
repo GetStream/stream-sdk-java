@@ -15,6 +15,11 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Get or create channel This Method creates a channel or returns an existing one with matching
+ * attributes Sends events: - channel.created - member.added - member.removed - member.updated -
+ * user.watching.start - channel.created - user.watching.start
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** Bulk image moderation Moderate multiple images in bulk using a CSV file */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

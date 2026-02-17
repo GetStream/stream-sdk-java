@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Emitted when activity feedback is provided. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

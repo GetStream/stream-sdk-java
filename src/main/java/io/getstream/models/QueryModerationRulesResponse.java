@@ -26,6 +26,12 @@ public class QueryModerationRulesResponse {
   @JsonProperty("duration")
   private String duration;
 
+  @JsonProperty("closed_caption_labels")
+  private List<String> closedCaptionLabels;
+
+  @JsonProperty("keyframe_labels")
+  private List<String> keyframeLabels;
+
   @JsonProperty("rules")
   private List<ModerationRuleV2Response> rules;
 

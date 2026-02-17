@@ -133,21 +133,6 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<ChannelBatchUpdateResponse> channelBatchUpdate(
-      ChannelBatchUpdateRequest request) throws StreamException {
-
-    return new StreamRequest<ChannelBatchUpdateResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "PUT",
-        "/api/v2/chat/channels/batch",
-        request,
-        null,
-        new TypeReference<ChannelBatchUpdateResponse>() {});
-  }
-
-  @NotNull
   public StreamRequest<DeleteChannelsResponse> deleteChannels(DeleteChannelsRequest request)
       throws StreamException {
 
@@ -1032,11 +1017,11 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<MessageResponse> runMessageAction(
+  public StreamRequest<MessageActionResponse> runMessageAction(
       @NotNull String id, RunMessageActionRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
 
-    return new StreamRequest<MessageResponse>(
+    return new StreamRequest<MessageActionResponse>(
         client.getHttpClient(),
         client.getObjectMapper(),
         client.getBaseUrl(),
@@ -1044,15 +1029,15 @@ public class ChatImpl {
         "/api/v2/chat/messages/{id}/action",
         request,
         pathParams,
-        new TypeReference<MessageResponse>() {});
+        new TypeReference<MessageActionResponse>() {});
   }
 
   @NotNull
-  public StreamRequest<MessageResponse> commitMessage(
+  public StreamRequest<MessageActionResponse> commitMessage(
       @NotNull String id, CommitMessageRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
 
-    return new StreamRequest<MessageResponse>(
+    return new StreamRequest<MessageActionResponse>(
         client.getHttpClient(),
         client.getObjectMapper(),
         client.getBaseUrl(),
@@ -1060,11 +1045,12 @@ public class ChatImpl {
         "/api/v2/chat/messages/{id}/commit",
         request,
         pathParams,
-        new TypeReference<MessageResponse>() {});
+        new TypeReference<MessageActionResponse>() {});
   }
 
   @NotNull
-  public StreamRequest<MessageResponse> commitMessage(@NotNull String id) throws StreamException {
+  public StreamRequest<MessageActionResponse> commitMessage(@NotNull String id)
+      throws StreamException {
     return commitMessage(id, new CommitMessageRequest());
   }
 
@@ -1177,11 +1163,11 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<MessageResponse> translateMessage(
+  public StreamRequest<MessageActionResponse> translateMessage(
       @NotNull String id, TranslateMessageRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
 
-    return new StreamRequest<MessageResponse>(
+    return new StreamRequest<MessageActionResponse>(
         client.getHttpClient(),
         client.getObjectMapper(),
         client.getBaseUrl(),
@@ -1189,7 +1175,7 @@ public class ChatImpl {
         "/api/v2/chat/messages/{id}/translate",
         request,
         pathParams,
-        new TypeReference<MessageResponse>() {});
+        new TypeReference<MessageActionResponse>() {});
   }
 
   @NotNull
