@@ -43,6 +43,9 @@ public class MessageWithChannelResponse {
   @JsonProperty("mentioned_channel")
   private Boolean mentionedChannel;
 
+  @JsonProperty("mentioned_here")
+  private Boolean mentionedHere;
+
   @JsonProperty("pinned")
   private Boolean pinned;
 

@@ -38,6 +38,10 @@ public class MessageRequest {
   private Boolean mentionedChannel;
 
   @Nullable
+  @JsonProperty("mentioned_here")
+  private Boolean mentionedHere;
+
+  @Nullable
   @JsonProperty("mml")
   private String mml;
 

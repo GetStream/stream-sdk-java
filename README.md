@@ -90,6 +90,9 @@ call.getOrCreate(
         .build());
 ```
 
+> **Note:** When constructing models, always use the **builder pattern** (e.g. `UserRequest.builder().id("id").build()`).
+> Positional constructor usage is not supported and may break across SDK updates as parameter order is not guaranteed.
+
 ## Development
 
 To run tests, create the `local.properties` file using the `local.properties.example` and adjust it to have valid API credentials:

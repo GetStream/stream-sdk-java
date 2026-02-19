@@ -386,6 +386,15 @@ public interface Feeds {
       @NotNull String feedGroupID, @NotNull String feedID) throws StreamException;
 
   @NotNull
+  public StreamRequest<QueryPinnedActivitiesResponse> queryPinnedActivities(
+      @NotNull String feedGroupID, @NotNull String feedID, QueryPinnedActivitiesRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryPinnedActivitiesResponse> queryPinnedActivities(
+      @NotNull String feedGroupID, @NotNull String feedID) throws StreamException;
+
+  @NotNull
   public StreamRequest<GetFollowSuggestionsResponse> getFollowSuggestions(
       @NotNull String feedGroupID, GetFollowSuggestionsRequest request) throws StreamException;
 

@@ -20,16 +20,13 @@ import org.jetbrains.annotations.Nullable;
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetCommentRepliesResponse {
+public class QueryPinnedActivitiesResponse {
 
   @JsonProperty("duration")
   private String duration;
 
-  @JsonProperty("sort")
-  private String sort;
-
-  @JsonProperty("comments")
-  private List<ThreadedCommentResponse> comments;
+  @JsonProperty("pinned_activities")
+  private List<ActivityPinResponse> pinnedActivities;
 
   @Nullable
   @JsonProperty("next")

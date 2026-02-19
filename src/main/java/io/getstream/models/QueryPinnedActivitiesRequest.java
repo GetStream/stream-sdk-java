@@ -14,22 +14,19 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Query pinned activities Query pinned activities for a feed with filter query */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetCommentRepliesResponse {
+public class QueryPinnedActivitiesRequest {
 
-  @JsonProperty("duration")
-  private String duration;
-
-  @JsonProperty("sort")
-  private String sort;
-
-  @JsonProperty("comments")
-  private List<ThreadedCommentResponse> comments;
+  @Nullable
+  @JsonProperty("limit")
+  private Integer limit;
 
   @Nullable
   @JsonProperty("next")
@@ -38,4 +35,12 @@ public class GetCommentRepliesResponse {
   @Nullable
   @JsonProperty("prev")
   private String prev;
+
+  @Nullable
+  @JsonProperty("sort")
+  private List<SortParamRequest> sort;
+
+  @Nullable
+  @JsonProperty("filter")
+  private Map<String, Object> filter;
 }
