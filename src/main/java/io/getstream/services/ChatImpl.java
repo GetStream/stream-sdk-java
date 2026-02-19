@@ -91,8 +91,8 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<CampaignResponse> scheduleCampaign(
-      @NotNull String id, ScheduleCampaignRequest request) throws StreamException {
+  public StreamRequest<CampaignResponse> stopCampaign(
+      @NotNull String id, StopCampaignRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<CampaignResponse>(
@@ -107,9 +107,8 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<CampaignResponse> scheduleCampaign(@NotNull String id)
-      throws StreamException {
-    return scheduleCampaign(id, new ScheduleCampaignRequest());
+  public StreamRequest<CampaignResponse> stopCampaign(@NotNull String id) throws StreamException {
+    return stopCampaign(id, new StopCampaignRequest());
   }
 
   @NotNull

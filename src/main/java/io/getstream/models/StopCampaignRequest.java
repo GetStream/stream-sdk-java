@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Stop campaign Stops a campaign */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

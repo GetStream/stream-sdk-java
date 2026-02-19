@@ -45,12 +45,11 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
-  public StreamRequest<CampaignResponse> scheduleCampaign(
-      @NotNull String id, ScheduleCampaignRequest request) throws StreamException;
+  public StreamRequest<CampaignResponse> stopCampaign(
+      @NotNull String id, StopCampaignRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<CampaignResponse> scheduleCampaign(@NotNull String id)
-      throws StreamException;
+  public StreamRequest<CampaignResponse> stopCampaign(@NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryChannelsResponse> queryChannels(QueryChannelsRequest request)
