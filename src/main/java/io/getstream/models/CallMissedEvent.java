@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * This event is sent to call members who did not accept/reject/join the call to notify they missed
+ * the call
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

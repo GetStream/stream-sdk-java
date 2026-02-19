@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/** Upsert multiple activities Create new activities or update existing ones in a batch operation */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Ring Call Users Sends a ring notification to the provided users who are not already in the call.
+ * All users should be members of the call Sends events: - call.ring
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

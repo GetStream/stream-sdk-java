@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/** Ban Ban a user from a channel or the entire app */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

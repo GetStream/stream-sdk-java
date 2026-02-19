@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Pin an activity to a feed Pin an activity to a feed. Pinned activities are typically displayed at
+ * the top of a feed.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

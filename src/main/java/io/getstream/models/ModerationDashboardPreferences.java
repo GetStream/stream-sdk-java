@@ -23,6 +23,14 @@ import org.jetbrains.annotations.Nullable;
 public class ModerationDashboardPreferences {
 
   @Nullable
+  @JsonProperty("async_review_queue_upsert")
+  private Boolean asyncReviewQueueUpsert;
+
+  @Nullable
+  @JsonProperty("disable_audit_logs")
+  private Boolean disableAuditLogs;
+
+  @Nullable
   @JsonProperty("disable_flagging_reviewed_entity")
   private Boolean disableFlaggingReviewedEntity;
 

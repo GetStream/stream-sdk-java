@@ -12,6 +12,9 @@
  */
 package io.getstream.models;
 
+/**
+ * Delete membership level Delete a membership level by its UUID. This operation is irreversible.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

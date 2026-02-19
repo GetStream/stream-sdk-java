@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** Delete block list Deletes previously created application blocklist */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

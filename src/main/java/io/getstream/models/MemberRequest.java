@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** MemberRequest is the payload for adding a member to a call. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Mute Mute a user. Mutes are generally not visible to the user you mute, while block is something
+ * you notice.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

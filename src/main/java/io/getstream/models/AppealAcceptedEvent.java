@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** This event is sent when an appeal is accepted */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -15,6 +15,9 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Update message Updates message with new data Sends events: - message.updated - message.updated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

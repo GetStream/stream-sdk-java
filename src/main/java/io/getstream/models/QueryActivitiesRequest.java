@@ -17,11 +17,16 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Query activities Query activities based on filters with pagination and sorting options */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class QueryActivitiesRequest {
+
+  @Nullable
+  @JsonProperty("include_expired_activities")
+  private Boolean includeExpiredActivities;
 
   @Nullable
   @JsonProperty("include_private_activities")

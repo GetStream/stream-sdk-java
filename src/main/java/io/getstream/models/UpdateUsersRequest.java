@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
+/** Upsert users Update or create users in bulk Sends events: - user.updated */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

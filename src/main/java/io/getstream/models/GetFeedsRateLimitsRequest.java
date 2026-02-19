@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/**
+ * Get Feeds Rate Limits Retrieve current rate limit status for feeds operations. Returns
+ * information about limits, usage, and remaining quota for various feed operations.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

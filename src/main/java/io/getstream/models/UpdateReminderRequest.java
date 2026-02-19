@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
+/** Updates Reminder Updates an existing reminder Sends events: - reminder.updated */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

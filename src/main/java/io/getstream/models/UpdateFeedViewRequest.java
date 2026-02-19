@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Update a feed view Update an existing custom feed view with new selectors, ranking, or
+ * aggregation options
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

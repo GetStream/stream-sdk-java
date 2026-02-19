@@ -119,5 +119,15 @@ public class Feed {
     return this.rejectFeedMemberInvite(new RejectFeedMemberInviteRequest());
   }
 
+  public StreamResponse<QueryPinnedActivitiesResponse> queryPinnedActivities(
+      QueryPinnedActivitiesRequest request) throws StreamException {
+    return service.queryPinnedActivities(this.feedGroup, this.feedID, request).execute();
+  }
+
+  public StreamResponse<QueryPinnedActivitiesResponse> queryPinnedActivities()
+      throws StreamException {
+    return this.queryPinnedActivities(new QueryPinnedActivitiesRequest());
+  }
+
   // Helper templates for parameter signatures and calls in Java
 }

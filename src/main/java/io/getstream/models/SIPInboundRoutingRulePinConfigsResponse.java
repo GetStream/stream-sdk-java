@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/** PIN routing rule call configuration response */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

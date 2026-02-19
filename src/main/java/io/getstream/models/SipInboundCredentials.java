@@ -15,11 +15,15 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
+/** Credentials for SIP inbound call authentication */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class SipInboundCredentials {
+
+  @JsonProperty("api_key")
+  private String apiKey;
 
   @JsonProperty("call_id")
   private String callID;

@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Flag content for moderation Flag any type of content (messages, users, channels, activities) for
+ * moderation review. Supports custom content types and additional metadata for flagged content.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/**
+ * Get comments for an object Retrieve a threaded list of comments for a specific object (e.g.,
+ * activity), with configurable depth, sorting, and pagination
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

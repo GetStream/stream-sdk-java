@@ -15,6 +15,11 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Query Feed Usage Statistics Retrieve usage statistics for feeds including activity count, follow
+ * count, and API request count. Returns data aggregated by day with pagination support via from/to
+ * date parameters. This endpoint is server-side only.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

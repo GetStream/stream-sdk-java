@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Delete multiple feeds Delete multiple feeds by their IDs. All feeds must exist. This endpoint is
+ * server-side only.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

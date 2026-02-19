@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** MemberResponse is the payload for a member of a call. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

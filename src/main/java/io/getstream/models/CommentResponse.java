@@ -107,5 +107,5 @@ public class CommentResponse {
 
   @Nullable
   @JsonProperty("reaction_groups")
-  private Map<String, ReactionGroupResponse> reactionGroups;
+  private Map<String, FeedsReactionGroupResponse> reactionGroups;
 }

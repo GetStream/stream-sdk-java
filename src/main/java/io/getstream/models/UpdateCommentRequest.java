@@ -17,6 +17,10 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Update a comment Updates a comment on an object (e.g., activity) and broadcasts appropriate
+ * events
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -26,6 +30,10 @@ public class UpdateCommentRequest {
   @Nullable
   @JsonProperty("comment")
   private String comment;
+
+  @Nullable
+  @JsonProperty("copy_custom_to_notification")
+  private Boolean copyCustomToNotification;
 
   @Nullable
   @JsonProperty("handle_mention_notifications")

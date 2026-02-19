@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/** SIP Inbound Routing Rule response */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

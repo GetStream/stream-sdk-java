@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Delete Users Deletes users and optionally all their belongings asynchronously. Sends events: -
+ * channel.deleted - user.deleted
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

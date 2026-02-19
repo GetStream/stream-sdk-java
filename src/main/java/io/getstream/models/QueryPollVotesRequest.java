@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Query votes Queries votes */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

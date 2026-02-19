@@ -18,6 +18,7 @@ import io.getstream.annotations.Query;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/** Mark channel message delivery status Mark the status of a channel message delivered. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

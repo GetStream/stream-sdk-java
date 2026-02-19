@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Represents any chat message */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -38,6 +39,12 @@ public class MessageResponse {
 
   @JsonProperty("id")
   private String id;
+
+  @JsonProperty("mentioned_channel")
+  private Boolean mentionedChannel;
+
+  @JsonProperty("mentioned_here")
+  private Boolean mentionedHere;
 
   @JsonProperty("pinned")
   private Boolean pinned;

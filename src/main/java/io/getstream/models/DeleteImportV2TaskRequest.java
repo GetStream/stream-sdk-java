@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Delete import v2 task Deletes an import v2 task. Can only delete tasks in queued state. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -28,10 +28,10 @@ public class SFULocationResponse {
   private String id;
 
   @JsonProperty("coordinates")
-  private Coordinates coordinates;
+  private CoordinatesResponse coordinates;
 
   @JsonProperty("location")
-  private Location location;
+  private LocationResponse location;
 
   @Nullable
   @JsonProperty("count")

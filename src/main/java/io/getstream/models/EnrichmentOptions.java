@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Options to skip specific enrichments to improve performance. Default is false (enrichments are
+ * included). Setting a field to true skips that enrichment.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

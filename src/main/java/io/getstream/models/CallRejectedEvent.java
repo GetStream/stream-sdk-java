@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
+/** This event is sent when a user rejects a notification to join a call. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

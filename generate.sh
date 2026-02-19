@@ -11,11 +11,13 @@ fi
 set -ex
 
 # cd in API repo, generate new spec and then generate code from it
-( cd $SOURCE_PATH ; make openapi ; go run ./cmd/chat-manager openapi generate-client --language java --spec ./releases/v2/serverside-api.yaml --output ../stream-sdk-java/src/main/java/io/getstream )
+( cd $SOURCE_PATH ; make openapi ; go run ./cmd/chat-manager openapi generate-client --language java --spec ./releases/v2/serverside-api.yaml --output ../stream-sdk-java )
 
 sed -i '' '/^    @JsonProperty("Role")$/N;/\n    private String role;$/d' src/main/java/io/getstream/models/CallParticipant.java
 
-# format generated code
-./gradlew spotlessApply
+# Clean up test files that may exist in main source from older generator versions
+# (generator now outputs tests directly to src/test/)
+rm -f src/main/java/io/getstream/WebhookTest.java
 
-./gradlew build -x test
+# format generated code, clean stale Gradle/Spotless caches, then build
+./gradlew clean spotlessApply build -x test

@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** Delete comment reaction Deletes a reaction from a comment */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

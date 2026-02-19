@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** Unfollow a feed Removes a follow and broadcasts FollowRemovedEvent */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

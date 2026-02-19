@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/** Unmute channel Unmutes channel for user Sends events: - channel.unmuted - channel.unmuted */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

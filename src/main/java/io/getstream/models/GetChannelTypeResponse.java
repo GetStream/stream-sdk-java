@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Basic response information */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -129,6 +130,10 @@ public class GetChannelTypeResponse {
   @Nullable
   @JsonProperty("partition_ttl")
   private String partitionTtl;
+
+  @Nullable
+  @JsonProperty("push_level")
+  private String pushLevel;
 
   @Nullable
   @JsonProperty("allowed_flag_reasons")

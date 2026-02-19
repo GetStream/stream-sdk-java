@@ -16,6 +16,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Reactivate users Reactivate users in batches Sends events: - user.reactivated - user.reactivated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

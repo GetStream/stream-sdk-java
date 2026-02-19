@@ -17,6 +17,13 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Partial activity update Updates certain fields of the activity. Use &#39;set&#39; to update
+ * specific fields and &#39;unset&#39; to remove fields. This allows you to update only the fields
+ * you need without replacing the entire activity. Useful for updating reply restrictions
+ * (&#39;restrict_replies&#39;), mentioned users, or custom data. Sends events: -
+ * feeds.activity.updated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -24,8 +31,16 @@ import org.jetbrains.annotations.Nullable;
 public class UpdateActivityPartialRequest {
 
   @Nullable
+  @JsonProperty("copy_custom_to_notification")
+  private Boolean copyCustomToNotification;
+
+  @Nullable
   @JsonProperty("handle_mention_notifications")
   private Boolean handleMentionNotifications;
+
+  @Nullable
+  @JsonProperty("run_activity_processors")
+  private Boolean runActivityProcessors;
 
   @Nullable
   @JsonProperty("user_id")

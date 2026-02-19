@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Mark channels as read Marks channels as read up to the specific message. If no channels is given,
+ * mark all channel as read Sends events: - message.read - message.read
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

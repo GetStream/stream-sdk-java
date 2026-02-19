@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Query bookmarks Query bookmarks with filter query */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Mark read Marks channel as read up to the specific message Sends events: - message.read -
+ * message.read
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

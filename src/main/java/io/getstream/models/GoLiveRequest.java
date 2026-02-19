@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/** Set call as live Sends events: - call.live_started */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/** Create SIP Trunk Create a new SIP trunk for the application */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

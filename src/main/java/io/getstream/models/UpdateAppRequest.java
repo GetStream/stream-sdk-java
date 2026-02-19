@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Update App Settings This Method updates one or more application settings */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

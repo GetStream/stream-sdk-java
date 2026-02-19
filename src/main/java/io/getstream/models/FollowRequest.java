@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Create a follow Creates a follow and broadcasts FollowAddedEvent */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -27,6 +28,10 @@ public class FollowRequest {
 
   @JsonProperty("target")
   private String target;
+
+  @Nullable
+  @JsonProperty("copy_custom_to_notification")
+  private Boolean copyCustomToNotification;
 
   @Nullable
   @JsonProperty("create_notification_activity")

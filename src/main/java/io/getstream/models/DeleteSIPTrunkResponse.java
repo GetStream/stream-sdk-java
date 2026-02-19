@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** Response confirming SIP trunk deletion */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

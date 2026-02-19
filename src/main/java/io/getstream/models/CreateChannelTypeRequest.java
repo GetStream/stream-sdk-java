@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Create channel type Creates new channel type */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -82,6 +83,10 @@ public class CreateChannelTypeRequest {
   @Nullable
   @JsonProperty("polls")
   private Boolean polls;
+
+  @Nullable
+  @JsonProperty("push_level")
+  private String pushLevel;
 
   @Nullable
   @JsonProperty("push_notifications")

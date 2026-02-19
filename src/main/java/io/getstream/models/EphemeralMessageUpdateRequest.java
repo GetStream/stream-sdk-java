@@ -17,6 +17,10 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Ephemeral message update Updates message fields without storing in database, only sends update
+ * event Sends events: - message.updated - message.updated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -26,6 +30,10 @@ public class EphemeralMessageUpdateRequest {
   @Nullable
   @JsonProperty("skip_enrich_url")
   private Boolean skipEnrichUrl;
+
+  @Nullable
+  @JsonProperty("skip_push")
+  private Boolean skipPush;
 
   @Nullable
   @JsonProperty("user_id")

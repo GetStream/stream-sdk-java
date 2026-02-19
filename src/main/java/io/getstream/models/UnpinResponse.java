@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** UnpinResponse is the payload for unpinning a message. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

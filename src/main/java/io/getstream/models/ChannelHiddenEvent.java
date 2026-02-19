@@ -14,25 +14,15 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Emitted when a channel is successfully hidden. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class ChannelHiddenEvent {
-
-  @JsonProperty("channel_id")
-  private String channelID;
-
-  @JsonProperty("channel_member_count")
-  private Integer channelMemberCount;
-
-  @JsonProperty("channel_type")
-  private String channelType;
-
-  @JsonProperty("cid")
-  private String cid;
 
   @JsonProperty("clear_history")
   private Boolean clearHistory;
@@ -40,14 +30,48 @@ public class ChannelHiddenEvent {
   @JsonProperty("created_at")
   private Date createdAt;
 
+  @JsonProperty("channel")
+  private ChannelResponse channel;
+
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
   @JsonProperty("type")
   private String type;
 
   @Nullable
-  @JsonProperty("channel")
-  private ChannelResponse channel;
+  @JsonProperty("channel_id")
+  private String channelID;
+
+  @Nullable
+  @JsonProperty("channel_member_count")
+  private Integer channelMemberCount;
+
+  @Nullable
+  @JsonProperty("channel_message_count")
+  private Integer channelMessageCount;
+
+  @Nullable
+  @JsonProperty("channel_type")
+  private String channelType;
+
+  @Nullable
+  @JsonProperty("cid")
+  private String cid;
+
+  @Nullable
+  @JsonProperty("received_at")
+  private Date receivedAt;
+
+  @Nullable
+  @JsonProperty("team")
+  private String team;
+
+  @Nullable
+  @JsonProperty("channel_custom")
+  private Map<String, Object> channelCustom;
 
   @Nullable
   @JsonProperty("user")
-  private User user;
+  private UserResponseCommonFields user;
 }

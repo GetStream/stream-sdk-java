@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** List roles Lists all available roles */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

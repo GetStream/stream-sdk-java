@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Delete segment Delete a segment */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

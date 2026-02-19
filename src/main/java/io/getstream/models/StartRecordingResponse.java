@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** StartRecordingResponse is the response payload for the start recording endpoint. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Delete Call Type */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** DeleteTranscriptionResponse is the payload for deleting a transcription. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -12,6 +12,9 @@
  */
 package io.getstream.models;
 
+/**
+ * List feed visibilities Gets all available feed visibility configurations and their permissions
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

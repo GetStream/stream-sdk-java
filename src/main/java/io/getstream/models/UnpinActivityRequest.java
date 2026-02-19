@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/**
+ * Unpin an activity from a feed Unpin an activity from a feed. This removes the pin, so the
+ * activity will no longer be displayed at the top of the feed.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

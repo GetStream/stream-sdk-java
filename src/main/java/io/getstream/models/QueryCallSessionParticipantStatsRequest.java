@@ -17,6 +17,7 @@ import io.getstream.annotations.Query;
 import java.util.List;
 import java.util.Map;
 
+/** Query call participant statistics */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

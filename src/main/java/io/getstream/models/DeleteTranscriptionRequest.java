@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Delete transcription Deletes transcription */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** List SIP Trunks List all SIP trunks for the application */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

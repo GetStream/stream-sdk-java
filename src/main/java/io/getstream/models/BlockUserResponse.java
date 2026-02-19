@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** BlockUserResponse is the payload for blocking a user. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

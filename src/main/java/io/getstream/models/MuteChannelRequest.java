@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/** Mute channel Mutes channel for user Sends events: - channel.muted - channel.muted */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

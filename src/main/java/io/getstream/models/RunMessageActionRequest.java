@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Run message command action Executes message command action with given parameters Sends events: -
+ * message.new - message.new
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

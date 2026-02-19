@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/** Mute users Mutes users in a call */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

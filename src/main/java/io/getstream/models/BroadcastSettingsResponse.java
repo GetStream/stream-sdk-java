@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** BroadcastSettingsResponse is the payload for broadcasting settings */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

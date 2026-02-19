@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/** Accept a follow request Accepts a pending follow request */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

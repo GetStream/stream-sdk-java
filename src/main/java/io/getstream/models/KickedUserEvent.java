@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * This event is sent to call participants to notify when a user is kicked from a call. Clients
+ * should make the kicked user leave the call UI.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Get Edges Returns the list of all edges available for video calls. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

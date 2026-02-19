@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Hide channel Marks channel as hidden for current user Sends events: - channel.hidden -
+ * channel.hidden
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
+/** This event is sent when call recording has stopped */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

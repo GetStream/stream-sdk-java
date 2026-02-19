@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Upsert moderation rule Create or update a moderation rule that can apply app-wide or to specific
+ * moderation configs
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -27,9 +31,6 @@ public class UpsertModerationRuleRequest {
 
   @JsonProperty("rule_type")
   private String ruleType;
-
-  @JsonProperty("action")
-  private RuleBuilderAction action;
 
   @Nullable
   @JsonProperty("cooldown_period")
@@ -52,6 +53,10 @@ public class UpsertModerationRuleRequest {
   private String team;
 
   @Nullable
+  @JsonProperty("action_sequences")
+  private List<CallRuleActionSequence> actionSequences;
+
+  @Nullable
   @JsonProperty("conditions")
   private List<RuleBuilderCondition> conditions;
 
@@ -62,4 +67,8 @@ public class UpsertModerationRuleRequest {
   @Nullable
   @JsonProperty("groups")
   private List<RuleBuilderConditionGroup> groups;
+
+  @Nullable
+  @JsonProperty("action")
+  private RuleBuilderAction action;
 }

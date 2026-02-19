@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 
+/** This event is sent when one or more members are removed from a call */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

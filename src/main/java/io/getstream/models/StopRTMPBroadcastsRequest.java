@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Request for stopping RTMP broadcasts */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

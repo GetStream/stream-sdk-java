@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Delete all feed data for a user Delete all feed data for a user including: feeds, activities,
+ * follows, comments, feed reactions, bookmark folders, bookmarks, and collections owned by the user
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

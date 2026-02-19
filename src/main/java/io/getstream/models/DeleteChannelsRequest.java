@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Deletes channels asynchronously Allows to delete several channels at once asynchronously Sends
+ * events: - channel.deleted - channel.deleted
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

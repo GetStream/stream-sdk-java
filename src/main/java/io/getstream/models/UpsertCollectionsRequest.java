@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/**
+ * Upsert multiple collections Insert new collections or update existing ones in a batch operation.
+ * Only the custom data field is updatable for existing collections.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

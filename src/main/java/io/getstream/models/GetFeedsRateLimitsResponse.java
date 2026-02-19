@@ -27,17 +27,17 @@ public class GetFeedsRateLimitsResponse {
 
   @Nullable
   @JsonProperty("android")
-  private Map<String, LimitInfo> android;
+  private Map<String, LimitInfoResponse> android;
 
   @Nullable
   @JsonProperty("ios")
-  private Map<String, LimitInfo> ios;
+  private Map<String, LimitInfoResponse> ios;
 
   @Nullable
   @JsonProperty("server_side")
-  private Map<String, LimitInfo> serverSide;
+  private Map<String, LimitInfoResponse> serverSide;
 
   @Nullable
   @JsonProperty("web")
-  private Map<String, LimitInfo> web;
+  private Map<String, LimitInfoResponse> web;
 }

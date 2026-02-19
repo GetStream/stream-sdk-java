@@ -17,6 +17,11 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Query moderation configurations Search and filter moderation configurations across your
+ * application. This endpoint is designed for building moderation dashboards and managing multiple
+ * configuration sets.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

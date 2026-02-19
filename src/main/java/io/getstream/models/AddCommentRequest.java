@@ -17,6 +17,10 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Add a comment or reply Adds a comment to an object (e.g., activity) or a reply to an existing
+ * comment, and broadcasts appropriate events
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -26,6 +30,10 @@ public class AddCommentRequest {
   @Nullable
   @JsonProperty("comment")
   private String comment;
+
+  @Nullable
+  @JsonProperty("copy_custom_to_notification")
+  private Boolean copyCustomToNotification;
 
   @Nullable
   @JsonProperty("create_notification_activity")

@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Delete a moderation template Delete a specific moderation template by its name */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

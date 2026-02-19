@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Kick user from a call Kicks a user from the call. Optionally block the user from rejoining by
+ * setting block=true. Sends events: - call.blocked_user - call.kicked_user
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

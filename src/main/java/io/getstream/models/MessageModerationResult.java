@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
+/** Result of the message moderation */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

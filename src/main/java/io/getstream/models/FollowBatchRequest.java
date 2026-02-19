@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/**
+ * Create multiple follows at once Creates multiple follows at once and broadcasts FollowAddedEvent
+ * for each follow
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

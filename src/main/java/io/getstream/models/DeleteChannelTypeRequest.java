@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Delete channel type Deletes channel type */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

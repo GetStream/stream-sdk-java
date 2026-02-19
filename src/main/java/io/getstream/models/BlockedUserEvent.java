@@ -16,6 +16,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * This event is sent to call participants to notify when a user is blocked on a call, clients can
+ * use this event to show a notification. If the user is the current user, the client should leave
+ * the call screen as well
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

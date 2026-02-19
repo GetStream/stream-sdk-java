@@ -17,6 +17,10 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Reminder events allow you to notify your users about unread messages. Reminders can be used to
+ * trigger an email, push notification or SMS to the user.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -27,12 +31,18 @@ public class UserUnreadReminderEvent {
   private Date createdAt;
 
   @JsonProperty("channels")
-  private Map<String, ChannelMessages> channels;
+  private Map<String, ChannelMessagesResponse> channels;
+
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
+  @JsonProperty("user")
+  private UserResponseCommonFields user;
 
   @JsonProperty("type")
   private String type;
 
   @Nullable
-  @JsonProperty("user")
-  private User user;
+  @JsonProperty("received_at")
+  private Date receivedAt;
 }

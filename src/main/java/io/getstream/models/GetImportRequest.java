@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Get import Gets an import */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

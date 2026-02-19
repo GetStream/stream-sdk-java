@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** Delete a single feed Delete a single feed by its ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

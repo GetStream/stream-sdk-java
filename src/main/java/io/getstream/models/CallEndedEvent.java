@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * This event is sent when a call is mark as ended for all its participants. Clients receiving this
+ * event should leave the call screen
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

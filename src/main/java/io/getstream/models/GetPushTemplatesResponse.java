@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/** Basic response information */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -25,5 +26,5 @@ public class GetPushTemplatesResponse {
   private String duration;
 
   @JsonProperty("templates")
-  private List<PushTemplate> templates;
+  private List<PushTemplateResponse> templates;
 }

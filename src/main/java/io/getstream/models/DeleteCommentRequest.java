@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/**
+ * Delete a comment Deletes a comment from an object (e.g., activity) and broadcasts appropriate
+ * events
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
