@@ -84,4 +84,50 @@ class ChatChannelIntegrationTest extends ChatTestBase {
         channelState.getMembers().size() >= 3,
         "Channel should have at least 3 members, got: " + channelState.getMembers().size());
   }
+
+  @Test
+  @Order(3)
+  void testCreateDistinctChannel() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String memberId = userIds.get(1);
+
+    List<ChannelMemberRequest> members =
+        List.of(
+            ChannelMemberRequest.builder().userID(creatorId).build(),
+            ChannelMemberRequest.builder().userID(memberId).build());
+
+    // Create distinct channel (no explicit channel ID)
+    var resp1 =
+        chat.getOrCreateDistinctChannel(
+                "messaging",
+                GetOrCreateDistinctChannelRequest.builder()
+                    .data(
+                        ChannelInput.builder().createdByID(creatorId).members(members).build())
+                    .build())
+            .execute();
+
+    assertNotNull(resp1.getData());
+    assertNotNull(resp1.getData().getChannel(), "Channel should not be null");
+    String cid1 = resp1.getData().getChannel().getCid();
+    String channelId1 = resp1.getData().getChannel().getId();
+    assertNotNull(cid1, "CID should not be null");
+    createdChannelIds.add(channelId1);
+
+    // Call again with same members - should return same channel
+    var resp2 =
+        chat.getOrCreateDistinctChannel(
+                "messaging",
+                GetOrCreateDistinctChannelRequest.builder()
+                    .data(
+                        ChannelInput.builder().createdByID(creatorId).members(members).build())
+                    .build())
+            .execute();
+
+    assertNotNull(resp2.getData());
+    assertNotNull(resp2.getData().getChannel(), "Channel should not be null on second call");
+    String cid2 = resp2.getData().getChannel().getCid();
+    assertEquals(cid1, cid2, "Same members should return the same channel CID");
+  }
 }
