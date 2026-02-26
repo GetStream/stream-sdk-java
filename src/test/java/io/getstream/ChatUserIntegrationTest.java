@@ -323,6 +323,100 @@ class ChatUserIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(12)
+  void testUpdatePrivacySettings() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    String userId = userIds.get(0);
+    createdUserIds.addAll(userIds);
+
+    // Step 1: Disable typing indicators
+    Map<String, UserRequest> users1 = new HashMap<>();
+    users1.put(
+        userId,
+        UserRequest.builder()
+            .id(userId)
+            .privacySettings(
+                PrivacySettingsResponse.builder()
+                    .typingIndicators(TypingIndicatorsResponse.builder().enabled(false).build())
+                    .build())
+            .build());
+    var resp1 = client.updateUsers(UpdateUsersRequest.builder().users(users1).build()).execute();
+    assertNotNull(resp1.getData());
+    assertNotNull(resp1.getData().getUsers().get(userId), "User should be in response");
+
+    // Verify via query
+    var query1 =
+        client
+            .queryUsers(
+                QueryUsersRequest.builder()
+                    .Payload(
+                        QueryUsersPayload.builder()
+                            .filterConditions(Map.of("id", Map.of("$in", userIds)))
+                            .build())
+                    .build())
+            .execute();
+    assertNotNull(query1.getData());
+    FullUserResponse queried1 =
+        query1.getData().getUsers().stream()
+            .filter(u -> userId.equals(u.getId()))
+            .findFirst()
+            .orElse(null);
+    assertNotNull(queried1, "User should appear in query result");
+    if (queried1.getPrivacySettings() != null
+        && queried1.getPrivacySettings().getTypingIndicators() != null) {
+      assertFalse(
+          queried1.getPrivacySettings().getTypingIndicators().getEnabled(),
+          "TypingIndicators should be disabled");
+    }
+
+    // Step 2: Set both typing indicators (true) and read receipts (false)
+    Map<String, UserRequest> users2 = new HashMap<>();
+    users2.put(
+        userId,
+        UserRequest.builder()
+            .id(userId)
+            .privacySettings(
+                PrivacySettingsResponse.builder()
+                    .typingIndicators(TypingIndicatorsResponse.builder().enabled(true).build())
+                    .readReceipts(ReadReceiptsResponse.builder().enabled(false).build())
+                    .build())
+            .build());
+    var resp2 = client.updateUsers(UpdateUsersRequest.builder().users(users2).build()).execute();
+    assertNotNull(resp2.getData());
+    assertNotNull(resp2.getData().getUsers().get(userId), "User should be in response after second update");
+
+    // Verify via query
+    var query2 =
+        client
+            .queryUsers(
+                QueryUsersRequest.builder()
+                    .Payload(
+                        QueryUsersPayload.builder()
+                            .filterConditions(Map.of("id", Map.of("$in", userIds)))
+                            .build())
+                    .build())
+            .execute();
+    assertNotNull(query2.getData());
+    FullUserResponse queried2 =
+        query2.getData().getUsers().stream()
+            .filter(u -> userId.equals(u.getId()))
+            .findFirst()
+            .orElse(null);
+    assertNotNull(queried2, "User should appear in query result after second update");
+    if (queried2.getPrivacySettings() != null) {
+      PrivacySettingsResponse ps = queried2.getPrivacySettings();
+      if (ps.getTypingIndicators() != null) {
+        assertTrue(
+            ps.getTypingIndicators().getEnabled(), "TypingIndicators should be enabled after second update");
+      }
+      if (ps.getReadReceipts() != null) {
+        assertFalse(
+            ps.getReadReceipts().getEnabled(), "ReadReceipts should be disabled after second update");
+      }
+    }
+  }
+
+  @Test
   @Order(4)
   void testPartialUpdateUser() throws Exception {
     List<String> userIds = createTestUsers(1);
