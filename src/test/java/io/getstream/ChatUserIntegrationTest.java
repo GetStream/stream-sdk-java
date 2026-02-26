@@ -72,4 +72,28 @@ class ChatUserIntegrationTest extends ChatTestBase {
       assertTrue(foundIds.contains(id), "User " + id + " should be found in query result");
     }
   }
+
+  @Test
+  @Order(3)
+  void testQueryUsersWithOffsetLimit() throws Exception {
+    List<String> userIds = createTestUsers(3);
+    createdUserIds.addAll(userIds);
+
+    var resp =
+        client
+            .queryUsers(
+                QueryUsersRequest.builder()
+                    .Payload(
+                        QueryUsersPayload.builder()
+                            .filterConditions(Map.of("id", Map.of("$in", userIds)))
+                            .offset(1)
+                            .limit(2)
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(resp.getData());
+    List<FullUserResponse> foundUsers = resp.getData().getUsers();
+    assertEquals(2, foundUsers.size(), "Expected exactly 2 users with offset=1 limit=2");
+  }
 }
