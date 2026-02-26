@@ -225,6 +225,36 @@ class ChatUserIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(9)
+  void testCreateGuest() throws Exception {
+    String guestId = "guest-" + UUID.randomUUID().toString().replace("-", "").substring(0, 12);
+    try {
+      var resp =
+          client
+              .createGuest(
+                  CreateGuestRequest.builder()
+                      .user(UserRequest.builder().id(guestId).build())
+                      .build())
+              .execute();
+
+      assertNotNull(resp.getData(), "CreateGuest response data should not be null");
+      assertNotNull(resp.getData().getAccessToken(), "Access token should not be null");
+      assertFalse(
+          resp.getData().getAccessToken().isEmpty(), "Access token should not be empty");
+      assertNotNull(resp.getData().getUser(), "User should not be null");
+      assertTrue(
+          resp.getData().getUser().getId().contains(guestId),
+          "User ID should contain the requested guest ID");
+    } catch (Exception e) {
+      String msg = e.getMessage();
+      if (msg != null && (msg.contains("guest") || msg.contains("disabled") || msg.contains("not enabled"))) {
+        org.junit.jupiter.api.Assumptions.assumeTrue(false, "Guest user creation not enabled for this app");
+      }
+      throw e;
+    }
+  }
+
+  @Test
   @Order(4)
   void testPartialUpdateUser() throws Exception {
     List<String> userIds = createTestUsers(1);
