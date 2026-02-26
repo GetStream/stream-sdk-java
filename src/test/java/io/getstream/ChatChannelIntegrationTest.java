@@ -130,4 +130,27 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     String cid2 = resp2.getData().getChannel().getCid();
     assertEquals(cid1, cid2, "Same members should return the same channel CID");
   }
+
+  @Test
+  @Order(4)
+  void testQueryChannels() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+
+    String channelId = createTestChannel(creatorId);
+    createdChannelIds.add(channelId);
+
+    // Query by both type and id
+    var resp =
+        chat.queryChannels(
+                QueryChannelsRequest.builder()
+                    .filterConditions(Map.of("type", "messaging", "id", channelId))
+                    .build())
+            .execute();
+
+    assertNotNull(resp.getData());
+    assertFalse(resp.getData().getChannels().isEmpty(), "QueryChannels should return the channel");
+    assertEquals(channelId, resp.getData().getChannels().get(0).getChannel().getId());
+  }
 }
