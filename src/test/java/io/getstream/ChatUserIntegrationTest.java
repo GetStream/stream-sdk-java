@@ -531,6 +531,64 @@ class ChatUserIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(14)
+  void testQueryUsersWithDeactivated() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    String activeId = userIds.get(0);
+    String deactivatedId = userIds.get(1);
+    createdUserIds.addAll(userIds);
+
+    // Deactivate one user
+    client.deactivateUser(deactivatedId).execute();
+
+    // Query without include_deactivated - should only find the active user
+    var respWithout =
+        client
+            .queryUsers(
+                QueryUsersRequest.builder()
+                    .Payload(
+                        QueryUsersPayload.builder()
+                            .filterConditions(Map.of("id", Map.of("$in", userIds)))
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(respWithout.getData());
+    List<FullUserResponse> withoutDeactivated = respWithout.getData().getUsers();
+    Set<String> foundIdsWithout = new HashSet<>();
+    for (FullUserResponse u : withoutDeactivated) {
+      foundIdsWithout.add(u.getId());
+    }
+    assertTrue(foundIdsWithout.contains(activeId), "Active user should appear in query without include_deactivated");
+    assertFalse(foundIdsWithout.contains(deactivatedId), "Deactivated user should NOT appear in query without include_deactivated");
+
+    // Query with include_deactivated=true - should find both users
+    var respWith =
+        client
+            .queryUsers(
+                QueryUsersRequest.builder()
+                    .Payload(
+                        QueryUsersPayload.builder()
+                            .filterConditions(Map.of("id", Map.of("$in", userIds)))
+                            .includeDeactivatedUsers(true)
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(respWith.getData());
+    List<FullUserResponse> withDeactivated = respWith.getData().getUsers();
+    Set<String> foundIdsWith = new HashSet<>();
+    for (FullUserResponse u : withDeactivated) {
+      foundIdsWith.add(u.getId());
+    }
+    assertTrue(foundIdsWith.contains(activeId), "Active user should appear in query with include_deactivated");
+    assertTrue(foundIdsWith.contains(deactivatedId), "Deactivated user should appear in query with include_deactivated=true");
+
+    // Reactivate so cleanup can delete the user
+    client.reactivateUser(deactivatedId).execute();
+  }
+
+  @Test
   @Order(4)
   void testPartialUpdateUser() throws Exception {
     List<String> userIds = createTestUsers(1);
