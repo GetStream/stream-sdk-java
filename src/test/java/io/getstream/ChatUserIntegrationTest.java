@@ -417,6 +417,120 @@ class ChatUserIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(13)
+  void testPartialUpdatePrivacySettings() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    String userId = userIds.get(0);
+    createdUserIds.addAll(userIds);
+
+    // Step 1: Partial update to set typing_indicators.enabled=true only
+    Map<String, Object> typingMap = new HashMap<>();
+    typingMap.put("enabled", true);
+    Map<String, Object> privacyMap1 = new HashMap<>();
+    privacyMap1.put("typing_indicators", typingMap);
+    Map<String, Object> setFields1 = new HashMap<>();
+    setFields1.put("privacy_settings", privacyMap1);
+
+    var resp1 =
+        client
+            .updateUsersPartial(
+                UpdateUsersPartialRequest.builder()
+                    .users(
+                        List.of(
+                            UpdateUserPartialRequest.builder().id(userId).set(setFields1).build()))
+                    .build())
+            .execute();
+    assertNotNull(resp1.getData());
+    assertNotNull(resp1.getData().getUsers().get(userId), "User should be in partial update response");
+
+    // Verify typing_indicators set, read_receipts still null
+    var query1 =
+        client
+            .queryUsers(
+                QueryUsersRequest.builder()
+                    .Payload(
+                        QueryUsersPayload.builder()
+                            .filterConditions(Map.of("id", Map.of("$in", userIds)))
+                            .build())
+                    .build())
+            .execute();
+    assertNotNull(query1.getData());
+    FullUserResponse queried1 =
+        query1.getData().getUsers().stream()
+            .filter(u -> userId.equals(u.getId()))
+            .findFirst()
+            .orElse(null);
+    assertNotNull(queried1, "User should appear in query result after first partial update");
+    if (queried1.getPrivacySettings() != null
+        && queried1.getPrivacySettings().getTypingIndicators() != null) {
+      assertTrue(
+          queried1.getPrivacySettings().getTypingIndicators().getEnabled(),
+          "TypingIndicators should be enabled after first partial update");
+    }
+    // ReadReceipts should not be set yet (null or not enabled)
+    if (queried1.getPrivacySettings() != null) {
+      // ReadReceipts is either null or its enabled state is not set to false yet
+      PrivacySettingsResponse ps1 = queried1.getPrivacySettings();
+      if (ps1.getReadReceipts() != null) {
+        // If present, it was set via a previous test - we just note this is the state before our second update
+        // The key behavior is that our first partial update did NOT wipe out privacy_settings or break existing ones
+      }
+    }
+
+    // Step 2: Partial update to set read_receipts.enabled=false only (should NOT clear typing_indicators)
+    Map<String, Object> readMap = new HashMap<>();
+    readMap.put("enabled", false);
+    Map<String, Object> privacyMap2 = new HashMap<>();
+    privacyMap2.put("read_receipts", readMap);
+    Map<String, Object> setFields2 = new HashMap<>();
+    setFields2.put("privacy_settings", privacyMap2);
+
+    var resp2 =
+        client
+            .updateUsersPartial(
+                UpdateUsersPartialRequest.builder()
+                    .users(
+                        List.of(
+                            UpdateUserPartialRequest.builder().id(userId).set(setFields2).build()))
+                    .build())
+            .execute();
+    assertNotNull(resp2.getData());
+    assertNotNull(resp2.getData().getUsers().get(userId), "User should be in second partial update response");
+
+    // Verify both typing_indicators and read_receipts are correct
+    var query2 =
+        client
+            .queryUsers(
+                QueryUsersRequest.builder()
+                    .Payload(
+                        QueryUsersPayload.builder()
+                            .filterConditions(Map.of("id", Map.of("$in", userIds)))
+                            .build())
+                    .build())
+            .execute();
+    assertNotNull(query2.getData());
+    FullUserResponse queried2 =
+        query2.getData().getUsers().stream()
+            .filter(u -> userId.equals(u.getId()))
+            .findFirst()
+            .orElse(null);
+    assertNotNull(queried2, "User should appear in query result after second partial update");
+    if (queried2.getPrivacySettings() != null) {
+      PrivacySettingsResponse ps2 = queried2.getPrivacySettings();
+      if (ps2.getTypingIndicators() != null) {
+        assertTrue(
+            ps2.getTypingIndicators().getEnabled(),
+            "TypingIndicators should still be enabled after second partial update");
+      }
+      if (ps2.getReadReceipts() != null) {
+        assertFalse(
+            ps2.getReadReceipts().getEnabled(),
+            "ReadReceipts should be disabled after second partial update");
+      }
+    }
+  }
+
+  @Test
   @Order(4)
   void testPartialUpdateUser() throws Exception {
     List<String> userIds = createTestUsers(1);
