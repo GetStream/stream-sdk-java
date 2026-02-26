@@ -288,6 +288,41 @@ class ChatUserIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(11)
+  void testPartialUpdateUserWithTeam() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    String userId = userIds.get(0);
+    createdUserIds.addAll(userIds);
+
+    // Partial update to add teams and teams_role via set map
+    Map<String, Object> setFields = new HashMap<>();
+    setFields.put("teams", List.of("blue"));
+    Map<String, String> teamsRole = new HashMap<>();
+    teamsRole.put("blue", "admin");
+    setFields.put("teams_role", teamsRole);
+
+    var resp =
+        client
+            .updateUsersPartial(
+                UpdateUsersPartialRequest.builder()
+                    .users(
+                        List.of(
+                            UpdateUserPartialRequest.builder().id(userId).set(setFields).build()))
+                    .build())
+            .execute();
+
+    assertNotNull(resp.getData());
+    Map<String, FullUserResponse> result = resp.getData().getUsers();
+    assertTrue(result.containsKey(userId), "User should be in response");
+
+    FullUserResponse user = result.get(userId);
+    assertNotNull(user.getTeams(), "Teams should not be null");
+    assertTrue(user.getTeams().contains("blue"), "Teams should contain 'blue'");
+    assertNotNull(user.getTeamsRole(), "TeamsRole should not be null");
+    assertEquals("admin", user.getTeamsRole().get("blue"), "TeamsRole for 'blue' should be 'admin'");
+  }
+
+  @Test
   @Order(4)
   void testPartialUpdateUser() throws Exception {
     List<String> userIds = createTestUsers(1);
