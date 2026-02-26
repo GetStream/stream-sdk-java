@@ -255,6 +255,39 @@ class ChatUserIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(10)
+  void testUpsertUsersWithRoleAndTeamsRole() throws Exception {
+    String userId = "tu-" + UUID.randomUUID().toString().replace("-", "").substring(0, 16);
+    Map<String, String> teamsRole = new HashMap<>();
+    teamsRole.put("blue", "admin");
+
+    Map<String, UserRequest> users = new HashMap<>();
+    users.put(
+        userId,
+        UserRequest.builder()
+            .id(userId)
+            .name("Teams Role User")
+            .role("admin")
+            .teams(List.of("blue"))
+            .teamsRole(teamsRole)
+            .build());
+
+    var resp = client.updateUsers(UpdateUsersRequest.builder().users(users).build()).execute();
+    createdUserIds.add(userId);
+
+    assertNotNull(resp.getData());
+    Map<String, FullUserResponse> result = resp.getData().getUsers();
+    assertTrue(result.containsKey(userId), "User should be in response");
+
+    FullUserResponse user = result.get(userId);
+    assertEquals("admin", user.getRole(), "Role should be admin");
+    assertNotNull(user.getTeams(), "Teams should not be null");
+    assertTrue(user.getTeams().contains("blue"), "Teams should contain 'blue'");
+    assertNotNull(user.getTeamsRole(), "TeamsRole should not be null");
+    assertEquals("admin", user.getTeamsRole().get("blue"), "TeamsRole for 'blue' should be 'admin'");
+  }
+
+  @Test
   @Order(4)
   void testPartialUpdateUser() throws Exception {
     List<String> userIds = createTestUsers(1);
