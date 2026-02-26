@@ -98,6 +98,40 @@ class ChatUserIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(6)
+  void testDeactivateReactivateUser() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    String userId = userIds.get(0);
+    createdUserIds.addAll(userIds);
+
+    // Deactivate the user
+    var deactivateResp = client.deactivateUser(userId).execute();
+    assertNotNull(deactivateResp.getData());
+
+    // Reactivate the user
+    var reactivateResp = client.reactivateUser(userId).execute();
+    assertNotNull(reactivateResp.getData());
+
+    // Verify user is active again by querying without include_deactivated flag
+    var queryResp =
+        client
+            .queryUsers(
+                QueryUsersRequest.builder()
+                    .Payload(
+                        QueryUsersPayload.builder()
+                            .filterConditions(Map.of("id", Map.of("$in", userIds)))
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(queryResp.getData());
+    List<FullUserResponse> foundUsers = queryResp.getData().getUsers();
+    assertTrue(foundUsers.size() >= 1, "Reactivated user should appear in normal query");
+    boolean found = foundUsers.stream().anyMatch(u -> userId.equals(u.getId()));
+    assertTrue(found, "Reactivated user " + userId + " should be found in query results");
+  }
+
+  @Test
   @Order(5)
   void testBlockUnblockUser() throws Exception {
     List<String> userIds = createTestUsers(2);
