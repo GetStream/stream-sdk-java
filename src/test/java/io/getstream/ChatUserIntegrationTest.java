@@ -211,6 +211,20 @@ class ChatUserIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(8)
+  void testExportUser() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    String userId = userIds.get(0);
+    createdUserIds.addAll(userIds);
+
+    var resp = client.exportUser(userId).execute();
+
+    assertNotNull(resp.getData(), "Export user response data should not be null");
+    assertNotNull(resp.getData().getUser(), "Exported user should not be null");
+    assertEquals(userId, resp.getData().getUser().getId(), "Exported user ID should match");
+  }
+
+  @Test
   @Order(4)
   void testPartialUpdateUser() throws Exception {
     List<String> userIds = createTestUsers(1);
