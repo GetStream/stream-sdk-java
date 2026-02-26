@@ -178,6 +178,39 @@ class ChatUserIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(7)
+  void testDeleteUsers() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    // NOT added to createdUserIds since we explicitly delete them
+
+    String taskId = null;
+    for (int i = 0; i < 10; i++) {
+      try {
+        var resp =
+            client
+                .deleteUsers(
+                    DeleteUsersRequest.builder()
+                        .userIds(userIds)
+                        .user("hard")
+                        .messages("hard")
+                        .conversations("hard")
+                        .build())
+                .execute();
+        assertNotNull(resp.getData());
+        taskId = resp.getData().getTaskID();
+        break;
+      } catch (Exception e) {
+        String msg = e.getMessage();
+        if (msg == null || !msg.contains("Too many requests")) throw e;
+        Thread.sleep((long) (i + 1) * 3000L);
+      }
+    }
+
+    assertNotNull(taskId, "Delete users should return a task ID");
+    waitForTask(taskId);
+  }
+
+  @Test
   @Order(4)
   void testPartialUpdateUser() throws Exception {
     List<String> userIds = createTestUsers(1);
