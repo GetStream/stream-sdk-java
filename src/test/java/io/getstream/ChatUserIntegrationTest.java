@@ -633,6 +633,62 @@ class ChatUserIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(16)
+  void testUserCustomData() throws Exception {
+    String userId = "tu-" + UUID.randomUUID().toString().replace("-", "").substring(0, 16);
+
+    Map<String, Object> customData = new HashMap<>();
+    customData.put("favorite_color", "blue");
+    customData.put("age", 30);
+    customData.put("tags", List.of("vip", "early_adopter"));
+
+    Map<String, UserRequest> users = new HashMap<>();
+    users.put(
+        userId,
+        UserRequest.builder()
+            .id(userId)
+            .name("Custom Data User")
+            .role("user")
+            .custom(customData)
+            .build());
+
+    var createResp =
+        client.updateUsers(UpdateUsersRequest.builder().users(users).build()).execute();
+    createdUserIds.add(userId);
+
+    assertNotNull(createResp.getData(), "Create response data should not be null");
+    FullUserResponse createdUser = createResp.getData().getUsers().get(userId);
+    assertNotNull(createdUser, "Created user should be in response");
+    assertNotNull(createdUser.getCustom(), "Custom data should not be null in create response");
+    assertEquals("blue", createdUser.getCustom().get("favorite_color"),
+        "favorite_color should be 'blue' in create response");
+
+    // Query back and verify persistence
+    var queryResp =
+        client
+            .queryUsers(
+                QueryUsersRequest.builder()
+                    .Payload(
+                        QueryUsersPayload.builder()
+                            .filterConditions(Map.of("id", Map.of("$in", List.of(userId))))
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(queryResp.getData(), "Query response data should not be null");
+    FullUserResponse queried =
+        queryResp.getData().getUsers().stream()
+            .filter(u -> userId.equals(u.getId()))
+            .findFirst()
+            .orElse(null);
+    assertNotNull(queried, "User should be found in query results");
+    assertNotNull(queried.getCustom(), "Custom data should persist after query");
+    assertEquals("blue", queried.getCustom().get("favorite_color"),
+        "favorite_color should persist");
+    assertNotNull(queried.getCustom().get("tags"), "tags should persist");
+  }
+
+  @Test
   @Order(4)
   void testPartialUpdateUser() throws Exception {
     List<String> userIds = createTestUsers(1);
