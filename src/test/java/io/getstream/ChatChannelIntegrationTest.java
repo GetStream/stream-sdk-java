@@ -58,4 +58,30 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     assertEquals(channelId, resp.getData().getChannels().get(0).getChannel().getId());
     assertEquals("messaging", resp.getData().getChannels().get(0).getChannel().getType());
   }
+
+  @Test
+  @Order(2)
+  void testCreateChannelWithMembers() throws Exception {
+    List<String> userIds = createTestUsers(3);
+    createdUserIds.addAll(userIds);
+
+    String channelId = createTestChannelWithMembers(userIds.get(0), userIds);
+    createdChannelIds.add(channelId);
+
+    // Query the channel back and verify member count >= 3
+    var resp =
+        chat.queryChannels(
+                QueryChannelsRequest.builder()
+                    .filterConditions(Map.of("id", channelId))
+                    .build())
+            .execute();
+
+    assertNotNull(resp.getData());
+    assertFalse(resp.getData().getChannels().isEmpty(), "QueryChannels should return the channel");
+    var channelState = resp.getData().getChannels().get(0);
+    assertNotNull(channelState.getMembers(), "Channel members should not be null");
+    assertTrue(
+        channelState.getMembers().size() >= 3,
+        "Channel should have at least 3 members, got: " + channelState.getMembers().size());
+  }
 }
