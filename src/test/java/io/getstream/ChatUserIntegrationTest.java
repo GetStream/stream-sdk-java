@@ -98,6 +98,52 @@ class ChatUserIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(5)
+  void testBlockUnblockUser() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    String aliceId = userIds.get(0);
+    String bobId = userIds.get(1);
+    createdUserIds.addAll(userIds);
+
+    // Block bob from alice's perspective
+    client
+        .blockUsers(
+            BlockUsersRequest.builder().blockedUserID(bobId).userID(aliceId).build())
+        .execute();
+
+    // Verify bob is in alice's blocked list
+    var blockedResp =
+        client
+            .getBlockedUsers(GetBlockedUsersRequest.builder().UserID(aliceId).build())
+            .execute();
+
+    assertNotNull(blockedResp.getData());
+    List<BlockedUserResponse> blocks = blockedResp.getData().getBlocks();
+    assertNotNull(blocks);
+    boolean foundBob = blocks.stream().anyMatch(b -> bobId.equals(b.getBlockedUserID()));
+    assertTrue(foundBob, "Bob should be in alice's blocked list");
+
+    // Unblock bob
+    client
+        .unblockUsers(
+            UnblockUsersRequest.builder().blockedUserID(bobId).userID(aliceId).build())
+        .execute();
+
+    // Verify bob is no longer in alice's blocked list
+    var unblockedResp =
+        client
+            .getBlockedUsers(GetBlockedUsersRequest.builder().UserID(aliceId).build())
+            .execute();
+
+    assertNotNull(unblockedResp.getData());
+    List<BlockedUserResponse> remainingBlocks = unblockedResp.getData().getBlocks();
+    boolean stillBlocked =
+        remainingBlocks != null
+            && remainingBlocks.stream().anyMatch(b -> bobId.equals(b.getBlockedUserID()));
+    assertFalse(stillBlocked, "Bob should no longer be in alice's blocked list after unblock");
+  }
+
+  @Test
   @Order(4)
   void testPartialUpdateUser() throws Exception {
     List<String> userIds = createTestUsers(1);
