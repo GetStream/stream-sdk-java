@@ -589,6 +589,50 @@ class ChatUserIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(15)
+  void testDeactivateUsersPlural() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+
+    // Deactivate multiple users at once (async task)
+    var resp =
+        client
+            .deactivateUsers(
+                DeactivateUsersRequest.builder().userIds(userIds).build())
+            .execute();
+
+    assertNotNull(resp.getData(), "DeactivateUsers response data should not be null");
+    String taskId = resp.getData().getTaskID();
+    assertNotNull(taskId, "DeactivateUsers should return a task ID");
+
+    // Poll until completed
+    waitForTask(taskId);
+
+    // Verify users are deactivated (not visible without includeDeactivatedUsers)
+    var queryResp =
+        client
+            .queryUsers(
+                QueryUsersRequest.builder()
+                    .Payload(
+                        QueryUsersPayload.builder()
+                            .filterConditions(Map.of("id", Map.of("$in", userIds)))
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(queryResp.getData());
+    List<FullUserResponse> found = queryResp.getData().getUsers();
+    assertEquals(0, found.size(), "Deactivated users should not appear in default query");
+
+    // Reactivate for cleanup
+    for (String userId : userIds) {
+      try {
+        client.reactivateUser(userId).execute();
+      } catch (Exception ignored) {}
+    }
+  }
+
+  @Test
   @Order(4)
   void testPartialUpdateUser() throws Exception {
     List<String> userIds = createTestUsers(1);
