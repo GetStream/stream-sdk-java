@@ -96,4 +96,56 @@ class ChatUserIntegrationTest extends ChatTestBase {
     List<FullUserResponse> foundUsers = resp.getData().getUsers();
     assertEquals(2, foundUsers.size(), "Expected exactly 2 users with offset=1 limit=2");
   }
+
+  @Test
+  @Order(4)
+  void testPartialUpdateUser() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    String userId = userIds.get(0);
+    createdUserIds.addAll(userIds);
+
+    // Set custom fields: country=NL, role=admin
+    Map<String, Object> setFields = new HashMap<>();
+    setFields.put("country", "NL");
+    setFields.put("role", "admin");
+
+    var setResp =
+        client
+            .updateUsersPartial(
+                UpdateUsersPartialRequest.builder()
+                    .users(
+                        List.of(
+                            UpdateUserPartialRequest.builder().id(userId).set(setFields).build()))
+                    .build())
+            .execute();
+
+    assertNotNull(setResp.getData());
+    Map<String, FullUserResponse> setResult = setResp.getData().getUsers();
+    assertTrue(setResult.containsKey(userId), "User should be in response");
+    assertEquals("admin", setResult.get(userId).getRole(), "Role should be admin");
+
+    // Unset country field
+    var unsetResp =
+        client
+            .updateUsersPartial(
+                UpdateUsersPartialRequest.builder()
+                    .users(
+                        List.of(
+                            UpdateUserPartialRequest.builder()
+                                .id(userId)
+                                .unset(List.of("country"))
+                                .build()))
+                    .build())
+            .execute();
+
+    assertNotNull(unsetResp.getData());
+    Map<String, FullUserResponse> unsetResult = unsetResp.getData().getUsers();
+    assertTrue(unsetResult.containsKey(userId), "User should be in response after unset");
+    // country should be null/removed in custom fields after unset
+    Map<String, Object> custom = unsetResult.get(userId).getCustom();
+    if (custom != null) {
+      assertFalse(custom.containsKey("country"), "country should be unset from custom fields");
+    }
+    // If custom is null, country is definitely gone - that also passes
+  }
 }
