@@ -923,6 +923,32 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(26)
+  void testSearchOffsetAndNextError() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    // Using Offset with Next should error
+    assertThrows(
+        Exception.class,
+        () ->
+            chat.search(
+                    SearchRequest.builder()
+                        .Payload(
+                            SearchPayload.builder()
+                                .filterConditions(
+                                    Map.of("members", Map.of("$in", List.of(userId))))
+                                .query("test")
+                                .offset(1)
+                                .next(randomString(5))
+                                .build())
+                        .build())
+                .execute(),
+        "Using Offset with Next should error");
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
