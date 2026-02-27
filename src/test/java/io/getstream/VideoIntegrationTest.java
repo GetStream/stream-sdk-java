@@ -266,6 +266,56 @@ public class VideoIntegrationTest extends BasicTest {
   }
 
   @Test
+  @Order(7)
+  void testUpdateUserPermissions() throws Exception {
+    // Create a call
+    String callId = "test-call-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+    createdCallIds.add(callId);
+
+    String creatorId = testUsers.get(0).getId();
+    String aliceId = testUsers.get(1).getId();
+
+    video
+        .getOrCreateCall(
+            "default",
+            callId,
+            GetOrCreateCallRequest.builder()
+                .data(CallRequest.builder().createdByID(creatorId).build())
+                .build())
+        .execute();
+
+    // Revoke "send-audio" permission from alice
+    var revokeResp =
+        video
+            .updateUserPermissions(
+                "default",
+                callId,
+                UpdateUserPermissionsRequest.builder()
+                    .userID(aliceId)
+                    .revokePermissions(List.of("send-audio"))
+                    .build())
+            .execute();
+
+    assertNotNull(revokeResp.getData());
+    assertNotNull(revokeResp.getData().getDuration());
+
+    // Grant "send-audio" permission back to alice
+    var grantResp =
+        video
+            .updateUserPermissions(
+                "default",
+                callId,
+                UpdateUserPermissionsRequest.builder()
+                    .userID(aliceId)
+                    .grantPermissions(List.of("send-audio"))
+                    .build())
+            .execute();
+
+    assertNotNull(grantResp.getData());
+    assertNotNull(grantResp.getData().getDuration());
+  }
+
+  @Test
   @Order(6)
   void testMuteSomeUsers() throws Exception {
     // Create a call
