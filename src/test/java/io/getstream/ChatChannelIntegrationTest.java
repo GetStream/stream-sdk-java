@@ -155,6 +155,50 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(6)
+  void testPartialUpdateChannel() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+
+    String channelId = createTestChannel(creatorId);
+    createdChannelIds.add(channelId);
+
+    // Set custom fields: color=red, description=A test channel
+    var setResp =
+        chat.updateChannelPartial(
+                "messaging",
+                channelId,
+                UpdateChannelPartialRequest.builder()
+                    .set(Map.of("color", "red", "description", "A test channel"))
+                    .build())
+            .execute();
+
+    assertNotNull(setResp.getData(), "PartialUpdate (set) response should not be null");
+    assertNotNull(setResp.getData().getChannel(), "Channel in response should not be null");
+    var custom = setResp.getData().getChannel().getCustom();
+    assertNotNull(custom, "Custom data should not be null after set");
+    assertEquals("red", custom.get("color"), "Custom field 'color' should be 'red'");
+
+    // Unset 'color' and verify it's removed
+    var unsetResp =
+        chat.updateChannelPartial(
+                "messaging",
+                channelId,
+                UpdateChannelPartialRequest.builder()
+                    .unset(List.of("color"))
+                    .build())
+            .execute();
+
+    assertNotNull(unsetResp.getData(), "PartialUpdate (unset) response should not be null");
+    assertNotNull(unsetResp.getData().getChannel(), "Channel in response should not be null");
+    var customAfterUnset = unsetResp.getData().getChannel().getCustom();
+    assertTrue(
+        customAfterUnset == null || !customAfterUnset.containsKey("color"),
+        "Custom field 'color' should be removed after unset");
+  }
+
+  @Test
   @Order(5)
   void testUpdateChannel() throws Exception {
     List<String> userIds = createTestUsers(1);
