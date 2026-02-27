@@ -573,6 +573,82 @@ public class VideoIntegrationTest extends BasicTest {
   }
 
   @Test
+  @Order(11)
+  void testCreateCallWithBackstageAndJoinAhead() throws Exception {
+    // Create a call with backstage enabled and join_ahead_time_seconds = 300
+    String callId = "test-call-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+    createdCallIds.add(callId);
+
+    String userId = testUsers.get(0).getId();
+    long startsAtMs = System.currentTimeMillis() + 30 * 60 * 1000; // 30 minutes from now
+
+    var createResp =
+        video
+            .getOrCreateCall(
+                "default",
+                callId,
+                GetOrCreateCallRequest.builder()
+                    .data(
+                        CallRequest.builder()
+                            .createdByID(userId)
+                            .settingsOverride(
+                                CallSettingsRequest.builder()
+                                    .backstage(
+                                        BackstageSettingsRequest.builder()
+                                            .enabled(true)
+                                            .joinAheadTimeSeconds(300)
+                                            .build())
+                                    .build())
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(createResp.getData());
+    assertNotNull(createResp.getData().getCall());
+    assertEquals(300, createResp.getData().getCall().getJoinAheadTimeSeconds());
+
+    // Update join_ahead_time_seconds to 600
+    var updateResp =
+        video
+            .updateCall(
+                "default",
+                callId,
+                UpdateCallRequest.builder()
+                    .settingsOverride(
+                        CallSettingsRequest.builder()
+                            .backstage(
+                                BackstageSettingsRequest.builder()
+                                    .joinAheadTimeSeconds(600)
+                                    .build())
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(updateResp.getData());
+    assertEquals(600, updateResp.getData().getCall().getJoinAheadTimeSeconds());
+
+    // Update join_ahead_time_seconds to 0 (disable)
+    var updateResp2 =
+        video
+            .updateCall(
+                "default",
+                callId,
+                UpdateCallRequest.builder()
+                    .settingsOverride(
+                        CallSettingsRequest.builder()
+                            .backstage(
+                                BackstageSettingsRequest.builder()
+                                    .joinAheadTimeSeconds(0)
+                                    .build())
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(updateResp2.getData());
+    assertEquals(0, updateResp2.getData().getCall().getJoinAheadTimeSeconds());
+  }
+
+  @Test
   @Order(8)
   void testDeactivateUser() throws Exception {
     // Create two fresh users for this test (alice and bob)
