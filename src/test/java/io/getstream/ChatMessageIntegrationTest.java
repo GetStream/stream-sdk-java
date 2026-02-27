@@ -306,6 +306,55 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(12)
+  void testPendingMessage() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    String channelId = createTestChannelWithMembers(userId, userIds);
+    createdChannelIds.add(channelId);
+
+    SendMessageResponse sendResp;
+    try {
+      sendResp =
+          chat.sendMessage(
+                  "messaging",
+                  channelId,
+                  SendMessageRequest.builder()
+                      .message(
+                          MessageRequest.builder()
+                              .text("Pending message text")
+                              .userID(userId)
+                              .build())
+                      .pending(true)
+                      .skipPush(true)
+                      .build())
+              .execute()
+              .getData();
+    } catch (Exception e) {
+      String msg = e.getMessage();
+      if (msg != null && (msg.contains("pending messages not enabled") || msg.contains("feature flag"))) {
+        org.junit.jupiter.api.Assumptions.assumeTrue(false,
+            "Pending messages not enabled for this app");
+        return;
+      }
+      throw e;
+    }
+
+    assertNotNull(sendResp);
+    assertNotNull(sendResp.getMessage());
+    String messageId = sendResp.getMessage().getId();
+    assertNotNull(messageId);
+
+    // Commit the pending message
+    var commitResp = chat.commitMessage(messageId).execute();
+    assertNotNull(commitResp.getData());
+    assertNotNull(commitResp.getData().getMessage());
+    assertEquals(messageId, commitResp.getData().getMessage().getId());
+  }
+
+  @Test
   @Order(10)
   void testSearchMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
