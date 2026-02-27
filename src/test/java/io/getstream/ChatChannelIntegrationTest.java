@@ -261,6 +261,37 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(10)
+  void testQueryMembers() throws Exception {
+    List<String> userIds = createTestUsers(3);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+
+    // Create channel with all 3 users as members
+    String channelId = createTestChannelWithMembers(creatorId, userIds);
+    createdChannelIds.add(channelId);
+
+    // Query members of the channel
+    var resp =
+        chat.queryMembers(
+                QueryMembersRequest.builder()
+                    .Payload(
+                        QueryMembersPayload.builder()
+                            .type("messaging")
+                            .id(channelId)
+                            .filterConditions(Map.of())
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(resp.getData(), "QueryMembers response should not be null");
+    assertNotNull(resp.getData().getMembers(), "Members list should not be null");
+    assertTrue(
+        resp.getData().getMembers().size() >= 3,
+        "Channel should have at least 3 members, got: " + resp.getData().getMembers().size());
+  }
+
+  @Test
   @Order(8)
   void testHardDeleteChannels() throws Exception {
     List<String> userIds = createTestUsers(1);
