@@ -82,6 +82,52 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(4)
+  void testPartialUpdateMessage() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    String channelId = createTestChannel(userId);
+    createdChannelIds.add(channelId);
+
+    String text = "partial-update-" + randomString(8);
+    String messageId = sendTestMessage("messaging", channelId, userId, text);
+
+    // Set custom fields
+    Map<String, Object> setFields = new HashMap<>();
+    setFields.put("priority", "high");
+    setFields.put("status", "open");
+
+    var setResp =
+        chat.updateMessagePartial(
+                messageId,
+                UpdateMessagePartialRequest.builder()
+                    .set(setFields)
+                    .userID(userId)
+                    .build())
+            .execute();
+    assertNotNull(setResp.getData());
+    assertNotNull(setResp.getData().getMessage());
+
+    // Unset "status" field
+    var unsetResp =
+        chat.updateMessagePartial(
+                messageId,
+                UpdateMessagePartialRequest.builder()
+                    .unset(List.of("status"))
+                    .userID(userId)
+                    .build())
+            .execute();
+    assertNotNull(unsetResp.getData());
+    assertNotNull(unsetResp.getData().getMessage());
+    Map<String, Object> customAfterUnset = unsetResp.getData().getMessage().getCustom();
+    assertTrue(
+        customAfterUnset == null || !customAfterUnset.containsKey("status"),
+        "status field should be removed after unset");
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
