@@ -606,4 +606,48 @@ class ChatMiscIntegrationTest extends ChatTestBase {
       }
     }
   }
+
+  @Test
+  @Order(14)
+  void testGetUnreadCounts() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String senderId = userIds.get(0);
+    String readerId = userIds.get(1);
+
+    // Create channel with both members
+    String channelId = createTestChannelWithMembers(senderId, userIds);
+
+    try {
+      // Sender sends a message (reader has not read it)
+      sendTestMessage("messaging", channelId, senderId, "Unread count test message");
+
+      // Small delay for eventual consistency
+      Thread.sleep(500);
+
+      // Get unread counts for reader (who hasn't read the message)
+      var resp =
+          client
+              .chat()
+              .unreadCounts(UnreadCountsRequest.builder().UserID(readerId).build())
+              .execute();
+
+      assertNotNull(resp.getData(), "Unread counts response should not be null");
+      assertNotNull(
+          resp.getData().getTotalUnreadCount(), "Total unread count should not be null");
+      assertTrue(
+          resp.getData().getTotalUnreadCount() >= 1,
+          "Reader should have at least 1 unread message");
+
+    } finally {
+      try {
+        client
+            .chat()
+            .deleteChannel(
+                "messaging", channelId, DeleteChannelRequest.builder().HardDelete(true).build())
+            .execute();
+      } catch (Exception ignored) {
+      }
+    }
+  }
 }
