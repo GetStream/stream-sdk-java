@@ -818,6 +818,67 @@ public class VideoIntegrationTest extends BasicTest {
   }
 
   @Test
+  @Order(16)
+  void testEnableCallRecordingAndBackstageMode() throws Exception {
+    // Create a call
+    String callId = "test-call-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+    createdCallIds.add(callId);
+
+    video
+        .getOrCreateCall(
+            "default",
+            callId,
+            GetOrCreateCallRequest.builder()
+                .data(CallRequest.builder().createdByID(testUsers.get(0).getId()).build())
+                .build())
+        .execute();
+
+    // Enable recording (available mode, audio only)
+    var recordingResp =
+        video
+            .updateCall(
+                "default",
+                callId,
+                UpdateCallRequest.builder()
+                    .settingsOverride(
+                        CallSettingsRequest.builder()
+                            .recording(
+                                RecordSettingsRequest.builder()
+                                    .mode("available")
+                                    .audioOnly(true)
+                                    .build())
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(recordingResp.getData());
+    assertNotNull(recordingResp.getData().getCall());
+    assertNotNull(recordingResp.getData().getCall().getSettings());
+    assertNotNull(recordingResp.getData().getCall().getSettings().getRecording());
+    assertEquals("available", recordingResp.getData().getCall().getSettings().getRecording().getMode());
+
+    // Enable backstage mode
+    var backstageResp =
+        video
+            .updateCall(
+                "default",
+                callId,
+                UpdateCallRequest.builder()
+                    .settingsOverride(
+                        CallSettingsRequest.builder()
+                            .backstage(BackstageSettingsRequest.builder().enabled(true).build())
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(backstageResp.getData());
+    assertNotNull(backstageResp.getData().getCall());
+    assertNotNull(backstageResp.getData().getCall().getSettings());
+    assertNotNull(backstageResp.getData().getCall().getSettings().getBackstage());
+    assertTrue(backstageResp.getData().getCall().getSettings().getBackstage().getEnabled());
+  }
+
+  @Test
   @Order(14)
   void testTeams() throws Exception {
     String callId = "vid-teams-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
