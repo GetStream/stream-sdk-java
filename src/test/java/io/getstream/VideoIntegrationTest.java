@@ -266,6 +266,46 @@ public class VideoIntegrationTest extends BasicTest {
   }
 
   @Test
+  @Order(6)
+  void testMuteSomeUsers() throws Exception {
+    // Create a call
+    String callId = "test-call-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+    createdCallIds.add(callId);
+
+    String creatorId = testUsers.get(0).getId();
+    String aliceId = testUsers.get(1).getId();
+    String bobId = testUsers.get(2).getId();
+
+    video
+        .getOrCreateCall(
+            "default",
+            callId,
+            GetOrCreateCallRequest.builder()
+                .data(CallRequest.builder().createdByID(creatorId).build())
+                .build())
+        .execute();
+
+    // Mute specific users with audio, video, screenshare
+    var resp =
+        video
+            .muteUsers(
+                "default",
+                callId,
+                MuteUsersRequest.builder()
+                    .mutedByID(creatorId)
+                    .userIds(List.of(aliceId, bobId))
+                    .audio(true)
+                    .video(true)
+                    .screenshare(true)
+                    .screenshareAudio(true)
+                    .build())
+            .execute();
+
+    assertNotNull(resp.getData());
+    assertNotNull(resp.getData().getDuration());
+  }
+
+  @Test
   @Order(4)
   void testSendCustomEvent() throws Exception {
     // Create a call
