@@ -509,4 +509,101 @@ class ChatMiscIntegrationTest extends ChatTestBase {
 
     assertNotNull(unmuteResp.getData(), "Unmute response data should not be null");
   }
+
+  @Test
+  @Order(13)
+  void testThreads() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String userId1 = userIds.get(0);
+    String userId2 = userIds.get(1);
+
+    // Create a channel with both members
+    String channelId = createTestChannelWithMembers(userId1, userIds);
+    String channelCid = "messaging:" + channelId;
+
+    try {
+      // Send parent message
+      String parentId = sendTestMessage("messaging", channelId, userId1, "Thread parent message");
+
+      // Send replies to create a thread
+      SendMessageRequest reply1Req = new SendMessageRequest();
+      MessageRequest reply1Msg = new MessageRequest();
+      reply1Msg.setText("First reply in thread");
+      reply1Msg.setUserID(userId2);
+      reply1Msg.setParentID(parentId);
+      reply1Req.setMessage(reply1Msg);
+      client.chat().sendMessage("messaging", channelId, reply1Req).execute();
+
+      SendMessageRequest reply2Req = new SendMessageRequest();
+      MessageRequest reply2Msg = new MessageRequest();
+      reply2Msg.setText("Second reply in thread");
+      reply2Msg.setUserID(userId1);
+      reply2Msg.setParentID(parentId);
+      reply2Req.setMessage(reply2Msg);
+      client.chat().sendMessage("messaging", channelId, reply2Req).execute();
+
+      // Small delay for eventual consistency
+      Thread.sleep(500);
+
+      // Query threads filtering by channel_cid
+      var queryResp =
+          client
+              .chat()
+              .queryThreads(
+                  QueryThreadsRequest.builder()
+                      .userID(userId1)
+                      .filter(
+                          Map.of(
+                              "channel_cid", Map.of("$eq", channelCid)))
+                      .build())
+              .execute();
+
+      assertNotNull(queryResp.getData(), "QueryThreads response should not be null");
+      assertNotNull(queryResp.getData().getThreads(), "Threads list should not be null");
+      assertFalse(queryResp.getData().getThreads().isEmpty(), "Should have at least one thread");
+
+      // Verify the parent thread appears in results
+      boolean found = false;
+      for (ThreadStateResponse thread : queryResp.getData().getThreads()) {
+        if (parentId.equals(thread.getParentMessageID())) {
+          found = true;
+          break;
+        }
+      }
+      assertTrue(found, "Parent message thread should appear in query results");
+
+      // GetThread: verify replies are included
+      var getResp =
+          client
+              .chat()
+              .getThread(
+                  parentId,
+                  GetThreadRequest.builder().ReplyLimit(10).build())
+              .execute();
+
+      assertNotNull(getResp.getData(), "GetThread response should not be null");
+      assertNotNull(getResp.getData().getThread(), "Thread should not be null");
+      assertEquals(
+          parentId,
+          getResp.getData().getThread().getParentMessageID(),
+          "Thread parent message ID should match");
+      assertNotNull(
+          getResp.getData().getThread().getLatestReplies(),
+          "Latest replies should not be null");
+      assertTrue(
+          getResp.getData().getThread().getLatestReplies().size() >= 2,
+          "Thread should have at least 2 replies");
+
+    } finally {
+      try {
+        client
+            .chat()
+            .deleteChannel(
+                "messaging", channelId, DeleteChannelRequest.builder().HardDelete(true).build())
+            .execute();
+      } catch (Exception ignored) {
+      }
+    }
+  }
 }
