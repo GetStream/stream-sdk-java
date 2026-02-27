@@ -861,6 +861,75 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(22)
+  void testPinUnpinChannel() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String memberId = userIds.get(1);
+
+    String channelId = createTestChannelWithMembers(creatorId, userIds);
+    createdChannelIds.add(channelId);
+    String cid = "messaging:" + channelId;
+
+    // Pin the channel for memberId via UpdateMemberPartial
+    var pinResp =
+        chat.updateMemberPartial(
+                "messaging",
+                channelId,
+                UpdateMemberPartialRequest.builder()
+                    .UserID(memberId)
+                    .set(Map.of("pinned", true))
+                    .build())
+            .execute();
+
+    assertNotNull(pinResp.getData(), "Pin response should not be null");
+    assertNotNull(pinResp.getData().getChannelMember(), "ChannelMember should not be null after pin");
+
+    // Verify pinned via QueryChannels with pinned=true filter
+    var pinnedResp =
+        chat.queryChannels(
+                QueryChannelsRequest.builder()
+                    .filterConditions(Map.of("pinned", true, "cid", cid))
+                    .userID(memberId)
+                    .build())
+            .execute();
+
+    assertNotNull(pinnedResp.getData(), "QueryChannels (pinned=true) response should not be null");
+    assertFalse(
+        pinnedResp.getData().getChannels().isEmpty(),
+        "Channel should appear in pinned=true query after pinning");
+
+    // Unpin the channel for memberId
+    var unpinResp =
+        chat.updateMemberPartial(
+                "messaging",
+                channelId,
+                UpdateMemberPartialRequest.builder()
+                    .UserID(memberId)
+                    .set(Map.of("pinned", false))
+                    .build())
+            .execute();
+
+    assertNotNull(unpinResp.getData(), "Unpin response should not be null");
+    assertNotNull(unpinResp.getData().getChannelMember(), "ChannelMember should not be null after unpin");
+
+    // Verify unpinned via QueryChannels with pinned=false filter
+    var unpinnedResp =
+        chat.queryChannels(
+                QueryChannelsRequest.builder()
+                    .filterConditions(Map.of("pinned", false, "cid", cid))
+                    .userID(memberId)
+                    .build())
+            .execute();
+
+    assertNotNull(unpinnedResp.getData(), "QueryChannels (pinned=false) response should not be null");
+    assertFalse(
+        unpinnedResp.getData().getChannels().isEmpty(),
+        "Channel should appear in pinned=false query after unpinning");
+  }
+
+  @Test
   @Order(7)
   void testDeleteChannel() throws Exception {
     List<String> userIds = createTestUsers(1);
