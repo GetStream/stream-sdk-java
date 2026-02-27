@@ -553,6 +553,53 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(16)
+  void testKeepChannelHidden() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    String channelId = createTestChannelWithMembers(userId, userIds);
+    createdChannelIds.add(channelId);
+
+    String cid = "messaging:" + channelId;
+
+    // Hide the channel for the user
+    chat.hideChannel(
+            "messaging",
+            channelId,
+            HideChannelRequest.builder().userID(userId).build())
+        .execute();
+
+    // Send a message with keep_channel_hidden=true
+    chat.sendMessage(
+            "messaging",
+            channelId,
+            SendMessageRequest.builder()
+                .message(
+                    MessageRequest.builder()
+                        .text("hidden message " + randomString(8))
+                        .userID(userId)
+                        .build())
+                .keepChannelHidden(true)
+                .build())
+        .execute();
+
+    // Query channels — channel should still be hidden (empty results)
+    var qResp =
+        chat.queryChannels(
+                QueryChannelsRequest.builder()
+                    .filterConditions(Map.of("cid", cid))
+                    .userID(userId)
+                    .build())
+            .execute();
+    assertNotNull(qResp.getData());
+    assertTrue(
+        qResp.getData().getChannels() == null || qResp.getData().getChannels().isEmpty(),
+        "Channel should remain hidden after sending with keep_channel_hidden=true");
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
