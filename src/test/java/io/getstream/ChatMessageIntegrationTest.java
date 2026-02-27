@@ -646,6 +646,49 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(18)
+  void testRestrictedVisibility() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+    String otherUserId = userIds.get(1);
+
+    String channelId = createTestChannelWithMembers(userId, userIds);
+    createdChannelIds.add(channelId);
+
+    try {
+      // Send message visible only to userId
+      var resp =
+          chat.sendMessage(
+                  "messaging",
+                  channelId,
+                  SendMessageRequest.builder()
+                      .message(
+                          MessageRequest.builder()
+                              .text("Restricted message " + randomString(8))
+                              .userID(userId)
+                              .restrictedVisibility(List.of(userId))
+                              .build())
+                      .build())
+              .execute();
+      assertNotNull(resp.getData());
+      assertNotNull(resp.getData().getMessage());
+      var restrictedVisibility = resp.getData().getMessage().getRestrictedVisibility();
+      assertNotNull(restrictedVisibility, "restricted_visibility should be set in response");
+      assertTrue(restrictedVisibility.contains(userId), "restricted_visibility should contain the sending user");
+    } catch (Exception e) {
+      String msg = e.getMessage();
+      if (msg != null && (msg.contains("restricted visibility") || msg.contains("not enabled")
+          || msg.contains("feature") || msg.contains("private messaging"))) {
+        org.junit.jupiter.api.Assumptions.assumeTrue(false,
+            "Restricted visibility feature not enabled for this app");
+        return;
+      }
+      throw e;
+    }
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
