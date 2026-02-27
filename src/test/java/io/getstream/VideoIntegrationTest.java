@@ -685,6 +685,34 @@ public class VideoIntegrationTest extends BasicTest {
   }
 
   @Test
+  @Order(13)
+  void testHardDeleteCall() throws Exception {
+    // Create a call to hard delete
+    String callId = "test-call-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+
+    video
+        .getOrCreateCall(
+            "default",
+            callId,
+            GetOrCreateCallRequest.builder()
+                .data(CallRequest.builder().createdByID(testUsers.get(0).getId()).build())
+                .build())
+        .execute();
+
+    // Hard delete the call - should return a task_id
+    var deleteResp =
+        video
+            .deleteCall("default", callId, DeleteCallRequest.builder().hard(true).build())
+            .execute();
+
+    assertNotNull(deleteResp.getData());
+    assertNotNull(deleteResp.getData().getTaskID());
+
+    // Poll the task until completed
+    waitForAsyncTask(deleteResp.getData().getTaskID());
+  }
+
+  @Test
   @Order(8)
   void testDeactivateUser() throws Exception {
     // Create two fresh users for this test (alice and bob)
