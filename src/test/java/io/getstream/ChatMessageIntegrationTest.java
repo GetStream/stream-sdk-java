@@ -510,6 +510,49 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(15)
+  void testSkipEnrichUrl() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    String channelId = createTestChannel(userId);
+    createdChannelIds.add(channelId);
+
+    // Send a message with a URL but skip enrichment
+    var sendResp =
+        chat.sendMessage(
+                "messaging",
+                channelId,
+                SendMessageRequest.builder()
+                    .message(
+                        MessageRequest.builder()
+                            .text("Check out https://getstream.io for more info")
+                            .userID(userId)
+                            .build())
+                    .skipEnrichUrl(true)
+                    .build())
+            .execute();
+    assertNotNull(sendResp.getData());
+    assertNotNull(sendResp.getData().getMessage());
+    String messageId = sendResp.getData().getMessage().getId();
+    var attachments = sendResp.getData().getMessage().getAttachments();
+    assertTrue(
+        attachments == null || attachments.isEmpty(),
+        "Attachments should be empty when skip_enrich_url=true");
+
+    // Wait and verify via GetMessage that attachments remain empty
+    Thread.sleep(1000);
+    var getResp = chat.getMessage(messageId).execute();
+    assertNotNull(getResp.getData());
+    assertNotNull(getResp.getData().getMessage());
+    var getAttachments = getResp.getData().getMessage().getAttachments();
+    assertTrue(
+        getAttachments == null || getAttachments.isEmpty(),
+        "Attachments should remain empty after enrichment window");
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
