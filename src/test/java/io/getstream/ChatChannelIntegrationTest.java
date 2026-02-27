@@ -261,6 +261,60 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(11)
+  void testInviteAcceptReject() throws Exception {
+    List<String> userIds = createTestUsers(3);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String invitee1Id = userIds.get(1);
+    String invitee2Id = userIds.get(2);
+
+    // Create channel with creator as member and 2 users as invitees
+    String channelId = "test-inv-" + UUID.randomUUID().toString().substring(0, 12);
+    createdChannelIds.add(channelId);
+
+    chat.getOrCreateChannel(
+            "messaging",
+            channelId,
+            GetOrCreateChannelRequest.builder()
+                .data(
+                    ChannelInput.builder()
+                        .createdByID(creatorId)
+                        .members(List.of(ChannelMemberRequest.builder().userID(creatorId).build()))
+                        .invites(
+                            List.of(
+                                ChannelMemberRequest.builder().userID(invitee1Id).build(),
+                                ChannelMemberRequest.builder().userID(invitee2Id).build()))
+                        .build())
+                .build())
+        .execute();
+
+    // Accept invite for invitee1
+    var acceptResp =
+        chat.updateChannel(
+                "messaging",
+                channelId,
+                UpdateChannelRequest.builder()
+                    .acceptInvite(true)
+                    .userID(invitee1Id)
+                    .build())
+            .execute();
+    assertNotNull(acceptResp.getData(), "AcceptInvite response should not be null");
+
+    // Reject invite for invitee2
+    var rejectResp =
+        chat.updateChannel(
+                "messaging",
+                channelId,
+                UpdateChannelRequest.builder()
+                    .rejectInvite(true)
+                    .userID(invitee2Id)
+                    .build())
+            .execute();
+    assertNotNull(rejectResp.getData(), "RejectInvite response should not be null");
+  }
+
+  @Test
   @Order(10)
   void testQueryMembers() throws Exception {
     List<String> userIds = createTestUsers(3);
