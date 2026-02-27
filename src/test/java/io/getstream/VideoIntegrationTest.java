@@ -879,6 +879,55 @@ public class VideoIntegrationTest extends BasicTest {
   }
 
   @Test
+  @Order(17)
+  void testDeleteRecordingsAndTranscriptions() throws Exception {
+    // Create a call (no actual recording/transcription needed - we test error cases)
+    String callId = "test-call-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+    createdCallIds.add(callId);
+
+    video
+        .getOrCreateCall(
+            "default",
+            callId,
+            GetOrCreateCallRequest.builder()
+                .data(CallRequest.builder().createdByID(testUsers.get(0).getId()).build())
+                .build())
+        .execute();
+
+    // Attempt to delete a non-existent recording - should return an error
+    try {
+      video
+          .deleteRecording(
+              "default",
+              callId,
+              "non-existent-session",
+              "non-existent-filename",
+              new DeleteRecordingRequest())
+          .execute();
+      fail("Expected exception when deleting non-existent recording");
+    } catch (Exception e) {
+      // Expected: API returns an error for non-existent recording
+      assertNotNull(e.getMessage());
+    }
+
+    // Attempt to delete a non-existent transcription - should return an error
+    try {
+      video
+          .deleteTranscription(
+              "default",
+              callId,
+              "non-existent-session",
+              "non-existent-filename",
+              new DeleteTranscriptionRequest())
+          .execute();
+      fail("Expected exception when deleting non-existent transcription");
+    } catch (Exception e) {
+      // Expected: API returns an error for non-existent transcription
+      assertNotNull(e.getMessage());
+    }
+  }
+
+  @Test
   @Order(14)
   void testTeams() throws Exception {
     String callId = "vid-teams-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
