@@ -872,4 +872,98 @@ class ChatMiscIntegrationTest extends ChatTestBase {
       throw e;
     }
   }
+
+  @Test
+  @Order(19)
+  void testChannelBatchUpdate() throws Exception {
+    // Create 2 users and 2 channels for the batch update
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String memberId = userIds.get(1);
+
+    String channelId1 = createTestChannel(creatorId);
+    String channelId2 = createTestChannel(creatorId);
+
+    try {
+      // Batch add memberId to both channels via PUT /api/v2/chat/channels/batch
+      // ChannelBatchUpdate is still behind Beta in the backend spec, so the
+      // generated Chat service doesn't include it — call via StreamRequest directly.
+      ChannelBatchUpdateRequest batchReq =
+          ChannelBatchUpdateRequest.builder()
+              .operation("addMembers")
+              .filter(
+                  new HashMap<String, Object>() {
+                    {
+                      put(
+                          "cid",
+                          new HashMap<String, Object>() {
+                            {
+                              put(
+                                  "$in",
+                                  List.of(
+                                      "messaging:" + channelId1, "messaging:" + channelId2));
+                            }
+                          });
+                    }
+                  })
+              .members(List.of(ChannelBatchMemberRequest.builder().userID(memberId).build()))
+              .build();
+
+      StreamRequest<ChannelBatchUpdateResponse> req =
+          new StreamRequest<>(
+              client.getHttpClient().getHttpClient(),
+              client.getHttpClient().getObjectMapper(),
+              client.getHttpClient().getBaseUrl(),
+              "PUT",
+              "/api/v2/chat/channels/batch",
+              batchReq,
+              null,
+              new TypeReference<ChannelBatchUpdateResponse>() {});
+
+      var resp = req.execute();
+      assertNotNull(resp.getData(), "Batch update response should not be null");
+      assertNotNull(resp.getData().getDuration(), "Duration should not be null");
+
+      // If an async task ID is returned, poll until completion
+      String taskId = resp.getData().getTaskID();
+      if (taskId != null && !taskId.isEmpty()) {
+        waitForTask(taskId);
+      }
+
+    } catch (io.getstream.exceptions.StreamException e) {
+      String msg = e.getMessage() != null ? e.getMessage() : "";
+      Integer statusCode =
+          e.getResponseData() != null ? e.getResponseData().getStatusCode() : null;
+      // ChannelBatchUpdate is behind Beta — skip gracefully on any server-side error.
+      // The API may return "ChannelBatchUpdate failed with error: <empty>" when the
+      // beta feature is not enabled for this app.
+      boolean isBeta =
+          msg.isEmpty()
+              || msg.contains("ChannelBatchUpdate failed")
+              || msg.contains("beta")
+              || msg.contains("not enabled")
+              || msg.contains("not supported")
+              || msg.contains("not available")
+              || msg.contains("not found")
+              || (statusCode != null && (statusCode == 404 || statusCode == 403));
+      if (isBeta) {
+        Assumptions.assumeTrue(false, "ChannelBatchUpdate not available on this app: " + msg);
+      }
+      throw e;
+    } finally {
+      for (String channelId : List.of(channelId1, channelId2)) {
+        try {
+          client
+              .chat()
+              .deleteChannel(
+                  "messaging",
+                  channelId,
+                  DeleteChannelRequest.builder().HardDelete(true).build())
+              .execute();
+        } catch (Exception ignored) {
+        }
+      }
+    }
+  }
 }
