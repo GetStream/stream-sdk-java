@@ -3,7 +3,9 @@ package io.getstream;
 import static org.junit.jupiter.api.Assertions.*;
 
 import io.getstream.models.*;
+import io.getstream.services.ModerationImpl;
 import java.util.*;
+import java.util.Map;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.MethodOrderer;
@@ -323,5 +325,88 @@ class ChatMiscIntegrationTest extends ChatTestBase {
     assertFalse(
         resp.getData().getPermission().getAction().isEmpty(),
         "Permission action should not be empty");
+  }
+
+  @Test
+  @Order(9)
+  void testQueryBannedUsers() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String adminId = userIds.get(0);
+    String targetId = userIds.get(1);
+
+    ModerationImpl moderation = new ModerationImpl(client.getHttpClient());
+
+    // Create a channel with both users as members
+    String channelId = createTestChannelWithMembers(adminId, userIds);
+    String cid = "messaging:" + channelId;
+
+    try {
+      // Ban target user from channel with a reason
+      moderation
+          .ban(
+              BanRequest.builder()
+                  .targetUserID(targetId)
+                  .bannedByID(adminId)
+                  .channelCid(cid)
+                  .reason("test ban reason")
+                  .build())
+          .execute();
+
+      // Query banned users for this channel
+      var queryResp =
+          client
+              .chat()
+              .queryBannedUsers(
+                  QueryBannedUsersRequest.builder()
+                      .Payload(
+                          QueryBannedUsersPayload.builder()
+                              .filterConditions(Map.of("channel_cid", Map.of("$eq", cid)))
+                              .build())
+                      .build())
+              .execute();
+
+      assertNotNull(queryResp.getData().getBans());
+      assertFalse(queryResp.getData().getBans().isEmpty(), "Should find the banned user");
+
+      // Verify ban details
+      BanResponse ban = queryResp.getData().getBans().get(0);
+      assertNotNull(ban.getUser(), "Banned user should be included in response");
+      assertEquals(targetId, ban.getUser().getId(), "Banned user ID should match");
+      assertEquals("test ban reason", ban.getReason(), "Ban reason should match");
+
+      // Unban the user from the channel
+      moderation
+          .unban(UnbanRequest.builder().TargetUserID(targetId).ChannelCid(cid).build())
+          .execute();
+
+      // Verify ban is gone after unban
+      var queryAfter =
+          client
+              .chat()
+              .queryBannedUsers(
+                  QueryBannedUsersRequest.builder()
+                      .Payload(
+                          QueryBannedUsersPayload.builder()
+                              .filterConditions(Map.of("channel_cid", Map.of("$eq", cid)))
+                              .build())
+                      .build())
+              .execute();
+
+      assertTrue(
+          queryAfter.getData().getBans() == null || queryAfter.getData().getBans().isEmpty(),
+          "Bans should be empty after unban");
+
+    } finally {
+      // Clean up channel
+      try {
+        client
+            .chat()
+            .deleteChannel(
+                "messaging", channelId, DeleteChannelRequest.builder().HardDelete(true).build())
+            .execute();
+      } catch (Exception ignored) {
+      }
+    }
   }
 }
