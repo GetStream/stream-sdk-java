@@ -15,6 +15,7 @@ import org.junit.jupiter.api.*;
 public class VideoIntegrationTest extends BasicTest {
 
   private static String callTypeName;
+  private static final List<String> createdCallIds = new ArrayList<>();
 
   @BeforeAll
   static void setupCallType() throws Exception {
@@ -53,6 +54,14 @@ public class VideoIntegrationTest extends BasicTest {
 
   @AfterAll
   static void tearDownCallType() {
+    // Clean up created calls
+    for (String callId : createdCallIds) {
+      try {
+        video.deleteCall("default", callId).execute();
+      } catch (Exception ignored) {
+      }
+    }
+    // Clean up the call type
     if (callTypeName != null) {
       try {
         video.deleteCallType(callTypeName).execute();
@@ -186,5 +195,38 @@ public class VideoIntegrationTest extends BasicTest {
     var readResp = video.getCallType(callTypeName).execute();
     assertNotNull(readResp.getData());
     assertEquals(callTypeName, readResp.getData().getName());
+  }
+
+  @Test
+  @Order(2)
+  void testCreateCallWithMembers() throws Exception {
+    // Create a call with members using existing test users
+    String callId = "test-call-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+    createdCallIds.add(callId);
+
+    // Build member list from test users
+    List<MemberRequest> members = new ArrayList<>();
+    members.add(MemberRequest.builder().userID(testUsers.get(0).getId()).build());
+    members.add(MemberRequest.builder().userID(testUsers.get(1).getId()).build());
+
+    var resp =
+        video
+            .getOrCreateCall(
+                "default",
+                callId,
+                GetOrCreateCallRequest.builder()
+                    .data(
+                        CallRequest.builder()
+                            .createdByID(testUsers.get(0).getId())
+                            .members(members)
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(resp.getData());
+    assertNotNull(resp.getData().getCall());
+    assertEquals(callId, resp.getData().getCall().getId());
+    assertNotNull(resp.getData().getMembers());
+    assertTrue(resp.getData().getMembers().size() >= 2);
   }
 }
