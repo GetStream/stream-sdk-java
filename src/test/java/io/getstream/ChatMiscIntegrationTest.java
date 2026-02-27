@@ -661,6 +661,111 @@ class ChatMiscIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(16)
+  void testReminders() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    String channelId = createTestChannelWithMembers(userId, userIds);
+
+    try {
+      // Send a message to attach a reminder to
+      String messageId = sendTestMessage("messaging", channelId, userId, "Reminder test message");
+
+      // Create reminder - skip if feature not enabled
+      ReminderResponseData createResp;
+      try {
+        // Set remind_at to 1 hour from now
+        java.util.Date remindAt = new java.util.Date(System.currentTimeMillis() + 3600_000L);
+        createResp =
+            client
+                .chat()
+                .createReminder(
+                    messageId,
+                    CreateReminderRequest.builder().userID(userId).remindAt(remindAt).build())
+                .execute()
+                .getData();
+      } catch (Exception e) {
+        String msg = e.getMessage();
+        if (msg != null
+            && (msg.contains("reminders")
+                || msg.contains("not enabled")
+                || msg.contains("feature")
+                || msg.contains("400")
+                || msg.contains("not supported"))) {
+          Assumptions.assumeTrue(false, "Reminders feature not enabled for this app");
+        }
+        throw e;
+      }
+
+      assertNotNull(createResp, "Create reminder response should not be null");
+      assertEquals(messageId, createResp.getMessageID(), "Reminder message ID should match");
+      assertEquals(userId, createResp.getUserID(), "Reminder user ID should match");
+
+      // Query reminders to verify it is found
+      var queryResp =
+          client
+              .chat()
+              .queryReminders(
+                  QueryRemindersRequest.builder()
+                      .userID(userId)
+                      .filter(Map.of("message_id", Map.of("$eq", messageId)))
+                      .build())
+              .execute();
+
+      assertNotNull(queryResp.getData(), "QueryReminders response should not be null");
+      assertNotNull(queryResp.getData().getReminders(), "Reminders list should not be null");
+      boolean found = false;
+      for (ReminderResponseData r : queryResp.getData().getReminders()) {
+        if (messageId.equals(r.getMessageID())) {
+          found = true;
+          break;
+        }
+      }
+      assertTrue(found, "Created reminder should appear in query results");
+
+      // Update reminder - set a new remind_at time
+      java.util.Date newRemindAt = new java.util.Date(System.currentTimeMillis() + 7200_000L);
+      var updateResp =
+          client
+              .chat()
+              .updateReminder(
+                  messageId,
+                  UpdateReminderRequest.builder().userID(userId).remindAt(newRemindAt).build())
+              .execute();
+
+      assertNotNull(updateResp.getData(), "UpdateReminder response should not be null");
+      assertNotNull(updateResp.getData().getReminder(), "Updated reminder should not be null");
+      assertEquals(
+          messageId,
+          updateResp.getData().getReminder().getMessageID(),
+          "Updated reminder message ID should match");
+
+      // Delete reminder
+      var deleteResp =
+          client
+              .chat()
+              .deleteReminder(
+                  messageId,
+                  DeleteReminderRequest.builder().UserID(userId).build())
+              .execute();
+
+      assertNotNull(deleteResp.getData(), "DeleteReminder response should not be null");
+
+    } finally {
+      try {
+        client
+            .chat()
+            .deleteChannel(
+                "messaging", channelId, DeleteChannelRequest.builder().HardDelete(true).build())
+            .execute();
+      } catch (Exception ignored) {
+      }
+    }
+  }
+
+  @Test
   @Order(14)
   void testGetUnreadCounts() throws Exception {
     List<String> userIds = createTestUsers(2);
