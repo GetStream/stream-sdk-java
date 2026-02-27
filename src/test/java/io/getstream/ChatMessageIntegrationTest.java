@@ -236,6 +236,47 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(9)
+  void testThreadReply() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+    String replyUserId = userIds.get(1);
+
+    String channelId = createTestChannel(userId);
+    createdChannelIds.add(channelId);
+
+    // Send parent message
+    String parentId = sendTestMessage("messaging", channelId, userId, "parent-" + randomString(8));
+
+    // Send reply with parent_id
+    var replyResp =
+        chat.sendMessage(
+                "messaging",
+                channelId,
+                SendMessageRequest.builder()
+                    .message(
+                        MessageRequest.builder()
+                            .text("reply-" + randomString(8))
+                            .userID(replyUserId)
+                            .parentID(parentId)
+                            .build())
+                    .build())
+            .execute();
+    assertNotNull(replyResp.getData());
+    assertNotNull(replyResp.getData().getMessage());
+    assertEquals(parentId, replyResp.getData().getMessage().getParentID());
+
+    // Get replies
+    var repliesResp =
+        chat.getReplies(parentId, GetRepliesRequest.builder().build()).execute();
+    assertNotNull(repliesResp.getData());
+    assertNotNull(repliesResp.getData().getMessages());
+    assertEquals(1, repliesResp.getData().getMessages().size());
+    assertEquals(parentId, repliesResp.getData().getMessages().get(0).getParentID());
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
