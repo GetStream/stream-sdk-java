@@ -2,8 +2,10 @@ package io.getstream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import io.getstream.models.*;
 import io.getstream.services.ModerationImpl;
+import io.getstream.services.framework.StreamRequest;
 import java.util.*;
 import java.util.Map;
 import org.junit.jupiter.api.AfterAll;
@@ -831,6 +833,43 @@ class ChatMiscIntegrationTest extends ChatTestBase {
             .execute();
       } catch (Exception ignored) {
       }
+    }
+  }
+
+  @Test
+  @Order(18)
+  void testQueryTeamUsageStats() throws Exception {
+    // QueryTeamUsageStats is not yet in the generated Chat service,
+    // so we call the endpoint directly via StreamRequest.
+    TypeReference<Map<String, Object>> typeRef = new TypeReference<>() {};
+
+    StreamRequest<Map<String, Object>> req =
+        new StreamRequest<>(
+            client.getHttpClient().getHttpClient(),
+            client.getHttpClient().getObjectMapper(),
+            client.getHttpClient().getBaseUrl(),
+            "POST",
+            "/api/v2/chat/stats/team_usage",
+            new HashMap<>(), // empty request body
+            null,
+            typeRef);
+
+    try {
+      var resp = req.execute();
+      assertNotNull(resp, "QueryTeamUsageStats response should not be null");
+      assertNotNull(resp.getData(), "Response data should not be null");
+      assertTrue(resp.getData().containsKey("duration"), "Response should contain 'duration'");
+      assertTrue(resp.getData().containsKey("teams"), "Response should contain 'teams'");
+    } catch (io.getstream.exceptions.StreamException e) {
+      String msg = e.getMessage() != null ? e.getMessage() : "";
+      if (msg.contains("Token signature is invalid")
+          || msg.contains("not available")
+          || msg.contains("not supported")
+          || msg.contains("not enabled")) {
+        Assumptions.assumeTrue(
+            false, "QueryTeamUsageStats not available on this app: " + msg);
+      }
+      throw e;
     }
   }
 }
