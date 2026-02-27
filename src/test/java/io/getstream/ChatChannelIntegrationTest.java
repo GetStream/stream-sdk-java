@@ -153,4 +153,39 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     assertFalse(resp.getData().getChannels().isEmpty(), "QueryChannels should return the channel");
     assertEquals(channelId, resp.getData().getChannels().get(0).getChannel().getId());
   }
+
+  @Test
+  @Order(5)
+  void testUpdateChannel() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+
+    String channelId = createTestChannel(creatorId);
+    createdChannelIds.add(channelId);
+
+    // Update channel with custom data and a system message
+    var resp =
+        chat.updateChannel(
+                "messaging",
+                channelId,
+                UpdateChannelRequest.builder()
+                    .data(
+                        ChannelInputRequest.builder()
+                            .custom(Map.of("color", "blue"))
+                            .build())
+                    .message(
+                        MessageRequest.builder()
+                            .text("Channel updated")
+                            .userID(creatorId)
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(resp.getData(), "UpdateChannel response should not be null");
+    assertNotNull(resp.getData().getChannel(), "Channel in response should not be null");
+    var custom = resp.getData().getChannel().getCustom();
+    assertNotNull(custom, "Channel custom data should not be null");
+    assertEquals("blue", custom.get("color"), "Custom field 'color' should be 'blue'");
+  }
 }
