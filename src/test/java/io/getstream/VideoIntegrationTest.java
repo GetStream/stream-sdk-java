@@ -520,6 +520,59 @@ public class VideoIntegrationTest extends BasicTest {
   }
 
   @Test
+  @Order(10)
+  void testUserBlocking() throws Exception {
+    // Create two fresh users: alice (blocker) and bob (blocked)
+    String aliceId = "vid-alice-blk-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+    String bobId = "vid-bob-blk-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+
+    Map<String, UserRequest> usersMap = new HashMap<>();
+    usersMap.put(aliceId, UserRequest.builder().id(aliceId).name("Alice Blocker").build());
+    usersMap.put(bobId, UserRequest.builder().id(bobId).name("Bob Blocked").build());
+    client.updateUsers(UpdateUsersRequest.builder().users(usersMap).build()).execute();
+
+    // Block bob from alice's perspective (app-level user block, not call-level)
+    var blockResp =
+        client
+            .blockUsers(
+                BlockUsersRequest.builder().blockedUserID(bobId).userID(aliceId).build())
+            .execute();
+    assertNotNull(blockResp.getData());
+
+    // Verify bob is in alice's blocked list
+    var getBlockedResp =
+        client
+            .getBlockedUsers(GetBlockedUsersRequest.builder().UserID(aliceId).build())
+            .execute();
+    assertNotNull(getBlockedResp.getData());
+    assertNotNull(getBlockedResp.getData().getBlocks());
+
+    boolean foundBob =
+        getBlockedResp.getData().getBlocks().stream()
+            .anyMatch(b -> bobId.equals(b.getBlockedUserID()));
+    assertTrue(foundBob, "Bob should be in alice's blocked list");
+
+    // Unblock bob
+    client
+        .unblockUsers(
+            UnblockUsersRequest.builder().blockedUserID(bobId).userID(aliceId).build())
+        .execute();
+
+    // Verify bob is no longer in alice's blocked list
+    var getBlockedResp2 =
+        client
+            .getBlockedUsers(GetBlockedUsersRequest.builder().UserID(aliceId).build())
+            .execute();
+    assertNotNull(getBlockedResp2.getData());
+
+    boolean stillFoundBob =
+        getBlockedResp2.getData().getBlocks() != null
+            && getBlockedResp2.getData().getBlocks().stream()
+                .anyMatch(b -> bobId.equals(b.getBlockedUserID()));
+    assertFalse(stillFoundBob, "Bob should no longer be in alice's blocked list");
+  }
+
+  @Test
   @Order(8)
   void testDeactivateUser() throws Exception {
     // Create two fresh users for this test (alice and bob)
