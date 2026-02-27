@@ -614,6 +614,52 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(18)
+  void testAssignRoles() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String memberId = userIds.get(1);
+
+    String channelId = createTestChannelWithMembers(creatorId, userIds);
+    createdChannelIds.add(channelId);
+
+    // Assign channel_moderator role to memberId
+    chat.updateChannel(
+            "messaging",
+            channelId,
+            UpdateChannelRequest.builder()
+                .assignRoles(
+                    List.of(
+                        ChannelMemberRequest.builder()
+                            .userID(memberId)
+                            .channelRole("channel_moderator")
+                            .build()))
+                .build())
+        .execute();
+
+    // Verify via QueryMembers that the role is set
+    var qResp =
+        chat.queryMembers(
+                QueryMembersRequest.builder()
+                    .Payload(
+                        QueryMembersPayload.builder()
+                            .type("messaging")
+                            .id(channelId)
+                            .filterConditions(Map.of("user_id", memberId))
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(qResp.getData(), "QueryMembers response should not be null");
+    assertFalse(qResp.getData().getMembers().isEmpty(), "Members list should not be empty");
+    assertEquals(
+        "channel_moderator",
+        qResp.getData().getMembers().get(0).getChannelRole(),
+        "Member should have channel_moderator role");
+  }
+
+  @Test
   @Order(14)
   void testFreezeUnfreezeChannel() throws Exception {
     List<String> userIds = createTestUsers(1);
