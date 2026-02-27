@@ -199,6 +199,68 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(9)
+  void testAddRemoveMembers() throws Exception {
+    List<String> userIds = createTestUsers(4);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String memberId1 = userIds.get(1);
+    String memberId2 = userIds.get(2);
+    String memberId3 = userIds.get(3);
+
+    // Create channel with creator + member1
+    String channelId = createTestChannelWithMembers(creatorId, List.of(creatorId, memberId1));
+    createdChannelIds.add(channelId);
+
+    // Add member2 and member3
+    chat.updateChannel(
+            "messaging",
+            channelId,
+            UpdateChannelRequest.builder()
+                .addMembers(
+                    List.of(
+                        ChannelMemberRequest.builder().userID(memberId2).build(),
+                        ChannelMemberRequest.builder().userID(memberId3).build()))
+                .build())
+        .execute();
+
+    // Verify members added (should have at least 4 members)
+    var resp1 =
+        chat.getOrCreateChannel(
+                "messaging",
+                channelId,
+                GetOrCreateChannelRequest.builder().build())
+            .execute();
+    assertNotNull(resp1.getData());
+    assertTrue(
+        resp1.getData().getMembers().size() >= 4,
+        "Channel should have at least 4 members after add, got: "
+            + resp1.getData().getMembers().size());
+
+    // Remove member3
+    chat.updateChannel(
+            "messaging",
+            channelId,
+            UpdateChannelRequest.builder()
+                .removeMembers(List.of(memberId3))
+                .build())
+        .execute();
+
+    // Verify member3 is removed
+    var resp2 =
+        chat.getOrCreateChannel(
+                "messaging",
+                channelId,
+                GetOrCreateChannelRequest.builder().build())
+            .execute();
+    assertNotNull(resp2.getData());
+    boolean memberFound =
+        resp2.getData().getMembers().stream()
+            .anyMatch(m -> memberId3.equals(m.getUserID()));
+    assertFalse(memberFound, "member3 should have been removed from the channel");
+  }
+
+  @Test
   @Order(8)
   void testHardDeleteChannels() throws Exception {
     List<String> userIds = createTestUsers(1);
