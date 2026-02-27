@@ -109,4 +109,91 @@ class ChatPollsIntegrationTest extends ChatTestBase {
       throw e;
     }
   }
+
+  @Test
+  @Order(2)
+  void testCastPollVote() throws Exception {
+    // Need two users: one creates the poll/channel/message, one votes
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String voterId = userIds.get(1);
+
+    try {
+      // Create a poll with two options
+      List<PollOptionInput> options =
+          Arrays.asList(
+              PollOptionInput.builder().text("Yes").build(),
+              PollOptionInput.builder().text("No").build());
+
+      var createResp =
+          client
+              .createPoll(
+                  CreatePollRequest.builder()
+                      .name("Vote test poll")
+                      .enforceUniqueVote(true)
+                      .userID(creatorId)
+                      .options(options)
+                      .build())
+              .execute();
+
+      assertNotNull(createResp.getData().getPoll());
+      String pollId = createResp.getData().getPoll().getId();
+      assertNotNull(pollId);
+      String optionId = createResp.getData().getPoll().getOptions().get(0).getId();
+      assertNotNull(optionId);
+      createdPollIds.add(pollId);
+
+      // Create a channel with both users as members
+      String channelId =
+          createTestChannelWithMembers(creatorId, Arrays.asList(creatorId, voterId));
+      createdChannelIds.add(channelId);
+
+      // Send a message with the poll attached
+      var sendResp =
+          chat.sendMessage(
+                  "messaging",
+                  channelId,
+                  SendMessageRequest.builder()
+                      .message(
+                          MessageRequest.builder()
+                              .text("Please vote!")
+                              .userID(creatorId)
+                              .pollID(pollId)
+                              .build())
+                      .build())
+              .execute();
+      assertNotNull(sendResp.getData().getMessage().getId());
+      String msgId = sendResp.getData().getMessage().getId();
+
+      // Cast a vote as the voter
+      var voteResp =
+          chat.castPollVote(
+                  msgId,
+                  pollId,
+                  CastPollVoteRequest.builder()
+                      .userID(voterId)
+                      .vote(VoteData.builder().optionID(optionId).build())
+                      .build())
+              .execute();
+
+      assertNotNull(voteResp.getData().getVote());
+      assertEquals(optionId, voteResp.getData().getVote().getOptionID());
+
+      // Verify the poll now has 1 vote
+      var getResp = client.getPoll(pollId).execute();
+      assertNotNull(getResp.getData().getPoll());
+      assertEquals(1, getResp.getData().getPoll().getVoteCount());
+
+    } catch (Exception e) {
+      String msg = e.getMessage();
+      if (msg != null
+          && (msg.contains("polls not enabled")
+              || msg.contains("Poll")
+              || msg.contains("feature not available"))) {
+        Assumptions.assumeTrue(false, "Polls not enabled for this app: " + msg);
+      }
+      throw e;
+    }
+  }
 }
