@@ -501,6 +501,70 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(16)
+  void testMuteUnmuteChannel() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String memberId = userIds.get(1);
+
+    String channelId = createTestChannelWithMembers(creatorId, userIds);
+    createdChannelIds.add(channelId);
+    String cid = "messaging:" + channelId;
+
+    // Mute the channel for memberId
+    var muteResp =
+        chat.muteChannel(
+                MuteChannelRequest.builder()
+                    .channelCids(List.of(cid))
+                    .userID(memberId)
+                    .build())
+            .execute();
+
+    assertNotNull(muteResp.getData(), "MuteChannel response should not be null");
+    assertNotNull(muteResp.getData().getDuration(), "Duration should not be null after mute");
+
+    // Verify muted via QueryChannels with muted=true filter
+    var mutedResp =
+        chat.queryChannels(
+                QueryChannelsRequest.builder()
+                    .filterConditions(Map.of("muted", true, "cid", cid))
+                    .userID(memberId)
+                    .build())
+            .execute();
+
+    assertNotNull(mutedResp.getData(), "QueryChannels (muted=true) response should not be null");
+    assertFalse(
+        mutedResp.getData().getChannels().isEmpty(),
+        "Channel should appear in muted=true query after muting");
+
+    // Unmute the channel for memberId
+    var unmuteResp =
+        chat.unmuteChannel(
+                UnmuteChannelRequest.builder()
+                    .channelCids(List.of(cid))
+                    .userID(memberId)
+                    .build())
+            .execute();
+
+    assertNotNull(unmuteResp.getData(), "UnmuteChannel response should not be null");
+
+    // Verify unmuted via QueryChannels with muted=false filter
+    var unmutedResp =
+        chat.queryChannels(
+                QueryChannelsRequest.builder()
+                    .filterConditions(Map.of("muted", false, "cid", cid))
+                    .userID(memberId)
+                    .build())
+            .execute();
+
+    assertNotNull(unmutedResp.getData(), "QueryChannels (muted=false) response should not be null");
+    assertFalse(
+        unmutedResp.getData().getChannels().isEmpty(),
+        "Channel should appear in muted=false query after unmuting");
+  }
+
+  @Test
   @Order(14)
   void testFreezeUnfreezeChannel() throws Exception {
     List<String> userIds = createTestUsers(1);
