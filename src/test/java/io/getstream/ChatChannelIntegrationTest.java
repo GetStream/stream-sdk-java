@@ -1318,4 +1318,50 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     assertNotNull(resp.getData(), "SendChannelEvent response should not be null");
     assertNotNull(resp.getData().getDuration(), "Duration should not be null");
   }
+
+  @Test
+  @Order(30)
+  void testHideForCreator() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String memberId = userIds.get(1);
+
+    String channelId = "test-hide-" + java.util.UUID.randomUUID().toString().substring(0, 12);
+
+    // Create channel with hide_for_creator=true
+    var createResp =
+        chat.getOrCreateChannel(
+                "messaging",
+                channelId,
+                GetOrCreateChannelRequest.builder()
+                    .hideForCreator(true)
+                    .data(
+                        ChannelInput.builder()
+                            .createdByID(creatorId)
+                            .members(
+                                List.of(
+                                    ChannelMemberRequest.builder().userID(creatorId).build(),
+                                    ChannelMemberRequest.builder().userID(memberId).build()))
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(createResp.getData(), "GetOrCreateChannel response should not be null");
+    createdChannelIds.add(channelId);
+
+    // Channel should be hidden for creator — querying without show_hidden should not find it
+    var qResp =
+        chat.queryChannels(
+                QueryChannelsRequest.builder()
+                    .filterConditions(Map.of("cid", "messaging:" + channelId))
+                    .userID(creatorId)
+                    .build())
+            .execute();
+
+    assertNotNull(qResp.getData(), "QueryChannels response should not be null");
+    assertTrue(
+        qResp.getData().getChannels() == null || qResp.getData().getChannels().isEmpty(),
+        "Channel should be hidden for creator and not appear in query");
+  }
 }
