@@ -464,6 +464,43 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(15)
+  void testMarkReadUnread() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String memberId = userIds.get(1);
+
+    String channelId = createTestChannelWithMembers(creatorId, userIds);
+    createdChannelIds.add(channelId);
+
+    // Send a message so there's something to mark read/unread
+    String messageId = sendTestMessage("messaging", channelId, creatorId, "hello mark read test");
+
+    // Mark the channel as read for memberId
+    var markReadResp =
+        chat.markRead(
+                "messaging",
+                channelId,
+                MarkReadRequest.builder().userID(memberId).build())
+            .execute();
+
+    assertNotNull(markReadResp.getData(), "MarkRead response should not be null");
+    assertNotNull(markReadResp.getData().getDuration(), "Duration should not be null after markRead");
+
+    // Mark the channel as unread from that message for memberId
+    var markUnreadResp =
+        chat.markUnread(
+                "messaging",
+                channelId,
+                MarkUnreadRequest.builder().userID(memberId).messageID(messageId).build())
+            .execute();
+
+    assertNotNull(markUnreadResp.getData(), "MarkUnread response should not be null");
+    assertNotNull(markUnreadResp.getData().getDuration(), "Duration should not be null after markUnread");
+  }
+
+  @Test
   @Order(14)
   void testFreezeUnfreezeChannel() throws Exception {
     List<String> userIds = createTestUsers(1);
