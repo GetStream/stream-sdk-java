@@ -949,6 +949,80 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(27)
+  void testChannelRoleInMember() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String memberUserId = userIds.get(0);
+    String moderatorUserId = userIds.get(1);
+
+    // Create channel with members assigned specific roles
+    String channelId = "test-ch-" + randomString(12);
+    createdChannelIds.add(channelId);
+
+    chat.getOrCreateChannel(
+            "messaging",
+            channelId,
+            GetOrCreateChannelRequest.builder()
+                .data(
+                    ChannelInput.builder()
+                        .createdByID(memberUserId)
+                        .members(
+                            List.of(
+                                ChannelMemberRequest.builder()
+                                    .userID(memberUserId)
+                                    .channelRole("channel_member")
+                                    .build(),
+                                ChannelMemberRequest.builder()
+                                    .userID(moderatorUserId)
+                                    .channelRole("channel_moderator")
+                                    .build()))
+                        .build())
+                .build())
+        .execute();
+
+    // Send message from channel_member and verify role in response
+    var memberMsgResp =
+        chat.sendMessage(
+                "messaging",
+                channelId,
+                SendMessageRequest.builder()
+                    .message(
+                        MessageRequest.builder()
+                            .text("message from channel_member")
+                            .userID(memberUserId)
+                            .build())
+                    .build())
+            .execute();
+    assertNotNull(memberMsgResp.getData());
+    assertNotNull(memberMsgResp.getData().getMessage());
+    assertNotNull(memberMsgResp.getData().getMessage().getMember(),
+        "Member should be present in message response");
+    assertEquals("channel_member",
+        memberMsgResp.getData().getMessage().getMember().getChannelRole());
+
+    // Send message from channel_moderator and verify role in response
+    var modMsgResp =
+        chat.sendMessage(
+                "messaging",
+                channelId,
+                SendMessageRequest.builder()
+                    .message(
+                        MessageRequest.builder()
+                            .text("message from channel_moderator")
+                            .userID(moderatorUserId)
+                            .build())
+                    .build())
+            .execute();
+    assertNotNull(modMsgResp.getData());
+    assertNotNull(modMsgResp.getData().getMessage());
+    assertNotNull(modMsgResp.getData().getMessage().getMember(),
+        "Member should be present in message response");
+    assertEquals("channel_moderator",
+        modMsgResp.getData().getMessage().getMember().getChannelRole());
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
