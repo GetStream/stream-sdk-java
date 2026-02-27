@@ -26,6 +26,85 @@ class ChatMiscIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(4)
+  void testCreateUpdateDeleteChannelType() throws Exception {
+    // Channel type names must be lowercase alphanumeric
+    String typeName = "testtype" + randomString(6).toLowerCase();
+
+    try {
+      // Create channel type
+      var createResp =
+          client
+              .chat()
+              .createChannelType(
+                  CreateChannelTypeRequest.builder()
+                      .name(typeName)
+                      .automod("disabled")
+                      .automodBehavior("flag")
+                      .maxMessageLength(1000)
+                      .build())
+              .execute();
+      assertNotNull(createResp.getData().getDuration());
+      assertEquals(typeName, createResp.getData().getName());
+
+      // CRITICAL: 6-second delay for eventual consistency
+      Thread.sleep(6000);
+
+      // Get channel type with retry
+      GetChannelTypeResponse getResp = null;
+      for (int i = 0; i < 5; i++) {
+        try {
+          getResp = client.chat().getChannelType(typeName).execute().getData();
+          break;
+        } catch (Exception e) {
+          if (i < 4) {
+            Thread.sleep(1000);
+          } else {
+            throw e;
+          }
+        }
+      }
+      assertNotNull(getResp);
+      assertEquals(typeName, getResp.getName());
+
+      // Update channel type: set typingEvents=false
+      var updateResp =
+          client
+              .chat()
+              .updateChannelType(
+                  typeName,
+                  UpdateChannelTypeRequest.builder().typingEvents(false).build())
+              .execute();
+      assertNotNull(updateResp.getData());
+      assertEquals(Boolean.FALSE, updateResp.getData().getTypingEvents());
+
+      // List channel types, verify typeName is present
+      var listResp = client.chat().listChannelTypes().execute();
+      assertNotNull(listResp.getData().getChannelTypes());
+      assertTrue(
+          listResp.getData().getChannelTypes().containsKey(typeName),
+          "Created channel type should appear in list");
+
+    } finally {
+      // Delete with retry for eventual consistency
+      Exception deleteErr = null;
+      for (int i = 0; i < 5; i++) {
+        try {
+          client.chat().deleteChannelType(typeName).execute();
+          deleteErr = null;
+          break;
+        } catch (Exception e) {
+          deleteErr = e;
+          Thread.sleep(1000);
+        }
+      }
+      if (deleteErr != null) {
+        System.err.println("Warning: failed to delete channel type " + typeName + ": " + deleteErr.getMessage());
+      }
+    }
+  }
+
+  @Test
   @Order(3)
   void testCreateListDeleteCommand() throws Exception {
     String cmdName = "testcmd" + randomString(6);
