@@ -660,6 +660,58 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(20)
+  void testMarkUnreadWithThread() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String memberId = userIds.get(1);
+
+    String channelId = createTestChannelWithMembers(creatorId, userIds);
+    createdChannelIds.add(channelId);
+
+    // Send parent message
+    String parentMsgId = sendTestMessage("messaging", channelId, creatorId, "parent message");
+
+    // Send thread reply to create a thread
+    chat.sendMessage(
+            "messaging",
+            channelId,
+            SendMessageRequest.builder()
+                .message(
+                    MessageRequest.builder()
+                        .text("thread reply")
+                        .userID(memberId)
+                        .parentID(parentMsgId)
+                        .build())
+                .build())
+        .execute();
+
+    // Mark channel as read first
+    chat.markRead(
+            "messaging",
+            channelId,
+            MarkReadRequest.builder().userID(memberId).build())
+        .execute();
+
+    // Mark unread from thread (using the parent message ID as the thread ID)
+    var markUnreadResp =
+        chat.markUnread(
+                "messaging",
+                channelId,
+                MarkUnreadRequest.builder()
+                    .userID(memberId)
+                    .threadID(parentMsgId)
+                    .build())
+            .execute();
+
+    assertNotNull(markUnreadResp.getData(), "MarkUnread (thread) response should not be null");
+    assertNotNull(
+        markUnreadResp.getData().getDuration(),
+        "Duration should not be null after markUnread with thread");
+  }
+
+  @Test
   @Order(19)
   void testAddDemoteModerators() throws Exception {
     List<String> userIds = createTestUsers(2);
