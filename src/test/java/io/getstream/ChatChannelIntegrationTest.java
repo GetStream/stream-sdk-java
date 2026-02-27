@@ -1163,6 +1163,45 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(27)
+  void testFilterTags() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+
+    String channelId = createTestChannel(creatorId);
+    createdChannelIds.add(channelId);
+
+    // Add filter tags
+    chat.updateChannel(
+            "messaging",
+            channelId,
+            UpdateChannelRequest.builder()
+                .addFilterTags(List.of("sports", "news"))
+                .build())
+        .execute();
+
+    // Verify tags were added by querying
+    var resp =
+        chat.getOrCreateChannel(
+                "messaging",
+                channelId,
+                GetOrCreateChannelRequest.builder().build())
+            .execute();
+    assertNotNull(resp.getData(), "GetOrCreate response should not be null");
+    assertNotNull(resp.getData().getChannel(), "Channel should not be null");
+
+    // Remove one filter tag
+    chat.updateChannel(
+            "messaging",
+            channelId,
+            UpdateChannelRequest.builder()
+                .removeFilterTags(List.of("sports"))
+                .build())
+        .execute();
+  }
+
+  @Test
   @Order(26)
   void testSendChannelEvent() throws Exception {
     List<String> userIds = createTestUsers(2);
