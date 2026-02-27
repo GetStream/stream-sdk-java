@@ -277,6 +277,35 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(11)
+  void testSilentMessage() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    String channelId = createTestChannel(userId);
+    createdChannelIds.add(channelId);
+
+    var resp =
+        chat.sendMessage(
+                "messaging",
+                channelId,
+                SendMessageRequest.builder()
+                    .message(
+                        MessageRequest.builder()
+                            .text("This is a silent message")
+                            .userID(userId)
+                            .silent(true)
+                            .build())
+                    .build())
+            .execute();
+    assertNotNull(resp.getData());
+    assertNotNull(resp.getData().getMessage());
+    assertTrue(Boolean.TRUE.equals(resp.getData().getMessage().getSilent()),
+        "Message should be silent");
+  }
+
+  @Test
   @Order(10)
   void testSearchMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
