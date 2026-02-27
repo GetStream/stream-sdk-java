@@ -105,6 +105,18 @@ class ChatMiscIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(5)
+  void testListChannelTypes() throws Exception {
+    var listResp = client.chat().listChannelTypes().execute();
+    assertNotNull(listResp.getData().getChannelTypes());
+    assertTrue(listResp.getData().getChannelTypes().size() > 0, "Should have at least one channel type");
+    // Default channel types should be present
+    assertTrue(
+        listResp.getData().getChannelTypes().containsKey("messaging"),
+        "Default 'messaging' channel type should be present");
+  }
+
+  @Test
   @Order(3)
   void testCreateListDeleteCommand() throws Exception {
     String cmdName = "testcmd" + randomString(6);
