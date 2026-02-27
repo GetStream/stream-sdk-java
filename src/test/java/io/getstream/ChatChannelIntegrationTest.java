@@ -1412,4 +1412,47 @@ class ChatChannelIntegrationTest extends ChatTestBase {
       tempFile.delete();
     }
   }
+
+  @Test
+  @Order(32)
+  void testUploadAndDeleteImage() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+
+    String channelId = createTestChannelWithMembers(creatorId, userIds);
+    createdChannelIds.add(channelId);
+
+    // Use the existing img.png in the project root
+    java.io.File imgFile = new java.io.File("img.png");
+
+    // Upload the image
+    var uploadResp =
+        chat.uploadChannelImage(
+                "messaging",
+                channelId,
+                UploadChannelImageRequest.builder()
+                    .file(imgFile.getAbsolutePath())
+                    .user(OnlyUserID.builder().id(creatorId).build())
+                    .build())
+            .execute();
+
+    assertNotNull(uploadResp.getData(), "Upload image response should not be null");
+    assertNotNull(uploadResp.getData().getFile(), "Uploaded image URL should not be null");
+    assertTrue(
+        uploadResp.getData().getFile().contains("http"),
+        "Image URL should be a valid HTTP URL");
+
+    String imageUrl = uploadResp.getData().getFile();
+
+    // Delete the uploaded image
+    var deleteResp =
+        chat.deleteChannelImage(
+                "messaging",
+                channelId,
+                DeleteChannelImageRequest.builder().Url(imageUrl).build())
+            .execute();
+
+    assertNotNull(deleteResp.getData(), "Delete image response should not be null");
+  }
 }
