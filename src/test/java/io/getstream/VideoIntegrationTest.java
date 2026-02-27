@@ -749,6 +749,75 @@ public class VideoIntegrationTest extends BasicTest {
   }
 
   @Test
+  @Order(15)
+  void testExternalStorageOperations() throws Exception {
+    String storageName = "test-storage-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+
+    // Cleanup: delete existing storages if there are too many accumulated over time
+    try {
+      var listResp = client.listExternalStorage().execute();
+      if (listResp.getData() != null
+          && listResp.getData().getExternalStorages() != null
+          && listResp.getData().getExternalStorages().size() > 1) {
+        for (String name : listResp.getData().getExternalStorages().keySet()) {
+          try {
+            client.deleteExternalStorage(name).execute();
+          } catch (Exception ignored) {
+          }
+        }
+      }
+    } catch (Exception ignored) {
+    }
+
+    // Create a new external storage with S3 credentials
+    var createResp =
+        client
+            .createExternalStorage(
+                CreateExternalStorageRequest.builder()
+                    .bucket("test-bucket")
+                    .name(storageName)
+                    .storageType("s3")
+                    .path("test-directory/")
+                    .awsS3(
+                        S3Request.builder()
+                            .s3Region("us-east-1")
+                            .s3APIKey("test-access-key")
+                            .s3Secret("test-secret")
+                            .build())
+                    .build())
+            .execute();
+    assertNotNull(createResp.getData());
+
+    try {
+      // List with retry for eventual consistency (up to 24s, 3s intervals = 8 attempts)
+      boolean found = false;
+      for (int i = 0; i < 8; i++) {
+        Thread.sleep(3000);
+        var listResp = client.listExternalStorage().execute();
+        if (listResp.getData() != null
+            && listResp.getData().getExternalStorages() != null
+            && listResp.getData().getExternalStorages().containsKey(storageName)) {
+          found = true;
+          break;
+        }
+      }
+      assertTrue(found, "Created external storage should appear in the list");
+    } finally {
+      // Delete with retry (eventual consistency may delay availability for delete)
+      for (int i = 0; i < 5; i++) {
+        try {
+          client.deleteExternalStorage(storageName).execute();
+          break;
+        } catch (Exception e) {
+          if (i < 4) {
+            Thread.sleep(3000);
+          }
+        }
+      }
+    }
+  }
+
+  @Test
   @Order(14)
   void testTeams() throws Exception {
     String callId = "vid-teams-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
