@@ -783,6 +783,41 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(21)
+  void testTruncateWithOptions() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String memberId = userIds.get(1);
+
+    String channelId = createTestChannelWithMembers(creatorId, userIds);
+    createdChannelIds.add(channelId);
+
+    // Send 2 messages
+    sendTestMessage("messaging", channelId, creatorId, "Truncate msg 1");
+    sendTestMessage("messaging", channelId, creatorId, "Truncate msg 2");
+
+    // Truncate with message, skip_push=true, hard_delete=true
+    var truncResp =
+        chat.truncateChannel(
+                "messaging",
+                channelId,
+                TruncateChannelRequest.builder()
+                    .message(
+                        MessageRequest.builder()
+                            .text("Channel was truncated")
+                            .userID(creatorId)
+                            .build())
+                    .skipPush(true)
+                    .hardDelete(true)
+                    .build())
+            .execute();
+
+    assertNotNull(truncResp.getData(), "TruncateWithOptions response should not be null");
+    assertNotNull(truncResp.getData().getDuration(), "Duration should not be null");
+  }
+
+  @Test
   @Order(14)
   void testFreezeUnfreezeChannel() throws Exception {
     List<String> userIds = createTestUsers(1);
