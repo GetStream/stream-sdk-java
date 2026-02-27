@@ -199,6 +199,30 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(7)
+  void testDeleteChannel() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+
+    // Create channel but do NOT track it in createdChannelIds (we delete it explicitly)
+    String channelId = createTestChannel(creatorId);
+
+    // Soft delete the channel
+    var resp =
+        chat.deleteChannel(
+                "messaging",
+                channelId,
+                DeleteChannelRequest.builder().build())
+            .execute();
+
+    assertNotNull(resp.getData(), "DeleteChannel response should not be null");
+    assertNotNull(resp.getData().getDuration(), "Duration should not be null");
+    assertFalse(resp.getData().getDuration().isEmpty(), "Duration should not be empty");
+    assertNotNull(resp.getData().getChannel(), "Channel should not be null on soft delete");
+  }
+
+  @Test
   @Order(5)
   void testUpdateChannel() throws Exception {
     List<String> userIds = createTestUsers(1);
