@@ -790,6 +790,42 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(22)
+  void testPendingFalse() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    String channelId = createTestChannelWithMembers(userId, userIds);
+    createdChannelIds.add(channelId);
+
+    String text = "non-pending-" + randomString(8);
+    var sendResp =
+        chat.sendMessage(
+                "messaging",
+                channelId,
+                SendMessageRequest.builder()
+                    .message(
+                        MessageRequest.builder()
+                            .text(text)
+                            .userID(userId)
+                            .build())
+                    .pending(false)
+                    .build())
+            .execute();
+    assertNotNull(sendResp.getData());
+    assertNotNull(sendResp.getData().getMessage());
+    String messageId = sendResp.getData().getMessage().getId();
+    assertNotNull(messageId);
+
+    // Verify the message is immediately available (no commit needed)
+    var getResp = chat.getMessage(messageId).execute();
+    assertNotNull(getResp.getData());
+    assertNotNull(getResp.getData().getMessage());
+    assertEquals(text, getResp.getData().getMessage().getText());
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
