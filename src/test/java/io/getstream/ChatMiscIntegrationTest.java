@@ -26,6 +26,65 @@ class ChatMiscIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(3)
+  void testCreateListDeleteCommand() throws Exception {
+    String cmdName = "testcmd" + randomString(6);
+
+    try {
+      // Create command
+      var createResp =
+          client
+              .chat()
+              .createCommand(
+                  CreateCommandRequest.builder()
+                      .name(cmdName)
+                      .description("A test command")
+                      .build())
+              .execute();
+      assertNotNull(createResp.getData().getCommand());
+      assertEquals(cmdName, createResp.getData().getCommand().getName());
+
+      // Wait for eventual consistency
+      Thread.sleep(500);
+
+      // List commands and verify found
+      var listResp = client.chat().listCommands().execute();
+      assertNotNull(listResp.getData().getCommands());
+      boolean found = false;
+      for (Command cmd : listResp.getData().getCommands()) {
+        if (cmdName.equals(cmd.getName())) {
+          found = true;
+        }
+      }
+      assertTrue(found, "Created command should appear in list");
+
+      // Delete command with retry
+      Exception deleteErr = null;
+      for (int i = 0; i < 5; i++) {
+        try {
+          client.chat().deleteCommand(cmdName).execute();
+          deleteErr = null;
+          break;
+        } catch (Exception e) {
+          deleteErr = e;
+          Thread.sleep(1000);
+        }
+      }
+      if (deleteErr != null) {
+        throw deleteErr;
+      }
+
+    } catch (Exception e) {
+      // Cleanup on failure
+      try {
+        client.chat().deleteCommand(cmdName).execute();
+      } catch (Exception ignored) {
+      }
+      throw e;
+    }
+  }
+
+  @Test
   @Order(2)
   void testCreateListDeleteBlocklist() throws Exception {
     String blocklistName = "test-blocklist-" + randomString(8);
