@@ -231,6 +231,44 @@ public class VideoIntegrationTest extends BasicTest {
   }
 
   @Test
+  @Order(4)
+  void testSendCustomEvent() throws Exception {
+    // Create a call
+    String callId = "test-call-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+    createdCallIds.add(callId);
+
+    video
+        .getOrCreateCall(
+            "default",
+            callId,
+            GetOrCreateCallRequest.builder()
+                .data(
+                    CallRequest.builder()
+                        .createdByID(testUsers.get(0).getId())
+                        .build())
+                .build())
+        .execute();
+
+    // Send a custom event with custom data
+    Map<String, Object> customData = new HashMap<>();
+    customData.put("bananas", "good");
+
+    var resp =
+        video
+            .sendCallEvent(
+                "default",
+                callId,
+                SendCallEventRequest.builder()
+                    .userID(testUsers.get(0).getId())
+                    .custom(customData)
+                    .build())
+            .execute();
+
+    assertNotNull(resp.getData());
+    assertNotNull(resp.getData().getDuration());
+  }
+
+  @Test
   @Order(3)
   void testBlockUnblockUserFromCalls() throws Exception {
     // Create a call
