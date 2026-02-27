@@ -565,6 +565,55 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(17)
+  void testMemberPartialUpdate() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String memberId = userIds.get(1);
+
+    String channelId = createTestChannelWithMembers(creatorId, userIds);
+    createdChannelIds.add(channelId);
+
+    // Set custom fields on the member
+    var setResp =
+        chat.updateMemberPartial(
+                "messaging",
+                channelId,
+                UpdateMemberPartialRequest.builder()
+                    .UserID(memberId)
+                    .set(Map.of("role_label", "vip", "score", 100))
+                    .build())
+            .execute();
+
+    assertNotNull(setResp.getData(), "UpdateMemberPartial (set) response should not be null");
+    assertNotNull(setResp.getData().getChannelMember(), "ChannelMember should not be null");
+    var custom = setResp.getData().getChannelMember().getCustom();
+    assertNotNull(custom, "Custom data should not be null after set");
+    assertEquals("vip", custom.get("role_label"), "Custom field 'role_label' should be 'vip'");
+    assertNotNull(custom.get("score"), "Custom field 'score' should be present");
+
+    // Unset 'score' and verify it's removed
+    var unsetResp =
+        chat.updateMemberPartial(
+                "messaging",
+                channelId,
+                UpdateMemberPartialRequest.builder()
+                    .UserID(memberId)
+                    .unset(List.of("score"))
+                    .build())
+            .execute();
+
+    assertNotNull(unsetResp.getData(), "UpdateMemberPartial (unset) response should not be null");
+    assertNotNull(
+        unsetResp.getData().getChannelMember(), "ChannelMember should not be null after unset");
+    var customAfterUnset = unsetResp.getData().getChannelMember().getCustom();
+    assertTrue(
+        customAfterUnset == null || !customAfterUnset.containsKey("score"),
+        "Custom field 'score' should be removed after unset");
+  }
+
+  @Test
   @Order(14)
   void testFreezeUnfreezeChannel() throws Exception {
     List<String> userIds = createTestUsers(1);
