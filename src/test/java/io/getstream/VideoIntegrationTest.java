@@ -443,4 +443,40 @@ public class VideoIntegrationTest extends BasicTest {
     List<String> blockedIds = getResp2.getData().getCall().getBlockedUserIds();
     assertTrue(blockedIds == null || !blockedIds.contains(badUserId));
   }
+
+  @Test
+  @Order(8)
+  void testDeactivateUser() throws Exception {
+    // Create two fresh users for this test (alice and bob)
+    String aliceId = "vid-alice-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+    String bobId = "vid-bob-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+
+    Map<String, UserRequest> usersMap = new HashMap<>();
+    usersMap.put(aliceId, UserRequest.builder().id(aliceId).name("Alice Video").build());
+    usersMap.put(bobId, UserRequest.builder().id(bobId).name("Bob Video").build());
+    client.updateUsers(UpdateUsersRequest.builder().users(usersMap).build()).execute();
+
+    // Deactivate alice
+    var deactivateResp =
+        client.deactivateUser(aliceId, DeactivateUserRequest.builder().build()).execute();
+    assertNotNull(deactivateResp.getData());
+    assertNotNull(deactivateResp.getData().getDuration());
+
+    // Reactivate alice
+    var reactivateResp =
+        client.reactivateUser(aliceId, ReactivateUserRequest.builder().build()).execute();
+    assertNotNull(reactivateResp.getData());
+    assertNotNull(reactivateResp.getData().getDuration());
+
+    // Batch deactivate alice and bob, wait for task
+    var batchResp =
+        client
+            .deactivateUsers(
+                DeactivateUsersRequest.builder().userIds(List.of(aliceId, bobId)).build())
+            .execute();
+    assertNotNull(batchResp.getData());
+    String taskId = batchResp.getData().getTaskID();
+    assertNotNull(taskId);
+    waitForAsyncTask(taskId);
+  }
 }
