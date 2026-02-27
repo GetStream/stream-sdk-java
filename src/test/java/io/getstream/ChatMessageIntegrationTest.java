@@ -55,6 +55,33 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(3)
+  void testUpdateMessage() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    String channelId = createTestChannel(userId);
+    createdChannelIds.add(channelId);
+
+    String originalText = "original-" + randomString(8);
+    String messageId = sendTestMessage("messaging", channelId, userId, originalText);
+
+    String updatedText = "updated-" + randomString(8);
+    var resp =
+        chat.updateMessage(
+                messageId,
+                UpdateMessageRequest.builder()
+                    .message(
+                        MessageRequest.builder().id(messageId).text(updatedText).userID(userId).build())
+                    .build())
+            .execute();
+    assertNotNull(resp.getData());
+    assertNotNull(resp.getData().getMessage());
+    assertEquals(updatedText, resp.getData().getMessage().getText());
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
