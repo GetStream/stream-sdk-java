@@ -464,6 +464,49 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(14)
+  void testFreezeUnfreezeChannel() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+
+    String channelId = createTestChannel(creatorId);
+    createdChannelIds.add(channelId);
+
+    // Freeze the channel
+    var freezeResp =
+        chat.updateChannelPartial(
+                "messaging",
+                channelId,
+                UpdateChannelPartialRequest.builder()
+                    .set(Map.of("frozen", true))
+                    .build())
+            .execute();
+
+    assertNotNull(freezeResp.getData(), "Freeze response should not be null");
+    assertNotNull(freezeResp.getData().getChannel(), "Channel in freeze response should not be null");
+    Boolean frozenAfterFreeze = freezeResp.getData().getChannel().getFrozen();
+    assertNotNull(frozenAfterFreeze, "Frozen field should not be null after freeze");
+    assertTrue(frozenAfterFreeze, "Channel should be frozen after setting frozen=true");
+
+    // Unfreeze the channel
+    var unfreezeResp =
+        chat.updateChannelPartial(
+                "messaging",
+                channelId,
+                UpdateChannelPartialRequest.builder()
+                    .set(Map.of("frozen", false))
+                    .build())
+            .execute();
+
+    assertNotNull(unfreezeResp.getData(), "Unfreeze response should not be null");
+    assertNotNull(unfreezeResp.getData().getChannel(), "Channel in unfreeze response should not be null");
+    Boolean frozenAfterUnfreeze = unfreezeResp.getData().getChannel().getFrozen();
+    assertNotNull(frozenAfterUnfreeze, "Frozen field should not be null after unfreeze");
+    assertFalse(frozenAfterUnfreeze, "Channel should be unfrozen after setting frozen=false");
+  }
+
+  @Test
   @Order(7)
   void testDeleteChannel() throws Exception {
     List<String> userIds = createTestUsers(1);
