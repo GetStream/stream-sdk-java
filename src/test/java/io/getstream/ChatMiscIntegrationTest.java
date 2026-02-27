@@ -608,6 +608,59 @@ class ChatMiscIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(15)
+  void testGetUnreadCountsBatch() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String senderId = userIds.get(0);
+    String readerId1 = userIds.get(1);
+
+    // Create channel with both members
+    String channelId = createTestChannelWithMembers(senderId, userIds);
+
+    try {
+      // Sender sends a message (readers have not read it)
+      sendTestMessage("messaging", channelId, senderId, "Batch unread count test message");
+
+      // Small delay for eventual consistency
+      Thread.sleep(500);
+
+      // Get unread counts in batch for both users
+      var resp =
+          client
+              .chat()
+              .unreadCountsBatch(
+                  UnreadCountsBatchRequest.builder()
+                      .userIds(List.of(readerId1))
+                      .build())
+              .execute();
+
+      assertNotNull(resp.getData(), "Batch unread counts response should not be null");
+      assertNotNull(resp.getData().getCountsByUser(), "Counts by user map should not be null");
+      assertTrue(
+          resp.getData().getCountsByUser().containsKey(readerId1),
+          "Response should contain counts for readerId1");
+
+      UnreadCountsResponse counts = resp.getData().getCountsByUser().get(readerId1);
+      assertNotNull(counts, "Counts for readerId1 should not be null");
+      assertNotNull(counts.getTotalUnreadCount(), "Total unread count should not be null");
+      assertTrue(
+          counts.getTotalUnreadCount() >= 1,
+          "readerId1 should have at least 1 unread message");
+
+    } finally {
+      try {
+        client
+            .chat()
+            .deleteChannel(
+                "messaging", channelId, DeleteChannelRequest.builder().HardDelete(true).build())
+            .execute();
+      } catch (Exception ignored) {
+      }
+    }
+  }
+
+  @Test
   @Order(14)
   void testGetUnreadCounts() throws Exception {
     List<String> userIds = createTestUsers(2);
