@@ -861,6 +861,34 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(24)
+  void testSearchQueryAndMessageFiltersError() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    // Using both query and message_filter_conditions together should error
+    Exception thrown =
+        assertThrows(
+            Exception.class,
+            () ->
+                chat.search(
+                        SearchRequest.builder()
+                            .Payload(
+                                SearchPayload.builder()
+                                    .filterConditions(
+                                        Map.of("members", Map.of("$in", List.of(userId))))
+                                    .query("test")
+                                    .messageFilterConditions(
+                                        Map.of("text", Map.of("$q", "test")))
+                                    .build())
+                            .build())
+                    .execute(),
+            "Using both query and message_filter_conditions should throw an error");
+    assertNotNull(thrown);
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
