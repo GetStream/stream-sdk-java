@@ -1246,6 +1246,52 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(29)
+  void testMarkUnreadWithTimestamp() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String memberId = userIds.get(1);
+
+    String channelId = createTestChannelWithMembers(creatorId, userIds);
+    createdChannelIds.add(channelId);
+
+    // Send a message to get a valid timestamp
+    var sendResp =
+        chat.sendMessage(
+                "messaging",
+                channelId,
+                SendMessageRequest.builder()
+                    .message(
+                        MessageRequest.builder()
+                            .text("test message for timestamp unread")
+                            .userID(creatorId)
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(sendResp.getData(), "SendMessage response should not be null");
+    assertNotNull(
+        sendResp.getData().getMessage().getCreatedAt(), "Message createdAt should not be null");
+
+    java.util.Date messageTimestamp = sendResp.getData().getMessage().getCreatedAt();
+
+    // Mark unread from timestamp (using messageTimestamp instead of messageID)
+    var resp =
+        chat.markUnread(
+                "messaging",
+                channelId,
+                MarkUnreadRequest.builder()
+                    .userID(memberId)
+                    .messageTimestamp(messageTimestamp)
+                    .build())
+            .execute();
+
+    assertNotNull(resp.getData(), "MarkUnread response should not be null");
+    assertNotNull(resp.getData().getDuration(), "Duration should not be null");
+  }
+
+  @Test
   @Order(26)
   void testSendChannelEvent() throws Exception {
     List<String> userIds = createTestUsers(2);
