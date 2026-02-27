@@ -315,6 +315,48 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(13)
+  void testTruncateChannel() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+
+    String channelId = createTestChannel(creatorId);
+    createdChannelIds.add(channelId);
+
+    // Send 3 messages
+    sendTestMessage("messaging", channelId, creatorId, "msg1");
+    sendTestMessage("messaging", channelId, creatorId, "msg2");
+    sendTestMessage("messaging", channelId, creatorId, "msg3");
+
+    // Truncate the channel
+    var truncResp =
+        chat.truncateChannel(
+                "messaging",
+                channelId,
+                TruncateChannelRequest.builder().build())
+            .execute();
+
+    assertNotNull(truncResp.getData(), "TruncateChannel response should not be null");
+    assertNotNull(truncResp.getData().getDuration(), "Duration should not be null");
+
+    // Verify channel messages are now empty
+    var resp =
+        chat.getOrCreateChannel(
+                "messaging",
+                channelId,
+                GetOrCreateChannelRequest.builder().build())
+            .execute();
+
+    assertNotNull(resp.getData(), "GetOrCreateChannel response should not be null");
+    List<MessageResponse> messages = resp.getData().getMessages();
+    assertTrue(
+        messages == null || messages.isEmpty(),
+        "Channel messages should be empty after truncation, got: "
+            + (messages != null ? messages.size() : 0));
+  }
+
+  @Test
   @Order(12)
   void testHideShowChannel() throws Exception {
     List<String> userIds = createTestUsers(2);
