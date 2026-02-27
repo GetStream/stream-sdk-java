@@ -1003,6 +1003,73 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(24)
+  void testAddMembersWithRoles() throws Exception {
+    List<String> creatorIds = createTestUsers(1);
+    createdUserIds.addAll(creatorIds);
+    String creatorId = creatorIds.get(0);
+
+    String channelId = createTestChannel(creatorId);
+    createdChannelIds.add(channelId);
+
+    // Create 2 more users to add with specific roles
+    List<String> newMemberIds = createTestUsers(2);
+    createdUserIds.addAll(newMemberIds);
+    String moderatorId = newMemberIds.get(0);
+    String memberId = newMemberIds.get(1);
+
+    // Add members with specific channel roles
+    chat.updateChannel(
+            "messaging",
+            channelId,
+            UpdateChannelRequest.builder()
+                .addMembers(
+                    List.of(
+                        ChannelMemberRequest.builder()
+                            .userID(moderatorId)
+                            .channelRole("channel_moderator")
+                            .build(),
+                        ChannelMemberRequest.builder()
+                            .userID(memberId)
+                            .channelRole("channel_member")
+                            .build()))
+                .build())
+        .execute();
+
+    // Verify roles via queryMembers with $in filter
+    var qResp =
+        chat.queryMembers(
+                QueryMembersRequest.builder()
+                    .Payload(
+                        QueryMembersPayload.builder()
+                            .type("messaging")
+                            .id(channelId)
+                            .filterConditions(
+                                Map.of("user_id", Map.of("$in", List.of(moderatorId, memberId))))
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(qResp.getData(), "QueryMembers response should not be null");
+    assertFalse(qResp.getData().getMembers().isEmpty(), "Members list should not be empty");
+
+    // Build a role map keyed by user ID
+    Map<String, String> roleMap = new java.util.HashMap<>();
+    for (ChannelMemberResponse member : qResp.getData().getMembers()) {
+      roleMap.put(member.getUserID(), member.getChannelRole());
+    }
+
+    assertEquals(
+        "channel_moderator",
+        roleMap.get(moderatorId),
+        "moderator user should have channel_moderator role");
+    assertEquals(
+        "channel_member",
+        roleMap.get(memberId),
+        "member user should have channel_member role");
+  }
+
+  @Test
   @Order(7)
   void testDeleteChannel() throws Exception {
     List<String> userIds = createTestUsers(1);
