@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.getstream.exceptions.StreamException;
+import io.getstream.models.UploadChannelFileRequest;
+import io.getstream.models.UploadChannelImageRequest;
 import io.getstream.models.UploadFileRequest;
 import io.getstream.models.UploadImageRequest;
 import io.getstream.models.framework.RateLimit;
@@ -45,6 +47,10 @@ public class StreamRequest<T> {
         rawBody = createMultipartBody((UploadFileRequest) jRequest);
       } else if (jRequest instanceof UploadImageRequest) {
         rawBody = createMultipartBody((UploadImageRequest) jRequest);
+      } else if (jRequest instanceof UploadChannelFileRequest) {
+        rawBody = createMultipartBody((UploadChannelFileRequest) jRequest);
+      } else if (jRequest instanceof UploadChannelImageRequest) {
+        rawBody = createMultipartBody((UploadChannelImageRequest) jRequest);
       } else {
         rawBody = RequestBody.create(objectMapper.writeValueAsBytes(jRequest));
       }
@@ -158,6 +164,57 @@ public class StreamRequest<T> {
     }
 
     // Add user field if present
+    if (request.getUser() != null) {
+      String userJson = objectMapper.writeValueAsString(request.getUser());
+      builder.addFormDataPart("user", userJson);
+    }
+
+    return builder.build();
+  }
+
+  private RequestBody createMultipartBody(UploadChannelFileRequest request) throws IOException {
+    if (request.getFile() == null || request.getFile().isEmpty()) {
+      throw new IllegalArgumentException("File path must be provided");
+    }
+
+    File file = new File(request.getFile());
+    if (!file.exists()) {
+      throw new IOException("File not found: " + request.getFile());
+    }
+
+    MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+
+    RequestBody fileBody = RequestBody.create(file, MediaType.parse("application/octet-stream"));
+    builder.addFormDataPart("file", file.getName(), fileBody);
+
+    if (request.getUser() != null) {
+      String userJson = objectMapper.writeValueAsString(request.getUser());
+      builder.addFormDataPart("user", userJson);
+    }
+
+    return builder.build();
+  }
+
+  private RequestBody createMultipartBody(UploadChannelImageRequest request) throws IOException {
+    if (request.getFile() == null || request.getFile().isEmpty()) {
+      throw new IllegalArgumentException("File path must be provided");
+    }
+
+    File file = new File(request.getFile());
+    if (!file.exists()) {
+      throw new IOException("File not found: " + request.getFile());
+    }
+
+    MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+
+    RequestBody fileBody = RequestBody.create(file, MediaType.parse("image/*"));
+    builder.addFormDataPart("file", file.getName(), fileBody);
+
+    if (request.getUploadSizes() != null && !request.getUploadSizes().isEmpty()) {
+      String uploadSizesJson = objectMapper.writeValueAsString(request.getUploadSizes());
+      builder.addFormDataPart("upload_sizes", uploadSizesJson);
+    }
+
     if (request.getUser() != null) {
       String userJson = objectMapper.writeValueAsString(request.getUser());
       builder.addFormDataPart("user", userJson);

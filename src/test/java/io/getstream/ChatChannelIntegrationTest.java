@@ -1364,4 +1364,52 @@ class ChatChannelIntegrationTest extends ChatTestBase {
         qResp.getData().getChannels() == null || qResp.getData().getChannels().isEmpty(),
         "Channel should be hidden for creator and not appear in query");
   }
+
+  @Test
+  @Order(31)
+  void testUploadAndDeleteFile() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+
+    String channelId = createTestChannelWithMembers(creatorId, userIds);
+    createdChannelIds.add(channelId);
+
+    // Create a temporary text file
+    java.io.File tempFile = java.io.File.createTempFile("chat-test-", ".txt");
+    java.nio.file.Files.writeString(tempFile.toPath(), "hello world test file content");
+
+    try {
+      // Upload the file
+      var uploadResp =
+          chat.uploadChannelFile(
+                  "messaging",
+                  channelId,
+                  UploadChannelFileRequest.builder()
+                      .file(tempFile.getAbsolutePath())
+                      .user(OnlyUserID.builder().id(creatorId).build())
+                      .build())
+              .execute();
+
+      assertNotNull(uploadResp.getData(), "Upload file response should not be null");
+      assertNotNull(uploadResp.getData().getFile(), "Uploaded file URL should not be null");
+      assertTrue(
+          uploadResp.getData().getFile().contains("http"),
+          "File URL should be a valid HTTP URL");
+
+      String fileUrl = uploadResp.getData().getFile();
+
+      // Delete the uploaded file
+      var deleteResp =
+          chat.deleteChannelFile(
+                  "messaging",
+                  channelId,
+                  DeleteChannelFileRequest.builder().Url(fileUrl).build())
+              .execute();
+
+      assertNotNull(deleteResp.getData(), "Delete file response should not be null");
+    } finally {
+      tempFile.delete();
+    }
+  }
 }
