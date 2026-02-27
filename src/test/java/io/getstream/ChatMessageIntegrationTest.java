@@ -277,6 +277,38 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(10)
+  void testSearchMessages() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    String channelId = createTestChannel(userId);
+    createdChannelIds.add(channelId);
+
+    String uniqueTerm = "searchterm-" + randomString(12);
+    sendTestMessage("messaging", channelId, userId, "Message with " + uniqueTerm);
+
+    // Wait for search indexing
+    Thread.sleep(2000);
+
+    var resp =
+        chat.search(
+                SearchRequest.builder()
+                    .Payload(
+                        SearchPayload.builder()
+                            .query(uniqueTerm)
+                            .filterConditions(
+                                Map.of("cid", "messaging:" + channelId))
+                            .build())
+                    .build())
+            .execute();
+    assertNotNull(resp.getData());
+    assertNotNull(resp.getData().getResults());
+    assertFalse(resp.getData().getResults().isEmpty(), "Search should return at least 1 result");
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
