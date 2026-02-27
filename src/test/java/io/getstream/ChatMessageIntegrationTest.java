@@ -3,6 +3,8 @@ package io.getstream;
 import static org.junit.jupiter.api.Assertions.*;
 
 import io.getstream.models.*;
+import java.time.*;
+import java.time.format.*;
 import java.util.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Order;
@@ -716,6 +718,46 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     // delete_for_me only removes the message from the user's view,
     // so the API may return the original message (type="regular") or mark it deleted
     assertNotNull(resp.getData().getMessage().getId());
+  }
+
+  @Test
+  @Order(20)
+  void testPinExpiration() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+    String userId2 = userIds.get(1);
+
+    String channelId = createTestChannelWithMembers(userId, userIds);
+    createdChannelIds.add(channelId);
+
+    String messageId = sendTestMessage("messaging", channelId, userId2, "Message to pin with expiry " + randomString(8));
+
+    // Pin with 3-second expiration using updateMessagePartial
+    String expiry = Instant.now().plusSeconds(3).atOffset(ZoneOffset.UTC)
+        .format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+    Map<String, Object> setFields = new HashMap<>();
+    setFields.put("pinned", true);
+    setFields.put("pin_expires", expiry);
+
+    var pinResp =
+        chat.updateMessagePartial(
+                messageId,
+                UpdateMessagePartialRequest.builder()
+                    .set(setFields)
+                    .userID(userId)
+                    .build())
+            .execute();
+    assertNotNull(pinResp.getData().getMessage());
+    assertTrue(Boolean.TRUE.equals(pinResp.getData().getMessage().getPinned()), "Message should be pinned");
+
+    // Wait for pin to expire
+    Thread.sleep(4000);
+
+    // Verify pin expired
+    var getResp = chat.getMessage(messageId).execute();
+    assertNotNull(getResp.getData().getMessage());
+    assertFalse(Boolean.TRUE.equals(getResp.getData().getMessage().getPinned()), "Pin should have expired");
   }
 
   @Test
