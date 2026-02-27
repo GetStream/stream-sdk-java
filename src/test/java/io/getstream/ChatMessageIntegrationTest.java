@@ -166,6 +166,54 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(7)
+  void testPinUnpinMessage() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    String channelId = createTestChannel(userId);
+    createdChannelIds.add(channelId);
+
+    // Send a pinned message
+    var sendResp =
+        chat.sendMessage(
+                "messaging",
+                channelId,
+                SendMessageRequest.builder()
+                    .message(
+                        MessageRequest.builder()
+                            .text("Pinned message " + randomString(8))
+                            .userID(userId)
+                            .pinned(true)
+                            .build())
+                    .build())
+            .execute();
+    assertNotNull(sendResp.getData());
+    assertNotNull(sendResp.getData().getMessage());
+    String messageId = sendResp.getData().getMessage().getId();
+    assertTrue(Boolean.TRUE.equals(sendResp.getData().getMessage().getPinned()),
+        "Message should be pinned after send");
+
+    // Unpin via partial update
+    Map<String, Object> unpin = new HashMap<>();
+    unpin.put("pinned", false);
+    var unpinResp =
+        chat.updateMessagePartial(
+                messageId,
+                UpdateMessagePartialRequest.builder()
+                    .set(unpin)
+                    .userID(userId)
+                    .build())
+            .execute();
+    assertNotNull(unpinResp.getData());
+    assertNotNull(unpinResp.getData().getMessage());
+    assertTrue(Boolean.FALSE.equals(unpinResp.getData().getMessage().getPinned())
+        || unpinResp.getData().getMessage().getPinned() == null,
+        "Message should be unpinned after partial update");
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
