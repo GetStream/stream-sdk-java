@@ -387,6 +387,129 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(13)
+  void testQueryMessageHistory() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+    String userId2 = userIds.get(1);
+
+    String channelId = createTestChannelWithMembers(userId, userIds);
+    createdChannelIds.add(channelId);
+
+    // Send initial message
+    String messageId = sendTestMessage("messaging", channelId, userId, "initial text");
+
+    // Update by user1
+    chat.updateMessage(
+            messageId,
+            UpdateMessageRequest.builder()
+                .message(MessageRequest.builder().id(messageId).text("updated text").userID(userId).build())
+                .build())
+        .execute();
+
+    // Update by user2
+    chat.updateMessage(
+            messageId,
+            UpdateMessageRequest.builder()
+                .message(MessageRequest.builder().id(messageId).text("updated text 2").userID(userId2).build())
+                .build())
+        .execute();
+
+    try {
+      var histResp =
+          chat.queryMessageHistory(
+                  QueryMessageHistoryRequest.builder()
+                      .filter(Map.of("message_id", messageId))
+                      .sort(List.of())
+                      .build())
+              .execute();
+      assertNotNull(histResp.getData());
+      assertNotNull(histResp.getData().getMessageHistory());
+      assertTrue(
+          histResp.getData().getMessageHistory().size() >= 2,
+          "Should have at least 2 history entries");
+
+      for (var entry : histResp.getData().getMessageHistory()) {
+        assertEquals(messageId, entry.getMessageID());
+      }
+
+      // Default sort is descending: history[0] = most recent prior version, history[1] = original
+      assertEquals("updated text", histResp.getData().getMessageHistory().get(0).getText());
+      assertEquals(userId, histResp.getData().getMessageHistory().get(0).getMessageUpdatedByID());
+      assertEquals("initial text", histResp.getData().getMessageHistory().get(1).getText());
+      assertEquals(userId, histResp.getData().getMessageHistory().get(1).getMessageUpdatedByID());
+    } catch (Exception e) {
+      String msg = e.getMessage();
+      if (msg != null && (msg.contains("feature flag") || msg.contains("not enabled"))) {
+        org.junit.jupiter.api.Assumptions.assumeTrue(false, "QueryMessageHistory not enabled for this app");
+        return;
+      }
+      throw e;
+    }
+  }
+
+  @Test
+  @Order(14)
+  void testQueryMessageHistorySort() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    String channelId = createTestChannel(userId);
+    createdChannelIds.add(channelId);
+
+    // Send initial message
+    String messageId = sendTestMessage("messaging", channelId, userId, "sort initial");
+
+    // Update twice
+    chat.updateMessage(
+            messageId,
+            UpdateMessageRequest.builder()
+                .message(MessageRequest.builder().id(messageId).text("sort updated 1").userID(userId).build())
+                .build())
+        .execute();
+
+    chat.updateMessage(
+            messageId,
+            UpdateMessageRequest.builder()
+                .message(MessageRequest.builder().id(messageId).text("sort updated 2").userID(userId).build())
+                .build())
+        .execute();
+
+    try {
+      var histResp =
+          chat.queryMessageHistory(
+                  QueryMessageHistoryRequest.builder()
+                      .filter(Map.of("message_id", messageId))
+                      .sort(
+                          List.of(
+                              SortParamRequest.builder()
+                                  .field("message_updated_at")
+                                  .direction(1)
+                                  .build()))
+                      .build())
+              .execute();
+      assertNotNull(histResp.getData());
+      assertNotNull(histResp.getData().getMessageHistory());
+      assertTrue(
+          histResp.getData().getMessageHistory().size() >= 2,
+          "Should have at least 2 history entries");
+
+      // Ascending sort: oldest first
+      assertEquals("sort initial", histResp.getData().getMessageHistory().get(0).getText());
+      assertEquals(userId, histResp.getData().getMessageHistory().get(0).getMessageUpdatedByID());
+    } catch (Exception e) {
+      String msg = e.getMessage();
+      if (msg != null && (msg.contains("feature flag") || msg.contains("not enabled"))) {
+        org.junit.jupiter.api.Assumptions.assumeTrue(false, "QueryMessageHistory not enabled for this app");
+        return;
+      }
+      throw e;
+    }
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
