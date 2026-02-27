@@ -214,6 +214,28 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(8)
+  void testTranslateMessage() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    String channelId = createTestChannel(userId);
+    createdChannelIds.add(channelId);
+
+    String messageId = sendTestMessage("messaging", channelId, userId, "Hello, how are you?");
+
+    var resp =
+        chat.translateMessage(
+                messageId,
+                TranslateMessageRequest.builder().language("es").build())
+            .execute();
+    assertNotNull(resp.getData());
+    assertNotNull(resp.getData().getMessage(), "message should not be null after translation");
+    assertNotNull(resp.getData().getMessage().getI18n(), "i18n field should be set after translation");
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
