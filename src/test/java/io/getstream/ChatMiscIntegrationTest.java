@@ -661,6 +661,31 @@ class ChatMiscIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(17)
+  void testSendUserCustomEvent() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    // Send a custom event to the user (dots not allowed in event type)
+    var resp =
+        client
+            .chat()
+            .sendUserCustomEvent(
+                userId,
+                SendUserCustomEventRequest.builder()
+                    .event(
+                        UserCustomEventRequest.builder()
+                            .type("friendship_request")
+                            .custom(Map.of("message", "Let's be friends!"))
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(resp.getData(), "SendUserCustomEvent response should not be null");
+  }
+
+  @Test
   @Order(16)
   void testReminders() throws Exception {
     List<String> userIds = createTestUsers(1);
