@@ -689,6 +689,36 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(19)
+  void testDeleteMessageForMe() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+    String otherUserId = userIds.get(1);
+
+    String channelId = createTestChannelWithMembers(userId, userIds);
+    createdChannelIds.add(channelId);
+
+    String text = "Message to delete for me " + randomString(8);
+    String messageId = sendTestMessage("messaging", channelId, userId, text);
+
+    // Delete the message only for the current user
+    var resp =
+        chat.deleteMessage(
+                messageId,
+                DeleteMessageRequest.builder()
+                    .DeleteForMe(true)
+                    .DeletedBy(userId)
+                    .build())
+            .execute();
+    assertNotNull(resp.getData());
+    assertNotNull(resp.getData().getMessage());
+    // delete_for_me only removes the message from the user's view,
+    // so the API may return the original message (type="regular") or mark it deleted
+    assertNotNull(resp.getData().getMessage().getId());
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
