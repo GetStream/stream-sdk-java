@@ -35,6 +35,54 @@ class ModerationIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(3)
+  void testFlagMessageAndUser() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+    String flaggerId = userIds.get(1);
+
+    // Create a channel with both users as members
+    String channelId = createTestChannelWithMembers(userId, userIds);
+    createdChannelIds.add(channelId);
+
+    // Send a message to flag
+    String msgId = sendTestMessage("messaging", channelId, userId, "Message to be flagged");
+
+    ModerationImpl moderation = new ModerationImpl(client.getHttpClient());
+
+    // Flag the message
+    var flagMsgResp =
+        moderation
+            .flag(
+                FlagRequest.builder()
+                    .entityID(msgId)
+                    .entityType("stream:chat:v1:message")
+                    .entityCreatorID(userId)
+                    .userID(flaggerId)
+                    .reason("inappropriate content")
+                    .build())
+            .execute();
+    assertNotNull(flagMsgResp.getData(), "Flag message response data should not be null");
+    assertNotNull(flagMsgResp.getData().getItemID(), "Flag should return an item ID");
+
+    // Flag the user
+    var flagUserResp =
+        moderation
+            .flag(
+                FlagRequest.builder()
+                    .entityID(userId)
+                    .entityType("stream:user")
+                    .entityCreatorID(userId)
+                    .userID(flaggerId)
+                    .reason("spam")
+                    .build())
+            .execute();
+    assertNotNull(flagUserResp.getData(), "Flag user response data should not be null");
+    assertNotNull(flagUserResp.getData().getItemID(), "Flag user should return an item ID");
+  }
+
+  @Test
   @Order(2)
   void testMuteUnmuteUser() throws Exception {
     List<String> userIds = createTestUsers(2);
