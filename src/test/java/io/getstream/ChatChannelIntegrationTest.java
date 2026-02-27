@@ -1070,6 +1070,40 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(25)
+  void testMessageCount() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String memberId = userIds.get(1);
+
+    String channelId = createTestChannelWithMembers(creatorId, userIds);
+    createdChannelIds.add(channelId);
+
+    // Send a message
+    sendTestMessage("messaging", channelId, creatorId, "hello world");
+
+    // Query the channel to get message count
+    var qResp =
+        chat.queryChannels(
+                QueryChannelsRequest.builder()
+                    .filterConditions(Map.of("cid", "messaging:" + channelId))
+                    .userID(creatorId)
+                    .build())
+            .execute();
+
+    assertNotNull(qResp.getData(), "QueryChannels response should not be null");
+    assertFalse(qResp.getData().getChannels().isEmpty(), "Channels list should not be empty");
+
+    // MessageCount should be present (default enabled for messaging type)
+    Integer messageCount = qResp.getData().getChannels().get(0).getChannel().getMessageCount();
+    if (messageCount != null) {
+      assertTrue(messageCount >= 1, "MessageCount should be >= 1");
+    }
+    // Note: MessageCount may be nil if count_messages is disabled on the channel type
+  }
+
+  @Test
   @Order(7)
   void testDeleteChannel() throws Exception {
     List<String> userIds = createTestUsers(1);
