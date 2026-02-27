@@ -889,6 +889,40 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(25)
+  void testSearchOffsetAndSortError() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    String channelId = createTestChannelWithMembers(userId, userIds);
+    createdChannelIds.add(channelId);
+
+    sendTestMessage("messaging", channelId, userId, "search offset sort test " + randomString(8));
+
+    // The API now ALLOWS using Offset with Sort (no error expected)
+    var resp =
+        chat.search(
+                SearchRequest.builder()
+                    .Payload(
+                        SearchPayload.builder()
+                            .filterConditions(
+                                Map.of("members", Map.of("$in", List.of(userId))))
+                            .query("test")
+                            .offset(0)
+                            .sort(
+                                List.of(
+                                    SortParamRequest.builder()
+                                        .field("created_at")
+                                        .direction(-1)
+                                        .build()))
+                            .build())
+                    .build())
+            .execute();
+    assertNotNull(resp.getData(), "Search with offset+sort should succeed");
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
