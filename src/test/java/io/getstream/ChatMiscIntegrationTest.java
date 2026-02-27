@@ -26,6 +26,57 @@ class ChatMiscIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(2)
+  void testCreateListDeleteBlocklist() throws Exception {
+    String blocklistName = "test-blocklist-" + randomString(8);
+
+    try {
+      // Create blocklist
+      var createResp =
+          client
+              .createBlockList(
+                  CreateBlockListRequest.builder()
+                      .name(blocklistName)
+                      .words(List.of("badword1", "badword2", "badword3"))
+                      .build())
+              .execute();
+      assertNotNull(createResp.getData());
+
+      // Wait for eventual consistency
+      Thread.sleep(500);
+
+      // List blocklists and verify found
+      var listResp = client.listBlockLists().execute();
+      assertNotNull(listResp.getData().getBlocklists());
+      boolean found = false;
+      for (BlockListResponse bl : listResp.getData().getBlocklists()) {
+        if (blocklistName.equals(bl.getName())) {
+          found = true;
+        }
+      }
+      assertTrue(found, "Created blocklist should appear in list");
+
+      // Delete blocklist
+      client.deleteBlockList(blocklistName).execute();
+
+      // Verify deleted - list again and check it's gone
+      var listAfter = client.listBlockLists().execute();
+      if (listAfter.getData().getBlocklists() != null) {
+        for (BlockListResponse bl : listAfter.getData().getBlocklists()) {
+          assertNotEquals(blocklistName, bl.getName(), "Blocklist should be deleted");
+        }
+      }
+    } catch (Exception e) {
+      // Cleanup on failure
+      try {
+        client.deleteBlockList(blocklistName).execute();
+      } catch (Exception ignored) {
+      }
+      throw e;
+    }
+  }
+
+  @Test
   @Order(1)
   void testCreateListDeleteDevice() throws Exception {
     List<String> userIds = createTestUsers(1);
