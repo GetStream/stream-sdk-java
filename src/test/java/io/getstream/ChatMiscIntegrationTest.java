@@ -298,4 +298,30 @@ class ChatMiscIntegrationTest extends ChatTestBase {
     assertNotNull(resp.getData().getPermissions(), "Permissions list should not be null");
     assertFalse(resp.getData().getPermissions().isEmpty(), "Should have at least one permission");
   }
+
+  @Test
+  @Order(7)
+  void testCreatePermission() throws Exception {
+    // CreatePermission is marked Ignore: true in the backend spec and is therefore
+    // not available in the generated Java SDK. Per the getstream-go reference:
+    // "CreatePermission is hidden from the generated spec (Ignore: true in backend)."
+    // This test documents that the endpoint is not supported in this SDK version.
+    Assumptions.assumeTrue(
+        false,
+        "CreatePermission is not available in the generated SDK (Ignore: true in backend spec)");
+  }
+
+  @Test
+  @Order(8)
+  void testGetPermission() throws Exception {
+    // Get a specific well-known permission by ID
+    var resp = client.getPermission("create-channel").execute();
+    assertNotNull(resp.getData(), "Response data should not be null");
+    assertNotNull(resp.getData().getPermission(), "Permission should not be null");
+    assertEquals("create-channel", resp.getData().getPermission().getId(), "Permission ID should match");
+    assertNotNull(resp.getData().getPermission().getAction(), "Permission action should not be null");
+    assertFalse(
+        resp.getData().getPermission().getAction().isEmpty(),
+        "Permission action should not be empty");
+  }
 }
