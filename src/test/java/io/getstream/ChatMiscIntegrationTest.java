@@ -411,6 +411,15 @@ class ChatMiscIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(11)
+  void testGetAppSettings() throws Exception {
+    var resp = client.getApp().execute();
+    assertNotNull(resp.getData(), "Response data should not be null");
+    assertNotNull(resp.getData().getDuration(), "Duration should not be null");
+    assertNotNull(resp.getData().getApp(), "App settings should not be null");
+  }
+
+  @Test
   @Order(10)
   void testMuteUnmuteUser() throws Exception {
     List<String> userIds = createTestUsers(2);
