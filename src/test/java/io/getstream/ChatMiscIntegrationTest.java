@@ -290,4 +290,12 @@ class ChatMiscIntegrationTest extends ChatTestBase {
       }
     }
   }
+
+  @Test
+  @Order(6)
+  void testListPermissions() throws Exception {
+    var resp = client.listPermissions().execute();
+    assertNotNull(resp.getData().getPermissions(), "Permissions list should not be null");
+    assertFalse(resp.getData().getPermissions().isEmpty(), "Should have at least one permission");
+  }
 }
