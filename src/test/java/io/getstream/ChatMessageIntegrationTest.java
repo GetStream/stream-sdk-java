@@ -128,6 +128,44 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(5)
+  void testDeleteMessage() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    String channelId = createTestChannel(userId);
+    createdChannelIds.add(channelId);
+
+    String messageId = sendTestMessage("messaging", channelId, userId, "to-delete-" + randomString(8));
+
+    var resp =
+        chat.deleteMessage(messageId, DeleteMessageRequest.builder().build()).execute();
+    assertNotNull(resp.getData());
+    assertNotNull(resp.getData().getMessage());
+    assertEquals("deleted", resp.getData().getMessage().getType());
+  }
+
+  @Test
+  @Order(6)
+  void testHardDeleteMessage() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    String channelId = createTestChannel(userId);
+    createdChannelIds.add(channelId);
+
+    String messageId = sendTestMessage("messaging", channelId, userId, "to-hard-delete-" + randomString(8));
+
+    var resp =
+        chat.deleteMessage(messageId, DeleteMessageRequest.builder().Hard(true).build()).execute();
+    assertNotNull(resp.getData());
+    assertNotNull(resp.getData().getMessage());
+    assertEquals("deleted", resp.getData().getMessage().getType());
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
