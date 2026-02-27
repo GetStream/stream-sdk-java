@@ -747,4 +747,66 @@ public class VideoIntegrationTest extends BasicTest {
     assertNotNull(taskId);
     waitForAsyncTask(taskId);
   }
+
+  @Test
+  @Order(14)
+  void testTeams() throws Exception {
+    String callId = "vid-teams-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+    String userId = "vid-teams-user-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+
+    // Create user with teams
+    Map<String, UserRequest> usersMap = new HashMap<>();
+    usersMap.put(
+        userId,
+        UserRequest.builder().id(userId).name("Teams User").teams(List.of("red", "blue")).build());
+    client.updateUsers(UpdateUsersRequest.builder().users(usersMap).build()).execute();
+
+    // Create call with team="blue"
+    var createResp =
+        video
+            .getOrCreateCall(
+                "default",
+                callId,
+                GetOrCreateCallRequest.builder()
+                    .data(CallRequest.builder().createdByID(userId).team("blue").build())
+                    .build())
+            .execute();
+    assertNotNull(createResp.getData());
+    assertEquals("blue", createResp.getData().getCall().getTeam());
+    createdCallIds.add(callId);
+
+    // Query users with teams filter - verify user is found
+    var usersResp =
+        client
+            .queryUsers(
+                QueryUsersRequest.builder()
+                    .Payload(
+                        QueryUsersPayload.builder()
+                            .filterConditions(
+                                Map.of(
+                                    "id",
+                                    userId,
+                                    "teams",
+                                    Map.of("$in", List.of("red", "blue"))))
+                            .build())
+                    .build())
+            .execute();
+    assertNotNull(usersResp.getData());
+    assertTrue(usersResp.getData().getUsers().size() > 0);
+    boolean userFound =
+        usersResp.getData().getUsers().stream().anyMatch(u -> userId.equals(u.getId()));
+    assertTrue(userFound, "Expected user with teams to be found in query result");
+
+    // Query calls with team filter - verify call is found
+    var callsResp =
+        video
+            .queryCalls(
+                QueryCallsRequest.builder()
+                    .filterConditions(
+                        Map.of("id", callId, "team", Map.of("$eq", "blue")))
+                    .build())
+            .execute();
+    assertNotNull(callsResp.getData());
+    assertTrue(callsResp.getData().getCalls().size() > 0, "Expected call with team to be found");
+  }
 }
