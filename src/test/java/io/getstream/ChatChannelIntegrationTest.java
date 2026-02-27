@@ -660,6 +660,77 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(19)
+  void testAddDemoteModerators() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String memberId = userIds.get(1);
+
+    String channelId = createTestChannelWithMembers(creatorId, userIds);
+    createdChannelIds.add(channelId);
+
+    // Add memberId as moderator
+    chat.updateChannel(
+            "messaging",
+            channelId,
+            UpdateChannelRequest.builder()
+                .addModerators(List.of(memberId))
+                .build())
+        .execute();
+
+    // Verify via QueryMembers that the role is channel_moderator
+    var afterPromote =
+        chat.queryMembers(
+                QueryMembersRequest.builder()
+                    .Payload(
+                        QueryMembersPayload.builder()
+                            .type("messaging")
+                            .id(channelId)
+                            .filterConditions(Map.of("user_id", memberId))
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(afterPromote.getData(), "QueryMembers response should not be null");
+    assertFalse(afterPromote.getData().getMembers().isEmpty(), "Members list should not be empty");
+    assertEquals(
+        "channel_moderator",
+        afterPromote.getData().getMembers().get(0).getChannelRole(),
+        "Member should have channel_moderator role after promotion");
+
+    // Demote memberId back to regular member
+    chat.updateChannel(
+            "messaging",
+            channelId,
+            UpdateChannelRequest.builder()
+                .demoteModerators(List.of(memberId))
+                .build())
+        .execute();
+
+    // Verify role is back to channel_member
+    var afterDemote =
+        chat.queryMembers(
+                QueryMembersRequest.builder()
+                    .Payload(
+                        QueryMembersPayload.builder()
+                            .type("messaging")
+                            .id(channelId)
+                            .filterConditions(Map.of("user_id", memberId))
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(afterDemote.getData(), "QueryMembers response should not be null after demote");
+    assertFalse(
+        afterDemote.getData().getMembers().isEmpty(), "Members list should not be empty after demote");
+    assertEquals(
+        "channel_member",
+        afterDemote.getData().getMembers().get(0).getChannelRole(),
+        "Member should be back to channel_member role after demotion");
+  }
+
+  @Test
   @Order(14)
   void testFreezeUnfreezeChannel() throws Exception {
     List<String> userIds = createTestUsers(1);
