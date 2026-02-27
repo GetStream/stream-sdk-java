@@ -649,6 +649,42 @@ public class VideoIntegrationTest extends BasicTest {
   }
 
   @Test
+  @Order(12)
+  void testDeleteCall() throws Exception {
+    // Create a call
+    String callId = "test-call-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+
+    video
+        .getOrCreateCall(
+            "default",
+            callId,
+            GetOrCreateCallRequest.builder()
+                .data(CallRequest.builder().createdByID(testUsers.get(0).getId()).build())
+                .build())
+        .execute();
+
+    // Soft delete the call
+    var deleteResp =
+        video.deleteCall("default", callId, DeleteCallRequest.builder().build()).execute();
+
+    assertNotNull(deleteResp.getData());
+    assertNotNull(deleteResp.getData().getCall());
+    assertNull(deleteResp.getData().getTaskID());
+
+    // Verify the call is no longer found
+    try {
+      video.getCall("default", callId).execute();
+      fail("Expected exception when getting deleted call");
+    } catch (Exception e) {
+      assertTrue(
+          e.getMessage().contains("Can't find call with id")
+              || e.getMessage().contains("not found")
+              || e.getMessage().contains("404"),
+          "Expected 'not found' error but got: " + e.getMessage());
+    }
+  }
+
+  @Test
   @Order(8)
   void testDeactivateUser() throws Exception {
     // Create two fresh users for this test (alice and bob)
