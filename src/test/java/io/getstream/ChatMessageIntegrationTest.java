@@ -53,4 +53,37 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     assertNotNull(resp.getData().getMessage());
     assertEquals(text, resp.getData().getMessage().getText());
   }
+
+  @Test
+  @Order(2)
+  void testGetManyMessages() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    String channelId = createTestChannel(userId);
+    createdChannelIds.add(channelId);
+
+    String id1 = sendTestMessage("messaging", channelId, userId, "msg1-" + randomString(6));
+    String id2 = sendTestMessage("messaging", channelId, userId, "msg2-" + randomString(6));
+    String id3 = sendTestMessage("messaging", channelId, userId, "msg3-" + randomString(6));
+
+    var resp =
+        chat.getManyMessages(
+                "messaging",
+                channelId,
+                GetManyMessagesRequest.builder().Ids(List.of(id1, id2, id3)).build())
+            .execute();
+    assertNotNull(resp.getData());
+    assertNotNull(resp.getData().getMessages());
+    assertEquals(3, resp.getData().getMessages().size());
+
+    Set<String> returnedIds = new HashSet<>();
+    for (var msg : resp.getData().getMessages()) {
+      returnedIds.add(msg.getId());
+    }
+    assertTrue(returnedIds.contains(id1));
+    assertTrue(returnedIds.contains(id2));
+    assertTrue(returnedIds.contains(id3));
+  }
 }
