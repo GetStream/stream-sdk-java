@@ -930,6 +930,79 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(23)
+  void testArchiveUnarchiveChannel() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String memberId = userIds.get(1);
+
+    String channelId = createTestChannelWithMembers(creatorId, userIds);
+    createdChannelIds.add(channelId);
+    String cid = "messaging:" + channelId;
+
+    // Archive the channel for memberId via UpdateMemberPartial
+    var archiveResp =
+        chat.updateMemberPartial(
+                "messaging",
+                channelId,
+                UpdateMemberPartialRequest.builder()
+                    .UserID(memberId)
+                    .set(Map.of("archived", true))
+                    .build())
+            .execute();
+
+    assertNotNull(archiveResp.getData(), "Archive response should not be null");
+    assertNotNull(
+        archiveResp.getData().getChannelMember(), "ChannelMember should not be null after archive");
+
+    // Verify archived via QueryChannels with archived=true filter
+    var archivedResp =
+        chat.queryChannels(
+                QueryChannelsRequest.builder()
+                    .filterConditions(Map.of("archived", true, "cid", cid))
+                    .userID(memberId)
+                    .build())
+            .execute();
+
+    assertNotNull(archivedResp.getData(), "QueryChannels (archived=true) response should not be null");
+    assertFalse(
+        archivedResp.getData().getChannels().isEmpty(),
+        "Channel should appear in archived=true query after archiving");
+
+    // Unarchive the channel for memberId
+    var unarchiveResp =
+        chat.updateMemberPartial(
+                "messaging",
+                channelId,
+                UpdateMemberPartialRequest.builder()
+                    .UserID(memberId)
+                    .set(Map.of("archived", false))
+                    .build())
+            .execute();
+
+    assertNotNull(unarchiveResp.getData(), "Unarchive response should not be null");
+    assertNotNull(
+        unarchiveResp.getData().getChannelMember(),
+        "ChannelMember should not be null after unarchive");
+
+    // Verify unarchived via QueryChannels with archived=false filter
+    var unarchivedResp =
+        chat.queryChannels(
+                QueryChannelsRequest.builder()
+                    .filterConditions(Map.of("archived", false, "cid", cid))
+                    .userID(memberId)
+                    .build())
+            .execute();
+
+    assertNotNull(
+        unarchivedResp.getData(), "QueryChannels (archived=false) response should not be null");
+    assertFalse(
+        unarchivedResp.getData().getChannels().isEmpty(),
+        "Channel should appear in archived=false query after unarchiving");
+  }
+
+  @Test
   @Order(7)
   void testDeleteChannel() throws Exception {
     List<String> userIds = createTestUsers(1);
