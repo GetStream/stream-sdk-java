@@ -411,6 +411,53 @@ class ChatMiscIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(12)
+  void testExportChannels() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    // Create channel with a message to export
+    String channelId = createTestChannelWithMembers(userId, userIds);
+    sendTestMessage("messaging", channelId, userId, "export test message");
+
+    try {
+      // Export the channel
+      var exportResp =
+          client
+              .chat()
+              .exportChannels(
+                  ExportChannelsRequest.builder()
+                      .channels(
+                          List.of(
+                              ChannelExport.builder()
+                                  .type("messaging")
+                                  .id(channelId)
+                                  .build()))
+                      .build())
+              .execute();
+
+      assertNotNull(exportResp.getData(), "Export response data should not be null");
+      assertNotNull(exportResp.getData().getTaskID(), "Task ID should not be null");
+      assertFalse(exportResp.getData().getTaskID().isEmpty(), "Task ID should not be empty");
+
+      // Poll task until completed
+      String taskId = exportResp.getData().getTaskID();
+      waitForTask(taskId);
+
+    } finally {
+      try {
+        client
+            .chat()
+            .deleteChannel(
+                "messaging", channelId, DeleteChannelRequest.builder().HardDelete(true).build())
+            .execute();
+      } catch (Exception ignored) {
+      }
+    }
+  }
+
+  @Test
   @Order(11)
   void testGetAppSettings() throws Exception {
     var resp = client.getApp().execute();
