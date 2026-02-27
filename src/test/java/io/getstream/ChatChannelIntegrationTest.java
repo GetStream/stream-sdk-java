@@ -315,6 +315,41 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(12)
+  void testHideShowChannel() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+    String memberId = userIds.get(1);
+
+    // Create channel with both users as members
+    String channelId = createTestChannelWithMembers(creatorId, userIds);
+    createdChannelIds.add(channelId);
+
+    // Hide the channel for memberId
+    var hideResp =
+        chat.hideChannel(
+                "messaging",
+                channelId,
+                HideChannelRequest.builder().userID(memberId).build())
+            .execute();
+
+    assertNotNull(hideResp.getData(), "HideChannel response should not be null");
+    assertNotNull(hideResp.getData().getDuration(), "Duration should not be null");
+
+    // Show the channel for memberId
+    var showResp =
+        chat.showChannel(
+                "messaging",
+                channelId,
+                ShowChannelRequest.builder().userID(memberId).build())
+            .execute();
+
+    assertNotNull(showResp.getData(), "ShowChannel response should not be null");
+    assertNotNull(showResp.getData().getDuration(), "Duration should not be null");
+  }
+
+  @Test
   @Order(10)
   void testQueryMembers() throws Exception {
     List<String> userIds = createTestUsers(3);
