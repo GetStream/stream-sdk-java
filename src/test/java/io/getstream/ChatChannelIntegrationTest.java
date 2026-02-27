@@ -1161,4 +1161,32 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     assertNotNull(custom, "Channel custom data should not be null");
     assertEquals("blue", custom.get("color"), "Custom field 'color' should be 'blue'");
   }
+
+  @Test
+  @Order(26)
+  void testSendChannelEvent() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+
+    String channelId = createTestChannelWithMembers(creatorId, userIds);
+    createdChannelIds.add(channelId);
+
+    // Send a typing.start event
+    var resp =
+        chat.sendEvent(
+                "messaging",
+                channelId,
+                SendEventRequest.builder()
+                    .event(
+                        EventRequest.builder()
+                            .type("typing.start")
+                            .userID(creatorId)
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(resp.getData(), "SendChannelEvent response should not be null");
+    assertNotNull(resp.getData().getDuration(), "Duration should not be null");
+  }
 }
