@@ -229,4 +229,55 @@ public class VideoIntegrationTest extends BasicTest {
     assertNotNull(resp.getData().getMembers());
     assertTrue(resp.getData().getMembers().size() >= 2);
   }
+
+  @Test
+  @Order(3)
+  void testBlockUnblockUserFromCalls() throws Exception {
+    // Create a call
+    String callId = "test-call-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+    createdCallIds.add(callId);
+
+    video
+        .getOrCreateCall(
+            "default",
+            callId,
+            GetOrCreateCallRequest.builder()
+                .data(
+                    CallRequest.builder()
+                        .createdByID(testUsers.get(0).getId())
+                        .build())
+                .build())
+        .execute();
+
+    // Use a second test user as the "bad" user to block
+    String badUserId = testUsers.get(1).getId();
+
+    // Block the user from the call
+    var blockResp =
+        video
+            .blockUser("default", callId, BlockUserRequest.builder().userID(badUserId).build())
+            .execute();
+    assertNotNull(blockResp.getData());
+
+    // Verify the user is in the blocked list
+    var getResp = video.getCall("default", callId).execute();
+    assertNotNull(getResp.getData());
+    assertNotNull(getResp.getData().getCall());
+    assertNotNull(getResp.getData().getCall().getBlockedUserIds());
+    assertTrue(getResp.getData().getCall().getBlockedUserIds().contains(badUserId));
+
+    // Unblock the user
+    var unblockResp =
+        video
+            .unblockUser("default", callId, UnblockUserRequest.builder().userID(badUserId).build())
+            .execute();
+    assertNotNull(unblockResp.getData());
+
+    // Verify the user is no longer in the blocked list
+    var getResp2 = video.getCall("default", callId).execute();
+    assertNotNull(getResp2.getData());
+    assertNotNull(getResp2.getData().getCall());
+    List<String> blockedIds = getResp2.getData().getCall().getBlockedUserIds();
+    assertTrue(blockedIds == null || !blockedIds.contains(badUserId));
+  }
 }
