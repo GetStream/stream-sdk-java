@@ -1202,6 +1202,50 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(28)
+  void testMessageCountDisabled() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+
+    String channelId = createTestChannelWithMembers(creatorId, userIds);
+    createdChannelIds.add(channelId);
+    String cid = "messaging:" + channelId;
+
+    // Disable count_messages via config_overrides partial update
+    Map<String, Object> configOverrides = new HashMap<>();
+    configOverrides.put("count_messages", false);
+    Map<String, Object> setFields = new HashMap<>();
+    setFields.put("config_overrides", configOverrides);
+
+    chat.updateChannelPartial(
+            "messaging",
+            channelId,
+            UpdateChannelPartialRequest.builder()
+                .set(setFields)
+                .build())
+        .execute();
+
+    // Send a message
+    sendTestMessage("messaging", channelId, creatorId, "hello world disabled count");
+
+    // Query the channel - MessageCount should be nil when count_messages is disabled
+    var resp =
+        chat.queryChannels(
+                QueryChannelsRequest.builder()
+                    .filterConditions(Map.of("cid", cid))
+                    .userID(creatorId)
+                    .build())
+            .execute();
+
+    assertNotNull(resp.getData(), "QueryChannels response should not be null");
+    assertFalse(resp.getData().getChannels().isEmpty(), "Channels list should not be empty");
+    Integer messageCount =
+        resp.getData().getChannels().get(0).getChannel().getMessageCount();
+    assertNull(messageCount, "MessageCount should be null when count_messages is disabled");
+  }
+
+  @Test
   @Order(26)
   void testSendChannelEvent() throws Exception {
     List<String> userIds = createTestUsers(2);
