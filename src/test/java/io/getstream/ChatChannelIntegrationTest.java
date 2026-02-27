@@ -199,6 +199,47 @@ class ChatChannelIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(8)
+  void testHardDeleteChannels() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String creatorId = userIds.get(0);
+
+    // Create 2 channels but do NOT track them in createdChannelIds (we delete them explicitly)
+    String channelId1 = createTestChannel(creatorId);
+    String channelId2 = createTestChannel(creatorId);
+
+    List<String> cids =
+        List.of("messaging:" + channelId1, "messaging:" + channelId2);
+
+    // Hard delete both channels via batch endpoint with retry for rate limiting
+    String taskId = null;
+    for (int i = 0; i < 10; i++) {
+      try {
+        var resp =
+            chat.deleteChannels(
+                    DeleteChannelsRequest.builder()
+                        .cids(cids)
+                        .hardDelete(true)
+                        .build())
+                .execute();
+        assertNotNull(resp.getData(), "DeleteChannels response should not be null");
+        taskId = resp.getData().getTaskID();
+        break;
+      } catch (Exception e) {
+        if (!e.getMessage().contains("Too many requests")) throw e;
+        Thread.sleep((i + 1) * 3000L);
+      }
+    }
+
+    assertNotNull(taskId, "TaskID should not be null for hard delete");
+    assertFalse(taskId.isEmpty(), "TaskID should not be empty");
+
+    // Poll task until completed
+    waitForTask(taskId);
+  }
+
+  @Test
   @Order(7)
   void testDeleteChannel() throws Exception {
     List<String> userIds = createTestUsers(1);
