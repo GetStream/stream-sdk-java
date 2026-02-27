@@ -35,6 +35,65 @@ class ModerationIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(2)
+  void testMuteUnmuteUser() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String muterId = userIds.get(0);
+    String targetId = userIds.get(1);
+
+    ModerationImpl moderation = new ModerationImpl(client.getHttpClient());
+
+    // Mute target user as muter (no timeout)
+    var muteResp =
+        moderation
+            .mute(
+                MuteRequest.builder()
+                    .targetIds(List.of(targetId))
+                    .userID(muterId)
+                    .build())
+            .execute();
+
+    assertNotNull(muteResp.getData(), "Mute response data should not be null");
+    assertNotNull(muteResp.getData().getMutes(), "Mutes list should not be null");
+    assertFalse(muteResp.getData().getMutes().isEmpty(), "Mutes list should not be empty");
+
+    var mute = muteResp.getData().getMutes().get(0);
+    assertNotNull(mute.getUser(), "Mute should have a User");
+    assertNotNull(mute.getTarget(), "Mute should have a Target");
+    assertNull(mute.getExpires(), "Mute without timeout should have no Expires");
+
+    // Verify mute appears in QueryUsers for the muting user
+    var queryResp =
+        client
+            .queryUsers(
+                QueryUsersRequest.builder()
+                    .Payload(
+                        QueryUsersPayload.builder()
+                            .filterConditions(Map.of("id", Map.of("$eq", muterId)))
+                            .build())
+                    .build())
+            .execute();
+    assertNotNull(queryResp.getData().getUsers());
+    assertFalse(queryResp.getData().getUsers().isEmpty(), "Should find the muting user");
+    var muterUser = queryResp.getData().getUsers().get(0);
+    assertNotNull(muterUser.getMutes(), "User should have mutes after muting");
+    assertFalse(muterUser.getMutes().isEmpty(), "User mutes list should not be empty");
+
+    // Unmute the target user
+    var unmuteResp =
+        moderation
+            .unmute(
+                UnmuteRequest.builder()
+                    .targetIds(List.of(targetId))
+                    .userID(muterId)
+                    .build())
+            .execute();
+
+    assertNotNull(unmuteResp.getData(), "Unmute response data should not be null");
+  }
+
+  @Test
   @Order(1)
   void testBanUnbanUser() throws Exception {
     List<String> userIds = createTestUsers(2);
