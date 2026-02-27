@@ -409,4 +409,48 @@ class ChatMiscIntegrationTest extends ChatTestBase {
       }
     }
   }
+
+  @Test
+  @Order(10)
+  void testMuteUnmuteUser() throws Exception {
+    List<String> userIds = createTestUsers(2);
+    createdUserIds.addAll(userIds);
+    String muterId = userIds.get(0);
+    String targetId = userIds.get(1);
+
+    ModerationImpl moderation = new ModerationImpl(client.getHttpClient());
+
+    // Mute target user as muter
+    var muteResp =
+        moderation
+            .mute(
+                MuteRequest.builder()
+                    .targetIds(List.of(targetId))
+                    .userID(muterId)
+                    .build())
+            .execute();
+
+    assertNotNull(muteResp.getData(), "Mute response data should not be null");
+    // Verify mutes list includes the target user
+    assertNotNull(muteResp.getData().getMutes(), "Mutes list should not be null");
+    boolean found = false;
+    for (UserMuteResponse mute : muteResp.getData().getMutes()) {
+      if (mute.getTarget() != null && targetId.equals(mute.getTarget().getId())) {
+        found = true;
+      }
+    }
+    assertTrue(found, "Target user should be in mutes list");
+
+    // Unmute the target user
+    var unmuteResp =
+        moderation
+            .unmute(
+                UnmuteRequest.builder()
+                    .targetIds(List.of(targetId))
+                    .userID(muterId)
+                    .build())
+            .execute();
+
+    assertNotNull(unmuteResp.getData(), "Unmute response data should not be null");
+  }
 }
