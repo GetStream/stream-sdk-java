@@ -445,6 +445,81 @@ public class VideoIntegrationTest extends BasicTest {
   }
 
   @Test
+  @Order(9)
+  void testCreateCallWithSessionTimer() throws Exception {
+    // Create a call with max_duration_seconds = 3600 via settingsOverride
+    String callId = "test-call-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
+    createdCallIds.add(callId);
+
+    var createResp =
+        video
+            .getOrCreateCall(
+                "default",
+                callId,
+                GetOrCreateCallRequest.builder()
+                    .data(
+                        CallRequest.builder()
+                            .createdByID(testUsers.get(0).getId())
+                            .settingsOverride(
+                                CallSettingsRequest.builder()
+                                    .limits(
+                                        LimitsSettingsRequest.builder()
+                                            .maxDurationSeconds(3600)
+                                            .build())
+                                    .build())
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(createResp.getData());
+    assertNotNull(createResp.getData().getCall());
+    assertNotNull(createResp.getData().getCall().getSettings());
+    assertNotNull(createResp.getData().getCall().getSettings().getLimits());
+    assertEquals(3600, createResp.getData().getCall().getSettings().getLimits().getMaxDurationSeconds());
+
+    // Update the call to max_duration_seconds = 7200
+    var updateResp =
+        video
+            .updateCall(
+                "default",
+                callId,
+                UpdateCallRequest.builder()
+                    .settingsOverride(
+                        CallSettingsRequest.builder()
+                            .limits(
+                                LimitsSettingsRequest.builder()
+                                    .maxDurationSeconds(7200)
+                                    .build())
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(updateResp.getData());
+    assertNotNull(updateResp.getData().getCall().getSettings().getLimits());
+    assertEquals(7200, updateResp.getData().getCall().getSettings().getLimits().getMaxDurationSeconds());
+
+    // Update the call to max_duration_seconds = 0 (disable)
+    var updateResp2 =
+        video
+            .updateCall(
+                "default",
+                callId,
+                UpdateCallRequest.builder()
+                    .settingsOverride(
+                        CallSettingsRequest.builder()
+                            .limits(
+                                LimitsSettingsRequest.builder()
+                                    .maxDurationSeconds(0)
+                                    .build())
+                            .build())
+                    .build())
+            .execute();
+
+    assertNotNull(updateResp2.getData());
+    assertEquals(0, updateResp2.getData().getCall().getSettings().getLimits().getMaxDurationSeconds());
+  }
+
+  @Test
   @Order(8)
   void testDeactivateUser() throws Exception {
     // Create two fresh users for this test (alice and bob)
