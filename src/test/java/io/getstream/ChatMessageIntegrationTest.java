@@ -826,6 +826,41 @@ class ChatMessageIntegrationTest extends ChatTestBase {
   }
 
   @Test
+  @Order(23)
+  void testSearchWithMessageFilters() throws Exception {
+    List<String> userIds = createTestUsers(1);
+    createdUserIds.addAll(userIds);
+    String userId = userIds.get(0);
+
+    String channelId = createTestChannelWithMembers(userId, userIds);
+    createdChannelIds.add(channelId);
+
+    String searchTerm = "filterable" + randomString(8);
+    sendTestMessage("messaging", channelId, userId, "This has " + searchTerm + " text");
+    sendTestMessage("messaging", channelId, userId, "This also has " + searchTerm + " text");
+
+    // Wait for search indexing
+    Thread.sleep(2000);
+
+    var resp =
+        chat.search(
+                SearchRequest.builder()
+                    .Payload(
+                        SearchPayload.builder()
+                            .filterConditions(Map.of("cid", "messaging:" + channelId))
+                            .messageFilterConditions(
+                                Map.of("text", Map.of("$q", searchTerm)))
+                            .build())
+                    .build())
+            .execute();
+    assertNotNull(resp.getData());
+    assertNotNull(resp.getData().getResults());
+    assertTrue(
+        resp.getData().getResults().size() >= 2,
+        "Should find at least 2 messages with messageFilterConditions");
+  }
+
+  @Test
   @Order(2)
   void testGetManyMessages() throws Exception {
     List<String> userIds = createTestUsers(1);
