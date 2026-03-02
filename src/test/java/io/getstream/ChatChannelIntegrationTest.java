@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import io.getstream.models.*;
 import java.util.*;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.MethodOrderer;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -23,9 +23,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     for (String channelId : createdChannelIds) {
       try {
         chat.deleteChannel(
-                "messaging",
-                channelId,
-                DeleteChannelRequest.builder().HardDelete(true).build())
+                "messaging", channelId, DeleteChannelRequest.builder().HardDelete(true).build())
             .execute();
       } catch (Exception ignored) {
       }
@@ -48,9 +46,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     // Verify channel exists by querying
     var resp =
         chat.queryChannels(
-                QueryChannelsRequest.builder()
-                    .filterConditions(Map.of("id", channelId))
-                    .build())
+                QueryChannelsRequest.builder().filterConditions(Map.of("id", channelId)).build())
             .execute();
 
     assertNotNull(resp.getData());
@@ -71,9 +67,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     // Query the channel back and verify member count >= 3
     var resp =
         chat.queryChannels(
-                QueryChannelsRequest.builder()
-                    .filterConditions(Map.of("id", channelId))
-                    .build())
+                QueryChannelsRequest.builder().filterConditions(Map.of("id", channelId)).build())
             .execute();
 
     assertNotNull(resp.getData());
@@ -103,8 +97,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
         chat.getOrCreateDistinctChannel(
                 "messaging",
                 GetOrCreateDistinctChannelRequest.builder()
-                    .data(
-                        ChannelInput.builder().createdByID(creatorId).members(members).build())
+                    .data(ChannelInput.builder().createdByID(creatorId).members(members).build())
                     .build())
             .execute();
 
@@ -120,8 +113,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
         chat.getOrCreateDistinctChannel(
                 "messaging",
                 GetOrCreateDistinctChannelRequest.builder()
-                    .data(
-                        ChannelInput.builder().createdByID(creatorId).members(members).build())
+                    .data(ChannelInput.builder().createdByID(creatorId).members(members).build())
                     .build())
             .execute();
 
@@ -185,9 +177,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
         chat.updateChannelPartial(
                 "messaging",
                 channelId,
-                UpdateChannelPartialRequest.builder()
-                    .unset(List.of("color"))
-                    .build())
+                UpdateChannelPartialRequest.builder().unset(List.of("color")).build())
             .execute();
 
     assertNotNull(unsetResp.getData(), "PartialUpdate (unset) response should not be null");
@@ -226,10 +216,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
 
     // Verify members added (should have at least 4 members)
     var resp1 =
-        chat.getOrCreateChannel(
-                "messaging",
-                channelId,
-                GetOrCreateChannelRequest.builder().build())
+        chat.getOrCreateChannel("messaging", channelId, GetOrCreateChannelRequest.builder().build())
             .execute();
     assertNotNull(resp1.getData());
     assertTrue(
@@ -241,22 +228,16 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     chat.updateChannel(
             "messaging",
             channelId,
-            UpdateChannelRequest.builder()
-                .removeMembers(List.of(memberId3))
-                .build())
+            UpdateChannelRequest.builder().removeMembers(List.of(memberId3)).build())
         .execute();
 
     // Verify member3 is removed
     var resp2 =
-        chat.getOrCreateChannel(
-                "messaging",
-                channelId,
-                GetOrCreateChannelRequest.builder().build())
+        chat.getOrCreateChannel("messaging", channelId, GetOrCreateChannelRequest.builder().build())
             .execute();
     assertNotNull(resp2.getData());
     boolean memberFound =
-        resp2.getData().getMembers().stream()
-            .anyMatch(m -> memberId3.equals(m.getUserID()));
+        resp2.getData().getMembers().stream().anyMatch(m -> memberId3.equals(m.getUserID()));
     assertFalse(memberFound, "member3 should have been removed from the channel");
   }
 
@@ -294,10 +275,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
         chat.updateChannel(
                 "messaging",
                 channelId,
-                UpdateChannelRequest.builder()
-                    .acceptInvite(true)
-                    .userID(invitee1Id)
-                    .build())
+                UpdateChannelRequest.builder().acceptInvite(true).userID(invitee1Id).build())
             .execute();
     assertNotNull(acceptResp.getData(), "AcceptInvite response should not be null");
 
@@ -306,10 +284,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
         chat.updateChannel(
                 "messaging",
                 channelId,
-                UpdateChannelRequest.builder()
-                    .rejectInvite(true)
-                    .userID(invitee2Id)
-                    .build())
+                UpdateChannelRequest.builder().rejectInvite(true).userID(invitee2Id).build())
             .execute();
     assertNotNull(rejectResp.getData(), "RejectInvite response should not be null");
   }
@@ -331,10 +306,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
 
     // Truncate the channel
     var truncResp =
-        chat.truncateChannel(
-                "messaging",
-                channelId,
-                TruncateChannelRequest.builder().build())
+        chat.truncateChannel("messaging", channelId, TruncateChannelRequest.builder().build())
             .execute();
 
     assertNotNull(truncResp.getData(), "TruncateChannel response should not be null");
@@ -342,10 +314,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
 
     // Verify channel messages are now empty
     var resp =
-        chat.getOrCreateChannel(
-                "messaging",
-                channelId,
-                GetOrCreateChannelRequest.builder().build())
+        chat.getOrCreateChannel("messaging", channelId, GetOrCreateChannelRequest.builder().build())
             .execute();
 
     assertNotNull(resp.getData(), "GetOrCreateChannel response should not be null");
@@ -371,9 +340,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     // Hide the channel for memberId
     var hideResp =
         chat.hideChannel(
-                "messaging",
-                channelId,
-                HideChannelRequest.builder().userID(memberId).build())
+                "messaging", channelId, HideChannelRequest.builder().userID(memberId).build())
             .execute();
 
     assertNotNull(hideResp.getData(), "HideChannel response should not be null");
@@ -382,9 +349,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     // Show the channel for memberId
     var showResp =
         chat.showChannel(
-                "messaging",
-                channelId,
-                ShowChannelRequest.builder().userID(memberId).build())
+                "messaging", channelId, ShowChannelRequest.builder().userID(memberId).build())
             .execute();
 
     assertNotNull(showResp.getData(), "ShowChannel response should not be null");
@@ -433,19 +398,14 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     String channelId1 = createTestChannel(creatorId);
     String channelId2 = createTestChannel(creatorId);
 
-    List<String> cids =
-        List.of("messaging:" + channelId1, "messaging:" + channelId2);
+    List<String> cids = List.of("messaging:" + channelId1, "messaging:" + channelId2);
 
     // Hard delete both channels via batch endpoint with retry for rate limiting
     String taskId = null;
     for (int i = 0; i < 10; i++) {
       try {
         var resp =
-            chat.deleteChannels(
-                    DeleteChannelsRequest.builder()
-                        .cids(cids)
-                        .hardDelete(true)
-                        .build())
+            chat.deleteChannels(DeleteChannelsRequest.builder().cids(cids).hardDelete(true).build())
                 .execute();
         assertNotNull(resp.getData(), "DeleteChannels response should not be null");
         taskId = resp.getData().getTaskID();
@@ -479,14 +439,12 @@ class ChatChannelIntegrationTest extends ChatTestBase {
 
     // Mark the channel as read for memberId
     var markReadResp =
-        chat.markRead(
-                "messaging",
-                channelId,
-                MarkReadRequest.builder().userID(memberId).build())
+        chat.markRead("messaging", channelId, MarkReadRequest.builder().userID(memberId).build())
             .execute();
 
     assertNotNull(markReadResp.getData(), "MarkRead response should not be null");
-    assertNotNull(markReadResp.getData().getDuration(), "Duration should not be null after markRead");
+    assertNotNull(
+        markReadResp.getData().getDuration(), "Duration should not be null after markRead");
 
     // Mark the channel as unread from that message for memberId
     var markUnreadResp =
@@ -497,7 +455,8 @@ class ChatChannelIntegrationTest extends ChatTestBase {
             .execute();
 
     assertNotNull(markUnreadResp.getData(), "MarkUnread response should not be null");
-    assertNotNull(markUnreadResp.getData().getDuration(), "Duration should not be null after markUnread");
+    assertNotNull(
+        markUnreadResp.getData().getDuration(), "Duration should not be null after markUnread");
   }
 
   @Test
@@ -515,10 +474,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     // Mute the channel for memberId
     var muteResp =
         chat.muteChannel(
-                MuteChannelRequest.builder()
-                    .channelCids(List.of(cid))
-                    .userID(memberId)
-                    .build())
+                MuteChannelRequest.builder().channelCids(List.of(cid)).userID(memberId).build())
             .execute();
 
     assertNotNull(muteResp.getData(), "MuteChannel response should not be null");
@@ -541,10 +497,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     // Unmute the channel for memberId
     var unmuteResp =
         chat.unmuteChannel(
-                UnmuteChannelRequest.builder()
-                    .channelCids(List.of(cid))
-                    .userID(memberId)
-                    .build())
+                UnmuteChannelRequest.builder().channelCids(List.of(cid)).userID(memberId).build())
             .execute();
 
     assertNotNull(unmuteResp.getData(), "UnmuteChannel response should not be null");
@@ -688,10 +641,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
         .execute();
 
     // Mark channel as read first
-    chat.markRead(
-            "messaging",
-            channelId,
-            MarkReadRequest.builder().userID(memberId).build())
+    chat.markRead("messaging", channelId, MarkReadRequest.builder().userID(memberId).build())
         .execute();
 
     // Mark unread from thread (using the parent message ID as the thread ID)
@@ -699,10 +649,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
         chat.markUnread(
                 "messaging",
                 channelId,
-                MarkUnreadRequest.builder()
-                    .userID(memberId)
-                    .threadID(parentMsgId)
-                    .build())
+                MarkUnreadRequest.builder().userID(memberId).threadID(parentMsgId).build())
             .execute();
 
     assertNotNull(markUnreadResp.getData(), "MarkUnread (thread) response should not be null");
@@ -726,9 +673,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     chat.updateChannel(
             "messaging",
             channelId,
-            UpdateChannelRequest.builder()
-                .addModerators(List.of(memberId))
-                .build())
+            UpdateChannelRequest.builder().addModerators(List.of(memberId)).build())
         .execute();
 
     // Verify via QueryMembers that the role is channel_moderator
@@ -755,9 +700,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     chat.updateChannel(
             "messaging",
             channelId,
-            UpdateChannelRequest.builder()
-                .demoteModerators(List.of(memberId))
-                .build())
+            UpdateChannelRequest.builder().demoteModerators(List.of(memberId)).build())
         .execute();
 
     // Verify role is back to channel_member
@@ -775,7 +718,8 @@ class ChatChannelIntegrationTest extends ChatTestBase {
 
     assertNotNull(afterDemote.getData(), "QueryMembers response should not be null after demote");
     assertFalse(
-        afterDemote.getData().getMembers().isEmpty(), "Members list should not be empty after demote");
+        afterDemote.getData().getMembers().isEmpty(),
+        "Members list should not be empty after demote");
     assertEquals(
         "channel_member",
         afterDemote.getData().getMembers().get(0).getChannelRole(),
@@ -832,13 +776,12 @@ class ChatChannelIntegrationTest extends ChatTestBase {
         chat.updateChannelPartial(
                 "messaging",
                 channelId,
-                UpdateChannelPartialRequest.builder()
-                    .set(Map.of("frozen", true))
-                    .build())
+                UpdateChannelPartialRequest.builder().set(Map.of("frozen", true)).build())
             .execute();
 
     assertNotNull(freezeResp.getData(), "Freeze response should not be null");
-    assertNotNull(freezeResp.getData().getChannel(), "Channel in freeze response should not be null");
+    assertNotNull(
+        freezeResp.getData().getChannel(), "Channel in freeze response should not be null");
     Boolean frozenAfterFreeze = freezeResp.getData().getChannel().getFrozen();
     assertNotNull(frozenAfterFreeze, "Frozen field should not be null after freeze");
     assertTrue(frozenAfterFreeze, "Channel should be frozen after setting frozen=true");
@@ -848,13 +791,12 @@ class ChatChannelIntegrationTest extends ChatTestBase {
         chat.updateChannelPartial(
                 "messaging",
                 channelId,
-                UpdateChannelPartialRequest.builder()
-                    .set(Map.of("frozen", false))
-                    .build())
+                UpdateChannelPartialRequest.builder().set(Map.of("frozen", false)).build())
             .execute();
 
     assertNotNull(unfreezeResp.getData(), "Unfreeze response should not be null");
-    assertNotNull(unfreezeResp.getData().getChannel(), "Channel in unfreeze response should not be null");
+    assertNotNull(
+        unfreezeResp.getData().getChannel(), "Channel in unfreeze response should not be null");
     Boolean frozenAfterUnfreeze = unfreezeResp.getData().getChannel().getFrozen();
     assertNotNull(frozenAfterUnfreeze, "Frozen field should not be null after unfreeze");
     assertFalse(frozenAfterUnfreeze, "Channel should be unfrozen after setting frozen=false");
@@ -884,7 +826,8 @@ class ChatChannelIntegrationTest extends ChatTestBase {
             .execute();
 
     assertNotNull(pinResp.getData(), "Pin response should not be null");
-    assertNotNull(pinResp.getData().getChannelMember(), "ChannelMember should not be null after pin");
+    assertNotNull(
+        pinResp.getData().getChannelMember(), "ChannelMember should not be null after pin");
 
     // Verify pinned via QueryChannels with pinned=true filter
     var pinnedResp =
@@ -912,7 +855,8 @@ class ChatChannelIntegrationTest extends ChatTestBase {
             .execute();
 
     assertNotNull(unpinResp.getData(), "Unpin response should not be null");
-    assertNotNull(unpinResp.getData().getChannelMember(), "ChannelMember should not be null after unpin");
+    assertNotNull(
+        unpinResp.getData().getChannelMember(), "ChannelMember should not be null after unpin");
 
     // Verify unpinned via QueryChannels with pinned=false filter
     var unpinnedResp =
@@ -923,7 +867,8 @@ class ChatChannelIntegrationTest extends ChatTestBase {
                     .build())
             .execute();
 
-    assertNotNull(unpinnedResp.getData(), "QueryChannels (pinned=false) response should not be null");
+    assertNotNull(
+        unpinnedResp.getData(), "QueryChannels (pinned=false) response should not be null");
     assertFalse(
         unpinnedResp.getData().getChannels().isEmpty(),
         "Channel should appear in pinned=false query after unpinning");
@@ -965,7 +910,8 @@ class ChatChannelIntegrationTest extends ChatTestBase {
                     .build())
             .execute();
 
-    assertNotNull(archivedResp.getData(), "QueryChannels (archived=true) response should not be null");
+    assertNotNull(
+        archivedResp.getData(), "QueryChannels (archived=true) response should not be null");
     assertFalse(
         archivedResp.getData().getChannels().isEmpty(),
         "Channel should appear in archived=true query after archiving");
@@ -1064,9 +1010,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
         roleMap.get(moderatorId),
         "moderator user should have channel_moderator role");
     assertEquals(
-        "channel_member",
-        roleMap.get(memberId),
-        "member user should have channel_member role");
+        "channel_member", roleMap.get(memberId), "member user should have channel_member role");
   }
 
   @Test
@@ -1115,10 +1059,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
 
     // Soft delete the channel
     var resp =
-        chat.deleteChannel(
-                "messaging",
-                channelId,
-                DeleteChannelRequest.builder().build())
+        chat.deleteChannel("messaging", channelId, DeleteChannelRequest.builder().build())
             .execute();
 
     assertNotNull(resp.getData(), "DeleteChannel response should not be null");
@@ -1143,15 +1084,9 @@ class ChatChannelIntegrationTest extends ChatTestBase {
                 "messaging",
                 channelId,
                 UpdateChannelRequest.builder()
-                    .data(
-                        ChannelInputRequest.builder()
-                            .custom(Map.of("color", "blue"))
-                            .build())
+                    .data(ChannelInputRequest.builder().custom(Map.of("color", "blue")).build())
                     .message(
-                        MessageRequest.builder()
-                            .text("Channel updated")
-                            .userID(creatorId)
-                            .build())
+                        MessageRequest.builder().text("Channel updated").userID(creatorId).build())
                     .build())
             .execute();
 
@@ -1176,17 +1111,12 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     chat.updateChannel(
             "messaging",
             channelId,
-            UpdateChannelRequest.builder()
-                .addFilterTags(List.of("sports", "news"))
-                .build())
+            UpdateChannelRequest.builder().addFilterTags(List.of("sports", "news")).build())
         .execute();
 
     // Verify tags were added by querying
     var resp =
-        chat.getOrCreateChannel(
-                "messaging",
-                channelId,
-                GetOrCreateChannelRequest.builder().build())
+        chat.getOrCreateChannel("messaging", channelId, GetOrCreateChannelRequest.builder().build())
             .execute();
     assertNotNull(resp.getData(), "GetOrCreate response should not be null");
     assertNotNull(resp.getData().getChannel(), "Channel should not be null");
@@ -1195,9 +1125,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     chat.updateChannel(
             "messaging",
             channelId,
-            UpdateChannelRequest.builder()
-                .removeFilterTags(List.of("sports"))
-                .build())
+            UpdateChannelRequest.builder().removeFilterTags(List.of("sports")).build())
         .execute();
   }
 
@@ -1219,11 +1147,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     setFields.put("config_overrides", configOverrides);
 
     chat.updateChannelPartial(
-            "messaging",
-            channelId,
-            UpdateChannelPartialRequest.builder()
-                .set(setFields)
-                .build())
+            "messaging", channelId, UpdateChannelPartialRequest.builder().set(setFields).build())
         .execute();
 
     // Send a message
@@ -1240,8 +1164,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
 
     assertNotNull(resp.getData(), "QueryChannels response should not be null");
     assertFalse(resp.getData().getChannels().isEmpty(), "Channels list should not be empty");
-    Integer messageCount =
-        resp.getData().getChannels().get(0).getChannel().getMessageCount();
+    Integer messageCount = resp.getData().getChannels().get(0).getChannel().getMessageCount();
     assertNull(messageCount, "MessageCount should be null when count_messages is disabled");
   }
 
@@ -1307,11 +1230,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
                 "messaging",
                 channelId,
                 SendEventRequest.builder()
-                    .event(
-                        EventRequest.builder()
-                            .type("typing.start")
-                            .userID(creatorId)
-                            .build())
+                    .event(EventRequest.builder().type("typing.start").userID(creatorId).build())
                     .build())
             .execute();
 
@@ -1394,17 +1313,14 @@ class ChatChannelIntegrationTest extends ChatTestBase {
       assertNotNull(uploadResp.getData(), "Upload file response should not be null");
       assertNotNull(uploadResp.getData().getFile(), "Uploaded file URL should not be null");
       assertTrue(
-          uploadResp.getData().getFile().contains("http"),
-          "File URL should be a valid HTTP URL");
+          uploadResp.getData().getFile().contains("http"), "File URL should be a valid HTTP URL");
 
       String fileUrl = uploadResp.getData().getFile();
 
       // Delete the uploaded file
       var deleteResp =
           chat.deleteChannelFile(
-                  "messaging",
-                  channelId,
-                  DeleteChannelFileRequest.builder().Url(fileUrl).build())
+                  "messaging", channelId, DeleteChannelFileRequest.builder().Url(fileUrl).build())
               .execute();
 
       assertNotNull(deleteResp.getData(), "Delete file response should not be null");
@@ -1440,17 +1356,14 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     assertNotNull(uploadResp.getData(), "Upload image response should not be null");
     assertNotNull(uploadResp.getData().getFile(), "Uploaded image URL should not be null");
     assertTrue(
-        uploadResp.getData().getFile().contains("http"),
-        "Image URL should be a valid HTTP URL");
+        uploadResp.getData().getFile().contains("http"), "Image URL should be a valid HTTP URL");
 
     String imageUrl = uploadResp.getData().getFile();
 
     // Delete the uploaded image
     var deleteResp =
         chat.deleteChannelImage(
-                "messaging",
-                channelId,
-                DeleteChannelImageRequest.builder().Url(imageUrl).build())
+                "messaging", channelId, DeleteChannelImageRequest.builder().Url(imageUrl).build())
             .execute();
 
     assertNotNull(deleteResp.getData(), "Delete image response should not be null");

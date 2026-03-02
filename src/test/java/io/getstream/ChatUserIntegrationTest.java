@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import io.getstream.models.*;
 import java.util.*;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.MethodOrderer;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -141,15 +141,12 @@ class ChatUserIntegrationTest extends ChatTestBase {
 
     // Block bob from alice's perspective
     client
-        .blockUsers(
-            BlockUsersRequest.builder().blockedUserID(bobId).userID(aliceId).build())
+        .blockUsers(BlockUsersRequest.builder().blockedUserID(bobId).userID(aliceId).build())
         .execute();
 
     // Verify bob is in alice's blocked list
     var blockedResp =
-        client
-            .getBlockedUsers(GetBlockedUsersRequest.builder().UserID(aliceId).build())
-            .execute();
+        client.getBlockedUsers(GetBlockedUsersRequest.builder().UserID(aliceId).build()).execute();
 
     assertNotNull(blockedResp.getData());
     List<BlockedUserResponse> blocks = blockedResp.getData().getBlocks();
@@ -159,15 +156,12 @@ class ChatUserIntegrationTest extends ChatTestBase {
 
     // Unblock bob
     client
-        .unblockUsers(
-            UnblockUsersRequest.builder().blockedUserID(bobId).userID(aliceId).build())
+        .unblockUsers(UnblockUsersRequest.builder().blockedUserID(bobId).userID(aliceId).build())
         .execute();
 
     // Verify bob is no longer in alice's blocked list
     var unblockedResp =
-        client
-            .getBlockedUsers(GetBlockedUsersRequest.builder().UserID(aliceId).build())
-            .execute();
+        client.getBlockedUsers(GetBlockedUsersRequest.builder().UserID(aliceId).build()).execute();
 
     assertNotNull(unblockedResp.getData());
     List<BlockedUserResponse> remainingBlocks = unblockedResp.getData().getBlocks();
@@ -239,16 +233,17 @@ class ChatUserIntegrationTest extends ChatTestBase {
 
       assertNotNull(resp.getData(), "CreateGuest response data should not be null");
       assertNotNull(resp.getData().getAccessToken(), "Access token should not be null");
-      assertFalse(
-          resp.getData().getAccessToken().isEmpty(), "Access token should not be empty");
+      assertFalse(resp.getData().getAccessToken().isEmpty(), "Access token should not be empty");
       assertNotNull(resp.getData().getUser(), "User should not be null");
       assertTrue(
           resp.getData().getUser().getId().contains(guestId),
           "User ID should contain the requested guest ID");
     } catch (Exception e) {
       String msg = e.getMessage();
-      if (msg != null && (msg.contains("guest") || msg.contains("disabled") || msg.contains("not enabled"))) {
-        org.junit.jupiter.api.Assumptions.assumeTrue(false, "Guest user creation not enabled for this app");
+      if (msg != null
+          && (msg.contains("guest") || msg.contains("disabled") || msg.contains("not enabled"))) {
+        org.junit.jupiter.api.Assumptions.assumeTrue(
+            false, "Guest user creation not enabled for this app");
       }
       throw e;
     }
@@ -284,7 +279,8 @@ class ChatUserIntegrationTest extends ChatTestBase {
     assertNotNull(user.getTeams(), "Teams should not be null");
     assertTrue(user.getTeams().contains("blue"), "Teams should contain 'blue'");
     assertNotNull(user.getTeamsRole(), "TeamsRole should not be null");
-    assertEquals("admin", user.getTeamsRole().get("blue"), "TeamsRole for 'blue' should be 'admin'");
+    assertEquals(
+        "admin", user.getTeamsRole().get("blue"), "TeamsRole for 'blue' should be 'admin'");
   }
 
   @Test
@@ -319,7 +315,8 @@ class ChatUserIntegrationTest extends ChatTestBase {
     assertNotNull(user.getTeams(), "Teams should not be null");
     assertTrue(user.getTeams().contains("blue"), "Teams should contain 'blue'");
     assertNotNull(user.getTeamsRole(), "TeamsRole should not be null");
-    assertEquals("admin", user.getTeamsRole().get("blue"), "TeamsRole for 'blue' should be 'admin'");
+    assertEquals(
+        "admin", user.getTeamsRole().get("blue"), "TeamsRole for 'blue' should be 'admin'");
   }
 
   @Test
@@ -383,7 +380,8 @@ class ChatUserIntegrationTest extends ChatTestBase {
             .build());
     var resp2 = client.updateUsers(UpdateUsersRequest.builder().users(users2).build()).execute();
     assertNotNull(resp2.getData());
-    assertNotNull(resp2.getData().getUsers().get(userId), "User should be in response after second update");
+    assertNotNull(
+        resp2.getData().getUsers().get(userId), "User should be in response after second update");
 
     // Verify via query
     var query2 =
@@ -407,11 +405,13 @@ class ChatUserIntegrationTest extends ChatTestBase {
       PrivacySettingsResponse ps = queried2.getPrivacySettings();
       if (ps.getTypingIndicators() != null) {
         assertTrue(
-            ps.getTypingIndicators().getEnabled(), "TypingIndicators should be enabled after second update");
+            ps.getTypingIndicators().getEnabled(),
+            "TypingIndicators should be enabled after second update");
       }
       if (ps.getReadReceipts() != null) {
         assertFalse(
-            ps.getReadReceipts().getEnabled(), "ReadReceipts should be disabled after second update");
+            ps.getReadReceipts().getEnabled(),
+            "ReadReceipts should be disabled after second update");
       }
     }
   }
@@ -441,7 +441,8 @@ class ChatUserIntegrationTest extends ChatTestBase {
                     .build())
             .execute();
     assertNotNull(resp1.getData());
-    assertNotNull(resp1.getData().getUsers().get(userId), "User should be in partial update response");
+    assertNotNull(
+        resp1.getData().getUsers().get(userId), "User should be in partial update response");
 
     // Verify typing_indicators set, read_receipts still null
     var query1 =
@@ -472,12 +473,15 @@ class ChatUserIntegrationTest extends ChatTestBase {
       // ReadReceipts is either null or its enabled state is not set to false yet
       PrivacySettingsResponse ps1 = queried1.getPrivacySettings();
       if (ps1.getReadReceipts() != null) {
-        // If present, it was set via a previous test - we just note this is the state before our second update
-        // The key behavior is that our first partial update did NOT wipe out privacy_settings or break existing ones
+        // If present, it was set via a previous test - we just note this is the state before our
+        // second update
+        // The key behavior is that our first partial update did NOT wipe out privacy_settings or
+        // break existing ones
       }
     }
 
-    // Step 2: Partial update to set read_receipts.enabled=false only (should NOT clear typing_indicators)
+    // Step 2: Partial update to set read_receipts.enabled=false only (should NOT clear
+    // typing_indicators)
     Map<String, Object> readMap = new HashMap<>();
     readMap.put("enabled", false);
     Map<String, Object> privacyMap2 = new HashMap<>();
@@ -495,7 +499,8 @@ class ChatUserIntegrationTest extends ChatTestBase {
                     .build())
             .execute();
     assertNotNull(resp2.getData());
-    assertNotNull(resp2.getData().getUsers().get(userId), "User should be in second partial update response");
+    assertNotNull(
+        resp2.getData().getUsers().get(userId), "User should be in second partial update response");
 
     // Verify both typing_indicators and read_receipts are correct
     var query2 =
@@ -559,8 +564,12 @@ class ChatUserIntegrationTest extends ChatTestBase {
     for (FullUserResponse u : withoutDeactivated) {
       foundIdsWithout.add(u.getId());
     }
-    assertTrue(foundIdsWithout.contains(activeId), "Active user should appear in query without include_deactivated");
-    assertFalse(foundIdsWithout.contains(deactivatedId), "Deactivated user should NOT appear in query without include_deactivated");
+    assertTrue(
+        foundIdsWithout.contains(activeId),
+        "Active user should appear in query without include_deactivated");
+    assertFalse(
+        foundIdsWithout.contains(deactivatedId),
+        "Deactivated user should NOT appear in query without include_deactivated");
 
     // Query with include_deactivated=true - should find both users
     var respWith =
@@ -581,8 +590,12 @@ class ChatUserIntegrationTest extends ChatTestBase {
     for (FullUserResponse u : withDeactivated) {
       foundIdsWith.add(u.getId());
     }
-    assertTrue(foundIdsWith.contains(activeId), "Active user should appear in query with include_deactivated");
-    assertTrue(foundIdsWith.contains(deactivatedId), "Deactivated user should appear in query with include_deactivated=true");
+    assertTrue(
+        foundIdsWith.contains(activeId),
+        "Active user should appear in query with include_deactivated");
+    assertTrue(
+        foundIdsWith.contains(deactivatedId),
+        "Deactivated user should appear in query with include_deactivated=true");
 
     // Reactivate so cleanup can delete the user
     client.reactivateUser(deactivatedId).execute();
@@ -596,10 +609,7 @@ class ChatUserIntegrationTest extends ChatTestBase {
 
     // Deactivate multiple users at once (async task)
     var resp =
-        client
-            .deactivateUsers(
-                DeactivateUsersRequest.builder().userIds(userIds).build())
-            .execute();
+        client.deactivateUsers(DeactivateUsersRequest.builder().userIds(userIds).build()).execute();
 
     assertNotNull(resp.getData(), "DeactivateUsers response data should not be null");
     String taskId = resp.getData().getTaskID();
@@ -628,7 +638,8 @@ class ChatUserIntegrationTest extends ChatTestBase {
     for (String userId : userIds) {
       try {
         client.reactivateUser(userId).execute();
-      } catch (Exception ignored) {}
+      } catch (Exception ignored) {
+      }
     }
   }
 
@@ -660,7 +671,9 @@ class ChatUserIntegrationTest extends ChatTestBase {
     FullUserResponse createdUser = createResp.getData().getUsers().get(userId);
     assertNotNull(createdUser, "Created user should be in response");
     assertNotNull(createdUser.getCustom(), "Custom data should not be null in create response");
-    assertEquals("blue", createdUser.getCustom().get("favorite_color"),
+    assertEquals(
+        "blue",
+        createdUser.getCustom().get("favorite_color"),
         "favorite_color should be 'blue' in create response");
 
     // Query back and verify persistence
@@ -683,8 +696,8 @@ class ChatUserIntegrationTest extends ChatTestBase {
             .orElse(null);
     assertNotNull(queried, "User should be found in query results");
     assertNotNull(queried.getCustom(), "Custom data should persist after query");
-    assertEquals("blue", queried.getCustom().get("favorite_color"),
-        "favorite_color should persist");
+    assertEquals(
+        "blue", queried.getCustom().get("favorite_color"), "favorite_color should persist");
     assertNotNull(queried.getCustom().get("tags"), "tags should persist");
   }
 

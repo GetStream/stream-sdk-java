@@ -35,9 +35,7 @@ class ChatPollsIntegrationTest extends ChatTestBase {
     for (String channelId : createdChannelIds) {
       try {
         chat.deleteChannel(
-                "messaging",
-                channelId,
-                DeleteChannelRequest.builder().HardDelete(true).build())
+                "messaging", channelId, DeleteChannelRequest.builder().HardDelete(true).build())
             .execute();
       } catch (Exception ignored) {
       }
@@ -89,10 +87,7 @@ class ChatPollsIntegrationTest extends ChatTestBase {
       var queryResp =
           client
               .queryPolls(
-                  QueryPollsRequest.builder()
-                      .UserID(userId)
-                      .filter(Map.of("id", pollId))
-                      .build())
+                  QueryPollsRequest.builder().UserID(userId).filter(Map.of("id", pollId)).build())
               .execute();
 
       assertNotNull(queryResp.getData().getPolls());
@@ -145,8 +140,7 @@ class ChatPollsIntegrationTest extends ChatTestBase {
       createdPollIds.add(pollId);
 
       // Create a channel with both users as members
-      String channelId =
-          createTestChannelWithMembers(creatorId, Arrays.asList(creatorId, voterId));
+      String channelId = createTestChannelWithMembers(creatorId, Arrays.asList(creatorId, voterId));
       createdChannelIds.add(channelId);
 
       // Send a message with the poll attached

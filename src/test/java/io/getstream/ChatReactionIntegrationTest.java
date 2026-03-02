@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import io.getstream.models.*;
 import java.util.*;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.MethodOrderer;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -23,9 +23,7 @@ class ChatReactionIntegrationTest extends ChatTestBase {
     for (String channelId : createdChannelIds) {
       try {
         chat.deleteChannel(
-                "messaging",
-                channelId,
-                DeleteChannelRequest.builder().HardDelete(true).build())
+                "messaging", channelId, DeleteChannelRequest.builder().HardDelete(true).build())
             .execute();
       } catch (Exception ignored) {
       }
@@ -96,10 +94,7 @@ class ChatReactionIntegrationTest extends ChatTestBase {
         .execute();
 
     // Delete the reaction
-    chat.deleteReaction(
-            messageId,
-            "like",
-            DeleteReactionRequest.builder().UserID(userId).build())
+    chat.deleteReaction(messageId, "like", DeleteReactionRequest.builder().UserID(userId).build())
         .execute();
 
     // Verify reaction is gone
@@ -146,8 +141,7 @@ class ChatReactionIntegrationTest extends ChatTestBase {
     // Verify user has exactly 1 reaction
     var getResp = chat.getReactions(messageId).execute();
     List<ReactionResponse> reactions = getResp.getData().getReactions();
-    long userReactionCount =
-        reactions.stream().filter(r -> userId.equals(r.getUserID())).count();
+    long userReactionCount = reactions.stream().filter(r -> userId.equals(r.getUserID())).count();
     assertEquals(1, userReactionCount, "EnforceUnique should keep only one reaction per user");
   }
 }

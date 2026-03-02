@@ -51,8 +51,8 @@ public class ChatTestBase extends BasicTest {
   }
 
   /**
-   * Creates a messaging channel with the given creator and members. Returns the channel ID.
-   * Callers should hard-delete the channel in @AfterAll cleanup.
+   * Creates a messaging channel with the given creator and members. Returns the channel ID. Callers
+   * should hard-delete the channel in @AfterAll cleanup.
    */
   protected String createTestChannelWithMembers(String creatorId, List<String> memberIds)
       throws Exception {
@@ -75,8 +75,8 @@ public class ChatTestBase extends BasicTest {
    * Sends a message to the specified channel as the given user. Returns the message ID. Asserts
    * that the message ID is non-null.
    */
-  protected String sendTestMessage(
-      String channelType, String channelId, String userId, String text) throws Exception {
+  protected String sendTestMessage(String channelType, String channelId, String userId, String text)
+      throws Exception {
     var resp =
         chat.sendMessage(
                 channelType,

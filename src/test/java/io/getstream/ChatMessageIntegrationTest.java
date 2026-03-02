@@ -7,11 +7,11 @@ import java.time.*;
 import java.time.format.*;
 import java.util.*;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.MethodOrderer;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -25,9 +25,7 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     for (String channelId : createdChannelIds) {
       try {
         chat.deleteChannel(
-                "messaging",
-                channelId,
-                DeleteChannelRequest.builder().HardDelete(true).build())
+                "messaging", channelId, DeleteChannelRequest.builder().HardDelete(true).build())
             .execute();
       } catch (Exception ignored) {
       }
@@ -75,7 +73,11 @@ class ChatMessageIntegrationTest extends ChatTestBase {
                 messageId,
                 UpdateMessageRequest.builder()
                     .message(
-                        MessageRequest.builder().id(messageId).text(updatedText).userID(userId).build())
+                        MessageRequest.builder()
+                            .id(messageId)
+                            .text(updatedText)
+                            .userID(userId)
+                            .build())
                     .build())
             .execute();
     assertNotNull(resp.getData());
@@ -104,10 +106,7 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     var setResp =
         chat.updateMessagePartial(
                 messageId,
-                UpdateMessagePartialRequest.builder()
-                    .set(setFields)
-                    .userID(userId)
-                    .build())
+                UpdateMessagePartialRequest.builder().set(setFields).userID(userId).build())
             .execute();
     assertNotNull(setResp.getData());
     assertNotNull(setResp.getData().getMessage());
@@ -139,10 +138,10 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     String channelId = createTestChannel(userId);
     createdChannelIds.add(channelId);
 
-    String messageId = sendTestMessage("messaging", channelId, userId, "to-delete-" + randomString(8));
+    String messageId =
+        sendTestMessage("messaging", channelId, userId, "to-delete-" + randomString(8));
 
-    var resp =
-        chat.deleteMessage(messageId, DeleteMessageRequest.builder().build()).execute();
+    var resp = chat.deleteMessage(messageId, DeleteMessageRequest.builder().build()).execute();
     assertNotNull(resp.getData());
     assertNotNull(resp.getData().getMessage());
     assertEquals("deleted", resp.getData().getMessage().getType());
@@ -158,7 +157,8 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     String channelId = createTestChannel(userId);
     createdChannelIds.add(channelId);
 
-    String messageId = sendTestMessage("messaging", channelId, userId, "to-hard-delete-" + randomString(8));
+    String messageId =
+        sendTestMessage("messaging", channelId, userId, "to-hard-delete-" + randomString(8));
 
     var resp =
         chat.deleteMessage(messageId, DeleteMessageRequest.builder().Hard(true).build()).execute();
@@ -194,7 +194,8 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     assertNotNull(sendResp.getData());
     assertNotNull(sendResp.getData().getMessage());
     String messageId = sendResp.getData().getMessage().getId();
-    assertTrue(Boolean.TRUE.equals(sendResp.getData().getMessage().getPinned()),
+    assertTrue(
+        Boolean.TRUE.equals(sendResp.getData().getMessage().getPinned()),
         "Message should be pinned after send");
 
     // Unpin via partial update
@@ -202,16 +203,13 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     unpin.put("pinned", false);
     var unpinResp =
         chat.updateMessagePartial(
-                messageId,
-                UpdateMessagePartialRequest.builder()
-                    .set(unpin)
-                    .userID(userId)
-                    .build())
+                messageId, UpdateMessagePartialRequest.builder().set(unpin).userID(userId).build())
             .execute();
     assertNotNull(unpinResp.getData());
     assertNotNull(unpinResp.getData().getMessage());
-    assertTrue(Boolean.FALSE.equals(unpinResp.getData().getMessage().getPinned())
-        || unpinResp.getData().getMessage().getPinned() == null,
+    assertTrue(
+        Boolean.FALSE.equals(unpinResp.getData().getMessage().getPinned())
+            || unpinResp.getData().getMessage().getPinned() == null,
         "Message should be unpinned after partial update");
   }
 
@@ -228,13 +226,12 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     String messageId = sendTestMessage("messaging", channelId, userId, "Hello, how are you?");
 
     var resp =
-        chat.translateMessage(
-                messageId,
-                TranslateMessageRequest.builder().language("es").build())
+        chat.translateMessage(messageId, TranslateMessageRequest.builder().language("es").build())
             .execute();
     assertNotNull(resp.getData());
     assertNotNull(resp.getData().getMessage(), "message should not be null after translation");
-    assertNotNull(resp.getData().getMessage().getI18n(), "i18n field should be set after translation");
+    assertNotNull(
+        resp.getData().getMessage().getI18n(), "i18n field should be set after translation");
   }
 
   @Test
@@ -270,8 +267,7 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     assertEquals(parentId, replyResp.getData().getMessage().getParentID());
 
     // Get replies
-    var repliesResp =
-        chat.getReplies(parentId, GetRepliesRequest.builder().build()).execute();
+    var repliesResp = chat.getReplies(parentId, GetRepliesRequest.builder().build()).execute();
     assertNotNull(repliesResp.getData());
     assertNotNull(repliesResp.getData().getMessages());
     assertEquals(1, repliesResp.getData().getMessages().size());
@@ -303,8 +299,8 @@ class ChatMessageIntegrationTest extends ChatTestBase {
             .execute();
     assertNotNull(resp.getData());
     assertNotNull(resp.getData().getMessage());
-    assertTrue(Boolean.TRUE.equals(resp.getData().getMessage().getSilent()),
-        "Message should be silent");
+    assertTrue(
+        Boolean.TRUE.equals(resp.getData().getMessage().getSilent()), "Message should be silent");
   }
 
   @Test
@@ -336,9 +332,10 @@ class ChatMessageIntegrationTest extends ChatTestBase {
               .getData();
     } catch (Exception e) {
       String msg = e.getMessage();
-      if (msg != null && (msg.contains("pending messages not enabled") || msg.contains("feature flag"))) {
-        org.junit.jupiter.api.Assumptions.assumeTrue(false,
-            "Pending messages not enabled for this app");
+      if (msg != null
+          && (msg.contains("pending messages not enabled") || msg.contains("feature flag"))) {
+        org.junit.jupiter.api.Assumptions.assumeTrue(
+            false, "Pending messages not enabled for this app");
         return;
       }
       throw e;
@@ -378,8 +375,7 @@ class ChatMessageIntegrationTest extends ChatTestBase {
                     .Payload(
                         SearchPayload.builder()
                             .query(uniqueTerm)
-                            .filterConditions(
-                                Map.of("cid", "messaging:" + channelId))
+                            .filterConditions(Map.of("cid", "messaging:" + channelId))
                             .build())
                     .build())
             .execute();
@@ -406,7 +402,12 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     chat.updateMessage(
             messageId,
             UpdateMessageRequest.builder()
-                .message(MessageRequest.builder().id(messageId).text("updated text").userID(userId).build())
+                .message(
+                    MessageRequest.builder()
+                        .id(messageId)
+                        .text("updated text")
+                        .userID(userId)
+                        .build())
                 .build())
         .execute();
 
@@ -414,7 +415,12 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     chat.updateMessage(
             messageId,
             UpdateMessageRequest.builder()
-                .message(MessageRequest.builder().id(messageId).text("updated text 2").userID(userId2).build())
+                .message(
+                    MessageRequest.builder()
+                        .id(messageId)
+                        .text("updated text 2")
+                        .userID(userId2)
+                        .build())
                 .build())
         .execute();
 
@@ -444,7 +450,8 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     } catch (Exception e) {
       String msg = e.getMessage();
       if (msg != null && (msg.contains("feature flag") || msg.contains("not enabled"))) {
-        org.junit.jupiter.api.Assumptions.assumeTrue(false, "QueryMessageHistory not enabled for this app");
+        org.junit.jupiter.api.Assumptions.assumeTrue(
+            false, "QueryMessageHistory not enabled for this app");
         return;
       }
       throw e;
@@ -468,14 +475,24 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     chat.updateMessage(
             messageId,
             UpdateMessageRequest.builder()
-                .message(MessageRequest.builder().id(messageId).text("sort updated 1").userID(userId).build())
+                .message(
+                    MessageRequest.builder()
+                        .id(messageId)
+                        .text("sort updated 1")
+                        .userID(userId)
+                        .build())
                 .build())
         .execute();
 
     chat.updateMessage(
             messageId,
             UpdateMessageRequest.builder()
-                .message(MessageRequest.builder().id(messageId).text("sort updated 2").userID(userId).build())
+                .message(
+                    MessageRequest.builder()
+                        .id(messageId)
+                        .text("sort updated 2")
+                        .userID(userId)
+                        .build())
                 .build())
         .execute();
 
@@ -504,7 +521,8 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     } catch (Exception e) {
       String msg = e.getMessage();
       if (msg != null && (msg.contains("feature flag") || msg.contains("not enabled"))) {
-        org.junit.jupiter.api.Assumptions.assumeTrue(false, "QueryMessageHistory not enabled for this app");
+        org.junit.jupiter.api.Assumptions.assumeTrue(
+            false, "QueryMessageHistory not enabled for this app");
         return;
       }
       throw e;
@@ -567,10 +585,7 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     String cid = "messaging:" + channelId;
 
     // Hide the channel for the user
-    chat.hideChannel(
-            "messaging",
-            channelId,
-            HideChannelRequest.builder().userID(userId).build())
+    chat.hideChannel("messaging", channelId, HideChannelRequest.builder().userID(userId).build())
         .execute();
 
     // Send a message with keep_channel_hidden=true
@@ -640,7 +655,8 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     } catch (Exception e) {
       String msg = e.getMessage();
       if (msg != null && (msg.contains("undeleted_by") || msg.contains("required field"))) {
-        org.junit.jupiter.api.Assumptions.assumeTrue(false,
+        org.junit.jupiter.api.Assumptions.assumeTrue(
+            false,
             "UndeleteMessage requires 'undeleted_by' field not yet in generated request struct");
       }
       throw e;
@@ -677,13 +693,18 @@ class ChatMessageIntegrationTest extends ChatTestBase {
       assertNotNull(resp.getData().getMessage());
       var restrictedVisibility = resp.getData().getMessage().getRestrictedVisibility();
       assertNotNull(restrictedVisibility, "restricted_visibility should be set in response");
-      assertTrue(restrictedVisibility.contains(userId), "restricted_visibility should contain the sending user");
+      assertTrue(
+          restrictedVisibility.contains(userId),
+          "restricted_visibility should contain the sending user");
     } catch (Exception e) {
       String msg = e.getMessage();
-      if (msg != null && (msg.contains("restricted visibility") || msg.contains("not enabled")
-          || msg.contains("feature") || msg.contains("private messaging"))) {
-        org.junit.jupiter.api.Assumptions.assumeTrue(false,
-            "Restricted visibility feature not enabled for this app");
+      if (msg != null
+          && (msg.contains("restricted visibility")
+              || msg.contains("not enabled")
+              || msg.contains("feature")
+              || msg.contains("private messaging"))) {
+        org.junit.jupiter.api.Assumptions.assumeTrue(
+            false, "Restricted visibility feature not enabled for this app");
         return;
       }
       throw e;
@@ -708,10 +729,7 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     var resp =
         chat.deleteMessage(
                 messageId,
-                DeleteMessageRequest.builder()
-                    .DeleteForMe(true)
-                    .DeletedBy(userId)
-                    .build())
+                DeleteMessageRequest.builder().DeleteForMe(true).DeletedBy(userId).build())
             .execute();
     assertNotNull(resp.getData());
     assertNotNull(resp.getData().getMessage());
@@ -731,11 +749,16 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     String channelId = createTestChannelWithMembers(userId, userIds);
     createdChannelIds.add(channelId);
 
-    String messageId = sendTestMessage("messaging", channelId, userId2, "Message to pin with expiry " + randomString(8));
+    String messageId =
+        sendTestMessage(
+            "messaging", channelId, userId2, "Message to pin with expiry " + randomString(8));
 
     // Pin with 3-second expiration using updateMessagePartial
-    String expiry = Instant.now().plusSeconds(3).atOffset(ZoneOffset.UTC)
-        .format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+    String expiry =
+        Instant.now()
+            .plusSeconds(3)
+            .atOffset(ZoneOffset.UTC)
+            .format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
     Map<String, Object> setFields = new HashMap<>();
     setFields.put("pinned", true);
     setFields.put("pin_expires", expiry);
@@ -743,13 +766,12 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     var pinResp =
         chat.updateMessagePartial(
                 messageId,
-                UpdateMessagePartialRequest.builder()
-                    .set(setFields)
-                    .userID(userId)
-                    .build())
+                UpdateMessagePartialRequest.builder().set(setFields).userID(userId).build())
             .execute();
     assertNotNull(pinResp.getData().getMessage());
-    assertTrue(Boolean.TRUE.equals(pinResp.getData().getMessage().getPinned()), "Message should be pinned");
+    assertTrue(
+        Boolean.TRUE.equals(pinResp.getData().getMessage().getPinned()),
+        "Message should be pinned");
 
     // Wait for pin to expire
     Thread.sleep(4000);
@@ -757,7 +779,8 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     // Verify pin expired
     var getResp = chat.getMessage(messageId).execute();
     assertNotNull(getResp.getData().getMessage());
-    assertFalse(Boolean.TRUE.equals(getResp.getData().getMessage().getPinned()), "Pin should have expired");
+    assertFalse(
+        Boolean.TRUE.equals(getResp.getData().getMessage().getPinned()), "Pin should have expired");
   }
 
   @Test
@@ -785,8 +808,8 @@ class ChatMessageIntegrationTest extends ChatTestBase {
             .execute();
     assertNotNull(resp.getData());
     assertNotNull(resp.getData().getMessage());
-    assertEquals("system", resp.getData().getMessage().getType(),
-        "Message type should be 'system'");
+    assertEquals(
+        "system", resp.getData().getMessage().getType(), "Message type should be 'system'");
   }
 
   @Test
@@ -805,11 +828,7 @@ class ChatMessageIntegrationTest extends ChatTestBase {
                 "messaging",
                 channelId,
                 SendMessageRequest.builder()
-                    .message(
-                        MessageRequest.builder()
-                            .text(text)
-                            .userID(userId)
-                            .build())
+                    .message(MessageRequest.builder().text(text).userID(userId).build())
                     .pending(false)
                     .build())
             .execute();
@@ -848,8 +867,7 @@ class ChatMessageIntegrationTest extends ChatTestBase {
                     .Payload(
                         SearchPayload.builder()
                             .filterConditions(Map.of("cid", "messaging:" + channelId))
-                            .messageFilterConditions(
-                                Map.of("text", Map.of("$q", searchTerm)))
+                            .messageFilterConditions(Map.of("text", Map.of("$q", searchTerm)))
                             .build())
                     .build())
             .execute();
@@ -879,8 +897,7 @@ class ChatMessageIntegrationTest extends ChatTestBase {
                                     .filterConditions(
                                         Map.of("members", Map.of("$in", List.of(userId))))
                                     .query("test")
-                                    .messageFilterConditions(
-                                        Map.of("text", Map.of("$q", "test")))
+                                    .messageFilterConditions(Map.of("text", Map.of("$q", "test")))
                                     .build())
                             .build())
                     .execute(),
@@ -906,8 +923,7 @@ class ChatMessageIntegrationTest extends ChatTestBase {
                 SearchRequest.builder()
                     .Payload(
                         SearchPayload.builder()
-                            .filterConditions(
-                                Map.of("members", Map.of("$in", List.of(userId))))
+                            .filterConditions(Map.of("members", Map.of("$in", List.of(userId))))
                             .query("test")
                             .offset(0)
                             .sort(
@@ -937,8 +953,7 @@ class ChatMessageIntegrationTest extends ChatTestBase {
                     SearchRequest.builder()
                         .Payload(
                             SearchPayload.builder()
-                                .filterConditions(
-                                    Map.of("members", Map.of("$in", List.of(userId))))
+                                .filterConditions(Map.of("members", Map.of("$in", List.of(userId))))
                                 .query("test")
                                 .offset(1)
                                 .next(randomString(5))
@@ -996,10 +1011,11 @@ class ChatMessageIntegrationTest extends ChatTestBase {
             .execute();
     assertNotNull(memberMsgResp.getData());
     assertNotNull(memberMsgResp.getData().getMessage());
-    assertNotNull(memberMsgResp.getData().getMessage().getMember(),
+    assertNotNull(
+        memberMsgResp.getData().getMessage().getMember(),
         "Member should be present in message response");
-    assertEquals("channel_member",
-        memberMsgResp.getData().getMessage().getMember().getChannelRole());
+    assertEquals(
+        "channel_member", memberMsgResp.getData().getMessage().getMember().getChannelRole());
 
     // Send message from channel_moderator and verify role in response
     var modMsgResp =
@@ -1016,10 +1032,11 @@ class ChatMessageIntegrationTest extends ChatTestBase {
             .execute();
     assertNotNull(modMsgResp.getData());
     assertNotNull(modMsgResp.getData().getMessage());
-    assertNotNull(modMsgResp.getData().getMessage().getMember(),
+    assertNotNull(
+        modMsgResp.getData().getMessage().getMember(),
         "Member should be present in message response");
-    assertEquals("channel_moderator",
-        modMsgResp.getData().getMessage().getMember().getChannelRole());
+    assertEquals(
+        "channel_moderator", modMsgResp.getData().getMessage().getMember().getChannelRole());
   }
 
   @Test

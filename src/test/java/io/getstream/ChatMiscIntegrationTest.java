@@ -76,8 +76,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
           client
               .chat()
               .updateChannelType(
-                  typeName,
-                  UpdateChannelTypeRequest.builder().typingEvents(false).build())
+                  typeName, UpdateChannelTypeRequest.builder().typingEvents(false).build())
               .execute();
       assertNotNull(updateResp.getData());
       assertEquals(Boolean.FALSE, updateResp.getData().getTypingEvents());
@@ -103,7 +102,8 @@ class ChatMiscIntegrationTest extends ChatTestBase {
         }
       }
       if (deleteErr != null) {
-        System.err.println("Warning: failed to delete channel type " + typeName + ": " + deleteErr.getMessage());
+        System.err.println(
+            "Warning: failed to delete channel type " + typeName + ": " + deleteErr.getMessage());
       }
     }
   }
@@ -113,7 +113,8 @@ class ChatMiscIntegrationTest extends ChatTestBase {
   void testListChannelTypes() throws Exception {
     var listResp = client.chat().listChannelTypes().execute();
     assertNotNull(listResp.getData().getChannelTypes());
-    assertTrue(listResp.getData().getChannelTypes().size() > 0, "Should have at least one channel type");
+    assertTrue(
+        listResp.getData().getChannelTypes().size() > 0, "Should have at least one channel type");
     // Default channel types should be present
     assertTrue(
         listResp.getData().getChannelTypes().containsKey("messaging"),
@@ -262,9 +263,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
 
     // List devices and verify found
     var listResp =
-        client
-            .listDevices(ListDevicesRequest.builder().UserID(userId).build())
-            .execute();
+        client.listDevices(ListDevicesRequest.builder().UserID(userId).build()).execute();
 
     assertNotNull(listResp.getData().getDevices());
     boolean found = false;
@@ -284,9 +283,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
 
     // Verify deleted
     var listAfterDelete =
-        client
-            .listDevices(ListDevicesRequest.builder().UserID(userId).build())
-            .execute();
+        client.listDevices(ListDevicesRequest.builder().UserID(userId).build()).execute();
 
     if (listAfterDelete.getData().getDevices() != null) {
       for (DeviceResponse d : listAfterDelete.getData().getDevices()) {
@@ -322,8 +319,10 @@ class ChatMiscIntegrationTest extends ChatTestBase {
     var resp = client.getPermission("create-channel").execute();
     assertNotNull(resp.getData(), "Response data should not be null");
     assertNotNull(resp.getData().getPermission(), "Permission should not be null");
-    assertEquals("create-channel", resp.getData().getPermission().getId(), "Permission ID should match");
-    assertNotNull(resp.getData().getPermission().getAction(), "Permission action should not be null");
+    assertEquals(
+        "create-channel", resp.getData().getPermission().getId(), "Permission ID should match");
+    assertNotNull(
+        resp.getData().getPermission().getAction(), "Permission action should not be null");
     assertFalse(
         resp.getData().getPermission().getAction().isEmpty(),
         "Permission action should not be empty");
@@ -431,11 +430,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
               .exportChannels(
                   ExportChannelsRequest.builder()
                       .channels(
-                          List.of(
-                              ChannelExport.builder()
-                                  .type("messaging")
-                                  .id(channelId)
-                                  .build()))
+                          List.of(ChannelExport.builder().type("messaging").id(channelId).build()))
                       .build())
               .execute();
 
@@ -481,11 +476,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
     // Mute target user as muter
     var muteResp =
         moderation
-            .mute(
-                MuteRequest.builder()
-                    .targetIds(List.of(targetId))
-                    .userID(muterId)
-                    .build())
+            .mute(MuteRequest.builder().targetIds(List.of(targetId)).userID(muterId).build())
             .execute();
 
     assertNotNull(muteResp.getData(), "Mute response data should not be null");
@@ -502,11 +493,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
     // Unmute the target user
     var unmuteResp =
         moderation
-            .unmute(
-                UnmuteRequest.builder()
-                    .targetIds(List.of(targetId))
-                    .userID(muterId)
-                    .build())
+            .unmute(UnmuteRequest.builder().targetIds(List.of(targetId)).userID(muterId).build())
             .execute();
 
     assertNotNull(unmuteResp.getData(), "Unmute response data should not be null");
@@ -555,9 +542,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
               .queryThreads(
                   QueryThreadsRequest.builder()
                       .userID(userId1)
-                      .filter(
-                          Map.of(
-                              "channel_cid", Map.of("$eq", channelCid)))
+                      .filter(Map.of("channel_cid", Map.of("$eq", channelCid)))
                       .build())
               .execute();
 
@@ -579,9 +564,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
       var getResp =
           client
               .chat()
-              .getThread(
-                  parentId,
-                  GetThreadRequest.builder().ReplyLimit(10).build())
+              .getThread(parentId, GetThreadRequest.builder().ReplyLimit(10).build())
               .execute();
 
       assertNotNull(getResp.getData(), "GetThread response should not be null");
@@ -591,8 +574,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
           getResp.getData().getThread().getParentMessageID(),
           "Thread parent message ID should match");
       assertNotNull(
-          getResp.getData().getThread().getLatestReplies(),
-          "Latest replies should not be null");
+          getResp.getData().getThread().getLatestReplies(), "Latest replies should not be null");
       assertTrue(
           getResp.getData().getThread().getLatestReplies().size() >= 2,
           "Thread should have at least 2 replies");
@@ -632,9 +614,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
           client
               .chat()
               .unreadCountsBatch(
-                  UnreadCountsBatchRequest.builder()
-                      .userIds(List.of(readerId1))
-                      .build())
+                  UnreadCountsBatchRequest.builder().userIds(List.of(readerId1)).build())
               .execute();
 
       assertNotNull(resp.getData(), "Batch unread counts response should not be null");
@@ -647,8 +627,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
       assertNotNull(counts, "Counts for readerId1 should not be null");
       assertNotNull(counts.getTotalUnreadCount(), "Total unread count should not be null");
       assertTrue(
-          counts.getTotalUnreadCount() >= 1,
-          "readerId1 should have at least 1 unread message");
+          counts.getTotalUnreadCount() >= 1, "readerId1 should have at least 1 unread message");
 
     } finally {
       try {
@@ -773,9 +752,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
       var deleteResp =
           client
               .chat()
-              .deleteReminder(
-                  messageId,
-                  DeleteReminderRequest.builder().UserID(userId).build())
+              .deleteReminder(messageId, DeleteReminderRequest.builder().UserID(userId).build())
               .execute();
 
       assertNotNull(deleteResp.getData(), "DeleteReminder response should not be null");
@@ -818,8 +795,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
               .execute();
 
       assertNotNull(resp.getData(), "Unread counts response should not be null");
-      assertNotNull(
-          resp.getData().getTotalUnreadCount(), "Total unread count should not be null");
+      assertNotNull(resp.getData().getTotalUnreadCount(), "Total unread count should not be null");
       assertTrue(
           resp.getData().getTotalUnreadCount() >= 1,
           "Reader should have at least 1 unread message");
@@ -866,8 +842,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
           || msg.contains("not available")
           || msg.contains("not supported")
           || msg.contains("not enabled")) {
-        Assumptions.assumeTrue(
-            false, "QueryTeamUsageStats not available on this app: " + msg);
+        Assumptions.assumeTrue(false, "QueryTeamUsageStats not available on this app: " + msg);
       }
       throw e;
     }
@@ -901,8 +876,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
                             {
                               put(
                                   "$in",
-                                  List.of(
-                                      "messaging:" + channelId1, "messaging:" + channelId2));
+                                  List.of("messaging:" + channelId1, "messaging:" + channelId2));
                             }
                           });
                     }
@@ -933,8 +907,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
 
     } catch (io.getstream.exceptions.StreamException e) {
       String msg = e.getMessage() != null ? e.getMessage() : "";
-      Integer statusCode =
-          e.getResponseData() != null ? e.getResponseData().getStatusCode() : null;
+      Integer statusCode = e.getResponseData() != null ? e.getResponseData().getStatusCode() : null;
       // ChannelBatchUpdate is behind Beta — skip gracefully on any server-side error.
       // The API may return "ChannelBatchUpdate failed with error: <empty>" when the
       // beta feature is not enabled for this app.
@@ -957,9 +930,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
           client
               .chat()
               .deleteChannel(
-                  "messaging",
-                  channelId,
-                  DeleteChannelRequest.builder().HardDelete(true).build())
+                  "messaging", channelId, DeleteChannelRequest.builder().HardDelete(true).build())
               .execute();
         } catch (Exception ignored) {
         }

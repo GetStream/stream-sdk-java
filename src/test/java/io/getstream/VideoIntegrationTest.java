@@ -100,8 +100,7 @@ public class VideoIntegrationTest extends BasicTest {
     assertEquals("earpiece", updateResp.getData().getSettings().getAudio().getDefaultDevice());
     assertEquals("disabled", updateResp.getData().getSettings().getRecording().getMode());
     assertTrue(updateResp.getData().getSettings().getBackstage().getEnabled());
-    assertEquals(
-        List.of("join-backstage"), updateResp.getData().getGrants().get("host"));
+    assertEquals(List.of("join-backstage"), updateResp.getData().getGrants().get("host"));
 
     // --- Update layout options ---
     Map<String, Object> layoutOptions = new HashMap<>();
@@ -254,11 +253,7 @@ public class VideoIntegrationTest extends BasicTest {
             .muteUsers(
                 "default",
                 callId,
-                MuteUsersRequest.builder()
-                    .muteAllUsers(true)
-                    .audio(true)
-                    .mutedByID(userId)
-                    .build())
+                MuteUsersRequest.builder().muteAllUsers(true).audio(true).mutedByID(userId).build())
             .execute();
 
     assertNotNull(resp.getData());
@@ -367,10 +362,7 @@ public class VideoIntegrationTest extends BasicTest {
             "default",
             callId,
             GetOrCreateCallRequest.builder()
-                .data(
-                    CallRequest.builder()
-                        .createdByID(testUsers.get(0).getId())
-                        .build())
+                .data(CallRequest.builder().createdByID(testUsers.get(0).getId()).build())
                 .build())
         .execute();
 
@@ -405,10 +397,7 @@ public class VideoIntegrationTest extends BasicTest {
             "default",
             callId,
             GetOrCreateCallRequest.builder()
-                .data(
-                    CallRequest.builder()
-                        .createdByID(testUsers.get(0).getId())
-                        .build())
+                .data(CallRequest.builder().createdByID(testUsers.get(0).getId()).build())
                 .build())
         .execute();
 
@@ -475,7 +464,8 @@ public class VideoIntegrationTest extends BasicTest {
     assertNotNull(createResp.getData().getCall());
     assertNotNull(createResp.getData().getCall().getSettings());
     assertNotNull(createResp.getData().getCall().getSettings().getLimits());
-    assertEquals(3600, createResp.getData().getCall().getSettings().getLimits().getMaxDurationSeconds());
+    assertEquals(
+        3600, createResp.getData().getCall().getSettings().getLimits().getMaxDurationSeconds());
 
     // Update the call to max_duration_seconds = 7200
     var updateResp =
@@ -487,16 +477,15 @@ public class VideoIntegrationTest extends BasicTest {
                     .settingsOverride(
                         CallSettingsRequest.builder()
                             .limits(
-                                LimitsSettingsRequest.builder()
-                                    .maxDurationSeconds(7200)
-                                    .build())
+                                LimitsSettingsRequest.builder().maxDurationSeconds(7200).build())
                             .build())
                     .build())
             .execute();
 
     assertNotNull(updateResp.getData());
     assertNotNull(updateResp.getData().getCall().getSettings().getLimits());
-    assertEquals(7200, updateResp.getData().getCall().getSettings().getLimits().getMaxDurationSeconds());
+    assertEquals(
+        7200, updateResp.getData().getCall().getSettings().getLimits().getMaxDurationSeconds());
 
     // Update the call to max_duration_seconds = 0 (disable)
     var updateResp2 =
@@ -507,16 +496,14 @@ public class VideoIntegrationTest extends BasicTest {
                 UpdateCallRequest.builder()
                     .settingsOverride(
                         CallSettingsRequest.builder()
-                            .limits(
-                                LimitsSettingsRequest.builder()
-                                    .maxDurationSeconds(0)
-                                    .build())
+                            .limits(LimitsSettingsRequest.builder().maxDurationSeconds(0).build())
                             .build())
                     .build())
             .execute();
 
     assertNotNull(updateResp2.getData());
-    assertEquals(0, updateResp2.getData().getCall().getSettings().getLimits().getMaxDurationSeconds());
+    assertEquals(
+        0, updateResp2.getData().getCall().getSettings().getLimits().getMaxDurationSeconds());
   }
 
   @Test
@@ -534,16 +521,13 @@ public class VideoIntegrationTest extends BasicTest {
     // Block bob from alice's perspective (app-level user block, not call-level)
     var blockResp =
         client
-            .blockUsers(
-                BlockUsersRequest.builder().blockedUserID(bobId).userID(aliceId).build())
+            .blockUsers(BlockUsersRequest.builder().blockedUserID(bobId).userID(aliceId).build())
             .execute();
     assertNotNull(blockResp.getData());
 
     // Verify bob is in alice's blocked list
     var getBlockedResp =
-        client
-            .getBlockedUsers(GetBlockedUsersRequest.builder().UserID(aliceId).build())
-            .execute();
+        client.getBlockedUsers(GetBlockedUsersRequest.builder().UserID(aliceId).build()).execute();
     assertNotNull(getBlockedResp.getData());
     assertNotNull(getBlockedResp.getData().getBlocks());
 
@@ -554,15 +538,12 @@ public class VideoIntegrationTest extends BasicTest {
 
     // Unblock bob
     client
-        .unblockUsers(
-            UnblockUsersRequest.builder().blockedUserID(bobId).userID(aliceId).build())
+        .unblockUsers(UnblockUsersRequest.builder().blockedUserID(bobId).userID(aliceId).build())
         .execute();
 
     // Verify bob is no longer in alice's blocked list
     var getBlockedResp2 =
-        client
-            .getBlockedUsers(GetBlockedUsersRequest.builder().UserID(aliceId).build())
-            .execute();
+        client.getBlockedUsers(GetBlockedUsersRequest.builder().UserID(aliceId).build()).execute();
     assertNotNull(getBlockedResp2.getData());
 
     boolean stillFoundBob =
@@ -637,9 +618,7 @@ public class VideoIntegrationTest extends BasicTest {
                     .settingsOverride(
                         CallSettingsRequest.builder()
                             .backstage(
-                                BackstageSettingsRequest.builder()
-                                    .joinAheadTimeSeconds(0)
-                                    .build())
+                                BackstageSettingsRequest.builder().joinAheadTimeSeconds(0).build())
                             .build())
                     .build())
             .execute();
@@ -855,7 +834,8 @@ public class VideoIntegrationTest extends BasicTest {
     assertNotNull(recordingResp.getData().getCall());
     assertNotNull(recordingResp.getData().getCall().getSettings());
     assertNotNull(recordingResp.getData().getCall().getSettings().getRecording());
-    assertEquals("available", recordingResp.getData().getCall().getSettings().getRecording().getMode());
+    assertEquals(
+        "available", recordingResp.getData().getCall().getSettings().getRecording().getMode());
 
     // Enable backstage mode
     var backstageResp =
@@ -963,10 +943,7 @@ public class VideoIntegrationTest extends BasicTest {
                         QueryUsersPayload.builder()
                             .filterConditions(
                                 Map.of(
-                                    "id",
-                                    userId,
-                                    "teams",
-                                    Map.of("$in", List.of("red", "blue"))))
+                                    "id", userId, "teams", Map.of("$in", List.of("red", "blue"))))
                             .build())
                     .build())
             .execute();
@@ -981,8 +958,7 @@ public class VideoIntegrationTest extends BasicTest {
         video
             .queryCalls(
                 QueryCallsRequest.builder()
-                    .filterConditions(
-                        Map.of("id", callId, "team", Map.of("$eq", "blue")))
+                    .filterConditions(Map.of("id", callId, "team", Map.of("$eq", "blue")))
                     .build())
             .execute();
     assertNotNull(callsResp.getData());

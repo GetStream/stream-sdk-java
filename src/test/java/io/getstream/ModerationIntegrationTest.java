@@ -95,11 +95,7 @@ class ModerationIntegrationTest extends ChatTestBase {
     // Mute target user as muter (no timeout)
     var muteResp =
         moderation
-            .mute(
-                MuteRequest.builder()
-                    .targetIds(List.of(targetId))
-                    .userID(muterId)
-                    .build())
+            .mute(MuteRequest.builder().targetIds(List.of(targetId)).userID(muterId).build())
             .execute();
 
     assertNotNull(muteResp.getData(), "Mute response data should not be null");
@@ -131,11 +127,7 @@ class ModerationIntegrationTest extends ChatTestBase {
     // Unmute the target user
     var unmuteResp =
         moderation
-            .unmute(
-                UnmuteRequest.builder()
-                    .targetIds(List.of(targetId))
-                    .userID(muterId)
-                    .build())
+            .unmute(UnmuteRequest.builder().targetIds(List.of(targetId)).userID(muterId).build())
             .execute();
 
     assertNotNull(unmuteResp.getData(), "Unmute response data should not be null");
