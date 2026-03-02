@@ -643,8 +643,7 @@ class ChatMessageIntegrationTest extends ChatTestBase {
     try {
       var undelResp =
           chat.undeleteMessage(
-                  messageId,
-                  UndeleteMessageRequest.builder().undeletedBy(userId).build())
+                  messageId, UndeleteMessageRequest.builder().undeletedBy(userId).build())
               .execute();
       assertNotNull(undelResp.getData());
       assertNotNull(undelResp.getData().getMessage());
