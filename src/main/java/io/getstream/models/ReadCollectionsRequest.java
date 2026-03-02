@@ -26,11 +26,11 @@ import java.util.List;
 @lombok.AllArgsConstructor
 public class ReadCollectionsRequest {
 
-  @Query("collection_refs")
-  @JsonIgnore
-  private List<String> CollectionRefs;
-
   @Query("user_id")
   @JsonIgnore
   private String UserID;
+
+  @Query("collection_refs")
+  @JsonIgnore
+  private List<String> CollectionRefs;
 }

@@ -13,7 +13,6 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Undelete message Undelete a message that was previously soft-deleted Sends events: -
@@ -25,14 +24,6 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class UndeleteMessageRequest {
 
-  @JsonProperty("message")
-  private MessageRequest message;
-
-  @Nullable
-  @JsonProperty("skip_enrich_url")
-  private Boolean skipEnrichUrl;
-
-  @Nullable
-  @JsonProperty("skip_push")
-  private Boolean skipPush;
+  @JsonProperty("undeleted_by")
+  private String undeletedBy;
 }

@@ -1113,6 +1113,159 @@ public class CommonImpl {
   }
 
   @NotNull
+  public StreamRequest<ListUserGroupsResponse> listUserGroups(ListUserGroupsRequest request)
+      throws StreamException {
+
+    return new StreamRequest<ListUserGroupsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/usergroups",
+        request,
+        null,
+        new TypeReference<ListUserGroupsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ListUserGroupsResponse> listUserGroups() throws StreamException {
+    return listUserGroups(new ListUserGroupsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<CreateUserGroupResponse> createUserGroup(CreateUserGroupRequest request)
+      throws StreamException {
+
+    return new StreamRequest<CreateUserGroupResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/usergroups",
+        request,
+        null,
+        new TypeReference<CreateUserGroupResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<SearchUserGroupsResponse> searchUserGroups(SearchUserGroupsRequest request)
+      throws StreamException {
+
+    return new StreamRequest<SearchUserGroupsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/usergroups/search",
+        request,
+        null,
+        new TypeReference<SearchUserGroupsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<Response> deleteUserGroup(@NotNull String id, DeleteUserGroupRequest request)
+      throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<Response>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "DELETE",
+        "/api/v2/usergroups/{id}",
+        request,
+        pathParams,
+        new TypeReference<Response>() {});
+  }
+
+  @NotNull
+  public StreamRequest<Response> deleteUserGroup(@NotNull String id) throws StreamException {
+    return deleteUserGroup(id, new DeleteUserGroupRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GetUserGroupResponse> getUserGroup(
+      @NotNull String id, GetUserGroupRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<GetUserGroupResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/usergroups/{id}",
+        request,
+        pathParams,
+        new TypeReference<GetUserGroupResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetUserGroupResponse> getUserGroup(@NotNull String id)
+      throws StreamException {
+    return getUserGroup(id, new GetUserGroupRequest());
+  }
+
+  @NotNull
+  public StreamRequest<UpdateUserGroupResponse> updateUserGroup(
+      @NotNull String id, UpdateUserGroupRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<UpdateUserGroupResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PUT",
+        "/api/v2/usergroups/{id}",
+        request,
+        pathParams,
+        new TypeReference<UpdateUserGroupResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpdateUserGroupResponse> updateUserGroup(@NotNull String id)
+      throws StreamException {
+    return updateUserGroup(id, new UpdateUserGroupRequest());
+  }
+
+  @NotNull
+  public StreamRequest<RemoveUserGroupMembersResponse> removeUserGroupMembers(
+      @NotNull String id, RemoveUserGroupMembersRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<RemoveUserGroupMembersResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "DELETE",
+        "/api/v2/usergroups/{id}/members",
+        request,
+        pathParams,
+        new TypeReference<RemoveUserGroupMembersResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<RemoveUserGroupMembersResponse> removeUserGroupMembers(@NotNull String id)
+      throws StreamException {
+    return removeUserGroupMembers(id, new RemoveUserGroupMembersRequest());
+  }
+
+  @NotNull
+  public StreamRequest<AddUserGroupMembersResponse> addUserGroupMembers(
+      @NotNull String id, AddUserGroupMembersRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<AddUserGroupMembersResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/usergroups/{id}/members",
+        request,
+        pathParams,
+        new TypeReference<AddUserGroupMembersResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<QueryUsersResponse> queryUsers(QueryUsersRequest request)
       throws StreamException {
 

@@ -2,6 +2,7 @@
 
 package io.getstream;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.getstream.models.ActivityAddedEvent;
@@ -104,6 +105,7 @@ import io.getstream.models.FeedCreatedEvent;
 import io.getstream.models.FeedDeletedEvent;
 import io.getstream.models.FeedGroupChangedEvent;
 import io.getstream.models.FeedGroupDeletedEvent;
+import io.getstream.models.FeedGroupRestoredEvent;
 import io.getstream.models.FeedMemberAddedEvent;
 import io.getstream.models.FeedMemberRemovedEvent;
 import io.getstream.models.FeedMemberUpdatedEvent;
@@ -154,6 +156,11 @@ import io.getstream.models.UserBannedEvent;
 import io.getstream.models.UserDeactivatedEvent;
 import io.getstream.models.UserDeletedEvent;
 import io.getstream.models.UserFlaggedEvent;
+import io.getstream.models.UserGroupCreatedEvent;
+import io.getstream.models.UserGroupDeletedEvent;
+import io.getstream.models.UserGroupMemberAddedEvent;
+import io.getstream.models.UserGroupMemberRemovedEvent;
+import io.getstream.models.UserGroupUpdatedEvent;
 import io.getstream.models.UserMessagesDeletedEvent;
 import io.getstream.models.UserMutedEvent;
 import io.getstream.models.UserReactivatedEvent;
@@ -172,7 +179,8 @@ import javax.crypto.spec.SecretKeySpec;
 /** Webhook utilities for Stream webhooks. */
 public class Webhook {
   private static final String HMAC_SHA256 = "HmacSHA256";
-  private static final ObjectMapper objectMapper = new ObjectMapper();
+  private static final ObjectMapper objectMapper =
+      new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
   /** Webhook event type constants. */
   public static class EventType {
@@ -289,6 +297,7 @@ public class Webhook {
     public static final String FEEDS_FEED_UPDATED = "feeds.feed.updated";
     public static final String FEEDS_FEED_GROUP_CHANGED = "feeds.feed_group.changed";
     public static final String FEEDS_FEED_GROUP_DELETED = "feeds.feed_group.deleted";
+    public static final String FEEDS_FEED_GROUP_RESTORED = "feeds.feed_group.restored";
     public static final String FEEDS_FEED_MEMBER_ADDED = "feeds.feed_member.added";
     public static final String FEEDS_FEED_MEMBER_REMOVED = "feeds.feed_member.removed";
     public static final String FEEDS_FEED_MEMBER_UPDATED = "feeds.feed_member.updated";
@@ -340,6 +349,11 @@ public class Webhook {
     public static final String USER_UNMUTED = "user.unmuted";
     public static final String USER_UNREAD_MESSAGE_REMINDER = "user.unread_message_reminder";
     public static final String USER_UPDATED = "user.updated";
+    public static final String USER_GROUP_CREATED = "user_group.created";
+    public static final String USER_GROUP_DELETED = "user_group.deleted";
+    public static final String USER_GROUP_MEMBER_ADDED = "user_group.member_added";
+    public static final String USER_GROUP_MEMBER_REMOVED = "user_group.member_removed";
+    public static final String USER_GROUP_UPDATED = "user_group.updated";
   }
 
   /**
@@ -376,17 +390,27 @@ public class Webhook {
    * @throws WebhookException if the event type is unknown or deserialization fails
    */
   public static Object parseWebhookEvent(byte[] rawEvent) throws WebhookException {
-    String eventType = getEventType(rawEvent);
-    if (eventType == null || eventType.isEmpty()) {
-      throw new WebhookException("Webhook payload missing 'type' field");
-    }
-
+    String eventType = extractEventType(rawEvent);
     try {
       Class<?> eventClass = getEventClass(eventType);
       return objectMapper.readValue(rawEvent, eventClass);
     } catch (IOException e) {
       throw new WebhookException("Failed to deserialize webhook event: " + e.getMessage(), e);
     }
+  }
+
+  private static String extractEventType(byte[] rawEvent) throws WebhookException {
+    JsonNode node;
+    try {
+      node = objectMapper.readTree(rawEvent);
+    } catch (IOException e) {
+      throw new WebhookException("Webhook payload is not valid JSON: " + e.getMessage(), e);
+    }
+    JsonNode typeNode = node.get("type");
+    if (typeNode == null || typeNode.asText().isEmpty()) {
+      throw new WebhookException("Webhook payload missing 'type' field");
+    }
+    return typeNode.asText();
   }
 
   /**
@@ -620,6 +644,8 @@ public class Webhook {
         return FeedGroupChangedEvent.class;
       case "feeds.feed_group.deleted":
         return FeedGroupDeletedEvent.class;
+      case "feeds.feed_group.restored":
+        return FeedGroupRestoredEvent.class;
       case "feeds.feed_member.added":
         return FeedMemberAddedEvent.class;
       case "feeds.feed_member.removed":
@@ -722,6 +748,16 @@ public class Webhook {
         return UserUnreadReminderEvent.class;
       case "user.updated":
         return UserUpdatedEvent.class;
+      case "user_group.created":
+        return UserGroupCreatedEvent.class;
+      case "user_group.deleted":
+        return UserGroupDeletedEvent.class;
+      case "user_group.member_added":
+        return UserGroupMemberAddedEvent.class;
+      case "user_group.member_removed":
+        return UserGroupMemberRemovedEvent.class;
+      case "user_group.updated":
+        return UserGroupUpdatedEvent.class;
       default:
         throw new WebhookException("Unknown webhook event type: " + eventType);
     }

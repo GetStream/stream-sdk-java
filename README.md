@@ -91,7 +91,7 @@ call.getOrCreate(
 ```
 
 > **Note:** When constructing models, always use the **builder pattern** (e.g. `UserRequest.builder().id("id").build()`).
-> Positional constructor usage is not supported and may break across SDK updates as parameter order is not guaranteed.
+> While some generated models expose positional constructors (for example via Lombok's `@AllArgsConstructor`), their parameter order is not part of the public API and may change between releases; using positional constructors is therefore strongly discouraged and may break across SDK updates.
 
 ## Development
 

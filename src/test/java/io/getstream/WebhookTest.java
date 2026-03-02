@@ -188,6 +188,7 @@ public class WebhookTest {
     "feeds.feed.updated, FeedUpdatedEvent",
     "feeds.feed_group.changed, FeedGroupChangedEvent",
     "feeds.feed_group.deleted, FeedGroupDeletedEvent",
+    "feeds.feed_group.restored, FeedGroupRestoredEvent",
     "feeds.feed_member.added, FeedMemberAddedEvent",
     "feeds.feed_member.removed, FeedMemberRemovedEvent",
     "feeds.feed_member.updated, FeedMemberUpdatedEvent",
@@ -239,6 +240,11 @@ public class WebhookTest {
     "user.unmuted, UserUnmutedEvent",
     "user.unread_message_reminder, UserUnreadReminderEvent",
     "user.updated, UserUpdatedEvent",
+    "user_group.created, UserGroupCreatedEvent",
+    "user_group.deleted, UserGroupDeletedEvent",
+    "user_group.member_added, UserGroupMemberAddedEvent",
+    "user_group.member_removed, UserGroupMemberRemovedEvent",
+    "user_group.updated, UserGroupUpdatedEvent",
   })
   public void testParseWebhookEvent(String eventType, String expectedClassName)
       throws Webhook.WebhookException {

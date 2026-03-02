@@ -27,6 +27,10 @@ public class QueryCommentsRequest {
   private Map<String, Object> filter;
 
   @Nullable
+  @JsonProperty("id_around")
+  private String idAround;
+
+  @Nullable
   @JsonProperty("limit")
   private Integer limit;
 

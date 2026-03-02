@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -26,4 +27,12 @@ public class ReadCollectionsResponse {
 
   @JsonProperty("collections")
   private List<CollectionResponse> collections;
+
+  @Nullable
+  @JsonProperty("next")
+  private String next;
+
+  @Nullable
+  @JsonProperty("prev")
+  private String prev;
 }

@@ -372,6 +372,56 @@ public interface Common {
   public StreamRequest<ImageUploadResponse> uploadImage() throws StreamException;
 
   @NotNull
+  public StreamRequest<ListUserGroupsResponse> listUserGroups(ListUserGroupsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListUserGroupsResponse> listUserGroups() throws StreamException;
+
+  @NotNull
+  public StreamRequest<CreateUserGroupResponse> createUserGroup(CreateUserGroupRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<SearchUserGroupsResponse> searchUserGroups(SearchUserGroupsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deleteUserGroup(@NotNull String id, DeleteUserGroupRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deleteUserGroup(@NotNull String id) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetUserGroupResponse> getUserGroup(
+      @NotNull String id, GetUserGroupRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetUserGroupResponse> getUserGroup(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateUserGroupResponse> updateUserGroup(
+      @NotNull String id, UpdateUserGroupRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateUserGroupResponse> updateUserGroup(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<RemoveUserGroupMembersResponse> removeUserGroupMembers(
+      @NotNull String id, RemoveUserGroupMembersRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<RemoveUserGroupMembersResponse> removeUserGroupMembers(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<AddUserGroupMembersResponse> addUserGroupMembers(
+      @NotNull String id, AddUserGroupMembersRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryUsersResponse> queryUsers(QueryUsersRequest request)
       throws StreamException;
 

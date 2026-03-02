@@ -198,6 +198,9 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<ReadCollectionsResponse> readCollections() throws StreamException;
+
+  @NotNull
   public StreamRequest<UpdateCollectionsResponse> updateCollections(
       UpdateCollectionsRequest request) throws StreamException;
 
@@ -401,6 +404,14 @@ public interface Feeds {
   @NotNull
   public StreamRequest<GetFollowSuggestionsResponse> getFollowSuggestions(
       @NotNull String feedGroupID) throws StreamException;
+
+  @NotNull
+  public StreamRequest<RestoreFeedGroupResponse> restoreFeedGroup(
+      @NotNull String feedGroupID, RestoreFeedGroupRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<RestoreFeedGroupResponse> restoreFeedGroup(@NotNull String feedGroupID)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<DeleteFeedGroupResponse> deleteFeedGroup(

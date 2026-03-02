@@ -94,6 +94,10 @@ public class MessageRequest {
   private List<Attachment> attachments;
 
   @Nullable
+  @JsonProperty("mentioned_roles")
+  private List<String> mentionedRoles;
+
+  @Nullable
   @JsonProperty("mentioned_users")
   private List<String> mentionedUsers;
 

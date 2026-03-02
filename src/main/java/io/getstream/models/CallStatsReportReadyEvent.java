@@ -14,6 +14,8 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 /** This event is sent when the insights report is ready */
 @lombok.Data
@@ -33,4 +35,12 @@ public class CallStatsReportReadyEvent {
 
   @JsonProperty("type")
   private String type;
+
+  @Nullable
+  @JsonProperty("is_trimmed")
+  private Boolean isTrimmed;
+
+  @Nullable
+  @JsonProperty("participants_overview")
+  private List<CallStatsParticipant> participantsOverview;
 }

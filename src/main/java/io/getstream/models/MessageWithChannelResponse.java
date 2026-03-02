@@ -142,6 +142,10 @@ public class MessageWithChannelResponse {
   private Boolean showInChannel;
 
   @Nullable
+  @JsonProperty("mentioned_roles")
+  private List<String> mentionedRoles;
+
+  @Nullable
   @JsonProperty("thread_participants")
   private List<UserResponse> threadParticipants;
 

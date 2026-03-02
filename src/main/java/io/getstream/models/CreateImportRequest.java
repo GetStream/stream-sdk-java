@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
 /** Create import Creates a new import */
 @lombok.Data
@@ -26,4 +27,8 @@ public class CreateImportRequest {
 
   @JsonProperty("path")
   private String path;
+
+  @Nullable
+  @JsonProperty("merge_custom")
+  private Boolean mergeCustom;
 }

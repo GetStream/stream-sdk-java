@@ -38,6 +38,10 @@ public class RuleBuilderCondition {
   private CallTypeRuleParameters callTypeRuleParams;
 
   @Nullable
+  @JsonProperty("call_violation_count_params")
+  private CallViolationCountParameters callViolationCountParams;
+
+  @Nullable
   @JsonProperty("closed_caption_rule_params")
   private ClosedCaptionRuleParameters closedCaptionRuleParams;
 

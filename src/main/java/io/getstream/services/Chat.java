@@ -398,7 +398,7 @@ public interface Chat {
       @NotNull String id, TranslateMessageRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<UpdateMessageResponse> undeleteMessage(
+  public StreamRequest<UndeleteMessageResponse> undeleteMessage(
       @NotNull String id, UndeleteMessageRequest request) throws StreamException;
 
   @NotNull
@@ -542,6 +542,13 @@ public interface Chat {
   @NotNull
   public StreamRequest<QuerySegmentTargetsResponse> querySegmentTargets(@NotNull String id)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryTeamUsageStatsResponse> queryTeamUsageStats(
+      QueryTeamUsageStatsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryTeamUsageStatsResponse> queryTeamUsageStats() throws StreamException;
 
   @NotNull
   public StreamRequest<QueryThreadsResponse> queryThreads(QueryThreadsRequest request)

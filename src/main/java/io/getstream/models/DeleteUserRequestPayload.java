@@ -31,6 +31,14 @@ public class DeleteUserRequestPayload {
   private Boolean deleteFeedsContent;
 
   @Nullable
+  @JsonProperty("entity_id")
+  private String entityID;
+
+  @Nullable
+  @JsonProperty("entity_type")
+  private String entityType;
+
+  @Nullable
   @JsonProperty("hard_delete")
   private Boolean hardDelete;
 

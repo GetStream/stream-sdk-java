@@ -63,6 +63,9 @@ public class AppResponseFields {
   @JsonProperty("max_aggregated_activities_length")
   private Integer maxAggregatedActivitiesLength;
 
+  @JsonProperty("moderation_audio_call_moderation_enabled")
+  private Boolean moderationAudioCallModerationEnabled;
+
   @JsonProperty("moderation_enabled")
   private Boolean moderationEnabled;
 
@@ -71,6 +74,9 @@ public class AppResponseFields {
 
   @JsonProperty("moderation_multitenant_blocklist_enabled")
   private Boolean moderationMultitenantBlocklistEnabled;
+
+  @JsonProperty("moderation_video_call_moderation_enabled")
+  private Boolean moderationVideoCallModerationEnabled;
 
   @JsonProperty("moderation_webhook_url")
   private String moderationWebhookUrl;

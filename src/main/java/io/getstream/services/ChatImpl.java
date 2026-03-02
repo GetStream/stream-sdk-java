@@ -1178,11 +1178,11 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<UpdateMessageResponse> undeleteMessage(
+  public StreamRequest<UndeleteMessageResponse> undeleteMessage(
       @NotNull String id, UndeleteMessageRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
 
-    return new StreamRequest<UpdateMessageResponse>(
+    return new StreamRequest<UndeleteMessageResponse>(
         client.getHttpClient(),
         client.getObjectMapper(),
         client.getBaseUrl(),
@@ -1190,7 +1190,7 @@ public class ChatImpl {
         "/api/v2/chat/messages/{id}/undelete",
         request,
         pathParams,
-        new TypeReference<UpdateMessageResponse>() {});
+        new TypeReference<UndeleteMessageResponse>() {});
   }
 
   @NotNull
@@ -1597,6 +1597,26 @@ public class ChatImpl {
   public StreamRequest<QuerySegmentTargetsResponse> querySegmentTargets(@NotNull String id)
       throws StreamException {
     return querySegmentTargets(id, new QuerySegmentTargetsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueryTeamUsageStatsResponse> queryTeamUsageStats(
+      QueryTeamUsageStatsRequest request) throws StreamException {
+
+    return new StreamRequest<QueryTeamUsageStatsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/chat/stats/team_usage",
+        request,
+        null,
+        new TypeReference<QueryTeamUsageStatsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryTeamUsageStatsResponse> queryTeamUsageStats() throws StreamException {
+    return queryTeamUsageStats(new QueryTeamUsageStatsRequest());
   }
 
   @NotNull
