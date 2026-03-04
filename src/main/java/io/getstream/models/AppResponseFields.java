@@ -167,6 +167,10 @@ public class AppResponseFields {
   private String beforeMessageSendHookUrl;
 
   @Nullable
+  @JsonProperty("moderation_s3_image_access_role_arn")
+  private String moderationS3ImageAccessRoleArn;
+
+  @Nullable
   @JsonProperty("revoke_tokens_issued_before")
   private Date revokeTokensIssuedBefore;
 

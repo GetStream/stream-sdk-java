@@ -17,10 +17,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * Partially update thread Updates certain fields of the thread Sends events: - thread.updated -
- * thread.updated
- */
+/** Partially update thread Updates certain fields of the thread Sends events: - thread.updated */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

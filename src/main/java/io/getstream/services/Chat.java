@@ -59,6 +59,10 @@ public interface Chat {
   public StreamRequest<QueryChannelsResponse> queryChannels() throws StreamException;
 
   @NotNull
+  public StreamRequest<ChannelBatchUpdateResponse> channelBatchUpdate(
+      ChannelBatchUpdateRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<DeleteChannelsResponse> deleteChannels(DeleteChannelsRequest request)
       throws StreamException;
 

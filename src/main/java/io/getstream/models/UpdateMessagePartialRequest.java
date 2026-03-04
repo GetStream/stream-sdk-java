@@ -18,8 +18,7 @@ import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Partially message update Updates certain fields of the message Sends events: - message.updated -
- * message.updated
+ * Partially message update Updates certain fields of the message Sends events: - message.updated
  */
 @lombok.Data
 @lombok.Builder

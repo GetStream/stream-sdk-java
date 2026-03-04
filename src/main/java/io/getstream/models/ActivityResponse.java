@@ -125,6 +125,14 @@ public class ActivityResponse {
   private Integer friendReactionCount;
 
   @Nullable
+  @JsonProperty("is_read")
+  private Boolean isRead;
+
+  @Nullable
+  @JsonProperty("is_seen")
+  private Boolean isSeen;
+
+  @Nullable
   @JsonProperty("is_watched")
   private Boolean isWatched;
 

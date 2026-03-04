@@ -132,6 +132,21 @@ public class ChatImpl {
   }
 
   @NotNull
+  public StreamRequest<ChannelBatchUpdateResponse> channelBatchUpdate(
+      ChannelBatchUpdateRequest request) throws StreamException {
+
+    return new StreamRequest<ChannelBatchUpdateResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PUT",
+        "/api/v2/chat/channels/batch",
+        request,
+        null,
+        new TypeReference<ChannelBatchUpdateResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<DeleteChannelsResponse> deleteChannels(DeleteChannelsRequest request)
       throws StreamException {
 

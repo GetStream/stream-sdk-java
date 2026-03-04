@@ -19,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Ephemeral message update Updates message fields without storing in database, only sends update
- * event Sends events: - message.updated - message.updated
+ * event Sends events: - message.updated
  */
 @lombok.Data
 @lombok.Builder

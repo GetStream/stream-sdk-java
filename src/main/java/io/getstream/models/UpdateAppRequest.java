@@ -94,6 +94,10 @@ public class UpdateAppRequest {
   private Boolean moderationEnabled;
 
   @Nullable
+  @JsonProperty("moderation_s3_image_access_role_arn")
+  private String moderationS3ImageAccessRoleArn;
+
+  @Nullable
   @JsonProperty("moderation_webhook_url")
   private String moderationWebhookUrl;
 

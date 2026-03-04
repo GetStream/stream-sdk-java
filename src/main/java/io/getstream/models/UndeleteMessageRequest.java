@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Undelete message Undelete a message that was previously soft-deleted Sends events: -
- * message.undeleted - message.undeleted
+ * message.undeleted
  */
 @lombok.Data
 @lombok.Builder

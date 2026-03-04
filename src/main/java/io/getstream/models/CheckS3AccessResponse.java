@@ -13,44 +13,21 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
-/** Query comments Query comments using MongoDB-style filters with pagination and sorting options */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class QueryCommentsRequest {
+public class CheckS3AccessResponse {
 
-  @JsonProperty("filter")
-  private Map<String, Object> filter;
+  @JsonProperty("duration")
+  private String duration;
 
-  @Nullable
-  @JsonProperty("id_around")
-  private String idAround;
-
-  @Nullable
-  @JsonProperty("limit")
-  private Integer limit;
+  @JsonProperty("success")
+  private Boolean success;
 
   @Nullable
-  @JsonProperty("next")
-  private String next;
-
-  @Nullable
-  @JsonProperty("prev")
-  private String prev;
-
-  @Nullable
-  @JsonProperty("sort")
-  private String sort;
-
-  @Nullable
-  @JsonProperty("user_id")
-  private String userID;
-
-  @Nullable
-  @JsonProperty("user")
-  private UserRequest user;
+  @JsonProperty("message")
+  private String message;
 }

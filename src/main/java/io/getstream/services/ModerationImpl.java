@@ -126,6 +126,26 @@ public class ModerationImpl {
   }
 
   @NotNull
+  public StreamRequest<CheckS3AccessResponse> checkS3Access(CheckS3AccessRequest request)
+      throws StreamException {
+
+    return new StreamRequest<CheckS3AccessResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/check_s3_access",
+        request,
+        null,
+        new TypeReference<CheckS3AccessResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<CheckS3AccessResponse> checkS3Access() throws StreamException {
+    return checkS3Access(new CheckS3AccessRequest());
+  }
+
+  @NotNull
   public StreamRequest<UpsertConfigResponse> upsertConfig(UpsertConfigRequest request)
       throws StreamException {
 

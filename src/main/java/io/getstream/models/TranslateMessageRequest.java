@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Translate message Translates message to a given language using automated translation software
- * Sends events: - message.updated - message.updated
+ * Sends events: - message.updated
  */
 @lombok.Data
 @lombok.Builder

@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * Partially update user Updates certain fields of the user Sends events: - user.presence.changed -
- * user.updated - user.presence.changed
+ * user.updated
  */
 @lombok.Data
 @lombok.Builder
