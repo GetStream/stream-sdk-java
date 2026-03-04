@@ -12,8 +12,15 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /** Delete a moderation template Delete a specific moderation template by its name */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class V2DeleteTemplateRequest {}
+@lombok.AllArgsConstructor
+public class V2DeleteTemplateRequest {
+
+  @JsonProperty("name")
+  private String name;
+}

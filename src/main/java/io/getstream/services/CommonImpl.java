@@ -1244,12 +1244,6 @@ public class CommonImpl {
   }
 
   @NotNull
-  public StreamRequest<RemoveUserGroupMembersResponse> removeUserGroupMembers(@NotNull String id)
-      throws StreamException {
-    return removeUserGroupMembers(id, new RemoveUserGroupMembersRequest());
-  }
-
-  @NotNull
   public StreamRequest<AddUserGroupMembersResponse> addUserGroupMembers(
       @NotNull String id, AddUserGroupMembersRequest request) throws StreamException {
     var pathParams = Map.of("id", id);

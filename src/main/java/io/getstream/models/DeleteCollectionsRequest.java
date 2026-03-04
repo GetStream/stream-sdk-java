@@ -13,8 +13,10 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.getstream.annotations.Query;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Delete multiple collections Delete collections in a batch operation. Users can only delete their
@@ -25,6 +27,14 @@ import java.util.List;
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class DeleteCollectionsRequest {
+
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 
   @Query("collection_refs")
   @JsonIgnore

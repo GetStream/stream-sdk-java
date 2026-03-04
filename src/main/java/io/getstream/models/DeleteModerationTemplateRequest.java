@@ -13,23 +13,13 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
-import org.jetbrains.annotations.Nullable;
 
-/**
- * Remove user group members Removes members from a user group. Users already not in the group are
- * silently ignored.
- */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class RemoveUserGroupMembersRequest {
+public class DeleteModerationTemplateRequest {
 
-  @JsonProperty("member_ids")
-  private List<String> memberIds;
-
-  @Nullable
-  @JsonProperty("team_id")
-  private String teamID;
+  @JsonProperty("name")
+  private String name;
 }
