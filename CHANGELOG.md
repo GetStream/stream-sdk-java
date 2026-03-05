@@ -14,7 +14,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### Added
 
 - Full product coverage: Chat, Video, Moderation, and Feeds APIs are all supported in a single SDK.
-- **Feeds**: activities, feeds, feed groups, follows, comments, reactions, collections, bookmarks, membership levels, feed views, and more.
+- **Feeds**: activities, feeds, feed groups, follows, comments, reactions, collections, bookmarks, membership levels, feed views and more.
 - **Video**: calls, recordings, transcription, closed captions, SFU, call statistics, user feedback analytics, and more.
 - **Moderation**: flags, review queue, moderation rules, config, appeals, moderation logs, and more.
 - Push notification types, preferences, and templates.
