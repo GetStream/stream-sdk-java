@@ -26,5 +26,5 @@ public class MarkReadResponse {
 
   @Nullable
   @JsonProperty("event")
-  private MessageReadEvent event;
+  private MarkReadResponseEvent event;
 }

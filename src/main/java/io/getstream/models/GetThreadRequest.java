@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** Get Thread Return a specific thread */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

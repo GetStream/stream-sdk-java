@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Query comment reactions Query comment reactions */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** PinRequest is the payload for pinning a message. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

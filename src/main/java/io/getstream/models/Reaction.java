@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
@@ -23,27 +24,64 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class Reaction {
 
+  @JsonProperty("activity_id")
+  private String activityID;
+
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @JsonProperty("message_id")
-  private String messageID;
-
-  @JsonProperty("score")
-  private Integer score;
-
-  @JsonProperty("type")
-  private String type;
+  @JsonProperty("kind")
+  private String kind;
 
   @JsonProperty("updated_at")
   private Date updatedAt;
 
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
-
-  @Nullable
   @JsonProperty("user_id")
   private String userID;
+
+  @Nullable
+  @JsonProperty("deleted_at")
+  private Date deletedAt;
+
+  @Nullable
+  @JsonProperty("id")
+  private String id;
+
+  @Nullable
+  @JsonProperty("parent")
+  private String parent;
+
+  @Nullable
+  @JsonProperty("score")
+  private Double score;
+
+  @Nullable
+  @JsonProperty("target_feeds")
+  private List<String> targetFeeds;
+
+  @Nullable
+  @JsonProperty("children_counts")
+  private Map<String, Object> childrenCounts;
+
+  @Nullable
+  @JsonProperty("data")
+  private Map<String, Object> data;
+
+  @Nullable
+  @JsonProperty("latest_children")
+  private Map<String, List<Reaction>> latestChildren;
+
+  @Nullable
+  @JsonProperty("moderation")
+  private Map<String, Object> moderation;
+
+  @Nullable
+  @JsonProperty("own_children")
+  private Map<String, List<Reaction>> ownChildren;
+
+  @Nullable
+  @JsonProperty("target_feeds_extra_data")
+  private Map<String, Object> targetFeedsExtraData;
 
   @Nullable
   @JsonProperty("user")

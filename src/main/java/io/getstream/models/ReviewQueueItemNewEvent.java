@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** This event is sent when a new moderation review queue item is created */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

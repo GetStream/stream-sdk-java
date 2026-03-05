@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Create multiple collections Create new collections in a batch operation. Collections are data
+ * objects that can be attached to activities for managing shared data across multiple activities.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

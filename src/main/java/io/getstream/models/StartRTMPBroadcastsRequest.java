@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/** Start RTMP broadcasts Starts RTMP broadcasts for the provided RTMP destinations */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

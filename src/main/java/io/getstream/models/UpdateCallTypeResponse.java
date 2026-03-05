@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** UpdateCallTypeResponse is the payload for updating a call type. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -40,7 +41,7 @@ public class UpdateCallTypeResponse {
   private Map<String, List<String>> grants;
 
   @JsonProperty("notification_settings")
-  private NotificationSettings notificationSettings;
+  private NotificationSettingsResponse notificationSettings;
 
   @JsonProperty("settings")
   private CallSettingsResponse settings;

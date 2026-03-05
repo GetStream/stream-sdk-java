@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Query comments Query comments using MongoDB-style filters with pagination and sorting options */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -24,6 +25,10 @@ public class QueryCommentsRequest {
 
   @JsonProperty("filter")
   private Map<String, Object> filter;
+
+  @Nullable
+  @JsonProperty("id_around")
+  private String idAround;
 
   @Nullable
   @JsonProperty("limit")
@@ -40,4 +45,12 @@ public class QueryCommentsRequest {
   @Nullable
   @JsonProperty("sort")
   private String sort;
+
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

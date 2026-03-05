@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Get or create a call Gets or creates a new call Sends events: - call.created - call.notification
+ * - call.ring
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

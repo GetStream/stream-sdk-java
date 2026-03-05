@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Partially message update Updates certain fields of the message Sends events: - message.updated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -26,6 +29,10 @@ public class UpdateMessagePartialRequest {
   @Nullable
   @JsonProperty("skip_enrich_url")
   private Boolean skipEnrichUrl;
+
+  @Nullable
+  @JsonProperty("skip_push")
+  private Boolean skipPush;
 
   @Nullable
   @JsonProperty("user_id")

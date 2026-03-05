@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+/** This event is sent when one or more members get its role updated */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

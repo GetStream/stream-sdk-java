@@ -100,7 +100,7 @@ public class ActivityResponse {
   private Map<String, Object> custom;
 
   @JsonProperty("reaction_groups")
-  private Map<String, ReactionGroupResponse> reactionGroups;
+  private Map<String, FeedsReactionGroupResponse> reactionGroups;
 
   @JsonProperty("search_data")
   private Map<String, Object> searchData;
@@ -119,6 +119,18 @@ public class ActivityResponse {
   @Nullable
   @JsonProperty("expires_at")
   private Date expiresAt;
+
+  @Nullable
+  @JsonProperty("friend_reaction_count")
+  private Integer friendReactionCount;
+
+  @Nullable
+  @JsonProperty("is_read")
+  private Boolean isRead;
+
+  @Nullable
+  @JsonProperty("is_seen")
+  private Boolean isSeen;
 
   @Nullable
   @JsonProperty("is_watched")
@@ -141,12 +153,20 @@ public class ActivityResponse {
   private String visibilityTag;
 
   @Nullable
+  @JsonProperty("friend_reactions")
+  private List<FeedsReactionResponse> friendReactions;
+
+  @Nullable
   @JsonProperty("current_feed")
   private FeedResponse currentFeed;
 
   @Nullable
   @JsonProperty("location")
   private ActivityLocation location;
+
+  @Nullable
+  @JsonProperty("metrics")
+  private Map<String, Integer> metrics;
 
   @Nullable
   @JsonProperty("moderation")

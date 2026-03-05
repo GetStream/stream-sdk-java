@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Stop recording Stops recording Sends events: - call.recording_stopped */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

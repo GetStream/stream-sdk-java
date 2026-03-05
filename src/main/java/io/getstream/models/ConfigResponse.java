@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -44,6 +45,10 @@ public class ConfigResponse {
   @Nullable
   @JsonProperty("ai_image_config")
   private AIImageConfig aiImageConfig;
+
+  @Nullable
+  @JsonProperty("ai_image_subclassifications")
+  private Map<String, List<String>> aiImageSubclassifications;
 
   @Nullable
   @JsonProperty("ai_text_config")

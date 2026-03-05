@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/** Stop closed captions Stops closed captions Sends events: - call.transcription_stopped */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

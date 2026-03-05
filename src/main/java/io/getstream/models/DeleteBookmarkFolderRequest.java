@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Delete a bookmark folder Delete a bookmark folder by its ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

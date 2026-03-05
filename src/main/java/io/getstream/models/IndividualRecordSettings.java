@@ -13,6 +13,8 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -22,4 +24,8 @@ public class IndividualRecordSettings {
 
   @JsonProperty("mode")
   private String mode;
+
+  @Nullable
+  @JsonProperty("output_types")
+  private List<String> outputTypes;
 }

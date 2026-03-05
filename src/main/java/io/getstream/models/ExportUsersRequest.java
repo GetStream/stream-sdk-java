@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/** Export users Exports user profile, reactions and messages for list of given users */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

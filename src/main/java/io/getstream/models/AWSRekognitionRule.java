@@ -13,6 +13,8 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -28,4 +30,8 @@ public class AWSRekognitionRule {
 
   @JsonProperty("min_confidence")
   private Double minConfidence;
+
+  @Nullable
+  @JsonProperty("subclassifications")
+  private Map<String, Boolean> subclassifications;
 }

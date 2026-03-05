@@ -16,6 +16,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Update a follow Updates a follow&#39;s custom data, push preference, and follower role. Source
+ * owner can update custom data and push preference. Follower role can only be updated via
+ * server-side requests.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -29,8 +34,16 @@ public class UpdateFollowRequest {
   private String target;
 
   @Nullable
+  @JsonProperty("copy_custom_to_notification")
+  private Boolean copyCustomToNotification;
+
+  @Nullable
   @JsonProperty("create_notification_activity")
   private Boolean createNotificationActivity;
+
+  @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
 
   @Nullable
   @JsonProperty("follower_role")

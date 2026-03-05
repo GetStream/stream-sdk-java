@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Delete command Deletes custom chat command */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

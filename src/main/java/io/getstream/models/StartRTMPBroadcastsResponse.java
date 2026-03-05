@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** StartRTMPBroadcastsResponse is the payload for starting an RTMP broadcast. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

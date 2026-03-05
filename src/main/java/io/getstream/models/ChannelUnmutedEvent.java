@@ -14,7 +14,11 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.Nullable;
 
+/** Emitted when a channel is successfully unmuted. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -24,6 +28,25 @@ public class ChannelUnmutedEvent {
   @JsonProperty("created_at")
   private Date createdAt;
 
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
   @JsonProperty("type")
   private String type;
+
+  @Nullable
+  @JsonProperty("received_at")
+  private Date receivedAt;
+
+  @Nullable
+  @JsonProperty("mutes")
+  private List<ChannelMute> mutes;
+
+  @Nullable
+  @JsonProperty("mute")
+  private ChannelMute mute;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserResponseCommonFields user;
 }

@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Get moderation rule Get a specific moderation rule by ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

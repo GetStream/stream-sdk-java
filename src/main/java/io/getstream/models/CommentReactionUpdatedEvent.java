@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Emitted when a reaction is updated on a comment. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

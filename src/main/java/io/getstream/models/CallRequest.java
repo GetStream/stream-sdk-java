@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** CallRequest is the payload for creating a call. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -14,8 +14,13 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * This event is sent when a user gets reactivated. The event contains information about the user
+ * that was reactivated.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -25,10 +30,20 @@ public class UserReactivatedEvent {
   @JsonProperty("created_at")
   private Date createdAt;
 
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
+  @JsonProperty("user")
+  private UserResponseCommonFields user;
+
   @JsonProperty("type")
   private String type;
 
   @Nullable
-  @JsonProperty("user")
-  private User user;
+  @JsonProperty("received_at")
+  private Date receivedAt;
+
+  @Nullable
+  @JsonProperty("created_by")
+  private UserResponseCommonFields createdBy;
 }

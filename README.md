@@ -90,6 +90,9 @@ call.getOrCreate(
         .build());
 ```
 
+> **Note:** When constructing models, always use the **builder pattern** (e.g. `UserRequest.builder().id("id").build()`).
+> While some generated models expose positional constructors (for example via Lombok's `@AllArgsConstructor`), their parameter order is not part of the public API and may change between releases; using positional constructors is therefore strongly discouraged and may break across SDK updates.
+
 ## Development
 
 To run tests, create the `local.properties` file using the `local.properties.example` and adjust it to have valid API credentials:

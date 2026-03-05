@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * This event is sent when a call is created. Clients receiving this event should check if the
+ * ringing field is set to true and if so, show the call screen
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

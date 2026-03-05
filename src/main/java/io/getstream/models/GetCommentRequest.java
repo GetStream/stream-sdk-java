@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Get comment Get a comment by ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

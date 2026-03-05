@@ -14,25 +14,38 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.Map;
+import org.jetbrains.annotations.Nullable;
 
+/** Emitted when a channel is successfully unfrozen. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class ChannelUnFrozenEvent {
 
-  @JsonProperty("channel_id")
-  private String channelID;
-
-  @JsonProperty("channel_type")
-  private String channelType;
-
-  @JsonProperty("cid")
-  private String cid;
-
   @JsonProperty("created_at")
   private Date createdAt;
 
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
   @JsonProperty("type")
   private String type;
+
+  @Nullable
+  @JsonProperty("channel_id")
+  private String channelID;
+
+  @Nullable
+  @JsonProperty("channel_type")
+  private String channelType;
+
+  @Nullable
+  @JsonProperty("cid")
+  private String cid;
+
+  @Nullable
+  @JsonProperty("received_at")
+  private Date receivedAt;
 }

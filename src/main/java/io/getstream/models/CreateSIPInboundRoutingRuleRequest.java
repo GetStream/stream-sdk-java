@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Create SIP Inbound Routing Rule Create a new SIP Inbound Routing Rule with either direct routing
+ * or PIN routing configuration
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

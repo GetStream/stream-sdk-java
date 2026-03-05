@@ -120,3 +120,7 @@ The job creates a pull request with the changelog. Check if it looks good.
 - Merge the pull request.
 
 Once the PR is merged, it automatically kicks off another job which will upload the Gem to RubyGems.org and creates a GitHub release.
+
+### Pre-releases
+
+Push a tag (e.g. `1.0.0-beta.1`), then go to **GitHub Releases → Draft a new release**, select the tag, check **"Set as a pre-release"**, and publish. The CI job will trigger automatically and publish to MavenCentral.

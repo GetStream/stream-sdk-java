@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/** Delete targets from a segment Delete targets from a segment */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

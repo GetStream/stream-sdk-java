@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** Send event Sends event to the channel */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

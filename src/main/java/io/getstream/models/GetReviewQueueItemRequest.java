@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Get review queue item Retrieve a specific review queue item by its ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

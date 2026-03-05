@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Update poll option Updates a poll option Sends events: - feeds.poll.updated - poll.updated */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

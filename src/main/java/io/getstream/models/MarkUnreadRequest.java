@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
+/** Mark unread Marks channel as unread from a specific message */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Start frame recording Starts frame by frame recording Sends events: -
+ * call.frame_recording_started
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

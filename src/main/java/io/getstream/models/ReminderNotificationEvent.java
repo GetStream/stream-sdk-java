@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Emitted when a reminder becomes due, triggering a notification for the user. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

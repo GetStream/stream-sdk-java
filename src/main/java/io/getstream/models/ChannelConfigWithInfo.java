@@ -122,6 +122,10 @@ public class ChannelConfigWithInfo {
   private String partitionTtl;
 
   @Nullable
+  @JsonProperty("push_level")
+  private String pushLevel;
+
+  @Nullable
   @JsonProperty("allowed_flag_reasons")
   private List<String> allowedFlagReasons;
 

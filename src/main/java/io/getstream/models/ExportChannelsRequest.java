@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/** Export channels Exports channel data to JSON file */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

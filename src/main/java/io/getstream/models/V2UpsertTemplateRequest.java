@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** Upsert feeds template Upsert feeds template for moderation */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -24,5 +25,5 @@ public class V2UpsertTemplateRequest {
   private String name;
 
   @JsonProperty("config")
-  private FeedsModerationTemplateConfig config;
+  private FeedsModerationTemplateConfigPayload config;
 }

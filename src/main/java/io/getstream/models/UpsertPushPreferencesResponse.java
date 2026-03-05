@@ -25,8 +25,8 @@ public class UpsertPushPreferencesResponse {
   private String duration;
 
   @JsonProperty("user_channel_preferences")
-  private Map<String, Map<String, ChannelPushPreferences>> userChannelPreferences;
+  private Map<String, Map<String, ChannelPushPreferencesResponse>> userChannelPreferences;
 
   @JsonProperty("user_preferences")
-  private Map<String, PushPreferences> userPreferences;
+  private Map<String, PushPreferencesResponse> userPreferences;
 }

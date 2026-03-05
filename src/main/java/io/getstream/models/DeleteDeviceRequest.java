@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** Delete device Deletes one device */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

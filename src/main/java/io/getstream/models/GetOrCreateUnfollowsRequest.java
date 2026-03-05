@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Unfollow multiple feeds (idempotent) Removes multiple follows and broadcasts FollowRemovedEvent
+ * for each. Does not return an error if follows don&#39;t exist.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -28,4 +32,8 @@ public class GetOrCreateUnfollowsRequest {
   @Nullable
   @JsonProperty("delete_notification_activity")
   private Boolean deleteNotificationActivity;
+
+  @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
 }

@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** This event is sent when a user submits feedback for a call. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

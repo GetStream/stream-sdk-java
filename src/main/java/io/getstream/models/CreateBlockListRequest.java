@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Create block list Creates a new application blocklist, once created the blocklist can be used by
+ * any channel type
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

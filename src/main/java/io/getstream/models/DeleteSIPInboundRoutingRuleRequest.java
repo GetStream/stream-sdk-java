@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Delete SIP Inbound Routing Rule Delete a SIP Inbound Routing Rule for the application */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

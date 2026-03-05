@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/** Update command Updates custom chat command */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 
+/** This event is sent when a call member is muted */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

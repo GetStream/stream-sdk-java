@@ -45,19 +45,19 @@ public class ChannelInputRequest {
 
   @Nullable
   @JsonProperty("invites")
-  private List<ChannelMember> invites;
+  private List<ChannelMemberRequest> invites;
 
   @Nullable
   @JsonProperty("members")
-  private List<ChannelMember> members;
+  private List<ChannelMemberRequest> members;
 
   @Nullable
   @JsonProperty("config_overrides")
-  private ConfigOverrides configOverrides;
+  private ConfigOverridesRequest configOverrides;
 
   @Nullable
   @JsonProperty("created_by")
-  private User createdBy;
+  private UserRequest createdBy;
 
   @Nullable
   @JsonProperty("custom")

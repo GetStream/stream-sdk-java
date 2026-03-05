@@ -30,6 +30,22 @@ public class RuleBuilderCondition {
   private String type;
 
   @Nullable
+  @JsonProperty("call_custom_property_params")
+  private CallCustomPropertyParameters callCustomPropertyParams;
+
+  @Nullable
+  @JsonProperty("call_type_rule_params")
+  private CallTypeRuleParameters callTypeRuleParams;
+
+  @Nullable
+  @JsonProperty("call_violation_count_params")
+  private CallViolationCountParameters callViolationCountParams;
+
+  @Nullable
+  @JsonProperty("closed_caption_rule_params")
+  private ClosedCaptionRuleParameters closedCaptionRuleParams;
+
+  @Nullable
   @JsonProperty("content_count_rule_params")
   private ContentCountRuleParameters contentCountRuleParams;
 
@@ -44,6 +60,10 @@ public class RuleBuilderCondition {
   @Nullable
   @JsonProperty("image_rule_params")
   private ImageRuleParameters imageRuleParams;
+
+  @Nullable
+  @JsonProperty("keyframe_rule_params")
+  private KeyframeRuleParameters keyframeRuleParams;
 
   @Nullable
   @JsonProperty("text_content_params")

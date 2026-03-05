@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Get status of a task Gets status of a task */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

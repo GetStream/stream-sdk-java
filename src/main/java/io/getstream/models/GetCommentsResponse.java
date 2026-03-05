@@ -25,6 +25,9 @@ public class GetCommentsResponse {
   @JsonProperty("duration")
   private String duration;
 
+  @JsonProperty("sort")
+  private String sort;
+
   @JsonProperty("comments")
   private List<ThreadedCommentResponse> comments;
 

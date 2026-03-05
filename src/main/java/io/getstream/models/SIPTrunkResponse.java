@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 
+/** SIP trunk information */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

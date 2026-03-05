@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** Delete a bookmark Deletes a bookmark from an activity */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

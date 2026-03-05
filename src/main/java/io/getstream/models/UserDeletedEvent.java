@@ -14,8 +14,13 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * This event is sent when a user gets deleted. The event contains information about the user that
+ * was deleted and the deletion options that were used.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -25,8 +30,17 @@ public class UserDeletedEvent {
   @JsonProperty("created_at")
   private Date createdAt;
 
+  @JsonProperty("delete_conversation")
+  private String deleteConversation;
+
   @JsonProperty("delete_conversation_channels")
   private Boolean deleteConversationChannels;
+
+  @JsonProperty("delete_messages")
+  private String deleteMessages;
+
+  @JsonProperty("delete_user")
+  private String deleteUser;
 
   @JsonProperty("hard_delete")
   private Boolean hardDelete;
@@ -34,10 +48,16 @@ public class UserDeletedEvent {
   @JsonProperty("mark_messages_deleted")
   private Boolean markMessagesDeleted;
 
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
+  @JsonProperty("user")
+  private UserResponseCommonFields user;
+
   @JsonProperty("type")
   private String type;
 
   @Nullable
-  @JsonProperty("user")
-  private User user;
+  @JsonProperty("received_at")
+  private Date receivedAt;
 }

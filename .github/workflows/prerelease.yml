@@ -1,0 +1,52 @@
+name: Pre-release
+
+on:
+  release:
+    types: [prereleased]
+
+jobs:
+  Prerelease:
+    name: 🚀 Pre-release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Resolve version
+        run: |
+          TAG="${{ github.event.release.tag_name }}"
+          if [ -n "$TAG" ]; then
+            echo "VERSION=$TAG" >> $GITHUB_ENV
+          else
+            PROP=$(grep '^version=' gradle.properties | cut -d'=' -f2)
+            if [ -n "$PROP" ]; then
+              echo "VERSION=$PROP" >> $GITHUB_ENV
+            else
+              echo "❌ Could not determine version from tag or gradle.properties" && exit 1
+            fi
+          fi
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v5.1.0
+        with:
+          distribution: 'corretto'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Publish to MavenCentral
+        run: |
+          ./gradlew -Pversion=$VERSION publishToSonatype --no-daemon --max-workers 1 closeAndReleaseSonatypeStagingRepository
+        env:
+          STREAM_API_KEY: ${{ vars.STREAM_API_KEY }}
+          STREAM_API_SECRET: ${{ secrets.STREAM_API_SECRET }}
+          GPG_KEY_CONTENTS: ${{ secrets.GPG_KEY_CONTENTS }}
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
+          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+          SIGNING_SECRET_KEY_RING_FILE: ${{ secrets.SIGNING_SECRET_KEY_RING_FILE }}
+          SONATYPE_STAGING_PROFILE_ID: ${{ secrets.SONATYPE_STAGING_PROFILE_ID }}
+

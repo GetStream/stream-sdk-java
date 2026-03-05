@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 
+/** This event is sent to all call members to notify they are getting called */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

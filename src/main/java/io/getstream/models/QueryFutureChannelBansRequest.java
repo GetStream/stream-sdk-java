@@ -15,6 +15,9 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/**
+ * Query Future Channel Bans Find and filter future channel bans created by the authenticated user
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Get activity Returns activity by ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

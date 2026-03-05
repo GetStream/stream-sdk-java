@@ -27,7 +27,7 @@ public class MuteResponse {
 
   @Nullable
   @JsonProperty("mutes")
-  private List<UserMute> mutes;
+  private List<UserMuteResponse> mutes;
 
   @Nullable
   @JsonProperty("non_existing_users")
@@ -35,5 +35,5 @@ public class MuteResponse {
 
   @Nullable
   @JsonProperty("own_user")
-  private OwnUser ownUser;
+  private OwnUserResponse ownUser;
 }

@@ -21,7 +21,7 @@ jobs:
           script: |
             // Getting the release version from the PR source branch
             // Source branch looks like this: release-1.0.0
-            const version = context.payload.pull_request.head.ref.split('-')[1]
+            const version = context.payload.pull_request.head.ref.replace(/^release-/, '')
             core.exportVariable('VERSION', version)
 
       - name: Setup JDK 17

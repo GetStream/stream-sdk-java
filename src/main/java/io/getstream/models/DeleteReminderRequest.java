@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** Delete reminder Deletes a user&#39;s created reminder Sends events: - reminder.deleted */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

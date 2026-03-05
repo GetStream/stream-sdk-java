@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
+/**
+ * This event is sent when a reaction is sent in a call, clients should use this to show the
+ * reaction in the call screen
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -28,7 +32,7 @@ public class CallReactionEvent {
   private Date createdAt;
 
   @JsonProperty("reaction")
-  private ReactionResponse reaction;
+  private VideoReactionResponse reaction;
 
   @JsonProperty("type")
   private String type;

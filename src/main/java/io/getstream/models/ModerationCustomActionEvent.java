@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** This event is sent when a custom moderation action is executed */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

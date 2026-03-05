@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 import java.util.List;
 
+/**
+ * Delete multiple collections Delete collections in a batch operation. Users can only delete their
+ * own collections.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

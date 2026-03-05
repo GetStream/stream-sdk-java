@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** Query members Find and filter channel members */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

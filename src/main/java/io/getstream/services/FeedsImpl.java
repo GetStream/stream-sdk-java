@@ -88,6 +88,21 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<TrackActivityMetricsResponse> trackActivityMetrics(
+      TrackActivityMetricsRequest request) throws StreamException {
+
+    return new StreamRequest<TrackActivityMetricsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/activities/metrics/track",
+        request,
+        null,
+        new TypeReference<TrackActivityMetricsResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<QueryActivitiesResponse> queryActivities(QueryActivitiesRequest request)
       throws StreamException {
 
@@ -537,6 +552,11 @@ public class FeedsImpl {
         request,
         null,
         new TypeReference<ReadCollectionsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ReadCollectionsResponse> readCollections() throws StreamException {
+    return readCollections(new ReadCollectionsRequest());
   }
 
   @NotNull
@@ -1100,6 +1120,32 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<QueryPinnedActivitiesResponse> queryPinnedActivities(
+      @NotNull String feedGroupID, @NotNull String feedID, QueryPinnedActivitiesRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "feed_group_id", feedGroupID,
+            "feed_id", feedID);
+
+    return new StreamRequest<QueryPinnedActivitiesResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/pinned_activities/query",
+        request,
+        pathParams,
+        new TypeReference<QueryPinnedActivitiesResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryPinnedActivitiesResponse> queryPinnedActivities(
+      @NotNull String feedGroupID, @NotNull String feedID) throws StreamException {
+    return queryPinnedActivities(feedGroupID, feedID, new QueryPinnedActivitiesRequest());
+  }
+
+  @NotNull
   public StreamRequest<GetFollowSuggestionsResponse> getFollowSuggestions(
       @NotNull String feedGroupID, GetFollowSuggestionsRequest request) throws StreamException {
     var pathParams = Map.of("feed_group_id", feedGroupID);
@@ -1119,6 +1165,28 @@ public class FeedsImpl {
   public StreamRequest<GetFollowSuggestionsResponse> getFollowSuggestions(
       @NotNull String feedGroupID) throws StreamException {
     return getFollowSuggestions(feedGroupID, new GetFollowSuggestionsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<RestoreFeedGroupResponse> restoreFeedGroup(
+      @NotNull String feedGroupID, RestoreFeedGroupRequest request) throws StreamException {
+    var pathParams = Map.of("feed_group_id", feedGroupID);
+
+    return new StreamRequest<RestoreFeedGroupResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/feed_groups/{feed_group_id}/restore",
+        request,
+        pathParams,
+        new TypeReference<RestoreFeedGroupResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<RestoreFeedGroupResponse> restoreFeedGroup(@NotNull String feedGroupID)
+      throws StreamException {
+    return restoreFeedGroup(feedGroupID, new RestoreFeedGroupRequest());
   }
 
   @NotNull

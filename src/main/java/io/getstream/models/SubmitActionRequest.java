@@ -15,6 +15,11 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Submit moderation action Take action on flagged content, such as marking content as safe,
+ * deleting content, banning users, or executing custom moderation actions. Supports various action
+ * types with configurable parameters.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -38,59 +43,63 @@ public class SubmitActionRequest {
 
   @Nullable
   @JsonProperty("ban")
-  private BanActionRequest ban;
+  private BanActionRequestPayload ban;
 
   @Nullable
   @JsonProperty("block")
-  private BlockActionRequest block;
+  private BlockActionRequestPayload block;
 
   @Nullable
   @JsonProperty("custom")
-  private CustomActionRequest custom;
+  private CustomActionRequestPayload custom;
 
   @Nullable
   @JsonProperty("delete_activity")
-  private DeleteActivityRequest deleteActivity;
+  private DeleteActivityRequestPayload deleteActivity;
 
   @Nullable
   @JsonProperty("delete_comment")
-  private DeleteCommentRequest deleteComment;
+  private DeleteCommentRequestPayload deleteComment;
 
   @Nullable
   @JsonProperty("delete_message")
-  private DeleteMessageRequest deleteMessage;
+  private DeleteMessageRequestPayload deleteMessage;
 
   @Nullable
   @JsonProperty("delete_reaction")
-  private DeleteReactionRequest deleteReaction;
+  private DeleteReactionRequestPayload deleteReaction;
 
   @Nullable
   @JsonProperty("delete_user")
-  private DeleteUserRequest deleteUser;
+  private DeleteUserRequestPayload deleteUser;
+
+  @Nullable
+  @JsonProperty("flag")
+  private FlagRequest flag;
 
   @Nullable
   @JsonProperty("mark_reviewed")
-  private MarkReviewedRequest markReviewed;
+  private MarkReviewedRequestPayload markReviewed;
 
   @Nullable
   @JsonProperty("reject_appeal")
-  private RejectAppealRequest rejectAppeal;
+  private RejectAppealRequestPayload rejectAppeal;
 
   @Nullable
   @JsonProperty("restore")
-  private RestoreActionRequest restore;
+  private RestoreActionRequestPayload restore;
 
   @Nullable
   @JsonProperty("shadow_block")
-  private ShadowBlockActionRequest shadowBlock;
+  private ShadowBlockActionRequestPayload shadowBlock;
 
   @Nullable
   @JsonProperty("unban")
-  private UnbanActionRequest unban;
+  private UnbanActionRequestPayload unban;
 
   @Nullable
   @JsonProperty("unblock")
-  private UnblockActionRequest unblock;
+  private UnblockActionRequestPayload unblock;
 
   @Nullable
   @JsonProperty("user")

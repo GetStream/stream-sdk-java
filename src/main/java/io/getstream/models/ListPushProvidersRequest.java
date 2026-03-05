@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** List push providers List details of all push providers. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

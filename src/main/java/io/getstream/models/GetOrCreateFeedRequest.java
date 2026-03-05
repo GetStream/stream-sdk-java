@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Create a new feed Create a single feed for a given feed group */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -73,6 +74,10 @@ public class GetOrCreateFeedRequest {
   @Nullable
   @JsonProperty("following_pagination")
   private PagerRequest followingPagination;
+
+  @Nullable
+  @JsonProperty("friend_reactions_options")
+  private FriendReactionsOptions friendReactionsOptions;
 
   @Nullable
   @JsonProperty("interest_weights")

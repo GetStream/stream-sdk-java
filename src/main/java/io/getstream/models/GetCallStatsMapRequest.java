@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 import java.util.Date;
 
+/** Map call participants by location */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

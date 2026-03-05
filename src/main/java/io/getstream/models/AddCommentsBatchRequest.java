@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/**
+ * Add multiple comments in a batch Adds multiple comments in a single request. Each comment must
+ * specify the object type and ID.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

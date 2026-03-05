@@ -17,11 +17,16 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Query bookmarks Query bookmarks with filter query */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class QueryBookmarksRequest {
+
+  @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
 
   @Nullable
   @JsonProperty("limit")

@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** An attachment is a message object that represents a file uploaded by a user. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

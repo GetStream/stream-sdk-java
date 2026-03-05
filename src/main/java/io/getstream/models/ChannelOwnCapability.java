@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** All possibility of string to use */
 public class ChannelOwnCapability {
   private final String value;
 

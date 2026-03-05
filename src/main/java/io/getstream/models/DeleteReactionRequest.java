@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** Delete reaction Removes user reaction from the message Sends events: - reaction.deleted */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

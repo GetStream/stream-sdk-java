@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Contains the draft message content */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

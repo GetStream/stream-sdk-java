@@ -17,6 +17,10 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Update poll Updates a poll Sends events: - feeds.poll.closed - feeds.poll.updated - poll.closed -
+ * poll.updated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

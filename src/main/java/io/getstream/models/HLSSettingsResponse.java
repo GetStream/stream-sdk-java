@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/** HLSSettings is the payload for HLS settings */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

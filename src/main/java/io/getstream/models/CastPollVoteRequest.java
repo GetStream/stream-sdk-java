@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Cast vote Cast a vote on a poll Sends events: - feeds.poll.vote_casted - feeds.poll.vote_changed
+ * - feeds.poll.vote_removed - poll.vote_casted - poll.vote_changed - poll.vote_removed
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -12,6 +12,11 @@
  */
 package io.getstream.models;
 
+/**
+ * Export all feed data for a user Export all feed data for a user including: user profile, feeds,
+ * activities, follows, comments, feed reactions, bookmark folders, bookmarks, and collections owned
+ * by the user
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

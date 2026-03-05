@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Provide feedback on an activity Submit feedback for an activity including options to show less,
+ * hide, report, or mute the user
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

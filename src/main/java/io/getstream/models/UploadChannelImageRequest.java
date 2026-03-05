@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/** Upload image Uploads image */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

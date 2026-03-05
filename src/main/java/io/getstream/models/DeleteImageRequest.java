@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** Delete image Deletes previously uploaded image */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

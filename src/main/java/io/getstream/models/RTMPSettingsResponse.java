@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** RTMPSettingsResponse is the payload for RTMP settings */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

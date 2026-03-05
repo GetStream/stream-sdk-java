@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.Map;
 
+/** A custom event, this event is used to send custom events to other participants in the call. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

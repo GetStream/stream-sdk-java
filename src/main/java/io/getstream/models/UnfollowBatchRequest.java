@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Unfollow multiple feeds at once Removes multiple follows at once and broadcasts
+ * FollowRemovedEvent for each one
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -28,4 +32,8 @@ public class UnfollowBatchRequest {
   @Nullable
   @JsonProperty("delete_notification_activity")
   private Boolean deleteNotificationActivity;
+
+  @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
 }

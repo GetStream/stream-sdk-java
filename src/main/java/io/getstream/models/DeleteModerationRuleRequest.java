@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Delete moderation rule Delete an existing moderation rule */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

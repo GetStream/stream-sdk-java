@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Resolve SIP Inbound Routing Resolve SIP inbound routing based on trunk number, caller number, and
+ * challenge authentication
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -29,7 +33,7 @@ public class ResolveSipInboundRequest {
   private String sipTrunkNumber;
 
   @JsonProperty("challenge")
-  private SIPChallenge challenge;
+  private SIPChallengeRequest challenge;
 
   @Nullable
   @JsonProperty("routing_number")

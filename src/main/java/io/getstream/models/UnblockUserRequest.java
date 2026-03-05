@@ -14,6 +14,10 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Unblocks user on a call Removes the block for a user on a call. The user will be able to join the
+ * call again. Sends events: - call.unblocked_user
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

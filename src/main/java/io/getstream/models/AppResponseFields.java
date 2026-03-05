@@ -63,8 +63,8 @@ public class AppResponseFields {
   @JsonProperty("max_aggregated_activities_length")
   private Integer maxAggregatedActivitiesLength;
 
-  @JsonProperty("moderation_bulk_submit_action_enabled")
-  private Boolean moderationBulkSubmitActionEnabled;
+  @JsonProperty("moderation_audio_call_moderation_enabled")
+  private Boolean moderationAudioCallModerationEnabled;
 
   @JsonProperty("moderation_enabled")
   private Boolean moderationEnabled;
@@ -74,6 +74,9 @@ public class AppResponseFields {
 
   @JsonProperty("moderation_multitenant_blocklist_enabled")
   private Boolean moderationMultitenantBlocklistEnabled;
+
+  @JsonProperty("moderation_video_call_moderation_enabled")
+  private Boolean moderationVideoCallModerationEnabled;
 
   @JsonProperty("moderation_webhook_url")
   private String moderationWebhookUrl;
@@ -162,6 +165,10 @@ public class AppResponseFields {
   @Nullable
   @JsonProperty("before_message_send_hook_url")
   private String beforeMessageSendHookUrl;
+
+  @Nullable
+  @JsonProperty("moderation_s3_image_access_role_arn")
+  private String moderationS3ImageAccessRoleArn;
 
   @Nullable
   @JsonProperty("revoke_tokens_issued_before")

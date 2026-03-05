@@ -12,6 +12,10 @@
  */
 package io.getstream.models;
 
+/**
+ * Export user Exports the user&#39;s profile, reactions and messages. Raises an error if a user has
+ * more than 10k messages or reactions
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

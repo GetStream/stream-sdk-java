@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Add bookmark Adds a bookmark to an activity */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -39,6 +39,10 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<TrackActivityMetricsResponse> trackActivityMetrics(
+      TrackActivityMetricsRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryActivitiesResponse> queryActivities(QueryActivitiesRequest request)
       throws StreamException;
 
@@ -196,6 +200,9 @@ public interface Feeds {
   @NotNull
   public StreamRequest<ReadCollectionsResponse> readCollections(ReadCollectionsRequest request)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<ReadCollectionsResponse> readCollections() throws StreamException;
 
   @NotNull
   public StreamRequest<UpdateCollectionsResponse> updateCollections(
@@ -386,12 +393,29 @@ public interface Feeds {
       @NotNull String feedGroupID, @NotNull String feedID) throws StreamException;
 
   @NotNull
+  public StreamRequest<QueryPinnedActivitiesResponse> queryPinnedActivities(
+      @NotNull String feedGroupID, @NotNull String feedID, QueryPinnedActivitiesRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryPinnedActivitiesResponse> queryPinnedActivities(
+      @NotNull String feedGroupID, @NotNull String feedID) throws StreamException;
+
+  @NotNull
   public StreamRequest<GetFollowSuggestionsResponse> getFollowSuggestions(
       @NotNull String feedGroupID, GetFollowSuggestionsRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<GetFollowSuggestionsResponse> getFollowSuggestions(
       @NotNull String feedGroupID) throws StreamException;
+
+  @NotNull
+  public StreamRequest<RestoreFeedGroupResponse> restoreFeedGroup(
+      @NotNull String feedGroupID, RestoreFeedGroupRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<RestoreFeedGroupResponse> restoreFeedGroup(@NotNull String feedGroupID)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<DeleteFeedGroupResponse> deleteFeedGroup(

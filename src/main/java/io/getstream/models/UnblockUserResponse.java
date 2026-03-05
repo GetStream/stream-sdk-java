@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** UnblockUserResponse is the payload for unblocking a user. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

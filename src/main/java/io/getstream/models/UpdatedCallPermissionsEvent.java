@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * This event is sent to notify about permission changes for a user, clients receiving this event
+ * should update their UI accordingly
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

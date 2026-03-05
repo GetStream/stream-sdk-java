@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/** Batch unread counts Fetch unread counts in batch for multiple users in one call */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

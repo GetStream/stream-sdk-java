@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Delete SIP Trunk Delete a SIP trunk for the application */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

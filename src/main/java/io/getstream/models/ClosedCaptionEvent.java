@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
+/**
+ * This event is sent when closed captions are being sent in a call, clients should use this to show
+ * the closed captions in the call screen
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

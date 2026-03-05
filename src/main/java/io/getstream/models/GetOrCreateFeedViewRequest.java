@@ -16,6 +16,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Get or create a feed view Get an existing feed view or create a new one if it doesn&#39;t exist
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

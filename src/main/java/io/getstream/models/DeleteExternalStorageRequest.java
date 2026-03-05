@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Delete external storage Deletes external storage */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

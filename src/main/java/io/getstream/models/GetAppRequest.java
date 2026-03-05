@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Get App Settings This Method returns the application settings */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

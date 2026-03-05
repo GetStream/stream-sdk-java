@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Update a bookmark folder Update a bookmark folder by its ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

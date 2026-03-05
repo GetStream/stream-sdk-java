@@ -33,7 +33,7 @@ public class ChannelsTest extends BasicTest {
                                 testUsers.subList(0, 1).stream()
                                     .map(
                                         fullUserResponse -> {
-                                          return ChannelMember.builder()
+                                          return ChannelMemberRequest.builder()
                                               .userID(fullUserResponse.getId())
                                               .build();
                                         })

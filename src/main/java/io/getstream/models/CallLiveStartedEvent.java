@@ -15,6 +15,9 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
+/**
+ * This event is sent when a call is started. Clients receiving this event should start the call.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

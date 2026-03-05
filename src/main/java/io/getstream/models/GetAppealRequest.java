@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Get appeal item Retrieve a specific appeal item by its ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

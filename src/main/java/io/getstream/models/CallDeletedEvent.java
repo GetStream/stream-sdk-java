@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
+/**
+ * This event is sent when a call is deleted. Clients receiving this event should leave the call
+ * screen
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

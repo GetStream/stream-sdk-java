@@ -91,8 +91,8 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<CampaignResponse> scheduleCampaign(
-      @NotNull String id, ScheduleCampaignRequest request) throws StreamException {
+  public StreamRequest<CampaignResponse> stopCampaign(
+      @NotNull String id, StopCampaignRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<CampaignResponse>(
@@ -107,9 +107,8 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<CampaignResponse> scheduleCampaign(@NotNull String id)
-      throws StreamException {
-    return scheduleCampaign(id, new ScheduleCampaignRequest());
+  public StreamRequest<CampaignResponse> stopCampaign(@NotNull String id) throws StreamException {
+    return stopCampaign(id, new StopCampaignRequest());
   }
 
   @NotNull
@@ -1032,11 +1031,11 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<MessageResponse> runMessageAction(
+  public StreamRequest<MessageActionResponse> runMessageAction(
       @NotNull String id, RunMessageActionRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
 
-    return new StreamRequest<MessageResponse>(
+    return new StreamRequest<MessageActionResponse>(
         client.getHttpClient(),
         client.getObjectMapper(),
         client.getBaseUrl(),
@@ -1044,15 +1043,15 @@ public class ChatImpl {
         "/api/v2/chat/messages/{id}/action",
         request,
         pathParams,
-        new TypeReference<MessageResponse>() {});
+        new TypeReference<MessageActionResponse>() {});
   }
 
   @NotNull
-  public StreamRequest<MessageResponse> commitMessage(
+  public StreamRequest<MessageActionResponse> commitMessage(
       @NotNull String id, CommitMessageRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
 
-    return new StreamRequest<MessageResponse>(
+    return new StreamRequest<MessageActionResponse>(
         client.getHttpClient(),
         client.getObjectMapper(),
         client.getBaseUrl(),
@@ -1060,11 +1059,12 @@ public class ChatImpl {
         "/api/v2/chat/messages/{id}/commit",
         request,
         pathParams,
-        new TypeReference<MessageResponse>() {});
+        new TypeReference<MessageActionResponse>() {});
   }
 
   @NotNull
-  public StreamRequest<MessageResponse> commitMessage(@NotNull String id) throws StreamException {
+  public StreamRequest<MessageActionResponse> commitMessage(@NotNull String id)
+      throws StreamException {
     return commitMessage(id, new CommitMessageRequest());
   }
 
@@ -1177,11 +1177,11 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<MessageResponse> translateMessage(
+  public StreamRequest<MessageActionResponse> translateMessage(
       @NotNull String id, TranslateMessageRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
 
-    return new StreamRequest<MessageResponse>(
+    return new StreamRequest<MessageActionResponse>(
         client.getHttpClient(),
         client.getObjectMapper(),
         client.getBaseUrl(),
@@ -1189,15 +1189,15 @@ public class ChatImpl {
         "/api/v2/chat/messages/{id}/translate",
         request,
         pathParams,
-        new TypeReference<MessageResponse>() {});
+        new TypeReference<MessageActionResponse>() {});
   }
 
   @NotNull
-  public StreamRequest<UpdateMessageResponse> undeleteMessage(
+  public StreamRequest<UndeleteMessageResponse> undeleteMessage(
       @NotNull String id, UndeleteMessageRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
 
-    return new StreamRequest<UpdateMessageResponse>(
+    return new StreamRequest<UndeleteMessageResponse>(
         client.getHttpClient(),
         client.getObjectMapper(),
         client.getBaseUrl(),
@@ -1205,7 +1205,7 @@ public class ChatImpl {
         "/api/v2/chat/messages/{id}/undelete",
         request,
         pathParams,
-        new TypeReference<UpdateMessageResponse>() {});
+        new TypeReference<UndeleteMessageResponse>() {});
   }
 
   @NotNull
@@ -1612,6 +1612,26 @@ public class ChatImpl {
   public StreamRequest<QuerySegmentTargetsResponse> querySegmentTargets(@NotNull String id)
       throws StreamException {
     return querySegmentTargets(id, new QuerySegmentTargetsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueryTeamUsageStatsResponse> queryTeamUsageStats(
+      QueryTeamUsageStatsRequest request) throws StreamException {
+
+    return new StreamRequest<QueryTeamUsageStatsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/chat/stats/team_usage",
+        request,
+        null,
+        new TypeReference<QueryTeamUsageStatsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryTeamUsageStatsResponse> queryTeamUsageStats() throws StreamException {
+    return queryTeamUsageStats(new QueryTeamUsageStatsRequest());
   }
 
   @NotNull

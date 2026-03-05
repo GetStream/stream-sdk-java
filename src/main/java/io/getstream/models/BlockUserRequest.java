@@ -14,6 +14,10 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Block user on a call Block a user, preventing them from joining the call until they are
+ * unblocked. Sends events: - call.blocked_user
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
+/** Represents custom chat command */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

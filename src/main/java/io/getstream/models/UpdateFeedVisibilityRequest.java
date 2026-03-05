@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Update Feed Visibility Updates an existing predefined feed visibility configuration */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

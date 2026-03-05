@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Upsert a push notification template Create or update a push notification template for a specific
+ * event type and push provider
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

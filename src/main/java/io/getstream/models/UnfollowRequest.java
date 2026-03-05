@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** Unfollow a feed Removes a follow and broadcasts FollowRemovedEvent */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -24,4 +25,8 @@ public class UnfollowRequest {
   @Query("delete_notification_activity")
   @JsonIgnore
   private Boolean DeleteNotificationActivity;
+
+  @Query("enrich_own_fields")
+  @JsonIgnore
+  private Boolean EnrichOwnFields;
 }

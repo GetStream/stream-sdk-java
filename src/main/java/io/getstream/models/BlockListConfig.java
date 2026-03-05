@@ -31,6 +31,10 @@ public class BlockListConfig {
   private Boolean enabled;
 
   @Nullable
+  @JsonProperty("match_substring")
+  private Boolean matchSubstring;
+
+  @Nullable
   @JsonProperty("rules")
   private List<BlockListRule> rules;
 }

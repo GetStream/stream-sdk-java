@@ -48,4 +48,8 @@ public class NotificationTarget {
   @Nullable
   @JsonProperty("comment")
   private NotificationComment comment;
+
+  @Nullable
+  @JsonProperty("parent_activity")
+  private NotificationParentActivity parentActivity;
 }

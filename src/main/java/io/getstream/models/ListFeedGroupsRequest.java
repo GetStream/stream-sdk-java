@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** List all feed groups List all feed groups for the application */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

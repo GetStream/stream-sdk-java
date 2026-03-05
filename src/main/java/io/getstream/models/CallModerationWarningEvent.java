@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.Map;
 
+/** This event is sent when a moderation warning is issued to a user */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

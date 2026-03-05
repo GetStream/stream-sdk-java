@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Add a single activity Create a new activity or update an existing one */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -30,8 +31,16 @@ public class AddActivityRequest {
   private List<String> feeds;
 
   @Nullable
+  @JsonProperty("copy_custom_to_notification")
+  private Boolean copyCustomToNotification;
+
+  @Nullable
   @JsonProperty("create_notification_activity")
   private Boolean createNotificationActivity;
+
+  @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
 
   @Nullable
   @JsonProperty("expires_at")

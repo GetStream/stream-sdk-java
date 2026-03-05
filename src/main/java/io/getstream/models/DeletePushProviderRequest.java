@@ -12,6 +12,10 @@
  */
 package io.getstream.models;
 
+/**
+ * Delete a push provider Delete a push provider from v2 with multi bundle/package support. v1
+ * isn&#39;t supported in this endpoint
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

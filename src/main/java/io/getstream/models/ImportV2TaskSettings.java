@@ -22,6 +22,10 @@ import org.jetbrains.annotations.Nullable;
 public class ImportV2TaskSettings {
 
   @Nullable
+  @JsonProperty("merge_custom")
+  private Boolean mergeCustom;
+
+  @Nullable
   @JsonProperty("mode")
   private String mode;
 

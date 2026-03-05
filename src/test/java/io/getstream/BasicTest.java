@@ -264,4 +264,18 @@ public class BasicTest {
       Assertions.assertDoesNotThrow(() -> java.lang.Thread.sleep(askInterval));
     }
   }
+
+  /**
+   * Polls the given task ID until it reaches "completed" or "failed" status. Polls up to 30 times
+   * with 1-second intervals.
+   */
+  protected static void waitForAsyncTask(String taskId) throws Exception {
+    for (int i = 0; i < 30; i++) {
+      var result = client.getTask(taskId).execute();
+      String status = result.getData().getStatus();
+      if ("completed".equals(status) || "failed".equals(status)) return;
+      Thread.sleep(1000);
+    }
+    Assertions.fail("Task " + taskId + " did not complete after 30 attempts");
+  }
 }

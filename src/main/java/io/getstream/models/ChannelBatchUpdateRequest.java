@@ -17,6 +17,11 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Update channels in batch Update channels in batch Sends events: - channel.frozen - channel.hidden
+ * - channel.unfrozen - channel.updated - channel.visible - member.added - member.removed -
+ * member.updated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -28,10 +33,6 @@ public class ChannelBatchUpdateRequest {
 
   @JsonProperty("filter")
   private Map<String, Object> filter;
-
-  @Nullable
-  @JsonProperty("filter_tags_update")
-  private List<String> filterTagsUpdate;
 
   @Nullable
   @JsonProperty("members")

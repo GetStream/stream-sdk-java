@@ -27,6 +27,10 @@ public class UpdateActivityPartialChangeRequest {
   private String activityID;
 
   @Nullable
+  @JsonProperty("copy_custom_to_notification")
+  private Boolean copyCustomToNotification;
+
+  @Nullable
   @JsonProperty("handle_mention_notifications")
   private Boolean handleMentionNotifications;
 

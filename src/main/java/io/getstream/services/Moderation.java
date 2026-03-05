@@ -50,6 +50,13 @@ public interface Moderation {
   public StreamRequest<CheckResponse> check(CheckRequest request) throws StreamException;
 
   @NotNull
+  public StreamRequest<CheckS3AccessResponse> checkS3Access(CheckS3AccessRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<CheckS3AccessResponse> checkS3Access() throws StreamException;
+
+  @NotNull
   public StreamRequest<UpsertConfigResponse> upsertConfig(UpsertConfigRequest request)
       throws StreamException;
 

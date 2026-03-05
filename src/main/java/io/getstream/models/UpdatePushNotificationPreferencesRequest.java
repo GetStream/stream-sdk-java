@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/**
+ * Push notification preferences Upserts the push preferences for a user and or channel member. Set
+ * to all, mentions or none
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

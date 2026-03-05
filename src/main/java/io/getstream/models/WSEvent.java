@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Represents an BaseEvent that happened in Stream Chat */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

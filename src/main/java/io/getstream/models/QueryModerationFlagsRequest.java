@@ -17,6 +17,10 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Query moderation flags Query flags associated with moderation items. This is used for building a
+ * moderation dashboard.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -37,7 +41,7 @@ public class QueryModerationFlagsRequest {
 
   @Nullable
   @JsonProperty("sort")
-  private List<SortParam> sort;
+  private List<SortParamRequest> sort;
 
   @Nullable
   @JsonProperty("filter")

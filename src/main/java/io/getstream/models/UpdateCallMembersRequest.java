@@ -16,6 +16,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Update Call Member Sends events: - call.member_added - call.member_removed - call.member_updated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

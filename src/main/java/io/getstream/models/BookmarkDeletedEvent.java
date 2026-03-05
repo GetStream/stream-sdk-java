@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Emitted when a user deletes a bookmark from an activity. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

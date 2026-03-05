@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** CallIngressResponse is the payload for ingress settings */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

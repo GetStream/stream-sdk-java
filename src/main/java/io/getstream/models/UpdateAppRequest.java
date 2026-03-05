@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Update App Settings This Method updates one or more application settings */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -85,8 +86,16 @@ public class UpdateAppRequest {
   private Boolean migratePermissionsToV2;
 
   @Nullable
+  @JsonProperty("moderation_analytics_enabled")
+  private Boolean moderationAnalyticsEnabled;
+
+  @Nullable
   @JsonProperty("moderation_enabled")
   private Boolean moderationEnabled;
+
+  @Nullable
+  @JsonProperty("moderation_s3_image_access_role_arn")
+  private String moderationS3ImageAccessRoleArn;
 
   @Nullable
   @JsonProperty("moderation_webhook_url")

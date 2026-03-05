@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Check External Storage */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

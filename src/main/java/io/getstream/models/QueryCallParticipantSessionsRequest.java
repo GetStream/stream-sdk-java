@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 import java.util.Map;
 
+/** Query call participant sessions */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

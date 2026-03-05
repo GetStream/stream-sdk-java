@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/** Upsert a push provider Upsert a push provider for v2 with multi bundle/package support */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -23,5 +24,5 @@ public class UpsertPushProviderRequest {
 
   @Nullable
   @JsonProperty("push_provider")
-  private PushProvider pushProvider;
+  private PushProviderRequest pushProvider;
 }

@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
+/** Query Banned Users Find and filter channel scoped or global user bans */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

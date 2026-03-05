@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Represents a feed capability value and enumerates all possible capability strings. */
 public class FeedOwnCapability {
   private final String value;
 

@@ -12,6 +12,10 @@
  */
 package io.getstream.models;
 
+/**
+ * Query feed moderation templates Retrieve a list of feed moderation templates that define preset
+ * moderation rules and configurations. Limited to 100 templates per request.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

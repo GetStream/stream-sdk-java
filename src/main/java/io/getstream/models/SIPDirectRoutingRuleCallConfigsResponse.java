@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** Direct routing rule call configuration response */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

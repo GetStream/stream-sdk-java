@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Stop all RTMP broadcasts for a call Stop all RTMP broadcasts for the provided call */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Query membership levels Query membership levels with filter query */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

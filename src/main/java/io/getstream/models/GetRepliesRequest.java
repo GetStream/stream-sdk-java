@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 import java.util.List;
 
+/** Get replies Returns replies (thread) of the message */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * This event is sent when a user requests access to a feature on a call, clients receiving this
+ * event should display a permission request to the user
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

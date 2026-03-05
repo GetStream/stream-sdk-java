@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Query Threads Returns the list of threads for specific user */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

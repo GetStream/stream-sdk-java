@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
+/** Response containing active calls status information */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Basic response information */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

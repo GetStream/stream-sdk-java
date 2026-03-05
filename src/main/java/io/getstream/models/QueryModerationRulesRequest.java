@@ -17,6 +17,10 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Query moderation rules Search and filter moderation rules across your application. This endpoint
+ * is designed for building moderation dashboards and managing multiple rule sets.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

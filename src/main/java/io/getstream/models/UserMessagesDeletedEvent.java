@@ -17,6 +17,10 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * This event is sent when a user&#39;s message get deleted. The event contains information about
+ * the user whose messages got deleted.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

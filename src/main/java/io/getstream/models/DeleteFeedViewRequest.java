@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Delete a feed view Delete an existing custom feed view */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

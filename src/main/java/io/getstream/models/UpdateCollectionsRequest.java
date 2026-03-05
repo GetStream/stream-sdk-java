@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Update multiple collections Update existing collections in a batch operation. Only the custom
+ * data field is updatable. Users can only update their own collections.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

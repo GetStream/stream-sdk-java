@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Update a feed Update an existing feed */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -30,6 +31,10 @@ public class UpdateFeedRequest {
   @Nullable
   @JsonProperty("description")
   private String description;
+
+  @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
 
   @Nullable
   @JsonProperty("name")

@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
+/** Start/schedule campaign Starts or schedules a campaign */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

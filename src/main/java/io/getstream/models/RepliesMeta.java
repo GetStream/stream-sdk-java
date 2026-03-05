@@ -15,6 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Cursor &amp; depth information for a comment&#39;s direct replies. Mirrors Reddit&#39;s &#39;load
+ * more replies&#39; semantics.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

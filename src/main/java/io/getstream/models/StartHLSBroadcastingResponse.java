@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** StartHLSBroadcastingResponse is the payload for starting an HLS broadcasting. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

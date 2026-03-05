@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/** Sets thresholds for AI moderation */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

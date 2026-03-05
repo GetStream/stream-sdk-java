@@ -16,17 +16,21 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 import java.util.List;
 
+/**
+ * Read collections Read collections with optional filtering by user ID and collection name. By
+ * default, users can only read their own collections.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class ReadCollectionsRequest {
 
-  @Query("collection_refs")
-  @JsonIgnore
-  private List<String> CollectionRefs;
-
   @Query("user_id")
   @JsonIgnore
   private String UserID;
+
+  @Query("collection_refs")
+  @JsonIgnore
+  private List<String> CollectionRefs;
 }

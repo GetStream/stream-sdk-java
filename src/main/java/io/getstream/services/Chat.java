@@ -45,12 +45,11 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
-  public StreamRequest<CampaignResponse> scheduleCampaign(
-      @NotNull String id, ScheduleCampaignRequest request) throws StreamException;
+  public StreamRequest<CampaignResponse> stopCampaign(
+      @NotNull String id, StopCampaignRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<CampaignResponse> scheduleCampaign(@NotNull String id)
-      throws StreamException;
+  public StreamRequest<CampaignResponse> stopCampaign(@NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryChannelsResponse> queryChannels(QueryChannelsRequest request)
@@ -350,15 +349,16 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
-  public StreamRequest<MessageResponse> runMessageAction(
+  public StreamRequest<MessageActionResponse> runMessageAction(
       @NotNull String id, RunMessageActionRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<MessageResponse> commitMessage(
+  public StreamRequest<MessageActionResponse> commitMessage(
       @NotNull String id, CommitMessageRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<MessageResponse> commitMessage(@NotNull String id) throws StreamException;
+  public StreamRequest<MessageActionResponse> commitMessage(@NotNull String id)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<UpdateMessagePartialResponse> ephemeralMessageUpdate(
@@ -398,11 +398,11 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
-  public StreamRequest<MessageResponse> translateMessage(
+  public StreamRequest<MessageActionResponse> translateMessage(
       @NotNull String id, TranslateMessageRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<UpdateMessageResponse> undeleteMessage(
+  public StreamRequest<UndeleteMessageResponse> undeleteMessage(
       @NotNull String id, UndeleteMessageRequest request) throws StreamException;
 
   @NotNull
@@ -546,6 +546,13 @@ public interface Chat {
   @NotNull
   public StreamRequest<QuerySegmentTargetsResponse> querySegmentTargets(@NotNull String id)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryTeamUsageStatsResponse> queryTeamUsageStats(
+      QueryTeamUsageStatsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryTeamUsageStatsResponse> queryTeamUsageStats() throws StreamException;
 
   @NotNull
   public StreamRequest<QueryThreadsResponse> queryThreads(QueryThreadsRequest request)

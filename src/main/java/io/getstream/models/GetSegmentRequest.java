@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** Get segment Get segment */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -12,6 +12,7 @@
  */
 package io.getstream.models;
 
+/** List channel types Lists all available channel types */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
