@@ -88,6 +88,21 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<TrackActivityMetricsResponse> trackActivityMetrics(
+      TrackActivityMetricsRequest request) throws StreamException {
+
+    return new StreamRequest<TrackActivityMetricsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/activities/metrics/track",
+        request,
+        null,
+        new TypeReference<TrackActivityMetricsResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<QueryActivitiesResponse> queryActivities(QueryActivitiesRequest request)
       throws StreamException {
 

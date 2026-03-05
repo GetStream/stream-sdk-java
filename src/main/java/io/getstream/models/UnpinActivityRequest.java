@@ -25,6 +25,10 @@ import io.getstream.annotations.Query;
 @lombok.AllArgsConstructor
 public class UnpinActivityRequest {
 
+  @Query("enrich_own_fields")
+  @JsonIgnore
+  private Boolean EnrichOwnFields;
+
   @Query("user_id")
   @JsonIgnore
   private String UserID;

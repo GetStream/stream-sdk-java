@@ -39,6 +39,10 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<TrackActivityMetricsResponse> trackActivityMetrics(
+      TrackActivityMetricsRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryActivitiesResponse> queryActivities(QueryActivitiesRequest request)
       throws StreamException;
 

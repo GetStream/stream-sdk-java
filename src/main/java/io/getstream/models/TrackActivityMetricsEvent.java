@@ -13,38 +13,22 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
-import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
-/** Query pinned activities Query pinned activities for a feed with filter query */
+/** A single metric event to track for an activity */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class QueryPinnedActivitiesRequest {
+public class TrackActivityMetricsEvent {
+
+  @JsonProperty("activity_id")
+  private String activityID;
+
+  @JsonProperty("metric")
+  private String metric;
 
   @Nullable
-  @JsonProperty("enrich_own_fields")
-  private Boolean enrichOwnFields;
-
-  @Nullable
-  @JsonProperty("limit")
-  private Integer limit;
-
-  @Nullable
-  @JsonProperty("next")
-  private String next;
-
-  @Nullable
-  @JsonProperty("prev")
-  private String prev;
-
-  @Nullable
-  @JsonProperty("sort")
-  private List<SortParamRequest> sort;
-
-  @Nullable
-  @JsonProperty("filter")
-  private Map<String, Object> filter;
+  @JsonProperty("delta")
+  private Integer delta;
 }

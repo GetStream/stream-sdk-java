@@ -35,6 +35,10 @@ public class UpdateActivityPartialRequest {
   private Boolean copyCustomToNotification;
 
   @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
+
+  @Nullable
   @JsonProperty("handle_mention_notifications")
   private Boolean handleMentionNotifications;
 

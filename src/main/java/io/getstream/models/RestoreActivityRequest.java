@@ -12,7 +12,9 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.annotations.Query;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -32,4 +34,8 @@ public class RestoreActivityRequest {
   @Nullable
   @JsonProperty("user")
   private UserRequest user;
+
+  @Query("enrich_own_fields")
+  @JsonIgnore
+  private Boolean EnrichOwnFields;
 }

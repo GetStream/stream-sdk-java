@@ -255,6 +255,11 @@ public class ModerationImpl {
   }
 
   @NotNull
+  public StreamRequest<DeleteModerationTemplateResponse> v2DeleteTemplate() throws StreamException {
+    return v2DeleteTemplate(new V2DeleteTemplateRequest());
+  }
+
+  @NotNull
   public StreamRequest<QueryFeedModerationTemplatesResponse> v2QueryTemplates(
       V2QueryTemplatesRequest request) throws StreamException {
 

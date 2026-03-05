@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 /** Upsert multiple activities Create new activities or update existing ones in a batch operation */
 @lombok.Data
@@ -24,4 +25,8 @@ public class UpsertActivitiesRequest {
 
   @JsonProperty("activities")
   private List<ActivityRequest> activities;
+
+  @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
 }

@@ -38,6 +38,10 @@ public class FollowRequest {
   private Boolean createNotificationActivity;
 
   @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
+
+  @Nullable
   @JsonProperty("push_preference")
   private String pushPreference;
 

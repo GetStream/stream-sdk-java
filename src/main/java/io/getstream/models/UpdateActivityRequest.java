@@ -35,6 +35,10 @@ public class UpdateActivityRequest {
   private Boolean copyCustomToNotification;
 
   @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
+
+  @Nullable
   @JsonProperty("expires_at")
   private Date expiresAt;
 

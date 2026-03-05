@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Upsert multiple follows at once Creates or updates multiple follows at once. Does not return an
@@ -27,4 +28,8 @@ public class GetOrCreateFollowsRequest {
 
   @JsonProperty("follows")
   private List<FollowRequest> follows;
+
+  @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
 }

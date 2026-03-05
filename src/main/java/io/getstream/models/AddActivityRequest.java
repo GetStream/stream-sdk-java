@@ -39,6 +39,10 @@ public class AddActivityRequest {
   private Boolean createNotificationActivity;
 
   @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
+
+  @Nullable
   @JsonProperty("expires_at")
   private String expiresAt;
 

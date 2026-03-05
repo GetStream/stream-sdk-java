@@ -25,6 +25,10 @@ import org.jetbrains.annotations.Nullable;
 public class QueryBookmarksRequest {
 
   @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
+
+  @Nullable
   @JsonProperty("limit")
   private Integer limit;
 

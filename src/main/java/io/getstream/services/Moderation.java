@@ -92,6 +92,9 @@ public interface Moderation {
       V2DeleteTemplateRequest request) throws StreamException;
 
   @NotNull
+  public StreamRequest<DeleteModerationTemplateResponse> v2DeleteTemplate() throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryFeedModerationTemplatesResponse> v2QueryTemplates(
       V2QueryTemplatesRequest request) throws StreamException;
 

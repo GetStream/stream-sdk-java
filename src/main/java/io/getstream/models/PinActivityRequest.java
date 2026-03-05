@@ -26,6 +26,10 @@ import org.jetbrains.annotations.Nullable;
 public class PinActivityRequest {
 
   @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
+
+  @Nullable
   @JsonProperty("user_id")
   private String userID;
 

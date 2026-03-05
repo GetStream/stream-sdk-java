@@ -32,4 +32,8 @@ public class GetOrCreateUnfollowsRequest {
   @Nullable
   @JsonProperty("delete_notification_activity")
   private Boolean deleteNotificationActivity;
+
+  @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
 }

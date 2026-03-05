@@ -33,6 +33,10 @@ public class UpdateFeedRequest {
   private String description;
 
   @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
+
+  @Nullable
   @JsonProperty("name")
   private String name;
 

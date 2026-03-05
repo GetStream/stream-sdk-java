@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 /** Create multiple feeds at once Create multiple feeds at once for a given feed group */
 @lombok.Data
@@ -24,4 +25,8 @@ public class CreateFeedsBatchRequest {
 
   @JsonProperty("feeds")
   private List<FeedRequest> feeds;
+
+  @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
 }

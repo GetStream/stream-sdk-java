@@ -165,6 +165,10 @@ public class ActivityResponse {
   private ActivityLocation location;
 
   @Nullable
+  @JsonProperty("metrics")
+  private Map<String, Integer> metrics;
+
+  @Nullable
   @JsonProperty("moderation")
   private ModerationV2Response moderation;
 

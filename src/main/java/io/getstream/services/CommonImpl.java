@@ -1228,22 +1228,6 @@ public class CommonImpl {
   }
 
   @NotNull
-  public StreamRequest<RemoveUserGroupMembersResponse> removeUserGroupMembers(
-      @NotNull String id, RemoveUserGroupMembersRequest request) throws StreamException {
-    var pathParams = Map.of("id", id);
-
-    return new StreamRequest<RemoveUserGroupMembersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/usergroups/{id}/members",
-        request,
-        pathParams,
-        new TypeReference<RemoveUserGroupMembersResponse>() {});
-  }
-
-  @NotNull
   public StreamRequest<AddUserGroupMembersResponse> addUserGroupMembers(
       @NotNull String id, AddUserGroupMembersRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
@@ -1257,6 +1241,22 @@ public class CommonImpl {
         request,
         pathParams,
         new TypeReference<AddUserGroupMembersResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<RemoveUserGroupMembersResponse> removeUserGroupMembers(
+      @NotNull String id, RemoveUserGroupMembersRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<RemoveUserGroupMembersResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/usergroups/{id}/members/delete",
+        request,
+        pathParams,
+        new TypeReference<RemoveUserGroupMembersResponse>() {});
   }
 
   @NotNull

@@ -42,6 +42,10 @@ public class UpdateFollowRequest {
   private Boolean createNotificationActivity;
 
   @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
+
+  @Nullable
   @JsonProperty("follower_role")
   private String followerRole;
 

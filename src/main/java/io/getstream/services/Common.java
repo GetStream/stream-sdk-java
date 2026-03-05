@@ -410,12 +410,12 @@ public interface Common {
       throws StreamException;
 
   @NotNull
-  public StreamRequest<RemoveUserGroupMembersResponse> removeUserGroupMembers(
-      @NotNull String id, RemoveUserGroupMembersRequest request) throws StreamException;
-
-  @NotNull
   public StreamRequest<AddUserGroupMembersResponse> addUserGroupMembers(
       @NotNull String id, AddUserGroupMembersRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<RemoveUserGroupMembersResponse> removeUserGroupMembers(
+      @NotNull String id, RemoveUserGroupMembersRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryUsersResponse> queryUsers(QueryUsersRequest request)
