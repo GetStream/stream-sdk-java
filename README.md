@@ -23,6 +23,10 @@ dependencies {
 }
 ```
 
+## Migrating from stream-chat-java?
+
+If you are currently using [`stream-chat-java`](https://github.com/GetStream/stream-chat-java), we have a detailed migration guide with side-by-side code examples for common Chat use cases. See the [Migration Guide](docs/migration-from-stream-chat-java/README.md).
+
 ## ✨ Getting started
 
 ### Configuration
