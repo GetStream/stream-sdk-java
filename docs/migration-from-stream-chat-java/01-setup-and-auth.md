@@ -161,6 +161,16 @@ client.video().getOrCreateCall(...).execute();    // Video
 ```
 
 **Key changes:**
-- Static methods on model classes (`User.upsert()`, `Channel.getOrCreate()`) become instance methods on sub-clients (`client.chat()`, `client.moderation()`, `client.video()`)
+- Static methods on model classes (`User.upsert()`, `Channel.getOrCreate()`) become instance methods on sub-clients
 - User and device operations are on the root client (Common interface)
 - `.request()` becomes `.execute()` to run the API call
+
+**Available sub-clients:**
+
+| Sub-client | Access | Description |
+|------------|--------|-------------|
+| Common | `client.*` (root) | Users, devices, app settings |
+| Chat | `client.chat()` | Channels, messages, reactions |
+| Video | `client.video()` | Calls, call types |
+| Moderation | `client.moderation()` | Ban, mute, flag |
+| Feeds | `client.feeds()` | Activity feeds |

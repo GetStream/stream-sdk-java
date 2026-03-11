@@ -3,7 +3,7 @@ package io.getstream;
 import static org.junit.jupiter.api.Assertions.*;
 
 import io.getstream.models.*;
-import io.getstream.services.ModerationImpl;
+import io.getstream.services.Moderation;
 import java.util.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.MethodOrderer;
@@ -49,7 +49,7 @@ class ModerationIntegrationTest extends ChatTestBase {
     // Send a message to flag
     String msgId = sendTestMessage("messaging", channelId, userId, "Message to be flagged");
 
-    ModerationImpl moderation = new ModerationImpl(client.getHttpClient());
+    Moderation moderation = client.moderation();
 
     // Flag the message
     var flagMsgResp =
@@ -90,7 +90,7 @@ class ModerationIntegrationTest extends ChatTestBase {
     String muterId = userIds.get(0);
     String targetId = userIds.get(1);
 
-    ModerationImpl moderation = new ModerationImpl(client.getHttpClient());
+    Moderation moderation = client.moderation();
 
     // Mute target user as muter (no timeout)
     var muteResp =
@@ -146,7 +146,7 @@ class ModerationIntegrationTest extends ChatTestBase {
     createdChannelIds.add(channelId);
     String cid = "messaging:" + channelId;
 
-    ModerationImpl moderation = new ModerationImpl(client.getHttpClient());
+    Moderation moderation = client.moderation();
 
     // Ban target user from channel
     var banResp =
