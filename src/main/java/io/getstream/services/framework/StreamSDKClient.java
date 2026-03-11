@@ -40,6 +40,10 @@ public class StreamSDKClient extends CommonImpl implements Common {
     return new FeedsClient(this);
   }
 
+  public Moderation moderation() {
+    return new ModerationClient(this);
+  }
+
   public TokenBuilder tokenBuilder() {
     var tb = new TokenBuilder(httpClient.getApiSecret());
     return tb;
