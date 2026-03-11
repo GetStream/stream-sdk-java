@@ -148,7 +148,7 @@ StreamSDKClient client = new StreamSDKClient("your-api-key", "your-api-secret");
 
 var response = client.chat().getMessage("message-id",
     GetMessageRequest.builder()
-        .showDeletedMessage(true)
+        .ShowDeletedMessage(true)
         .build())
     .execute();
 

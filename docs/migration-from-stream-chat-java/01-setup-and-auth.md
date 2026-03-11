@@ -11,13 +11,13 @@ Maven:
 <dependency>
     <groupId>io.getstream</groupId>
     <artifactId>stream-chat-java</artifactId>
-    <version>LATEST</version>
+    <version>$streamVersion</version>
 </dependency>
 ```
 
 Gradle:
 ```groovy
-implementation 'io.getstream:stream-chat-java:LATEST'
+implementation 'io.getstream:stream-chat-java:$streamVersion'
 ```
 
 **After (stream-sdk-java):**
@@ -27,13 +27,13 @@ Maven:
 <dependency>
     <groupId>io.getstream</groupId>
     <artifactId>stream-sdk-java</artifactId>
-    <version>LATEST</version>
+    <version>$streamVersion</version>
 </dependency>
 ```
 
 Gradle:
 ```groovy
-implementation 'io.getstream:stream-sdk-java:LATEST'
+implementation 'io.getstream:stream-sdk-java:$streamVersion'
 ```
 
 **Key changes:**
