@@ -230,6 +230,21 @@ UpdateAppRequest request = UpdateAppRequest.builder()
 
 Collection fields (lists, maps) are still serialized when set (including as empty `[]`/`{}`), so you can continue to send an empty list to clear a list field. Unset collection fields (`null`) are now also omitted.
 
+**Clearing individual fields:** To explicitly remove or reset a scalar field, use the partial update endpoints with the `unset` parameter instead of sending `null`:
+
+```java
+// Clear custom fields from a user
+client.updateUsersPartial(UpdateUsersPartialRequest.builder()
+    .users(List.of(UpdateUserPartialRequest.builder()
+        .id(userId)
+        .unset(List.of("field_to_clear"))
+        .build()))
+    .build())
+    .execute();
+```
+
+Partial update models (`UpdateUserPartialRequest`, `UpdateMessagePartialRequest`, `UpdateActivityPartialRequest`) support `set` (a map of fields to update) and `unset` (a list of field names to remove).
+
 ## Getting Help
 
 - [Stream documentation](https://getstream.io/docs/)
