@@ -70,10 +70,10 @@ class FeedIntegrationTests {
       Map<String, UserRequest> usersMap = new HashMap<>();
       usersMap.put(
           testUserId,
-          UserRequest.builder().id(testUserId).name("Test User 1").role("user").build());
+          UserRequest.builder().id(testUserId).name("Test User " + testUserId).role("user").build());
       usersMap.put(
           testUserId2,
-          UserRequest.builder().id(testUserId2).name("Test User 2").role("user").build());
+          UserRequest.builder().id(testUserId2).name("Test User " + testUserId2).role("user").build());
 
       UpdateUsersRequest updateUsersRequest = UpdateUsersRequest.builder().users(usersMap).build();
 

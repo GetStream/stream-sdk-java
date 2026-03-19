@@ -26,7 +26,7 @@ public class ChatTestBase extends BasicTest {
           id,
           UserRequest.builder()
               .id(id)
-              .name("Test User " + id.substring(0, 8))
+              .name("Test User " + id)
               .role("user")
               .build());
     }

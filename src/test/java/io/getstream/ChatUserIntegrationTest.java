@@ -30,7 +30,7 @@ class ChatUserIntegrationTest extends ChatTestBase {
     Map<String, UserRequest> users = new HashMap<>();
     for (int i = 0; i < 2; i++) {
       String id = "tu-" + UUID.randomUUID().toString().replace("-", "").substring(0, 16);
-      users.put(id, UserRequest.builder().id(id).name("Test User " + i).role("user").build());
+      users.put(id, UserRequest.builder().id(id).name("Test User " + id).role("user").build());
     }
 
     var resp = client.updateUsers(UpdateUsersRequest.builder().users(users).build()).execute();
@@ -658,7 +658,7 @@ class ChatUserIntegrationTest extends ChatTestBase {
         userId,
         UserRequest.builder()
             .id(userId)
-            .name("Custom Data User")
+            .name("Custom Data User " + userId)
             .role("user")
             .custom(customData)
             .build());

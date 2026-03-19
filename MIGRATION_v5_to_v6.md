@@ -206,6 +206,30 @@ New composition types: `HasOwnUser`, `HasUserCommonFields`, `HasUserPrivacyField
 | `MembershipLevel` | `MembershipLevelResponse` | |
 | `ThreadedComment` | `ThreadedCommentResponse` | |
 
+## JSON Serialization of Optional Fields
+
+Optional (nullable) fields in request objects are now omitted from the JSON body when not set, instead of being sent as explicit `null`. Previously, every unset field was serialized as `null`, which caused the backend to zero out existing values on partial updates.
+
+**Before:**
+```java
+UpdateAppRequest request = UpdateAppRequest.builder()
+    .enforceUniqueUsernames("no")
+    .build();
+// Wire: {"enforce_unique_usernames":"no","webhook_url":null,"multi_tenant_enabled":null,...}
+// Backend: sets enforce_unique_usernames="no", but ALSO resets webhook_url="", multi_tenant_enabled=false, etc.
+```
+
+**After:**
+```java
+UpdateAppRequest request = UpdateAppRequest.builder()
+    .enforceUniqueUsernames("no")
+    .build();
+// Wire: {"enforce_unique_usernames":"no"}
+// Backend: sets enforce_unique_usernames="no", all other fields preserved
+```
+
+Collection fields (lists, maps) are still serialized when set (including as empty `[]`/`{}`), so you can continue to send an empty list to clear a list field. Unset collection fields (`null`) are now also omitted.
+
 ## Getting Help
 
 - [Stream documentation](https://getstream.io/docs/)
