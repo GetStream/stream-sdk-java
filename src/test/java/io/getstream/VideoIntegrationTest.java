@@ -514,7 +514,8 @@ public class VideoIntegrationTest extends BasicTest {
     String bobId = "vid-bob-blk-" + RandomStringUtils.randomAlphabetic(8).toLowerCase();
 
     Map<String, UserRequest> usersMap = new HashMap<>();
-    usersMap.put(aliceId, UserRequest.builder().id(aliceId).name("Alice Blocker " + aliceId).build());
+    usersMap.put(
+        aliceId, UserRequest.builder().id(aliceId).name("Alice Blocker " + aliceId).build());
     usersMap.put(bobId, UserRequest.builder().id(bobId).name("Bob Blocked " + bobId).build());
     client.updateUsers(UpdateUsersRequest.builder().users(usersMap).build()).execute();
 
@@ -917,7 +918,11 @@ public class VideoIntegrationTest extends BasicTest {
     Map<String, UserRequest> usersMap = new HashMap<>();
     usersMap.put(
         userId,
-        UserRequest.builder().id(userId).name("Teams User " + userId).teams(List.of("red", "blue")).build());
+        UserRequest.builder()
+            .id(userId)
+            .name("Teams User " + userId)
+            .teams(List.of("red", "blue"))
+            .build());
     client.updateUsers(UpdateUsersRequest.builder().users(usersMap).build()).execute();
 
     // Create call with team="blue"

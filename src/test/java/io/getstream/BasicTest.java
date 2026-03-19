@@ -161,29 +161,14 @@ public class BasicTest {
     String id4 = RandomStringUtils.randomAlphabetic(10);
 
     UserRequest testUserRequestObject =
-        UserRequest.builder()
-            .id(id1)
-            .name("Gandalf " + id1)
-            .build();
+        UserRequest.builder().id(id1).name("Gandalf " + id1).build();
 
     List<UserRequest> testUsersRequestObjects = new ArrayList<>();
 
     testUsersRequestObjects.add(testUserRequestObject);
-    testUsersRequestObjects.add(
-        UserRequest.builder()
-            .id(id2)
-            .name("Frodo " + id2)
-            .build());
-    testUsersRequestObjects.add(
-        UserRequest.builder()
-            .id(id3)
-            .name("Hobbit " + id3)
-            .build());
-    testUsersRequestObjects.add(
-        UserRequest.builder()
-            .id(id4)
-            .name("Samwise " + id4)
-            .build());
+    testUsersRequestObjects.add(UserRequest.builder().id(id2).name("Frodo " + id2).build());
+    testUsersRequestObjects.add(UserRequest.builder().id(id3).name("Hobbit " + id3).build());
+    testUsersRequestObjects.add(UserRequest.builder().id(id4).name("Samwise " + id4).build());
 
     UpdateUsersRequest updateUsersRequest =
         UpdateUsersRequest.builder()
