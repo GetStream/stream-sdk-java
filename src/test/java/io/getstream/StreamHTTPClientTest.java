@@ -2,8 +2,10 @@ package io.getstream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.getstream.models.MessageResponse;
+import io.getstream.models.UpdateAppRequest;
 import io.getstream.services.framework.StreamHTTPClient;
 import java.util.Date;
 import org.junit.jupiter.api.BeforeAll;
@@ -61,6 +63,33 @@ public class StreamHTTPClientTest {
         String.format(
             "Expected timestamp %d (2024-01-06) but got %d (%s)",
             expectedDate.getTime(), message.getUpdatedAt().getTime(), message.getUpdatedAt()));
+  }
+
+  @Test
+  void testNullFieldsOmittedFromSerialization() throws JsonProcessingException {
+    // Only set one field, leave everything else null
+    UpdateAppRequest request = UpdateAppRequest.builder().enforceUniqueUsernames("no").build();
+
+    String json = objectMapper.writeValueAsString(request);
+
+    // The set field must be present
+    assertTrue(json.contains("\"enforce_unique_usernames\":\"no\""));
+    // Null fields must be omitted, not serialized as null
+    assertFalse(json.contains("null"), "Null fields should be omitted, got: " + json);
+    assertFalse(json.contains("webhook_url"));
+    assertFalse(json.contains("multi_tenant_enabled"));
+  }
+
+  @Test
+  void testCollectionFieldsSerializedWhenSet() throws JsonProcessingException {
+    // An explicitly set empty list should still be serialized
+    UpdateAppRequest request = UpdateAppRequest.builder().grants(new java.util.HashMap<>()).build();
+
+    String json = objectMapper.writeValueAsString(request);
+
+    assertTrue(
+        json.contains("\"grants\":{}"),
+        "Empty collections should be serialized when explicitly set, got: " + json);
   }
 
   @Test

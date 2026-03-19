@@ -22,13 +22,7 @@ public class ChatTestBase extends BasicTest {
     for (int i = 0; i < n; i++) {
       String id = "tu-" + UUID.randomUUID().toString().replace("-", "").substring(0, 16);
       ids.add(id);
-      users.put(
-          id,
-          UserRequest.builder()
-              .id(id)
-              .name("Test User " + id.substring(0, 8))
-              .role("user")
-              .build());
+      users.put(id, UserRequest.builder().id(id).name("Test User " + id).role("user").build());
     }
     client.updateUsers(UpdateUsersRequest.builder().users(users).build()).execute();
     return ids;

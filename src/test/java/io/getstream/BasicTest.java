@@ -155,30 +155,20 @@ public class BasicTest {
   }
 
   static void upsertUsers() throws Exception {
+    String id1 = RandomStringUtils.randomAlphabetic(10);
+    String id2 = RandomStringUtils.randomAlphabetic(10);
+    String id3 = RandomStringUtils.randomAlphabetic(10);
+    String id4 = RandomStringUtils.randomAlphabetic(10);
+
     UserRequest testUserRequestObject =
-        UserRequest.builder()
-            .id(RandomStringUtils.randomAlphabetic(10))
-            .name("Gandalf the Grey")
-            .build();
+        UserRequest.builder().id(id1).name("Gandalf " + id1).build();
 
     List<UserRequest> testUsersRequestObjects = new ArrayList<>();
 
     testUsersRequestObjects.add(testUserRequestObject);
-    testUsersRequestObjects.add(
-        UserRequest.builder()
-            .id(RandomStringUtils.randomAlphabetic(10))
-            .name("Frodo Baggins")
-            .build());
-    testUsersRequestObjects.add(
-        UserRequest.builder()
-            .id(RandomStringUtils.randomAlphabetic(10))
-            .name("Frodo Baggins")
-            .build());
-    testUsersRequestObjects.add(
-        UserRequest.builder()
-            .id(RandomStringUtils.randomAlphabetic(10))
-            .name("Samwise Gamgee")
-            .build());
+    testUsersRequestObjects.add(UserRequest.builder().id(id2).name("Frodo " + id2).build());
+    testUsersRequestObjects.add(UserRequest.builder().id(id3).name("Hobbit " + id3).build());
+    testUsersRequestObjects.add(UserRequest.builder().id(id4).name("Samwise " + id4).build());
 
     UpdateUsersRequest updateUsersRequest =
         UpdateUsersRequest.builder()

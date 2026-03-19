@@ -1,5 +1,6 @@
 package io.getstream.services.framework;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -33,6 +34,7 @@ public class StreamHTTPClient {
   private final ObjectMapper objectMapper =
       new ObjectMapper()
           .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+          .setSerializationInclusion(JsonInclude.Include.NON_NULL)
           .setDateFormat(
               new StdDateFormat()
                   .withColonInTimeZone(true)
