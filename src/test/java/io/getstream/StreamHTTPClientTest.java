@@ -8,10 +8,10 @@ import io.getstream.models.MessageResponse;
 import io.getstream.models.TrackActivityMetricsEvent;
 import io.getstream.models.TrackActivityMetricsRequest;
 import io.getstream.models.UpdateAppRequest;
-import java.util.List;
-import java.util.Map;
 import io.getstream.services.framework.StreamHTTPClient;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -129,7 +129,8 @@ public class StreamHTTPClientTest {
 
     assertTrue(json.contains("\"user_id\":\"user-123\""), "Expected user_id in: " + json);
     assertTrue(json.contains("\"events\""), "Expected events array in: " + json);
-    assertTrue(json.contains("\"activity_id\":\"activity-123\""), "Expected activity ID in: " + json);
+    assertTrue(
+        json.contains("\"activity_id\":\"activity-123\""), "Expected activity ID in: " + json);
     assertTrue(json.contains("\"metric\":\"shares\""), "Expected custom metric in: " + json);
     assertTrue(json.contains("\"delta\":3"), "Expected delta in: " + json);
   }
