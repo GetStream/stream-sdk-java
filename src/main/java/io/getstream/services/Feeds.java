@@ -217,6 +217,13 @@ public interface Feeds {
       UpsertCollectionsRequest request) throws StreamException;
 
   @NotNull
+  public StreamRequest<QueryCollectionsResponse> queryCollections(QueryCollectionsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryCollectionsResponse> queryCollections() throws StreamException;
+
+  @NotNull
   public StreamRequest<GetCommentsResponse> getComments(GetCommentsRequest request)
       throws StreamException;
 

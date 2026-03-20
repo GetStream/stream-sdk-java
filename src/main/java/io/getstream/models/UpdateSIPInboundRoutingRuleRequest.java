@@ -29,14 +29,15 @@ public class UpdateSIPInboundRoutingRuleRequest {
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("called_numbers")
-  private List<String> calledNumbers;
-
   @JsonProperty("trunk_ids")
   private List<String> trunkIds;
 
   @JsonProperty("caller_configs")
   private SIPCallerConfigsRequest callerConfigs;
+
+  @Nullable
+  @JsonProperty("called_numbers")
+  private List<String> calledNumbers;
 
   @Nullable
   @JsonProperty("caller_numbers")

@@ -1475,6 +1475,88 @@ public class ChatImpl {
   }
 
   @NotNull
+  public StreamRequest<GetRetentionPolicyResponse> getRetentionPolicy(
+      GetRetentionPolicyRequest request) throws StreamException {
+
+    return new StreamRequest<GetRetentionPolicyResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/chat/retention_policy",
+        request,
+        null,
+        new TypeReference<GetRetentionPolicyResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetRetentionPolicyResponse> getRetentionPolicy() throws StreamException {
+    return getRetentionPolicy(new GetRetentionPolicyRequest());
+  }
+
+  @NotNull
+  public StreamRequest<SetRetentionPolicyResponse> setRetentionPolicy(
+      SetRetentionPolicyRequest request) throws StreamException {
+
+    return new StreamRequest<SetRetentionPolicyResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/chat/retention_policy",
+        request,
+        null,
+        new TypeReference<SetRetentionPolicyResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<SetRetentionPolicyResponse> setRetentionPolicy() throws StreamException {
+    return setRetentionPolicy(new SetRetentionPolicyRequest());
+  }
+
+  @NotNull
+  public StreamRequest<DeleteRetentionPolicyResponse> deleteRetentionPolicy(
+      DeleteRetentionPolicyRequest request) throws StreamException {
+
+    return new StreamRequest<DeleteRetentionPolicyResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/chat/retention_policy/delete",
+        request,
+        null,
+        new TypeReference<DeleteRetentionPolicyResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteRetentionPolicyResponse> deleteRetentionPolicy()
+      throws StreamException {
+    return deleteRetentionPolicy(new DeleteRetentionPolicyRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GetRetentionPolicyRunsResponse> getRetentionPolicyRuns(
+      GetRetentionPolicyRunsRequest request) throws StreamException {
+
+    return new StreamRequest<GetRetentionPolicyRunsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/chat/retention_policy/runs",
+        request,
+        null,
+        new TypeReference<GetRetentionPolicyRunsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetRetentionPolicyRunsResponse> getRetentionPolicyRuns()
+      throws StreamException {
+    return getRetentionPolicyRuns(new GetRetentionPolicyRunsRequest());
+  }
+
+  @NotNull
   public StreamRequest<SearchResponse> search(SearchRequest request) throws StreamException {
 
     return new StreamRequest<SearchResponse>(

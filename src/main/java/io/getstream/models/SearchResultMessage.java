@@ -138,6 +138,10 @@ public class SearchResultMessage {
   private Boolean showInChannel;
 
   @Nullable
+  @JsonProperty("mentioned_group_ids")
+  private List<String> mentionedGroupIds;
+
+  @Nullable
   @JsonProperty("mentioned_roles")
   private List<String> mentionedRoles;
 

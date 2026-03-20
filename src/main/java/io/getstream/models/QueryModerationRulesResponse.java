@@ -26,6 +26,9 @@ public class QueryModerationRulesResponse {
   @JsonProperty("duration")
   private String duration;
 
+  @JsonProperty("ai_image_label_definitions")
+  private List<AIImageLabelDefinition> aiImageLabelDefinitions;
+
   @JsonProperty("closed_caption_labels")
   private List<String> closedCaptionLabels;
 
@@ -34,6 +37,9 @@ public class QueryModerationRulesResponse {
 
   @JsonProperty("rules")
   private List<ModerationRuleV2Response> rules;
+
+  @JsonProperty("ai_image_subclassifications")
+  private Map<String, List<String>> aiImageSubclassifications;
 
   @JsonProperty("default_llm_labels")
   private Map<String, String> defaultLlmLabels;

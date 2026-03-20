@@ -29,4 +29,8 @@ public class ChannelPushPreferencesResponse {
   @Nullable
   @JsonProperty("disabled_until")
   private Date disabledUntil;
+
+  @Nullable
+  @JsonProperty("chat_preferences")
+  private ChatPreferencesResponse chatPreferences;
 }

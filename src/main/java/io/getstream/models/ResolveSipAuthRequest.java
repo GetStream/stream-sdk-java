@@ -12,25 +12,30 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * Read collections Read collections by their references. By default, users can only read their own
- * collections.
+ * Resolve SIP Auth Determine authentication requirements for an inbound SIP call before sending a
+ * digest challenge
  */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ReadCollectionsRequest {
+public class ResolveSipAuthRequest {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @JsonProperty("sip_caller_number")
+  private String sipCallerNumber;
 
-  @Query("collection_refs")
-  @JsonIgnore
-  private List<String> CollectionRefs;
+  @JsonProperty("sip_trunk_number")
+  private String sipTrunkNumber;
+
+  @Nullable
+  @JsonProperty("from_host")
+  private String fromHost;
+
+  @Nullable
+  @JsonProperty("source_ip")
+  private String sourceIp;
 }

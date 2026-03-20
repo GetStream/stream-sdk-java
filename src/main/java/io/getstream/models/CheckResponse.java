@@ -37,4 +37,8 @@ public class CheckResponse {
   @Nullable
   @JsonProperty("item")
   private ReviewQueueItemResponse item;
+
+  @Nullable
+  @JsonProperty("triggered_rule")
+  private TriggeredRuleResponse triggeredRule;
 }

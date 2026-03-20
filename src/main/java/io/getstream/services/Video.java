@@ -508,6 +508,10 @@ public interface Video {
   public StreamRequest<GetEdgesResponse> getEdges() throws StreamException;
 
   @NotNull
+  public StreamRequest<ResolveSipAuthResponse> resolveSipAuth(ResolveSipAuthRequest request)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<ListSIPInboundRoutingRuleResponse> listSIPInboundRoutingRule(
       ListSIPInboundRoutingRuleRequest request) throws StreamException;
 

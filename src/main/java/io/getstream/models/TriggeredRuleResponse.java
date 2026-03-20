@@ -12,25 +12,31 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
-/**
- * Read collections Read collections by their references. By default, users can only read their own
- * collections.
- */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ReadCollectionsRequest {
+public class TriggeredRuleResponse {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @JsonProperty("rule_id")
+  private String ruleID;
 
-  @Query("collection_refs")
-  @JsonIgnore
-  private List<String> CollectionRefs;
+  @JsonProperty("actions")
+  private List<String> actions;
+
+  @Nullable
+  @JsonProperty("rule_name")
+  private String ruleName;
+
+  @Nullable
+  @JsonProperty("violation_number")
+  private Integer violationNumber;
+
+  @Nullable
+  @JsonProperty("call_options")
+  private CallActionOptions callOptions;
 }

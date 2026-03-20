@@ -503,6 +503,36 @@ public interface Chat {
   public StreamRequest<QueryRemindersResponse> queryReminders() throws StreamException;
 
   @NotNull
+  public StreamRequest<GetRetentionPolicyResponse> getRetentionPolicy(
+      GetRetentionPolicyRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetRetentionPolicyResponse> getRetentionPolicy() throws StreamException;
+
+  @NotNull
+  public StreamRequest<SetRetentionPolicyResponse> setRetentionPolicy(
+      SetRetentionPolicyRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<SetRetentionPolicyResponse> setRetentionPolicy() throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteRetentionPolicyResponse> deleteRetentionPolicy(
+      DeleteRetentionPolicyRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteRetentionPolicyResponse> deleteRetentionPolicy()
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetRetentionPolicyRunsResponse> getRetentionPolicyRuns(
+      GetRetentionPolicyRunsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetRetentionPolicyRunsResponse> getRetentionPolicyRuns()
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<SearchResponse> search(SearchRequest request) throws StreamException;
 
   @NotNull

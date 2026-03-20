@@ -33,5 +33,5 @@ public class AWSRekognitionRule {
 
   @Nullable
   @JsonProperty("subclassifications")
-  private Map<String, Boolean> subclassifications;
+  private Map<String, Object> subclassifications;
 }

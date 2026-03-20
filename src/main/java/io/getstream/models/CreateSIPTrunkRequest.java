@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 /** Create SIP Trunk Create a new SIP trunk for the application */
 @lombok.Data
@@ -27,4 +28,12 @@ public class CreateSIPTrunkRequest {
 
   @JsonProperty("numbers")
   private List<String> numbers;
+
+  @Nullable
+  @JsonProperty("password")
+  private String password;
+
+  @Nullable
+  @JsonProperty("allowed_ips")
+  private List<String> allowedIps;
 }

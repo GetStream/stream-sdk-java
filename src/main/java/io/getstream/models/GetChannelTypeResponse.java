@@ -146,4 +146,8 @@ public class GetChannelTypeResponse {
   @Nullable
   @JsonProperty("automod_thresholds")
   private Thresholds automodThresholds;
+
+  @Nullable
+  @JsonProperty("chat_preferences")
+  private ChatPreferences chatPreferences;
 }

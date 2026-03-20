@@ -5,7 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.getstream.models.MessageResponse;
+import io.getstream.models.TrackActivityMetricsEvent;
+import io.getstream.models.TrackActivityMetricsRequest;
 import io.getstream.models.UpdateAppRequest;
+import java.util.List;
+import java.util.Map;
 import io.getstream.services.framework.StreamHTTPClient;
 import java.util.Date;
 import org.junit.jupiter.api.BeforeAll;
@@ -90,6 +94,44 @@ public class StreamHTTPClientTest {
     assertTrue(
         json.contains("\"grants\":{}"),
         "Empty collections should be serialized when explicitly set, got: " + json);
+  }
+
+  @Test
+  void testActivityMetricsConfigSerializedWhenSet() throws JsonProcessingException {
+    UpdateAppRequest request =
+        UpdateAppRequest.builder()
+            .activityMetricsConfig(Map.of("views", 10, "clicks", 5, "shares", 25))
+            .build();
+
+    String json = objectMapper.writeValueAsString(request);
+
+    assertTrue(json.contains("\"activity_metrics_config\""), "Expected config field in: " + json);
+    assertTrue(json.contains("\"views\":10"), "Expected default metric override in: " + json);
+    assertTrue(json.contains("\"clicks\":5"), "Expected default metric override in: " + json);
+    assertTrue(json.contains("\"shares\":25"), "Expected custom metric in: " + json);
+  }
+
+  @Test
+  void testTrackActivityMetricsRequestSerializedWithCustomMetric() throws JsonProcessingException {
+    TrackActivityMetricsRequest request =
+        TrackActivityMetricsRequest.builder()
+            .userID("user-123")
+            .events(
+                List.of(
+                    TrackActivityMetricsEvent.builder()
+                        .activityID("activity-123")
+                        .metric("shares")
+                        .delta(3)
+                        .build()))
+            .build();
+
+    String json = objectMapper.writeValueAsString(request);
+
+    assertTrue(json.contains("\"user_id\":\"user-123\""), "Expected user_id in: " + json);
+    assertTrue(json.contains("\"events\""), "Expected events array in: " + json);
+    assertTrue(json.contains("\"activity_id\":\"activity-123\""), "Expected activity ID in: " + json);
+    assertTrue(json.contains("\"metric\":\"shares\""), "Expected custom metric in: " + json);
+    assertTrue(json.contains("\"delta\":3"), "Expected delta in: " + json);
   }
 
   @Test

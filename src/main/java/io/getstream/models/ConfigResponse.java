@@ -43,6 +43,10 @@ public class ConfigResponse {
   private List<String> supportedVideoCallHarmTypes;
 
   @Nullable
+  @JsonProperty("ai_image_label_definitions")
+  private List<AIImageLabelDefinition> aiImageLabelDefinitions;
+
+  @Nullable
   @JsonProperty("ai_image_config")
   private AIImageConfig aiImageConfig;
 
