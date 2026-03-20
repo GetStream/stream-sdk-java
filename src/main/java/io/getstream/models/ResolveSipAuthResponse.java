@@ -12,25 +12,31 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
-/**
- * Read collections Read collections by their references. By default, users can only read their own
- * collections.
- */
+/** Response containing the pre-authentication decision for a SIP trunk */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ReadCollectionsRequest {
+public class ResolveSipAuthResponse {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @JsonProperty("auth_result")
+  private String authResult;
 
-  @Query("collection_refs")
-  @JsonIgnore
-  private List<String> CollectionRefs;
+  @JsonProperty("duration")
+  private String duration;
+
+  @Nullable
+  @JsonProperty("password")
+  private String password;
+
+  @Nullable
+  @JsonProperty("trunk_id")
+  private String trunkID;
+
+  @Nullable
+  @JsonProperty("username")
+  private String username;
 }

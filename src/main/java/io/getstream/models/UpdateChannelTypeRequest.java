@@ -154,6 +154,10 @@ public class UpdateChannelTypeRequest {
   private Thresholds automodThresholds;
 
   @Nullable
+  @JsonProperty("chat_preferences")
+  private ChatPreferences chatPreferences;
+
+  @Nullable
   @JsonProperty("grants")
   private Map<String, List<String>> grants;
 }

@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -41,6 +42,10 @@ public class CallEndedEvent {
   @Nullable
   @JsonProperty("reason")
   private String reason;
+
+  @Nullable
+  @JsonProperty("members")
+  private List<MemberResponse> members;
 
   @Nullable
   @JsonProperty("user")

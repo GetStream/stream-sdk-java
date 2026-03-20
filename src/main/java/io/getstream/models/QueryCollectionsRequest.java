@@ -13,38 +13,42 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * Resolve SIP Inbound Routing Resolve SIP inbound routing based on trunk number, caller number, and
- * challenge authentication
- */
+/** Query collections Query collections with filter query */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ResolveSipInboundRequest {
-
-  @JsonProperty("sip_caller_number")
-  private String sipCallerNumber;
-
-  @JsonProperty("sip_trunk_number")
-  private String sipTrunkNumber;
+public class QueryCollectionsRequest {
 
   @Nullable
-  @JsonProperty("routing_number")
-  private String routingNumber;
+  @JsonProperty("limit")
+  private Integer limit;
 
   @Nullable
-  @JsonProperty("trunk_id")
-  private String trunkID;
+  @JsonProperty("next")
+  private String next;
 
   @Nullable
-  @JsonProperty("challenge")
-  private SIPChallengeRequest challenge;
+  @JsonProperty("prev")
+  private String prev;
 
   @Nullable
-  @JsonProperty("sip_headers")
-  private Map<String, String> sipHeaders;
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
+  @JsonProperty("sort")
+  private List<SortParamRequest> sort;
+
+  @Nullable
+  @JsonProperty("filter")
+  private Map<String, Object> filter;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

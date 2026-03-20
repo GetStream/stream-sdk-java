@@ -178,6 +178,10 @@ public class UpdateAppRequest {
   private List<String> webhookEvents;
 
   @Nullable
+  @JsonProperty("activity_metrics_config")
+  private Map<String, Integer> activityMetricsConfig;
+
+  @Nullable
   @JsonProperty("apn_config")
   private APNConfig apnConfig;
 

@@ -605,6 +605,26 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<QueryCollectionsResponse> queryCollections(QueryCollectionsRequest request)
+      throws StreamException {
+
+    return new StreamRequest<QueryCollectionsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/collections/query",
+        request,
+        null,
+        new TypeReference<QueryCollectionsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryCollectionsResponse> queryCollections() throws StreamException {
+    return queryCollections(new QueryCollectionsRequest());
+  }
+
+  @NotNull
   public StreamRequest<GetCommentsResponse> getComments(GetCommentsRequest request)
       throws StreamException {
 

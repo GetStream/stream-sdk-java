@@ -12,25 +12,8 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
-import java.util.List;
-
-/**
- * Read collections Read collections by their references. By default, users can only read their own
- * collections.
- */
+/** Get retention policy Returns all retention policies configured for the app. Server-side only. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
-public class ReadCollectionsRequest {
-
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
-
-  @Query("collection_refs")
-  @JsonIgnore
-  private List<String> CollectionRefs;
-}
+public class GetRetentionPolicyRequest {}

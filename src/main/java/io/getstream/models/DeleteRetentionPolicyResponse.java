@@ -12,25 +12,15 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * Read collections Read collections by their references. By default, users can only read their own
- * collections.
- */
+/** Basic response information */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ReadCollectionsRequest {
+public class DeleteRetentionPolicyResponse {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
-
-  @Query("collection_refs")
-  @JsonIgnore
-  private List<String> CollectionRefs;
+  @JsonProperty("duration")
+  private String duration;
 }

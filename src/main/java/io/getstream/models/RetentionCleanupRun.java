@@ -13,38 +13,46 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
+import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * Resolve SIP Inbound Routing Resolve SIP inbound routing based on trunk number, caller number, and
- * challenge authentication
- */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ResolveSipInboundRequest {
+public class RetentionCleanupRun {
 
-  @JsonProperty("sip_caller_number")
-  private String sipCallerNumber;
+  @JsonProperty("app_pk")
+  private Integer appPk;
 
-  @JsonProperty("sip_trunk_number")
-  private String sipTrunkNumber;
+  @JsonProperty("date")
+  private Date date;
+
+  @JsonProperty("policy")
+  private String policy;
+
+  @JsonProperty("started_at")
+  private Date startedAt;
+
+  @JsonProperty("status")
+  private String status;
+
+  @JsonProperty("stats")
+  private RunStats stats;
 
   @Nullable
-  @JsonProperty("routing_number")
-  private String routingNumber;
+  @JsonProperty("cursor_id")
+  private String cursorID;
 
   @Nullable
-  @JsonProperty("trunk_id")
-  private String trunkID;
+  @JsonProperty("cursor_ts")
+  private Date cursorTs;
 
   @Nullable
-  @JsonProperty("challenge")
-  private SIPChallengeRequest challenge;
+  @JsonProperty("error")
+  private String error;
 
   @Nullable
-  @JsonProperty("sip_headers")
-  private Map<String, String> sipHeaders;
+  @JsonProperty("finished_at")
+  private Date finishedAt;
 }

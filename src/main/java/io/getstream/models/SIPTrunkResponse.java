@@ -44,6 +44,9 @@ public class SIPTrunkResponse {
   @JsonProperty("username")
   private String username;
 
+  @JsonProperty("allowed_ips")
+  private List<String> allowedIps;
+
   @JsonProperty("numbers")
   private List<String> numbers;
 }

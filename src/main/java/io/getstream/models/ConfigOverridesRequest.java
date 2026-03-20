@@ -41,6 +41,10 @@ public class ConfigOverridesRequest {
   private Integer maxMessageLength;
 
   @Nullable
+  @JsonProperty("push_level")
+  private String pushLevel;
+
+  @Nullable
   @JsonProperty("quotes")
   private Boolean quotes;
 
@@ -75,6 +79,10 @@ public class ConfigOverridesRequest {
   @Nullable
   @JsonProperty("commands")
   private List<String> commands;
+
+  @Nullable
+  @JsonProperty("chat_preferences")
+  private ChatPreferences chatPreferences;
 
   @Nullable
   @JsonProperty("grants")

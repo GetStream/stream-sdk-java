@@ -12,25 +12,21 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
-/**
- * Read collections Read collections by their references. By default, users can only read their own
- * collections.
- */
+/** Set retention policy Creates or updates a retention policy for the app. Server-side only. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ReadCollectionsRequest {
+public class SetRetentionPolicyRequest {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @Nullable
+  @JsonProperty("max_age_hours")
+  private Integer maxAgeHours;
 
-  @Query("collection_refs")
-  @JsonIgnore
-  private List<String> CollectionRefs;
+  @Nullable
+  @JsonProperty("policy")
+  private String policy;
 }

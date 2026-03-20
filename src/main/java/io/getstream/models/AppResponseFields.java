@@ -187,6 +187,10 @@ public class AppResponseFields {
   private List<String> imageModerationLabels;
 
   @Nullable
+  @JsonProperty("activity_metrics_config")
+  private Map<String, Integer> activityMetricsConfig;
+
+  @Nullable
   @JsonProperty("datadog_info")
   private DataDogInfo datadogInfo;
 

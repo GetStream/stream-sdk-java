@@ -39,6 +39,10 @@ public class PushPreferencesResponse {
   private String feedsLevel;
 
   @Nullable
+  @JsonProperty("chat_preferences")
+  private ChatPreferencesResponse chatPreferences;
+
+  @Nullable
   @JsonProperty("feeds_preferences")
   private FeedsPreferencesResponse feedsPreferences;
 }

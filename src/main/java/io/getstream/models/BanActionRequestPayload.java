@@ -27,6 +27,10 @@ public class BanActionRequestPayload {
   private Boolean channelBanOnly;
 
   @Nullable
+  @JsonProperty("channel_cid")
+  private String channelCid;
+
+  @Nullable
   @JsonProperty("delete_messages")
   private String deleteMessages;
 

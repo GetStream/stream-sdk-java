@@ -28,4 +28,8 @@ public class FilterConfigResponse {
   @Nullable
   @JsonProperty("ai_text_labels")
   private List<String> aiTextLabels;
+
+  @Nullable
+  @JsonProperty("config_keys")
+  private List<String> configKeys;
 }

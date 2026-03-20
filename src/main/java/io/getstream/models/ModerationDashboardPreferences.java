@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -45,6 +46,10 @@ public class ModerationDashboardPreferences {
   @Nullable
   @JsonProperty("allowed_moderation_action_reasons")
   private List<String> allowedModerationActionReasons;
+
+  @Nullable
+  @JsonProperty("keyframe_classifications_map")
+  private Map<String, Map<String, Boolean>> keyframeClassificationsMap;
 
   @Nullable
   @JsonProperty("overview_dashboard")

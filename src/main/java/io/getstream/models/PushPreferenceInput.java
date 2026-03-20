@@ -51,6 +51,10 @@ public class PushPreferenceInput {
   private String userID;
 
   @Nullable
+  @JsonProperty("chat_preferences")
+  private ChatPreferencesInput chatPreferences;
+
+  @Nullable
   @JsonProperty("feeds_preferences")
   private FeedsPreferences feedsPreferences;
 }

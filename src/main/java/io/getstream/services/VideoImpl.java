@@ -1419,6 +1419,21 @@ public class VideoImpl {
   }
 
   @NotNull
+  public StreamRequest<ResolveSipAuthResponse> resolveSipAuth(ResolveSipAuthRequest request)
+      throws StreamException {
+
+    return new StreamRequest<ResolveSipAuthResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/video/sip/auth",
+        request,
+        null,
+        new TypeReference<ResolveSipAuthResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<ListSIPInboundRoutingRuleResponse> listSIPInboundRoutingRule(
       ListSIPInboundRoutingRuleRequest request) throws StreamException {
 

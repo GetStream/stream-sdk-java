@@ -145,6 +145,10 @@ public class CreateChannelTypeRequest {
   private List<PolicyRequest> permissions;
 
   @Nullable
+  @JsonProperty("chat_preferences")
+  private ChatPreferences chatPreferences;
+
+  @Nullable
   @JsonProperty("grants")
   private Map<String, List<String>> grants;
 }
