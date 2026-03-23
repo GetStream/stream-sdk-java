@@ -984,5 +984,4 @@ class ChatMiscIntegrationTest extends ChatTestBase {
       throw e;
     }
   }
-
 }
