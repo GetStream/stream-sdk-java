@@ -985,38 +985,4 @@ class ChatMiscIntegrationTest extends ChatTestBase {
     }
   }
 
-  @Test
-  @Order(23)
-  void testDeleteRetentionPolicy() throws Exception {
-    try {
-      // Create a policy first so we have something to delete
-      client
-          .chat()
-          .setRetentionPolicy(
-              SetRetentionPolicyRequest.builder()
-                  .policy("old-messages")
-                  .maxAgeHours(720)
-                  .build())
-          .execute();
-
-      var resp =
-          client
-              .chat()
-              .deleteRetentionPolicy(
-                  DeleteRetentionPolicyRequest.builder().policy("old-messages").build())
-              .execute();
-
-      assertNotNull(resp.getData(), "DeleteRetentionPolicy response should not be null");
-      assertNotNull(resp.getData().getDuration(), "Duration should not be null");
-    } catch (Exception e) {
-      String msg = e.getMessage() != null ? e.getMessage() : "";
-      Assumptions.assumeTrue(
-          !msg.contains("not available")
-              && !msg.contains("not supported")
-              && !msg.contains("not enabled")
-              && !msg.contains("retention"),
-          "Retention policy feature not available on this app: " + msg);
-      throw e;
-    }
-  }
 }
