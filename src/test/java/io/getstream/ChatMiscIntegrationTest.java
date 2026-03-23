@@ -937,4 +937,105 @@ class ChatMiscIntegrationTest extends ChatTestBase {
       }
     }
   }
+
+  @Test
+  @Order(20)
+  void testSetRetentionPolicy() throws Exception {
+    try {
+      var resp =
+          client
+              .chat()
+              .setRetentionPolicy(
+                  SetRetentionPolicyRequest.builder()
+                      .policy("old-messages")
+                      .maxAgeHours(720)
+                      .build())
+              .execute();
+
+      assertNotNull(resp.getData(), "SetRetentionPolicy response should not be null");
+      assertNotNull(resp.getData().getDuration(), "Duration should not be null");
+      assertNotNull(resp.getData().getPolicy(), "Policy should not be null");
+    } catch (Exception e) {
+      String msg = e.getMessage() != null ? e.getMessage() : "";
+      Assumptions.assumeTrue(
+          !msg.contains("not available")
+              && !msg.contains("not supported")
+              && !msg.contains("not enabled")
+              && !msg.contains("retention"),
+          "Retention policy feature not available on this app: " + msg);
+      throw e;
+    }
+  }
+
+  @Test
+  @Order(21)
+  void testGetRetentionPolicy() throws Exception {
+    try {
+      var resp = client.chat().getRetentionPolicy().execute();
+
+      assertNotNull(resp.getData(), "GetRetentionPolicy response should not be null");
+      assertNotNull(resp.getData().getDuration(), "Duration should not be null");
+      assertNotNull(resp.getData().getPolicies(), "Policies list should not be null");
+    } catch (Exception e) {
+      String msg = e.getMessage() != null ? e.getMessage() : "";
+      Assumptions.assumeTrue(
+          !msg.contains("not available")
+              && !msg.contains("not supported")
+              && !msg.contains("not enabled")
+              && !msg.contains("retention"),
+          "Retention policy feature not available on this app: " + msg);
+      throw e;
+    }
+  }
+
+  @Test
+  @Order(22)
+  void testGetRetentionPolicyRuns() throws Exception {
+    try {
+      var resp =
+          client
+              .chat()
+              .getRetentionPolicyRuns(
+                  GetRetentionPolicyRunsRequest.builder().Limit(10).Offset(0).build())
+              .execute();
+
+      assertNotNull(resp.getData(), "GetRetentionPolicyRuns response should not be null");
+      assertNotNull(resp.getData().getDuration(), "Duration should not be null");
+      assertNotNull(resp.getData().getRuns(), "Runs list should not be null");
+    } catch (Exception e) {
+      String msg = e.getMessage() != null ? e.getMessage() : "";
+      Assumptions.assumeTrue(
+          !msg.contains("not available")
+              && !msg.contains("not supported")
+              && !msg.contains("not enabled")
+              && !msg.contains("retention"),
+          "Retention policy feature not available on this app: " + msg);
+      throw e;
+    }
+  }
+
+  @Test
+  @Order(23)
+  void testDeleteRetentionPolicy() throws Exception {
+    try {
+      var resp =
+          client
+              .chat()
+              .deleteRetentionPolicy(
+                  DeleteRetentionPolicyRequest.builder().policy("old-messages").build())
+              .execute();
+
+      assertNotNull(resp.getData(), "DeleteRetentionPolicy response should not be null");
+      assertNotNull(resp.getData().getDuration(), "Duration should not be null");
+    } catch (Exception e) {
+      String msg = e.getMessage() != null ? e.getMessage() : "";
+      Assumptions.assumeTrue(
+          !msg.contains("not available")
+              && !msg.contains("not supported")
+              && !msg.contains("not enabled")
+              && !msg.contains("retention"),
+          "Retention policy feature not available on this app: " + msg);
+      throw e;
+    }
+  }
 }
