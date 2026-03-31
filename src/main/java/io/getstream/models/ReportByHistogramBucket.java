@@ -13,35 +13,28 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ReportByHistogramBucket{
+public class ReportByHistogramBucket {
 
-    @JsonProperty("category")
-    private String category;
+  @JsonProperty("category")
+  private String category;
 
-    @JsonProperty("count")
-    private Integer count;
+  @JsonProperty("count")
+  private Integer count;
 
-    @JsonProperty("sum")
-    private Double sum;
+  @JsonProperty("sum")
+  private Double sum;
 
-    @Nullable
-    @JsonProperty("lower_bound")
-    private Bound lowerBound;
+  @Nullable
+  @JsonProperty("lower_bound")
+  private Bound lowerBound;
 
-    @Nullable
-    @JsonProperty("upper_bound")
-    private Bound upperBound;
+  @Nullable
+  @JsonProperty("upper_bound")
+  private Bound upperBound;
 }

@@ -13,56 +13,49 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
-/**
- * Basic response information
- */
+
+/** Basic response information */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetCallParticipantSessionMetricsResponse{
+public class GetCallParticipantSessionMetricsResponse {
 
-    @JsonProperty("duration")
-    private String duration;
+  @JsonProperty("duration")
+  private String duration;
 
-    @Nullable
-    @JsonProperty("is_publisher")
-    private Boolean isPublisher;
+  @Nullable
+  @JsonProperty("is_publisher")
+  private Boolean isPublisher;
 
-    @Nullable
-    @JsonProperty("is_subscriber")
-    private Boolean isSubscriber;
+  @Nullable
+  @JsonProperty("is_subscriber")
+  private Boolean isSubscriber;
 
-    @Nullable
-    @JsonProperty("joined_at")
-    private Date joinedAt;
+  @Nullable
+  @JsonProperty("joined_at")
+  private Date joinedAt;
 
-    @Nullable
-    @JsonProperty("publisher_type")
-    private String publisherType;
+  @Nullable
+  @JsonProperty("publisher_type")
+  private String publisherType;
 
-    @Nullable
-    @JsonProperty("user_id")
-    private String userID;
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
 
-    @Nullable
-    @JsonProperty("user_session_id")
-    private String userSessionID;
+  @Nullable
+  @JsonProperty("user_session_id")
+  private String userSessionID;
 
-    @Nullable
-    @JsonProperty("published_tracks")
-    private List<PublishedTrackMetrics> publishedTracks;
+  @Nullable
+  @JsonProperty("published_tracks")
+  private List<PublishedTrackMetrics> publishedTracks;
 
-    @Nullable
-    @JsonProperty("client")
-    private SessionClient client;
+  @Nullable
+  @JsonProperty("client")
+  private SessionClient client;
 }

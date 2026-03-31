@@ -13,30 +13,23 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ParticipantSeriesTimeframe{
+public class ParticipantSeriesTimeframe {
 
-    @JsonProperty("max_points")
-    private Integer maxPoints;
+  @JsonProperty("max_points")
+  private Integer maxPoints;
 
-    @JsonProperty("since")
-    private Date since;
+  @JsonProperty("since")
+  private Date since;
 
-    @JsonProperty("step_seconds")
-    private Integer stepSeconds;
+  @JsonProperty("step_seconds")
+  private Integer stepSeconds;
 
-    @JsonProperty("until")
-    private Date until;
+  @JsonProperty("until")
+  private Date until;
 }

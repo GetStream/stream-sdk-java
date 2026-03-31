@@ -13,110 +13,103 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
-/**
- * Emitted when a channel/thread is marked as unread.
- */
+
+/** Emitted when a channel/thread is marked as unread. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class NotificationMarkUnreadEvent{
+public class NotificationMarkUnreadEvent {
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 
-    @JsonProperty("type")
-    private String type;
+  @JsonProperty("type")
+  private String type;
 
-    @Nullable
-    @JsonProperty("channel_id")
-    private String channelID;
+  @Nullable
+  @JsonProperty("channel_id")
+  private String channelID;
 
-    @Nullable
-    @JsonProperty("channel_member_count")
-    private Integer channelMemberCount;
+  @Nullable
+  @JsonProperty("channel_member_count")
+  private Integer channelMemberCount;
 
-    @Nullable
-    @JsonProperty("channel_message_count")
-    private Integer channelMessageCount;
+  @Nullable
+  @JsonProperty("channel_message_count")
+  private Integer channelMessageCount;
 
-    @Nullable
-    @JsonProperty("channel_type")
-    private String channelType;
+  @Nullable
+  @JsonProperty("channel_type")
+  private String channelType;
 
-    @Nullable
-    @JsonProperty("cid")
-    private String cid;
+  @Nullable
+  @JsonProperty("cid")
+  private String cid;
 
-    @Nullable
-    @JsonProperty("first_unread_message_id")
-    private String firstUnreadMessageID;
+  @Nullable
+  @JsonProperty("first_unread_message_id")
+  private String firstUnreadMessageID;
 
-    @Nullable
-    @JsonProperty("last_read_at")
-    private Date lastReadAt;
+  @Nullable
+  @JsonProperty("last_read_at")
+  private Date lastReadAt;
 
-    @Nullable
-    @JsonProperty("last_read_message_id")
-    private String lastReadMessageID;
+  @Nullable
+  @JsonProperty("last_read_message_id")
+  private String lastReadMessageID;
 
-    @Nullable
-    @JsonProperty("received_at")
-    private Date receivedAt;
+  @Nullable
+  @JsonProperty("received_at")
+  private Date receivedAt;
 
-    @Nullable
-    @JsonProperty("team")
-    private String team;
+  @Nullable
+  @JsonProperty("team")
+  private String team;
 
-    @Nullable
-    @JsonProperty("thread_id")
-    private String threadID;
+  @Nullable
+  @JsonProperty("thread_id")
+  private String threadID;
 
-    @Nullable
-    @JsonProperty("total_unread_count")
-    private Integer totalUnreadCount;
+  @Nullable
+  @JsonProperty("total_unread_count")
+  private Integer totalUnreadCount;
 
-    @Nullable
-    @JsonProperty("unread_channels")
-    private Integer unreadChannels;
+  @Nullable
+  @JsonProperty("unread_channels")
+  private Integer unreadChannels;
 
-    @Nullable
-    @JsonProperty("unread_count")
-    private Integer unreadCount;
+  @Nullable
+  @JsonProperty("unread_count")
+  private Integer unreadCount;
 
-    @Nullable
-    @JsonProperty("unread_messages")
-    private Integer unreadMessages;
+  @Nullable
+  @JsonProperty("unread_messages")
+  private Integer unreadMessages;
 
-    @Nullable
-    @JsonProperty("unread_thread_messages")
-    private Integer unreadThreadMessages;
+  @Nullable
+  @JsonProperty("unread_thread_messages")
+  private Integer unreadThreadMessages;
 
-    @Nullable
-    @JsonProperty("unread_threads")
-    private Integer unreadThreads;
+  @Nullable
+  @JsonProperty("unread_threads")
+  private Integer unreadThreads;
 
-    @Nullable
-    @JsonProperty("channel")
-    private ChannelResponse channel;
+  @Nullable
+  @JsonProperty("channel")
+  private ChannelResponse channel;
 
-    @Nullable
-    @JsonProperty("channel_custom")
-    private Map<String, Object> channelCustom;
+  @Nullable
+  @JsonProperty("channel_custom")
+  private Map<String, Object> channelCustom;
 
-    @Nullable
-    @JsonProperty("user")
-    private UserResponseCommonFields user;
+  @Nullable
+  @JsonProperty("user")
+  private UserResponseCommonFields user;
 }

@@ -13,32 +13,26 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class EgressRTMPResponse{
+public class EgressRTMPResponse {
 
-    @JsonProperty("name")
-    private String name;
+  @JsonProperty("name")
+  private String name;
 
-    @JsonProperty("started_at")
-    private Date startedAt;
+  @JsonProperty("started_at")
+  private Date startedAt;
 
-    @Nullable
-    @JsonProperty("stream_key")
-    private String streamKey;
+  @Nullable
+  @JsonProperty("stream_key")
+  private String streamKey;
 
-    @Nullable
-    @JsonProperty("stream_url")
-    private String streamUrl;
+  @Nullable
+  @JsonProperty("stream_url")
+  private String streamUrl;
 }

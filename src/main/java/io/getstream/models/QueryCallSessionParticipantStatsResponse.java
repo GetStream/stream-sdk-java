@@ -13,63 +13,56 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
-/**
- * Basic response information
- */
+
+/** Basic response information */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class QueryCallSessionParticipantStatsResponse{
+public class QueryCallSessionParticipantStatsResponse {
 
-    @JsonProperty("call_id")
-    private String callID;
+  @JsonProperty("call_id")
+  private String callID;
 
-    @JsonProperty("call_session_id")
-    private String callSessionID;
+  @JsonProperty("call_session_id")
+  private String callSessionID;
 
-    @JsonProperty("call_type")
-    private String callType;
+  @JsonProperty("call_type")
+  private String callType;
 
-    @JsonProperty("duration")
-    private String duration;
+  @JsonProperty("duration")
+  private String duration;
 
-    @JsonProperty("participants")
-    private List<CallStatsParticipant> participants;
+  @JsonProperty("participants")
+  private List<CallStatsParticipant> participants;
 
-    @JsonProperty("counts")
-    private CallStatsParticipantCounts counts;
+  @JsonProperty("counts")
+  private CallStatsParticipantCounts counts;
 
-    @Nullable
-    @JsonProperty("call_ended_at")
-    private Date callEndedAt;
+  @Nullable
+  @JsonProperty("call_ended_at")
+  private Date callEndedAt;
 
-    @Nullable
-    @JsonProperty("call_started_at")
-    private Date callStartedAt;
+  @Nullable
+  @JsonProperty("call_started_at")
+  private Date callStartedAt;
 
-    @Nullable
-    @JsonProperty("next")
-    private String next;
+  @Nullable
+  @JsonProperty("next")
+  private String next;
 
-    @Nullable
-    @JsonProperty("prev")
-    private String prev;
+  @Nullable
+  @JsonProperty("prev")
+  private String prev;
 
-    @Nullable
-    @JsonProperty("tmp_data_source")
-    private String tmpDataSource;
+  @Nullable
+  @JsonProperty("tmp_data_source")
+  private String tmpDataSource;
 
-    @Nullable
-    @JsonProperty("call_events")
-    private List<CallLevelEventPayload> callEvents;
+  @Nullable
+  @JsonProperty("call_events")
+  private List<CallLevelEventPayload> callEvents;
 }

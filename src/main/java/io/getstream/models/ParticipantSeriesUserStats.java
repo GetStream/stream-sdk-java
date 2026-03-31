@@ -13,34 +13,29 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ParticipantSeriesUserStats{
+public class ParticipantSeriesUserStats {
 
-    @Nullable
-    @JsonProperty("metrics_order")
-    private List<String> metricsOrder;
+  @Nullable
+  @JsonProperty("metrics_order")
+  private List<String> metricsOrder;
 
-    @Nullable
-    @JsonProperty("metrics")
-    private Map<String, List<List<Double>>> metrics;
+  @Nullable
+  @JsonProperty("metrics")
+  private Map<String, List<List<Double>>> metrics;
 
-    @Nullable
-    @JsonProperty("metrics_meta")
-    private Map<String, MetricDescriptor> metricsMeta;
+  @Nullable
+  @JsonProperty("metrics_meta")
+  private Map<String, MetricDescriptor> metricsMeta;
 
-    @Nullable
-    @JsonProperty("thresholds")
-    private Map<String, List<MetricThreshold>> thresholds;
+  @Nullable
+  @JsonProperty("thresholds")
+  private Map<String, List<MetricThreshold>> thresholds;
 }

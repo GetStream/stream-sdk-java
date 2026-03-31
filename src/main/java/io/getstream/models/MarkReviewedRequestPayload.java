@@ -13,33 +13,24 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
-/**
- * Configuration for mark reviewed action
- */
+
+/** Configuration for mark reviewed action */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class MarkReviewedRequestPayload{
+public class MarkReviewedRequestPayload {
 
-    @Nullable
-    @JsonProperty("content_to_mark_as_reviewed_limit")
-    private Integer contentToMarkAsReviewedLimit;
+  @Nullable
+  @JsonProperty("content_to_mark_as_reviewed_limit")
+  private Integer contentToMarkAsReviewedLimit;
 
-    @Nullable
-    @JsonProperty("decision_reason")
-    private String decisionReason;
+  @Nullable
+  @JsonProperty("decision_reason")
+  private String decisionReason;
 
-    @Nullable
-    @JsonProperty("disable_marking_content_as_reviewed")
-    private Boolean disableMarkingContentAsReviewed;
+  @Nullable
+  @JsonProperty("disable_marking_content_as_reviewed")
+  private Boolean disableMarkingContentAsReviewed;
 }

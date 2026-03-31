@@ -13,54 +13,46 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
-/**
- * Request to create or update a SIP Inbound Routing Rule
- */
+
+/** Request to create or update a SIP Inbound Routing Rule */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class SIPInboundRoutingRuleRequest{
+public class SIPInboundRoutingRuleRequest {
 
-    @JsonProperty("name")
-    private String name;
+  @JsonProperty("name")
+  private String name;
 
-    @JsonProperty("trunk_ids")
-    private List<String> trunkIds;
+  @JsonProperty("trunk_ids")
+  private List<String> trunkIds;
 
-    @JsonProperty("caller_configs")
-    private SIPCallerConfigsRequest callerConfigs;
+  @JsonProperty("caller_configs")
+  private SIPCallerConfigsRequest callerConfigs;
 
-    @Nullable
-    @JsonProperty("called_numbers")
-    private List<String> calledNumbers;
+  @Nullable
+  @JsonProperty("called_numbers")
+  private List<String> calledNumbers;
 
-    @Nullable
-    @JsonProperty("caller_numbers")
-    private List<String> callerNumbers;
+  @Nullable
+  @JsonProperty("caller_numbers")
+  private List<String> callerNumbers;
 
-    @Nullable
-    @JsonProperty("call_configs")
-    private SIPCallConfigsRequest callConfigs;
+  @Nullable
+  @JsonProperty("call_configs")
+  private SIPCallConfigsRequest callConfigs;
 
-    @Nullable
-    @JsonProperty("direct_routing_configs")
-    private SIPDirectRoutingRuleCallConfigsRequest directRoutingConfigs;
+  @Nullable
+  @JsonProperty("direct_routing_configs")
+  private SIPDirectRoutingRuleCallConfigsRequest directRoutingConfigs;
 
-    @Nullable
-    @JsonProperty("pin_protection_configs")
-    private SIPPinProtectionConfigsRequest pinProtectionConfigs;
+  @Nullable
+  @JsonProperty("pin_protection_configs")
+  private SIPPinProtectionConfigsRequest pinProtectionConfigs;
 
-    @Nullable
-    @JsonProperty("pin_routing_configs")
-    private SIPInboundRoutingRulePinConfigsRequest pinRoutingConfigs;
+  @Nullable
+  @JsonProperty("pin_routing_configs")
+  private SIPInboundRoutingRulePinConfigsRequest pinRoutingConfigs;
 }

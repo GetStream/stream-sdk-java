@@ -13,81 +13,77 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class Reaction{
+public class Reaction {
 
-    @JsonProperty("activity_id")
-    private String activityID;
+  @JsonProperty("activity_id")
+  private String activityID;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("kind")
-    private String kind;
+  @JsonProperty("kind")
+  private String kind;
 
-    @JsonProperty("updated_at")
-    private Date updatedAt;
+  @JsonProperty("updated_at")
+  private Date updatedAt;
 
-    @JsonProperty("user_id")
-    private String userID;
+  @JsonProperty("user_id")
+  private String userID;
 
-    @Nullable
-    @JsonProperty("deleted_at")
-    private Date deletedAt;
+  @Nullable
+  @JsonProperty("deleted_at")
+  private Date deletedAt;
 
-    @Nullable
-    @JsonProperty("id")
-    private String id;
+  @Nullable
+  @JsonProperty("id")
+  private String id;
 
-    @Nullable
-    @JsonProperty("parent")
-    private String parent;
+  @Nullable
+  @JsonProperty("parent")
+  private String parent;
 
-    @Nullable
-    @JsonProperty("score")
-    private Double score;
+  @Nullable
+  @JsonProperty("score")
+  private Double score;
 
-    @Nullable
-    @JsonProperty("target_feeds")
-    private List<String> targetFeeds;
+  @Nullable
+  @JsonProperty("target_feeds")
+  private List<String> targetFeeds;
 
-    @Nullable
-    @JsonProperty("children_counts")
-    private Map<String, Object> childrenCounts;
+  @Nullable
+  @JsonProperty("children_counts")
+  private Map<String, Object> childrenCounts;
 
-    @Nullable
-    @JsonProperty("data")
-    private Map<String, Object> data;
+  @Nullable
+  @JsonProperty("data")
+  private Map<String, Object> data;
 
-    @Nullable
-    @JsonProperty("latest_children")
-    private Map<String, List<Reaction>> latestChildren;
+  @Nullable
+  @JsonProperty("latest_children")
+  private Map<String, List<Reaction>> latestChildren;
 
-    @Nullable
-    @JsonProperty("moderation")
-    private Map<String, Object> moderation;
+  @Nullable
+  @JsonProperty("moderation")
+  private Map<String, Object> moderation;
 
-    @Nullable
-    @JsonProperty("own_children")
-    private Map<String, List<Reaction>> ownChildren;
+  @Nullable
+  @JsonProperty("own_children")
+  private Map<String, List<Reaction>> ownChildren;
 
-    @Nullable
-    @JsonProperty("target_feeds_extra_data")
-    private Map<String, Object> targetFeedsExtraData;
+  @Nullable
+  @JsonProperty("target_feeds_extra_data")
+  private Map<String, Object> targetFeedsExtraData;
 
-    @Nullable
-    @JsonProperty("user")
-    private User user;
+  @Nullable
+  @JsonProperty("user")
+  private User user;
 }

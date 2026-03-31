@@ -13,33 +13,28 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ParticipantSeriesSubscriptionTrackMetrics{
+public class ParticipantSeriesSubscriptionTrackMetrics {
 
-    @JsonProperty("publisher_user_id")
-    private String publisherUserID;
+  @JsonProperty("publisher_user_id")
+  private String publisherUserID;
 
-    @Nullable
-    @JsonProperty("publisher_name")
-    private String publisherName;
+  @Nullable
+  @JsonProperty("publisher_name")
+  private String publisherName;
 
-    @Nullable
-    @JsonProperty("publisher_user_session_id")
-    private String publisherUserSessionID;
+  @Nullable
+  @JsonProperty("publisher_user_session_id")
+  private String publisherUserSessionID;
 
-    @Nullable
-    @JsonProperty("tracks")
-    private Map<String, List<ParticipantSeriesTrackMetrics>> tracks;
+  @Nullable
+  @JsonProperty("tracks")
+  private Map<String, List<ParticipantSeriesTrackMetrics>> tracks;
 }

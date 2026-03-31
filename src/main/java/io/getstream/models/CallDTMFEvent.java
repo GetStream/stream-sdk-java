@@ -13,45 +13,40 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
+
 /**
- * This event is sent asynchronously when a single DTMF digit is received from a SIP participant. The event is broadcast after the digit press ends. Use seq_number for ordering within a session and timestamp for the actual detection time.
+ * This event is sent asynchronously when a single DTMF digit is received from a SIP participant.
+ * The event is broadcast after the digit press ends. Use seq_number for ordering within a session
+ * and timestamp for the actual detection time.
  */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallDTMFEvent{
+public class CallDTMFEvent {
 
-    @JsonProperty("call_cid")
-    private String callCid;
+  @JsonProperty("call_cid")
+  private String callCid;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("digit")
-    private String digit;
+  @JsonProperty("digit")
+  private String digit;
 
-    @JsonProperty("duration_ms")
-    private Integer durationMs;
+  @JsonProperty("duration_ms")
+  private Integer durationMs;
 
-    @JsonProperty("seq_number")
-    private Integer seqNumber;
+  @JsonProperty("seq_number")
+  private Integer seqNumber;
 
-    @JsonProperty("timestamp")
-    private Date timestamp;
+  @JsonProperty("timestamp")
+  private Date timestamp;
 
-    @JsonProperty("user")
-    private UserResponse user;
+  @JsonProperty("user")
+  private UserResponse user;
 
-    @JsonProperty("type")
-    private String type;
+  @JsonProperty("type")
+  private String type;
 }

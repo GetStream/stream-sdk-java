@@ -13,38 +13,32 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class HarmConfig{
+public class HarmConfig {
 
-    @Nullable
-    @JsonProperty("cooldown_period")
-    private Integer cooldownPeriod;
+  @Nullable
+  @JsonProperty("cooldown_period")
+  private Integer cooldownPeriod;
 
-    @Nullable
-    @JsonProperty("severity")
-    private Integer severity;
+  @Nullable
+  @JsonProperty("severity")
+  private Integer severity;
 
-    @Nullable
-    @JsonProperty("threshold")
-    private Integer threshold;
+  @Nullable
+  @JsonProperty("threshold")
+  private Integer threshold;
 
-    @Nullable
-    @JsonProperty("action_sequences")
-    private List<ActionSequence> actionSequences;
+  @Nullable
+  @JsonProperty("action_sequences")
+  private List<ActionSequence> actionSequences;
 
-    @Nullable
-    @JsonProperty("harm_types")
-    private List<String> harmTypes;
+  @Nullable
+  @JsonProperty("harm_types")
+  private List<String> harmTypes;
 }

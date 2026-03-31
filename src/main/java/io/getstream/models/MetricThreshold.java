@@ -13,35 +13,28 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class MetricThreshold{
+public class MetricThreshold {
 
-    @JsonProperty("level")
-    private String level;
+  @JsonProperty("level")
+  private String level;
 
-    @JsonProperty("operator")
-    private String operator;
+  @JsonProperty("operator")
+  private String operator;
 
-    @JsonProperty("value")
-    private Double value;
+  @JsonProperty("value")
+  private Double value;
 
-    @Nullable
-    @JsonProperty("value_unit")
-    private String valueUnit;
+  @Nullable
+  @JsonProperty("value_unit")
+  private String valueUnit;
 
-    @Nullable
-    @JsonProperty("window_seconds")
-    private Integer windowSeconds;
+  @Nullable
+  @JsonProperty("window_seconds")
+  private Integer windowSeconds;
 }

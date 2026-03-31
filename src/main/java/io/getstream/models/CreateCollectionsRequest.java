@@ -13,35 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
+
 /**
- * Create multiple collections
- * Create new collections in a batch operation. Collections are data objects that can be attached to activities for managing shared data across multiple activities.
+ * Create multiple collections Create new collections in a batch operation. Collections are data
+ * objects that can be attached to activities for managing shared data across multiple activities.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class CreateCollectionsRequest {
-    
-    @JsonProperty("collections")
-    private List<CollectionRequest> collections;
-    
-    @Nullable
-    @JsonProperty("user_id")
-    private String userID;
-    
-    @Nullable
-    @JsonProperty("user")
-    private UserRequest user;
 
+  @JsonProperty("collections")
+  private List<CollectionRequest> collections;
+
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

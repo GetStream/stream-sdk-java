@@ -13,35 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
+
 /**
- * Add user group members
- * Adds members to a user group. All user IDs must exist. The operation is all-or-nothing.
+ * Add user group members Adds members to a user group. All user IDs must exist. The operation is
+ * all-or-nothing.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class AddUserGroupMembersRequest {
-    
-    @JsonProperty("member_ids")
-    private List<String> memberIds;
-    
-    @Nullable
-    @JsonProperty("as_admin")
-    private Boolean asAdmin;
-    
-    @Nullable
-    @JsonProperty("team_id")
-    private String teamID;
 
+  @JsonProperty("member_ids")
+  private List<String> memberIds;
+
+  @Nullable
+  @JsonProperty("as_admin")
+  private Boolean asAdmin;
+
+  @Nullable
+  @JsonProperty("team_id")
+  private String teamID;
 }

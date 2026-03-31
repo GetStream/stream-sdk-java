@@ -13,28 +13,19 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
-/**
- * Response for updating a user group
- */
+
+/** Response for updating a user group */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UpdateUserGroupResponse{
+public class UpdateUserGroupResponse {
 
-    @JsonProperty("duration")
-    private String duration;
+  @JsonProperty("duration")
+  private String duration;
 
-    @Nullable
-    @JsonProperty("user_group")
-    private UserGroupResponse userGroup;
+  @Nullable
+  @JsonProperty("user_group")
+  private UserGroupResponse userGroup;
 }

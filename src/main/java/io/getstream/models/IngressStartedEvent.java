@@ -13,51 +13,43 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
-/**
- * This event is sent when a user begins streaming into a call
- */
+
+/** This event is sent when a user begins streaming into a call */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class IngressStartedEvent{
+public class IngressStartedEvent {
 
-    @JsonProperty("call_cid")
-    private String callCid;
+  @JsonProperty("call_cid")
+  private String callCid;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("ingress_stream_id")
-    private String ingressStreamID;
+  @JsonProperty("ingress_stream_id")
+  private String ingressStreamID;
 
-    @JsonProperty("publisher_type")
-    private String publisherType;
+  @JsonProperty("publisher_type")
+  private String publisherType;
 
-    @JsonProperty("user_id")
-    private String userID;
+  @JsonProperty("user_id")
+  private String userID;
 
-    @JsonProperty("type")
-    private String type;
+  @JsonProperty("type")
+  private String type;
 
-    @Nullable
-    @JsonProperty("client_ip")
-    private String clientIp;
+  @Nullable
+  @JsonProperty("client_ip")
+  private String clientIp;
 
-    @Nullable
-    @JsonProperty("client_name")
-    private String clientName;
+  @Nullable
+  @JsonProperty("client_name")
+  private String clientName;
 
-    @Nullable
-    @JsonProperty("version")
-    private String version;
+  @Nullable
+  @JsonProperty("version")
+  private String version;
 }

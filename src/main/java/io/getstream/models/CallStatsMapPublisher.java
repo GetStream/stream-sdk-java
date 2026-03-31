@@ -13,42 +13,35 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallStatsMapPublisher{
+public class CallStatsMapPublisher {
 
-    @JsonProperty("is_live")
-    private Boolean isLive;
+  @JsonProperty("is_live")
+  private Boolean isLive;
 
-    @JsonProperty("user_id")
-    private String userID;
+  @JsonProperty("user_id")
+  private String userID;
 
-    @JsonProperty("user_session_id")
-    private String userSessionID;
+  @JsonProperty("user_session_id")
+  private String userSessionID;
 
-    @JsonProperty("published_tracks")
-    private PublishedTrackFlags publishedTracks;
+  @JsonProperty("published_tracks")
+  private PublishedTrackFlags publishedTracks;
 
-    @Nullable
-    @JsonProperty("name")
-    private String name;
+  @Nullable
+  @JsonProperty("name")
+  private String name;
 
-    @Nullable
-    @JsonProperty("publisher_type")
-    private String publisherType;
+  @Nullable
+  @JsonProperty("publisher_type")
+  private String publisherType;
 
-    @Nullable
-    @JsonProperty("location")
-    private CallStatsLocation location;
+  @Nullable
+  @JsonProperty("location")
+  private CallStatsLocation location;
 }

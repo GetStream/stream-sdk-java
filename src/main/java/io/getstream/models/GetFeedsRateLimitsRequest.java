@@ -12,41 +12,36 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import io.getstream.annotations.Query;
+
 /**
- * Get Feeds Rate Limits
- * Retrieve current rate limit status for feeds operations.
- * Returns information about limits, usage, and remaining quota for various feed operations.
+ * Get Feeds Rate Limits Retrieve current rate limit status for feeds operations. Returns
+ * information about limits, usage, and remaining quota for various feed operations.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class GetFeedsRateLimitsRequest {
 
-@Query("endpoints")
-           @JsonIgnore
-           private String Endpoints;
-@Query("android")
-           @JsonIgnore
-           private Boolean Android;
-@Query("ios")
-           @JsonIgnore
-           private Boolean Ios;
-@Query("web")
-           @JsonIgnore
-           private Boolean Web;
-@Query("server_side")
-           @JsonIgnore
-           private Boolean ServerSide;
+  @Query("endpoints")
+  @JsonIgnore
+  private String Endpoints;
+
+  @Query("android")
+  @JsonIgnore
+  private Boolean Android;
+
+  @Query("ios")
+  @JsonIgnore
+  private Boolean Ios;
+
+  @Query("web")
+  @JsonIgnore
+  private Boolean Web;
+
+  @Query("server_side")
+  @JsonIgnore
+  private Boolean ServerSide;
 }

@@ -13,43 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
+
 /**
- * Cast vote
- * Cast a vote on a poll
- * Sends events:
- * - feeds.poll.vote_casted
- * - feeds.poll.vote_changed
- * - feeds.poll.vote_removed
- * - poll.vote_casted
- * - poll.vote_changed
- * - poll.vote_removed
+ * Cast vote Cast a vote on a poll Sends events: - feeds.poll.vote_casted - feeds.poll.vote_changed
+ * - feeds.poll.vote_removed - poll.vote_casted - poll.vote_changed - poll.vote_removed
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class CastPollVoteRequest {
-    
-    @Nullable
-    @JsonProperty("user_id")
-    private String userID;
-    
-    @Nullable
-    @JsonProperty("user")
-    private UserRequest user;
-    
-    @Nullable
-    @JsonProperty("vote")
-    private VoteData vote;
 
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
+
+  @Nullable
+  @JsonProperty("vote")
+  private VoteData vote;
 }

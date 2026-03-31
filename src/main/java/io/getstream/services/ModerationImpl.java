@@ -12,563 +12,544 @@
  */
 package io.getstream.services;
 
-import java.util.*;
-import io.getstream.models.*;
-import io.getstream.services.framework.StreamRequest;
-import io.getstream.services.framework.StreamHTTPClient;
-import io.getstream.exceptions.StreamException;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import io.getstream.services.framework.StreamSDKClient;
 import com.fasterxml.jackson.core.type.TypeReference;
+import io.getstream.exceptions.StreamException;
+import io.getstream.models.*;
+import io.getstream.services.framework.StreamHTTPClient;
+import io.getstream.services.framework.StreamRequest;
+import java.util.*;
+import org.jetbrains.annotations.NotNull;
 
 public class ModerationImpl {
-    private StreamHTTPClient client;
-
-    public ModerationImpl(StreamHTTPClient client) {
-        this.client = client;
-    }
-
-    
-    @NotNull
-    public StreamRequest<InsertActionLogResponse> insertActionLog( InsertActionLogRequest request ) throws StreamException{
-
-
-        return new StreamRequest<InsertActionLogResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/action_logs", request,null,
-            new TypeReference<InsertActionLogResponse>() {}
-        );
-    }
-
-
-    
-
-    
-    @NotNull
-    public StreamRequest<AppealResponse> appeal( AppealRequest request ) throws StreamException{
-
-
-        return new StreamRequest<AppealResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/appeal", request,null,
-            new TypeReference<AppealResponse>() {}
-        );
-    }
-
-
-    
-
-    
-    @NotNull
-    public StreamRequest<GetAppealResponse> getAppeal(@NotNull  String id, GetAppealRequest request ) throws StreamException{
-	     var pathParams = Map.of(
-		  "id", id
-	        );
-	
-
-
-        return new StreamRequest<GetAppealResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "GET", "/api/v2/moderation/appeal/{id}", request,pathParams,
-            new TypeReference<GetAppealResponse>() {}
-        );
-    }
-
-
-    
-    @NotNull
-    public StreamRequest<GetAppealResponse> getAppeal(@NotNull  String id) throws StreamException {
-     return getAppeal(id,new GetAppealRequest());
-    }
-    
-
-    
-    @NotNull
-    public StreamRequest<QueryAppealsResponse> queryAppeals( QueryAppealsRequest request ) throws StreamException{
-
-
-        return new StreamRequest<QueryAppealsResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/appeals", request,null,
-            new TypeReference<QueryAppealsResponse>() {}
-        );
-    }
-
-
-    
-    @NotNull
-    public StreamRequest<QueryAppealsResponse> queryAppeals() throws StreamException {
-     return queryAppeals(new QueryAppealsRequest());
-    }
-    
-
-    
-    @NotNull
-    public StreamRequest<BanResponse> ban( BanRequest request ) throws StreamException{
-
-
-        return new StreamRequest<BanResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/ban", request,null,
-            new TypeReference<BanResponse>() {}
-        );
-    }
-
-
-    
-
-    
-    @NotNull
-    public StreamRequest<BulkImageModerationResponse> bulkImageModeration( BulkImageModerationRequest request ) throws StreamException{
-
-
-        return new StreamRequest<BulkImageModerationResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/bulk_image_moderation", request,null,
-            new TypeReference<BulkImageModerationResponse>() {}
-        );
-    }
-
-
-    
-
-    
-    @NotNull
-    public StreamRequest<CheckResponse> check( CheckRequest request ) throws StreamException{
-
-
-        return new StreamRequest<CheckResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/check", request,null,
-            new TypeReference<CheckResponse>() {}
-        );
-    }
-
-
-    
-
-    
-    @NotNull
-    public StreamRequest<CheckS3AccessResponse> checkS3Access( CheckS3AccessRequest request ) throws StreamException{
-
-
-        return new StreamRequest<CheckS3AccessResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/check_s3_access", request,null,
-            new TypeReference<CheckS3AccessResponse>() {}
-        );
-    }
-
-
-    
-    @NotNull
-    public StreamRequest<CheckS3AccessResponse> checkS3Access() throws StreamException {
-     return checkS3Access(new CheckS3AccessRequest());
-    }
-    
-
-    
-    @NotNull
-    public StreamRequest<UpsertConfigResponse> upsertConfig( UpsertConfigRequest request ) throws StreamException{
-
-
-        return new StreamRequest<UpsertConfigResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/config", request,null,
-            new TypeReference<UpsertConfigResponse>() {}
-        );
-    }
-
-
-    
-
-    
-    @NotNull
-    public StreamRequest<DeleteModerationConfigResponse> deleteConfig(@NotNull  String key, DeleteConfigRequest request ) throws StreamException{
-	     var pathParams = Map.of(
-		  "key", key
-	        );
-	
-
-
-        return new StreamRequest<DeleteModerationConfigResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "DELETE", "/api/v2/moderation/config/{key}", request,pathParams,
-            new TypeReference<DeleteModerationConfigResponse>() {}
-        );
-    }
-
-
-    
-    @NotNull
-    public StreamRequest<DeleteModerationConfigResponse> deleteConfig(@NotNull  String key) throws StreamException {
-     return deleteConfig(key,new DeleteConfigRequest());
-    }
-    
-
-    
-    @NotNull
-    public StreamRequest<GetConfigResponse> getConfig(@NotNull  String key, GetConfigRequest request ) throws StreamException{
-	     var pathParams = Map.of(
-		  "key", key
-	        );
-	
-
-
-        return new StreamRequest<GetConfigResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "GET", "/api/v2/moderation/config/{key}", request,pathParams,
-            new TypeReference<GetConfigResponse>() {}
-        );
-    }
-
-
-    
-    @NotNull
-    public StreamRequest<GetConfigResponse> getConfig(@NotNull  String key) throws StreamException {
-     return getConfig(key,new GetConfigRequest());
-    }
-    
-
-    
-    @NotNull
-    public StreamRequest<QueryModerationConfigsResponse> queryModerationConfigs( QueryModerationConfigsRequest request ) throws StreamException{
-
-
-        return new StreamRequest<QueryModerationConfigsResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/configs", request,null,
-            new TypeReference<QueryModerationConfigsResponse>() {}
-        );
-    }
-
-
-    
-    @NotNull
-    public StreamRequest<QueryModerationConfigsResponse> queryModerationConfigs() throws StreamException {
-     return queryModerationConfigs(new QueryModerationConfigsRequest());
-    }
-    
-
-    
-    @NotNull
-    public StreamRequest<CustomCheckResponse> customCheck( CustomCheckRequest request ) throws StreamException{
-
-
-        return new StreamRequest<CustomCheckResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/custom_check", request,null,
-            new TypeReference<CustomCheckResponse>() {}
-        );
-    }
-
-
-    
-
-    
-    @NotNull
-    public StreamRequest<DeleteModerationTemplateResponse> v2DeleteTemplate( V2DeleteTemplateRequest request ) throws StreamException{
-
-
-        return new StreamRequest<DeleteModerationTemplateResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "DELETE", "/api/v2/moderation/feeds_moderation_template", request,null,
-            new TypeReference<DeleteModerationTemplateResponse>() {}
-        );
-    }
-
-
-    
-    @NotNull
-    public StreamRequest<DeleteModerationTemplateResponse> v2DeleteTemplate() throws StreamException {
-     return v2DeleteTemplate(new V2DeleteTemplateRequest());
-    }
-    
-
-    
-    @NotNull
-    public StreamRequest<QueryFeedModerationTemplatesResponse> v2QueryTemplates( V2QueryTemplatesRequest request ) throws StreamException{
-
-
-        return new StreamRequest<QueryFeedModerationTemplatesResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "GET", "/api/v2/moderation/feeds_moderation_template", request,null,
-            new TypeReference<QueryFeedModerationTemplatesResponse>() {}
-        );
-    }
-
-
-    
-    @NotNull
-    public StreamRequest<QueryFeedModerationTemplatesResponse> v2QueryTemplates() throws StreamException {
-     return v2QueryTemplates(new V2QueryTemplatesRequest());
-    }
-    
-
-    
-    @NotNull
-    public StreamRequest<UpsertModerationTemplateResponse> v2UpsertTemplate( V2UpsertTemplateRequest request ) throws StreamException{
-
-
-        return new StreamRequest<UpsertModerationTemplateResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/feeds_moderation_template", request,null,
-            new TypeReference<UpsertModerationTemplateResponse>() {}
-        );
-    }
-
-
-    
-
-    
-    @NotNull
-    public StreamRequest<FlagResponse> flag( FlagRequest request ) throws StreamException{
-
-
-        return new StreamRequest<FlagResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/flag", request,null,
-            new TypeReference<FlagResponse>() {}
-        );
-    }
-
-
-    
-
-    
-    @NotNull
-    public StreamRequest<GetFlagCountResponse> getFlagCount( GetFlagCountRequest request ) throws StreamException{
-
-
-        return new StreamRequest<GetFlagCountResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/flag_count", request,null,
-            new TypeReference<GetFlagCountResponse>() {}
-        );
-    }
-
-
-    
-
-    
-    @NotNull
-    public StreamRequest<QueryModerationFlagsResponse> queryModerationFlags( QueryModerationFlagsRequest request ) throws StreamException{
-
-
-        return new StreamRequest<QueryModerationFlagsResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/flags", request,null,
-            new TypeReference<QueryModerationFlagsResponse>() {}
-        );
-    }
-
-
-    
-    @NotNull
-    public StreamRequest<QueryModerationFlagsResponse> queryModerationFlags() throws StreamException {
-     return queryModerationFlags(new QueryModerationFlagsRequest());
-    }
-    
-
-    
-    @NotNull
-    public StreamRequest<QueryModerationLogsResponse> queryModerationLogs( QueryModerationLogsRequest request ) throws StreamException{
-
-
-        return new StreamRequest<QueryModerationLogsResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/logs", request,null,
-            new TypeReference<QueryModerationLogsResponse>() {}
-        );
-    }
-
-
-    
-    @NotNull
-    public StreamRequest<QueryModerationLogsResponse> queryModerationLogs() throws StreamException {
-     return queryModerationLogs(new QueryModerationLogsRequest());
-    }
-    
-
-    
-    @NotNull
-    public StreamRequest<UpsertModerationRuleResponse> upsertModerationRule( UpsertModerationRuleRequest request ) throws StreamException{
-
-
-        return new StreamRequest<UpsertModerationRuleResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/moderation_rule", request,null,
-            new TypeReference<UpsertModerationRuleResponse>() {}
-        );
-    }
-
-
-    
-
-    
-    @NotNull
-    public StreamRequest<DeleteModerationRuleResponse> deleteModerationRule( DeleteModerationRuleRequest request ) throws StreamException{
-
-
-        return new StreamRequest<DeleteModerationRuleResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "DELETE", "/api/v2/moderation/moderation_rule/{id}", request,null,
-            new TypeReference<DeleteModerationRuleResponse>() {}
-        );
-    }
-
-
-    
-    @NotNull
-    public StreamRequest<DeleteModerationRuleResponse> deleteModerationRule() throws StreamException {
-     return deleteModerationRule(new DeleteModerationRuleRequest());
-    }
-    
-
-    
-    @NotNull
-    public StreamRequest<GetModerationRuleResponse> getModerationRule( GetModerationRuleRequest request ) throws StreamException{
-
-
-        return new StreamRequest<GetModerationRuleResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "GET", "/api/v2/moderation/moderation_rule/{id}", request,null,
-            new TypeReference<GetModerationRuleResponse>() {}
-        );
-    }
-
-
-    
-    @NotNull
-    public StreamRequest<GetModerationRuleResponse> getModerationRule() throws StreamException {
-     return getModerationRule(new GetModerationRuleRequest());
-    }
-    
-
-    
-    @NotNull
-    public StreamRequest<QueryModerationRulesResponse> queryModerationRules( QueryModerationRulesRequest request ) throws StreamException{
-
-
-        return new StreamRequest<QueryModerationRulesResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/moderation_rules", request,null,
-            new TypeReference<QueryModerationRulesResponse>() {}
-        );
-    }
-
-
-    
-    @NotNull
-    public StreamRequest<QueryModerationRulesResponse> queryModerationRules() throws StreamException {
-     return queryModerationRules(new QueryModerationRulesRequest());
-    }
-    
-
-    
-    @NotNull
-    public StreamRequest<MuteResponse> mute( MuteRequest request ) throws StreamException{
-
-
-        return new StreamRequest<MuteResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/mute", request,null,
-            new TypeReference<MuteResponse>() {}
-        );
-    }
-
-
-    
-
-    
-    @NotNull
-    public StreamRequest<QueryReviewQueueResponse> queryReviewQueue( QueryReviewQueueRequest request ) throws StreamException{
-
-
-        return new StreamRequest<QueryReviewQueueResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/review_queue", request,null,
-            new TypeReference<QueryReviewQueueResponse>() {}
-        );
-    }
-
-
-    
-    @NotNull
-    public StreamRequest<QueryReviewQueueResponse> queryReviewQueue() throws StreamException {
-     return queryReviewQueue(new QueryReviewQueueRequest());
-    }
-    
-
-    
-    @NotNull
-    public StreamRequest<GetReviewQueueItemResponse> getReviewQueueItem(@NotNull  String id, GetReviewQueueItemRequest request ) throws StreamException{
-	     var pathParams = Map.of(
-		  "id", id
-	        );
-	
-
-
-        return new StreamRequest<GetReviewQueueItemResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "GET", "/api/v2/moderation/review_queue/{id}", request,pathParams,
-            new TypeReference<GetReviewQueueItemResponse>() {}
-        );
-    }
-
-
-    
-    @NotNull
-    public StreamRequest<GetReviewQueueItemResponse> getReviewQueueItem(@NotNull  String id) throws StreamException {
-     return getReviewQueueItem(id,new GetReviewQueueItemRequest());
-    }
-    
-
-    
-    @NotNull
-    public StreamRequest<SubmitActionResponse> submitAction( SubmitActionRequest request ) throws StreamException{
-
-
-        return new StreamRequest<SubmitActionResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/submit_action", request,null,
-            new TypeReference<SubmitActionResponse>() {}
-        );
-    }
-
-
-    
-
-    
-    @NotNull
-    public StreamRequest<UnbanResponse> unban( UnbanRequest request ) throws StreamException{
-
-
-        return new StreamRequest<UnbanResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/unban", request,null,
-            new TypeReference<UnbanResponse>() {}
-        );
-    }
-
-
-    
-
-    
-    @NotNull
-    public StreamRequest<UnmuteResponse> unmute( UnmuteRequest request ) throws StreamException{
-
-
-        return new StreamRequest<UnmuteResponse>(
-            client.getHttpClient(), client.getObjectMapper(), client.getBaseUrl(),
-        "POST", "/api/v2/moderation/unmute", request,null,
-            new TypeReference<UnmuteResponse>() {}
-        );
-    }
-
-
-    
-
-    
+  private StreamHTTPClient client;
+
+  public ModerationImpl(StreamHTTPClient client) {
+    this.client = client;
+  }
+
+  @NotNull
+  public StreamRequest<InsertActionLogResponse> insertActionLog(InsertActionLogRequest request)
+      throws StreamException {
+
+    return new StreamRequest<InsertActionLogResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/action_logs",
+        request,
+        null,
+        new TypeReference<InsertActionLogResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<AppealResponse> appeal(AppealRequest request) throws StreamException {
+
+    return new StreamRequest<AppealResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/appeal",
+        request,
+        null,
+        new TypeReference<AppealResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetAppealResponse> getAppeal(@NotNull String id, GetAppealRequest request)
+      throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<GetAppealResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/moderation/appeal/{id}",
+        request,
+        pathParams,
+        new TypeReference<GetAppealResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetAppealResponse> getAppeal(@NotNull String id) throws StreamException {
+    return getAppeal(id, new GetAppealRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueryAppealsResponse> queryAppeals(QueryAppealsRequest request)
+      throws StreamException {
+
+    return new StreamRequest<QueryAppealsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/appeals",
+        request,
+        null,
+        new TypeReference<QueryAppealsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryAppealsResponse> queryAppeals() throws StreamException {
+    return queryAppeals(new QueryAppealsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<BanResponse> ban(BanRequest request) throws StreamException {
+
+    return new StreamRequest<BanResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/ban",
+        request,
+        null,
+        new TypeReference<BanResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<BulkImageModerationResponse> bulkImageModeration(
+      BulkImageModerationRequest request) throws StreamException {
+
+    return new StreamRequest<BulkImageModerationResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/bulk_image_moderation",
+        request,
+        null,
+        new TypeReference<BulkImageModerationResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<CheckResponse> check(CheckRequest request) throws StreamException {
+
+    return new StreamRequest<CheckResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/check",
+        request,
+        null,
+        new TypeReference<CheckResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<CheckS3AccessResponse> checkS3Access(CheckS3AccessRequest request)
+      throws StreamException {
+
+    return new StreamRequest<CheckS3AccessResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/check_s3_access",
+        request,
+        null,
+        new TypeReference<CheckS3AccessResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<CheckS3AccessResponse> checkS3Access() throws StreamException {
+    return checkS3Access(new CheckS3AccessRequest());
+  }
+
+  @NotNull
+  public StreamRequest<UpsertConfigResponse> upsertConfig(UpsertConfigRequest request)
+      throws StreamException {
+
+    return new StreamRequest<UpsertConfigResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/config",
+        request,
+        null,
+        new TypeReference<UpsertConfigResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteModerationConfigResponse> deleteConfig(
+      @NotNull String key, DeleteConfigRequest request) throws StreamException {
+    var pathParams = Map.of("key", key);
+
+    return new StreamRequest<DeleteModerationConfigResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "DELETE",
+        "/api/v2/moderation/config/{key}",
+        request,
+        pathParams,
+        new TypeReference<DeleteModerationConfigResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteModerationConfigResponse> deleteConfig(@NotNull String key)
+      throws StreamException {
+    return deleteConfig(key, new DeleteConfigRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GetConfigResponse> getConfig(@NotNull String key, GetConfigRequest request)
+      throws StreamException {
+    var pathParams = Map.of("key", key);
+
+    return new StreamRequest<GetConfigResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/moderation/config/{key}",
+        request,
+        pathParams,
+        new TypeReference<GetConfigResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetConfigResponse> getConfig(@NotNull String key) throws StreamException {
+    return getConfig(key, new GetConfigRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueryModerationConfigsResponse> queryModerationConfigs(
+      QueryModerationConfigsRequest request) throws StreamException {
+
+    return new StreamRequest<QueryModerationConfigsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/configs",
+        request,
+        null,
+        new TypeReference<QueryModerationConfigsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryModerationConfigsResponse> queryModerationConfigs()
+      throws StreamException {
+    return queryModerationConfigs(new QueryModerationConfigsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<CustomCheckResponse> customCheck(CustomCheckRequest request)
+      throws StreamException {
+
+    return new StreamRequest<CustomCheckResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/custom_check",
+        request,
+        null,
+        new TypeReference<CustomCheckResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteModerationTemplateResponse> v2DeleteTemplate(
+      V2DeleteTemplateRequest request) throws StreamException {
+
+    return new StreamRequest<DeleteModerationTemplateResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "DELETE",
+        "/api/v2/moderation/feeds_moderation_template",
+        request,
+        null,
+        new TypeReference<DeleteModerationTemplateResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteModerationTemplateResponse> v2DeleteTemplate() throws StreamException {
+    return v2DeleteTemplate(new V2DeleteTemplateRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueryFeedModerationTemplatesResponse> v2QueryTemplates(
+      V2QueryTemplatesRequest request) throws StreamException {
+
+    return new StreamRequest<QueryFeedModerationTemplatesResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/moderation/feeds_moderation_template",
+        request,
+        null,
+        new TypeReference<QueryFeedModerationTemplatesResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryFeedModerationTemplatesResponse> v2QueryTemplates()
+      throws StreamException {
+    return v2QueryTemplates(new V2QueryTemplatesRequest());
+  }
+
+  @NotNull
+  public StreamRequest<UpsertModerationTemplateResponse> v2UpsertTemplate(
+      V2UpsertTemplateRequest request) throws StreamException {
+
+    return new StreamRequest<UpsertModerationTemplateResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/feeds_moderation_template",
+        request,
+        null,
+        new TypeReference<UpsertModerationTemplateResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<FlagResponse> flag(FlagRequest request) throws StreamException {
+
+    return new StreamRequest<FlagResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/flag",
+        request,
+        null,
+        new TypeReference<FlagResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetFlagCountResponse> getFlagCount(GetFlagCountRequest request)
+      throws StreamException {
+
+    return new StreamRequest<GetFlagCountResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/flag_count",
+        request,
+        null,
+        new TypeReference<GetFlagCountResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryModerationFlagsResponse> queryModerationFlags(
+      QueryModerationFlagsRequest request) throws StreamException {
+
+    return new StreamRequest<QueryModerationFlagsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/flags",
+        request,
+        null,
+        new TypeReference<QueryModerationFlagsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryModerationFlagsResponse> queryModerationFlags() throws StreamException {
+    return queryModerationFlags(new QueryModerationFlagsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueryModerationLogsResponse> queryModerationLogs(
+      QueryModerationLogsRequest request) throws StreamException {
+
+    return new StreamRequest<QueryModerationLogsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/logs",
+        request,
+        null,
+        new TypeReference<QueryModerationLogsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryModerationLogsResponse> queryModerationLogs() throws StreamException {
+    return queryModerationLogs(new QueryModerationLogsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<UpsertModerationRuleResponse> upsertModerationRule(
+      UpsertModerationRuleRequest request) throws StreamException {
+
+    return new StreamRequest<UpsertModerationRuleResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/moderation_rule",
+        request,
+        null,
+        new TypeReference<UpsertModerationRuleResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteModerationRuleResponse> deleteModerationRule(
+      DeleteModerationRuleRequest request) throws StreamException {
+
+    return new StreamRequest<DeleteModerationRuleResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "DELETE",
+        "/api/v2/moderation/moderation_rule/{id}",
+        request,
+        null,
+        new TypeReference<DeleteModerationRuleResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteModerationRuleResponse> deleteModerationRule() throws StreamException {
+    return deleteModerationRule(new DeleteModerationRuleRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GetModerationRuleResponse> getModerationRule(
+      GetModerationRuleRequest request) throws StreamException {
+
+    return new StreamRequest<GetModerationRuleResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/moderation/moderation_rule/{id}",
+        request,
+        null,
+        new TypeReference<GetModerationRuleResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetModerationRuleResponse> getModerationRule() throws StreamException {
+    return getModerationRule(new GetModerationRuleRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueryModerationRulesResponse> queryModerationRules(
+      QueryModerationRulesRequest request) throws StreamException {
+
+    return new StreamRequest<QueryModerationRulesResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/moderation_rules",
+        request,
+        null,
+        new TypeReference<QueryModerationRulesResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryModerationRulesResponse> queryModerationRules() throws StreamException {
+    return queryModerationRules(new QueryModerationRulesRequest());
+  }
+
+  @NotNull
+  public StreamRequest<MuteResponse> mute(MuteRequest request) throws StreamException {
+
+    return new StreamRequest<MuteResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/mute",
+        request,
+        null,
+        new TypeReference<MuteResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryReviewQueueResponse> queryReviewQueue(QueryReviewQueueRequest request)
+      throws StreamException {
+
+    return new StreamRequest<QueryReviewQueueResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/review_queue",
+        request,
+        null,
+        new TypeReference<QueryReviewQueueResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryReviewQueueResponse> queryReviewQueue() throws StreamException {
+    return queryReviewQueue(new QueryReviewQueueRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GetReviewQueueItemResponse> getReviewQueueItem(
+      @NotNull String id, GetReviewQueueItemRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<GetReviewQueueItemResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/moderation/review_queue/{id}",
+        request,
+        pathParams,
+        new TypeReference<GetReviewQueueItemResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetReviewQueueItemResponse> getReviewQueueItem(@NotNull String id)
+      throws StreamException {
+    return getReviewQueueItem(id, new GetReviewQueueItemRequest());
+  }
+
+  @NotNull
+  public StreamRequest<SubmitActionResponse> submitAction(SubmitActionRequest request)
+      throws StreamException {
+
+    return new StreamRequest<SubmitActionResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/submit_action",
+        request,
+        null,
+        new TypeReference<SubmitActionResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UnbanResponse> unban(UnbanRequest request) throws StreamException {
+
+    return new StreamRequest<UnbanResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/unban",
+        request,
+        null,
+        new TypeReference<UnbanResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UnmuteResponse> unmute(UnmuteRequest request) throws StreamException {
+
+    return new StreamRequest<UnmuteResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/unmute",
+        request,
+        null,
+        new TypeReference<UnmuteResponse>() {});
+  }
 }

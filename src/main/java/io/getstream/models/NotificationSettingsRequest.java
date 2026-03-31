@@ -13,42 +13,35 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class NotificationSettingsRequest{
+public class NotificationSettingsRequest {
 
-    @Nullable
-    @JsonProperty("enabled")
-    private Boolean enabled;
+  @Nullable
+  @JsonProperty("enabled")
+  private Boolean enabled;
 
-    @Nullable
-    @JsonProperty("call_live_started")
-    private EventNotificationSettingsRequest callLiveStarted;
+  @Nullable
+  @JsonProperty("call_live_started")
+  private EventNotificationSettingsRequest callLiveStarted;
 
-    @Nullable
-    @JsonProperty("call_missed")
-    private EventNotificationSettingsRequest callMissed;
+  @Nullable
+  @JsonProperty("call_missed")
+  private EventNotificationSettingsRequest callMissed;
 
-    @Nullable
-    @JsonProperty("call_notification")
-    private EventNotificationSettingsRequest callNotification;
+  @Nullable
+  @JsonProperty("call_notification")
+  private EventNotificationSettingsRequest callNotification;
 
-    @Nullable
-    @JsonProperty("call_ring")
-    private EventNotificationSettingsRequest callRing;
+  @Nullable
+  @JsonProperty("call_ring")
+  private EventNotificationSettingsRequest callRing;
 
-    @Nullable
-    @JsonProperty("session_started")
-    private EventNotificationSettingsRequest sessionStarted;
+  @Nullable
+  @JsonProperty("session_started")
+  private EventNotificationSettingsRequest sessionStarted;
 }

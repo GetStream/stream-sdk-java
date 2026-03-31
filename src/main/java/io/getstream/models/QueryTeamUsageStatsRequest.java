@@ -13,50 +13,39 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
+
 /**
- * Query Team Usage Statistics
- * Retrieve team-level usage statistics from the warehouse database.
- * Returns all 16 metrics grouped by team with cursor-based pagination.
- * **Date Range Options (mutually exclusive):**
- * - Use &#39;month&#39; parameter (YYYY-MM format) for monthly aggregated values
- * - Use &#39;start_date&#39;/&#39;end_date&#39; parameters (YYYY-MM-DD format) for daily breakdown
- * - If neither provided, defaults to current month (monthly mode)
- * This endpoint is server-side only.
+ * Query Team Usage Statistics Retrieve team-level usage statistics from the warehouse database.
+ * Returns all 16 metrics grouped by team with cursor-based pagination. **Date Range Options
+ * (mutually exclusive):** - Use &#39;month&#39; parameter (YYYY-MM format) for monthly aggregated
+ * values - Use &#39;start_date&#39;/&#39;end_date&#39; parameters (YYYY-MM-DD format) for daily
+ * breakdown - If neither provided, defaults to current month (monthly mode) This endpoint is
+ * server-side only.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class QueryTeamUsageStatsRequest {
-    
-    @Nullable
-    @JsonProperty("end_date")
-    private String endDate;
-    
-    @Nullable
-    @JsonProperty("limit")
-    private Integer limit;
-    
-    @Nullable
-    @JsonProperty("month")
-    private String month;
-    
-    @Nullable
-    @JsonProperty("next")
-    private String next;
-    
-    @Nullable
-    @JsonProperty("start_date")
-    private String startDate;
 
+  @Nullable
+  @JsonProperty("end_date")
+  private String endDate;
+
+  @Nullable
+  @JsonProperty("limit")
+  private Integer limit;
+
+  @Nullable
+  @JsonProperty("month")
+  private String month;
+
+  @Nullable
+  @JsonProperty("next")
+  private String next;
+
+  @Nullable
+  @JsonProperty("start_date")
+  private String startDate;
 }

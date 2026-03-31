@@ -13,29 +13,22 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class SubmitActionResponse{
+public class SubmitActionResponse {
 
-    @JsonProperty("duration")
-    private String duration;
+  @JsonProperty("duration")
+  private String duration;
 
-    @Nullable
-    @JsonProperty("appeal_item")
-    private AppealItemResponse appealItem;
+  @Nullable
+  @JsonProperty("appeal_item")
+  private AppealItemResponse appealItem;
 
-    @Nullable
-    @JsonProperty("item")
-    private ReviewQueueItemResponse item;
+  @Nullable
+  @JsonProperty("item")
+  private ReviewQueueItemResponse item;
 }

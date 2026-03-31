@@ -13,32 +13,26 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class SharedLocation{
+public class SharedLocation {
 
-    @JsonProperty("latitude")
-    private Double latitude;
+  @JsonProperty("latitude")
+  private Double latitude;
 
-    @JsonProperty("longitude")
-    private Double longitude;
+  @JsonProperty("longitude")
+  private Double longitude;
 
-    @Nullable
-    @JsonProperty("created_by_device_id")
-    private String createdByDeviceID;
+  @Nullable
+  @JsonProperty("created_by_device_id")
+  private String createdByDeviceID;
 
-    @Nullable
-    @JsonProperty("end_at")
-    private Date endAt;
+  @Nullable
+  @JsonProperty("end_at")
+  private Date endAt;
 }

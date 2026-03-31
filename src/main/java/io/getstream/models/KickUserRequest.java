@@ -13,42 +13,30 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
+
 /**
- * Kick user from a call
- * Kicks a user from the call. Optionally block the user from rejoining by setting block=true.
- * Sends events:
- * - call.blocked_user
- * - call.kicked_user
+ * Kick user from a call Kicks a user from the call. Optionally block the user from rejoining by
+ * setting block=true. Sends events: - call.blocked_user - call.kicked_user
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class KickUserRequest {
-    
-    @JsonProperty("user_id")
-    private String userID;
-    
-    @Nullable
-    @JsonProperty("block")
-    private Boolean block;
-    
-    @Nullable
-    @JsonProperty("kicked_by_id")
-    private String kickedByID;
-    
-    @Nullable
-    @JsonProperty("kicked_by")
-    private UserRequest kickedBy;
 
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
+  @JsonProperty("block")
+  private Boolean block;
+
+  @Nullable
+  @JsonProperty("kicked_by_id")
+  private String kickedByID;
+
+  @Nullable
+  @JsonProperty("kicked_by")
+  private UserRequest kickedBy;
 }

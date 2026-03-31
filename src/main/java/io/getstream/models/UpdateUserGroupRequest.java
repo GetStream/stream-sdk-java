@@ -13,36 +13,24 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
-/**
- * Update user group
- * Updates a user group&#39;s name and/or description. team_id is immutable.
- */
+
+/** Update user group Updates a user group&#39;s name and/or description. team_id is immutable. */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class UpdateUserGroupRequest {
-    
-    @Nullable
-    @JsonProperty("description")
-    private String description;
-    
-    @Nullable
-    @JsonProperty("name")
-    private String name;
-    
-    @Nullable
-    @JsonProperty("team_id")
-    private String teamID;
 
+  @Nullable
+  @JsonProperty("description")
+  private String description;
+
+  @Nullable
+  @JsonProperty("name")
+  private String name;
+
+  @Nullable
+  @JsonProperty("team_id")
+  private String teamID;
 }

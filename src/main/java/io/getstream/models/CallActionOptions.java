@@ -13,46 +13,39 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallActionOptions{
+public class CallActionOptions {
 
-    @Nullable
-    @JsonProperty("duration")
-    private Integer duration;
+  @Nullable
+  @JsonProperty("duration")
+  private Integer duration;
 
-    @Nullable
-    @JsonProperty("flag_reason")
-    private String flagReason;
+  @Nullable
+  @JsonProperty("flag_reason")
+  private String flagReason;
 
-    @Nullable
-    @JsonProperty("kick_reason")
-    private String kickReason;
+  @Nullable
+  @JsonProperty("kick_reason")
+  private String kickReason;
 
-    @Nullable
-    @JsonProperty("mute_audio")
-    private Boolean muteAudio;
+  @Nullable
+  @JsonProperty("mute_audio")
+  private Boolean muteAudio;
 
-    @Nullable
-    @JsonProperty("mute_video")
-    private Boolean muteVideo;
+  @Nullable
+  @JsonProperty("mute_video")
+  private Boolean muteVideo;
 
-    @Nullable
-    @JsonProperty("reason")
-    private String reason;
+  @Nullable
+  @JsonProperty("reason")
+  private String reason;
 
-    @Nullable
-    @JsonProperty("warning_text")
-    private String warningText;
+  @Nullable
+  @JsonProperty("warning_text")
+  private String warningText;
 }

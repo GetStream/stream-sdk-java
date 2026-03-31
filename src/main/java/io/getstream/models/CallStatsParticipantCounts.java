@@ -13,48 +13,41 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallStatsParticipantCounts{
+public class CallStatsParticipantCounts {
 
-    @JsonProperty("live_sessions")
-    private Integer liveSessions;
+  @JsonProperty("live_sessions")
+  private Integer liveSessions;
 
-    @JsonProperty("participants")
-    private Integer participants;
+  @JsonProperty("participants")
+  private Integer participants;
 
-    @JsonProperty("peak_concurrent_sessions")
-    private Integer peakConcurrentSessions;
+  @JsonProperty("peak_concurrent_sessions")
+  private Integer peakConcurrentSessions;
 
-    @JsonProperty("peak_concurrent_users")
-    private Integer peakConcurrentUsers;
+  @JsonProperty("peak_concurrent_users")
+  private Integer peakConcurrentUsers;
 
-    @JsonProperty("publishers")
-    private Integer publishers;
+  @JsonProperty("publishers")
+  private Integer publishers;
 
-    @JsonProperty("sessions")
-    private Integer sessions;
+  @JsonProperty("sessions")
+  private Integer sessions;
 
-    @Nullable
-    @JsonProperty("call_event_count")
-    private Integer callEventCount;
+  @Nullable
+  @JsonProperty("call_event_count")
+  private Integer callEventCount;
 
-    @Nullable
-    @JsonProperty("cq_score")
-    private Integer cqScore;
+  @Nullable
+  @JsonProperty("cq_score")
+  private Integer cqScore;
 
-    @Nullable
-    @JsonProperty("total_participant_duration")
-    private Integer totalParticipantDuration;
+  @Nullable
+  @JsonProperty("total_participant_duration")
+  private Integer totalParticipantDuration;
 }

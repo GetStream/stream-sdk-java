@@ -13,52 +13,48 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ChannelBatchStartedEvent{
+public class ChannelBatchStartedEvent {
 
-    @JsonProperty("batch_created_at")
-    private Date batchCreatedAt;
+  @JsonProperty("batch_created_at")
+  private Date batchCreatedAt;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("finished_at")
-    private Date finishedAt;
+  @JsonProperty("finished_at")
+  private Date finishedAt;
 
-    @JsonProperty("operation")
-    private String operation;
+  @JsonProperty("operation")
+  private String operation;
 
-    @JsonProperty("status")
-    private String status;
+  @JsonProperty("status")
+  private String status;
 
-    @JsonProperty("success_channels_count")
-    private Integer successChannelsCount;
+  @JsonProperty("success_channels_count")
+  private Integer successChannelsCount;
 
-    @JsonProperty("task_id")
-    private String taskID;
+  @JsonProperty("task_id")
+  private String taskID;
 
-    @JsonProperty("failed_channels")
-    private List<FailedChannelUpdates> failedChannels;
+  @JsonProperty("failed_channels")
+  private List<FailedChannelUpdates> failedChannels;
 
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 
-    @JsonProperty("type")
-    private String type;
+  @JsonProperty("type")
+  private String type;
 
-    @Nullable
-    @JsonProperty("received_at")
-    private Date receivedAt;
+  @Nullable
+  @JsonProperty("received_at")
+  private Date receivedAt;
 }

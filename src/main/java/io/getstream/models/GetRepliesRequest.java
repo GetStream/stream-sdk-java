@@ -12,46 +12,42 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import io.getstream.annotations.Query;
-/**
- * Get replies
- * Returns replies (thread) of the message
- */
+import java.util.List;
+
+/** Get replies Returns replies (thread) of the message */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class GetRepliesRequest {
 
-@Query("limit")
-           @JsonIgnore
-           private Integer Limit;
-@Query("id_gte")
-           @JsonIgnore
-           private String IDGte;
-@Query("id_gt")
-           @JsonIgnore
-           private String IDGt;
-@Query("id_lte")
-           @JsonIgnore
-           private String IDLte;
-@Query("id_lt")
-           @JsonIgnore
-           private String IDLt;
-@Query("id_around")
-           @JsonIgnore
-           private String IDAround;
-@Query("sort")
-           @JsonIgnore
-           private List<SortParamRequest> Sort;
+  @Query("limit")
+  @JsonIgnore
+  private Integer Limit;
+
+  @Query("id_gte")
+  @JsonIgnore
+  private String IDGte;
+
+  @Query("id_gt")
+  @JsonIgnore
+  private String IDGt;
+
+  @Query("id_lte")
+  @JsonIgnore
+  private String IDLte;
+
+  @Query("id_lt")
+  @JsonIgnore
+  private String IDLt;
+
+  @Query("id_around")
+  @JsonIgnore
+  private String IDAround;
+
+  @Query("sort")
+  @JsonIgnore
+  private List<SortParamRequest> Sort;
 }

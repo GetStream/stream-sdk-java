@@ -13,29 +13,20 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
-/**
- * Configuration for unban moderation action
- */
+
+/** Configuration for unban moderation action */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UnbanActionRequestPayload{
+public class UnbanActionRequestPayload {
 
-    @Nullable
-    @JsonProperty("channel_cid")
-    private String channelCid;
+  @Nullable
+  @JsonProperty("channel_cid")
+  private String channelCid;
 
-    @Nullable
-    @JsonProperty("decision_reason")
-    private String decisionReason;
+  @Nullable
+  @JsonProperty("decision_reason")
+  private String decisionReason;
 }

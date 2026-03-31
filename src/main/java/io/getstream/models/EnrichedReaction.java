@@ -13,67 +13,62 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class EnrichedReaction{
+public class EnrichedReaction {
 
-    @JsonProperty("activity_id")
-    private String activityID;
+  @JsonProperty("activity_id")
+  private String activityID;
 
-    @JsonProperty("kind")
-    private String kind;
+  @JsonProperty("kind")
+  private String kind;
 
-    @JsonProperty("user_id")
-    private String userID;
+  @JsonProperty("user_id")
+  private String userID;
 
-    @Nullable
-    @JsonProperty("id")
-    private String id;
+  @Nullable
+  @JsonProperty("id")
+  private String id;
 
-    @Nullable
-    @JsonProperty("parent")
-    private String parent;
+  @Nullable
+  @JsonProperty("parent")
+  private String parent;
 
-    @Nullable
-    @JsonProperty("target_feeds")
-    private List<String> targetFeeds;
+  @Nullable
+  @JsonProperty("target_feeds")
+  private List<String> targetFeeds;
 
-    @Nullable
-    @JsonProperty("children_counts")
-    private Map<String, Integer> childrenCounts;
+  @Nullable
+  @JsonProperty("children_counts")
+  private Map<String, Integer> childrenCounts;
 
-    @Nullable
-    @JsonProperty("created_at")
-    private Time createdAt;
+  @Nullable
+  @JsonProperty("created_at")
+  private Time createdAt;
 
-    @Nullable
-    @JsonProperty("data")
-    private Map<String, Object> data;
+  @Nullable
+  @JsonProperty("data")
+  private Map<String, Object> data;
 
-    @Nullable
-    @JsonProperty("latest_children")
-    private Map<String, List<EnrichedReaction>> latestChildren;
+  @Nullable
+  @JsonProperty("latest_children")
+  private Map<String, List<EnrichedReaction>> latestChildren;
 
-    @Nullable
-    @JsonProperty("own_children")
-    private Map<String, List<EnrichedReaction>> ownChildren;
+  @Nullable
+  @JsonProperty("own_children")
+  private Map<String, List<EnrichedReaction>> ownChildren;
 
-    @Nullable
-    @JsonProperty("updated_at")
-    private Time updatedAt;
+  @Nullable
+  @JsonProperty("updated_at")
+  private Time updatedAt;
 
-    @Nullable
-    @JsonProperty("user")
-    private Data user;
+  @Nullable
+  @JsonProperty("user")
+  private Data user;
 }

@@ -13,55 +13,51 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 /**
- * This event is sent when a user gets deleted. The event contains information about the user that was deleted and the deletion options that were used.
+ * This event is sent when a user gets deleted. The event contains information about the user that
+ * was deleted and the deletion options that were used.
  */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UserDeletedEvent{
+public class UserDeletedEvent {
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("delete_conversation")
-    private String deleteConversation;
+  @JsonProperty("delete_conversation")
+  private String deleteConversation;
 
-    @JsonProperty("delete_conversation_channels")
-    private Boolean deleteConversationChannels;
+  @JsonProperty("delete_conversation_channels")
+  private Boolean deleteConversationChannels;
 
-    @JsonProperty("delete_messages")
-    private String deleteMessages;
+  @JsonProperty("delete_messages")
+  private String deleteMessages;
 
-    @JsonProperty("delete_user")
-    private String deleteUser;
+  @JsonProperty("delete_user")
+  private String deleteUser;
 
-    @JsonProperty("hard_delete")
-    private Boolean hardDelete;
+  @JsonProperty("hard_delete")
+  private Boolean hardDelete;
 
-    @JsonProperty("mark_messages_deleted")
-    private Boolean markMessagesDeleted;
+  @JsonProperty("mark_messages_deleted")
+  private Boolean markMessagesDeleted;
 
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 
-    @JsonProperty("user")
-    private UserResponseCommonFields user;
+  @JsonProperty("user")
+  private UserResponseCommonFields user;
 
-    @JsonProperty("type")
-    private String type;
+  @JsonProperty("type")
+  private String type;
 
-    @Nullable
-    @JsonProperty("received_at")
-    private Date receivedAt;
+  @Nullable
+  @JsonProperty("received_at")
+  private Date receivedAt;
 }

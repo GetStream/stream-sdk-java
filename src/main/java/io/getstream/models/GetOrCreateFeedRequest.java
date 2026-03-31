@@ -13,92 +13,81 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
-/**
- * Create a new feed
- * Create a single feed for a given feed group
- */
+
+/** Create a new feed Create a single feed for a given feed group */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class GetOrCreateFeedRequest {
-    
-    @Nullable
-    @JsonProperty("id_around")
-    private String idAround;
-    
-    @Nullable
-    @JsonProperty("limit")
-    private Integer limit;
-    
-    @Nullable
-    @JsonProperty("next")
-    private String next;
-    
-    @Nullable
-    @JsonProperty("prev")
-    private String prev;
-    
-    @Nullable
-    @JsonProperty("user_id")
-    private String userID;
-    
-    @Nullable
-    @JsonProperty("view")
-    private String view;
-    
-    @Nullable
-    @JsonProperty("watch")
-    private Boolean watch;
-    
-    @Nullable
-    @JsonProperty("data")
-    private FeedInput data;
-    
-    @Nullable
-    @JsonProperty("enrichment_options")
-    private EnrichmentOptions enrichmentOptions;
-    
-    @Nullable
-    @JsonProperty("external_ranking")
-    private Map<String, Object> externalRanking;
-    
-    @Nullable
-    @JsonProperty("filter")
-    private Map<String, Object> filter;
-    
-    @Nullable
-    @JsonProperty("followers_pagination")
-    private PagerRequest followersPagination;
-    
-    @Nullable
-    @JsonProperty("following_pagination")
-    private PagerRequest followingPagination;
-    
-    @Nullable
-    @JsonProperty("friend_reactions_options")
-    private FriendReactionsOptions friendReactionsOptions;
-    
-    @Nullable
-    @JsonProperty("interest_weights")
-    private Map<String, Double> interestWeights;
-    
-    @Nullable
-    @JsonProperty("member_pagination")
-    private PagerRequest memberPagination;
-    
-    @Nullable
-    @JsonProperty("user")
-    private UserRequest user;
 
+  @Nullable
+  @JsonProperty("id_around")
+  private String idAround;
+
+  @Nullable
+  @JsonProperty("limit")
+  private Integer limit;
+
+  @Nullable
+  @JsonProperty("next")
+  private String next;
+
+  @Nullable
+  @JsonProperty("prev")
+  private String prev;
+
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
+  @JsonProperty("view")
+  private String view;
+
+  @Nullable
+  @JsonProperty("watch")
+  private Boolean watch;
+
+  @Nullable
+  @JsonProperty("data")
+  private FeedInput data;
+
+  @Nullable
+  @JsonProperty("enrichment_options")
+  private EnrichmentOptions enrichmentOptions;
+
+  @Nullable
+  @JsonProperty("external_ranking")
+  private Map<String, Object> externalRanking;
+
+  @Nullable
+  @JsonProperty("filter")
+  private Map<String, Object> filter;
+
+  @Nullable
+  @JsonProperty("followers_pagination")
+  private PagerRequest followersPagination;
+
+  @Nullable
+  @JsonProperty("following_pagination")
+  private PagerRequest followingPagination;
+
+  @Nullable
+  @JsonProperty("friend_reactions_options")
+  private FriendReactionsOptions friendReactionsOptions;
+
+  @Nullable
+  @JsonProperty("interest_weights")
+  private Map<String, Double> interestWeights;
+
+  @Nullable
+  @JsonProperty("member_pagination")
+  private PagerRequest memberPagination;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

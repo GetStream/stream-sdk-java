@@ -13,31 +13,23 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
+
 /**
- * Create multiple follows at once
- * Creates multiple follows at once and broadcasts FollowAddedEvent for each follow
+ * Create multiple follows at once Creates multiple follows at once and broadcasts FollowAddedEvent
+ * for each follow
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class FollowBatchRequest {
-    
-    @JsonProperty("follows")
-    private List<FollowRequest> follows;
-    
-    @Nullable
-    @JsonProperty("enrich_own_fields")
-    private Boolean enrichOwnFields;
 
+  @JsonProperty("follows")
+  private List<FollowRequest> follows;
+
+  @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
 }

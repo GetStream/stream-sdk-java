@@ -13,30 +13,22 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class RetentionRunResponse{
+public class RetentionRunResponse {
 
-    @JsonProperty("app_pk")
-    private Integer appPk;
+  @JsonProperty("app_pk")
+  private Integer appPk;
 
-    @JsonProperty("date")
-    private String date;
+  @JsonProperty("date")
+  private String date;
 
-    @JsonProperty("policy")
-    private String policy;
+  @JsonProperty("policy")
+  private String policy;
 
-    @JsonProperty("stats")
-    private RunStats stats;
+  @JsonProperty("stats")
+  private RunStats stats;
 }

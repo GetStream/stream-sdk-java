@@ -13,28 +13,19 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
+
 /**
- * Delete all feed data for a user
- * Delete all feed data for a user including: feeds, activities, follows, comments, feed reactions, bookmark folders, bookmarks, and collections owned by the user
+ * Delete all feed data for a user Delete all feed data for a user including: feeds, activities,
+ * follows, comments, feed reactions, bookmark folders, bookmarks, and collections owned by the user
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class DeleteFeedUserDataRequest {
-    
-    @Nullable
-    @JsonProperty("hard_delete")
-    private Boolean hardDelete;
 
+  @Nullable
+  @JsonProperty("hard_delete")
+  private Boolean hardDelete;
 }

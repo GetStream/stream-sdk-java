@@ -13,35 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
-/**
- * Basic response information
- */
+
+/** Basic response information */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ListImportV2TasksResponse{
+public class ListImportV2TasksResponse {
 
-    @JsonProperty("duration")
-    private String duration;
+  @JsonProperty("duration")
+  private String duration;
 
-    @JsonProperty("import_tasks")
-    private List<ImportV2TaskItem> importTasks;
+  @JsonProperty("import_tasks")
+  private List<ImportV2TaskItem> importTasks;
 
-    @Nullable
-    @JsonProperty("next")
-    private String next;
+  @Nullable
+  @JsonProperty("next")
+  private String next;
 
-    @Nullable
-    @JsonProperty("prev")
-    private String prev;
+  @Nullable
+  @JsonProperty("prev")
+  private String prev;
 }

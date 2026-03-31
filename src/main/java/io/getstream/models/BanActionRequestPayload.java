@@ -13,53 +13,44 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
-/**
- * Configuration for ban moderation action
- */
+
+/** Configuration for ban moderation action */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class BanActionRequestPayload{
+public class BanActionRequestPayload {
 
-    @Nullable
-    @JsonProperty("channel_ban_only")
-    private Boolean channelBanOnly;
+  @Nullable
+  @JsonProperty("channel_ban_only")
+  private Boolean channelBanOnly;
 
-    @Nullable
-    @JsonProperty("channel_cid")
-    private String channelCid;
+  @Nullable
+  @JsonProperty("channel_cid")
+  private String channelCid;
 
-    @Nullable
-    @JsonProperty("delete_messages")
-    private String deleteMessages;
+  @Nullable
+  @JsonProperty("delete_messages")
+  private String deleteMessages;
 
-    @Nullable
-    @JsonProperty("ip_ban")
-    private Boolean ipBan;
+  @Nullable
+  @JsonProperty("ip_ban")
+  private Boolean ipBan;
 
-    @Nullable
-    @JsonProperty("reason")
-    private String reason;
+  @Nullable
+  @JsonProperty("reason")
+  private String reason;
 
-    @Nullable
-    @JsonProperty("shadow")
-    private Boolean shadow;
+  @Nullable
+  @JsonProperty("shadow")
+  private Boolean shadow;
 
-    @Nullable
-    @JsonProperty("target_user_id")
-    private String targetUserID;
+  @Nullable
+  @JsonProperty("target_user_id")
+  private String targetUserID;
 
-    @Nullable
-    @JsonProperty("timeout")
-    private Integer timeout;
+  @Nullable
+  @JsonProperty("timeout")
+  private Integer timeout;
 }

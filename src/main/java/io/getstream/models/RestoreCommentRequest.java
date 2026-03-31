@@ -13,32 +13,23 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
+
 /**
- * Restore a soft-deleted comment
- * Restores a soft-deleted comment by its ID. The comment and all its descendants are restored. Requires moderator permissions.
+ * Restore a soft-deleted comment Restores a soft-deleted comment by its ID. The comment and all its
+ * descendants are restored. Requires moderator permissions.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class RestoreCommentRequest {
-    
-    @Nullable
-    @JsonProperty("user_id")
-    private String userID;
-    
-    @Nullable
-    @JsonProperty("user")
-    private UserRequest user;
 
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

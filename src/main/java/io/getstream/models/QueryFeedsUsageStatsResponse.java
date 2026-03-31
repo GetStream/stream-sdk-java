@@ -13,33 +13,25 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class QueryFeedsUsageStatsResponse{
+public class QueryFeedsUsageStatsResponse {
 
-    @JsonProperty("duration")
-    private String duration;
+  @JsonProperty("duration")
+  private String duration;
 
-    @JsonProperty("activities")
-    private DailyMetricStatsResponse activities;
+  @JsonProperty("activities")
+  private DailyMetricStatsResponse activities;
 
-    @JsonProperty("api_requests")
-    private DailyMetricStatsResponse apiRequests;
+  @JsonProperty("api_requests")
+  private DailyMetricStatsResponse apiRequests;
 
-    @JsonProperty("follows")
-    private DailyMetricStatsResponse follows;
+  @JsonProperty("follows")
+  private DailyMetricStatsResponse follows;
 
-    @JsonProperty("openai_requests")
-    private DailyMetricStatsResponse openaiRequests;
+  @JsonProperty("openai_requests")
+  private DailyMetricStatsResponse openaiRequests;
 }

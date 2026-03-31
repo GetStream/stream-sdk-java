@@ -13,45 +13,37 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class MessageChangeSet{
+public class MessageChangeSet {
 
-    @JsonProperty("attachments")
-    private Boolean attachments;
+  @JsonProperty("attachments")
+  private Boolean attachments;
 
-    @JsonProperty("custom")
-    private Boolean custom;
+  @JsonProperty("custom")
+  private Boolean custom;
 
-    @JsonProperty("html")
-    private Boolean html;
+  @JsonProperty("html")
+  private Boolean html;
 
-    @JsonProperty("mentioned_user_ids")
-    private Boolean mentionedUserIds;
+  @JsonProperty("mentioned_user_ids")
+  private Boolean mentionedUserIds;
 
-    @JsonProperty("mml")
-    private Boolean mml;
+  @JsonProperty("mml")
+  private Boolean mml;
 
-    @JsonProperty("pin")
-    private Boolean pin;
+  @JsonProperty("pin")
+  private Boolean pin;
 
-    @JsonProperty("quoted_message_id")
-    private Boolean quotedMessageID;
+  @JsonProperty("quoted_message_id")
+  private Boolean quotedMessageID;
 
-    @JsonProperty("silent")
-    private Boolean silent;
+  @JsonProperty("silent")
+  private Boolean silent;
 
-    @JsonProperty("text")
-    private Boolean text;
+  @JsonProperty("text")
+  private Boolean text;
 }

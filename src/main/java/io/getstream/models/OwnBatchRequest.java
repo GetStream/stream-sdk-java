@@ -13,39 +13,32 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
+
 /**
- * Get own fields for multiple feeds
- * Retrieves own_follows, own_capabilities, and/or own_membership for multiple feeds in a single request. If fields are not specified, all three fields are returned.
+ * Get own fields for multiple feeds Retrieves own_follows, own_capabilities, and/or own_membership
+ * for multiple feeds in a single request. If fields are not specified, all three fields are
+ * returned.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class OwnBatchRequest {
-    
-    @JsonProperty("feeds")
-    private List<String> feeds;
-    
-    @Nullable
-    @JsonProperty("user_id")
-    private String userID;
-    
-    @Nullable
-    @JsonProperty("fields")
-    private List<String> fields;
-    
-    @Nullable
-    @JsonProperty("user")
-    private UserRequest user;
 
+  @JsonProperty("feeds")
+  private List<String> feeds;
+
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
+  @JsonProperty("fields")
+  private List<String> fields;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

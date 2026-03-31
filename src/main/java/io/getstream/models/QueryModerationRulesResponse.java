@@ -13,50 +13,45 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class QueryModerationRulesResponse{
+public class QueryModerationRulesResponse {
 
-    @JsonProperty("duration")
-    private String duration;
+  @JsonProperty("duration")
+  private String duration;
 
-    @JsonProperty("ai_image_label_definitions")
-    private List<AIImageLabelDefinition> aiImageLabelDefinitions;
+  @JsonProperty("ai_image_label_definitions")
+  private List<AIImageLabelDefinition> aiImageLabelDefinitions;
 
-    @JsonProperty("closed_caption_labels")
-    private List<String> closedCaptionLabels;
+  @JsonProperty("closed_caption_labels")
+  private List<String> closedCaptionLabels;
 
-    @JsonProperty("keyframe_labels")
-    private List<String> keyframeLabels;
+  @JsonProperty("keyframe_labels")
+  private List<String> keyframeLabels;
 
-    @JsonProperty("rules")
-    private List<ModerationRuleV2Response> rules;
+  @JsonProperty("rules")
+  private List<ModerationRuleV2Response> rules;
 
-    @JsonProperty("ai_image_subclassifications")
-    private Map<String, List<String>> aiImageSubclassifications;
+  @JsonProperty("ai_image_subclassifications")
+  private Map<String, List<String>> aiImageSubclassifications;
 
-    @JsonProperty("default_llm_labels")
-    private Map<String, String> defaultLlmLabels;
+  @JsonProperty("default_llm_labels")
+  private Map<String, String> defaultLlmLabels;
 
-    @JsonProperty("keyframe_label_classifications")
-    private Map<String, List<String>> keyframeLabelClassifications;
+  @JsonProperty("keyframe_label_classifications")
+  private Map<String, List<String>> keyframeLabelClassifications;
 
-    @Nullable
-    @JsonProperty("next")
-    private String next;
+  @Nullable
+  @JsonProperty("next")
+  private String next;
 
-    @Nullable
-    @JsonProperty("prev")
-    private String prev;
+  @Nullable
+  @JsonProperty("prev")
+  private String prev;
 }

@@ -13,38 +13,31 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class SessionClient{
+public class SessionClient {
 
-    @Nullable
-    @JsonProperty("ip")
-    private String ip;
+  @Nullable
+  @JsonProperty("ip")
+  private String ip;
 
-    @Nullable
-    @JsonProperty("name")
-    private String name;
+  @Nullable
+  @JsonProperty("name")
+  private String name;
 
-    @Nullable
-    @JsonProperty("network_type")
-    private String networkType;
+  @Nullable
+  @JsonProperty("network_type")
+  private String networkType;
 
-    @Nullable
-    @JsonProperty("version")
-    private String version;
+  @Nullable
+  @JsonProperty("version")
+  private String version;
 
-    @Nullable
-    @JsonProperty("location")
-    private CallStatsLocation location;
+  @Nullable
+  @JsonProperty("location")
+  private CallStatsLocation location;
 }

@@ -13,45 +13,41 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ActivitySelectorConfigResponse{
+public class ActivitySelectorConfigResponse {
 
-    @JsonProperty("type")
-    private String type;
+  @JsonProperty("type")
+  private String type;
 
-    @Nullable
-    @JsonProperty("cutoff_time")
-    private Date cutoffTime;
+  @Nullable
+  @JsonProperty("cutoff_time")
+  private Date cutoffTime;
 
-    @Nullable
-    @JsonProperty("cutoff_window")
-    private String cutoffWindow;
+  @Nullable
+  @JsonProperty("cutoff_window")
+  private String cutoffWindow;
 
-    @Nullable
-    @JsonProperty("min_popularity")
-    private Integer minPopularity;
+  @Nullable
+  @JsonProperty("min_popularity")
+  private Integer minPopularity;
 
-    @Nullable
-    @JsonProperty("sort")
-    private List<SortParamRequest> sort;
+  @Nullable
+  @JsonProperty("sort")
+  private List<SortParamRequest> sort;
 
-    @Nullable
-    @JsonProperty("filter")
-    private Map<String, Object> filter;
+  @Nullable
+  @JsonProperty("filter")
+  private Map<String, Object> filter;
 
-    @Nullable
-    @JsonProperty("params")
-    private Map<String, Object> params;
+  @Nullable
+  @JsonProperty("params")
+  private Map<String, Object> params;
 }

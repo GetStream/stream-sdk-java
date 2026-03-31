@@ -13,31 +13,22 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
+
 /**
- * Get flag count for a user
- * Returns the number of moderation flags created against a specific user&#39;s content. Optionally filter by entity type.
+ * Get flag count for a user Returns the number of moderation flags created against a specific
+ * user&#39;s content. Optionally filter by entity type.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class GetFlagCountRequest {
-    
-    @JsonProperty("entity_creator_id")
-    private String entityCreatorID;
-    
-    @Nullable
-    @JsonProperty("entity_type")
-    private String entityType;
 
+  @JsonProperty("entity_creator_id")
+  private String entityCreatorID;
+
+  @Nullable
+  @JsonProperty("entity_type")
+  private String entityType;
 }

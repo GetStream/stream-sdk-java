@@ -13,31 +13,24 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetExternalStorageAWSS3Response{
+public class GetExternalStorageAWSS3Response {
 
-    @JsonProperty("bucket")
-    private String bucket;
+  @JsonProperty("bucket")
+  private String bucket;
 
-    @JsonProperty("region")
-    private String region;
+  @JsonProperty("region")
+  private String region;
 
-    @JsonProperty("role_arn")
-    private String roleArn;
+  @JsonProperty("role_arn")
+  private String roleArn;
 
-    @Nullable
-    @JsonProperty("path_prefix")
-    private String pathPrefix;
+  @Nullable
+  @JsonProperty("path_prefix")
+  private String pathPrefix;
 }

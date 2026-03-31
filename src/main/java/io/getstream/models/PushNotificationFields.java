@@ -13,40 +13,34 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class PushNotificationFields{
+public class PushNotificationFields {
 
-    @JsonProperty("offline_only")
-    private Boolean offlineOnly;
+  @JsonProperty("offline_only")
+  private Boolean offlineOnly;
 
-    @JsonProperty("version")
-    private String version;
+  @JsonProperty("version")
+  private String version;
 
-    @JsonProperty("apn")
-    private APNConfigFields apn;
+  @JsonProperty("apn")
+  private APNConfigFields apn;
 
-    @JsonProperty("firebase")
-    private FirebaseConfigFields firebase;
+  @JsonProperty("firebase")
+  private FirebaseConfigFields firebase;
 
-    @JsonProperty("huawei")
-    private HuaweiConfigFields huawei;
+  @JsonProperty("huawei")
+  private HuaweiConfigFields huawei;
 
-    @JsonProperty("xiaomi")
-    private XiaomiConfigFields xiaomi;
+  @JsonProperty("xiaomi")
+  private XiaomiConfigFields xiaomi;
 
-    @Nullable
-    @JsonProperty("providers")
-    private List<PushProvider> providers;
+  @Nullable
+  @JsonProperty("providers")
+  private List<PushProvider> providers;
 }

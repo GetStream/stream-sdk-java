@@ -13,84 +13,77 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
+
 /**
- * Add a comment or reply
- * Adds a comment to an object (e.g., activity) or a reply to an existing comment, and broadcasts appropriate events
+ * Add a comment or reply Adds a comment to an object (e.g., activity) or a reply to an existing
+ * comment, and broadcasts appropriate events
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class AddCommentRequest {
-    
-    @Nullable
-    @JsonProperty("comment")
-    private String comment;
-    
-    /**
-     * @deprecated
-     */
-    @Deprecated
-    @Nullable
-    @JsonProperty("copy_custom_to_notification")
-    private Boolean copyCustomToNotification;
-    
-    @Nullable
-    @JsonProperty("create_notification_activity")
-    private Boolean createNotificationActivity;
-    
-    @Nullable
-    @JsonProperty("id")
-    private String id;
-    
-    @Nullable
-    @JsonProperty("object_id")
-    private String objectID;
-    
-    @Nullable
-    @JsonProperty("object_type")
-    private String objectType;
-    
-    @Nullable
-    @JsonProperty("parent_id")
-    private String parentID;
-    
-    @Nullable
-    @JsonProperty("skip_enrich_url")
-    private Boolean skipEnrichUrl;
-    
-    @Nullable
-    @JsonProperty("skip_push")
-    private Boolean skipPush;
-    
-    @Nullable
-    @JsonProperty("user_id")
-    private String userID;
-    
-    @Nullable
-    @JsonProperty("attachments")
-    private List<Attachment> attachments;
-    
-    @Nullable
-    @JsonProperty("mentioned_user_ids")
-    private List<String> mentionedUserIds;
-    
-    @Nullable
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
-    
-    @Nullable
-    @JsonProperty("user")
-    private UserRequest user;
 
+  @Nullable
+  @JsonProperty("comment")
+  private String comment;
+
+  /**
+   * @deprecated
+   */
+  @Deprecated
+  @Nullable
+  @JsonProperty("copy_custom_to_notification")
+  private Boolean copyCustomToNotification;
+
+  @Nullable
+  @JsonProperty("create_notification_activity")
+  private Boolean createNotificationActivity;
+
+  @Nullable
+  @JsonProperty("id")
+  private String id;
+
+  @Nullable
+  @JsonProperty("object_id")
+  private String objectID;
+
+  @Nullable
+  @JsonProperty("object_type")
+  private String objectType;
+
+  @Nullable
+  @JsonProperty("parent_id")
+  private String parentID;
+
+  @Nullable
+  @JsonProperty("skip_enrich_url")
+  private Boolean skipEnrichUrl;
+
+  @Nullable
+  @JsonProperty("skip_push")
+  private Boolean skipPush;
+
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
+  @JsonProperty("attachments")
+  private List<Attachment> attachments;
+
+  @Nullable
+  @JsonProperty("mentioned_user_ids")
+  private List<String> mentionedUserIds;
+
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

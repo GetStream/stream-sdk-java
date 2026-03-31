@@ -13,80 +13,76 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UserResponseCommonFields{
+public class UserResponseCommonFields {
 
-    @JsonProperty("banned")
-    private Boolean banned;
+  @JsonProperty("banned")
+  private Boolean banned;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("id")
-    private String id;
+  @JsonProperty("id")
+  private String id;
 
-    @JsonProperty("language")
-    private String language;
+  @JsonProperty("language")
+  private String language;
 
-    @JsonProperty("online")
-    private Boolean online;
+  @JsonProperty("online")
+  private Boolean online;
 
-    @JsonProperty("role")
-    private String role;
+  @JsonProperty("role")
+  private String role;
 
-    @JsonProperty("updated_at")
-    private Date updatedAt;
+  @JsonProperty("updated_at")
+  private Date updatedAt;
 
-    @JsonProperty("blocked_user_ids")
-    private List<String> blockedUserIds;
+  @JsonProperty("blocked_user_ids")
+  private List<String> blockedUserIds;
 
-    @JsonProperty("teams")
-    private List<String> teams;
+  @JsonProperty("teams")
+  private List<String> teams;
 
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 
-    @Nullable
-    @JsonProperty("avg_response_time")
-    private Integer avgResponseTime;
+  @Nullable
+  @JsonProperty("avg_response_time")
+  private Integer avgResponseTime;
 
-    @Nullable
-    @JsonProperty("deactivated_at")
-    private Date deactivatedAt;
+  @Nullable
+  @JsonProperty("deactivated_at")
+  private Date deactivatedAt;
 
-    @Nullable
-    @JsonProperty("deleted_at")
-    private Date deletedAt;
+  @Nullable
+  @JsonProperty("deleted_at")
+  private Date deletedAt;
 
-    @Nullable
-    @JsonProperty("image")
-    private String image;
+  @Nullable
+  @JsonProperty("image")
+  private String image;
 
-    @Nullable
-    @JsonProperty("last_active")
-    private Date lastActive;
+  @Nullable
+  @JsonProperty("last_active")
+  private Date lastActive;
 
-    @Nullable
-    @JsonProperty("name")
-    private String name;
+  @Nullable
+  @JsonProperty("name")
+  private String name;
 
-    @Nullable
-    @JsonProperty("revoke_tokens_issued_before")
-    private Date revokeTokensIssuedBefore;
+  @Nullable
+  @JsonProperty("revoke_tokens_issued_before")
+  private Date revokeTokensIssuedBefore;
 
-    @Nullable
-    @JsonProperty("teams_role")
-    private Map<String, String> teamsRole;
+  @Nullable
+  @JsonProperty("teams_role")
+  private Map<String, String> teamsRole;
 }

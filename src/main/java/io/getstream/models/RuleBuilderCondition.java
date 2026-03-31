@@ -13,102 +13,95 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class RuleBuilderCondition{
+public class RuleBuilderCondition {
 
-    @Nullable
-    @JsonProperty("confidence")
-    private Double confidence;
+  @Nullable
+  @JsonProperty("confidence")
+  private Double confidence;
 
-    @Nullable
-    @JsonProperty("type")
-    private String type;
+  @Nullable
+  @JsonProperty("type")
+  private String type;
 
-    @Nullable
-    @JsonProperty("call_custom_property_params")
-    private CallCustomPropertyParameters callCustomPropertyParams;
+  @Nullable
+  @JsonProperty("call_custom_property_params")
+  private CallCustomPropertyParameters callCustomPropertyParams;
 
-    @Nullable
-    @JsonProperty("call_type_rule_params")
-    private CallTypeRuleParameters callTypeRuleParams;
+  @Nullable
+  @JsonProperty("call_type_rule_params")
+  private CallTypeRuleParameters callTypeRuleParams;
 
-    @Nullable
-    @JsonProperty("call_violation_count_params")
-    private CallViolationCountParameters callViolationCountParams;
+  @Nullable
+  @JsonProperty("call_violation_count_params")
+  private CallViolationCountParameters callViolationCountParams;
 
-    @Nullable
-    @JsonProperty("closed_caption_rule_params")
-    private ClosedCaptionRuleParameters closedCaptionRuleParams;
+  @Nullable
+  @JsonProperty("closed_caption_rule_params")
+  private ClosedCaptionRuleParameters closedCaptionRuleParams;
 
-    @Nullable
-    @JsonProperty("content_count_rule_params")
-    private ContentCountRuleParameters contentCountRuleParams;
+  @Nullable
+  @JsonProperty("content_count_rule_params")
+  private ContentCountRuleParameters contentCountRuleParams;
 
-    @Nullable
-    @JsonProperty("content_flag_count_rule_params")
-    private FlagCountRuleParameters contentFlagCountRuleParams;
+  @Nullable
+  @JsonProperty("content_flag_count_rule_params")
+  private FlagCountRuleParameters contentFlagCountRuleParams;
 
-    @Nullable
-    @JsonProperty("image_content_params")
-    private ImageContentParameters imageContentParams;
+  @Nullable
+  @JsonProperty("image_content_params")
+  private ImageContentParameters imageContentParams;
 
-    @Nullable
-    @JsonProperty("image_rule_params")
-    private ImageRuleParameters imageRuleParams;
+  @Nullable
+  @JsonProperty("image_rule_params")
+  private ImageRuleParameters imageRuleParams;
 
-    @Nullable
-    @JsonProperty("keyframe_rule_params")
-    private KeyframeRuleParameters keyframeRuleParams;
+  @Nullable
+  @JsonProperty("keyframe_rule_params")
+  private KeyframeRuleParameters keyframeRuleParams;
 
-    @Nullable
-    @JsonProperty("text_content_params")
-    private TextContentParameters textContentParams;
+  @Nullable
+  @JsonProperty("text_content_params")
+  private TextContentParameters textContentParams;
 
-    @Nullable
-    @JsonProperty("text_rule_params")
-    private TextRuleParameters textRuleParams;
+  @Nullable
+  @JsonProperty("text_rule_params")
+  private TextRuleParameters textRuleParams;
 
-    @Nullable
-    @JsonProperty("user_created_within_params")
-    private UserCreatedWithinParameters userCreatedWithinParams;
+  @Nullable
+  @JsonProperty("user_created_within_params")
+  private UserCreatedWithinParameters userCreatedWithinParams;
 
-    @Nullable
-    @JsonProperty("user_custom_property_params")
-    private UserCustomPropertyParameters userCustomPropertyParams;
+  @Nullable
+  @JsonProperty("user_custom_property_params")
+  private UserCustomPropertyParameters userCustomPropertyParams;
 
-    @Nullable
-    @JsonProperty("user_flag_count_rule_params")
-    private FlagCountRuleParameters userFlagCountRuleParams;
+  @Nullable
+  @JsonProperty("user_flag_count_rule_params")
+  private FlagCountRuleParameters userFlagCountRuleParams;
 
-    @Nullable
-    @JsonProperty("user_identical_content_count_params")
-    private UserIdenticalContentCountParameters userIdenticalContentCountParams;
+  @Nullable
+  @JsonProperty("user_identical_content_count_params")
+  private UserIdenticalContentCountParameters userIdenticalContentCountParams;
 
-    @Nullable
-    @JsonProperty("user_role_params")
-    private UserRoleParameters userRoleParams;
+  @Nullable
+  @JsonProperty("user_role_params")
+  private UserRoleParameters userRoleParams;
 
-    @Nullable
-    @JsonProperty("user_rule_params")
-    private UserRuleParameters userRuleParams;
+  @Nullable
+  @JsonProperty("user_rule_params")
+  private UserRuleParameters userRuleParams;
 
-    @Nullable
-    @JsonProperty("video_content_params")
-    private VideoContentParameters videoContentParams;
+  @Nullable
+  @JsonProperty("video_content_params")
+  private VideoContentParameters videoContentParams;
 
-    @Nullable
-    @JsonProperty("video_rule_params")
-    private VideoRuleParameters videoRuleParams;
+  @Nullable
+  @JsonProperty("video_rule_params")
+  private VideoRuleParameters videoRuleParams;
 }

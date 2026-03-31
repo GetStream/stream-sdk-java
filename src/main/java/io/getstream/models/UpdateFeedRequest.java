@@ -13,48 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
-/**
- * Update a feed
- * Update an existing feed
- */
+
+/** Update a feed Update an existing feed */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class UpdateFeedRequest {
-    
-    @Nullable
-    @JsonProperty("created_by_id")
-    private String createdByID;
-    
-    @Nullable
-    @JsonProperty("description")
-    private String description;
-    
-    @Nullable
-    @JsonProperty("enrich_own_fields")
-    private Boolean enrichOwnFields;
-    
-    @Nullable
-    @JsonProperty("name")
-    private String name;
-    
-    @Nullable
-    @JsonProperty("filter_tags")
-    private List<String> filterTags;
-    
-    @Nullable
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
 
+  @Nullable
+  @JsonProperty("created_by_id")
+  private String createdByID;
+
+  @Nullable
+  @JsonProperty("description")
+  private String description;
+
+  @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
+
+  @Nullable
+  @JsonProperty("name")
+  private String name;
+
+  @Nullable
+  @JsonProperty("filter_tags")
+  private List<String> filterTags;
+
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 }

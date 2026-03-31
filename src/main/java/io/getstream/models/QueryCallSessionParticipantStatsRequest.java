@@ -12,39 +12,35 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
+import io.getstream.annotations.Query;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
-/**
- * Query call participant statistics
- */
+
+/** Query call participant statistics */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class QueryCallSessionParticipantStatsRequest {
 
-@Query("limit")
-           @JsonIgnore
-           private Integer Limit;
-@Query("prev")
-           @JsonIgnore
-           private String Prev;
-@Query("next")
-           @JsonIgnore
-           private String Next;
-@Query("sort")
-           @JsonIgnore
-           private List<SortParamRequest> Sort;
-@Query("filter_conditions")
-           @JsonIgnore
-           private Map<String, Object> FilterConditions;
+  @Query("limit")
+  @JsonIgnore
+  private Integer Limit;
+
+  @Query("prev")
+  @JsonIgnore
+  private String Prev;
+
+  @Query("next")
+  @JsonIgnore
+  private String Next;
+
+  @Query("sort")
+  @JsonIgnore
+  private List<SortParamRequest> Sort;
+
+  @Query("filter_conditions")
+  @JsonIgnore
+  private Map<String, Object> FilterConditions;
 }

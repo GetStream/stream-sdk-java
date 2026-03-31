@@ -13,44 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
+
 /**
- * Get retention policy runs
- * Returns filtered and sorted retention cleanup run history for the app. Supports filter_conditions on &#39;policy&#39; (possible values: &#39;old-messages&#39;, &#39;inactive-channels&#39;) and &#39;date&#39; fields. Server-side only.
+ * Get retention policy runs Returns filtered and sorted retention cleanup run history for the app.
+ * Supports filter_conditions on &#39;policy&#39; (possible values: &#39;old-messages&#39;,
+ * &#39;inactive-channels&#39;) and &#39;date&#39; fields. Server-side only.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class GetRetentionPolicyRunsRequest {
-    
-    @Nullable
-    @JsonProperty("limit")
-    private Integer limit;
-    
-    @Nullable
-    @JsonProperty("next")
-    private String next;
-    
-    @Nullable
-    @JsonProperty("prev")
-    private String prev;
-    
-    @Nullable
-    @JsonProperty("sort")
-    private List<SortParamRequest> sort;
-    
-    @Nullable
-    @JsonProperty("filter_conditions")
-    private Map<String, Object> filterConditions;
 
+  @Nullable
+  @JsonProperty("limit")
+  private Integer limit;
+
+  @Nullable
+  @JsonProperty("next")
+  private String next;
+
+  @Nullable
+  @JsonProperty("prev")
+  private String prev;
+
+  @Nullable
+  @JsonProperty("sort")
+  private List<SortParamRequest> sort;
+
+  @Nullable
+  @JsonProperty("filter_conditions")
+  private Map<String, Object> filterConditions;
 }

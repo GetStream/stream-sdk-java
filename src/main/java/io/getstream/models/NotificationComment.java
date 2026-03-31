@@ -13,31 +13,25 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class NotificationComment{
+public class NotificationComment {
 
-    @JsonProperty("comment")
-    private String comment;
+  @JsonProperty("comment")
+  private String comment;
 
-    @JsonProperty("id")
-    private String id;
+  @JsonProperty("id")
+  private String id;
 
-    @JsonProperty("user_id")
-    private String userID;
+  @JsonProperty("user_id")
+  private String userID;
 
-    @Nullable
-    @JsonProperty("attachments")
-    private List<Attachment> attachments;
+  @Nullable
+  @JsonProperty("attachments")
+  private List<Attachment> attachments;
 }

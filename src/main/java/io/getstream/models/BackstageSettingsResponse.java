@@ -13,25 +13,18 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class BackstageSettingsResponse{
+public class BackstageSettingsResponse {
 
-    @JsonProperty("enabled")
-    private Boolean enabled;
+  @JsonProperty("enabled")
+  private Boolean enabled;
 
-    @Nullable
-    @JsonProperty("join_ahead_time_seconds")
-    private Integer joinAheadTimeSeconds;
+  @Nullable
+  @JsonProperty("join_ahead_time_seconds")
+  private Integer joinAheadTimeSeconds;
 }

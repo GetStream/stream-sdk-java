@@ -13,33 +13,25 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class IngressVideoLayerRequest{
+public class IngressVideoLayerRequest {
 
-    @JsonProperty("bitrate")
-    private Integer bitrate;
+  @JsonProperty("bitrate")
+  private Integer bitrate;
 
-    @JsonProperty("codec")
-    private String codec;
+  @JsonProperty("codec")
+  private String codec;
 
-    @JsonProperty("frame_rate_limit")
-    private Integer frameRateLimit;
+  @JsonProperty("frame_rate_limit")
+  private Integer frameRateLimit;
 
-    @JsonProperty("max_dimension")
-    private Integer maxDimension;
+  @JsonProperty("max_dimension")
+  private Integer maxDimension;
 
-    @JsonProperty("min_dimension")
-    private Integer minDimension;
+  @JsonProperty("min_dimension")
+  private Integer minDimension;
 }

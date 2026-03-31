@@ -13,30 +13,23 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ImportV2TaskSettingsS3{
+public class ImportV2TaskSettingsS3 {
 
-    @Nullable
-    @JsonProperty("bucket")
-    private String bucket;
+  @Nullable
+  @JsonProperty("bucket")
+  private String bucket;
 
-    @Nullable
-    @JsonProperty("dir")
-    private String dir;
+  @Nullable
+  @JsonProperty("dir")
+  private String dir;
 
-    @Nullable
-    @JsonProperty("region")
-    private String region;
+  @Nullable
+  @JsonProperty("region")
+  private String region;
 }

@@ -13,44 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallType{
+public class CallType {
 
-    @JsonProperty("app")
-    private Integer app;
+  @JsonProperty("app")
+  private Integer app;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("id")
-    private Integer id;
+  @JsonProperty("id")
+  private Integer id;
 
-    @JsonProperty("name")
-    private String name;
+  @JsonProperty("name")
+  private String name;
 
-    @JsonProperty("recording_external_storage")
-    private String recordingExternalStorage;
+  @JsonProperty("recording_external_storage")
+  private String recordingExternalStorage;
 
-    @JsonProperty("updated_at")
-    private Date updatedAt;
+  @JsonProperty("updated_at")
+  private Date updatedAt;
 
-    @Nullable
-    @JsonProperty("notification_settings")
-    private NotificationSettings notificationSettings;
+  @Nullable
+  @JsonProperty("notification_settings")
+  private NotificationSettings notificationSettings;
 
-    @Nullable
-    @JsonProperty("settings")
-    private CallSettings settings;
+  @Nullable
+  @JsonProperty("settings")
+  private CallSettings settings;
 }

@@ -13,72 +13,62 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
-/**
- * Usage statistics for a single team containing all 16 metrics
- */
+
+/** Usage statistics for a single team containing all 16 metrics */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class TeamUsageStats{
+public class TeamUsageStats {
 
-    @JsonProperty("team")
-    private String team;
+  @JsonProperty("team")
+  private String team;
 
-    @JsonProperty("concurrent_connections")
-    private MetricStats concurrentConnections;
+  @JsonProperty("concurrent_connections")
+  private MetricStats concurrentConnections;
 
-    @JsonProperty("concurrent_users")
-    private MetricStats concurrentUsers;
+  @JsonProperty("concurrent_users")
+  private MetricStats concurrentUsers;
 
-    @JsonProperty("image_moderations_daily")
-    private MetricStats imageModerationsDaily;
+  @JsonProperty("image_moderations_daily")
+  private MetricStats imageModerationsDaily;
 
-    @JsonProperty("messages_daily")
-    private MetricStats messagesDaily;
+  @JsonProperty("messages_daily")
+  private MetricStats messagesDaily;
 
-    @JsonProperty("messages_last_24_hours")
-    private MetricStats messagesLast24Hours;
+  @JsonProperty("messages_last_24_hours")
+  private MetricStats messagesLast24Hours;
 
-    @JsonProperty("messages_last_30_days")
-    private MetricStats messagesLast30Days;
+  @JsonProperty("messages_last_30_days")
+  private MetricStats messagesLast30Days;
 
-    @JsonProperty("messages_month_to_date")
-    private MetricStats messagesMonthToDate;
+  @JsonProperty("messages_month_to_date")
+  private MetricStats messagesMonthToDate;
 
-    @JsonProperty("messages_total")
-    private MetricStats messagesTotal;
+  @JsonProperty("messages_total")
+  private MetricStats messagesTotal;
 
-    @JsonProperty("translations_daily")
-    private MetricStats translationsDaily;
+  @JsonProperty("translations_daily")
+  private MetricStats translationsDaily;
 
-    @JsonProperty("users_daily")
-    private MetricStats usersDaily;
+  @JsonProperty("users_daily")
+  private MetricStats usersDaily;
 
-    @JsonProperty("users_engaged_last_30_days")
-    private MetricStats usersEngagedLast30Days;
+  @JsonProperty("users_engaged_last_30_days")
+  private MetricStats usersEngagedLast30Days;
 
-    @JsonProperty("users_engaged_month_to_date")
-    private MetricStats usersEngagedMonthToDate;
+  @JsonProperty("users_engaged_month_to_date")
+  private MetricStats usersEngagedMonthToDate;
 
-    @JsonProperty("users_last_24_hours")
-    private MetricStats usersLast24Hours;
+  @JsonProperty("users_last_24_hours")
+  private MetricStats usersLast24Hours;
 
-    @JsonProperty("users_last_30_days")
-    private MetricStats usersLast30Days;
+  @JsonProperty("users_last_30_days")
+  private MetricStats usersLast30Days;
 
-    @JsonProperty("users_month_to_date")
-    private MetricStats usersMonthToDate;
+  @JsonProperty("users_month_to_date")
+  private MetricStats usersMonthToDate;
 
-    @JsonProperty("users_total")
-    private MetricStats usersTotal;
+  @JsonProperty("users_total")
+  private MetricStats usersTotal;
 }

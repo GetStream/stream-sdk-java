@@ -13,36 +13,29 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ActivityFeedbackEventPayload{
+public class ActivityFeedbackEventPayload {
 
-    @JsonProperty("action")
-    private String action;
+  @JsonProperty("action")
+  private String action;
 
-    @JsonProperty("activity_id")
-    private String activityID;
+  @JsonProperty("activity_id")
+  private String activityID;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("updated_at")
-    private Date updatedAt;
+  @JsonProperty("updated_at")
+  private Date updatedAt;
 
-    @JsonProperty("value")
-    private String value;
+  @JsonProperty("value")
+  private String value;
 
-    @JsonProperty("user")
-    private UserResponse user;
+  @JsonProperty("user")
+  private UserResponse user;
 }

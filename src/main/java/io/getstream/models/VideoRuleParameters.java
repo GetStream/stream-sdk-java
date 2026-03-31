@@ -13,30 +13,24 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class VideoRuleParameters{
+public class VideoRuleParameters {
 
-    @Nullable
-    @JsonProperty("threshold")
-    private Integer threshold;
+  @Nullable
+  @JsonProperty("threshold")
+  private Integer threshold;
 
-    @Nullable
-    @JsonProperty("time_window")
-    private String timeWindow;
+  @Nullable
+  @JsonProperty("time_window")
+  private String timeWindow;
 
-    @Nullable
-    @JsonProperty("harm_labels")
-    private List<String> harmLabels;
+  @Nullable
+  @JsonProperty("harm_labels")
+  private List<String> harmLabels;
 }

@@ -13,28 +13,19 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
+
 /**
- * Check S3 image access
- * Verifies that the configured IAM role ARN can access private S3 images for moderation. Optionally accepts a stream+s3:// URL to check access to a specific object.
+ * Check S3 image access Verifies that the configured IAM role ARN can access private S3 images for
+ * moderation. Optionally accepts a stream+s3:// URL to check access to a specific object.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class CheckS3AccessRequest {
-    
-    @Nullable
-    @JsonProperty("s3_url")
-    private String s3Url;
 
+  @Nullable
+  @JsonProperty("s3_url")
+  private String s3Url;
 }

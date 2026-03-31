@@ -13,134 +13,130 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class FeedsV3ActivityResponse{
+public class FeedsV3ActivityResponse {
 
-    @JsonProperty("bookmark_count")
-    private Integer bookmarkCount;
+  @JsonProperty("bookmark_count")
+  private Integer bookmarkCount;
 
-    @JsonProperty("comment_count")
-    private Integer commentCount;
+  @JsonProperty("comment_count")
+  private Integer commentCount;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("hidden")
-    private Boolean hidden;
+  @JsonProperty("hidden")
+  private Boolean hidden;
 
-    @JsonProperty("id")
-    private String id;
+  @JsonProperty("id")
+  private String id;
 
-    @JsonProperty("popularity")
-    private Integer popularity;
+  @JsonProperty("popularity")
+  private Integer popularity;
 
-    @JsonProperty("preview")
-    private Boolean preview;
+  @JsonProperty("preview")
+  private Boolean preview;
 
-    @JsonProperty("reaction_count")
-    private Integer reactionCount;
+  @JsonProperty("reaction_count")
+  private Integer reactionCount;
 
-    @JsonProperty("restrict_replies")
-    private String restrictReplies;
+  @JsonProperty("restrict_replies")
+  private String restrictReplies;
 
-    @JsonProperty("score")
-    private Double score;
+  @JsonProperty("score")
+  private Double score;
 
-    @JsonProperty("share_count")
-    private Integer shareCount;
+  @JsonProperty("share_count")
+  private Integer shareCount;
 
-    @JsonProperty("type")
-    private String type;
+  @JsonProperty("type")
+  private String type;
 
-    @JsonProperty("updated_at")
-    private Date updatedAt;
+  @JsonProperty("updated_at")
+  private Date updatedAt;
 
-    @JsonProperty("visibility")
-    private String visibility;
+  @JsonProperty("visibility")
+  private String visibility;
 
-    @JsonProperty("attachments")
-    private List<Attachment> attachments;
+  @JsonProperty("attachments")
+  private List<Attachment> attachments;
 
-    @JsonProperty("comments")
-    private List<FeedsV3CommentResponse> comments;
+  @JsonProperty("comments")
+  private List<FeedsV3CommentResponse> comments;
 
-    @JsonProperty("feeds")
-    private List<String> feeds;
+  @JsonProperty("feeds")
+  private List<String> feeds;
 
-    @JsonProperty("filter_tags")
-    private List<String> filterTags;
+  @JsonProperty("filter_tags")
+  private List<String> filterTags;
 
-    @JsonProperty("interest_tags")
-    private List<String> interestTags;
+  @JsonProperty("interest_tags")
+  private List<String> interestTags;
 
-    @JsonProperty("latest_reactions")
-    private List<Object> latestReactions;
+  @JsonProperty("latest_reactions")
+  private List<Object> latestReactions;
 
-    @JsonProperty("mentioned_users")
-    private List<UserResponse> mentionedUsers;
+  @JsonProperty("mentioned_users")
+  private List<UserResponse> mentionedUsers;
 
-    @JsonProperty("own_bookmarks")
-    private List<Object> ownBookmarks;
+  @JsonProperty("own_bookmarks")
+  private List<Object> ownBookmarks;
 
-    @JsonProperty("own_reactions")
-    private List<Object> ownReactions;
+  @JsonProperty("own_reactions")
+  private List<Object> ownReactions;
 
-    @JsonProperty("collections")
-    private Map<String, EnrichedCollection> collections;
+  @JsonProperty("collections")
+  private Map<String, EnrichedCollection> collections;
 
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 
-    @JsonProperty("reaction_groups")
-    private Map<String, FeedsReactionGroup> reactionGroups;
+  @JsonProperty("reaction_groups")
+  private Map<String, FeedsReactionGroup> reactionGroups;
 
-    @JsonProperty("search_data")
-    private Map<String, Object> searchData;
+  @JsonProperty("search_data")
+  private Map<String, Object> searchData;
 
-    @JsonProperty("user")
-    private UserResponse user;
+  @JsonProperty("user")
+  private UserResponse user;
 
-    @Nullable
-    @JsonProperty("deleted_at")
-    private Date deletedAt;
+  @Nullable
+  @JsonProperty("deleted_at")
+  private Date deletedAt;
 
-    @Nullable
-    @JsonProperty("edited_at")
-    private Date editedAt;
+  @Nullable
+  @JsonProperty("edited_at")
+  private Date editedAt;
 
-    @Nullable
-    @JsonProperty("expires_at")
-    private Date expiresAt;
+  @Nullable
+  @JsonProperty("expires_at")
+  private Date expiresAt;
 
-    @Nullable
-    @JsonProperty("moderation_action")
-    private String moderationAction;
+  @Nullable
+  @JsonProperty("moderation_action")
+  private String moderationAction;
 
-    @Nullable
-    @JsonProperty("text")
-    private String text;
+  @Nullable
+  @JsonProperty("text")
+  private String text;
 
-    @Nullable
-    @JsonProperty("visibility_tag")
-    private String visibilityTag;
+  @Nullable
+  @JsonProperty("visibility_tag")
+  private String visibilityTag;
 
-    @Nullable
-    @JsonProperty("metrics")
-    private Map<String, Integer> metrics;
+  @Nullable
+  @JsonProperty("metrics")
+  private Map<String, Integer> metrics;
 
-    @Nullable
-    @JsonProperty("moderation")
-    private ModerationV2Response moderation;
+  @Nullable
+  @JsonProperty("moderation")
+  private ModerationV2Response moderation;
 }

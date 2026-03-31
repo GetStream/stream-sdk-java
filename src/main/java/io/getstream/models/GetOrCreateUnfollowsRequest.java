@@ -13,35 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
+
 /**
- * Unfollow multiple feeds (idempotent)
- * Removes multiple follows and broadcasts FollowRemovedEvent for each. Does not return an error if follows don&#39;t exist.
+ * Unfollow multiple feeds (idempotent) Removes multiple follows and broadcasts FollowRemovedEvent
+ * for each. Does not return an error if follows don&#39;t exist.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class GetOrCreateUnfollowsRequest {
-    
-    @JsonProperty("follows")
-    private List<UnfollowPair> follows;
-    
-    @Nullable
-    @JsonProperty("delete_notification_activity")
-    private Boolean deleteNotificationActivity;
-    
-    @Nullable
-    @JsonProperty("enrich_own_fields")
-    private Boolean enrichOwnFields;
 
+  @JsonProperty("follows")
+  private List<UnfollowPair> follows;
+
+  @Nullable
+  @JsonProperty("delete_notification_activity")
+  private Boolean deleteNotificationActivity;
+
+  @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
 }

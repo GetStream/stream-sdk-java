@@ -13,27 +13,15 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
-/**
- * Export users
- * Exports user profile, reactions and messages for list of given users
- */
+
+/** Export users Exports user profile, reactions and messages for list of given users */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class ExportUsersRequest {
-    
-    @JsonProperty("user_ids")
-    private List<String> userIds;
 
+  @JsonProperty("user_ids")
+  private List<String> userIds;
 }

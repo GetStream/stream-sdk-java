@@ -13,36 +13,31 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
+
 /**
- * This event is sent to notify about permission changes for a user, clients receiving this event should update their UI accordingly
+ * This event is sent to notify about permission changes for a user, clients receiving this event
+ * should update their UI accordingly
  */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UpdatedCallPermissionsEvent{
+public class UpdatedCallPermissionsEvent {
 
-    @JsonProperty("call_cid")
-    private String callCid;
+  @JsonProperty("call_cid")
+  private String callCid;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("own_capabilities")
-    private List<OwnCapability> ownCapabilities;
+  @JsonProperty("own_capabilities")
+  private List<OwnCapability> ownCapabilities;
 
-    @JsonProperty("user")
-    private UserResponse user;
+  @JsonProperty("user")
+  private UserResponse user;
 
-    @JsonProperty("type")
-    private String type;
+  @JsonProperty("type")
+  private String type;
 }

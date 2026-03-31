@@ -13,37 +13,32 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UnreadCountsResponse{
+public class UnreadCountsResponse {
 
-    @JsonProperty("total_unread_count")
-    private Integer totalUnreadCount;
+  @JsonProperty("total_unread_count")
+  private Integer totalUnreadCount;
 
-    @JsonProperty("total_unread_threads_count")
-    private Integer totalUnreadThreadsCount;
+  @JsonProperty("total_unread_threads_count")
+  private Integer totalUnreadThreadsCount;
 
-    @JsonProperty("channel_type")
-    private List<UnreadCountsChannelType> channelType;
+  @JsonProperty("channel_type")
+  private List<UnreadCountsChannelType> channelType;
 
-    @JsonProperty("channels")
-    private List<UnreadCountsChannel> channels;
+  @JsonProperty("channels")
+  private List<UnreadCountsChannel> channels;
 
-    @JsonProperty("threads")
-    private List<UnreadCountsThread> threads;
+  @JsonProperty("threads")
+  private List<UnreadCountsThread> threads;
 
-    @Nullable
-    @JsonProperty("total_unread_count_by_team")
-    private Map<String, Integer> totalUnreadCountByTeam;
+  @Nullable
+  @JsonProperty("total_unread_count_by_team")
+  private Map<String, Integer> totalUnreadCountByTeam;
 }

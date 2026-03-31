@@ -12,24 +12,8 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
-/**
- * Get activity
- * Returns activity by ID
- */
+/** Get activity Returns activity by ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class GetActivityRequest {
-
-}
+public class GetActivityRequest {}

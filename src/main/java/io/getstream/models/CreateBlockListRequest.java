@@ -13,46 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
+
 /**
- * Create block list
- * Creates a new application blocklist, once created the blocklist can be used by any channel type
+ * Create block list Creates a new application blocklist, once created the blocklist can be used by
+ * any channel type
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class CreateBlockListRequest {
-    
-    @JsonProperty("name")
-    private String name;
-    
-    @JsonProperty("words")
-    private List<String> words;
-    
-    @Nullable
-    @JsonProperty("is_leet_check_enabled")
-    private Boolean isLeetCheckEnabled;
-    
-    @Nullable
-    @JsonProperty("is_plural_check_enabled")
-    private Boolean isPluralCheckEnabled;
-    
-    @Nullable
-    @JsonProperty("team")
-    private String team;
-    
-    @Nullable
-    @JsonProperty("type")
-    private String type;
 
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("words")
+  private List<String> words;
+
+  @Nullable
+  @JsonProperty("is_leet_check_enabled")
+  private Boolean isLeetCheckEnabled;
+
+  @Nullable
+  @JsonProperty("is_plural_check_enabled")
+  private Boolean isPluralCheckEnabled;
+
+  @Nullable
+  @JsonProperty("team")
+  private String team;
+
+  @Nullable
+  @JsonProperty("type")
+  private String type;
 }

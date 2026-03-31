@@ -13,27 +13,17 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
-/**
- * StartHLSBroadcastingResponse is the payload for starting an HLS broadcasting.
- */
+
+/** StartHLSBroadcastingResponse is the payload for starting an HLS broadcasting. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class StartHLSBroadcastingResponse{
+public class StartHLSBroadcastingResponse {
 
-    @JsonProperty("duration")
-    private String duration;
+  @JsonProperty("duration")
+  private String duration;
 
-    @JsonProperty("playlist_url")
-    private String playlistUrl;
+  @JsonProperty("playlist_url")
+  private String playlistUrl;
 }

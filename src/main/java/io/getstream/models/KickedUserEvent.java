@@ -13,37 +13,32 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 /**
- * This event is sent to call participants to notify when a user is kicked from a call. Clients should make the kicked user leave the call UI.
+ * This event is sent to call participants to notify when a user is kicked from a call. Clients
+ * should make the kicked user leave the call UI.
  */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class KickedUserEvent{
+public class KickedUserEvent {
 
-    @JsonProperty("call_cid")
-    private String callCid;
+  @JsonProperty("call_cid")
+  private String callCid;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("user")
-    private UserResponse user;
+  @JsonProperty("user")
+  private UserResponse user;
 
-    @JsonProperty("type")
-    private String type;
+  @JsonProperty("type")
+  private String type;
 
-    @Nullable
-    @JsonProperty("kicked_by_user")
-    private UserResponse kickedByUser;
+  @Nullable
+  @JsonProperty("kicked_by_user")
+  private UserResponse kickedByUser;
 }

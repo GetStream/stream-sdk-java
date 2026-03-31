@@ -13,40 +13,33 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
-/**
- * This event is sent when content is flagged for moderation
- */
+
+/** This event is sent when content is flagged for moderation */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ModerationFlaggedEvent{
+public class ModerationFlaggedEvent {
 
-    @JsonProperty("content_type")
-    private String contentType;
+  @JsonProperty("content_type")
+  private String contentType;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("object_id")
-    private String objectID;
+  @JsonProperty("object_id")
+  private String objectID;
 
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 
-    @JsonProperty("type")
-    private String type;
+  @JsonProperty("type")
+  private String type;
 
-    @Nullable
-    @JsonProperty("received_at")
-    private Date receivedAt;
+  @Nullable
+  @JsonProperty("received_at")
+  private Date receivedAt;
 }

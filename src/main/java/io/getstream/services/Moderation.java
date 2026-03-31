@@ -12,184 +12,175 @@
  */
 package io.getstream.services;
 
-import java.util.*;
+import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
 import io.getstream.services.framework.StreamRequest;
-import io.getstream.exceptions.StreamException;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import io.getstream.services.Channel;
 import io.getstream.services.framework.StreamSDKClient;
-
+import java.util.*;
+import org.jetbrains.annotations.NotNull;
 
 public interface Moderation {
-    public StreamSDKClient getSDKClient();
-    @NotNull
-    public StreamRequest<InsertActionLogResponse> insertActionLog( InsertActionLogRequest request ) throws StreamException;
+  public StreamSDKClient getSDKClient();
 
-    
-    @NotNull
-    public StreamRequest<AppealResponse> appeal( AppealRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<InsertActionLogResponse> insertActionLog(InsertActionLogRequest request)
+      throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<GetAppealResponse> getAppeal(@NotNull  String id, GetAppealRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<AppealResponse> appeal(AppealRequest request) throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<GetAppealResponse> getAppeal(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<QueryAppealsResponse> queryAppeals( QueryAppealsRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<GetAppealResponse> getAppeal(@NotNull String id, GetAppealRequest request)
+      throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<QueryAppealsResponse> queryAppeals() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<BanResponse> ban( BanRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<GetAppealResponse> getAppeal(@NotNull String id) throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<BulkImageModerationResponse> bulkImageModeration( BulkImageModerationRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<QueryAppealsResponse> queryAppeals(QueryAppealsRequest request)
+      throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<CheckResponse> check( CheckRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<QueryAppealsResponse> queryAppeals() throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<CheckS3AccessResponse> checkS3Access( CheckS3AccessRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<BanResponse> ban(BanRequest request) throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<CheckS3AccessResponse> checkS3Access() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<UpsertConfigResponse> upsertConfig( UpsertConfigRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<BulkImageModerationResponse> bulkImageModeration(
+      BulkImageModerationRequest request) throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<DeleteModerationConfigResponse> deleteConfig(@NotNull  String key, DeleteConfigRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<CheckResponse> check(CheckRequest request) throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<DeleteModerationConfigResponse> deleteConfig(@NotNull  String key) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<GetConfigResponse> getConfig(@NotNull  String key, GetConfigRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<CheckS3AccessResponse> checkS3Access(CheckS3AccessRequest request)
+      throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<GetConfigResponse> getConfig(@NotNull  String key) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<QueryModerationConfigsResponse> queryModerationConfigs( QueryModerationConfigsRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<CheckS3AccessResponse> checkS3Access() throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<QueryModerationConfigsResponse> queryModerationConfigs() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<CustomCheckResponse> customCheck( CustomCheckRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<UpsertConfigResponse> upsertConfig(UpsertConfigRequest request)
+      throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<DeleteModerationTemplateResponse> v2DeleteTemplate( V2DeleteTemplateRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<DeleteModerationConfigResponse> deleteConfig(
+      @NotNull String key, DeleteConfigRequest request) throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<DeleteModerationTemplateResponse> v2DeleteTemplate() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<QueryFeedModerationTemplatesResponse> v2QueryTemplates( V2QueryTemplatesRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<DeleteModerationConfigResponse> deleteConfig(@NotNull String key)
+      throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<QueryFeedModerationTemplatesResponse> v2QueryTemplates() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<UpsertModerationTemplateResponse> v2UpsertTemplate( V2UpsertTemplateRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<GetConfigResponse> getConfig(@NotNull String key, GetConfigRequest request)
+      throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<FlagResponse> flag( FlagRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<GetConfigResponse> getConfig(@NotNull String key) throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<GetFlagCountResponse> getFlagCount( GetFlagCountRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<QueryModerationConfigsResponse> queryModerationConfigs(
+      QueryModerationConfigsRequest request) throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<QueryModerationFlagsResponse> queryModerationFlags( QueryModerationFlagsRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<QueryModerationConfigsResponse> queryModerationConfigs()
+      throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<QueryModerationFlagsResponse> queryModerationFlags() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<QueryModerationLogsResponse> queryModerationLogs( QueryModerationLogsRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<CustomCheckResponse> customCheck(CustomCheckRequest request)
+      throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<QueryModerationLogsResponse> queryModerationLogs() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<UpsertModerationRuleResponse> upsertModerationRule( UpsertModerationRuleRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<DeleteModerationTemplateResponse> v2DeleteTemplate(
+      V2DeleteTemplateRequest request) throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<DeleteModerationRuleResponse> deleteModerationRule( DeleteModerationRuleRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<DeleteModerationTemplateResponse> v2DeleteTemplate() throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<DeleteModerationRuleResponse> deleteModerationRule() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<GetModerationRuleResponse> getModerationRule( GetModerationRuleRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<QueryFeedModerationTemplatesResponse> v2QueryTemplates(
+      V2QueryTemplatesRequest request) throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<GetModerationRuleResponse> getModerationRule() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<QueryModerationRulesResponse> queryModerationRules( QueryModerationRulesRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<QueryFeedModerationTemplatesResponse> v2QueryTemplates()
+      throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<QueryModerationRulesResponse> queryModerationRules() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<MuteResponse> mute( MuteRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<UpsertModerationTemplateResponse> v2UpsertTemplate(
+      V2UpsertTemplateRequest request) throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<QueryReviewQueueResponse> queryReviewQueue( QueryReviewQueueRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<FlagResponse> flag(FlagRequest request) throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<QueryReviewQueueResponse> queryReviewQueue() throws StreamException;
-    
-    @NotNull
-    public StreamRequest<GetReviewQueueItemResponse> getReviewQueueItem(@NotNull  String id, GetReviewQueueItemRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<GetFlagCountResponse> getFlagCount(GetFlagCountRequest request)
+      throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<GetReviewQueueItemResponse> getReviewQueueItem(@NotNull  String id) throws StreamException;
-    
-    @NotNull
-    public StreamRequest<SubmitActionResponse> submitAction( SubmitActionRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<QueryModerationFlagsResponse> queryModerationFlags(
+      QueryModerationFlagsRequest request) throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<UnbanResponse> unban( UnbanRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<QueryModerationFlagsResponse> queryModerationFlags() throws StreamException;
 
-    
-    @NotNull
-    public StreamRequest<UnmuteResponse> unmute( UnmuteRequest request ) throws StreamException;
+  @NotNull
+  public StreamRequest<QueryModerationLogsResponse> queryModerationLogs(
+      QueryModerationLogsRequest request) throws StreamException;
 
-    
+  @NotNull
+  public StreamRequest<QueryModerationLogsResponse> queryModerationLogs() throws StreamException;
 
+  @NotNull
+  public StreamRequest<UpsertModerationRuleResponse> upsertModerationRule(
+      UpsertModerationRuleRequest request) throws StreamException;
 
+  @NotNull
+  public StreamRequest<DeleteModerationRuleResponse> deleteModerationRule(
+      DeleteModerationRuleRequest request) throws StreamException;
 
+  @NotNull
+  public StreamRequest<DeleteModerationRuleResponse> deleteModerationRule() throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetModerationRuleResponse> getModerationRule(
+      GetModerationRuleRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetModerationRuleResponse> getModerationRule() throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryModerationRulesResponse> queryModerationRules(
+      QueryModerationRulesRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryModerationRulesResponse> queryModerationRules() throws StreamException;
+
+  @NotNull
+  public StreamRequest<MuteResponse> mute(MuteRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryReviewQueueResponse> queryReviewQueue(QueryReviewQueueRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryReviewQueueResponse> queryReviewQueue() throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetReviewQueueItemResponse> getReviewQueueItem(
+      @NotNull String id, GetReviewQueueItemRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetReviewQueueItemResponse> getReviewQueueItem(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<SubmitActionResponse> submitAction(SubmitActionRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UnbanResponse> unban(UnbanRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UnmuteResponse> unmute(UnmuteRequest request) throws StreamException;
 }

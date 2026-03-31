@@ -13,42 +13,33 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-    
-/**
- * Credentials for SIP inbound call authentication
- */
+
+/** Credentials for SIP inbound call authentication */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class SipInboundCredentials{
+public class SipInboundCredentials {
 
-    @JsonProperty("api_key")
-    private String apiKey;
+  @JsonProperty("api_key")
+  private String apiKey;
 
-    @JsonProperty("call_id")
-    private String callID;
+  @JsonProperty("call_id")
+  private String callID;
 
-    @JsonProperty("call_type")
-    private String callType;
+  @JsonProperty("call_type")
+  private String callType;
 
-    @JsonProperty("token")
-    private String token;
+  @JsonProperty("token")
+  private String token;
 
-    @JsonProperty("user_id")
-    private String userID;
+  @JsonProperty("user_id")
+  private String userID;
 
-    @JsonProperty("call_custom_data")
-    private Map<String, Object> callCustomData;
+  @JsonProperty("call_custom_data")
+  private Map<String, Object> callCustomData;
 
-    @JsonProperty("user_custom_data")
-    private Map<String, Object> userCustomData;
+  @JsonProperty("user_custom_data")
+  private Map<String, Object> userCustomData;
 }

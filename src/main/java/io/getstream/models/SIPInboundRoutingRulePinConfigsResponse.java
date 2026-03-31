@@ -13,41 +13,32 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
-/**
- * PIN routing rule call configuration response
- */
+
+/** PIN routing rule call configuration response */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class SIPInboundRoutingRulePinConfigsResponse{
+public class SIPInboundRoutingRulePinConfigsResponse {
 
-    @Nullable
-    @JsonProperty("custom_webhook_url")
-    private String customWebhookUrl;
+  @Nullable
+  @JsonProperty("custom_webhook_url")
+  private String customWebhookUrl;
 
-    @Nullable
-    @JsonProperty("pin_failed_attempt_prompt")
-    private String pinFailedAttemptPrompt;
+  @Nullable
+  @JsonProperty("pin_failed_attempt_prompt")
+  private String pinFailedAttemptPrompt;
 
-    @Nullable
-    @JsonProperty("pin_hangup_prompt")
-    private String pinHangupPrompt;
+  @Nullable
+  @JsonProperty("pin_hangup_prompt")
+  private String pinHangupPrompt;
 
-    @Nullable
-    @JsonProperty("pin_prompt")
-    private String pinPrompt;
+  @Nullable
+  @JsonProperty("pin_prompt")
+  private String pinPrompt;
 
-    @Nullable
-    @JsonProperty("pin_success_prompt")
-    private String pinSuccessPrompt;
+  @Nullable
+  @JsonProperty("pin_success_prompt")
+  private String pinSuccessPrompt;
 }

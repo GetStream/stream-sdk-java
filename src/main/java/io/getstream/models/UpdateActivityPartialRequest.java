@@ -13,62 +13,56 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
+
 /**
- * Partial activity update
- * Updates certain fields of the activity. Use &#39;set&#39; to update specific fields and &#39;unset&#39; to remove fields. This allows you to update only the fields you need without replacing the entire activity. Useful for updating reply restrictions (&#39;restrict_replies&#39;), mentioned users, or custom data.
- * Sends events:
- * - feeds.activity.updated
+ * Partial activity update Updates certain fields of the activity. Use &#39;set&#39; to update
+ * specific fields and &#39;unset&#39; to remove fields. This allows you to update only the fields
+ * you need without replacing the entire activity. Useful for updating reply restrictions
+ * (&#39;restrict_replies&#39;), mentioned users, or custom data. Sends events: -
+ * feeds.activity.updated
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class UpdateActivityPartialRequest {
-    
-    /**
-     * @deprecated
-     */
-    @Deprecated
-    @Nullable
-    @JsonProperty("copy_custom_to_notification")
-    private Boolean copyCustomToNotification;
-    
-    @Nullable
-    @JsonProperty("enrich_own_fields")
-    private Boolean enrichOwnFields;
-    
-    @Nullable
-    @JsonProperty("handle_mention_notifications")
-    private Boolean handleMentionNotifications;
-    
-    @Nullable
-    @JsonProperty("run_activity_processors")
-    private Boolean runActivityProcessors;
-    
-    @Nullable
-    @JsonProperty("user_id")
-    private String userID;
-    
-    @Nullable
-    @JsonProperty("unset")
-    private List<String> unset;
-    
-    @Nullable
-    @JsonProperty("set")
-    private Map<String, Object> set;
-    
-    @Nullable
-    @JsonProperty("user")
-    private UserRequest user;
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
+  @Nullable
+  @JsonProperty("copy_custom_to_notification")
+  private Boolean copyCustomToNotification;
+
+  @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
+
+  @Nullable
+  @JsonProperty("handle_mention_notifications")
+  private Boolean handleMentionNotifications;
+
+  @Nullable
+  @JsonProperty("run_activity_processors")
+  private Boolean runActivityProcessors;
+
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
+  @JsonProperty("unset")
+  private List<String> unset;
+
+  @Nullable
+  @JsonProperty("set")
+  private Map<String, Object> set;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

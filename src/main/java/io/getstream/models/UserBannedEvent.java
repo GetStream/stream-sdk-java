@@ -13,85 +13,81 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 /**
- * This event is sent when a user gets banned. The event contains information about the user that was banned.
+ * This event is sent when a user gets banned. The event contains information about the user that
+ * was banned.
  */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UserBannedEvent{
+public class UserBannedEvent {
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 
-    @JsonProperty("user")
-    private UserResponseCommonFields user;
+  @JsonProperty("user")
+  private UserResponseCommonFields user;
 
-    @JsonProperty("type")
-    private String type;
+  @JsonProperty("type")
+  private String type;
 
-    @Nullable
-    @JsonProperty("channel_id")
-    private String channelID;
+  @Nullable
+  @JsonProperty("channel_id")
+  private String channelID;
 
-    @Nullable
-    @JsonProperty("channel_member_count")
-    private Integer channelMemberCount;
+  @Nullable
+  @JsonProperty("channel_member_count")
+  private Integer channelMemberCount;
 
-    @Nullable
-    @JsonProperty("channel_message_count")
-    private Integer channelMessageCount;
+  @Nullable
+  @JsonProperty("channel_message_count")
+  private Integer channelMessageCount;
 
-    @Nullable
-    @JsonProperty("channel_type")
-    private String channelType;
+  @Nullable
+  @JsonProperty("channel_type")
+  private String channelType;
 
-    @Nullable
-    @JsonProperty("cid")
-    private String cid;
+  @Nullable
+  @JsonProperty("cid")
+  private String cid;
 
-    @Nullable
-    @JsonProperty("expiration")
-    private Date expiration;
+  @Nullable
+  @JsonProperty("expiration")
+  private Date expiration;
 
-    @Nullable
-    @JsonProperty("reason")
-    private String reason;
+  @Nullable
+  @JsonProperty("reason")
+  private String reason;
 
-    @Nullable
-    @JsonProperty("received_at")
-    private Date receivedAt;
+  @Nullable
+  @JsonProperty("received_at")
+  private Date receivedAt;
 
-    @Nullable
-    @JsonProperty("shadow")
-    private Boolean shadow;
+  @Nullable
+  @JsonProperty("shadow")
+  private Boolean shadow;
 
-    @Nullable
-    @JsonProperty("team")
-    private String team;
+  @Nullable
+  @JsonProperty("team")
+  private String team;
 
-    @Nullable
-    @JsonProperty("total_bans")
-    private Integer totalBans;
+  @Nullable
+  @JsonProperty("total_bans")
+  private Integer totalBans;
 
-    @Nullable
-    @JsonProperty("channel_custom")
-    private Map<String, Object> channelCustom;
+  @Nullable
+  @JsonProperty("channel_custom")
+  private Map<String, Object> channelCustom;
 
-    @Nullable
-    @JsonProperty("created_by")
-    private UserResponseCommonFields createdBy;
+  @Nullable
+  @JsonProperty("created_by")
+  private UserResponseCommonFields createdBy;
 }

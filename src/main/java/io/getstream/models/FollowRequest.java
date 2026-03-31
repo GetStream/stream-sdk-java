@@ -13,62 +13,51 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
-/**
- * Create a follow
- * Creates a follow and broadcasts FollowAddedEvent
- */
+
+/** Create a follow Creates a follow and broadcasts FollowAddedEvent */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class FollowRequest {
-    
-    @JsonProperty("source")
-    private String source;
-    
-    @JsonProperty("target")
-    private String target;
-    
-    /**
-     * @deprecated
-     */
-    @Deprecated
-    @Nullable
-    @JsonProperty("copy_custom_to_notification")
-    private Boolean copyCustomToNotification;
-    
-    @Nullable
-    @JsonProperty("create_notification_activity")
-    private Boolean createNotificationActivity;
-    
-    @Nullable
-    @JsonProperty("enrich_own_fields")
-    private Boolean enrichOwnFields;
-    
-    @Nullable
-    @JsonProperty("push_preference")
-    private String pushPreference;
-    
-    @Nullable
-    @JsonProperty("skip_push")
-    private Boolean skipPush;
-    
-    @Nullable
-    @JsonProperty("status")
-    private String status;
-    
-    @Nullable
-    @JsonProperty("custom")
-    private Map<String, Object> custom;
 
+  @JsonProperty("source")
+  private String source;
+
+  @JsonProperty("target")
+  private String target;
+
+  /**
+   * @deprecated
+   */
+  @Deprecated
+  @Nullable
+  @JsonProperty("copy_custom_to_notification")
+  private Boolean copyCustomToNotification;
+
+  @Nullable
+  @JsonProperty("create_notification_activity")
+  private Boolean createNotificationActivity;
+
+  @Nullable
+  @JsonProperty("enrich_own_fields")
+  private Boolean enrichOwnFields;
+
+  @Nullable
+  @JsonProperty("push_preference")
+  private String pushPreference;
+
+  @Nullable
+  @JsonProperty("skip_push")
+  private Boolean skipPush;
+
+  @Nullable
+  @JsonProperty("status")
+  private String status;
+
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 }

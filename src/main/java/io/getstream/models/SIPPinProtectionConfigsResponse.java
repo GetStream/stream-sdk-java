@@ -13,36 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
-/**
- * PIN protection configuration response
- */
+
+/** PIN protection configuration response */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class SIPPinProtectionConfigsResponse{
+public class SIPPinProtectionConfigsResponse {
 
-    @JsonProperty("enabled")
-    private Boolean enabled;
+  @JsonProperty("enabled")
+  private Boolean enabled;
 
-    @Nullable
-    @JsonProperty("default_pin")
-    private String defaultPin;
+  @Nullable
+  @JsonProperty("default_pin")
+  private String defaultPin;
 
-    @Nullable
-    @JsonProperty("max_attempts")
-    private Integer maxAttempts;
+  @Nullable
+  @JsonProperty("max_attempts")
+  private Integer maxAttempts;
 
-    @Nullable
-    @JsonProperty("required_pin_digits")
-    private Integer requiredPinDigits;
+  @Nullable
+  @JsonProperty("required_pin_digits")
+  private Integer requiredPinDigits;
 }

@@ -13,30 +13,23 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class XiaomiConfig{
+public class XiaomiConfig {
 
-    @Nullable
-    @JsonProperty("Disabled")
-    private Boolean disabled;
+  @Nullable
+  @JsonProperty("Disabled")
+  private Boolean disabled;
 
-    @Nullable
-    @JsonProperty("package_name")
-    private String packageName;
+  @Nullable
+  @JsonProperty("package_name")
+  private String packageName;
 
-    @Nullable
-    @JsonProperty("secret")
-    private String secret;
+  @Nullable
+  @JsonProperty("secret")
+  private String secret;
 }

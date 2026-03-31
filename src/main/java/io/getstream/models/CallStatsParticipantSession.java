@@ -13,87 +13,81 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallStatsParticipantSession{
+public class CallStatsParticipantSession {
 
-    @JsonProperty("is_live")
-    private Boolean isLive;
+  @JsonProperty("is_live")
+  private Boolean isLive;
 
-    @JsonProperty("user_session_id")
-    private String userSessionID;
+  @JsonProperty("user_session_id")
+  private String userSessionID;
 
-    @JsonProperty("published_tracks")
-    private PublishedTrackFlags publishedTracks;
+  @JsonProperty("published_tracks")
+  private PublishedTrackFlags publishedTracks;
 
-    @Nullable
-    @JsonProperty("browser")
-    private String browser;
+  @Nullable
+  @JsonProperty("browser")
+  private String browser;
 
-    @Nullable
-    @JsonProperty("browser_version")
-    private String browserVersion;
+  @Nullable
+  @JsonProperty("browser_version")
+  private String browserVersion;
 
-    @Nullable
-    @JsonProperty("cq_score")
-    private Integer cqScore;
+  @Nullable
+  @JsonProperty("cq_score")
+  private Integer cqScore;
 
-    @Nullable
-    @JsonProperty("current_ip")
-    private String currentIp;
+  @Nullable
+  @JsonProperty("current_ip")
+  private String currentIp;
 
-    @Nullable
-    @JsonProperty("current_sfu")
-    private String currentSfu;
+  @Nullable
+  @JsonProperty("current_sfu")
+  private String currentSfu;
 
-    @Nullable
-    @JsonProperty("distance_to_sfu_kilometers")
-    private Double distanceToSfuKilometers;
+  @Nullable
+  @JsonProperty("distance_to_sfu_kilometers")
+  private Double distanceToSfuKilometers;
 
-    @Nullable
-    @JsonProperty("ended_at")
-    private Date endedAt;
+  @Nullable
+  @JsonProperty("ended_at")
+  private Date endedAt;
 
-    @Nullable
-    @JsonProperty("os")
-    private String os;
+  @Nullable
+  @JsonProperty("os")
+  private String os;
 
-    @Nullable
-    @JsonProperty("publisher_type")
-    private String publisherType;
+  @Nullable
+  @JsonProperty("publisher_type")
+  private String publisherType;
 
-    @Nullable
-    @JsonProperty("sdk")
-    private String sdk;
+  @Nullable
+  @JsonProperty("sdk")
+  private String sdk;
 
-    @Nullable
-    @JsonProperty("sdk_version")
-    private String sdkVersion;
+  @Nullable
+  @JsonProperty("sdk_version")
+  private String sdkVersion;
 
-    @Nullable
-    @JsonProperty("started_at")
-    private Date startedAt;
+  @Nullable
+  @JsonProperty("started_at")
+  private Date startedAt;
 
-    @Nullable
-    @JsonProperty("unified_session_id")
-    private String unifiedSessionID;
+  @Nullable
+  @JsonProperty("unified_session_id")
+  private String unifiedSessionID;
 
-    @Nullable
-    @JsonProperty("webrtc_version")
-    private String webrtcVersion;
+  @Nullable
+  @JsonProperty("webrtc_version")
+  private String webrtcVersion;
 
-    @Nullable
-    @JsonProperty("location")
-    private CallStatsLocation location;
+  @Nullable
+  @JsonProperty("location")
+  private CallStatsLocation location;
 }

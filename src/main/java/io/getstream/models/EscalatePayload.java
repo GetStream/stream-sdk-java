@@ -13,33 +13,24 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
-/**
- * Configuration for escalation action
- */
+
+/** Configuration for escalation action */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class EscalatePayload{
+public class EscalatePayload {
 
-    @Nullable
-    @JsonProperty("notes")
-    private String notes;
+  @Nullable
+  @JsonProperty("notes")
+  private String notes;
 
-    @Nullable
-    @JsonProperty("priority")
-    private String priority;
+  @Nullable
+  @JsonProperty("priority")
+  private String priority;
 
-    @Nullable
-    @JsonProperty("reason")
-    private String reason;
+  @Nullable
+  @JsonProperty("reason")
+  private String reason;
 }

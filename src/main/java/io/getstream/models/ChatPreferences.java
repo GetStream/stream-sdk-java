@@ -13,50 +13,43 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-    
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ChatPreferences{
+public class ChatPreferences {
 
-    @Nullable
-    @JsonProperty("channel_mentions")
-    private String channelMentions;
+  @Nullable
+  @JsonProperty("channel_mentions")
+  private String channelMentions;
 
-    @Nullable
-    @JsonProperty("default_preference")
-    private String defaultPreference;
+  @Nullable
+  @JsonProperty("default_preference")
+  private String defaultPreference;
 
-    @Nullable
-    @JsonProperty("direct_mentions")
-    private String directMentions;
+  @Nullable
+  @JsonProperty("direct_mentions")
+  private String directMentions;
 
-    @Nullable
-    @JsonProperty("distinct_channel_messages")
-    private String distinctChannelMessages;
+  @Nullable
+  @JsonProperty("distinct_channel_messages")
+  private String distinctChannelMessages;
 
-    @Nullable
-    @JsonProperty("group_mentions")
-    private String groupMentions;
+  @Nullable
+  @JsonProperty("group_mentions")
+  private String groupMentions;
 
-    @Nullable
-    @JsonProperty("here_mentions")
-    private String hereMentions;
+  @Nullable
+  @JsonProperty("here_mentions")
+  private String hereMentions;
 
-    @Nullable
-    @JsonProperty("role_mentions")
-    private String roleMentions;
+  @Nullable
+  @JsonProperty("role_mentions")
+  private String roleMentions;
 
-    @Nullable
-    @JsonProperty("thread_replies")
-    private String threadReplies;
+  @Nullable
+  @JsonProperty("thread_replies")
+  private String threadReplies;
 }

@@ -13,34 +13,24 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.models.framework.RateLimit;
-import java.util.Optional;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import io.getstream.annotations.Query;
+
 /**
- * Ring Call Users
- * Sends a ring notification to the provided users who are not already in the call. All users should be members of the call
- * Sends events:
- * - call.ring
+ * Ring Call Users Sends a ring notification to the provided users who are not already in the call.
+ * All users should be members of the call Sends events: - call.ring
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor@lombok.AllArgsConstructor
-
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class RingCallRequest {
-    
-    @Nullable
-    @JsonProperty("video")
-    private Boolean video;
-    
-    @Nullable
-    @JsonProperty("members_ids")
-    private List<String> membersIds;
 
+  @Nullable
+  @JsonProperty("video")
+  private Boolean video;
+
+  @Nullable
+  @JsonProperty("members_ids")
+  private List<String> membersIds;
 }
