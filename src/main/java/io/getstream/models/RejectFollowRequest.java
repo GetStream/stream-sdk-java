@@ -13,17 +13,30 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-/** Reject a follow request Rejects a pending follow request */
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
+/**
+ * Reject a follow request
+ * Rejects a pending follow request
+ */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class RejectFollowRequest {
+    
+    @JsonProperty("source")
+    private String source;
+    
+    @JsonProperty("target")
+    private String target;
 
-  @JsonProperty("source")
-  private String source;
-
-  @JsonProperty("target")
-  private String target;
 }

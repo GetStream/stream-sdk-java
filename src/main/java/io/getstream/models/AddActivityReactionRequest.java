@@ -13,44 +13,59 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Add reaction Adds a reaction to an activity */
+import io.getstream.annotations.Query;
+/**
+ * Add reaction
+ * Adds a reaction to an activity
+ */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class AddActivityReactionRequest {
+    
+    @JsonProperty("type")
+    private String type;
+    
+    /**
+     * @deprecated
+     */
+    @Deprecated
+    @Nullable
+    @JsonProperty("copy_custom_to_notification")
+    private Boolean copyCustomToNotification;
+    
+    @Nullable
+    @JsonProperty("create_notification_activity")
+    private Boolean createNotificationActivity;
+    
+    @Nullable
+    @JsonProperty("enforce_unique")
+    private Boolean enforceUnique;
+    
+    @Nullable
+    @JsonProperty("skip_push")
+    private Boolean skipPush;
+    
+    @Nullable
+    @JsonProperty("user_id")
+    private String userID;
+    
+    @Nullable
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
+    
+    @Nullable
+    @JsonProperty("user")
+    private UserRequest user;
 
-  @JsonProperty("type")
-  private String type;
-
-  @Nullable
-  @JsonProperty("copy_custom_to_notification")
-  private Boolean copyCustomToNotification;
-
-  @Nullable
-  @JsonProperty("create_notification_activity")
-  private Boolean createNotificationActivity;
-
-  @Nullable
-  @JsonProperty("enforce_unique")
-  private Boolean enforceUnique;
-
-  @Nullable
-  @JsonProperty("skip_push")
-  private Boolean skipPush;
-
-  @Nullable
-  @JsonProperty("user_id")
-  private String userID;
-
-  @Nullable
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
-
-  @Nullable
-  @JsonProperty("user")
-  private UserRequest user;
 }

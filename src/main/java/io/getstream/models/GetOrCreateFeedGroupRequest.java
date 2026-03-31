@@ -13,52 +13,60 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Get or create a feed group Get an existing feed group or create a new one if it doesn&#39;t exist
+ * Get or create a feed group
+ * Get an existing feed group or create a new one if it doesn&#39;t exist
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class GetOrCreateFeedGroupRequest {
+    
+    @Nullable
+    @JsonProperty("default_visibility")
+    private String defaultVisibility;
+    
+    @Nullable
+    @JsonProperty("activity_processors")
+    private List<ActivityProcessorConfig> activityProcessors;
+    
+    @Nullable
+    @JsonProperty("activity_selectors")
+    private List<ActivitySelectorConfig> activitySelectors;
+    
+    @Nullable
+    @JsonProperty("aggregation")
+    private AggregationConfig aggregation;
+    
+    @Nullable
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
+    
+    @Nullable
+    @JsonProperty("notification")
+    private NotificationConfig notification;
+    
+    @Nullable
+    @JsonProperty("push_notification")
+    private PushNotificationConfig pushNotification;
+    
+    @Nullable
+    @JsonProperty("ranking")
+    private RankingConfig ranking;
+    
+    @Nullable
+    @JsonProperty("stories")
+    private StoriesConfig stories;
 
-  @Nullable
-  @JsonProperty("default_visibility")
-  private String defaultVisibility;
-
-  @Nullable
-  @JsonProperty("activity_processors")
-  private List<ActivityProcessorConfig> activityProcessors;
-
-  @Nullable
-  @JsonProperty("activity_selectors")
-  private List<ActivitySelectorConfig> activitySelectors;
-
-  @Nullable
-  @JsonProperty("aggregation")
-  private AggregationConfig aggregation;
-
-  @Nullable
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
-
-  @Nullable
-  @JsonProperty("notification")
-  private NotificationConfig notification;
-
-  @Nullable
-  @JsonProperty("push_notification")
-  private PushNotificationConfig pushNotification;
-
-  @Nullable
-  @JsonProperty("ranking")
-  private RankingConfig ranking;
-
-  @Nullable
-  @JsonProperty("stories")
-  private StoriesConfig stories;
 }

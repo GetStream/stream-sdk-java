@@ -13,62 +13,70 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Upsert moderation rule Create or update a moderation rule that can apply app-wide or to specific
- * moderation configs
+ * Upsert moderation rule
+ * Create or update a moderation rule that can apply app-wide or to specific moderation configs
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class UpsertModerationRuleRequest {
+    
+    @JsonProperty("name")
+    private String name;
+    
+    @JsonProperty("rule_type")
+    private String ruleType;
+    
+    @Nullable
+    @JsonProperty("cooldown_period")
+    private String cooldownPeriod;
+    
+    @Nullable
+    @JsonProperty("description")
+    private String description;
+    
+    @Nullable
+    @JsonProperty("enabled")
+    private Boolean enabled;
+    
+    @Nullable
+    @JsonProperty("logic")
+    private String logic;
+    
+    @Nullable
+    @JsonProperty("team")
+    private String team;
+    
+    @Nullable
+    @JsonProperty("action_sequences")
+    private List<CallRuleActionSequence> actionSequences;
+    
+    @Nullable
+    @JsonProperty("conditions")
+    private List<RuleBuilderCondition> conditions;
+    
+    @Nullable
+    @JsonProperty("config_keys")
+    private List<String> configKeys;
+    
+    @Nullable
+    @JsonProperty("groups")
+    private List<RuleBuilderConditionGroup> groups;
+    
+    @Nullable
+    @JsonProperty("action")
+    private RuleBuilderAction action;
 
-  @JsonProperty("name")
-  private String name;
-
-  @JsonProperty("rule_type")
-  private String ruleType;
-
-  @Nullable
-  @JsonProperty("cooldown_period")
-  private String cooldownPeriod;
-
-  @Nullable
-  @JsonProperty("description")
-  private String description;
-
-  @Nullable
-  @JsonProperty("enabled")
-  private Boolean enabled;
-
-  @Nullable
-  @JsonProperty("logic")
-  private String logic;
-
-  @Nullable
-  @JsonProperty("team")
-  private String team;
-
-  @Nullable
-  @JsonProperty("action_sequences")
-  private List<CallRuleActionSequence> actionSequences;
-
-  @Nullable
-  @JsonProperty("conditions")
-  private List<RuleBuilderCondition> conditions;
-
-  @Nullable
-  @JsonProperty("config_keys")
-  private List<String> configKeys;
-
-  @Nullable
-  @JsonProperty("groups")
-  private List<RuleBuilderConditionGroup> groups;
-
-  @Nullable
-  @JsonProperty("action")
-  private RuleBuilderAction action;
 }

@@ -13,29 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Resolve SIP Auth Determine authentication requirements for an inbound SIP call before sending a
- * digest challenge
+ * Resolve SIP Auth
+ * Determine authentication requirements for an inbound SIP call before sending a digest challenge
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class ResolveSipAuthRequest {
+    
+    @JsonProperty("sip_caller_number")
+    private String sipCallerNumber;
+    
+    @JsonProperty("sip_trunk_number")
+    private String sipTrunkNumber;
+    
+    @Nullable
+    @JsonProperty("from_host")
+    private String fromHost;
+    
+    @Nullable
+    @JsonProperty("source_ip")
+    private String sourceIp;
 
-  @JsonProperty("sip_caller_number")
-  private String sipCallerNumber;
-
-  @JsonProperty("sip_trunk_number")
-  private String sipTrunkNumber;
-
-  @Nullable
-  @JsonProperty("from_host")
-  private String fromHost;
-
-  @Nullable
-  @JsonProperty("source_ip")
-  private String sourceIp;
 }

@@ -13,27 +13,35 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Update multiple collections Update existing collections in a batch operation. Only the custom
- * data field is updatable. Users can only update their own collections.
+ * Update multiple collections
+ * Update existing collections in a batch operation. Only the custom data field is updatable. Users can only update their own collections.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class UpdateCollectionsRequest {
+    
+    @JsonProperty("collections")
+    private List<UpdateCollectionRequest> collections;
+    
+    @Nullable
+    @JsonProperty("user_id")
+    private String userID;
+    
+    @Nullable
+    @JsonProperty("user")
+    private UserRequest user;
 
-  @JsonProperty("collections")
-  private List<UpdateCollectionRequest> collections;
-
-  @Nullable
-  @JsonProperty("user_id")
-  private String userID;
-
-  @Nullable
-  @JsonProperty("user")
-  private UserRequest user;
 }

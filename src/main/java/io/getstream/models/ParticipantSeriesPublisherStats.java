@@ -13,33 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ParticipantSeriesPublisherStats {
+public class ParticipantSeriesPublisherStats{
 
-  @Nullable
-  @JsonProperty("global_metrics_order")
-  private List<String> globalMetricsOrder;
+    @Nullable
+    @JsonProperty("global_metrics_order")
+    private List<String> globalMetricsOrder;
 
-  @Nullable
-  @JsonProperty("global")
-  private Map<String, List<List<Double>>> global;
+    @Nullable
+    @JsonProperty("global")
+    private Map<String, List<List<Double>>> global;
 
-  @Nullable
-  @JsonProperty("global_meta")
-  private Map<String, MetricDescriptor> globalMeta;
+    @Nullable
+    @JsonProperty("global_meta")
+    private Map<String, MetricDescriptor> globalMeta;
 
-  @Nullable
-  @JsonProperty("global_thresholds")
-  private Map<String, List<MetricThreshold>> globalThresholds;
+    @Nullable
+    @JsonProperty("global_thresholds")
+    private Map<String, List<MetricThreshold>> globalThresholds;
 
-  @Nullable
-  @JsonProperty("tracks")
-  private Map<String, List<ParticipantSeriesTrackMetrics>> tracks;
+    @Nullable
+    @JsonProperty("tracks")
+    private Map<String, List<ParticipantSeriesTrackMetrics>> tracks;
 }

@@ -13,28 +13,37 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Configuration for activity deletion action */
+    
+/**
+ * Configuration for activity deletion action
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class DeleteActivityRequestPayload {
+public class DeleteActivityRequestPayload{
 
-  @Nullable
-  @JsonProperty("entity_id")
-  private String entityID;
+    @Nullable
+    @JsonProperty("entity_id")
+    private String entityID;
 
-  @Nullable
-  @JsonProperty("entity_type")
-  private String entityType;
+    @Nullable
+    @JsonProperty("entity_type")
+    private String entityType;
 
-  @Nullable
-  @JsonProperty("hard_delete")
-  private Boolean hardDelete;
+    @Nullable
+    @JsonProperty("hard_delete")
+    private Boolean hardDelete;
 
-  @Nullable
-  @JsonProperty("reason")
-  private String reason;
+    @Nullable
+    @JsonProperty("reason")
+    private String reason;
 }

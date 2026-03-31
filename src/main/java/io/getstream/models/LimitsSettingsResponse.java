@@ -13,27 +13,33 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class LimitsSettingsResponse {
+public class LimitsSettingsResponse{
 
-  @JsonProperty("max_participants_exclude_roles")
-  private List<String> maxParticipantsExcludeRoles;
+    @JsonProperty("max_participants_exclude_roles")
+    private List<String> maxParticipantsExcludeRoles;
 
-  @Nullable
-  @JsonProperty("max_duration_seconds")
-  private Integer maxDurationSeconds;
+    @Nullable
+    @JsonProperty("max_duration_seconds")
+    private Integer maxDurationSeconds;
 
-  @Nullable
-  @JsonProperty("max_participants")
-  private Integer maxParticipants;
+    @Nullable
+    @JsonProperty("max_participants")
+    private Integer maxParticipants;
 
-  @Nullable
-  @JsonProperty("max_participants_exclude_owner")
-  private Boolean maxParticipantsExcludeOwner;
+    @Nullable
+    @JsonProperty("max_participants_exclude_owner")
+    private Boolean maxParticipantsExcludeOwner;
 }

@@ -13,24 +13,30 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallParticipantTimeline {
+public class CallParticipantTimeline{
 
-  @JsonProperty("severity")
-  private String severity;
+    @JsonProperty("severity")
+    private String severity;
 
-  @JsonProperty("timestamp")
-  private Date timestamp;
+    @JsonProperty("timestamp")
+    private Date timestamp;
 
-  @JsonProperty("type")
-  private String type;
+    @JsonProperty("type")
+    private String type;
 
-  @JsonProperty("data")
-  private Map<String, Object> data;
+    @JsonProperty("data")
+    private Map<String, Object> data;
 }

@@ -13,17 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-/** Metric value for a specific date */
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
+/**
+ * Metric value for a specific date
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class DailyValue {
+public class DailyValue{
 
-  @JsonProperty("date")
-  private String date;
+    @JsonProperty("date")
+    private String date;
 
-  @JsonProperty("value")
-  private Integer value;
+    @JsonProperty("value")
+    private Integer value;
 }

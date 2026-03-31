@@ -13,18 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-/** Response for ListCallType */
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
+/**
+ * Response for ListCallType
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ListCallTypeResponse {
+public class ListCallTypeResponse{
 
-  @JsonProperty("duration")
-  private String duration;
+    @JsonProperty("duration")
+    private String duration;
 
-  @JsonProperty("call_types")
-  private Map<String, CallTypeResponse> callTypes;
+    @JsonProperty("call_types")
+    private Map<String, CallTypeResponse> callTypes;
 }

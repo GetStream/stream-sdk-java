@@ -13,42 +13,52 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Query feeds Query feeds with filter query */
+import io.getstream.annotations.Query;
+/**
+ * Query feeds
+ * Query feeds with filter query
+ */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class QueryFeedsRequest {
+    
+    @Nullable
+    @JsonProperty("enrich_own_fields")
+    private Boolean enrichOwnFields;
+    
+    @Nullable
+    @JsonProperty("limit")
+    private Integer limit;
+    
+    @Nullable
+    @JsonProperty("next")
+    private String next;
+    
+    @Nullable
+    @JsonProperty("prev")
+    private String prev;
+    
+    @Nullable
+    @JsonProperty("watch")
+    private Boolean watch;
+    
+    @Nullable
+    @JsonProperty("sort")
+    private List<SortParamRequest> sort;
+    
+    @Nullable
+    @JsonProperty("filter")
+    private Map<String, Object> filter;
 
-  @Nullable
-  @JsonProperty("enrich_own_fields")
-  private Boolean enrichOwnFields;
-
-  @Nullable
-  @JsonProperty("limit")
-  private Integer limit;
-
-  @Nullable
-  @JsonProperty("next")
-  private String next;
-
-  @Nullable
-  @JsonProperty("prev")
-  private String prev;
-
-  @Nullable
-  @JsonProperty("watch")
-  private Boolean watch;
-
-  @Nullable
-  @JsonProperty("sort")
-  private List<SortParamRequest> sort;
-
-  @Nullable
-  @JsonProperty("filter")
-  private Map<String, Object> filter;
 }

@@ -13,34 +13,41 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** This event is sent when the insights report is ready */
+    
+/**
+ * This event is sent when the insights report is ready
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallStatsReportReadyEvent {
+public class CallStatsReportReadyEvent{
 
-  @JsonProperty("call_cid")
-  private String callCid;
+    @JsonProperty("call_cid")
+    private String callCid;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("session_id")
-  private String sessionID;
+    @JsonProperty("session_id")
+    private String sessionID;
 
-  @JsonProperty("type")
-  private String type;
+    @JsonProperty("type")
+    private String type;
 
-  @Nullable
-  @JsonProperty("is_trimmed")
-  private Boolean isTrimmed;
+    @Nullable
+    @JsonProperty("is_trimmed")
+    private Boolean isTrimmed;
 
-  @Nullable
-  @JsonProperty("participants_overview")
-  private List<CallStatsParticipant> participantsOverview;
+    @Nullable
+    @JsonProperty("participants_overview")
+    private List<CallStatsParticipant> participantsOverview;
 }

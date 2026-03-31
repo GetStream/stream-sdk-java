@@ -13,43 +13,50 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallStatsLocation {
+public class CallStatsLocation{
 
-  @Nullable
-  @JsonProperty("accuracy_radius_meters")
-  private Integer accuracyRadiusMeters;
+    @Nullable
+    @JsonProperty("accuracy_radius_meters")
+    private Integer accuracyRadiusMeters;
 
-  @Nullable
-  @JsonProperty("city")
-  private String city;
+    @Nullable
+    @JsonProperty("city")
+    private String city;
 
-  @Nullable
-  @JsonProperty("continent")
-  private String continent;
+    @Nullable
+    @JsonProperty("continent")
+    private String continent;
 
-  @Nullable
-  @JsonProperty("country")
-  private String country;
+    @Nullable
+    @JsonProperty("country")
+    private String country;
 
-  @Nullable
-  @JsonProperty("country_iso_code")
-  private String countryIsoCode;
+    @Nullable
+    @JsonProperty("country_iso_code")
+    private String countryIsoCode;
 
-  @Nullable
-  @JsonProperty("latitude")
-  private Double latitude;
+    @Nullable
+    @JsonProperty("latitude")
+    private Double latitude;
 
-  @Nullable
-  @JsonProperty("longitude")
-  private Double longitude;
+    @Nullable
+    @JsonProperty("longitude")
+    private Double longitude;
 
-  @Nullable
-  @JsonProperty("subdivision")
-  private String subdivision;
+    @Nullable
+    @JsonProperty("subdivision")
+    private String subdivision;
 }

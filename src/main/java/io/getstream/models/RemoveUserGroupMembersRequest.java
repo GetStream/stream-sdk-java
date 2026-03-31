@@ -13,23 +13,31 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Remove user group members Removes members from a user group. Users already not in the group are
- * silently ignored.
+ * Remove user group members
+ * Removes members from a user group. Users already not in the group are silently ignored.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class RemoveUserGroupMembersRequest {
+    
+    @JsonProperty("member_ids")
+    private List<String> memberIds;
+    
+    @Nullable
+    @JsonProperty("team_id")
+    private String teamID;
 
-  @JsonProperty("member_ids")
-  private List<String> memberIds;
-
-  @Nullable
-  @JsonProperty("team_id")
-  private String teamID;
 }

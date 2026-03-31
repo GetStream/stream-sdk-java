@@ -13,23 +13,29 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class FilterConfigResponse {
+public class FilterConfigResponse{
 
-  @JsonProperty("llm_labels")
-  private List<String> llmLabels;
+    @JsonProperty("llm_labels")
+    private List<String> llmLabels;
 
-  @Nullable
-  @JsonProperty("ai_text_labels")
-  private List<String> aiTextLabels;
+    @Nullable
+    @JsonProperty("ai_text_labels")
+    private List<String> aiTextLabels;
 
-  @Nullable
-  @JsonProperty("config_keys")
-  private List<String> configKeys;
+    @Nullable
+    @JsonProperty("config_keys")
+    private List<String> configKeys;
 }

@@ -13,22 +13,28 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class SessionWarningResponse {
+public class SessionWarningResponse{
 
-  @JsonProperty("code")
-  private String code;
+    @JsonProperty("code")
+    private String code;
 
-  @JsonProperty("warning")
-  private String warning;
+    @JsonProperty("warning")
+    private String warning;
 
-  @Nullable
-  @JsonProperty("time")
-  private Date time;
+    @Nullable
+    @JsonProperty("time")
+    private Date time;
 }

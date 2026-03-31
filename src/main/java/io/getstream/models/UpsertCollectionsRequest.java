@@ -13,18 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
 /**
- * Upsert multiple collections Insert new collections or update existing ones in a batch operation.
- * Only the custom data field is updatable for existing collections.
+ * Upsert multiple collections
+ * Insert new collections or update existing ones in a batch operation. Only the custom data field is updatable for existing collections.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
-public class UpsertCollectionsRequest {
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
 
-  @JsonProperty("collections")
-  private List<CollectionRequest> collections;
+public class UpsertCollectionsRequest {
+    
+    @JsonProperty("collections")
+    private List<CollectionRequest> collections;
+
 }

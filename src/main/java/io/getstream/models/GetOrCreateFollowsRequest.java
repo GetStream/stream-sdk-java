@@ -13,23 +13,31 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Upsert multiple follows at once Creates or updates multiple follows at once. Does not return an
- * error if follows already exist. Broadcasts FollowAddedEvent only for newly created follows.
+ * Upsert multiple follows at once
+ * Creates or updates multiple follows at once. Does not return an error if follows already exist. Broadcasts FollowAddedEvent only for newly created follows.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class GetOrCreateFollowsRequest {
+    
+    @JsonProperty("follows")
+    private List<FollowRequest> follows;
+    
+    @Nullable
+    @JsonProperty("enrich_own_fields")
+    private Boolean enrichOwnFields;
 
-  @JsonProperty("follows")
-  private List<FollowRequest> follows;
-
-  @Nullable
-  @JsonProperty("enrich_own_fields")
-  private Boolean enrichOwnFields;
 }

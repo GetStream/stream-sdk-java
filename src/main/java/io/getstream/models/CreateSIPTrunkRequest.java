@@ -13,27 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Create SIP Trunk Create a new SIP trunk for the application */
+import io.getstream.annotations.Query;
+/**
+ * Create SIP Trunk
+ * Create a new SIP trunk for the application
+ */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class CreateSIPTrunkRequest {
+    
+    @JsonProperty("name")
+    private String name;
+    
+    @JsonProperty("numbers")
+    private List<String> numbers;
+    
+    @Nullable
+    @JsonProperty("password")
+    private String password;
+    
+    @Nullable
+    @JsonProperty("allowed_ips")
+    private List<String> allowedIps;
 
-  @JsonProperty("name")
-  private String name;
-
-  @JsonProperty("numbers")
-  private List<String> numbers;
-
-  @Nullable
-  @JsonProperty("password")
-  private String password;
-
-  @Nullable
-  @JsonProperty("allowed_ips")
-  private List<String> allowedIps;
 }

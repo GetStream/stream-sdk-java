@@ -13,31 +13,37 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class FileUploadConfig {
+public class FileUploadConfig{
 
-  @JsonProperty("size_limit")
-  private Integer sizeLimit;
+    @JsonProperty("size_limit")
+    private Integer sizeLimit;
 
-  @Nullable
-  @JsonProperty("allowed_file_extensions")
-  private List<String> allowedFileExtensions;
+    @Nullable
+    @JsonProperty("allowed_file_extensions")
+    private List<String> allowedFileExtensions;
 
-  @Nullable
-  @JsonProperty("allowed_mime_types")
-  private List<String> allowedMimeTypes;
+    @Nullable
+    @JsonProperty("allowed_mime_types")
+    private List<String> allowedMimeTypes;
 
-  @Nullable
-  @JsonProperty("blocked_file_extensions")
-  private List<String> blockedFileExtensions;
+    @Nullable
+    @JsonProperty("blocked_file_extensions")
+    private List<String> blockedFileExtensions;
 
-  @Nullable
-  @JsonProperty("blocked_mime_types")
-  private List<String> blockedMimeTypes;
+    @Nullable
+    @JsonProperty("blocked_mime_types")
+    private List<String> blockedMimeTypes;
 }

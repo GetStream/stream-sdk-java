@@ -13,40 +13,50 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class FeedsPreferencesResponse {
+public class FeedsPreferencesResponse{
 
-  @Nullable
-  @JsonProperty("comment")
-  private String comment;
+    @Nullable
+    @JsonProperty("comment")
+    private String comment;
 
-  @Nullable
-  @JsonProperty("comment_reaction")
-  private String commentReaction;
+    @Nullable
+    @JsonProperty("comment_mention")
+    private String commentMention;
 
-  @Nullable
-  @JsonProperty("comment_reply")
-  private String commentReply;
+    @Nullable
+    @JsonProperty("comment_reaction")
+    private String commentReaction;
 
-  @Nullable
-  @JsonProperty("follow")
-  private String follow;
+    @Nullable
+    @JsonProperty("comment_reply")
+    private String commentReply;
 
-  @Nullable
-  @JsonProperty("mention")
-  private String mention;
+    @Nullable
+    @JsonProperty("follow")
+    private String follow;
 
-  @Nullable
-  @JsonProperty("reaction")
-  private String reaction;
+    @Nullable
+    @JsonProperty("mention")
+    private String mention;
 
-  @Nullable
-  @JsonProperty("custom_activity_types")
-  private Map<String, String> customActivityTypes;
+    @Nullable
+    @JsonProperty("reaction")
+    private String reaction;
+
+    @Nullable
+    @JsonProperty("custom_activity_types")
+    private Map<String, String> customActivityTypes;
 }

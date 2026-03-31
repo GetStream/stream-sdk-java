@@ -13,27 +13,34 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class NetworkMetricsReportResponse {
+public class NetworkMetricsReportResponse{
 
-  @Nullable
-  @JsonProperty("average_connection_time")
-  private Double averageConnectionTime;
+    @Nullable
+    @JsonProperty("average_connection_time")
+    private Double averageConnectionTime;
 
-  @Nullable
-  @JsonProperty("average_jitter")
-  private Double averageJitter;
+    @Nullable
+    @JsonProperty("average_jitter")
+    private Double averageJitter;
 
-  @Nullable
-  @JsonProperty("average_latency")
-  private Double averageLatency;
+    @Nullable
+    @JsonProperty("average_latency")
+    private Double averageLatency;
 
-  @Nullable
-  @JsonProperty("average_time_to_reconnect")
-  private Double averageTimeToReconnect;
+    @Nullable
+    @JsonProperty("average_time_to_reconnect")
+    private Double averageTimeToReconnect;
 }

@@ -13,50 +13,56 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ParticipantReportResponse {
+public class ParticipantReportResponse{
 
-  @JsonProperty("sum")
-  private Integer sum;
+    @JsonProperty("sum")
+    private Integer sum;
 
-  @JsonProperty("unique")
-  private Integer unique;
+    @JsonProperty("unique")
+    private Integer unique;
 
-  @Nullable
-  @JsonProperty("max_concurrent")
-  private Integer maxConcurrent;
+    @Nullable
+    @JsonProperty("max_concurrent")
+    private Integer maxConcurrent;
 
-  @Nullable
-  @JsonProperty("by_browser")
-  private List<GroupedStatsResponse> byBrowser;
+    @Nullable
+    @JsonProperty("by_browser")
+    private List<GroupedStatsResponse> byBrowser;
 
-  @Nullable
-  @JsonProperty("by_country")
-  private List<GroupedStatsResponse> byCountry;
+    @Nullable
+    @JsonProperty("by_country")
+    private List<GroupedStatsResponse> byCountry;
 
-  @Nullable
-  @JsonProperty("by_device")
-  private List<GroupedStatsResponse> byDevice;
+    @Nullable
+    @JsonProperty("by_device")
+    private List<GroupedStatsResponse> byDevice;
 
-  @Nullable
-  @JsonProperty("by_operating_system")
-  private List<GroupedStatsResponse> byOperatingSystem;
+    @Nullable
+    @JsonProperty("by_operating_system")
+    private List<GroupedStatsResponse> byOperatingSystem;
 
-  @Nullable
-  @JsonProperty("count_over_time")
-  private ParticipantCountOverTimeResponse countOverTime;
+    @Nullable
+    @JsonProperty("count_over_time")
+    private ParticipantCountOverTimeResponse countOverTime;
 
-  @Nullable
-  @JsonProperty("publishers")
-  private PublisherStatsResponse publishers;
+    @Nullable
+    @JsonProperty("publishers")
+    private PublisherStatsResponse publishers;
 
-  @Nullable
-  @JsonProperty("subscribers")
-  private SubscriberStatsResponse subscribers;
+    @Nullable
+    @JsonProperty("subscribers")
+    private SubscriberStatsResponse subscribers;
 }

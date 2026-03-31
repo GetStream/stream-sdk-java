@@ -13,45 +13,58 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ModerationDashboardPreferences {
+public class ModerationDashboardPreferences{
 
-  @Nullable
-  @JsonProperty("async_review_queue_upsert")
-  private Boolean asyncReviewQueueUpsert;
+    @Nullable
+    @JsonProperty("async_review_queue_upsert")
+    private Boolean asyncReviewQueueUpsert;
 
-  @Nullable
-  @JsonProperty("disable_audit_logs")
-  private Boolean disableAuditLogs;
+    @Nullable
+    @JsonProperty("disable_audit_logs")
+    private Boolean disableAuditLogs;
 
-  @Nullable
-  @JsonProperty("disable_flagging_reviewed_entity")
-  private Boolean disableFlaggingReviewedEntity;
+    @Nullable
+    @JsonProperty("disable_flagging_reviewed_entity")
+    private Boolean disableFlaggingReviewedEntity;
 
-  @Nullable
-  @JsonProperty("flag_user_on_flagged_content")
-  private Boolean flagUserOnFlaggedContent;
+    @Nullable
+    @JsonProperty("escalation_queue_enabled")
+    private Boolean escalationQueueEnabled;
 
-  @Nullable
-  @JsonProperty("media_queue_blur_enabled")
-  private Boolean mediaQueueBlurEnabled;
+    @Nullable
+    @JsonProperty("flag_user_on_flagged_content")
+    private Boolean flagUserOnFlaggedContent;
 
-  @Nullable
-  @JsonProperty("allowed_moderation_action_reasons")
-  private List<String> allowedModerationActionReasons;
+    @Nullable
+    @JsonProperty("media_queue_blur_enabled")
+    private Boolean mediaQueueBlurEnabled;
 
-  @Nullable
-  @JsonProperty("keyframe_classifications_map")
-  private Map<String, Map<String, Boolean>> keyframeClassificationsMap;
+    @Nullable
+    @JsonProperty("allowed_moderation_action_reasons")
+    private List<String> allowedModerationActionReasons;
 
-  @Nullable
-  @JsonProperty("overview_dashboard")
-  private OverviewDashboardConfig overviewDashboard;
+    @Nullable
+    @JsonProperty("escalation_reasons")
+    private List<String> escalationReasons;
+
+    @Nullable
+    @JsonProperty("keyframe_classifications_map")
+    private Map<String, Map<String, Boolean>> keyframeClassificationsMap;
+
+    @Nullable
+    @JsonProperty("overview_dashboard")
+    private OverviewDashboardConfig overviewDashboard;
 }

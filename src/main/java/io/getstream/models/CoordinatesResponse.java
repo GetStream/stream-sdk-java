@@ -13,17 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-/** Geographic coordinates */
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
+/**
+ * Geographic coordinates
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CoordinatesResponse {
+public class CoordinatesResponse{
 
-  @JsonProperty("latitude")
-  private Double latitude;
+    @JsonProperty("latitude")
+    private Double latitude;
 
-  @JsonProperty("longitude")
-  private Double longitude;
+    @JsonProperty("longitude")
+    private Double longitude;
 }

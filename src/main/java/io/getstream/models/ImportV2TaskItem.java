@@ -13,32 +13,39 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
-
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ImportV2TaskItem {
+public class ImportV2TaskItem{
 
-  @JsonProperty("app_pk")
-  private Integer appPk;
+    @JsonProperty("app_pk")
+    private Integer appPk;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("id")
-  private String id;
+    @JsonProperty("id")
+    private String id;
 
-  @JsonProperty("product")
-  private String product;
+    @JsonProperty("product")
+    private String product;
 
-  @JsonProperty("state")
-  private Integer state;
+    @JsonProperty("state")
+    private Integer state;
 
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+    @JsonProperty("updated_at")
+    private Date updatedAt;
 
-  @JsonProperty("settings")
-  private ImportV2TaskSettings settings;
+    @JsonProperty("settings")
+    private ImportV2TaskSettings settings;
 }

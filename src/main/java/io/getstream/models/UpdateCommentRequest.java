@@ -13,57 +13,68 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Update a comment Updates a comment on an object (e.g., activity) and broadcasts appropriate
- * events
+ * Update a comment
+ * Updates a comment on an object (e.g., activity) and broadcasts appropriate events
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class UpdateCommentRequest {
+    
+    @Nullable
+    @JsonProperty("comment")
+    private String comment;
+    
+    /**
+     * @deprecated
+     */
+    @Deprecated
+    @Nullable
+    @JsonProperty("copy_custom_to_notification")
+    private Boolean copyCustomToNotification;
+    
+    @Nullable
+    @JsonProperty("handle_mention_notifications")
+    private Boolean handleMentionNotifications;
+    
+    @Nullable
+    @JsonProperty("skip_enrich_url")
+    private Boolean skipEnrichUrl;
+    
+    @Nullable
+    @JsonProperty("skip_push")
+    private Boolean skipPush;
+    
+    @Nullable
+    @JsonProperty("user_id")
+    private String userID;
+    
+    @Nullable
+    @JsonProperty("attachments")
+    private List<Attachment> attachments;
+    
+    @Nullable
+    @JsonProperty("mentioned_user_ids")
+    private List<String> mentionedUserIds;
+    
+    @Nullable
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
+    
+    @Nullable
+    @JsonProperty("user")
+    private UserRequest user;
 
-  @Nullable
-  @JsonProperty("comment")
-  private String comment;
-
-  @Nullable
-  @JsonProperty("copy_custom_to_notification")
-  private Boolean copyCustomToNotification;
-
-  @Nullable
-  @JsonProperty("handle_mention_notifications")
-  private Boolean handleMentionNotifications;
-
-  @Nullable
-  @JsonProperty("skip_enrich_url")
-  private Boolean skipEnrichUrl;
-
-  @Nullable
-  @JsonProperty("skip_push")
-  private Boolean skipPush;
-
-  @Nullable
-  @JsonProperty("user_id")
-  private String userID;
-
-  @Nullable
-  @JsonProperty("attachments")
-  private List<Attachment> attachments;
-
-  @Nullable
-  @JsonProperty("mentioned_user_ids")
-  private List<String> mentionedUserIds;
-
-  @Nullable
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
-
-  @Nullable
-  @JsonProperty("user")
-  private UserRequest user;
 }

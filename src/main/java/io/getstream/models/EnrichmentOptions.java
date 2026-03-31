@@ -13,87 +13,97 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 /**
- * Options to skip specific enrichments to improve performance. Default is false (enrichments are
- * included). Setting a field to true skips that enrichment.
+ * Options to skip specific enrichments to improve performance. Default is false (enrichments are included). Setting a field to true skips that enrichment.
  */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class EnrichmentOptions {
+public class EnrichmentOptions{
 
-  @Nullable
-  @JsonProperty("enrich_own_followings")
-  private Boolean enrichOwnFollowings;
+    @Nullable
+    @JsonProperty("enrich_own_followings")
+    private Boolean enrichOwnFollowings;
 
-  @Nullable
-  @JsonProperty("skip_activity")
-  private Boolean skipActivity;
+    @Nullable
+    @JsonProperty("include_score_vars")
+    private Boolean includeScoreVars;
 
-  @Nullable
-  @JsonProperty("skip_activity_collections")
-  private Boolean skipActivityCollections;
+    @Nullable
+    @JsonProperty("skip_activity")
+    private Boolean skipActivity;
 
-  @Nullable
-  @JsonProperty("skip_activity_comments")
-  private Boolean skipActivityComments;
+    @Nullable
+    @JsonProperty("skip_activity_collections")
+    private Boolean skipActivityCollections;
 
-  @Nullable
-  @JsonProperty("skip_activity_current_feed")
-  private Boolean skipActivityCurrentFeed;
+    @Nullable
+    @JsonProperty("skip_activity_comments")
+    private Boolean skipActivityComments;
 
-  @Nullable
-  @JsonProperty("skip_activity_mentioned_users")
-  private Boolean skipActivityMentionedUsers;
+    @Nullable
+    @JsonProperty("skip_activity_current_feed")
+    private Boolean skipActivityCurrentFeed;
 
-  @Nullable
-  @JsonProperty("skip_activity_own_bookmarks")
-  private Boolean skipActivityOwnBookmarks;
+    @Nullable
+    @JsonProperty("skip_activity_mentioned_users")
+    private Boolean skipActivityMentionedUsers;
 
-  @Nullable
-  @JsonProperty("skip_activity_parents")
-  private Boolean skipActivityParents;
+    @Nullable
+    @JsonProperty("skip_activity_own_bookmarks")
+    private Boolean skipActivityOwnBookmarks;
 
-  @Nullable
-  @JsonProperty("skip_activity_poll")
-  private Boolean skipActivityPoll;
+    @Nullable
+    @JsonProperty("skip_activity_parents")
+    private Boolean skipActivityParents;
 
-  @Nullable
-  @JsonProperty("skip_activity_reactions")
-  private Boolean skipActivityReactions;
+    @Nullable
+    @JsonProperty("skip_activity_poll")
+    private Boolean skipActivityPoll;
 
-  @Nullable
-  @JsonProperty("skip_activity_refresh_image_urls")
-  private Boolean skipActivityRefreshImageUrls;
+    @Nullable
+    @JsonProperty("skip_activity_reactions")
+    private Boolean skipActivityReactions;
 
-  @Nullable
-  @JsonProperty("skip_all")
-  private Boolean skipAll;
+    @Nullable
+    @JsonProperty("skip_activity_refresh_image_urls")
+    private Boolean skipActivityRefreshImageUrls;
 
-  @Nullable
-  @JsonProperty("skip_feed_member_user")
-  private Boolean skipFeedMemberUser;
+    @Nullable
+    @JsonProperty("skip_all")
+    private Boolean skipAll;
 
-  @Nullable
-  @JsonProperty("skip_followers")
-  private Boolean skipFollowers;
+    @Nullable
+    @JsonProperty("skip_feed_member_user")
+    private Boolean skipFeedMemberUser;
 
-  @Nullable
-  @JsonProperty("skip_following")
-  private Boolean skipFollowing;
+    @Nullable
+    @JsonProperty("skip_followers")
+    private Boolean skipFollowers;
 
-  @Nullable
-  @JsonProperty("skip_own_capabilities")
-  private Boolean skipOwnCapabilities;
+    @Nullable
+    @JsonProperty("skip_following")
+    private Boolean skipFollowing;
 
-  @Nullable
-  @JsonProperty("skip_own_follows")
-  private Boolean skipOwnFollows;
+    @Nullable
+    @JsonProperty("skip_own_capabilities")
+    private Boolean skipOwnCapabilities;
 
-  @Nullable
-  @JsonProperty("skip_pins")
-  private Boolean skipPins;
+    @Nullable
+    @JsonProperty("skip_own_follows")
+    private Boolean skipOwnFollows;
+
+    @Nullable
+    @JsonProperty("skip_pins")
+    private Boolean skipPins;
 }

@@ -13,37 +13,42 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ParticipantSessionDetails {
+public class ParticipantSessionDetails{
 
-  @JsonProperty("publisher_type")
-  private String publisherType;
+    @JsonProperty("publisher_type")
+    private String publisherType;
 
-  @JsonProperty("user_id")
-  private String userID;
+    @JsonProperty("user_id")
+    private String userID;
 
-  @JsonProperty("user_session_id")
-  private String userSessionID;
+    @JsonProperty("user_session_id")
+    private String userSessionID;
 
-  @JsonProperty("roles")
-  private List<String> roles;
+    @JsonProperty("roles")
+    private List<String> roles;
 
-  @Nullable
-  @JsonProperty("duration_in_seconds")
-  private Integer durationInSeconds;
+    @Nullable
+    @JsonProperty("duration_in_seconds")
+    private Integer durationInSeconds;
 
-  @Nullable
-  @JsonProperty("joined_at")
-  private Date joinedAt;
+    @Nullable
+    @JsonProperty("joined_at")
+    private Date joinedAt;
 
-  @Nullable
-  @JsonProperty("left_at")
-  private Date leftAt;
+    @Nullable
+    @JsonProperty("left_at")
+    private Date leftAt;
 }

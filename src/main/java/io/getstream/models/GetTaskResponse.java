@@ -13,36 +13,41 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetTaskResponse {
+public class GetTaskResponse{
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("duration")
-  private String duration;
+    @JsonProperty("duration")
+    private String duration;
 
-  @JsonProperty("status")
-  private String status;
+    @JsonProperty("status")
+    private String status;
 
-  @JsonProperty("task_id")
-  private String taskID;
+    @JsonProperty("task_id")
+    private String taskID;
 
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+    @JsonProperty("updated_at")
+    private Date updatedAt;
 
-  @Nullable
-  @JsonProperty("error")
-  private ErrorResult error;
+    @Nullable
+    @JsonProperty("error")
+    private ErrorResult error;
 
-  @Nullable
-  @JsonProperty("result")
-  private Map<String, Object> result;
+    @Nullable
+    @JsonProperty("result")
+    private Map<String, Object> result;
 }

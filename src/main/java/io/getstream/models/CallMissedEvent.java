@@ -13,40 +13,45 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
 /**
- * This event is sent to call members who did not accept/reject/join the call to notify they missed
- * the call
+ * This event is sent to call members who did not accept/reject/join the call to notify they missed the call
  */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallMissedEvent {
+public class CallMissedEvent{
 
-  @JsonProperty("call_cid")
-  private String callCid;
+    @JsonProperty("call_cid")
+    private String callCid;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("notify_user")
-  private Boolean notifyUser;
+    @JsonProperty("notify_user")
+    private Boolean notifyUser;
 
-  @JsonProperty("session_id")
-  private String sessionID;
+    @JsonProperty("session_id")
+    private String sessionID;
 
-  @JsonProperty("members")
-  private List<MemberResponse> members;
+    @JsonProperty("members")
+    private List<MemberResponse> members;
 
-  @JsonProperty("call")
-  private CallResponse call;
+    @JsonProperty("call")
+    private CallResponse call;
 
-  @JsonProperty("user")
-  private UserResponse user;
+    @JsonProperty("user")
+    private UserResponse user;
 
-  @JsonProperty("type")
-  private String type;
+    @JsonProperty("type")
+    private String type;
 }

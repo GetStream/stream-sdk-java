@@ -13,23 +13,29 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class IngressSettingsResponse {
+public class IngressSettingsResponse{
 
-  @JsonProperty("enabled")
-  private Boolean enabled;
+    @JsonProperty("enabled")
+    private Boolean enabled;
 
-  @Nullable
-  @JsonProperty("audio_encoding_options")
-  private IngressAudioEncodingResponse audioEncodingOptions;
+    @Nullable
+    @JsonProperty("audio_encoding_options")
+    private IngressAudioEncodingResponse audioEncodingOptions;
 
-  @Nullable
-  @JsonProperty("video_encoding_options")
-  private Map<String, IngressVideoEncodingResponse> videoEncodingOptions;
+    @Nullable
+    @JsonProperty("video_encoding_options")
+    private Map<String, IngressVideoEncodingResponse> videoEncodingOptions;
 }

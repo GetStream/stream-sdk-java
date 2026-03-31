@@ -13,30 +13,39 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Response containing the pre-authentication decision for a SIP trunk */
+    
+/**
+ * Response containing the pre-authentication decision for a SIP trunk
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ResolveSipAuthResponse {
+public class ResolveSipAuthResponse{
 
-  @JsonProperty("auth_result")
-  private String authResult;
+    @JsonProperty("auth_result")
+    private String authResult;
 
-  @JsonProperty("duration")
-  private String duration;
+    @JsonProperty("duration")
+    private String duration;
 
-  @Nullable
-  @JsonProperty("password")
-  private String password;
+    @Nullable
+    @JsonProperty("password")
+    private String password;
 
-  @Nullable
-  @JsonProperty("trunk_id")
-  private String trunkID;
+    @Nullable
+    @JsonProperty("trunk_id")
+    private String trunkID;
 
-  @Nullable
-  @JsonProperty("username")
-  private String username;
+    @Nullable
+    @JsonProperty("username")
+    private String username;
 }

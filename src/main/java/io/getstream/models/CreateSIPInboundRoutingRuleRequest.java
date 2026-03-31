@@ -13,49 +13,57 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Create SIP Inbound Routing Rule Create a new SIP Inbound Routing Rule with either direct routing
- * or PIN routing configuration
+ * Create SIP Inbound Routing Rule
+ * Create a new SIP Inbound Routing Rule with either direct routing or PIN routing configuration
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class CreateSIPInboundRoutingRuleRequest {
+    
+    @JsonProperty("name")
+    private String name;
+    
+    @JsonProperty("trunk_ids")
+    private List<String> trunkIds;
+    
+    @JsonProperty("caller_configs")
+    private SIPCallerConfigsRequest callerConfigs;
+    
+    @Nullable
+    @JsonProperty("called_numbers")
+    private List<String> calledNumbers;
+    
+    @Nullable
+    @JsonProperty("caller_numbers")
+    private List<String> callerNumbers;
+    
+    @Nullable
+    @JsonProperty("call_configs")
+    private SIPCallConfigsRequest callConfigs;
+    
+    @Nullable
+    @JsonProperty("direct_routing_configs")
+    private SIPDirectRoutingRuleCallConfigsRequest directRoutingConfigs;
+    
+    @Nullable
+    @JsonProperty("pin_protection_configs")
+    private SIPPinProtectionConfigsRequest pinProtectionConfigs;
+    
+    @Nullable
+    @JsonProperty("pin_routing_configs")
+    private SIPInboundRoutingRulePinConfigsRequest pinRoutingConfigs;
 
-  @JsonProperty("name")
-  private String name;
-
-  @JsonProperty("trunk_ids")
-  private List<String> trunkIds;
-
-  @JsonProperty("caller_configs")
-  private SIPCallerConfigsRequest callerConfigs;
-
-  @Nullable
-  @JsonProperty("called_numbers")
-  private List<String> calledNumbers;
-
-  @Nullable
-  @JsonProperty("caller_numbers")
-  private List<String> callerNumbers;
-
-  @Nullable
-  @JsonProperty("call_configs")
-  private SIPCallConfigsRequest callConfigs;
-
-  @Nullable
-  @JsonProperty("direct_routing_configs")
-  private SIPDirectRoutingRuleCallConfigsRequest directRoutingConfigs;
-
-  @Nullable
-  @JsonProperty("pin_protection_configs")
-  private SIPPinProtectionConfigsRequest pinProtectionConfigs;
-
-  @Nullable
-  @JsonProperty("pin_routing_configs")
-  private SIPInboundRoutingRulePinConfigsRequest pinRoutingConfigs;
 }

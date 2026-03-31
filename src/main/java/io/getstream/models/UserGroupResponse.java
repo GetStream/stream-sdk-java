@@ -13,41 +13,46 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UserGroupResponse {
+public class UserGroupResponse{
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("id")
-  private String id;
+    @JsonProperty("id")
+    private String id;
 
-  @JsonProperty("name")
-  private String name;
+    @JsonProperty("name")
+    private String name;
 
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+    @JsonProperty("updated_at")
+    private Date updatedAt;
 
-  @Nullable
-  @JsonProperty("created_by")
-  private String createdBy;
+    @Nullable
+    @JsonProperty("created_by")
+    private String createdBy;
 
-  @Nullable
-  @JsonProperty("description")
-  private String description;
+    @Nullable
+    @JsonProperty("description")
+    private String description;
 
-  @Nullable
-  @JsonProperty("team_id")
-  private String teamID;
+    @Nullable
+    @JsonProperty("team_id")
+    private String teamID;
 
-  @Nullable
-  @JsonProperty("members")
-  private List<UserGroupMember> members;
+    @Nullable
+    @JsonProperty("members")
+    private List<UserGroupMember> members;
 }

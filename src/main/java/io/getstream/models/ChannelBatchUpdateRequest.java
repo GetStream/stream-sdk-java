@@ -13,32 +13,47 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Update channels in batch Update channels in batch Sends events: - channel.frozen - channel.hidden
- * - channel.unfrozen - channel.updated - channel.visible - member.added - member.removed -
- * member.updated
+ * Update channels in batch
+ * Update channels in batch
+ * Sends events:
+ * - channel.frozen
+ * - channel.hidden
+ * - channel.unfrozen
+ * - channel.updated
+ * - channel.visible
+ * - member.added
+ * - member.removed
+ * - member.updated
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class ChannelBatchUpdateRequest {
+    
+    @JsonProperty("operation")
+    private String operation;
+    
+    @JsonProperty("filter")
+    private Map<String, Object> filter;
+    
+    @Nullable
+    @JsonProperty("members")
+    private List<ChannelBatchMemberRequest> members;
+    
+    @Nullable
+    @JsonProperty("data")
+    private ChannelDataUpdate data;
 
-  @JsonProperty("operation")
-  private String operation;
-
-  @JsonProperty("filter")
-  private Map<String, Object> filter;
-
-  @Nullable
-  @JsonProperty("members")
-  private List<ChannelBatchMemberRequest> members;
-
-  @Nullable
-  @JsonProperty("data")
-  private ChannelDataUpdate data;
 }

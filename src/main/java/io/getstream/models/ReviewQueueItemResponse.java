@@ -13,129 +13,149 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ReviewQueueItemResponse {
+public class ReviewQueueItemResponse{
 
-  @JsonProperty("ai_text_severity")
-  private String aiTextSeverity;
+    @JsonProperty("ai_text_severity")
+    private String aiTextSeverity;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("entity_id")
-  private String entityID;
+    @JsonProperty("entity_id")
+    private String entityID;
 
-  @JsonProperty("entity_type")
-  private String entityType;
+    @JsonProperty("entity_type")
+    private String entityType;
 
-  @JsonProperty("flags_count")
-  private Integer flagsCount;
+    @JsonProperty("escalated")
+    private Boolean escalated;
 
-  @JsonProperty("id")
-  private String id;
+    @JsonProperty("flags_count")
+    private Integer flagsCount;
 
-  @JsonProperty("latest_moderator_action")
-  private String latestModeratorAction;
+    @JsonProperty("id")
+    private String id;
 
-  @JsonProperty("recommended_action")
-  private String recommendedAction;
+    @JsonProperty("latest_moderator_action")
+    private String latestModeratorAction;
 
-  @JsonProperty("reviewed_by")
-  private String reviewedBy;
+    @JsonProperty("recommended_action")
+    private String recommendedAction;
 
-  @JsonProperty("severity")
-  private Integer severity;
+    @JsonProperty("reviewed_by")
+    private String reviewedBy;
 
-  @JsonProperty("status")
-  private String status;
+    @JsonProperty("severity")
+    private Integer severity;
 
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+    @JsonProperty("status")
+    private String status;
 
-  @JsonProperty("actions")
-  private List<ActionLogResponse> actions;
+    @JsonProperty("updated_at")
+    private Date updatedAt;
 
-  @JsonProperty("bans")
-  private List<BanInfoResponse> bans;
+    @JsonProperty("actions")
+    private List<ActionLogResponse> actions;
 
-  @JsonProperty("flags")
-  private List<ModerationFlagResponse> flags;
+    @JsonProperty("bans")
+    private List<BanInfoResponse> bans;
 
-  @JsonProperty("languages")
-  private List<String> languages;
+    @JsonProperty("flags")
+    private List<ModerationFlagResponse> flags;
 
-  @Nullable
-  @JsonProperty("completed_at")
-  private Date completedAt;
+    @JsonProperty("languages")
+    private List<String> languages;
 
-  @Nullable
-  @JsonProperty("config_key")
-  private String configKey;
+    @Nullable
+    @JsonProperty("completed_at")
+    private Date completedAt;
 
-  @Nullable
-  @JsonProperty("entity_creator_id")
-  private String entityCreatorID;
+    @Nullable
+    @JsonProperty("config_key")
+    private String configKey;
 
-  @Nullable
-  @JsonProperty("reviewed_at")
-  private Date reviewedAt;
+    @Nullable
+    @JsonProperty("entity_creator_id")
+    private String entityCreatorID;
 
-  @Nullable
-  @JsonProperty("teams")
-  private List<String> teams;
+    @Nullable
+    @JsonProperty("escalated_at")
+    private Date escalatedAt;
 
-  @Nullable
-  @JsonProperty("activity")
-  private EnrichedActivity activity;
+    @Nullable
+    @JsonProperty("escalated_by")
+    private String escalatedBy;
 
-  @Nullable
-  @JsonProperty("appeal")
-  private AppealItemResponse appeal;
+    @Nullable
+    @JsonProperty("reviewed_at")
+    private Date reviewedAt;
 
-  @Nullable
-  @JsonProperty("assigned_to")
-  private UserResponse assignedTo;
+    @Nullable
+    @JsonProperty("teams")
+    private List<String> teams;
 
-  @Nullable
-  @JsonProperty("call")
-  private CallResponse call;
+    @Nullable
+    @JsonProperty("activity")
+    private EnrichedActivity activity;
 
-  @Nullable
-  @JsonProperty("entity_creator")
-  private EntityCreatorResponse entityCreator;
+    @Nullable
+    @JsonProperty("appeal")
+    private AppealItemResponse appeal;
 
-  @Nullable
-  @JsonProperty("feeds_v2_activity")
-  private EnrichedActivity feedsV2Activity;
+    @Nullable
+    @JsonProperty("assigned_to")
+    private UserResponse assignedTo;
 
-  @Nullable
-  @JsonProperty("feeds_v2_reaction")
-  private Reaction feedsV2Reaction;
+    @Nullable
+    @JsonProperty("call")
+    private CallResponse call;
 
-  @Nullable
-  @JsonProperty("feeds_v3_activity")
-  private ActivityResponse feedsV3Activity;
+    @Nullable
+    @JsonProperty("entity_creator")
+    private EntityCreatorResponse entityCreator;
 
-  @Nullable
-  @JsonProperty("feeds_v3_comment")
-  private CommentResponse feedsV3Comment;
+    @Nullable
+    @JsonProperty("escalation_metadata")
+    private EscalationMetadata escalationMetadata;
 
-  @Nullable
-  @JsonProperty("message")
-  private MessageResponse message;
+    @Nullable
+    @JsonProperty("feeds_v2_activity")
+    private EnrichedActivity feedsV2Activity;
 
-  @Nullable
-  @JsonProperty("moderation_payload")
-  private ModerationPayloadResponse moderationPayload;
+    @Nullable
+    @JsonProperty("feeds_v2_reaction")
+    private Reaction feedsV2Reaction;
 
-  @Nullable
-  @JsonProperty("reaction")
-  private Reaction reaction;
+    @Nullable
+    @JsonProperty("feeds_v3_activity")
+    private FeedsV3ActivityResponse feedsV3Activity;
+
+    @Nullable
+    @JsonProperty("feeds_v3_comment")
+    private FeedsV3CommentResponse feedsV3Comment;
+
+    @Nullable
+    @JsonProperty("message")
+    private MessageResponse message;
+
+    @Nullable
+    @JsonProperty("moderation_payload")
+    private ModerationPayloadResponse moderationPayload;
+
+    @Nullable
+    @JsonProperty("reaction")
+    private Reaction reaction;
 }

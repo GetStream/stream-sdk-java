@@ -13,17 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-/** Configuration for direct routing rule calls */
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
+/**
+ * Configuration for direct routing rule calls
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class SIPDirectRoutingRuleCallConfigsRequest {
+public class SIPDirectRoutingRuleCallConfigsRequest{
 
-  @JsonProperty("call_id")
-  private String callID;
+    @JsonProperty("call_id")
+    private String callID;
 
-  @JsonProperty("call_type")
-  private String callType;
+    @JsonProperty("call_type")
+    private String callType;
 }

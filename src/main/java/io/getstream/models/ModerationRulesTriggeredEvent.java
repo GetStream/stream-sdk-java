@@ -13,51 +13,57 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** This event is sent automatically whenever a rule builder rule is triggered */
+    
+/**
+ * This event is sent automatically whenever a rule builder rule is triggered
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ModerationRulesTriggeredEvent {
+public class ModerationRulesTriggeredEvent{
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("entity_id")
-  private String entityID;
+    @JsonProperty("entity_id")
+    private String entityID;
 
-  @JsonProperty("entity_type")
-  private String entityType;
+    @JsonProperty("entity_type")
+    private String entityType;
 
-  @JsonProperty("user_id")
-  private String userID;
+    @JsonProperty("user_id")
+    private String userID;
 
-  @JsonProperty("triggered_actions")
-  private List<String> triggeredActions;
+    @JsonProperty("triggered_actions")
+    private List<String> triggeredActions;
 
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
 
-  @JsonProperty("rule")
-  private ModerationRuleInfo rule;
+    @JsonProperty("rule")
+    private ModerationRuleInfo rule;
 
-  @JsonProperty("type")
-  private String type;
+    @JsonProperty("type")
+    private String type;
 
-  @Nullable
-  @JsonProperty("received_at")
-  private Date receivedAt;
+    @Nullable
+    @JsonProperty("received_at")
+    private Date receivedAt;
 
-  @Nullable
-  @JsonProperty("review_queue_item_id")
-  private String reviewQueueItemID;
+    @Nullable
+    @JsonProperty("review_queue_item_id")
+    private String reviewQueueItemID;
 
-  @Nullable
-  @JsonProperty("violation_number")
-  private Integer violationNumber;
+    @Nullable
+    @JsonProperty("violation_number")
+    private Integer violationNumber;
 }

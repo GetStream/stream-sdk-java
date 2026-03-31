@@ -12,35 +12,42 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Unban Unban a user from a channel or globally. */
+import io.getstream.annotations.Query;
+/**
+ * Unban
+ * Unban a user from a channel or globally.
+ */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class UnbanRequest {
+    
+    @Nullable
+    @JsonProperty("unbanned_by_id")
+    private String unbannedByID;
+    
+    @Nullable
+    @JsonProperty("unbanned_by")
+    private UserRequest unbannedBy;
 
-  @Nullable
-  @JsonProperty("unbanned_by_id")
-  private String unbannedByID;
-
-  @Nullable
-  @JsonProperty("unbanned_by")
-  private UserRequest unbannedBy;
-
-  @Query("target_user_id")
-  @JsonIgnore
-  private String TargetUserID;
-
-  @Query("channel_cid")
-  @JsonIgnore
-  private String ChannelCid;
-
-  @Query("created_by")
-  @JsonIgnore
-  private String CreatedBy;
+@Query("target_user_id")
+           @JsonIgnore
+           private String TargetUserID;
+@Query("channel_cid")
+           @JsonIgnore
+           private String ChannelCid;
+@Query("created_by")
+           @JsonIgnore
+           private String CreatedBy;
 }

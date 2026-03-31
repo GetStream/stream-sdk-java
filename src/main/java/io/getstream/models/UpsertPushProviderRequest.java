@@ -13,16 +13,28 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Upsert a push provider Upsert a push provider for v2 with multi bundle/package support */
+import io.getstream.annotations.Query;
+/**
+ * Upsert a push provider
+ * Upsert a push provider for v2 with multi bundle/package support
+ */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
-public class UpsertPushProviderRequest {
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
 
-  @Nullable
-  @JsonProperty("push_provider")
-  private PushProviderRequest pushProvider;
+public class UpsertPushProviderRequest {
+    
+    @Nullable
+    @JsonProperty("push_provider")
+    private PushProviderRequest pushProvider;
+
 }

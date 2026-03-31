@@ -13,31 +13,39 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class Images {
+public class Images{
 
-  @JsonProperty("fixed_height")
-  private ImageData fixedHeight;
+    @JsonProperty("fixed_height")
+    private ImageData fixedHeight;
 
-  @JsonProperty("fixed_height_downsampled")
-  private ImageData fixedHeightDownsampled;
+    @JsonProperty("fixed_height_downsampled")
+    private ImageData fixedHeightDownsampled;
 
-  @JsonProperty("fixed_height_still")
-  private ImageData fixedHeightStill;
+    @JsonProperty("fixed_height_still")
+    private ImageData fixedHeightStill;
 
-  @JsonProperty("fixed_width")
-  private ImageData fixedWidth;
+    @JsonProperty("fixed_width")
+    private ImageData fixedWidth;
 
-  @JsonProperty("fixed_width_downsampled")
-  private ImageData fixedWidthDownsampled;
+    @JsonProperty("fixed_width_downsampled")
+    private ImageData fixedWidthDownsampled;
 
-  @JsonProperty("fixed_width_still")
-  private ImageData fixedWidthStill;
+    @JsonProperty("fixed_width_still")
+    private ImageData fixedWidthStill;
 
-  @JsonProperty("original")
-  private ImageData original;
+    @JsonProperty("original")
+    private ImageData original;
 }

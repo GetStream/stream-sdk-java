@@ -13,44 +13,58 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Get or create channel This Method creates a channel or returns an existing one with matching
- * attributes Sends events: - channel.created - member.added - member.removed - member.updated -
- * user.watching.start
+ * Get or create channel
+ * This Method creates a channel or returns an existing one with matching attributes
+ * Sends events:
+ * - channel.created
+ * - member.added
+ * - member.removed
+ * - member.updated
+ * - user.watching.start
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class GetOrCreateDistinctChannelRequest {
+    
+    @Nullable
+    @JsonProperty("hide_for_creator")
+    private Boolean hideForCreator;
+    
+    @Nullable
+    @JsonProperty("state")
+    private Boolean state;
+    
+    @Nullable
+    @JsonProperty("thread_unread_counts")
+    private Boolean threadUnreadCounts;
+    
+    @Nullable
+    @JsonProperty("data")
+    private ChannelInput data;
+    
+    @Nullable
+    @JsonProperty("members")
+    private PaginationParams members;
+    
+    @Nullable
+    @JsonProperty("messages")
+    private MessagePaginationParams messages;
+    
+    @Nullable
+    @JsonProperty("watchers")
+    private PaginationParams watchers;
 
-  @Nullable
-  @JsonProperty("hide_for_creator")
-  private Boolean hideForCreator;
-
-  @Nullable
-  @JsonProperty("state")
-  private Boolean state;
-
-  @Nullable
-  @JsonProperty("thread_unread_counts")
-  private Boolean threadUnreadCounts;
-
-  @Nullable
-  @JsonProperty("data")
-  private ChannelInput data;
-
-  @Nullable
-  @JsonProperty("members")
-  private PaginationParams members;
-
-  @Nullable
-  @JsonProperty("messages")
-  private MessagePaginationParams messages;
-
-  @Nullable
-  @JsonProperty("watchers")
-  private PaginationParams watchers;
 }

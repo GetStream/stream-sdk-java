@@ -13,31 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** This event is sent when an appeal is accepted */
+    
+/**
+ * This event is sent when an appeal is accepted
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class AppealAcceptedEvent {
+public class AppealAcceptedEvent{
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
 
-  @JsonProperty("type")
-  private String type;
+    @JsonProperty("type")
+    private String type;
 
-  @Nullable
-  @JsonProperty("received_at")
-  private Date receivedAt;
+    @Nullable
+    @JsonProperty("received_at")
+    private Date receivedAt;
 
-  @Nullable
-  @JsonProperty("appeal")
-  private AppealItemResponse appeal;
+    @Nullable
+    @JsonProperty("appeal")
+    private AppealItemResponse appeal;
 }

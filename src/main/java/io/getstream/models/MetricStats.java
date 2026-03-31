@@ -13,20 +13,28 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Statistics for a single metric with optional daily breakdown */
+    
+/**
+ * Statistics for a single metric with optional daily breakdown
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class MetricStats {
+public class MetricStats{
 
-  @JsonProperty("total")
-  private Integer total;
+    @JsonProperty("total")
+    private Integer total;
 
-  @Nullable
-  @JsonProperty("daily")
-  private List<DailyValue> daily;
+    @Nullable
+    @JsonProperty("daily")
+    private List<DailyValue> daily;
 }

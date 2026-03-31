@@ -13,32 +13,41 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UpdateActivityPartialChangeRequest {
+public class UpdateActivityPartialChangeRequest{
 
-  @JsonProperty("activity_id")
-  private String activityID;
+    @JsonProperty("activity_id")
+    private String activityID;
 
-  @Nullable
-  @JsonProperty("copy_custom_to_notification")
-  private Boolean copyCustomToNotification;
+    /**
+     * @deprecated
+     */
+    @Deprecated
+    @Nullable
+    @JsonProperty("copy_custom_to_notification")
+    private Boolean copyCustomToNotification;
 
-  @Nullable
-  @JsonProperty("handle_mention_notifications")
-  private Boolean handleMentionNotifications;
+    @Nullable
+    @JsonProperty("handle_mention_notifications")
+    private Boolean handleMentionNotifications;
 
-  @Nullable
-  @JsonProperty("unset")
-  private List<String> unset;
+    @Nullable
+    @JsonProperty("unset")
+    private List<String> unset;
 
-  @Nullable
-  @JsonProperty("set")
-  private Map<String, Object> set;
+    @Nullable
+    @JsonProperty("set")
+    private Map<String, Object> set;
 }

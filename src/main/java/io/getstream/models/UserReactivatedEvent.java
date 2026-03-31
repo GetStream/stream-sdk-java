@@ -13,37 +13,41 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 /**
- * This event is sent when a user gets reactivated. The event contains information about the user
- * that was reactivated.
+ * This event is sent when a user gets reactivated. The event contains information about the user that was reactivated.
  */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UserReactivatedEvent {
+public class UserReactivatedEvent{
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
 
-  @JsonProperty("user")
-  private UserResponseCommonFields user;
+    @JsonProperty("user")
+    private UserResponseCommonFields user;
 
-  @JsonProperty("type")
-  private String type;
+    @JsonProperty("type")
+    private String type;
 
-  @Nullable
-  @JsonProperty("received_at")
-  private Date receivedAt;
+    @Nullable
+    @JsonProperty("received_at")
+    private Date receivedAt;
 
-  @Nullable
-  @JsonProperty("created_by")
-  private UserResponseCommonFields createdBy;
+    @Nullable
+    @JsonProperty("created_by")
+    private UserResponseCommonFields createdBy;
 }

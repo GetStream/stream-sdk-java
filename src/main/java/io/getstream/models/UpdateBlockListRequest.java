@@ -13,29 +13,40 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Update block list Updates contents of the block list */
+import io.getstream.annotations.Query;
+/**
+ * Update block list
+ * Updates contents of the block list
+ */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class UpdateBlockListRequest {
+    
+    @Nullable
+    @JsonProperty("is_leet_check_enabled")
+    private Boolean isLeetCheckEnabled;
+    
+    @Nullable
+    @JsonProperty("is_plural_check_enabled")
+    private Boolean isPluralCheckEnabled;
+    
+    @Nullable
+    @JsonProperty("team")
+    private String team;
+    
+    @Nullable
+    @JsonProperty("words")
+    private List<String> words;
 
-  @Nullable
-  @JsonProperty("is_leet_check_enabled")
-  private Boolean isLeetCheckEnabled;
-
-  @Nullable
-  @JsonProperty("is_plural_check_enabled")
-  private Boolean isPluralCheckEnabled;
-
-  @Nullable
-  @JsonProperty("team")
-  private String team;
-
-  @Nullable
-  @JsonProperty("words")
-  private List<String> words;
 }

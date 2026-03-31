@@ -13,50 +13,55 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class AppealItemResponse {
+public class AppealItemResponse{
 
-  @JsonProperty("appeal_reason")
-  private String appealReason;
+    @JsonProperty("appeal_reason")
+    private String appealReason;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("entity_id")
-  private String entityID;
+    @JsonProperty("entity_id")
+    private String entityID;
 
-  @JsonProperty("entity_type")
-  private String entityType;
+    @JsonProperty("entity_type")
+    private String entityType;
 
-  @JsonProperty("id")
-  private String id;
+    @JsonProperty("id")
+    private String id;
 
-  @JsonProperty("status")
-  private String status;
+    @JsonProperty("status")
+    private String status;
 
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+    @JsonProperty("updated_at")
+    private Date updatedAt;
 
-  @Nullable
-  @JsonProperty("decision_reason")
-  private String decisionReason;
+    @Nullable
+    @JsonProperty("decision_reason")
+    private String decisionReason;
 
-  @Nullable
-  @JsonProperty("attachments")
-  private List<String> attachments;
+    @Nullable
+    @JsonProperty("attachments")
+    private List<String> attachments;
 
-  @Nullable
-  @JsonProperty("entity_content")
-  private ModerationPayload entityContent;
+    @Nullable
+    @JsonProperty("entity_content")
+    private ModerationPayload entityContent;
 
-  @Nullable
-  @JsonProperty("user")
-  private UserResponse user;
+    @Nullable
+    @JsonProperty("user")
+    private UserResponse user;
 }

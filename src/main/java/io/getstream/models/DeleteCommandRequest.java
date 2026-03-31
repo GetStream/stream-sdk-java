@@ -12,8 +12,24 @@
  */
 package io.getstream.models;
 
-/** Delete command Deletes custom chat command */
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
+/**
+ * Delete command
+ * Deletes custom chat command
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteCommandRequest {}
+public class DeleteCommandRequest {
+
+}

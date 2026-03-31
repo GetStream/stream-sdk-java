@@ -13,28 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Mark channels as read Marks channels as read up to the specific message. If no channels is given,
- * mark all channel as read Sends events: - message.read
+ * Mark channels as read
+ * Marks channels as read up to the specific message. If no channels is given, mark all channel as read
+ * Sends events:
+ * - message.read
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class MarkChannelsReadRequest {
+    
+    @Nullable
+    @JsonProperty("user_id")
+    private String userID;
+    
+    @Nullable
+    @JsonProperty("read_by_channel")
+    private Map<String, String> readByChannel;
+    
+    @Nullable
+    @JsonProperty("user")
+    private UserRequest user;
 
-  @Nullable
-  @JsonProperty("user_id")
-  private String userID;
-
-  @Nullable
-  @JsonProperty("read_by_channel")
-  private Map<String, String> readByChannel;
-
-  @Nullable
-  @JsonProperty("user")
-  private UserRequest user;
 }

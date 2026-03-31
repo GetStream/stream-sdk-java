@@ -12,26 +12,33 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
-/** Get participant timeline events */
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
+/**
+ * Get participant timeline events
+ */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class GetCallSessionParticipantStatsTimelineRequest {
 
-  @Query("start_time")
-  @JsonIgnore
-  private String StartTime;
-
-  @Query("end_time")
-  @JsonIgnore
-  private String EndTime;
-
-  @Query("severity")
-  @JsonIgnore
-  private List<String> Severity;
+@Query("start_time")
+           @JsonIgnore
+           private String StartTime;
+@Query("end_time")
+           @JsonIgnore
+           private String EndTime;
+@Query("severity")
+           @JsonIgnore
+           private List<String> Severity;
 }

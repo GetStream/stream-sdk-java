@@ -13,56 +13,62 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class MessagePaginationParams {
+public class MessagePaginationParams{
 
-  @Nullable
-  @JsonProperty("created_at_after")
-  private Date createdAtAfter;
+    @Nullable
+    @JsonProperty("created_at_after")
+    private Date createdAtAfter;
 
-  @Nullable
-  @JsonProperty("created_at_after_or_equal")
-  private Date createdAtAfterOrEqual;
+    @Nullable
+    @JsonProperty("created_at_after_or_equal")
+    private Date createdAtAfterOrEqual;
 
-  @Nullable
-  @JsonProperty("created_at_around")
-  private Date createdAtAround;
+    @Nullable
+    @JsonProperty("created_at_around")
+    private Date createdAtAround;
 
-  @Nullable
-  @JsonProperty("created_at_before")
-  private Date createdAtBefore;
+    @Nullable
+    @JsonProperty("created_at_before")
+    private Date createdAtBefore;
 
-  @Nullable
-  @JsonProperty("created_at_before_or_equal")
-  private Date createdAtBeforeOrEqual;
+    @Nullable
+    @JsonProperty("created_at_before_or_equal")
+    private Date createdAtBeforeOrEqual;
 
-  @Nullable
-  @JsonProperty("id_around")
-  private String idAround;
+    @Nullable
+    @JsonProperty("id_around")
+    private String idAround;
 
-  @Nullable
-  @JsonProperty("id_gt")
-  private String idGt;
+    @Nullable
+    @JsonProperty("id_gt")
+    private String idGt;
 
-  @Nullable
-  @JsonProperty("id_gte")
-  private String idGte;
+    @Nullable
+    @JsonProperty("id_gte")
+    private String idGte;
 
-  @Nullable
-  @JsonProperty("id_lt")
-  private String idLt;
+    @Nullable
+    @JsonProperty("id_lt")
+    private String idLt;
 
-  @Nullable
-  @JsonProperty("id_lte")
-  private String idLte;
+    @Nullable
+    @JsonProperty("id_lte")
+    private String idLte;
 
-  @Nullable
-  @JsonProperty("limit")
-  private Integer limit;
+    @Nullable
+    @JsonProperty("limit")
+    private Integer limit;
 }

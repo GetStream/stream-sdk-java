@@ -13,26 +13,35 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Response containing resolved SIP inbound routing information */
+    
+/**
+ * Response containing resolved SIP inbound routing information
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ResolveSipInboundResponse {
+public class ResolveSipInboundResponse{
 
-  @JsonProperty("duration")
-  private String duration;
+    @JsonProperty("duration")
+    private String duration;
 
-  @JsonProperty("credentials")
-  private SipInboundCredentials credentials;
+    @JsonProperty("credentials")
+    private SipInboundCredentials credentials;
 
-  @Nullable
-  @JsonProperty("sip_routing_rule")
-  private SIPInboundRoutingRuleResponse sipRoutingRule;
+    @Nullable
+    @JsonProperty("sip_routing_rule")
+    private SIPInboundRoutingRuleResponse sipRoutingRule;
 
-  @Nullable
-  @JsonProperty("sip_trunk")
-  private SIPTrunkResponse sipTrunk;
+    @Nullable
+    @JsonProperty("sip_trunk")
+    private SIPTrunkResponse sipTrunk;
 }

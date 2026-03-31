@@ -13,22 +13,30 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class PublishedTrackFlags {
+public class PublishedTrackFlags{
 
-  @JsonProperty("audio")
-  private Boolean audio;
+    @JsonProperty("audio")
+    private Boolean audio;
 
-  @JsonProperty("screenshare")
-  private Boolean screenshare;
+    @JsonProperty("screenshare")
+    private Boolean screenshare;
 
-  @JsonProperty("screenshare_audio")
-  private Boolean screenshareAudio;
+    @JsonProperty("screenshare_audio")
+    private Boolean screenshareAudio;
 
-  @JsonProperty("video")
-  private Boolean video;
+    @JsonProperty("video")
+    private Boolean video;
 }

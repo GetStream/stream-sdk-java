@@ -13,21 +13,29 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
 /**
- * Batch partial activity update Updates certain fields of multiple activities in a batch. Use
- * &#39;set&#39; to update specific fields and &#39;unset&#39; to remove fields. Activities that
- * fail due to not found, permission denied, or no changes detected are silently skipped and not
- * included in the response. However, validation errors (e.g., updating reserved fields, invalid
- * field values) will fail the entire batch request. Sends events: - feeds.activity.updated
+ * Batch partial activity update
+ * Updates certain fields of multiple activities in a batch. Use &#39;set&#39; to update specific fields and &#39;unset&#39; to remove fields. Activities that fail due to not found, permission denied, or no changes detected are silently skipped and not included in the response. However, validation errors (e.g., updating reserved fields, invalid field values) will fail the entire batch request.
+ * Sends events:
+ * - feeds.activity.updated
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
-public class UpdateActivitiesPartialBatchRequest {
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
 
-  @JsonProperty("changes")
-  private List<UpdateActivityPartialChangeRequest> changes;
+public class UpdateActivitiesPartialBatchRequest {
+    
+    @JsonProperty("changes")
+    private List<UpdateActivityPartialChangeRequest> changes;
+
 }

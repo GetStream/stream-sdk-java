@@ -12,44 +12,49 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import io.getstream.annotations.Query;
-
 /**
- * Get replies for a comment Retrieve a threaded list of replies for a single comment, with
- * configurable depth, sorting, and pagination
+ * Get replies for a comment
+ * Retrieve a threaded list of replies for a single comment, with configurable depth, sorting, and pagination
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class GetCommentRepliesRequest {
 
-  @Query("depth")
-  @JsonIgnore
-  private Integer Depth;
-
-  @Query("sort")
-  @JsonIgnore
-  private String Sort;
-
-  @Query("replies_limit")
-  @JsonIgnore
-  private Integer RepliesLimit;
-
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
-
-  @Query("limit")
-  @JsonIgnore
-  private Integer Limit;
-
-  @Query("prev")
-  @JsonIgnore
-  private String Prev;
-
-  @Query("next")
-  @JsonIgnore
-  private String Next;
+@Query("depth")
+           @JsonIgnore
+           private Integer Depth;
+@Query("sort")
+           @JsonIgnore
+           private String Sort;
+@Query("replies_limit")
+           @JsonIgnore
+           private Integer RepliesLimit;
+@Query("id_around")
+           @JsonIgnore
+           private String IDAround;
+@Query("user_id")
+           @JsonIgnore
+           private String UserID;
+@Query("limit")
+           @JsonIgnore
+           private Integer Limit;
+@Query("prev")
+           @JsonIgnore
+           private String Prev;
+@Query("next")
+           @JsonIgnore
+           private String Next;
 }

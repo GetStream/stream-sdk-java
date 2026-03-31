@@ -13,32 +13,39 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-/** This event is sent when one or more members get its role updated */
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
+/**
+ * This event is sent when one or more members get its role updated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallMemberUpdatedPermissionEvent {
+public class CallMemberUpdatedPermissionEvent{
 
-  @JsonProperty("call_cid")
-  private String callCid;
+    @JsonProperty("call_cid")
+    private String callCid;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("members")
-  private List<MemberResponse> members;
+    @JsonProperty("members")
+    private List<MemberResponse> members;
 
-  @JsonProperty("call")
-  private CallResponse call;
+    @JsonProperty("call")
+    private CallResponse call;
 
-  @JsonProperty("capabilities_by_role")
-  private Map<String, List<String>> capabilitiesByRole;
+    @JsonProperty("capabilities_by_role")
+    private Map<String, List<String>> capabilitiesByRole;
 
-  @JsonProperty("type")
-  private String type;
+    @JsonProperty("type")
+    private String type;
 }

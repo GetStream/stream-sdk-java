@@ -13,28 +13,35 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Track activity metrics Track metric events (views, clicks, impressions) for activities. Supports
- * batching up to 100 events per request. Each event is independently rate-limited per user per
- * activity per metric. Server-side calls must include user_id.
+ * Track activity metrics
+ * Track metric events (views, clicks, impressions) for activities. Supports batching up to 100 events per request. Each event is independently rate-limited per user per activity per metric. Server-side calls must include user_id.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class TrackActivityMetricsRequest {
+    
+    @JsonProperty("events")
+    private List<TrackActivityMetricsEvent> events;
+    
+    @Nullable
+    @JsonProperty("user_id")
+    private String userID;
+    
+    @Nullable
+    @JsonProperty("user")
+    private UserRequest user;
 
-  @JsonProperty("events")
-  private List<TrackActivityMetricsEvent> events;
-
-  @Nullable
-  @JsonProperty("user_id")
-  private String userID;
-
-  @Nullable
-  @JsonProperty("user")
-  private UserRequest user;
 }

@@ -13,32 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ChannelExport {
+public class ChannelExport{
 
-  @Nullable
-  @JsonProperty("cid")
-  private String cid;
+    @Nullable
+    @JsonProperty("cid")
+    private String cid;
 
-  @Nullable
-  @JsonProperty("id")
-  private String id;
+    @Nullable
+    @JsonProperty("id")
+    private String id;
 
-  @Nullable
-  @JsonProperty("messages_since")
-  private Date messagesSince;
+    @Nullable
+    @JsonProperty("messages_since")
+    private Date messagesSince;
 
-  @Nullable
-  @JsonProperty("messages_until")
-  private Date messagesUntil;
+    @Nullable
+    @JsonProperty("messages_until")
+    private Date messagesUntil;
 
-  @Nullable
-  @JsonProperty("type")
-  private String type;
+    @Nullable
+    @JsonProperty("type")
+    private String type;
 }

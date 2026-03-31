@@ -13,37 +13,43 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** CallTypeResponse is the payload for a call type. */
+    
+/**
+ * CallTypeResponse is the payload for a call type.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallTypeResponse {
+public class CallTypeResponse{
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("name")
-  private String name;
+    @JsonProperty("name")
+    private String name;
 
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+    @JsonProperty("updated_at")
+    private Date updatedAt;
 
-  @JsonProperty("grants")
-  private Map<String, List<String>> grants;
+    @JsonProperty("grants")
+    private Map<String, List<String>> grants;
 
-  @JsonProperty("notification_settings")
-  private NotificationSettingsResponse notificationSettings;
+    @JsonProperty("notification_settings")
+    private NotificationSettingsResponse notificationSettings;
 
-  @JsonProperty("settings")
-  private CallSettingsResponse settings;
+    @JsonProperty("settings")
+    private CallSettingsResponse settings;
 
-  @Nullable
-  @JsonProperty("external_storage")
-  private String externalStorage;
+    @Nullable
+    @JsonProperty("external_storage")
+    private String externalStorage;
 }

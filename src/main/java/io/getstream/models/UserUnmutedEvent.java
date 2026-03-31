@@ -13,42 +13,45 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 /**
- * This event is sent when a user gets unmuted. The event contains information about the user that
- * was unmuted.
+ * This event is sent when a user gets unmuted. The event contains information about the user that was unmuted.
  */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UserUnmutedEvent {
+public class UserUnmutedEvent{
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
 
-  @JsonProperty("user")
-  private UserResponseCommonFields user;
+    @JsonProperty("user")
+    private UserResponseCommonFields user;
 
-  @JsonProperty("type")
-  private String type;
+    @JsonProperty("type")
+    private String type;
 
-  @Nullable
-  @JsonProperty("received_at")
-  private Date receivedAt;
+    @Nullable
+    @JsonProperty("received_at")
+    private Date receivedAt;
 
-  @Nullable
-  @JsonProperty("target_users")
-  private List<UserResponseCommonFields> targetUsers;
+    @Nullable
+    @JsonProperty("target_users")
+    private List<UserResponseCommonFields> targetUsers;
 
-  @Nullable
-  @JsonProperty("target_user")
-  private UserResponseCommonFields targetUser;
+    @Nullable
+    @JsonProperty("target_user")
+    private UserResponseCommonFields targetUser;
 }

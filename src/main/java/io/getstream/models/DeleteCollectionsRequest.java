@@ -12,21 +12,28 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
 /**
- * Delete multiple collections Delete collections in a batch operation. Users can only delete their
- * own collections.
+ * Delete multiple collections
+ * Delete collections in a batch operation. Users can only delete their own collections.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class DeleteCollectionsRequest {
 
-  @Query("collection_refs")
-  @JsonIgnore
-  private List<String> CollectionRefs;
+@Query("collection_refs")
+           @JsonIgnore
+           private List<String> CollectionRefs;
 }

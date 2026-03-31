@@ -13,18 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
-/** Response containing the list of SIP trunks */
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
+/**
+ * Response containing the list of SIP trunks
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ListSIPTrunksResponse {
+public class ListSIPTrunksResponse{
 
-  @JsonProperty("duration")
-  private String duration;
+    @JsonProperty("duration")
+    private String duration;
 
-  @JsonProperty("sip_trunks")
-  private List<SIPTrunkResponse> sipTrunks;
+    @JsonProperty("sip_trunks")
+    private List<SIPTrunkResponse> sipTrunks;
 }

@@ -13,17 +13,29 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
 /**
- * Unblocks user on a call Removes the block for a user on a call. The user will be able to join the
- * call again. Sends events: - call.unblocked_user
+ * Unblocks user on a call
+ * Removes the block for a user on a call. The user will be able to join the call again.
+ * Sends events:
+ * - call.unblocked_user
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
-public class UnblockUserRequest {
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
 
-  @JsonProperty("user_id")
-  private String userID;
+public class UnblockUserRequest {
+    
+    @JsonProperty("user_id")
+    private String userID;
+
 }

@@ -13,40 +13,46 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class PublishedTrackMetrics {
+public class PublishedTrackMetrics{
 
-  @Nullable
-  @JsonProperty("codec")
-  private String codec;
+    @Nullable
+    @JsonProperty("codec")
+    private String codec;
 
-  @Nullable
-  @JsonProperty("track_id")
-  private String trackID;
+    @Nullable
+    @JsonProperty("track_id")
+    private String trackID;
 
-  @Nullable
-  @JsonProperty("track_type")
-  private String trackType;
+    @Nullable
+    @JsonProperty("track_type")
+    private String trackType;
 
-  @Nullable
-  @JsonProperty("warnings")
-  private List<SessionWarningResponse> warnings;
+    @Nullable
+    @JsonProperty("warnings")
+    private List<SessionWarningResponse> warnings;
 
-  @Nullable
-  @JsonProperty("bitrate")
-  private MetricTimeSeries bitrate;
+    @Nullable
+    @JsonProperty("bitrate")
+    private MetricTimeSeries bitrate;
 
-  @Nullable
-  @JsonProperty("framerate")
-  private MetricTimeSeries framerate;
+    @Nullable
+    @JsonProperty("framerate")
+    private MetricTimeSeries framerate;
 
-  @Nullable
-  @JsonProperty("resolution")
-  private ResolutionMetricsTimeSeries resolution;
+    @Nullable
+    @JsonProperty("resolution")
+    private ResolutionMetricsTimeSeries resolution;
 }

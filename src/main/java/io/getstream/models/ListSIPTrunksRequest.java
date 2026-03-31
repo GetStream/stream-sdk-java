@@ -12,8 +12,24 @@
  */
 package io.getstream.models;
 
-/** List SIP Trunks List all SIP trunks for the application */
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
+/**
+ * List SIP Trunks
+ * List all SIP trunks for the application
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class ListSIPTrunksRequest {}
+public class ListSIPTrunksRequest {
+
+}

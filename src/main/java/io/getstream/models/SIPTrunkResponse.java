@@ -13,40 +13,48 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
-/** SIP trunk information */
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
+/**
+ * SIP trunk information
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class SIPTrunkResponse {
+public class SIPTrunkResponse{
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("id")
-  private String id;
+    @JsonProperty("id")
+    private String id;
 
-  @JsonProperty("name")
-  private String name;
+    @JsonProperty("name")
+    private String name;
 
-  @JsonProperty("password")
-  private String password;
+    @JsonProperty("password")
+    private String password;
 
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+    @JsonProperty("updated_at")
+    private Date updatedAt;
 
-  @JsonProperty("uri")
-  private String uri;
+    @JsonProperty("uri")
+    private String uri;
 
-  @JsonProperty("username")
-  private String username;
+    @JsonProperty("username")
+    private String username;
 
-  @JsonProperty("allowed_ips")
-  private List<String> allowedIps;
+    @JsonProperty("allowed_ips")
+    private List<String> allowedIps;
 
-  @JsonProperty("numbers")
-  private List<String> numbers;
+    @JsonProperty("numbers")
+    private List<String> numbers;
 }

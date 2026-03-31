@@ -12,21 +12,31 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import io.getstream.annotations.Query;
-
-/** Delete comment reaction Deletes a reaction from a comment */
+/**
+ * Delete comment reaction
+ * Deletes a reaction from a comment
+ */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class DeleteCommentReactionRequest {
 
-  @Query("delete_notification_activity")
-  @JsonIgnore
-  private Boolean DeleteNotificationActivity;
-
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+@Query("delete_notification_activity")
+           @JsonIgnore
+           private Boolean DeleteNotificationActivity;
+@Query("user_id")
+           @JsonIgnore
+           private String UserID;
 }

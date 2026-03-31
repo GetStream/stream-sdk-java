@@ -13,24 +13,34 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Query Feed Usage Statistics Retrieve usage statistics for feeds including activity count, follow
- * count, and API request count. Returns data aggregated by day with pagination support via from/to
- * date parameters. This endpoint is server-side only.
+ * Query Feed Usage Statistics
+ * Retrieve usage statistics for feeds including activity count, follow count, and API request count.
+ * Returns data aggregated by day with pagination support via from/to date parameters.
+ * This endpoint is server-side only.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class QueryFeedsUsageStatsRequest {
+    
+    @Nullable
+    @JsonProperty("from")
+    private String from;
+    
+    @Nullable
+    @JsonProperty("to")
+    private String to;
 
-  @Nullable
-  @JsonProperty("from")
-  private String from;
-
-  @Nullable
-  @JsonProperty("to")
-  private String to;
 }

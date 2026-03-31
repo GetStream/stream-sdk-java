@@ -13,108 +13,118 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Full activity update Replaces an activity with the provided data. Use this to update text,
- * attachments, reply restrictions (&#39;restrict_replies&#39;), mentioned users, and other activity
- * fields. Note: This is a full update - any fields not provided will be cleared. Sends events: -
- * feeds.activity.updated
+ * Full activity update
+ * Replaces an activity with the provided data. Use this to update text, attachments, reply restrictions (&#39;restrict_replies&#39;), mentioned users, and other activity fields. Note: This is a full update - any fields not provided will be cleared.
+ * Sends events:
+ * - feeds.activity.updated
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class UpdateActivityRequest {
+    
+    /**
+     * @deprecated
+     */
+    @Deprecated
+    @Nullable
+    @JsonProperty("copy_custom_to_notification")
+    private Boolean copyCustomToNotification;
+    
+    @Nullable
+    @JsonProperty("enrich_own_fields")
+    private Boolean enrichOwnFields;
+    
+    @Nullable
+    @JsonProperty("expires_at")
+    private Date expiresAt;
+    
+    @Nullable
+    @JsonProperty("handle_mention_notifications")
+    private Boolean handleMentionNotifications;
+    
+    @Nullable
+    @JsonProperty("poll_id")
+    private String pollID;
+    
+    @Nullable
+    @JsonProperty("restrict_replies")
+    private String restrictReplies;
+    
+    @Nullable
+    @JsonProperty("run_activity_processors")
+    private Boolean runActivityProcessors;
+    
+    @Nullable
+    @JsonProperty("skip_enrich_url")
+    private Boolean skipEnrichUrl;
+    
+    @Nullable
+    @JsonProperty("text")
+    private String text;
+    
+    @Nullable
+    @JsonProperty("user_id")
+    private String userID;
+    
+    @Nullable
+    @JsonProperty("visibility")
+    private String visibility;
+    
+    @Nullable
+    @JsonProperty("visibility_tag")
+    private String visibilityTag;
+    
+    @Nullable
+    @JsonProperty("attachments")
+    private List<Attachment> attachments;
+    
+    @Nullable
+    @JsonProperty("collection_refs")
+    private List<String> collectionRefs;
+    
+    @Nullable
+    @JsonProperty("feeds")
+    private List<String> feeds;
+    
+    @Nullable
+    @JsonProperty("filter_tags")
+    private List<String> filterTags;
+    
+    @Nullable
+    @JsonProperty("interest_tags")
+    private List<String> interestTags;
+    
+    @Nullable
+    @JsonProperty("mentioned_user_ids")
+    private List<String> mentionedUserIds;
+    
+    @Nullable
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
+    
+    @Nullable
+    @JsonProperty("location")
+    private ActivityLocation location;
+    
+    @Nullable
+    @JsonProperty("search_data")
+    private Map<String, Object> searchData;
+    
+    @Nullable
+    @JsonProperty("user")
+    private UserRequest user;
 
-  @Nullable
-  @JsonProperty("copy_custom_to_notification")
-  private Boolean copyCustomToNotification;
-
-  @Nullable
-  @JsonProperty("enrich_own_fields")
-  private Boolean enrichOwnFields;
-
-  @Nullable
-  @JsonProperty("expires_at")
-  private Date expiresAt;
-
-  @Nullable
-  @JsonProperty("handle_mention_notifications")
-  private Boolean handleMentionNotifications;
-
-  @Nullable
-  @JsonProperty("poll_id")
-  private String pollID;
-
-  @Nullable
-  @JsonProperty("restrict_replies")
-  private String restrictReplies;
-
-  @Nullable
-  @JsonProperty("run_activity_processors")
-  private Boolean runActivityProcessors;
-
-  @Nullable
-  @JsonProperty("skip_enrich_url")
-  private Boolean skipEnrichUrl;
-
-  @Nullable
-  @JsonProperty("text")
-  private String text;
-
-  @Nullable
-  @JsonProperty("user_id")
-  private String userID;
-
-  @Nullable
-  @JsonProperty("visibility")
-  private String visibility;
-
-  @Nullable
-  @JsonProperty("visibility_tag")
-  private String visibilityTag;
-
-  @Nullable
-  @JsonProperty("attachments")
-  private List<Attachment> attachments;
-
-  @Nullable
-  @JsonProperty("collection_refs")
-  private List<String> collectionRefs;
-
-  @Nullable
-  @JsonProperty("feeds")
-  private List<String> feeds;
-
-  @Nullable
-  @JsonProperty("filter_tags")
-  private List<String> filterTags;
-
-  @Nullable
-  @JsonProperty("interest_tags")
-  private List<String> interestTags;
-
-  @Nullable
-  @JsonProperty("mentioned_user_ids")
-  private List<String> mentionedUserIds;
-
-  @Nullable
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
-
-  @Nullable
-  @JsonProperty("location")
-  private ActivityLocation location;
-
-  @Nullable
-  @JsonProperty("search_data")
-  private Map<String, Object> searchData;
-
-  @Nullable
-  @JsonProperty("user")
-  private UserRequest user;
 }

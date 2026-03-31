@@ -13,14 +13,29 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-/** Send user event Sends a custom event to a user Sends events: - * */
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
+/**
+ * Send user event
+ * Sends a custom event to a user
+ * Sends events:
+ * - *
+ */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
-public class SendUserCustomEventRequest {
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
 
-  @JsonProperty("event")
-  private UserCustomEventRequest event;
+public class SendUserCustomEventRequest {
+    
+    @JsonProperty("event")
+    private UserCustomEventRequest event;
+
 }

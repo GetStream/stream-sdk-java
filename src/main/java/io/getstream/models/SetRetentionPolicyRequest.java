@@ -13,20 +13,30 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Set retention policy Creates or updates a retention policy for the app. Server-side only. */
+import io.getstream.annotations.Query;
+/**
+ * Set retention policy
+ * Creates or updates a retention policy for the app. Server-side only.
+ */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class SetRetentionPolicyRequest {
+    
+    @JsonProperty("max_age_hours")
+    private Integer maxAgeHours;
+    
+    @JsonProperty("policy")
+    private String policy;
 
-  @Nullable
-  @JsonProperty("max_age_hours")
-  private Integer maxAgeHours;
-
-  @Nullable
-  @JsonProperty("policy")
-  private String policy;
 }

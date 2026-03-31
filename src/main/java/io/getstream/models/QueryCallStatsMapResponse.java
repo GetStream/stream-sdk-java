@@ -13,64 +13,72 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Basic response information */
+    
+/**
+ * Basic response information
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class QueryCallStatsMapResponse {
+public class QueryCallStatsMapResponse{
 
-  @JsonProperty("call_id")
-  private String callID;
+    @JsonProperty("call_id")
+    private String callID;
 
-  @JsonProperty("call_session_id")
-  private String callSessionID;
+    @JsonProperty("call_session_id")
+    private String callSessionID;
 
-  @JsonProperty("call_type")
-  private String callType;
+    @JsonProperty("call_type")
+    private String callType;
 
-  @JsonProperty("duration")
-  private String duration;
+    @JsonProperty("duration")
+    private String duration;
 
-  @JsonProperty("counts")
-  private CallStatsParticipantCounts counts;
+    @JsonProperty("counts")
+    private CallStatsParticipantCounts counts;
 
-  @Nullable
-  @JsonProperty("call_ended_at")
-  private Date callEndedAt;
+    @Nullable
+    @JsonProperty("call_ended_at")
+    private Date callEndedAt;
 
-  @Nullable
-  @JsonProperty("call_started_at")
-  private Date callStartedAt;
+    @Nullable
+    @JsonProperty("call_started_at")
+    private Date callStartedAt;
 
-  @Nullable
-  @JsonProperty("data_source")
-  private String dataSource;
+    @Nullable
+    @JsonProperty("data_source")
+    private String dataSource;
 
-  @Nullable
-  @JsonProperty("end_time")
-  private Date endTime;
+    @Nullable
+    @JsonProperty("end_time")
+    private Date endTime;
 
-  @Nullable
-  @JsonProperty("generated_at")
-  private Date generatedAt;
+    @Nullable
+    @JsonProperty("generated_at")
+    private Date generatedAt;
 
-  @Nullable
-  @JsonProperty("start_time")
-  private Date startTime;
+    @Nullable
+    @JsonProperty("start_time")
+    private Date startTime;
 
-  @Nullable
-  @JsonProperty("publishers")
-  private CallStatsMapPublishers publishers;
+    @Nullable
+    @JsonProperty("publishers")
+    private CallStatsMapPublishers publishers;
 
-  @Nullable
-  @JsonProperty("sfus")
-  private CallStatsMapSFUs sfus;
+    @Nullable
+    @JsonProperty("sfus")
+    private CallStatsMapSFUs sfus;
 
-  @Nullable
-  @JsonProperty("subscribers")
-  private CallStatsMapSubscribers subscribers;
+    @Nullable
+    @JsonProperty("subscribers")
+    private CallStatsMapSubscribers subscribers;
 }

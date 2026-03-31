@@ -13,53 +13,58 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ChannelInputRequest {
+public class ChannelInputRequest{
 
-  @Nullable
-  @JsonProperty("auto_translation_enabled")
-  private Boolean autoTranslationEnabled;
+    @Nullable
+    @JsonProperty("auto_translation_enabled")
+    private Boolean autoTranslationEnabled;
 
-  @Nullable
-  @JsonProperty("auto_translation_language")
-  private String autoTranslationLanguage;
+    @Nullable
+    @JsonProperty("auto_translation_language")
+    private String autoTranslationLanguage;
 
-  @Nullable
-  @JsonProperty("disabled")
-  private Boolean disabled;
+    @Nullable
+    @JsonProperty("disabled")
+    private Boolean disabled;
 
-  @Nullable
-  @JsonProperty("frozen")
-  private Boolean frozen;
+    @Nullable
+    @JsonProperty("frozen")
+    private Boolean frozen;
 
-  @Nullable
-  @JsonProperty("team")
-  private String team;
+    @Nullable
+    @JsonProperty("team")
+    private String team;
 
-  @Nullable
-  @JsonProperty("invites")
-  private List<ChannelMemberRequest> invites;
+    @Nullable
+    @JsonProperty("invites")
+    private List<ChannelMemberRequest> invites;
 
-  @Nullable
-  @JsonProperty("members")
-  private List<ChannelMemberRequest> members;
+    @Nullable
+    @JsonProperty("members")
+    private List<ChannelMemberRequest> members;
 
-  @Nullable
-  @JsonProperty("config_overrides")
-  private ConfigOverridesRequest configOverrides;
+    @Nullable
+    @JsonProperty("config_overrides")
+    private ConfigOverridesRequest configOverrides;
 
-  @Nullable
-  @JsonProperty("created_by")
-  private UserRequest createdBy;
+    @Nullable
+    @JsonProperty("created_by")
+    private UserRequest createdBy;
 
-  @Nullable
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
+    @Nullable
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
 }

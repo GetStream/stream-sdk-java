@@ -12,8 +12,24 @@
  */
 package io.getstream.models;
 
-/** List recordings Lists recordings */
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
+/**
+ * List recordings
+ * Lists recordings
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class ListRecordingsRequest {}
+public class ListRecordingsRequest {
+
+}

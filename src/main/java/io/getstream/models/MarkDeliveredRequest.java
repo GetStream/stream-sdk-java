@@ -12,24 +12,32 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Mark channel message delivery status Mark the status of a channel message delivered. */
+import io.getstream.annotations.Query;
+/**
+ * Mark channel message delivery status
+ * Mark the status of a channel message delivered.
+ */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class MarkDeliveredRequest {
+    
+    @Nullable
+    @JsonProperty("latest_delivered_messages")
+    private List<DeliveredMessagePayload> latestDeliveredMessages;
 
-  @Nullable
-  @JsonProperty("latest_delivered_messages")
-  private List<DeliveredMessagePayload> latestDeliveredMessages;
-
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+@Query("user_id")
+           @JsonIgnore
+           private String UserID;
 }

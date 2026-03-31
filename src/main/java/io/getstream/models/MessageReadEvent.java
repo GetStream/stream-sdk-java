@@ -13,71 +13,78 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Emitted when a channel or thread is marked as read. */
+    
+/**
+ * Emitted when a channel or thread is marked as read.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class MessageReadEvent {
+public class MessageReadEvent{
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
 
-  @JsonProperty("type")
-  private String type;
+    @JsonProperty("type")
+    private String type;
 
-  @Nullable
-  @JsonProperty("channel_id")
-  private String channelID;
+    @Nullable
+    @JsonProperty("channel_id")
+    private String channelID;
 
-  @Nullable
-  @JsonProperty("channel_member_count")
-  private Integer channelMemberCount;
+    @Nullable
+    @JsonProperty("channel_member_count")
+    private Integer channelMemberCount;
 
-  @Nullable
-  @JsonProperty("channel_message_count")
-  private Integer channelMessageCount;
+    @Nullable
+    @JsonProperty("channel_message_count")
+    private Integer channelMessageCount;
 
-  @Nullable
-  @JsonProperty("channel_type")
-  private String channelType;
+    @Nullable
+    @JsonProperty("channel_type")
+    private String channelType;
 
-  @Nullable
-  @JsonProperty("cid")
-  private String cid;
+    @Nullable
+    @JsonProperty("cid")
+    private String cid;
 
-  @Nullable
-  @JsonProperty("last_read_message_id")
-  private String lastReadMessageID;
+    @Nullable
+    @JsonProperty("last_read_message_id")
+    private String lastReadMessageID;
 
-  @Nullable
-  @JsonProperty("received_at")
-  private Date receivedAt;
+    @Nullable
+    @JsonProperty("received_at")
+    private Date receivedAt;
 
-  @Nullable
-  @JsonProperty("team")
-  private String team;
+    @Nullable
+    @JsonProperty("team")
+    private String team;
 
-  @Nullable
-  @JsonProperty("channel")
-  private ChannelResponse channel;
+    @Nullable
+    @JsonProperty("channel")
+    private ChannelResponse channel;
 
-  @Nullable
-  @JsonProperty("channel_custom")
-  private Map<String, Object> channelCustom;
+    @Nullable
+    @JsonProperty("channel_custom")
+    private Map<String, Object> channelCustom;
 
-  @Nullable
-  @JsonProperty("thread")
-  private ThreadResponse thread;
+    @Nullable
+    @JsonProperty("thread")
+    private ThreadResponse thread;
 
-  @Nullable
-  @JsonProperty("user")
-  private UserResponseCommonFields user;
+    @Nullable
+    @JsonProperty("user")
+    private UserResponseCommonFields user;
 }

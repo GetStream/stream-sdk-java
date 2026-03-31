@@ -13,20 +13,31 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Upsert multiple activities Create new activities or update existing ones in a batch operation */
+import io.getstream.annotations.Query;
+/**
+ * Upsert multiple activities
+ * Create new activities or update existing ones in a batch operation
+ */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class UpsertActivitiesRequest {
+    
+    @JsonProperty("activities")
+    private List<ActivityRequest> activities;
+    
+    @Nullable
+    @JsonProperty("enrich_own_fields")
+    private Boolean enrichOwnFields;
 
-  @JsonProperty("activities")
-  private List<ActivityRequest> activities;
-
-  @Nullable
-  @JsonProperty("enrich_own_fields")
-  private Boolean enrichOwnFields;
 }

@@ -13,96 +13,99 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 /**
- * Emitted when a message was successfully sent or when a message became visible after command
- * execution.
+ * Emitted when a message was successfully sent or when a message became visible after command execution.
  */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class MessageNewEvent {
+public class MessageNewEvent{
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("message_id")
-  private String messageID;
+    @JsonProperty("message_id")
+    private String messageID;
 
-  @JsonProperty("watcher_count")
-  private Integer watcherCount;
+    @JsonProperty("watcher_count")
+    private Integer watcherCount;
 
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
 
-  @JsonProperty("message")
-  private MessageResponse message;
+    @JsonProperty("message")
+    private MessageResponse message;
 
-  @JsonProperty("type")
-  private String type;
+    @JsonProperty("type")
+    private String type;
 
-  @Nullable
-  @JsonProperty("channel_id")
-  private String channelID;
+    @Nullable
+    @JsonProperty("channel_id")
+    private String channelID;
 
-  @Nullable
-  @JsonProperty("channel_member_count")
-  private Integer channelMemberCount;
+    @Nullable
+    @JsonProperty("channel_member_count")
+    private Integer channelMemberCount;
 
-  @Nullable
-  @JsonProperty("channel_message_count")
-  private Integer channelMessageCount;
+    @Nullable
+    @JsonProperty("channel_message_count")
+    private Integer channelMessageCount;
 
-  @Nullable
-  @JsonProperty("channel_type")
-  private String channelType;
+    @Nullable
+    @JsonProperty("channel_type")
+    private String channelType;
 
-  @Nullable
-  @JsonProperty("cid")
-  private String cid;
+    @Nullable
+    @JsonProperty("cid")
+    private String cid;
 
-  @Nullable
-  @JsonProperty("parent_author")
-  private String parentAuthor;
+    @Nullable
+    @JsonProperty("parent_author")
+    private String parentAuthor;
 
-  @Nullable
-  @JsonProperty("received_at")
-  private Date receivedAt;
+    @Nullable
+    @JsonProperty("received_at")
+    private Date receivedAt;
 
-  @Nullable
-  @JsonProperty("team")
-  private String team;
+    @Nullable
+    @JsonProperty("team")
+    private String team;
 
-  @Nullable
-  @JsonProperty("total_unread_count")
-  private Integer totalUnreadCount;
+    @Nullable
+    @JsonProperty("total_unread_count")
+    private Integer totalUnreadCount;
 
-  @Nullable
-  @JsonProperty("unread_channels")
-  private Integer unreadChannels;
+    @Nullable
+    @JsonProperty("unread_channels")
+    private Integer unreadChannels;
 
-  @Nullable
-  @JsonProperty("unread_count")
-  private Integer unreadCount;
+    @Nullable
+    @JsonProperty("unread_count")
+    private Integer unreadCount;
 
-  @Nullable
-  @JsonProperty("thread_participants")
-  private List<UserResponseCommonFields> threadParticipants;
+    @Nullable
+    @JsonProperty("thread_participants")
+    private List<UserResponseCommonFields> threadParticipants;
 
-  @Nullable
-  @JsonProperty("channel")
-  private ChannelResponse channel;
+    @Nullable
+    @JsonProperty("channel")
+    private ChannelResponse channel;
 
-  @Nullable
-  @JsonProperty("channel_custom")
-  private Map<String, Object> channelCustom;
+    @Nullable
+    @JsonProperty("channel_custom")
+    private Map<String, Object> channelCustom;
 
-  @Nullable
-  @JsonProperty("user")
-  private UserResponseCommonFields user;
+    @Nullable
+    @JsonProperty("user")
+    private UserResponseCommonFields user;
 }

@@ -13,20 +13,30 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-/** Geographic location metadata */
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
+/**
+ * Geographic location metadata
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class LocationResponse {
+public class LocationResponse{
 
-  @JsonProperty("continent_code")
-  private String continentCode;
+    @JsonProperty("continent_code")
+    private String continentCode;
 
-  @JsonProperty("country_iso_code")
-  private String countryIsoCode;
+    @JsonProperty("country_iso_code")
+    private String countryIsoCode;
 
-  @JsonProperty("subdivision_iso_code")
-  private String subdivisionIsoCode;
+    @JsonProperty("subdivision_iso_code")
+    private String subdivisionIsoCode;
 }

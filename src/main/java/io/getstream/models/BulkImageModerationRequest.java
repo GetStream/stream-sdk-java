@@ -13,14 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-/** Bulk image moderation Moderate multiple images in bulk using a CSV file */
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
+/**
+ * Bulk image moderation
+ * Moderate multiple images in bulk using a CSV file
+ */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
-public class BulkImageModerationRequest {
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
 
-  @JsonProperty("csv_file")
-  private String csvFile;
+public class BulkImageModerationRequest {
+    
+    @JsonProperty("csv_file")
+    private String csvFile;
+
 }

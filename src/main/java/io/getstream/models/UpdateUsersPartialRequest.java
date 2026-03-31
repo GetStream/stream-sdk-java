@@ -13,18 +13,30 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
 /**
- * Partially update user Updates certain fields of the user Sends events: - user.presence.changed -
- * user.updated
+ * Partially update user
+ * Updates certain fields of the user
+ * Sends events:
+ * - user.presence.changed
+ * - user.updated
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
-public class UpdateUsersPartialRequest {
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
 
-  @JsonProperty("users")
-  private List<UpdateUserPartialRequest> users;
+public class UpdateUsersPartialRequest {
+    
+    @JsonProperty("users")
+    private List<UpdateUserPartialRequest> users;
+
 }

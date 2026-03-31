@@ -940,34 +940,13 @@ class ChatMiscIntegrationTest extends ChatTestBase {
 
   @Test
   @Order(21)
-  void testGetRetentionPolicy() throws Exception {
-    try {
-      var resp = client.chat().getRetentionPolicy().execute();
-
-      assertNotNull(resp.getData(), "GetRetentionPolicy response should not be null");
-      assertNotNull(resp.getData().getDuration(), "Duration should not be null");
-      assertNotNull(resp.getData().getPolicies(), "Policies list should not be null");
-    } catch (Exception e) {
-      String msg = e.getMessage() != null ? e.getMessage() : "";
-      Assumptions.assumeTrue(
-          !msg.contains("not available")
-              && !msg.contains("not supported")
-              && !msg.contains("not enabled")
-              && !msg.contains("retention"),
-          "Retention policy feature not available on this app: " + msg);
-      throw e;
-    }
-  }
-
-  @Test
-  @Order(22)
   void testGetRetentionPolicyRuns() throws Exception {
     try {
       var resp =
           client
               .chat()
               .getRetentionPolicyRuns(
-                  GetRetentionPolicyRunsRequest.builder().Limit(10).Offset(0).build())
+                  GetRetentionPolicyRunsRequest.builder().Limit(10).build())
               .execute();
 
       assertNotNull(resp.getData(), "GetRetentionPolicyRuns response should not be null");

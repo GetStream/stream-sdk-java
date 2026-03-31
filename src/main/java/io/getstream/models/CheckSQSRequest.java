@@ -13,24 +13,36 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Check SQS Validates Amazon SQS credentials */
+import io.getstream.annotations.Query;
+/**
+ * Check SQS
+ * Validates Amazon SQS credentials
+ */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class CheckSQSRequest {
+    
+    @Nullable
+    @JsonProperty("sqs_key")
+    private String sqsKey;
+    
+    @Nullable
+    @JsonProperty("sqs_secret")
+    private String sqsSecret;
+    
+    @Nullable
+    @JsonProperty("sqs_url")
+    private String sqsUrl;
 
-  @Nullable
-  @JsonProperty("sqs_key")
-  private String sqsKey;
-
-  @Nullable
-  @JsonProperty("sqs_secret")
-  private String sqsSecret;
-
-  @Nullable
-  @JsonProperty("sqs_url")
-  private String sqsUrl;
 }

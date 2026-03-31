@@ -13,31 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ImportV2TaskSettings {
+public class ImportV2TaskSettings{
 
-  @Nullable
-  @JsonProperty("merge_custom")
-  private Boolean mergeCustom;
+    @Nullable
+    @JsonProperty("merge_custom")
+    private Boolean mergeCustom;
 
-  @Nullable
-  @JsonProperty("mode")
-  private String mode;
+    @Nullable
+    @JsonProperty("mode")
+    private String mode;
 
-  @Nullable
-  @JsonProperty("path")
-  private String path;
+    @Nullable
+    @JsonProperty("path")
+    private String path;
 
-  @Nullable
-  @JsonProperty("skip_references_check")
-  private Boolean skipReferencesCheck;
+    @Nullable
+    @JsonProperty("skip_references_check")
+    private Boolean skipReferencesCheck;
 
-  @Nullable
-  @JsonProperty("s3")
-  private ImportV2TaskSettingsS3 s3;
+    @Nullable
+    @JsonProperty("s3")
+    private ImportV2TaskSettingsS3 s3;
 }

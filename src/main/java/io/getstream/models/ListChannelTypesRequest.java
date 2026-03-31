@@ -12,8 +12,24 @@
  */
 package io.getstream.models;
 
-/** List channel types Lists all available channel types */
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
+/**
+ * List channel types
+ * Lists all available channel types
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class ListChannelTypesRequest {}
+public class ListChannelTypesRequest {
+
+}

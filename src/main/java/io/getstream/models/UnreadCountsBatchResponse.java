@@ -13,18 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-/** Basic response information */
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
+/**
+ * Basic response information
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UnreadCountsBatchResponse {
+public class UnreadCountsBatchResponse{
 
-  @JsonProperty("duration")
-  private String duration;
+    @JsonProperty("duration")
+    private String duration;
 
-  @JsonProperty("counts_by_user")
-  private Map<String, UnreadCountsResponse> countsByUser;
+    @JsonProperty("counts_by_user")
+    private Map<String, UnreadCountsResponse> countsByUser;
 }

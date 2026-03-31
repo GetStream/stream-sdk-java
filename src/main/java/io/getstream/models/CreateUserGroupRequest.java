@@ -13,32 +13,43 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Create user group Creates a new user group, optionally with initial members */
+import io.getstream.annotations.Query;
+/**
+ * Create user group
+ * Creates a new user group, optionally with initial members
+ */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class CreateUserGroupRequest {
+    
+    @JsonProperty("name")
+    private String name;
+    
+    @Nullable
+    @JsonProperty("description")
+    private String description;
+    
+    @Nullable
+    @JsonProperty("id")
+    private String id;
+    
+    @Nullable
+    @JsonProperty("team_id")
+    private String teamID;
+    
+    @Nullable
+    @JsonProperty("member_ids")
+    private List<String> memberIds;
 
-  @JsonProperty("name")
-  private String name;
-
-  @Nullable
-  @JsonProperty("description")
-  private String description;
-
-  @Nullable
-  @JsonProperty("id")
-  private String id;
-
-  @Nullable
-  @JsonProperty("team_id")
-  private String teamID;
-
-  @Nullable
-  @JsonProperty("member_ids")
-  private List<String> memberIds;
 }

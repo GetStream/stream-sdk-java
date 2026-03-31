@@ -13,69 +13,73 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class FeedGroup {
+public class FeedGroup{
 
-  @JsonProperty("aggregation_version")
-  private Integer aggregationVersion;
+    @JsonProperty("aggregation_version")
+    private Integer aggregationVersion;
 
-  @JsonProperty("app_pk")
-  private Integer appPk;
+    @JsonProperty("app_pk")
+    private Integer appPk;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("default_visibility")
-  private String defaultVisibility;
+    @JsonProperty("default_visibility")
+    private String defaultVisibility;
 
-  @JsonProperty("group_id")
-  private String groupID;
+    @JsonProperty("group_id")
+    private String groupID;
 
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+    @JsonProperty("updated_at")
+    private Date updatedAt;
 
-  @JsonProperty("activity_processors")
-  private List<ActivityProcessorConfig> activityProcessors;
+    @JsonProperty("activity_processors")
+    private List<ActivityProcessorConfig> activityProcessors;
 
-  @JsonProperty("activity_selectors")
-  private List<ActivitySelectorConfig> activitySelectors;
+    @JsonProperty("activity_selectors")
+    private List<ActivitySelectorConfig> activitySelectors;
 
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
 
-  @Nullable
-  @JsonProperty("deleted_at")
-  private Date deletedAt;
+    @Nullable
+    @JsonProperty("deleted_at")
+    private Date deletedAt;
 
-  @Nullable
-  @JsonProperty("last_feed_get_at")
-  private Date lastFeedGetAt;
+    @Nullable
+    @JsonProperty("last_feed_get_at")
+    private Date lastFeedGetAt;
 
-  @Nullable
-  @JsonProperty("aggregation")
-  private AggregationConfig aggregation;
+    @Nullable
+    @JsonProperty("aggregation")
+    private AggregationConfig aggregation;
 
-  @Nullable
-  @JsonProperty("notification")
-  private NotificationConfig notification;
+    @Nullable
+    @JsonProperty("notification")
+    private NotificationConfig notification;
 
-  @Nullable
-  @JsonProperty("push_notification")
-  private PushNotificationConfig pushNotification;
+    @Nullable
+    @JsonProperty("push_notification")
+    private PushNotificationConfig pushNotification;
 
-  @Nullable
-  @JsonProperty("ranking")
-  private RankingConfig ranking;
+    @Nullable
+    @JsonProperty("ranking")
+    private RankingConfig ranking;
 
-  @Nullable
-  @JsonProperty("stories")
-  private StoriesConfig stories;
+    @Nullable
+    @JsonProperty("stories")
+    private StoriesConfig stories;
 }

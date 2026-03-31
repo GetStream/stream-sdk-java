@@ -13,20 +13,30 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-/** CallIngressResponse is the payload for ingress settings */
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
+/**
+ * CallIngressResponse is the payload for ingress settings
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class CallIngressResponse {
+public class CallIngressResponse{
 
-  @JsonProperty("rtmp")
-  private RTMPIngress rtmp;
+    @JsonProperty("rtmp")
+    private RTMPIngress rtmp;
 
-  @JsonProperty("srt")
-  private SRTIngress srt;
+    @JsonProperty("srt")
+    private SRTIngress srt;
 
-  @JsonProperty("whip")
-  private WHIPIngress whip;
+    @JsonProperty("whip")
+    private WHIPIngress whip;
 }

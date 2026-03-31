@@ -13,95 +13,107 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Submit moderation action Take action on flagged content, such as marking content as safe,
- * deleting content, banning users, or executing custom moderation actions. Supports various action
- * types with configurable parameters.
+ * Submit moderation action
+ * Take action on flagged content, such as marking content as safe, deleting content, banning users, or executing custom moderation actions. Supports various action types with configurable parameters.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class SubmitActionRequest {
+    
+    @JsonProperty("action_type")
+    private String actionType;
+    
+    @Nullable
+    @JsonProperty("appeal_id")
+    private String appealID;
+    
+    @Nullable
+    @JsonProperty("item_id")
+    private String itemID;
+    
+    @Nullable
+    @JsonProperty("user_id")
+    private String userID;
+    
+    @Nullable
+    @JsonProperty("ban")
+    private BanActionRequestPayload ban;
+    
+    @Nullable
+    @JsonProperty("block")
+    private BlockActionRequestPayload block;
+    
+    @Nullable
+    @JsonProperty("custom")
+    private CustomActionRequestPayload custom;
+    
+    @Nullable
+    @JsonProperty("delete_activity")
+    private DeleteActivityRequestPayload deleteActivity;
+    
+    @Nullable
+    @JsonProperty("delete_comment")
+    private DeleteCommentRequestPayload deleteComment;
+    
+    @Nullable
+    @JsonProperty("delete_message")
+    private DeleteMessageRequestPayload deleteMessage;
+    
+    @Nullable
+    @JsonProperty("delete_reaction")
+    private DeleteReactionRequestPayload deleteReaction;
+    
+    @Nullable
+    @JsonProperty("delete_user")
+    private DeleteUserRequestPayload deleteUser;
+    
+    @Nullable
+    @JsonProperty("escalate")
+    private EscalatePayload escalate;
+    
+    @Nullable
+    @JsonProperty("flag")
+    private FlagRequest flag;
+    
+    @Nullable
+    @JsonProperty("mark_reviewed")
+    private MarkReviewedRequestPayload markReviewed;
+    
+    @Nullable
+    @JsonProperty("reject_appeal")
+    private RejectAppealRequestPayload rejectAppeal;
+    
+    @Nullable
+    @JsonProperty("restore")
+    private RestoreActionRequestPayload restore;
+    
+    @Nullable
+    @JsonProperty("shadow_block")
+    private ShadowBlockActionRequestPayload shadowBlock;
+    
+    @Nullable
+    @JsonProperty("unban")
+    private UnbanActionRequestPayload unban;
+    
+    @Nullable
+    @JsonProperty("unblock")
+    private UnblockActionRequestPayload unblock;
+    
+    @Nullable
+    @JsonProperty("user")
+    private UserRequest user;
 
-  @JsonProperty("action_type")
-  private String actionType;
-
-  @Nullable
-  @JsonProperty("appeal_id")
-  private String appealID;
-
-  @Nullable
-  @JsonProperty("item_id")
-  private String itemID;
-
-  @Nullable
-  @JsonProperty("user_id")
-  private String userID;
-
-  @Nullable
-  @JsonProperty("ban")
-  private BanActionRequestPayload ban;
-
-  @Nullable
-  @JsonProperty("block")
-  private BlockActionRequestPayload block;
-
-  @Nullable
-  @JsonProperty("custom")
-  private CustomActionRequestPayload custom;
-
-  @Nullable
-  @JsonProperty("delete_activity")
-  private DeleteActivityRequestPayload deleteActivity;
-
-  @Nullable
-  @JsonProperty("delete_comment")
-  private DeleteCommentRequestPayload deleteComment;
-
-  @Nullable
-  @JsonProperty("delete_message")
-  private DeleteMessageRequestPayload deleteMessage;
-
-  @Nullable
-  @JsonProperty("delete_reaction")
-  private DeleteReactionRequestPayload deleteReaction;
-
-  @Nullable
-  @JsonProperty("delete_user")
-  private DeleteUserRequestPayload deleteUser;
-
-  @Nullable
-  @JsonProperty("flag")
-  private FlagRequest flag;
-
-  @Nullable
-  @JsonProperty("mark_reviewed")
-  private MarkReviewedRequestPayload markReviewed;
-
-  @Nullable
-  @JsonProperty("reject_appeal")
-  private RejectAppealRequestPayload rejectAppeal;
-
-  @Nullable
-  @JsonProperty("restore")
-  private RestoreActionRequestPayload restore;
-
-  @Nullable
-  @JsonProperty("shadow_block")
-  private ShadowBlockActionRequestPayload shadowBlock;
-
-  @Nullable
-  @JsonProperty("unban")
-  private UnbanActionRequestPayload unban;
-
-  @Nullable
-  @JsonProperty("unblock")
-  private UnblockActionRequestPayload unblock;
-
-  @Nullable
-  @JsonProperty("user")
-  private UserRequest user;
 }

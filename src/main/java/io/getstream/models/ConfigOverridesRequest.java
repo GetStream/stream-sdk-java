@@ -13,78 +13,85 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Channel configuration overrides */
+    
+/**
+ * Channel configuration overrides
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ConfigOverridesRequest {
+public class ConfigOverridesRequest{
 
-  @Nullable
-  @JsonProperty("blocklist")
-  private String blocklist;
+    @Nullable
+    @JsonProperty("blocklist")
+    private String blocklist;
 
-  @Nullable
-  @JsonProperty("blocklist_behavior")
-  private String blocklistBehavior;
+    @Nullable
+    @JsonProperty("blocklist_behavior")
+    private String blocklistBehavior;
 
-  @Nullable
-  @JsonProperty("count_messages")
-  private Boolean countMessages;
+    @Nullable
+    @JsonProperty("count_messages")
+    private Boolean countMessages;
 
-  @Nullable
-  @JsonProperty("max_message_length")
-  private Integer maxMessageLength;
+    @Nullable
+    @JsonProperty("max_message_length")
+    private Integer maxMessageLength;
 
-  @Nullable
-  @JsonProperty("push_level")
-  private String pushLevel;
+    @Nullable
+    @JsonProperty("push_level")
+    private String pushLevel;
 
-  @Nullable
-  @JsonProperty("quotes")
-  private Boolean quotes;
+    @Nullable
+    @JsonProperty("quotes")
+    private Boolean quotes;
 
-  @Nullable
-  @JsonProperty("reactions")
-  private Boolean reactions;
+    @Nullable
+    @JsonProperty("reactions")
+    private Boolean reactions;
 
-  @Nullable
-  @JsonProperty("replies")
-  private Boolean replies;
+    @Nullable
+    @JsonProperty("replies")
+    private Boolean replies;
 
-  @Nullable
-  @JsonProperty("shared_locations")
-  private Boolean sharedLocations;
+    @Nullable
+    @JsonProperty("shared_locations")
+    private Boolean sharedLocations;
 
-  @Nullable
-  @JsonProperty("typing_events")
-  private Boolean typingEvents;
+    @Nullable
+    @JsonProperty("typing_events")
+    private Boolean typingEvents;
 
-  @Nullable
-  @JsonProperty("uploads")
-  private Boolean uploads;
+    @Nullable
+    @JsonProperty("uploads")
+    private Boolean uploads;
 
-  @Nullable
-  @JsonProperty("url_enrichment")
-  private Boolean urlEnrichment;
+    @Nullable
+    @JsonProperty("url_enrichment")
+    private Boolean urlEnrichment;
 
-  @Nullable
-  @JsonProperty("user_message_reminders")
-  private Boolean userMessageReminders;
+    @Nullable
+    @JsonProperty("user_message_reminders")
+    private Boolean userMessageReminders;
 
-  @Nullable
-  @JsonProperty("commands")
-  private List<String> commands;
+    @Nullable
+    @JsonProperty("commands")
+    private List<String> commands;
 
-  @Nullable
-  @JsonProperty("chat_preferences")
-  private ChatPreferences chatPreferences;
+    @Nullable
+    @JsonProperty("chat_preferences")
+    private ChatPreferences chatPreferences;
 
-  @Nullable
-  @JsonProperty("grants")
-  private Map<String, List<String>> grants;
+    @Nullable
+    @JsonProperty("grants")
+    private Map<String, List<String>> grants;
 }

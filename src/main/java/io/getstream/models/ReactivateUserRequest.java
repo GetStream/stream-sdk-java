@@ -13,27 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Reactivate user Activates user who&#39;s been deactivated previously Sends events: -
- * user.reactivated
+ * Reactivate user
+ * Activates user who&#39;s been deactivated previously
+ * Sends events:
+ * - user.reactivated
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class ReactivateUserRequest {
+    
+    @Nullable
+    @JsonProperty("created_by_id")
+    private String createdByID;
+    
+    @Nullable
+    @JsonProperty("name")
+    private String name;
+    
+    @Nullable
+    @JsonProperty("restore_messages")
+    private Boolean restoreMessages;
 
-  @Nullable
-  @JsonProperty("created_by_id")
-  private String createdByID;
-
-  @Nullable
-  @JsonProperty("name")
-  private String name;
-
-  @Nullable
-  @JsonProperty("restore_messages")
-  private Boolean restoreMessages;
 }

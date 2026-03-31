@@ -13,16 +13,25 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Configuration for unblock action */
+    
+/**
+ * Configuration for unblock action
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UnblockActionRequestPayload {
+public class UnblockActionRequestPayload{
 
-  @Nullable
-  @JsonProperty("decision_reason")
-  private String decisionReason;
+    @Nullable
+    @JsonProperty("decision_reason")
+    private String decisionReason;
 }

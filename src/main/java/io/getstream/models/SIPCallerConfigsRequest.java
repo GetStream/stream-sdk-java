@@ -13,20 +13,28 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Configuration for SIP caller settings */
+    
+/**
+ * Configuration for SIP caller settings
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class SIPCallerConfigsRequest {
+public class SIPCallerConfigsRequest{
 
-  @JsonProperty("id")
-  private String id;
+    @JsonProperty("id")
+    private String id;
 
-  @Nullable
-  @JsonProperty("custom_data")
-  private Map<String, Object> customData;
+    @Nullable
+    @JsonProperty("custom_data")
+    private Map<String, Object> customData;
 }

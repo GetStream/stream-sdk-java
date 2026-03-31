@@ -13,46 +13,55 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** Basic response information */
+    
+/**
+ * Basic response information
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetCallSessionParticipantStatsDetailsResponse {
+public class GetCallSessionParticipantStatsDetailsResponse{
 
-  @JsonProperty("call_id")
-  private String callID;
+    @JsonProperty("call_id")
+    private String callID;
 
-  @JsonProperty("call_session_id")
-  private String callSessionID;
+    @JsonProperty("call_session_id")
+    private String callSessionID;
 
-  @JsonProperty("call_type")
-  private String callType;
+    @JsonProperty("call_type")
+    private String callType;
 
-  @JsonProperty("duration")
-  private String duration;
+    @JsonProperty("duration")
+    private String duration;
 
-  @JsonProperty("user_id")
-  private String userID;
+    @JsonProperty("user_id")
+    private String userID;
 
-  @JsonProperty("user_session_id")
-  private String userSessionID;
+    @JsonProperty("user_session_id")
+    private String userSessionID;
 
-  @Nullable
-  @JsonProperty("publisher")
-  private ParticipantSeriesPublisherStats publisher;
+    @Nullable
+    @JsonProperty("publisher")
+    private ParticipantSeriesPublisherStats publisher;
 
-  @Nullable
-  @JsonProperty("subscriber")
-  private ParticipantSeriesSubscriberStats subscriber;
+    @Nullable
+    @JsonProperty("subscriber")
+    private ParticipantSeriesSubscriberStats subscriber;
 
-  @Nullable
-  @JsonProperty("timeframe")
-  private ParticipantSeriesTimeframe timeframe;
+    @Nullable
+    @JsonProperty("timeframe")
+    private ParticipantSeriesTimeframe timeframe;
 
-  @Nullable
-  @JsonProperty("user")
-  private ParticipantSeriesUserStats user;
+    @Nullable
+    @JsonProperty("user")
+    private ParticipantSeriesUserStats user;
 }

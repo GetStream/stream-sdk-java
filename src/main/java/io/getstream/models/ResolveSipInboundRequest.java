@@ -13,38 +13,46 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Resolve SIP Inbound Routing Resolve SIP inbound routing based on trunk number, caller number, and
- * challenge authentication
+ * Resolve SIP Inbound Routing
+ * Resolve SIP inbound routing based on trunk number, caller number, and challenge authentication
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class ResolveSipInboundRequest {
+    
+    @JsonProperty("sip_caller_number")
+    private String sipCallerNumber;
+    
+    @JsonProperty("sip_trunk_number")
+    private String sipTrunkNumber;
+    
+    @Nullable
+    @JsonProperty("routing_number")
+    private String routingNumber;
+    
+    @Nullable
+    @JsonProperty("trunk_id")
+    private String trunkID;
+    
+    @Nullable
+    @JsonProperty("challenge")
+    private SIPChallengeRequest challenge;
+    
+    @Nullable
+    @JsonProperty("sip_headers")
+    private Map<String, String> sipHeaders;
 
-  @JsonProperty("sip_caller_number")
-  private String sipCallerNumber;
-
-  @JsonProperty("sip_trunk_number")
-  private String sipTrunkNumber;
-
-  @Nullable
-  @JsonProperty("routing_number")
-  private String routingNumber;
-
-  @Nullable
-  @JsonProperty("trunk_id")
-  private String trunkID;
-
-  @Nullable
-  @JsonProperty("challenge")
-  private SIPChallengeRequest challenge;
-
-  @Nullable
-  @JsonProperty("sip_headers")
-  private Map<String, String> sipHeaders;
 }

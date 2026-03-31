@@ -12,19 +12,31 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import io.getstream.annotations.Query;
-
 /**
- * Delete vote Delete a vote from a poll Sends events: - feeds.poll.vote_removed - poll.vote_removed
+ * Delete vote
+ * Delete a vote from a poll
+ * Sends events:
+ * - feeds.poll.vote_removed
+ * - poll.vote_removed
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class DeletePollVoteRequest {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+@Query("user_id")
+           @JsonIgnore
+           private String UserID;
 }

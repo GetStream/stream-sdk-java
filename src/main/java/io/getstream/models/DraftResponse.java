@@ -13,37 +13,43 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class DraftResponse {
+public class DraftResponse{
 
-  @JsonProperty("channel_cid")
-  private String channelCid;
+    @JsonProperty("channel_cid")
+    private String channelCid;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("message")
-  private DraftPayloadResponse message;
+    @JsonProperty("message")
+    private DraftPayloadResponse message;
 
-  @Nullable
-  @JsonProperty("parent_id")
-  private String parentID;
+    @Nullable
+    @JsonProperty("parent_id")
+    private String parentID;
 
-  @Nullable
-  @JsonProperty("channel")
-  private ChannelResponse channel;
+    @Nullable
+    @JsonProperty("channel")
+    private ChannelResponse channel;
 
-  @Nullable
-  @JsonProperty("parent_message")
-  private MessageResponse parentMessage;
+    @Nullable
+    @JsonProperty("parent_message")
+    private MessageResponse parentMessage;
 
-  @Nullable
-  @JsonProperty("quoted_message")
-  private MessageResponse quotedMessage;
+    @Nullable
+    @JsonProperty("quoted_message")
+    private MessageResponse quotedMessage;
 }

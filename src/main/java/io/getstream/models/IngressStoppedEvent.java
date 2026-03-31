@@ -13,27 +13,36 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
-
-/** This event is sent when streaming stops due to user action or call ended */
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+    
+/**
+ * This event is sent when streaming stops due to user action or call ended
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class IngressStoppedEvent {
+public class IngressStoppedEvent{
 
-  @JsonProperty("call_cid")
-  private String callCid;
+    @JsonProperty("call_cid")
+    private String callCid;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-  @JsonProperty("ingress_stream_id")
-  private String ingressStreamID;
+    @JsonProperty("ingress_stream_id")
+    private String ingressStreamID;
 
-  @JsonProperty("user_id")
-  private String userID;
+    @JsonProperty("user_id")
+    private String userID;
 
-  @JsonProperty("type")
-  private String type;
+    @JsonProperty("type")
+    private String type;
 }

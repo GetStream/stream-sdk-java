@@ -12,34 +12,39 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
 import java.util.Date;
-
-/** Map call participants by location */
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
+/**
+ * Map call participants by location
+ */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class GetCallStatsMapRequest {
 
-  @Query("start_time")
-  @JsonIgnore
-  private Date StartTime;
-
-  @Query("end_time")
-  @JsonIgnore
-  private Date EndTime;
-
-  @Query("exclude_publishers")
-  @JsonIgnore
-  private Boolean ExcludePublishers;
-
-  @Query("exclude_subscribers")
-  @JsonIgnore
-  private Boolean ExcludeSubscribers;
-
-  @Query("exclude_sfus")
-  @JsonIgnore
-  private Boolean ExcludeSfus;
+@Query("start_time")
+           @JsonIgnore
+           private Date StartTime;
+@Query("end_time")
+           @JsonIgnore
+           private Date EndTime;
+@Query("exclude_publishers")
+           @JsonIgnore
+           private Boolean ExcludePublishers;
+@Query("exclude_subscribers")
+           @JsonIgnore
+           private Boolean ExcludeSubscribers;
+@Query("exclude_sfus")
+           @JsonIgnore
+           private Boolean ExcludeSfus;
 }

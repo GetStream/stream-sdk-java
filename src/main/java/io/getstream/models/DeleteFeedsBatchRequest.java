@@ -13,23 +13,31 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Delete multiple feeds Delete multiple feeds by their IDs. All feeds must exist. This endpoint is
- * server-side only.
+ * Delete multiple feeds
+ * Delete multiple feeds by their IDs. All feeds must exist. This endpoint is server-side only.
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class DeleteFeedsBatchRequest {
+    
+    @JsonProperty("feeds")
+    private List<String> feeds;
+    
+    @Nullable
+    @JsonProperty("hard_delete")
+    private Boolean hardDelete;
 
-  @JsonProperty("feeds")
-  private List<String> feeds;
-
-  @Nullable
-  @JsonProperty("hard_delete")
-  private Boolean hardDelete;
 }

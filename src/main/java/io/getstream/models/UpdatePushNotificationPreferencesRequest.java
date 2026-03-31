@@ -13,18 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import io.getstream.annotations.Query;
 /**
- * Push notification preferences Upserts the push preferences for a user and or channel member. Set
- * to all, mentions or none
+ * Push notification preferences
+ * Upserts the push preferences for a user and or channel member. Set to all, mentions or none
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
-public class UpdatePushNotificationPreferencesRequest {
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
 
-  @JsonProperty("preferences")
-  private List<PushPreferenceInput> preferences;
+public class UpdatePushNotificationPreferencesRequest {
+    
+    @JsonProperty("preferences")
+    private List<PushPreferenceInput> preferences;
+
 }

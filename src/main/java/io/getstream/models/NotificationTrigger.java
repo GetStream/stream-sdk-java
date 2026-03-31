@@ -13,21 +13,32 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+    
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class NotificationTrigger {
+public class NotificationTrigger{
 
-  @JsonProperty("text")
-  private String text;
+    @JsonProperty("text")
+    private String text;
 
-  @JsonProperty("type")
-  private String type;
+    @JsonProperty("type")
+    private String type;
 
-  @Nullable
-  @JsonProperty("comment")
-  private NotificationComment comment;
+    @Nullable
+    @JsonProperty("comment")
+    private NotificationComment comment;
+
+    @Nullable
+    @JsonProperty("custom")
+    private Map<String, Object> custom;
 }

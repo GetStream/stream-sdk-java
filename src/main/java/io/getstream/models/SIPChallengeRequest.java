@@ -13,77 +13,85 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-/** SIP digest challenge authentication data */
+    
+/**
+ * SIP digest challenge authentication data
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class SIPChallengeRequest {
+public class SIPChallengeRequest{
 
-  @Nullable
-  @JsonProperty("a1")
-  private String a1;
+    @Nullable
+    @JsonProperty("a1")
+    private String a1;
 
-  @Nullable
-  @JsonProperty("algorithm")
-  private String algorithm;
+    @Nullable
+    @JsonProperty("algorithm")
+    private String algorithm;
 
-  @Nullable
-  @JsonProperty("charset")
-  private String charset;
+    @Nullable
+    @JsonProperty("charset")
+    private String charset;
 
-  @Nullable
-  @JsonProperty("cnonce")
-  private String cnonce;
+    @Nullable
+    @JsonProperty("cnonce")
+    private String cnonce;
 
-  @Nullable
-  @JsonProperty("method")
-  private String method;
+    @Nullable
+    @JsonProperty("method")
+    private String method;
 
-  @Nullable
-  @JsonProperty("nc")
-  private String nc;
+    @Nullable
+    @JsonProperty("nc")
+    private String nc;
 
-  @Nullable
-  @JsonProperty("nonce")
-  private String nonce;
+    @Nullable
+    @JsonProperty("nonce")
+    private String nonce;
 
-  @Nullable
-  @JsonProperty("opaque")
-  private String opaque;
+    @Nullable
+    @JsonProperty("opaque")
+    private String opaque;
 
-  @Nullable
-  @JsonProperty("realm")
-  private String realm;
+    @Nullable
+    @JsonProperty("realm")
+    private String realm;
 
-  @Nullable
-  @JsonProperty("response")
-  private String response;
+    @Nullable
+    @JsonProperty("response")
+    private String response;
 
-  @Nullable
-  @JsonProperty("stale")
-  private Boolean stale;
+    @Nullable
+    @JsonProperty("stale")
+    private Boolean stale;
 
-  @Nullable
-  @JsonProperty("uri")
-  private String uri;
+    @Nullable
+    @JsonProperty("uri")
+    private String uri;
 
-  @Nullable
-  @JsonProperty("userhash")
-  private Boolean userhash;
+    @Nullable
+    @JsonProperty("userhash")
+    private Boolean userhash;
 
-  @Nullable
-  @JsonProperty("username")
-  private String username;
+    @Nullable
+    @JsonProperty("username")
+    private String username;
 
-  @Nullable
-  @JsonProperty("domain")
-  private List<String> domain;
+    @Nullable
+    @JsonProperty("domain")
+    private List<String> domain;
 
-  @Nullable
-  @JsonProperty("qop")
-  private List<String> qop;
+    @Nullable
+    @JsonProperty("qop")
+    private List<String> qop;
 }

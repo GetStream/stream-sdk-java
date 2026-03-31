@@ -13,41 +13,50 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.models.framework.RateLimit;
+import java.util.Optional;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import io.getstream.annotations.Query;
 /**
- * Ephemeral message update Updates message fields without storing in database, only sends update
- * event Sends events: - message.updated
+ * Ephemeral message update
+ * Updates message fields without storing in database, only sends update event
+ * Sends events:
+ * - message.updated
  */
 @lombok.Data
 @lombok.Builder
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor@lombok.AllArgsConstructor
+
 public class EphemeralMessageUpdateRequest {
+    
+    @Nullable
+    @JsonProperty("skip_enrich_url")
+    private Boolean skipEnrichUrl;
+    
+    @Nullable
+    @JsonProperty("skip_push")
+    private Boolean skipPush;
+    
+    @Nullable
+    @JsonProperty("user_id")
+    private String userID;
+    
+    @Nullable
+    @JsonProperty("unset")
+    private List<String> unset;
+    
+    @Nullable
+    @JsonProperty("set")
+    private Map<String, Object> set;
+    
+    @Nullable
+    @JsonProperty("user")
+    private UserRequest user;
 
-  @Nullable
-  @JsonProperty("skip_enrich_url")
-  private Boolean skipEnrichUrl;
-
-  @Nullable
-  @JsonProperty("skip_push")
-  private Boolean skipPush;
-
-  @Nullable
-  @JsonProperty("user_id")
-  private String userID;
-
-  @Nullable
-  @JsonProperty("unset")
-  private List<String> unset;
-
-  @Nullable
-  @JsonProperty("set")
-  private Map<String, Object> set;
-
-  @Nullable
-  @JsonProperty("user")
-  private UserRequest user;
 }
