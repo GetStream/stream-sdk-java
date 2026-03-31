@@ -945,7 +945,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
       var resp =
           client
               .chat()
-              .getRetentionPolicyRuns(GetRetentionPolicyRunsRequest.builder().Limit(10).build())
+              .getRetentionPolicyRuns(GetRetentionPolicyRunsRequest.builder().limit(10).build())
               .execute();
 
       assertNotNull(resp.getData(), "GetRetentionPolicyRuns response should not be null");
