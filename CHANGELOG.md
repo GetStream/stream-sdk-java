@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0](https://github.com/GetStream/stream-sdk-java/compare/6.1.0...7.0.0) (2026-03-31)
+
+
+### Features
+
+* regenerate from latest OpenAPI spec, keep only retention runs test ([2c7e910](https://github.com/GetStream/stream-sdk-java/commit/2c7e910f7761a49c9b7199ea5ed862cc4294b9f3))
+
+
+### Bug Fixes
+
+* apply spotless formatting to generated code ([e593fce](https://github.com/GetStream/stream-sdk-java/commit/e593fce0c9e3965d0db71dd07db4f2ea0f96dfc9))
+* remove trailing blank line for spotless ([6b300f7](https://github.com/GetStream/stream-sdk-java/commit/6b300f783f56b0b85c373eef74cd3fecf089313c))
+* use lowercase builder method for limit field ([841e0cb](https://github.com/GetStream/stream-sdk-java/commit/841e0cbf125280fd8599d8c970b34e55f63739a5))
+
 ## [6.1.0](https://github.com/GetStream/stream-sdk-java/compare/6.0.1...6.1.0) (2026-03-20)
 
 ### [6.0.1](https://github.com/GetStream/stream-sdk-java/compare/6.0.0...6.0.1) (2026-03-19)
