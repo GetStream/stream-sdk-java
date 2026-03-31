@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.List;
 
 /** ReactionGroupResponse contains all information about a reaction of the same type. */
 @lombok.Data
@@ -33,4 +34,7 @@ public class ReactionGroupResponse {
 
   @JsonProperty("sum_scores")
   private Integer sumScores;
+
+  @JsonProperty("latest_reactions_by")
+  private List<ReactionGroupUserResponse> latestReactionsBy;
 }

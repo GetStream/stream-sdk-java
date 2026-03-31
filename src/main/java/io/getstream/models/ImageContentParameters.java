@@ -23,6 +23,14 @@ import org.jetbrains.annotations.Nullable;
 public class ImageContentParameters {
 
   @Nullable
+  @JsonProperty("label_operator")
+  private String labelOperator;
+
+  @Nullable
+  @JsonProperty("min_confidence")
+  private Double minConfidence;
+
+  @Nullable
   @JsonProperty("harm_labels")
   private List<String> harmLabels;
 }

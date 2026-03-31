@@ -30,6 +30,10 @@ public class AddUserGroupMembersRequest {
   private List<String> memberIds;
 
   @Nullable
+  @JsonProperty("as_admin")
+  private Boolean asAdmin;
+
+  @Nullable
   @JsonProperty("team_id")
   private String teamID;
 }

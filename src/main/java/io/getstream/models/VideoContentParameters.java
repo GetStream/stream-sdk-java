@@ -23,6 +23,10 @@ import org.jetbrains.annotations.Nullable;
 public class VideoContentParameters {
 
   @Nullable
+  @JsonProperty("label_operator")
+  private String labelOperator;
+
+  @Nullable
   @JsonProperty("harm_labels")
   private List<String> harmLabels;
 }

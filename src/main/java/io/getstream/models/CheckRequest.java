@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,6 +40,10 @@ public class CheckRequest {
   @Nullable
   @JsonProperty("config_team")
   private String configTeam;
+
+  @Nullable
+  @JsonProperty("content_published_at")
+  private Date contentPublishedAt;
 
   @Nullable
   @JsonProperty("test_mode")

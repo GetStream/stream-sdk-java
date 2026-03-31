@@ -40,6 +40,14 @@ public class CallStatsParticipantCounts {
   private Integer sessions;
 
   @Nullable
+  @JsonProperty("call_event_count")
+  private Integer callEventCount;
+
+  @Nullable
+  @JsonProperty("cq_score")
+  private Integer cqScore;
+
+  @Nullable
   @JsonProperty("total_participant_duration")
   private Integer totalParticipantDuration;
 }

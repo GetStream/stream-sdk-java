@@ -28,6 +28,21 @@ public class ModerationImpl {
   }
 
   @NotNull
+  public StreamRequest<InsertActionLogResponse> insertActionLog(InsertActionLogRequest request)
+      throws StreamException {
+
+    return new StreamRequest<InsertActionLogResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/action_logs",
+        request,
+        null,
+        new TypeReference<InsertActionLogResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<AppealResponse> appeal(AppealRequest request) throws StreamException {
 
     return new StreamRequest<AppealResponse>(
@@ -307,6 +322,21 @@ public class ModerationImpl {
         request,
         null,
         new TypeReference<FlagResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetFlagCountResponse> getFlagCount(GetFlagCountRequest request)
+      throws StreamException {
+
+    return new StreamRequest<GetFlagCountResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/flag_count",
+        request,
+        null,
+        new TypeReference<GetFlagCountResponse>() {});
   }
 
   @NotNull

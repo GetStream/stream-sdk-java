@@ -24,4 +24,8 @@ public class AggregationConfig {
   @Nullable
   @JsonProperty("format")
   private String format;
+
+  @Nullable
+  @JsonProperty("score_strategy")
+  private String scoreStrategy;
 }

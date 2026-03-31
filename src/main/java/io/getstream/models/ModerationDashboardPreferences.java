@@ -36,6 +36,10 @@ public class ModerationDashboardPreferences {
   private Boolean disableFlaggingReviewedEntity;
 
   @Nullable
+  @JsonProperty("escalation_queue_enabled")
+  private Boolean escalationQueueEnabled;
+
+  @Nullable
   @JsonProperty("flag_user_on_flagged_content")
   private Boolean flagUserOnFlaggedContent;
 
@@ -46,6 +50,10 @@ public class ModerationDashboardPreferences {
   @Nullable
   @JsonProperty("allowed_moderation_action_reasons")
   private List<String> allowedModerationActionReasons;
+
+  @Nullable
+  @JsonProperty("escalation_reasons")
+  private List<String> escalationReasons;
 
   @Nullable
   @JsonProperty("keyframe_classifications_map")

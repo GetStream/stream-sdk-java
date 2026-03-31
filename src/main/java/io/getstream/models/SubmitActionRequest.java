@@ -74,6 +74,10 @@ public class SubmitActionRequest {
   private DeleteUserRequestPayload deleteUser;
 
   @Nullable
+  @JsonProperty("escalate")
+  private EscalatePayload escalate;
+
+  @Nullable
   @JsonProperty("flag")
   private FlagRequest flag;
 

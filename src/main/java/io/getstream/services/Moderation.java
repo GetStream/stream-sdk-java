@@ -23,6 +23,10 @@ public interface Moderation {
   public StreamSDKClient getSDKClient();
 
   @NotNull
+  public StreamRequest<InsertActionLogResponse> insertActionLog(InsertActionLogRequest request)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<AppealResponse> appeal(AppealRequest request) throws StreamException;
 
   @NotNull
@@ -108,6 +112,10 @@ public interface Moderation {
 
   @NotNull
   public StreamRequest<FlagResponse> flag(FlagRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFlagCountResponse> getFlagCount(GetFlagCountRequest request)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<QueryModerationFlagsResponse> queryModerationFlags(

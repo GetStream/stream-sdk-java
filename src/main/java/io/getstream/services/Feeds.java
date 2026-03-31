@@ -266,6 +266,14 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<UpdateCommentPartialResponse> updateCommentPartial(
+      @NotNull String id, UpdateCommentPartialRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateCommentPartialResponse> updateCommentPartial(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<AddCommentReactionResponse> addCommentReaction(
       @NotNull String id, AddCommentReactionRequest request) throws StreamException;
 
@@ -292,6 +300,14 @@ public interface Feeds {
 
   @NotNull
   public StreamRequest<GetCommentRepliesResponse> getCommentReplies(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<RestoreCommentResponse> restoreComment(
+      @NotNull String id, RestoreCommentRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<RestoreCommentResponse> restoreComment(@NotNull String id)
       throws StreamException;
 
   @NotNull

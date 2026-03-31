@@ -27,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
 public class UnfollowBatchRequest {
 
   @JsonProperty("follows")
-  private List<FollowPair> follows;
+  private List<UnfollowPair> follows;
 
   @Nullable
   @JsonProperty("delete_notification_activity")

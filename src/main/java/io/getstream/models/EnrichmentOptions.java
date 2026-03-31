@@ -30,6 +30,10 @@ public class EnrichmentOptions {
   private Boolean enrichOwnFollowings;
 
   @Nullable
+  @JsonProperty("include_score_vars")
+  private Boolean includeScoreVars;
+
+  @Nullable
   @JsonProperty("skip_activity")
   private Boolean skipActivity;
 

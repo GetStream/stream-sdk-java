@@ -26,6 +26,10 @@ public class UnfollowRequest {
   @JsonIgnore
   private Boolean DeleteNotificationActivity;
 
+  @Query("keep_history")
+  @JsonIgnore
+  private Boolean KeepHistory;
+
   @Query("enrich_own_fields")
   @JsonIgnore
   private Boolean EnrichOwnFields;

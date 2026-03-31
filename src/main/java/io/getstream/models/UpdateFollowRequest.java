@@ -33,6 +33,10 @@ public class UpdateFollowRequest {
   @JsonProperty("target")
   private String target;
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @Nullable
   @JsonProperty("copy_custom_to_notification")
   private Boolean copyCustomToNotification;

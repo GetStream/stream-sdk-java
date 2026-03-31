@@ -98,6 +98,7 @@ import io.getstream.models.CommentDeletedEvent;
 import io.getstream.models.CommentReactionAddedEvent;
 import io.getstream.models.CommentReactionDeletedEvent;
 import io.getstream.models.CommentReactionUpdatedEvent;
+import io.getstream.models.CommentRestoredEvent;
 import io.getstream.models.CommentUpdatedEvent;
 import io.getstream.models.CustomEvent;
 import io.getstream.models.CustomVideoEvent;
@@ -291,6 +292,7 @@ public class Webhook {
     public static final String FEEDS_COMMENT_REACTION_ADDED = "feeds.comment.reaction.added";
     public static final String FEEDS_COMMENT_REACTION_DELETED = "feeds.comment.reaction.deleted";
     public static final String FEEDS_COMMENT_REACTION_UPDATED = "feeds.comment.reaction.updated";
+    public static final String FEEDS_COMMENT_RESTORED = "feeds.comment.restored";
     public static final String FEEDS_COMMENT_UPDATED = "feeds.comment.updated";
     public static final String FEEDS_FEED_CREATED = "feeds.feed.created";
     public static final String FEEDS_FEED_DELETED = "feeds.feed.deleted";
@@ -632,6 +634,8 @@ public class Webhook {
         return CommentReactionDeletedEvent.class;
       case "feeds.comment.reaction.updated":
         return CommentReactionUpdatedEvent.class;
+      case "feeds.comment.restored":
+        return CommentRestoredEvent.class;
       case "feeds.comment.updated":
         return CommentUpdatedEvent.class;
       case "feeds.feed.created":

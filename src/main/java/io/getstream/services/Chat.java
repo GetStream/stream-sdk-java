@@ -514,15 +514,8 @@ public interface Chat {
       SetRetentionPolicyRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<SetRetentionPolicyResponse> setRetentionPolicy() throws StreamException;
-
-  @NotNull
   public StreamRequest<DeleteRetentionPolicyResponse> deleteRetentionPolicy(
       DeleteRetentionPolicyRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<DeleteRetentionPolicyResponse> deleteRetentionPolicy()
-      throws StreamException;
 
   @NotNull
   public StreamRequest<GetRetentionPolicyRunsResponse> getRetentionPolicyRuns(

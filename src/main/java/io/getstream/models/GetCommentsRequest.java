@@ -45,6 +45,10 @@ public class GetCommentsRequest {
   @JsonIgnore
   private Integer RepliesLimit;
 
+  @Query("id_around")
+  @JsonIgnore
+  private String IDAround;
+
   @Query("user_id")
   @JsonIgnore
   private String UserID;

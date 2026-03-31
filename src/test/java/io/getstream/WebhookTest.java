@@ -182,6 +182,7 @@ public class WebhookTest {
     "feeds.comment.reaction.added, CommentReactionAddedEvent",
     "feeds.comment.reaction.deleted, CommentReactionDeletedEvent",
     "feeds.comment.reaction.updated, CommentReactionUpdatedEvent",
+    "feeds.comment.restored, CommentRestoredEvent",
     "feeds.comment.updated, CommentUpdatedEvent",
     "feeds.feed.created, FeedCreatedEvent",
     "feeds.feed.deleted, FeedDeletedEvent",

@@ -30,6 +30,10 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class UpdateActivityPartialRequest {
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @Nullable
   @JsonProperty("copy_custom_to_notification")
   private Boolean copyCustomToNotification;

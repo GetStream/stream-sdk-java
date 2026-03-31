@@ -183,4 +183,8 @@ public class ActivityResponse {
   @Nullable
   @JsonProperty("poll")
   private PollResponseData poll;
+
+  @Nullable
+  @JsonProperty("score_vars")
+  private Map<String, Object> scoreVars;
 }

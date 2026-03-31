@@ -1510,11 +1510,6 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<SetRetentionPolicyResponse> setRetentionPolicy() throws StreamException {
-    return setRetentionPolicy(new SetRetentionPolicyRequest());
-  }
-
-  @NotNull
   public StreamRequest<DeleteRetentionPolicyResponse> deleteRetentionPolicy(
       DeleteRetentionPolicyRequest request) throws StreamException {
 
@@ -1530,12 +1525,6 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<DeleteRetentionPolicyResponse> deleteRetentionPolicy()
-      throws StreamException {
-    return deleteRetentionPolicy(new DeleteRetentionPolicyRequest());
-  }
-
-  @NotNull
   public StreamRequest<GetRetentionPolicyRunsResponse> getRetentionPolicyRuns(
       GetRetentionPolicyRunsRequest request) throws StreamException {
 
@@ -1543,7 +1532,7 @@ public class ChatImpl {
         client.getHttpClient(),
         client.getObjectMapper(),
         client.getBaseUrl(),
-        "GET",
+        "POST",
         "/api/v2/chat/retention_policy/runs",
         request,
         null,

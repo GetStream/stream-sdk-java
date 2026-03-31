@@ -26,6 +26,10 @@ public class UpdateActivityPartialChangeRequest {
   @JsonProperty("activity_id")
   private String activityID;
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @Nullable
   @JsonProperty("copy_custom_to_notification")
   private Boolean copyCustomToNotification;

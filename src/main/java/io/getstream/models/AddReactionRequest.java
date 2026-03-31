@@ -25,6 +25,10 @@ public class AddReactionRequest {
   @JsonProperty("type")
   private String type;
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @Nullable
   @JsonProperty("copy_custom_to_notification")
   private Boolean copyCustomToNotification;

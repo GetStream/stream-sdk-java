@@ -61,4 +61,8 @@ public class QueryCallSessionParticipantStatsResponse {
   @Nullable
   @JsonProperty("tmp_data_source")
   private String tmpDataSource;
+
+  @Nullable
+  @JsonProperty("call_events")
+  private List<CallLevelEventPayload> callEvents;
 }

@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 /** Basic response information */
 @lombok.Data
@@ -26,5 +27,13 @@ public class GetRetentionPolicyRunsResponse {
   private String duration;
 
   @JsonProperty("runs")
-  private List<RetentionCleanupRun> runs;
+  private List<RetentionRunResponse> runs;
+
+  @Nullable
+  @JsonProperty("next")
+  private String next;
+
+  @Nullable
+  @JsonProperty("prev")
+  private String prev;
 }

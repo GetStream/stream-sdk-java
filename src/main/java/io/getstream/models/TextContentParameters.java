@@ -28,6 +28,10 @@ public class TextContentParameters {
   private Boolean containsUrl;
 
   @Nullable
+  @JsonProperty("label_operator")
+  private String labelOperator;
+
+  @Nullable
   @JsonProperty("severity")
   private String severity;
 

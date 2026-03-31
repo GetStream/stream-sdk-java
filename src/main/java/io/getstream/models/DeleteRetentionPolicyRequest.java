@@ -13,7 +13,6 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.Nullable;
 
 /** Delete retention policy Removes a retention policy for the app. Server-side only. */
 @lombok.Data
@@ -22,7 +21,6 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class DeleteRetentionPolicyRequest {
 
-  @Nullable
   @JsonProperty("policy")
   private String policy;
 }

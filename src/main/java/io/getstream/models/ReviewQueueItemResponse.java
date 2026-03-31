@@ -35,6 +35,9 @@ public class ReviewQueueItemResponse {
   @JsonProperty("entity_type")
   private String entityType;
 
+  @JsonProperty("escalated")
+  private Boolean escalated;
+
   @JsonProperty("flags_count")
   private Integer flagsCount;
 
@@ -84,6 +87,14 @@ public class ReviewQueueItemResponse {
   private String entityCreatorID;
 
   @Nullable
+  @JsonProperty("escalated_at")
+  private Date escalatedAt;
+
+  @Nullable
+  @JsonProperty("escalated_by")
+  private String escalatedBy;
+
+  @Nullable
   @JsonProperty("reviewed_at")
   private Date reviewedAt;
 
@@ -112,6 +123,10 @@ public class ReviewQueueItemResponse {
   private EntityCreatorResponse entityCreator;
 
   @Nullable
+  @JsonProperty("escalation_metadata")
+  private EscalationMetadata escalationMetadata;
+
+  @Nullable
   @JsonProperty("feeds_v2_activity")
   private EnrichedActivity feedsV2Activity;
 
@@ -121,11 +136,11 @@ public class ReviewQueueItemResponse {
 
   @Nullable
   @JsonProperty("feeds_v3_activity")
-  private ActivityResponse feedsV3Activity;
+  private FeedsV3ActivityResponse feedsV3Activity;
 
   @Nullable
   @JsonProperty("feeds_v3_comment")
-  private CommentResponse feedsV3Comment;
+  private FeedsV3CommentResponse feedsV3Comment;
 
   @Nullable
   @JsonProperty("message")

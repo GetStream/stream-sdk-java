@@ -29,6 +29,10 @@ public class ActivityRequest {
   @JsonProperty("feeds")
   private List<String> feeds;
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @Nullable
   @JsonProperty("copy_custom_to_notification")
   private Boolean copyCustomToNotification;

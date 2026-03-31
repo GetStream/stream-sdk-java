@@ -23,6 +23,10 @@ import org.jetbrains.annotations.Nullable;
 public class ImageRuleParameters {
 
   @Nullable
+  @JsonProperty("min_confidence")
+  private Double minConfidence;
+
+  @Nullable
   @JsonProperty("threshold")
   private Integer threshold;
 

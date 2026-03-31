@@ -755,6 +755,28 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<UpdateCommentPartialResponse> updateCommentPartial(
+      @NotNull String id, UpdateCommentPartialRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<UpdateCommentPartialResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/comments/{id}/partial",
+        request,
+        pathParams,
+        new TypeReference<UpdateCommentPartialResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpdateCommentPartialResponse> updateCommentPartial(@NotNull String id)
+      throws StreamException {
+    return updateCommentPartial(id, new UpdateCommentPartialRequest());
+  }
+
+  @NotNull
   public StreamRequest<AddCommentReactionResponse> addCommentReaction(
       @NotNull String id, AddCommentReactionRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
@@ -838,6 +860,28 @@ public class FeedsImpl {
   public StreamRequest<GetCommentRepliesResponse> getCommentReplies(@NotNull String id)
       throws StreamException {
     return getCommentReplies(id, new GetCommentRepliesRequest());
+  }
+
+  @NotNull
+  public StreamRequest<RestoreCommentResponse> restoreComment(
+      @NotNull String id, RestoreCommentRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<RestoreCommentResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/comments/{id}/restore",
+        request,
+        pathParams,
+        new TypeReference<RestoreCommentResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<RestoreCommentResponse> restoreComment(@NotNull String id)
+      throws StreamException {
+    return restoreComment(id, new RestoreCommentRequest());
   }
 
   @NotNull

@@ -169,6 +169,34 @@ public interface Common {
       CreateImportV2TaskRequest request) throws StreamException;
 
   @NotNull
+  public StreamRequest<DeleteExternalStorageResponse> deleteImporterExternalStorage(
+      DeleteImporterExternalStorageRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteExternalStorageResponse> deleteImporterExternalStorage()
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetExternalStorageResponse> getImporterExternalStorage(
+      GetImporterExternalStorageRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetExternalStorageResponse> getImporterExternalStorage()
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpsertExternalStorageResponse> upsertImporterExternalStorage(
+      UpsertImporterExternalStorageRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ValidateExternalStorageResponse> validateImporterExternalStorage(
+      ValidateImporterExternalStorageRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ValidateExternalStorageResponse> validateImporterExternalStorage()
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<DeleteImportV2TaskResponse> deleteImportV2Task(
       @NotNull String id, DeleteImportV2TaskRequest request) throws StreamException;
 
