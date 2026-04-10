@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.1.0](https://github.com/GetStream/stream-sdk-java/compare/7.0.0...7.1.0) (2026-04-10)
+
+
+### Features
+
+* allow users to provide a custom OkHttpClient ([780443e](https://github.com/GetStream/stream-sdk-java/commit/780443e0bfb0f658d5f769e43dafa69eba33acad))
+
 ## [7.0.0](https://github.com/GetStream/stream-sdk-java/compare/6.1.0...7.0.0) (2026-03-31)
 
 
