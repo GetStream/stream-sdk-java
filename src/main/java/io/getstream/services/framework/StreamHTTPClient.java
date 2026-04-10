@@ -26,6 +26,10 @@ public class StreamHTTPClient {
   public static final String API_TIMEOUT_PROP_NAME = "io.getstream.timeout";
   public static final String API_URL_PROP_NAME = "io.getstream.url";
   public static final String API_LOG_LEVEL_PROP_NAME = "io.getstream.debug.logLevel";
+  public static final String CONNECTION_POOL_MAX_IDLE_PROP_NAME =
+      "io.getstream.connectionPool.maxIdleConnections";
+  public static final String CONNECTION_POOL_KEEP_ALIVE_PROP_NAME =
+      "io.getstream.connectionPool.keepAliveDuration";
   private static final String API_DEFAULT_URL = "https://chat.stream-io-api.com";
 
   @NotNull private final String sdkVersion = readSdkVersion();
@@ -48,6 +52,8 @@ public class StreamHTTPClient {
   @NotNull private String apiSecret;
   @NotNull private String apiKey;
   private long timeout = 10000;
+  private int connectionPoolMaxIdle = 5;
+  private long connectionPoolKeepAliveDuration = 59;
   @NotNull private String logLevel = "NONE";
   @NotNull private String baseUrl = API_DEFAULT_URL;
   @NotNull private OkHttpClient client;
@@ -153,6 +159,22 @@ public class StreamHTTPClient {
     if (envApiUrl != null) {
       this.baseUrl = envApiUrl;
     }
+
+    var envMaxIdle =
+        env.getOrDefault(
+            "STREAM_CONNECTION_POOL_MAX_IDLE",
+            System.getProperty(CONNECTION_POOL_MAX_IDLE_PROP_NAME));
+    if (envMaxIdle != null) {
+      this.connectionPoolMaxIdle = Integer.parseInt(envMaxIdle);
+    }
+
+    var envKeepAlive =
+        env.getOrDefault(
+            "STREAM_CONNECTION_POOL_KEEP_ALIVE_SECONDS",
+            System.getProperty(CONNECTION_POOL_KEEP_ALIVE_PROP_NAME));
+    if (envKeepAlive != null) {
+      this.connectionPoolKeepAliveDuration = Long.parseLong(envKeepAlive);
+    }
   }
 
   private @NotNull HttpLoggingInterceptor.Level getLogLevel() {
@@ -162,7 +184,9 @@ public class StreamHTTPClient {
   private OkHttpClient buildHTTPClient(String jwtToken) {
     OkHttpClient.Builder httpClient =
         new OkHttpClient.Builder()
-            .connectionPool(new ConnectionPool(5, 59, TimeUnit.SECONDS))
+            .connectionPool(
+                new ConnectionPool(
+                    connectionPoolMaxIdle, connectionPoolKeepAliveDuration, TimeUnit.SECONDS))
             .callTimeout(timeout, TimeUnit.MILLISECONDS);
     httpClient.interceptors().clear();
 
