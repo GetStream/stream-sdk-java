@@ -9,9 +9,13 @@ import io.getstream.models.TrackActivityMetricsEvent;
 import io.getstream.models.TrackActivityMetricsRequest;
 import io.getstream.models.UpdateAppRequest;
 import io.getstream.services.framework.StreamHTTPClient;
+import io.getstream.services.framework.StreamSDKClient;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import okhttp3.ConnectionPool;
+import okhttp3.OkHttpClient;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -133,6 +137,35 @@ public class StreamHTTPClientTest {
         json.contains("\"activity_id\":\"activity-123\""), "Expected activity ID in: " + json);
     assertTrue(json.contains("\"metric\":\"shares\""), "Expected custom metric in: " + json);
     assertTrue(json.contains("\"delta\":3"), "Expected delta in: " + json);
+  }
+
+  @Test
+  void testCustomOkHttpClientPreservesConfig() {
+    ConnectionPool customPool = new ConnectionPool(20, 120, TimeUnit.SECONDS);
+    OkHttpClient customHttp =
+        new OkHttpClient.Builder()
+            .connectionPool(customPool)
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(45, TimeUnit.SECONDS)
+            .build();
+
+    var sdkClient =
+        new StreamSDKClient(
+            System.getenv("STREAM_API_KEY"), System.getenv("STREAM_API_SECRET"), customHttp);
+    OkHttpClient builtClient = sdkClient.getHttpClient().getHttpClient();
+
+    assertSame(customPool, builtClient.connectionPool());
+    assertEquals(30_000, builtClient.connectTimeoutMillis());
+    assertEquals(45_000, builtClient.readTimeoutMillis());
+
+    assertFalse(
+        builtClient.interceptors().isEmpty(), "SDK should add its interceptors to the client");
+  }
+
+  @Test
+  void testDefaultConstructorStillWorks() {
+    assertNotNull(client.getHttpClient());
+    assertFalse(client.getHttpClient().interceptors().isEmpty());
   }
 
   @Test
