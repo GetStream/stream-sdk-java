@@ -56,6 +56,14 @@ public class StreamHTTPClient {
     setCredetials(apiKey, apiSecret);
   }
 
+  public StreamHTTPClient(
+      @NotNull String apiKey, @NotNull String apiSecret, @NotNull OkHttpClient httpClient) {
+    this.apiKey = apiKey;
+    this.apiSecret = apiSecret;
+    var jwtToken = buildJWT(apiSecret);
+    this.client = buildHTTPClient(jwtToken, httpClient.newBuilder());
+  }
+
   // default constructor using ENV or System properties
   // env vars have priority over system properties
   public StreamHTTPClient() {
@@ -120,7 +128,13 @@ public class StreamHTTPClient {
     this.apiKey = apiKey;
     this.apiSecret = apiSecret;
     var jwtToken = buildJWT(apiSecret);
-    this.client = buildHTTPClient(jwtToken);
+    this.client = buildHTTPClient(jwtToken, defaultHttpClientBuilder());
+  }
+
+  private OkHttpClient.Builder defaultHttpClientBuilder() {
+    return new OkHttpClient.Builder()
+        .connectionPool(new ConnectionPool(5, 59, TimeUnit.SECONDS))
+        .callTimeout(timeout, TimeUnit.MILLISECONDS);
   }
 
   private void readPropertiesAndEnv(Properties properties) {
@@ -159,11 +173,7 @@ public class StreamHTTPClient {
     return HttpLoggingInterceptor.Level.valueOf(logLevel);
   }
 
-  private OkHttpClient buildHTTPClient(String jwtToken) {
-    OkHttpClient.Builder httpClient =
-        new OkHttpClient.Builder()
-            .connectionPool(new ConnectionPool(5, 59, TimeUnit.SECONDS))
-            .callTimeout(timeout, TimeUnit.MILLISECONDS);
+  private OkHttpClient buildHTTPClient(String jwtToken, OkHttpClient.Builder httpClient) {
     httpClient.interceptors().clear();
 
     HttpLoggingInterceptor loggingInterceptor =

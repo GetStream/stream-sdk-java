@@ -2,6 +2,7 @@ package io.getstream.services.framework;
 
 import io.getstream.services.*;
 import java.util.Properties;
+import okhttp3.OkHttpClient;
 import org.jetbrains.annotations.NotNull;
 
 public class StreamSDKClient extends CommonImpl implements Common {
@@ -17,6 +18,11 @@ public class StreamSDKClient extends CommonImpl implements Common {
 
   public StreamSDKClient(Properties properties) {
     this(new StreamHTTPClient(properties));
+  }
+
+  public StreamSDKClient(
+      @NotNull String apiKey, @NotNull String apiSecret, @NotNull OkHttpClient httpClient) {
+    this(new StreamHTTPClient(apiKey, apiSecret, httpClient));
   }
 
   public StreamSDKClient(StreamHTTPClient httpClient) {
