@@ -149,9 +149,7 @@ public class StreamHTTPClientTest {
             .readTimeout(45, TimeUnit.SECONDS)
             .build();
 
-    var sdkClient =
-        new StreamSDKClient(
-            System.getenv("STREAM_API_KEY"), System.getenv("STREAM_API_SECRET"), customHttp);
+    var sdkClient = new StreamSDKClient(client.getApiKey(), client.getApiSecret(), customHttp);
     OkHttpClient builtClient = sdkClient.getHttpClient().getHttpClient();
 
     assertSame(customPool, builtClient.connectionPool());
