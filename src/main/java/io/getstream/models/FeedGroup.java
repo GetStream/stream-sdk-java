@@ -60,6 +60,10 @@ public class FeedGroup {
   private Date lastFeedGetAt;
 
   @Nullable
+  @JsonProperty("activity_filter")
+  private ActivityFilterConfig activityFilter;
+
+  @Nullable
   @JsonProperty("aggregation")
   private AggregationConfig aggregation;
 

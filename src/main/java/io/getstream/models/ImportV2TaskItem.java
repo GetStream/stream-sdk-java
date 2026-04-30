@@ -14,6 +14,8 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.Map;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -41,4 +43,8 @@ public class ImportV2TaskItem {
 
   @JsonProperty("settings")
   private ImportV2TaskSettings settings;
+
+  @Nullable
+  @JsonProperty("result")
+  private Map<String, Object> result;
 }

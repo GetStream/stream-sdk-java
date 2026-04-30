@@ -51,6 +51,9 @@ public class AppResponseFields {
   @JsonProperty("enforce_unique_usernames")
   private String enforceUniqueUsernames;
 
+  @JsonProperty("feed_audit_logs_enabled")
+  private Boolean feedAuditLogsEnabled;
+
   @JsonProperty("guest_user_creation_disabled")
   private Boolean guestUserCreationDisabled;
 

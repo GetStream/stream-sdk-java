@@ -12,8 +12,17 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.annotations.Query;
+
 /** Get comment Get a comment by ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class GetCommentRequest {}
+@lombok.AllArgsConstructor
+public class GetCommentRequest {
+
+  @Query("user_id")
+  @JsonIgnore
+  private String UserID;
+}

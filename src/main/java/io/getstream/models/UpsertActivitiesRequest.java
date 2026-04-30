@@ -29,4 +29,8 @@ public class UpsertActivitiesRequest {
   @Nullable
   @JsonProperty("enrich_own_fields")
   private Boolean enrichOwnFields;
+
+  @Nullable
+  @JsonProperty("force_moderation")
+  private Boolean forceModeration;
 }

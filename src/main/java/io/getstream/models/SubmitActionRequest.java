@@ -50,6 +50,10 @@ public class SubmitActionRequest {
   private BlockActionRequestPayload block;
 
   @Nullable
+  @JsonProperty("bypass")
+  private BypassActionRequest bypass;
+
+  @Nullable
   @JsonProperty("custom")
   private CustomActionRequestPayload custom;
 

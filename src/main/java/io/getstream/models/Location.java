@@ -20,12 +20,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @lombok.AllArgsConstructor
 public class Location {
 
-  @JsonProperty("continent_code")
-  private String continentCode;
+  @JsonProperty("lat")
+  private Double lat;
 
-  @JsonProperty("country_iso_code")
-  private String countryIsoCode;
-
-  @JsonProperty("subdivision_iso_code")
-  private String subdivisionIsoCode;
+  @JsonProperty("lng")
+  private Double lng;
 }

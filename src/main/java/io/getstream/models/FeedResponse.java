@@ -92,6 +92,10 @@ public class FeedResponse {
   private Map<String, Object> custom;
 
   @Nullable
+  @JsonProperty("location")
+  private Location location;
+
+  @Nullable
   @JsonProperty("own_membership")
   private FeedMemberResponse ownMembership;
 }

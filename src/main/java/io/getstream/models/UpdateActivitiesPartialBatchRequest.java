@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Batch partial activity update Updates certain fields of multiple activities in a batch. Use
@@ -30,4 +31,8 @@ public class UpdateActivitiesPartialBatchRequest {
 
   @JsonProperty("changes")
   private List<UpdateActivityPartialChangeRequest> changes;
+
+  @Nullable
+  @JsonProperty("force_moderation")
+  private Boolean forceModeration;
 }

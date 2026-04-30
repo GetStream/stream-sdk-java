@@ -243,6 +243,30 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<DeleteCommentBookmarkResponse> deleteCommentBookmark(
+      @NotNull String commentID, DeleteCommentBookmarkRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteCommentBookmarkResponse> deleteCommentBookmark(
+      @NotNull String commentID) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateCommentBookmarkResponse> updateCommentBookmark(
+      @NotNull String commentID, UpdateCommentBookmarkRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateCommentBookmarkResponse> updateCommentBookmark(
+      @NotNull String commentID) throws StreamException;
+
+  @NotNull
+  public StreamRequest<AddCommentBookmarkResponse> addCommentBookmark(
+      @NotNull String commentID, AddCommentBookmarkRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<AddCommentBookmarkResponse> addCommentBookmark(@NotNull String commentID)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<DeleteCommentResponse> deleteComment(
       @NotNull String id, DeleteCommentRequest request) throws StreamException;
 
@@ -381,6 +405,11 @@ public interface Feeds {
   @NotNull
   public StreamRequest<PinActivityResponse> pinActivity(
       @NotNull String feedGroupID, @NotNull String feedID, @NotNull String activityID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<ChangeFeedVisibilityResponse> changeFeedVisibility(
+      @NotNull String feedGroupID, @NotNull String feedID, ChangeFeedVisibilityRequest request)
       throws StreamException;
 
   @NotNull
@@ -627,6 +656,10 @@ public interface Feeds {
   @NotNull
   public StreamRequest<UpdateMembershipLevelResponse> updateMembershipLevel(@NotNull String id)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryRevisionHistoryResponse> queryRevisionHistory(
+      QueryRevisionHistoryRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryFeedsUsageStatsResponse> queryFeedsUsageStats(

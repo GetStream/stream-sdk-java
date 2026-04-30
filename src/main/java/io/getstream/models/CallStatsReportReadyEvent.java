@@ -33,6 +33,9 @@ public class CallStatsReportReadyEvent {
   @JsonProperty("session_id")
   private String sessionID;
 
+  @JsonProperty("counts")
+  private CallStatsParticipantCounts counts;
+
   @JsonProperty("type")
   private String type;
 

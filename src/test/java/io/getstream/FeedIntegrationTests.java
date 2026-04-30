@@ -1616,9 +1616,334 @@ class FeedIntegrationTests {
     }
   }
 
+  @Test
+  @Order(39)
+  void test39_FollowRequestsWithFollowersVisibility() throws Exception {
+    System.out.println("\n🔒 Testing followers visibility follow-request behavior...");
+
+    String ownerUserId = "visibility-owner-" + RandomStringUtils.randomAlphanumeric(8);
+    String acceptedFollowerUserId =
+        "visibility-follower-a-" + RandomStringUtils.randomAlphanumeric(8);
+    String rejectedFollowerUserId =
+        "visibility-follower-r-" + RandomStringUtils.randomAlphanumeric(8);
+
+    // snippet-start: JavaFollowersVisibilityFollowRequests
+    Map<String, UserRequest> users = new HashMap<>();
+    users.put(
+        ownerUserId,
+        UserRequest.builder().id(ownerUserId).name("Visibility Owner").role("user").build());
+    users.put(
+        acceptedFollowerUserId,
+        UserRequest.builder()
+            .id(acceptedFollowerUserId)
+            .name("Accepted Follower")
+            .role("user")
+            .build());
+    users.put(
+        rejectedFollowerUserId,
+        UserRequest.builder()
+            .id(rejectedFollowerUserId)
+            .name("Rejected Follower")
+            .role("user")
+            .build());
+    client.updateUsers(UpdateUsersRequest.builder().users(users).build()).execute();
+
+    Feed ownerFeed = new Feed("user", ownerUserId, feeds);
+    ownerFeed.getOrCreate(
+        GetOrCreateFeedRequest.builder()
+            .userID(ownerUserId)
+            .data(FeedInput.builder().visibility("followers").build())
+            .build());
+
+    Feed acceptedFollowerTimeline = new Feed("timeline", acceptedFollowerUserId, feeds);
+    acceptedFollowerTimeline.getOrCreate(
+        GetOrCreateFeedRequest.builder().userID(acceptedFollowerUserId).build());
+
+    SingleFollowResponse pendingFollowResponse =
+        feeds
+            .follow(
+                FollowRequest.builder()
+                    .source("timeline:" + acceptedFollowerUserId)
+                    .target("user:" + ownerUserId)
+                    .build())
+            .execute()
+            .getData();
+
+    Assertions.assertNotNull(pendingFollowResponse.getFollow());
+    Assertions.assertEquals("pending", pendingFollowResponse.getFollow().getStatus());
+    Assertions.assertNull(pendingFollowResponse.getFollow().getRequestAcceptedAt());
+
+    AcceptFollowResponse acceptedFollowResponse =
+        feeds
+            .acceptFollow(
+                AcceptFollowRequest.builder()
+                    .source("timeline:" + acceptedFollowerUserId)
+                    .target("user:" + ownerUserId)
+                    .followerRole("feed_member")
+                    .build())
+            .execute()
+            .getData();
+
+    Assertions.assertNotNull(acceptedFollowResponse.getFollow());
+    Assertions.assertNotNull(acceptedFollowResponse.getFollow().getRequestAcceptedAt());
+    Assertions.assertNull(acceptedFollowResponse.getFollow().getRequestRejectedAt());
+
+    Feed rejectedFollowerTimeline = new Feed("timeline", rejectedFollowerUserId, feeds);
+    rejectedFollowerTimeline.getOrCreate(
+        GetOrCreateFeedRequest.builder().userID(rejectedFollowerUserId).build());
+
+    SingleFollowResponse secondPendingFollowResponse =
+        feeds
+            .follow(
+                FollowRequest.builder()
+                    .source("timeline:" + rejectedFollowerUserId)
+                    .target("user:" + ownerUserId)
+                    .build())
+            .execute()
+            .getData();
+
+    Assertions.assertNotNull(secondPendingFollowResponse.getFollow());
+    Assertions.assertEquals("pending", secondPendingFollowResponse.getFollow().getStatus());
+
+    RejectFollowResponse rejectedFollowResponse =
+        feeds
+            .rejectFollow(
+                RejectFollowRequest.builder()
+                    .source("timeline:" + rejectedFollowerUserId)
+                    .target("user:" + ownerUserId)
+                    .build())
+            .execute()
+            .getData();
+
+    Assertions.assertNotNull(rejectedFollowResponse.getFollow());
+    Assertions.assertNotNull(rejectedFollowResponse.getFollow().getRequestRejectedAt());
+    Assertions.assertNull(rejectedFollowResponse.getFollow().getRequestAcceptedAt());
+    // snippet-end: JavaFollowersVisibilityFollowRequests
+
+    System.out.println("✅ Verified pending, accepted, and rejected follow request behavior");
+  }
+
+  @Test
+  @Order(40)
+  @Disabled(
+      "Slow integration test: validates async visibility reconciliation over multiple polling windows.")
+  void test40_PendingFollowsActionOnVisibilityLoosening() throws Exception {
+    System.out.println(
+        "\n🔄 Testing pending_follows_action behavior when loosening followers visibility...");
+
+    String ownerUserId = "visibility-owner-2-" + RandomStringUtils.randomAlphanumeric(8);
+    String autoApproveFollowerUserId = "visibility-auto-" + RandomStringUtils.randomAlphanumeric(8);
+    String rejectFollowerUserId = "visibility-reject-" + RandomStringUtils.randomAlphanumeric(8);
+
+    // snippet-start: JavaPendingFollowsActionOnVisibilityChange
+    Map<String, UserRequest> users = new HashMap<>();
+    users.put(
+        ownerUserId,
+        UserRequest.builder().id(ownerUserId).name("Visibility Owner 2").role("user").build());
+    users.put(
+        autoApproveFollowerUserId,
+        UserRequest.builder()
+            .id(autoApproveFollowerUserId)
+            .name("Auto Approve Follower")
+            .role("user")
+            .build());
+    users.put(
+        rejectFollowerUserId,
+        UserRequest.builder()
+            .id(rejectFollowerUserId)
+            .name("Reject Follower")
+            .role("user")
+            .build());
+    client.updateUsers(UpdateUsersRequest.builder().users(users).build()).execute();
+
+    Feed ownerFeed = new Feed("user", ownerUserId, feeds);
+    ownerFeed.getOrCreate(
+        GetOrCreateFeedRequest.builder()
+            .userID(ownerUserId)
+            .data(FeedInput.builder().visibility("followers").build())
+            .build());
+
+    Feed autoApproveFollowerTimeline = new Feed("timeline", autoApproveFollowerUserId, feeds);
+    autoApproveFollowerTimeline.getOrCreate(
+        GetOrCreateFeedRequest.builder().userID(autoApproveFollowerUserId).build());
+
+    Feed rejectFollowerTimeline = new Feed("timeline", rejectFollowerUserId, feeds);
+    rejectFollowerTimeline.getOrCreate(
+        GetOrCreateFeedRequest.builder().userID(rejectFollowerUserId).build());
+
+    String autoApproveSource = "timeline:" + autoApproveFollowerUserId;
+    String ownerTarget = "user:" + ownerUserId;
+    FollowResponse firstPendingFollow =
+        waitForPendingFollow(autoApproveSource, ownerTarget, 20, 500);
+    Assertions.assertNotNull(firstPendingFollow, "Expected first follow request to become pending");
+    Assertions.assertEquals("pending", firstPendingFollow.getStatus());
+
+    // Loosen followers -> visible and auto-approve pending follow requests
+    ownerFeed.changeFeedVisibility(
+        ChangeFeedVisibilityRequest.builder()
+            .visibility("visible")
+            .pendingFollowsAction("auto_approve")
+            .build());
+
+    FollowResponse autoApprovedFollow = null;
+    for (int i = 0; i < 20; i++) {
+      QueryFollowsResponse queryResponse =
+          feeds
+              .queryFollows(
+                  QueryFollowsRequest.builder()
+                      .filter(Map.of("source_feed", autoApproveSource, "target_feed", ownerTarget))
+                      .limit(1)
+                      .build())
+              .execute()
+              .getData();
+      if (queryResponse.getFollows() != null && !queryResponse.getFollows().isEmpty()) {
+        FollowResponse candidate = queryResponse.getFollows().get(0);
+        if (candidate.getRequestAcceptedAt() != null) {
+          autoApprovedFollow = candidate;
+          break;
+        }
+      }
+      Thread.sleep(500);
+    }
+
+    Assertions.assertNotNull(autoApprovedFollow, "Expected pending follow to be auto-approved");
+    Assertions.assertNotNull(autoApprovedFollow.getRequestAcceptedAt());
+    Assertions.assertNull(autoApprovedFollow.getRequestRejectedAt());
+
+    // Move back to followers visibility and wait for transition before creating another pending
+    // follow request.
+    ownerFeed.changeFeedVisibility(
+        ChangeFeedVisibilityRequest.builder().visibility("followers").build());
+
+    waitForVisibility(ownerTarget, "followers", 20, 500);
+
+    String rejectSource = "timeline:" + rejectFollowerUserId;
+    FollowResponse secondPendingFollow = waitForPendingFollow(rejectSource, ownerTarget, 20, 500);
+    Assertions.assertNotNull(
+        secondPendingFollow, "Expected second follow request to become pending");
+    Assertions.assertEquals("pending", secondPendingFollow.getStatus());
+
+    // Loosen followers -> visible and reject pending follow requests
+    ownerFeed.changeFeedVisibility(
+        ChangeFeedVisibilityRequest.builder()
+            .visibility("visible")
+            .pendingFollowsAction("reject")
+            .build());
+
+    boolean rejectedOrRemoved = false;
+    for (int i = 0; i < 20; i++) {
+      QueryFollowsResponse queryResponse =
+          feeds
+              .queryFollows(
+                  QueryFollowsRequest.builder()
+                      .filter(Map.of("source_feed", rejectSource, "target_feed", ownerTarget))
+                      .limit(1)
+                      .build())
+              .execute()
+              .getData();
+
+      if (queryResponse.getFollows() == null || queryResponse.getFollows().isEmpty()) {
+        // Depending on backend behavior, rejected requests can be removed from follow relation
+        // list.
+        rejectedOrRemoved = true;
+        break;
+      }
+
+      FollowResponse candidate = queryResponse.getFollows().get(0);
+      if (candidate.getRequestRejectedAt() != null) {
+        rejectedOrRemoved = true;
+        break;
+      }
+      Thread.sleep(500);
+    }
+
+    Assertions.assertTrue(
+        rejectedOrRemoved,
+        "Expected pending follow to be rejected (or removed) after pending_follows_action=reject");
+    // snippet-end: JavaPendingFollowsActionOnVisibilityChange
+
+    System.out.println("✅ Verified pending_follows_action auto_approve and reject behavior");
+  }
+
   // =================================================================
   // HELPER METHODS
   // =================================================================
+
+  private static FollowResponse queryFollow(String sourceFeed, String targetFeed) throws Exception {
+    QueryFollowsResponse queryResponse =
+        feeds
+            .queryFollows(
+                QueryFollowsRequest.builder()
+                    .filter(Map.of("source_feed", sourceFeed, "target_feed", targetFeed))
+                    .limit(1)
+                    .build())
+            .execute()
+            .getData();
+
+    if (queryResponse.getFollows() == null || queryResponse.getFollows().isEmpty()) {
+      return null;
+    }
+    return queryResponse.getFollows().get(0);
+  }
+
+  private static FollowResponse waitForPendingFollow(
+      String sourceFeed, String targetFeed, int attempts, long sleepMs) throws Exception {
+    for (int i = 0; i < attempts; i++) {
+      FollowResponse follow = null;
+      try {
+        // Try to create follow first; depending on reconciliation timing it may already exist.
+        follow =
+            feeds
+                .follow(FollowRequest.builder().source(sourceFeed).target(targetFeed).build())
+                .execute()
+                .getData()
+                .getFollow();
+      } catch (Exception ignored) {
+        // Follow may already exist while transition reconciles; query current state below.
+      }
+
+      if (follow == null) {
+        follow = queryFollow(sourceFeed, targetFeed);
+      }
+
+      if (follow != null) {
+        if ("pending".equals(follow.getStatus())) {
+          return follow;
+        }
+        if ("accepted".equals(follow.getStatus())) {
+          // During visibility transitions the backend can temporarily auto-accept.
+          // Remove and retry until we get a deterministic pending state.
+          feeds.unfollow(sourceFeed, targetFeed).execute();
+        }
+      }
+
+      Thread.sleep(sleepMs);
+    }
+    return null;
+  }
+
+  private static void waitForVisibility(
+      String targetFeed, String expectedVisibility, int attempts, long sleepMs) throws Exception {
+    for (int i = 0; i < attempts; i++) {
+      QueryFeedsResponse queryResponse =
+          feeds
+              .queryFeeds(
+                  QueryFeedsRequest.builder().filter(Map.of("feed", targetFeed)).limit(1).build())
+              .execute()
+              .getData();
+
+      if (queryResponse.getFeeds() != null && !queryResponse.getFeeds().isEmpty()) {
+        FeedResponse feed = queryResponse.getFeeds().get(0);
+        if (expectedVisibility.equals(feed.getVisibility())) {
+          return;
+        }
+      }
+
+      Thread.sleep(sleepMs);
+    }
+
+    Assertions.fail("Timed out waiting for feed visibility to become " + expectedVisibility);
+  }
 
   private static void cleanupResources() {
     System.out.println("\n🧹 Cleaning up test resources...");

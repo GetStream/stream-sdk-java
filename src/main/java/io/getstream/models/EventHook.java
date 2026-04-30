@@ -118,4 +118,8 @@ public class EventHook {
   @Nullable
   @JsonProperty("callback")
   private AsyncModerationCallbackConfig callback;
+
+  @Nullable
+  @JsonProperty("failover_config")
+  private WebhookFailoverConfig failoverConfig;
 }

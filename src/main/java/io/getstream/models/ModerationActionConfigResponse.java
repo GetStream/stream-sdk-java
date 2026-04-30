@@ -39,6 +39,10 @@ public class ModerationActionConfigResponse {
   private Integer order;
 
   @Nullable
+  @JsonProperty("id")
+  private String id;
+
+  @Nullable
   @JsonProperty("queue_type")
   private String queueType;
 

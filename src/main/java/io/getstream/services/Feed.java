@@ -85,6 +85,11 @@ public class Feed {
     return this.pinActivity(activityID, new PinActivityRequest());
   }
 
+  public StreamResponse<ChangeFeedVisibilityResponse> changeFeedVisibility(
+      ChangeFeedVisibilityRequest request) throws StreamException {
+    return service.changeFeedVisibility(this.feedGroup, this.feedID, request).execute();
+  }
+
   public StreamResponse<UpdateFeedMembersResponse> updateFeedMembers(
       UpdateFeedMembersRequest request) throws StreamException {
     return service.updateFeedMembers(this.feedGroup, this.feedID, request).execute();

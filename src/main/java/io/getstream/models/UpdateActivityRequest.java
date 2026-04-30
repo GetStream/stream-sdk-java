@@ -47,6 +47,10 @@ public class UpdateActivityRequest {
   private Date expiresAt;
 
   @Nullable
+  @JsonProperty("force_moderation")
+  private Boolean forceModeration;
+
+  @Nullable
   @JsonProperty("handle_mention_notifications")
   private Boolean handleMentionNotifications;
 
@@ -112,7 +116,7 @@ public class UpdateActivityRequest {
 
   @Nullable
   @JsonProperty("location")
-  private ActivityLocation location;
+  private Location location;
 
   @Nullable
   @JsonProperty("search_data")

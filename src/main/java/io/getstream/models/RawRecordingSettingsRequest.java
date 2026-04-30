@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -22,4 +23,8 @@ public class RawRecordingSettingsRequest {
 
   @JsonProperty("mode")
   private String mode;
+
+  @Nullable
+  @JsonProperty("audio_only")
+  private Boolean audioOnly;
 }

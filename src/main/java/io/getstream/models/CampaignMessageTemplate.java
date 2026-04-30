@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -22,18 +23,22 @@ import java.util.Map;
 @lombok.AllArgsConstructor
 public class CampaignMessageTemplate {
 
-  @JsonProperty("poll_id")
-  private String pollID;
-
-  @JsonProperty("searchable")
-  private Boolean searchable;
-
   @JsonProperty("text")
   private String text;
 
+  @Nullable
+  @JsonProperty("poll_id")
+  private String pollID;
+
+  @Nullable
+  @JsonProperty("searchable")
+  private Boolean searchable;
+
+  @Nullable
   @JsonProperty("attachments")
   private List<Attachment> attachments;
 
+  @Nullable
   @JsonProperty("custom")
   private Map<String, Object> custom;
 }

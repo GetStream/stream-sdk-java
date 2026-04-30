@@ -33,6 +33,9 @@ public class ActionLogResponse {
   @JsonProperty("reason")
   private String reason;
 
+  @JsonProperty("reporter_type")
+  private String reporterType;
+
   @JsonProperty("target_user_id")
   private String targetUserID;
 

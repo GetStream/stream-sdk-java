@@ -28,6 +28,93 @@ public class ModerationImpl {
   }
 
   @NotNull
+  public StreamRequest<GetActionConfigResponse> getActionConfig(GetActionConfigRequest request)
+      throws StreamException {
+
+    return new StreamRequest<GetActionConfigResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/moderation/action_config",
+        request,
+        null,
+        new TypeReference<GetActionConfigResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetActionConfigResponse> getActionConfig() throws StreamException {
+    return getActionConfig(new GetActionConfigRequest());
+  }
+
+  @NotNull
+  public StreamRequest<UpsertActionConfigResponse> upsertActionConfig(
+      UpsertActionConfigRequest request) throws StreamException {
+
+    return new StreamRequest<UpsertActionConfigResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/action_config",
+        request,
+        null,
+        new TypeReference<UpsertActionConfigResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<BulkUpsertActionConfigResponse> bulkUpsertActionConfig(
+      BulkUpsertActionConfigRequest request) throws StreamException {
+
+    return new StreamRequest<BulkUpsertActionConfigResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/action_config/bulk",
+        request,
+        null,
+        new TypeReference<BulkUpsertActionConfigResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<BulkDeleteActionConfigResponse> bulkDeleteActionConfig(
+      BulkDeleteActionConfigRequest request) throws StreamException {
+
+    return new StreamRequest<BulkDeleteActionConfigResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/action_config/bulk_delete",
+        request,
+        null,
+        new TypeReference<BulkDeleteActionConfigResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteActionConfigResponse> deleteActionConfig(
+      @NotNull String id, DeleteActionConfigRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<DeleteActionConfigResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "DELETE",
+        "/api/v2/moderation/action_config/{id}",
+        request,
+        pathParams,
+        new TypeReference<DeleteActionConfigResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteActionConfigResponse> deleteActionConfig(@NotNull String id)
+      throws StreamException {
+    return deleteActionConfig(id, new DeleteActionConfigRequest());
+  }
+
+  @NotNull
   public StreamRequest<InsertActionLogResponse> insertActionLog(InsertActionLogRequest request)
       throws StreamException {
 
@@ -124,6 +211,20 @@ public class ModerationImpl {
         request,
         null,
         new TypeReference<BulkImageModerationResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<BypassResponse> bypass(BypassRequest request) throws StreamException {
+
+    return new StreamRequest<BypassResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/bypass",
+        request,
+        null,
+        new TypeReference<BypassResponse>() {});
   }
 
   @NotNull
@@ -357,6 +458,40 @@ public class ModerationImpl {
   @NotNull
   public StreamRequest<QueryModerationFlagsResponse> queryModerationFlags() throws StreamException {
     return queryModerationFlags(new QueryModerationFlagsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<LabelsResponse> labels(LabelsRequest request) throws StreamException {
+
+    return new StreamRequest<LabelsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/labels",
+        request,
+        null,
+        new TypeReference<LabelsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryLabelResultsResponse> queryLabelResults(
+      QueryLabelResultsRequest request) throws StreamException {
+
+    return new StreamRequest<QueryLabelResultsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/labels/results",
+        request,
+        null,
+        new TypeReference<QueryLabelResultsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryLabelResultsResponse> queryLabelResults() throws StreamException {
+    return queryLabelResults(new QueryLabelResultsRequest());
   }
 
   @NotNull

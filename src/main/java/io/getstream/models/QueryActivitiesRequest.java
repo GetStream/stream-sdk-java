@@ -37,6 +37,10 @@ public class QueryActivitiesRequest {
   private Boolean includePrivateActivities;
 
   @Nullable
+  @JsonProperty("include_soft_deleted_activities")
+  private Boolean includeSoftDeletedActivities;
+
+  @Nullable
   @JsonProperty("limit")
   private Integer limit;
 

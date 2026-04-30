@@ -23,6 +23,33 @@ public interface Moderation {
   public StreamSDKClient getSDKClient();
 
   @NotNull
+  public StreamRequest<GetActionConfigResponse> getActionConfig(GetActionConfigRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetActionConfigResponse> getActionConfig() throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpsertActionConfigResponse> upsertActionConfig(
+      UpsertActionConfigRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<BulkUpsertActionConfigResponse> bulkUpsertActionConfig(
+      BulkUpsertActionConfigRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<BulkDeleteActionConfigResponse> bulkDeleteActionConfig(
+      BulkDeleteActionConfigRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteActionConfigResponse> deleteActionConfig(
+      @NotNull String id, DeleteActionConfigRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteActionConfigResponse> deleteActionConfig(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<InsertActionLogResponse> insertActionLog(InsertActionLogRequest request)
       throws StreamException;
 
@@ -49,6 +76,9 @@ public interface Moderation {
   @NotNull
   public StreamRequest<BulkImageModerationResponse> bulkImageModeration(
       BulkImageModerationRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<BypassResponse> bypass(BypassRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<CheckResponse> check(CheckRequest request) throws StreamException;
@@ -123,6 +153,16 @@ public interface Moderation {
 
   @NotNull
   public StreamRequest<QueryModerationFlagsResponse> queryModerationFlags() throws StreamException;
+
+  @NotNull
+  public StreamRequest<LabelsResponse> labels(LabelsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryLabelResultsResponse> queryLabelResults(
+      QueryLabelResultsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryLabelResultsResponse> queryLabelResults() throws StreamException;
 
   @NotNull
   public StreamRequest<QueryModerationLogsResponse> queryModerationLogs(

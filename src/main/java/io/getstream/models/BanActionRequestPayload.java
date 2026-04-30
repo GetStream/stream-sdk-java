@@ -23,6 +23,10 @@ import org.jetbrains.annotations.Nullable;
 public class BanActionRequestPayload {
 
   @Nullable
+  @JsonProperty("ban_from_future_channels")
+  private Boolean banFromFutureChannels;
+
+  @Nullable
   @JsonProperty("channel_ban_only")
   private Boolean channelBanOnly;
 

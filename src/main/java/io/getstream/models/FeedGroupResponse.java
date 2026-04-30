@@ -50,6 +50,10 @@ public class FeedGroupResponse {
   private List<ActivitySelectorConfigResponse> activitySelectors;
 
   @Nullable
+  @JsonProperty("activity_filter")
+  private ActivityFilterConfig activityFilter;
+
+  @Nullable
   @JsonProperty("aggregation")
   private AggregationConfig aggregation;
 

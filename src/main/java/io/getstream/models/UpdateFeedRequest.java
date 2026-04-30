@@ -25,6 +25,10 @@ import org.jetbrains.annotations.Nullable;
 public class UpdateFeedRequest {
 
   @Nullable
+  @JsonProperty("clear_location")
+  private Boolean clearLocation;
+
+  @Nullable
   @JsonProperty("created_by_id")
   private String createdByID;
 
@@ -47,4 +51,8 @@ public class UpdateFeedRequest {
   @Nullable
   @JsonProperty("custom")
   private Map<String, Object> custom;
+
+  @Nullable
+  @JsonProperty("location")
+  private Location location;
 }

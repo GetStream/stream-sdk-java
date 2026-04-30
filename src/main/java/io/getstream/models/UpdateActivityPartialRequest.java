@@ -43,6 +43,10 @@ public class UpdateActivityPartialRequest {
   private Boolean enrichOwnFields;
 
   @Nullable
+  @JsonProperty("force_moderation")
+  private Boolean forceModeration;
+
+  @Nullable
   @JsonProperty("handle_mention_notifications")
   private Boolean handleMentionNotifications;
 

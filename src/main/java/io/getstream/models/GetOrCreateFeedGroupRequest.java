@@ -39,6 +39,10 @@ public class GetOrCreateFeedGroupRequest {
   private List<ActivitySelectorConfig> activitySelectors;
 
   @Nullable
+  @JsonProperty("activity_filter")
+  private ActivityFilterConfig activityFilter;
+
+  @Nullable
   @JsonProperty("aggregation")
   private AggregationConfig aggregation;
 

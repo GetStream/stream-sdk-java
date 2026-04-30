@@ -51,6 +51,10 @@ public class AddActivityRequest {
   private String expiresAt;
 
   @Nullable
+  @JsonProperty("force_moderation")
+  private Boolean forceModeration;
+
+  @Nullable
   @JsonProperty("id")
   private String id;
 
@@ -116,7 +120,7 @@ public class AddActivityRequest {
 
   @Nullable
   @JsonProperty("location")
-  private ActivityLocation location;
+  private Location location;
 
   @Nullable
   @JsonProperty("search_data")

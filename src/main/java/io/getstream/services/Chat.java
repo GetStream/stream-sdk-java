@@ -23,6 +23,10 @@ public interface Chat {
   public StreamSDKClient getSDKClient();
 
   @NotNull
+  public StreamRequest<CreateCampaignResponse> createCampaign(CreateCampaignRequest request)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryCampaignsResponse> queryCampaigns(QueryCampaignsRequest request)
       throws StreamException;
 
@@ -30,11 +34,23 @@ public interface Chat {
   public StreamRequest<QueryCampaignsResponse> queryCampaigns() throws StreamException;
 
   @NotNull
+  public StreamRequest<DeleteCampaignResponse> deleteCampaign(
+      @NotNull String id, DeleteCampaignRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteCampaignResponse> deleteCampaign(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<GetCampaignResponse> getCampaign(
       @NotNull String id, GetCampaignRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<GetCampaignResponse> getCampaign(@NotNull String id) throws StreamException;
+
+  @NotNull
+  public StreamRequest<CampaignResponse> updateCampaign(
+      @NotNull String id, UpdateCampaignRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<StartCampaignResponse> startCampaign(
@@ -72,6 +88,13 @@ public interface Chat {
 
   @NotNull
   public StreamRequest<MarkDeliveredResponse> markDelivered() throws StreamException;
+
+  @NotNull
+  public StreamRequest<GroupedQueryChannelsResponse> groupedQueryChannels(
+      GroupedQueryChannelsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GroupedQueryChannelsResponse> groupedQueryChannels() throws StreamException;
 
   @NotNull
   public StreamRequest<MarkReadResponse> markChannelsRead(MarkChannelsReadRequest request)

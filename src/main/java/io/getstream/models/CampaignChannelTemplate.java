@@ -26,9 +26,6 @@ public class CampaignChannelTemplate {
   @JsonProperty("type")
   private String type;
 
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
-
   @Nullable
   @JsonProperty("id")
   private String id;
@@ -44,4 +41,8 @@ public class CampaignChannelTemplate {
   @Nullable
   @JsonProperty("members_template")
   private List<CampaignChannelMember> membersTemplate;
+
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 }

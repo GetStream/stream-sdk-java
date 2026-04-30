@@ -43,6 +43,14 @@ public class InsertActionLogRequest {
   private String reason;
 
   @Nullable
+  @JsonProperty("reporter_type")
+  private String reporterType;
+
+  @Nullable
+  @JsonProperty("reporter_user_id")
+  private String reporterUserID;
+
+  @Nullable
   @JsonProperty("custom")
   private Map<String, Object> custom;
 }

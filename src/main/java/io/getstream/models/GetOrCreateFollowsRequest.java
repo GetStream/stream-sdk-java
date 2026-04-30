@@ -30,6 +30,10 @@ public class GetOrCreateFollowsRequest {
   private List<FollowRequest> follows;
 
   @Nullable
+  @JsonProperty("create_users")
+  private Boolean createUsers;
+
+  @Nullable
   @JsonProperty("enrich_own_fields")
   private Boolean enrichOwnFields;
 }

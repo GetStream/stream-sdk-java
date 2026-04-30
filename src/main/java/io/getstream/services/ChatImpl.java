@@ -28,6 +28,21 @@ public class ChatImpl {
   }
 
   @NotNull
+  public StreamRequest<CreateCampaignResponse> createCampaign(CreateCampaignRequest request)
+      throws StreamException {
+
+    return new StreamRequest<CreateCampaignResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/chat/campaigns",
+        request,
+        null,
+        new TypeReference<CreateCampaignResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<QueryCampaignsResponse> queryCampaigns(QueryCampaignsRequest request)
       throws StreamException {
 
@@ -45,6 +60,28 @@ public class ChatImpl {
   @NotNull
   public StreamRequest<QueryCampaignsResponse> queryCampaigns() throws StreamException {
     return queryCampaigns(new QueryCampaignsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<DeleteCampaignResponse> deleteCampaign(
+      @NotNull String id, DeleteCampaignRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<DeleteCampaignResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "DELETE",
+        "/api/v2/chat/campaigns/{id}",
+        request,
+        pathParams,
+        new TypeReference<DeleteCampaignResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteCampaignResponse> deleteCampaign(@NotNull String id)
+      throws StreamException {
+    return deleteCampaign(id, new DeleteCampaignRequest());
   }
 
   @NotNull
@@ -66,6 +103,22 @@ public class ChatImpl {
   @NotNull
   public StreamRequest<GetCampaignResponse> getCampaign(@NotNull String id) throws StreamException {
     return getCampaign(id, new GetCampaignRequest());
+  }
+
+  @NotNull
+  public StreamRequest<CampaignResponse> updateCampaign(
+      @NotNull String id, UpdateCampaignRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<CampaignResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PUT",
+        "/api/v2/chat/campaigns/{id}",
+        request,
+        pathParams,
+        new TypeReference<CampaignResponse>() {});
   }
 
   @NotNull
@@ -179,6 +232,26 @@ public class ChatImpl {
   @NotNull
   public StreamRequest<MarkDeliveredResponse> markDelivered() throws StreamException {
     return markDelivered(new MarkDeliveredRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GroupedQueryChannelsResponse> groupedQueryChannels(
+      GroupedQueryChannelsRequest request) throws StreamException {
+
+    return new StreamRequest<GroupedQueryChannelsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/chat/channels/grouped",
+        request,
+        null,
+        new TypeReference<GroupedQueryChannelsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GroupedQueryChannelsResponse> groupedQueryChannels() throws StreamException {
+    return groupedQueryChannels(new GroupedQueryChannelsRequest());
   }
 
   @NotNull

@@ -38,6 +38,10 @@ public class ImportV2TaskSettings {
   private Boolean skipReferencesCheck;
 
   @Nullable
+  @JsonProperty("source")
+  private String source;
+
+  @Nullable
   @JsonProperty("s3")
   private ImportV2TaskSettingsS3 s3;
 }
