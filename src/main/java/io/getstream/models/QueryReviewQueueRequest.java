@@ -28,6 +28,10 @@ import org.jetbrains.annotations.Nullable;
 public class QueryReviewQueueRequest {
 
   @Nullable
+  @JsonProperty("exclude_default_action_config")
+  private Boolean excludeDefaultActionConfig;
+
+  @Nullable
   @JsonProperty("limit")
   private Integer limit;
 

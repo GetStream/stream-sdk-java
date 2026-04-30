@@ -12,8 +12,17 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.annotations.Query;
+
 /** Delete moderation rule Delete an existing moderation rule */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class DeleteModerationRuleRequest {}
+@lombok.AllArgsConstructor
+public class DeleteModerationRuleRequest {
+
+  @Query("user_id")
+  @JsonIgnore
+  private String UserID;
+}

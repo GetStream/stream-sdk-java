@@ -60,6 +60,22 @@ public class CallStatsParticipantSession {
   private Date endedAt;
 
   @Nullable
+  @JsonProperty("freezes_duration_ms")
+  private Integer freezesDurationMs;
+
+  @Nullable
+  @JsonProperty("ingress")
+  private String ingress;
+
+  @Nullable
+  @JsonProperty("jitter_ms")
+  private Integer jitterMs;
+
+  @Nullable
+  @JsonProperty("latency_ms")
+  private Integer latencyMs;
+
+  @Nullable
   @JsonProperty("os")
   private String os;
 

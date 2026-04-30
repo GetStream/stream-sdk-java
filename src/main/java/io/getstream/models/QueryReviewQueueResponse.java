@@ -44,6 +44,10 @@ public class QueryReviewQueueResponse {
   private String prev;
 
   @Nullable
+  @JsonProperty("default_action_config")
+  private Map<String, List<ModerationActionConfigResponse>> defaultActionConfig;
+
+  @Nullable
   @JsonProperty("filter_config")
   private FilterConfigResponse filterConfig;
 }

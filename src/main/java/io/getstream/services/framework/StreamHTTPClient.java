@@ -26,7 +26,9 @@ public class StreamHTTPClient {
   public static final String API_TIMEOUT_PROP_NAME = "io.getstream.timeout";
   public static final String API_URL_PROP_NAME = "io.getstream.url";
   public static final String API_LOG_LEVEL_PROP_NAME = "io.getstream.debug.logLevel";
+  public static final String API_CONNECTION_MAX_AGE_PROP_NAME = "io.getstream.connection.maxAge";
   private static final String API_DEFAULT_URL = "https://chat.stream-io-api.com";
+  private static final long DEFAULT_CONNECTION_MAX_AGE_SECONDS = 59;
 
   @NotNull private final String sdkVersion = readSdkVersion();
 
@@ -48,6 +50,7 @@ public class StreamHTTPClient {
   @NotNull private String apiSecret;
   @NotNull private String apiKey;
   private long timeout = 10000;
+  private long connectionMaxAgeSeconds = DEFAULT_CONNECTION_MAX_AGE_SECONDS;
   @NotNull private String logLevel = "NONE";
   @NotNull private String baseUrl = API_DEFAULT_URL;
   @NotNull private OkHttpClient client;
@@ -133,7 +136,7 @@ public class StreamHTTPClient {
 
   private OkHttpClient.Builder defaultHttpClientBuilder() {
     return new OkHttpClient.Builder()
-        .connectionPool(new ConnectionPool(5, 59, TimeUnit.SECONDS))
+        .connectionPool(new ConnectionPool(5, connectionMaxAgeSeconds, TimeUnit.SECONDS))
         .callTimeout(timeout, TimeUnit.MILLISECONDS);
   }
 
@@ -161,6 +164,14 @@ public class StreamHTTPClient {
         env.getOrDefault("STREAM_API_TIMEOUT", System.getProperty(API_TIMEOUT_PROP_NAME));
     if (envTimeout != null) {
       timeout = Long.parseLong(envTimeout);
+    }
+
+    var envConnectionMaxAge =
+        env.getOrDefault(
+            "STREAM_API_CONNECTION_MAX_AGE",
+            System.getProperty(API_CONNECTION_MAX_AGE_PROP_NAME));
+    if (envConnectionMaxAge != null) {
+      connectionMaxAgeSeconds = Long.parseLong(envConnectionMaxAge);
     }
 
     var envApiUrl = env.getOrDefault("STREAM_BASE_URL", System.getProperty(API_URL_PROP_NAME));

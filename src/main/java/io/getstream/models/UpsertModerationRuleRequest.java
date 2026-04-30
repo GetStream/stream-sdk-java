@@ -53,6 +53,10 @@ public class UpsertModerationRuleRequest {
   private String team;
 
   @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
   @JsonProperty("action_sequences")
   private List<CallRuleActionSequence> actionSequences;
 
@@ -71,4 +75,8 @@ public class UpsertModerationRuleRequest {
   @Nullable
   @JsonProperty("action")
   private RuleBuilderAction action;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

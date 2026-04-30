@@ -44,6 +44,10 @@ public class AddCommentRequest {
   private Boolean createNotificationActivity;
 
   @Nullable
+  @JsonProperty("force_moderation")
+  private Boolean forceModeration;
+
+  @Nullable
   @JsonProperty("id")
   private String id;
 

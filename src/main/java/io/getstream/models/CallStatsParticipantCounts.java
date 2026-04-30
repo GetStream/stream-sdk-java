@@ -39,6 +39,17 @@ public class CallStatsParticipantCounts {
   @JsonProperty("sessions")
   private Integer sessions;
 
+  @JsonProperty("sfus_used")
+  private Integer sfusUsed;
+
+  @Nullable
+  @JsonProperty("average_jitter_ms")
+  private Integer averageJitterMs;
+
+  @Nullable
+  @JsonProperty("average_latency_ms")
+  private Integer averageLatencyMs;
+
   @Nullable
   @JsonProperty("call_event_count")
   private Integer callEventCount;
@@ -46,6 +57,10 @@ public class CallStatsParticipantCounts {
   @Nullable
   @JsonProperty("cq_score")
   private Integer cqScore;
+
+  @Nullable
+  @JsonProperty("max_freezes_duration_ms")
+  private Integer maxFreezesDurationMs;
 
   @Nullable
   @JsonProperty("total_participant_duration")

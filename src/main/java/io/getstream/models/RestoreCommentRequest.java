@@ -16,8 +16,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Restore a soft-deleted comment Restores a soft-deleted comment by its ID. The comment and all its
- * descendants are restored. Requires moderator permissions.
+ * Restore a comment Restores a soft-deleted, moderation-removed, or shadow-blocked comment by its
+ * ID. The comment and all its descendants are restored. Deleted comments can be restored
+ * client-side. Moderation-blocked comments can only be restored server-side.
  */
 @lombok.Data
 @lombok.Builder

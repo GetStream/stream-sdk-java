@@ -110,6 +110,10 @@ public class NotificationMarkUnreadEvent {
   private Map<String, Object> channelCustom;
 
   @Nullable
+  @JsonProperty("grouped_unread_channels")
+  private Map<String, Integer> groupedUnreadChannels;
+
+  @Nullable
   @JsonProperty("user")
   private UserResponseCommonFields user;
 }

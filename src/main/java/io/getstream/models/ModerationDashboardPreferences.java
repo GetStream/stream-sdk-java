@@ -44,6 +44,10 @@ public class ModerationDashboardPreferences {
   private Boolean flagUserOnFlaggedContent;
 
   @Nullable
+  @JsonProperty("include_attachment_payload")
+  private Boolean includeAttachmentPayload;
+
+  @Nullable
   @JsonProperty("media_queue_blur_enabled")
   private Boolean mediaQueueBlurEnabled;
 

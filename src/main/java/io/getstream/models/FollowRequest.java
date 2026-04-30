@@ -29,6 +29,10 @@ public class FollowRequest {
   @JsonProperty("target")
   private String target;
 
+  @Nullable
+  @JsonProperty("activity_copy_limit")
+  private Integer activityCopyLimit;
+
   /**
    * @deprecated
    */
@@ -40,6 +44,10 @@ public class FollowRequest {
   @Nullable
   @JsonProperty("create_notification_activity")
   private Boolean createNotificationActivity;
+
+  @Nullable
+  @JsonProperty("create_users")
+  private Boolean createUsers;
 
   @Nullable
   @JsonProperty("enrich_own_fields")

@@ -24,6 +24,9 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class CommentResponse {
 
+  @JsonProperty("bookmark_count")
+  private Integer bookmarkCount;
+
   @JsonProperty("confidence_score")
   private Double confidenceScore;
 

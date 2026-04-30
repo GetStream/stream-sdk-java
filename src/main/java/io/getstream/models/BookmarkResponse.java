@@ -26,6 +26,12 @@ public class BookmarkResponse {
   @JsonProperty("created_at")
   private Date createdAt;
 
+  @JsonProperty("object_id")
+  private String objectID;
+
+  @JsonProperty("object_type")
+  private String objectType;
+
   @JsonProperty("updated_at")
   private Date updatedAt;
 
@@ -34,6 +40,14 @@ public class BookmarkResponse {
 
   @JsonProperty("user")
   private UserResponse user;
+
+  @Nullable
+  @JsonProperty("activity_id")
+  private String activityID;
+
+  @Nullable
+  @JsonProperty("comment")
+  private CommentResponse comment;
 
   @Nullable
   @JsonProperty("custom")

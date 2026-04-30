@@ -393,6 +393,14 @@ public interface Video {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<QueryCallSessionStatsResponse> queryCallSessionStats(
+      QueryCallSessionStatsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryCallSessionStatsResponse> queryCallSessionStats()
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryCallStatsMapResponse> getCallStatsMap(
       @NotNull String callType,
       @NotNull String callID,

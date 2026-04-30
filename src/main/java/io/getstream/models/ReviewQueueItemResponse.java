@@ -144,7 +144,7 @@ public class ReviewQueueItemResponse {
 
   @Nullable
   @JsonProperty("message")
-  private MessageResponse message;
+  private ChatMessageResponse message;
 
   @Nullable
   @JsonProperty("moderation_payload")

@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -34,4 +35,8 @@ public class QueryFeedsUsageStatsResponse {
 
   @JsonProperty("openai_requests")
   private DailyMetricStatsResponse openaiRequests;
+
+  @Nullable
+  @JsonProperty("emau")
+  private EMAUStatsResponse emau;
 }

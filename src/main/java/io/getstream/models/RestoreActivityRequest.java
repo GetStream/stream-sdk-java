@@ -18,8 +18,9 @@ import io.getstream.annotations.Query;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Restore a soft-deleted activity Restores a soft-deleted activity by its ID. Only the activity
- * owner can restore their own activities.
+ * Restore an activity Restores a soft-deleted, moderation-removed, or shadow-blocked activity by
+ * its ID. Deleted activities can be restored by the owner (client-side). Moderation-blocked
+ * activities can only be restored server-side.
  */
 @lombok.Data
 @lombok.Builder

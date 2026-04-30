@@ -29,4 +29,8 @@ public class UnbanActionRequestPayload {
   @Nullable
   @JsonProperty("decision_reason")
   private String decisionReason;
+
+  @Nullable
+  @JsonProperty("remove_future_channels_ban")
+  private Boolean removeFutureChannelsBan;
 }

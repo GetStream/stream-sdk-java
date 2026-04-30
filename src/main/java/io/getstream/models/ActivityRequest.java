@@ -111,7 +111,7 @@ public class ActivityRequest {
 
   @Nullable
   @JsonProperty("location")
-  private ActivityLocation location;
+  private Location location;
 
   @Nullable
   @JsonProperty("search_data")

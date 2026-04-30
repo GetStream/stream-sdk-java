@@ -90,6 +90,10 @@ public class FullUserResponse {
   private Date banExpires;
 
   @Nullable
+  @JsonProperty("bypass_moderation")
+  private Boolean bypassModeration;
+
+  @Nullable
   @JsonProperty("deactivated_at")
   private Date deactivatedAt;
 

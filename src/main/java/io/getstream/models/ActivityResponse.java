@@ -162,7 +162,7 @@ public class ActivityResponse {
 
   @Nullable
   @JsonProperty("location")
-  private ActivityLocation location;
+  private Location location;
 
   @Nullable
   @JsonProperty("metrics")

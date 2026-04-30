@@ -22,6 +22,10 @@ import org.jetbrains.annotations.Nullable;
 public class AggregationConfig {
 
   @Nullable
+  @JsonProperty("activities_sort")
+  private String activitiesSort;
+
+  @Nullable
   @JsonProperty("format")
   private String format;
 

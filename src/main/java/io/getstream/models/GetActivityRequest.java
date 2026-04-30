@@ -12,8 +12,25 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.annotations.Query;
+
 /** Get activity Returns activity by ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class GetActivityRequest {}
+@lombok.AllArgsConstructor
+public class GetActivityRequest {
+
+  @Query("comment_sort")
+  @JsonIgnore
+  private String CommentSort;
+
+  @Query("comment_limit")
+  @JsonIgnore
+  private Integer CommentLimit;
+
+  @Query("user_id")
+  @JsonIgnore
+  private String UserID;
+}

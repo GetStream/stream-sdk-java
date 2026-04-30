@@ -47,6 +47,10 @@ public class ConfigResponse {
   private List<AIImageLabelDefinition> aiImageLabelDefinitions;
 
   @Nullable
+  @JsonProperty("available_bodyguard_profiles")
+  private List<BodyguardProfileSummary> availableBodyguardProfiles;
+
+  @Nullable
   @JsonProperty("ai_image_config")
   private AIImageConfig aiImageConfig;
 

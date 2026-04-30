@@ -690,6 +690,72 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<DeleteCommentBookmarkResponse> deleteCommentBookmark(
+      @NotNull String commentID, DeleteCommentBookmarkRequest request) throws StreamException {
+    var pathParams = Map.of("comment_id", commentID);
+
+    return new StreamRequest<DeleteCommentBookmarkResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "DELETE",
+        "/api/v2/feeds/comments/{comment_id}/bookmarks",
+        request,
+        pathParams,
+        new TypeReference<DeleteCommentBookmarkResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteCommentBookmarkResponse> deleteCommentBookmark(
+      @NotNull String commentID) throws StreamException {
+    return deleteCommentBookmark(commentID, new DeleteCommentBookmarkRequest());
+  }
+
+  @NotNull
+  public StreamRequest<UpdateCommentBookmarkResponse> updateCommentBookmark(
+      @NotNull String commentID, UpdateCommentBookmarkRequest request) throws StreamException {
+    var pathParams = Map.of("comment_id", commentID);
+
+    return new StreamRequest<UpdateCommentBookmarkResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PATCH",
+        "/api/v2/feeds/comments/{comment_id}/bookmarks",
+        request,
+        pathParams,
+        new TypeReference<UpdateCommentBookmarkResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpdateCommentBookmarkResponse> updateCommentBookmark(
+      @NotNull String commentID) throws StreamException {
+    return updateCommentBookmark(commentID, new UpdateCommentBookmarkRequest());
+  }
+
+  @NotNull
+  public StreamRequest<AddCommentBookmarkResponse> addCommentBookmark(
+      @NotNull String commentID, AddCommentBookmarkRequest request) throws StreamException {
+    var pathParams = Map.of("comment_id", commentID);
+
+    return new StreamRequest<AddCommentBookmarkResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/comments/{comment_id}/bookmarks",
+        request,
+        pathParams,
+        new TypeReference<AddCommentBookmarkResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<AddCommentBookmarkResponse> addCommentBookmark(@NotNull String commentID)
+      throws StreamException {
+    return addCommentBookmark(commentID, new AddCommentBookmarkRequest());
+  }
+
+  @NotNull
   public StreamRequest<DeleteCommentResponse> deleteComment(
       @NotNull String id, DeleteCommentRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
@@ -1083,6 +1149,26 @@ public class FeedsImpl {
       @NotNull String feedGroupID, @NotNull String feedID, @NotNull String activityID)
       throws StreamException {
     return pinActivity(feedGroupID, feedID, activityID, new PinActivityRequest());
+  }
+
+  @NotNull
+  public StreamRequest<ChangeFeedVisibilityResponse> changeFeedVisibility(
+      @NotNull String feedGroupID, @NotNull String feedID, ChangeFeedVisibilityRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "feed_group_id", feedGroupID,
+            "feed_id", feedID);
+
+    return new StreamRequest<ChangeFeedVisibilityResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/change_visibility",
+        request,
+        pathParams,
+        new TypeReference<ChangeFeedVisibilityResponse>() {});
   }
 
   @NotNull
@@ -1823,6 +1909,21 @@ public class FeedsImpl {
   public StreamRequest<UpdateMembershipLevelResponse> updateMembershipLevel(@NotNull String id)
       throws StreamException {
     return updateMembershipLevel(id, new UpdateMembershipLevelRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueryRevisionHistoryResponse> queryRevisionHistory(
+      QueryRevisionHistoryRequest request) throws StreamException {
+
+    return new StreamRequest<QueryRevisionHistoryResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/revisions/query",
+        request,
+        null,
+        new TypeReference<QueryRevisionHistoryResponse>() {});
   }
 
   @NotNull
