@@ -168,8 +168,7 @@ public class StreamHTTPClient {
 
     var envConnectionMaxAge =
         env.getOrDefault(
-            "STREAM_API_CONNECTION_MAX_AGE",
-            System.getProperty(API_CONNECTION_MAX_AGE_PROP_NAME));
+            "STREAM_API_CONNECTION_MAX_AGE", System.getProperty(API_CONNECTION_MAX_AGE_PROP_NAME));
     if (envConnectionMaxAge != null) {
       connectionMaxAgeSeconds = Long.parseLong(envConnectionMaxAge);
     }

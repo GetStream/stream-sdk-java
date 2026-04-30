@@ -1622,8 +1622,10 @@ class FeedIntegrationTests {
     System.out.println("\n🔒 Testing followers visibility follow-request behavior...");
 
     String ownerUserId = "visibility-owner-" + RandomStringUtils.randomAlphanumeric(8);
-    String acceptedFollowerUserId = "visibility-follower-a-" + RandomStringUtils.randomAlphanumeric(8);
-    String rejectedFollowerUserId = "visibility-follower-r-" + RandomStringUtils.randomAlphanumeric(8);
+    String acceptedFollowerUserId =
+        "visibility-follower-a-" + RandomStringUtils.randomAlphanumeric(8);
+    String rejectedFollowerUserId =
+        "visibility-follower-r-" + RandomStringUtils.randomAlphanumeric(8);
 
     // snippet-start: JavaFollowersVisibilityFollowRequests
     Map<String, UserRequest> users = new HashMap<>();
@@ -1723,14 +1725,14 @@ class FeedIntegrationTests {
 
   @Test
   @Order(40)
-  @Disabled("Slow integration test: validates async visibility reconciliation over multiple polling windows.")
+  @Disabled(
+      "Slow integration test: validates async visibility reconciliation over multiple polling windows.")
   void test40_PendingFollowsActionOnVisibilityLoosening() throws Exception {
     System.out.println(
         "\n🔄 Testing pending_follows_action behavior when loosening followers visibility...");
 
     String ownerUserId = "visibility-owner-2-" + RandomStringUtils.randomAlphanumeric(8);
-    String autoApproveFollowerUserId =
-        "visibility-auto-" + RandomStringUtils.randomAlphanumeric(8);
+    String autoApproveFollowerUserId = "visibility-auto-" + RandomStringUtils.randomAlphanumeric(8);
     String rejectFollowerUserId = "visibility-reject-" + RandomStringUtils.randomAlphanumeric(8);
 
     // snippet-start: JavaPendingFollowsActionOnVisibilityChange
@@ -1789,8 +1791,7 @@ class FeedIntegrationTests {
           feeds
               .queryFollows(
                   QueryFollowsRequest.builder()
-                      .filter(
-                          Map.of("source_feed", autoApproveSource, "target_feed", ownerTarget))
+                      .filter(Map.of("source_feed", autoApproveSource, "target_feed", ownerTarget))
                       .limit(1)
                       .build())
               .execute()
@@ -1811,13 +1812,15 @@ class FeedIntegrationTests {
 
     // Move back to followers visibility and wait for transition before creating another pending
     // follow request.
-    ownerFeed.changeFeedVisibility(ChangeFeedVisibilityRequest.builder().visibility("followers").build());
+    ownerFeed.changeFeedVisibility(
+        ChangeFeedVisibilityRequest.builder().visibility("followers").build());
 
     waitForVisibility(ownerTarget, "followers", 20, 500);
 
     String rejectSource = "timeline:" + rejectFollowerUserId;
     FollowResponse secondPendingFollow = waitForPendingFollow(rejectSource, ownerTarget, 20, 500);
-    Assertions.assertNotNull(secondPendingFollow, "Expected second follow request to become pending");
+    Assertions.assertNotNull(
+        secondPendingFollow, "Expected second follow request to become pending");
     Assertions.assertEquals("pending", secondPendingFollow.getStatus());
 
     // Loosen followers -> visible and reject pending follow requests
@@ -1833,15 +1836,15 @@ class FeedIntegrationTests {
           feeds
               .queryFollows(
                   QueryFollowsRequest.builder()
-                      .filter(
-                          Map.of("source_feed", rejectSource, "target_feed", ownerTarget))
+                      .filter(Map.of("source_feed", rejectSource, "target_feed", ownerTarget))
                       .limit(1)
                       .build())
               .execute()
               .getData();
 
       if (queryResponse.getFollows() == null || queryResponse.getFollows().isEmpty()) {
-        // Depending on backend behavior, rejected requests can be removed from follow relation list.
+        // Depending on backend behavior, rejected requests can be removed from follow relation
+        // list.
         rejectedOrRemoved = true;
         break;
       }
@@ -1925,10 +1928,7 @@ class FeedIntegrationTests {
       QueryFeedsResponse queryResponse =
           feeds
               .queryFeeds(
-                  QueryFeedsRequest.builder()
-                      .filter(Map.of("feed", targetFeed))
-                      .limit(1)
-                      .build())
+                  QueryFeedsRequest.builder().filter(Map.of("feed", targetFeed)).limit(1).build())
               .execute()
               .getData();
 
