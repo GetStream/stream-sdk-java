@@ -127,3 +127,18 @@ To regenerate the Java source from OpenAPI, just run the `./generate.sh` script 
 ## Contributing
 
 Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTING.md) to get started.
+
+## Release Process
+
+Releases use two paths:
+
+- Default: automatic release when a PR is merged to `main`.
+- Fallback: manual release using `.github/workflows/manual-release.yml` (admin use only).
+
+Automatic semver bump rules are based on merged PR title/body:
+
+- `feat:` -> minor
+- `fix:` (or `bug:`) -> patch
+- `feat!:` or `BREAKING CHANGE` in PR body -> major
+
+PRs with other prefixes do not trigger a release.
