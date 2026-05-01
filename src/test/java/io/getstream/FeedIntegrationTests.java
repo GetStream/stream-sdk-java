@@ -1626,24 +1626,29 @@ class FeedIntegrationTests {
         "visibility-follower-a-" + RandomStringUtils.randomAlphanumeric(8);
     String rejectedFollowerUserId =
         "visibility-follower-r-" + RandomStringUtils.randomAlphanumeric(8);
+    String uniqueNameSuffix = RandomStringUtils.randomAlphanumeric(8);
 
     // snippet-start: JavaFollowersVisibilityFollowRequests
     Map<String, UserRequest> users = new HashMap<>();
     users.put(
         ownerUserId,
-        UserRequest.builder().id(ownerUserId).name("Visibility Owner").role("user").build());
+        UserRequest.builder()
+            .id(ownerUserId)
+            .name("Visibility Owner " + uniqueNameSuffix)
+            .role("user")
+            .build());
     users.put(
         acceptedFollowerUserId,
         UserRequest.builder()
             .id(acceptedFollowerUserId)
-            .name("Accepted Follower")
+            .name("Accepted Follower " + uniqueNameSuffix)
             .role("user")
             .build());
     users.put(
         rejectedFollowerUserId,
         UserRequest.builder()
             .id(rejectedFollowerUserId)
-            .name("Rejected Follower")
+            .name("Rejected Follower " + uniqueNameSuffix)
             .role("user")
             .build());
     client.updateUsers(UpdateUsersRequest.builder().users(users).build()).execute();
