@@ -8,9 +8,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 - Webhook handling spec helpers (CHA-2961): `UnknownEvent` class for forward-compat;
   `gunzipPayload`, `decodeSqsPayload`, `decodeSnsPayload` primitives;
-  `verifyAndParseWebhook` HTTP composite; `parseSqsPayload` / `parseSnsPayload`
-  queue composites (no signature — backend emits no HMAC for queue messages today).
-  Transparent gzip via magic-byte detection.
+  `verifyAndParseWebhook` HTTP composite; `parseSqs` / `parseSns`
+  queue composites (no HMAC signature on the payload — queue transports rely on
+  AWS IAM for authentication). Transparent gzip via magic-byte detection.
 - New instance methods on `StreamSDKClient`: `verifySignature(body, signature)`
   and `verifyAndParseWebhook(body, signature)` — drop the api_secret parameter
   in favor of the client's stored secret. Dual API: static `Webhook.*` methods

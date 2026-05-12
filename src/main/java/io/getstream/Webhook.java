@@ -1038,15 +1038,15 @@ public class Webhook {
    * performs no signature verification. If a signed variant is added later, it'll be a separate
    * function rather than retrofitting this signature.
    */
-  public static Object parseSqsPayload(String messageBody) throws InvalidWebhookException {
+  public static Object parseSqs(String messageBody) throws InvalidWebhookException {
     return parseEvent(decodeSqsPayload(messageBody));
   }
 
   /**
    * SNS composite: parse SNS envelope then base64-decode then gunzip then parse. Same no-signature
-   * posture as {@link #parseSqsPayload(String)}.
+   * posture as {@link #parseSqs(String)}.
    */
-  public static Object parseSnsPayload(String notificationBody) throws InvalidWebhookException {
+  public static Object parseSns(String notificationBody) throws InvalidWebhookException {
     return parseEvent(decodeSnsPayload(notificationBody));
   }
 

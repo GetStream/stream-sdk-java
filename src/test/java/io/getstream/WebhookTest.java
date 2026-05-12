@@ -334,9 +334,9 @@ public class WebhookTest {
                   assertNotNull(Webhook.parseEvent(body));
                   assertNotNull(Webhook.verifyAndParseWebhook(body, sig, CANONICAL_TEST_SECRET));
                   assertNotNull(Webhook.verifyAndParseWebhook(bodyGz, sig, CANONICAL_TEST_SECRET));
-                  assertNotNull(Webhook.parseSqsPayload(sqsCompressed));
-                  assertNotNull(Webhook.parseSqsPayload(sqsRaw));
-                  assertNotNull(Webhook.parseSnsPayload(sns));
+                  assertNotNull(Webhook.parseSqs(sqsCompressed));
+                  assertNotNull(Webhook.parseSqs(sqsRaw));
+                  assertNotNull(Webhook.parseSns(sns));
                 }));
       }
     }
@@ -425,7 +425,7 @@ public class WebhookTest {
     if (!Files.exists(dir)) return;
     String msg = Files.readString(dir.resolve("sqs_body.txt")).trim();
     Webhook.InvalidWebhookException ex =
-        assertThrows(Webhook.InvalidWebhookException.class, () -> Webhook.parseSqsPayload(msg));
+        assertThrows(Webhook.InvalidWebhookException.class, () -> Webhook.parseSqs(msg));
     assertTrue(
         ex.getMessage().contains("base64"),
         "expected 'base64' in message, got: " + ex.getMessage());
@@ -437,7 +437,7 @@ public class WebhookTest {
     if (!Files.exists(dir)) return;
     String notif = Files.readString(dir.resolve("sns_notification.txt")).trim();
     Webhook.InvalidWebhookException ex =
-        assertThrows(Webhook.InvalidWebhookException.class, () -> Webhook.parseSnsPayload(notif));
+        assertThrows(Webhook.InvalidWebhookException.class, () -> Webhook.parseSns(notif));
     assertTrue(
         ex.getMessage().contains("SNS envelope"),
         "expected 'SNS envelope' in message, got: " + ex.getMessage());
