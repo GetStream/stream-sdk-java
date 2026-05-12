@@ -32,4 +32,8 @@ public class DeleteFeedsBatchRequest {
   @Nullable
   @JsonProperty("hard_delete")
   private Boolean hardDelete;
+
+  @Nullable
+  @JsonProperty("purge_user_activities")
+  private Boolean purgeUserActivities;
 }

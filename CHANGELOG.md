@@ -15,6 +15,8 @@ All notable changes to this project will be documented in this file. See [standa
   and `verifyAndParseWebhook(body, signature)` — drop the api_secret parameter
   in favor of the client's stored secret. Dual API: static `Webhook.*` methods
   remain available.
+- New instance methods on `StreamSDKClient`: `parseSqs(String)`, `parseSns(String)`
+  (no signature; AWS IAM).
 - New exception class: `Webhook.InvalidWebhookException` (unified — covers both
   signature mismatch and malformed payloads).
 - Conformance fixture suite under `src/test/resources/fixtures/webhooks/`.

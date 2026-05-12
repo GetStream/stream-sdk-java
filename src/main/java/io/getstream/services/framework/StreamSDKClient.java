@@ -88,4 +88,32 @@ public class StreamSDKClient extends CommonImpl implements Common {
     return io.getstream.Webhook.verifyAndParseWebhook(
         body, signature, this.httpClient.getApiSecret());
   }
+
+  /**
+   * Decode + parse a Stream-delivered SQS message body.
+   *
+   * <p>Convenience wrapper around {@link io.getstream.Webhook#parseSqs(String)}. No signature is
+   * required; SQS deliveries are authenticated via AWS IAM.
+   *
+   * @param messageBody the SQS message body string
+   * @return the parsed event (typed event or {@link io.getstream.Webhook.UnknownEvent})
+   */
+  public Object parseSqs(String messageBody) throws io.getstream.Webhook.InvalidWebhookException {
+    return io.getstream.Webhook.parseSqs(messageBody);
+  }
+
+  /**
+   * Decode + parse a Stream-delivered SNS notification body.
+   *
+   * <p>Accepts either the raw SNS HTTP envelope JSON or the pre-extracted Message string.
+   * Convenience wrapper around {@link io.getstream.Webhook#parseSns(String)}. No signature is
+   * required; SNS deliveries are authenticated via AWS IAM.
+   *
+   * @param notificationBody the SNS notification body (envelope JSON or extracted Message)
+   * @return the parsed event (typed event or {@link io.getstream.Webhook.UnknownEvent})
+   */
+  public Object parseSns(String notificationBody)
+      throws io.getstream.Webhook.InvalidWebhookException {
+    return io.getstream.Webhook.parseSns(notificationBody);
+  }
 }
