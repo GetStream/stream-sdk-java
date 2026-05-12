@@ -219,6 +219,10 @@ public interface Moderation {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<SubmitModerationFeedbackResponse> submitModerationFeedback(
+      SubmitModerationFeedbackRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<UnbanResponse> unban(UnbanRequest request) throws StreamException;
 
   @NotNull

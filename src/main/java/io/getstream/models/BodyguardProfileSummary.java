@@ -27,4 +27,8 @@ public class BodyguardProfileSummary {
   @Nullable
   @JsonProperty("display_name")
   private String displayName;
+
+  @Nullable
+  @JsonProperty("text_type")
+  private String textType;
 }

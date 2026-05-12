@@ -21,6 +21,9 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class ErrorResult {
 
+  @JsonProperty("description")
+  private String description;
+
   @JsonProperty("type")
   private String type;
 

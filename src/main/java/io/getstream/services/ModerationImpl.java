@@ -661,6 +661,21 @@ public class ModerationImpl {
   }
 
   @NotNull
+  public StreamRequest<SubmitModerationFeedbackResponse> submitModerationFeedback(
+      SubmitModerationFeedbackRequest request) throws StreamException {
+
+    return new StreamRequest<SubmitModerationFeedbackResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/submit_moderation_feedback",
+        request,
+        null,
+        new TypeReference<SubmitModerationFeedbackResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<UnbanResponse> unban(UnbanRequest request) throws StreamException {
 
     return new StreamRequest<UnbanResponse>(

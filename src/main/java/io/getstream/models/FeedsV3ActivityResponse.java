@@ -82,25 +82,25 @@ public class FeedsV3ActivityResponse {
   private List<String> interestTags;
 
   @JsonProperty("latest_reactions")
-  private List<Object> latestReactions;
+  private List<FeedsReactionResponse> latestReactions;
 
   @JsonProperty("mentioned_users")
   private List<UserResponse> mentionedUsers;
 
   @JsonProperty("own_bookmarks")
-  private List<Object> ownBookmarks;
+  private List<FeedsBookmarkResponse> ownBookmarks;
 
   @JsonProperty("own_reactions")
-  private List<Object> ownReactions;
+  private List<FeedsReactionResponse> ownReactions;
 
   @JsonProperty("collections")
-  private Map<String, EnrichedCollection> collections;
+  private Map<String, FeedsEnrichedCollectionResponse> collections;
 
   @JsonProperty("custom")
   private Map<String, Object> custom;
 
   @JsonProperty("reaction_groups")
-  private Map<String, FeedsReactionGroup> reactionGroups;
+  private Map<String, FeedsReactionGroupResponse> reactionGroups;
 
   @JsonProperty("search_data")
   private Map<String, Object> searchData;
@@ -121,8 +121,28 @@ public class FeedsV3ActivityResponse {
   private Date expiresAt;
 
   @Nullable
+  @JsonProperty("friend_reaction_count")
+  private Integer friendReactionCount;
+
+  @Nullable
+  @JsonProperty("is_read")
+  private Boolean isRead;
+
+  @Nullable
+  @JsonProperty("is_seen")
+  private Boolean isSeen;
+
+  @Nullable
+  @JsonProperty("is_watched")
+  private Boolean isWatched;
+
+  @Nullable
   @JsonProperty("moderation_action")
   private String moderationAction;
+
+  @Nullable
+  @JsonProperty("selector_source")
+  private String selectorSource;
 
   @Nullable
   @JsonProperty("text")
@@ -133,10 +153,38 @@ public class FeedsV3ActivityResponse {
   private String visibilityTag;
 
   @Nullable
+  @JsonProperty("friend_reactions")
+  private List<FeedsReactionResponse> friendReactions;
+
+  @Nullable
+  @JsonProperty("current_feed")
+  private FeedsFeedResponse currentFeed;
+
+  @Nullable
+  @JsonProperty("location")
+  private FeedsActivityLocation location;
+
+  @Nullable
   @JsonProperty("metrics")
   private Map<String, Integer> metrics;
 
   @Nullable
   @JsonProperty("moderation")
   private ModerationV2Response moderation;
+
+  @Nullable
+  @JsonProperty("notification_context")
+  private FeedsNotificationContext notificationContext;
+
+  @Nullable
+  @JsonProperty("parent")
+  private FeedsV3ActivityResponse parent;
+
+  @Nullable
+  @JsonProperty("poll")
+  private PollResponseData poll;
+
+  @Nullable
+  @JsonProperty("score_vars")
+  private Map<String, Object> scoreVars;
 }

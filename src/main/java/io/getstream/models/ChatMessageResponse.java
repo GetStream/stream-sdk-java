@@ -67,16 +67,16 @@ public class ChatMessageResponse {
   private Date updatedAt;
 
   @JsonProperty("attachments")
-  private List<Object> attachments;
+  private List<Attachment> attachments;
 
   @JsonProperty("latest_reactions")
-  private List<Object> latestReactions;
+  private List<ChatReactionResponse> latestReactions;
 
   @JsonProperty("mentioned_users")
   private List<UserResponse> mentionedUsers;
 
   @JsonProperty("own_reactions")
-  private List<Object> ownReactions;
+  private List<ChatReactionResponse> ownReactions;
 
   @JsonProperty("restricted_visibility")
   private List<String> restrictedVisibility;
@@ -100,6 +100,10 @@ public class ChatMessageResponse {
   @Nullable
   @JsonProperty("deleted_at")
   private Date deletedAt;
+
+  @Nullable
+  @JsonProperty("deleted_for_me")
+  private Boolean deletedForMe;
 
   @Nullable
   @JsonProperty("message_text_updated_at")
@@ -134,6 +138,22 @@ public class ChatMessageResponse {
   private Boolean showInChannel;
 
   @Nullable
+  @JsonProperty("mentioned_group_ids")
+  private List<String> mentionedGroupIds;
+
+  @Nullable
+  @JsonProperty("mentioned_roles")
+  private List<String> mentionedRoles;
+
+  @Nullable
+  @JsonProperty("thread_participants")
+  private List<UserResponse> threadParticipants;
+
+  @Nullable
+  @JsonProperty("draft")
+  private ChatDraftResponse draft;
+
+  @Nullable
   @JsonProperty("i18n")
   private Map<String, String> i18n;
 
@@ -142,10 +162,34 @@ public class ChatMessageResponse {
   private Map<String, List<String>> imageLabels;
 
   @Nullable
+  @JsonProperty("member")
+  private ChannelMemberResponse member;
+
+  @Nullable
+  @JsonProperty("moderation")
+  private ChatModerationV2Response moderation;
+
+  @Nullable
   @JsonProperty("pinned_by")
   private UserResponse pinnedBy;
 
   @Nullable
+  @JsonProperty("poll")
+  private PollResponseData poll;
+
+  @Nullable
   @JsonProperty("quoted_message")
   private ChatMessageResponse quotedMessage;
+
+  @Nullable
+  @JsonProperty("reaction_groups")
+  private Map<String, ChatReactionGroupResponse> reactionGroups;
+
+  @Nullable
+  @JsonProperty("reminder")
+  private ChatReminderResponseData reminder;
+
+  @Nullable
+  @JsonProperty("shared_location")
+  private ChatSharedLocationResponseData sharedLocation;
 }

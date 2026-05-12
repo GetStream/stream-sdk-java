@@ -43,6 +43,10 @@ public class AddActivityRequest {
   private Boolean createNotificationActivity;
 
   @Nullable
+  @JsonProperty("create_users")
+  private Boolean createUsers;
+
+  @Nullable
   @JsonProperty("enrich_own_fields")
   private Boolean enrichOwnFields;
 

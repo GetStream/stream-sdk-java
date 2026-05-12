@@ -27,6 +27,10 @@ public class UpsertActivitiesRequest {
   private List<ActivityRequest> activities;
 
   @Nullable
+  @JsonProperty("create_users")
+  private Boolean createUsers;
+
+  @Nullable
   @JsonProperty("enrich_own_fields")
   private Boolean enrichOwnFields;
 

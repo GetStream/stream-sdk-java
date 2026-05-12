@@ -2,9 +2,11 @@
 
 package io.getstream;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.getstream.exceptions.StreamException;
 import io.getstream.models.ActivityAddedEvent;
 import io.getstream.models.ActivityDeletedEvent;
 import io.getstream.models.ActivityFeedbackEvent;
@@ -169,11 +171,17 @@ import io.getstream.models.UserUnbannedEvent;
 import io.getstream.models.UserUnmutedEvent;
 import io.getstream.models.UserUnreadReminderEvent;
 import io.getstream.models.UserUpdatedEvent;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeParseException;
+import java.util.Base64;
+import java.util.zip.GZIPInputStream;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -182,6 +190,11 @@ public class Webhook {
   private static final String HMAC_SHA256 = "HmacSHA256";
   private static final ObjectMapper objectMapper =
       new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+  // gzipMagic is the two-byte gzip magic prefix (RFC 1952 §2.3.1).
+  // JSON cannot start with these bytes, so this gives unambiguous detection
+  // for Stream's always-JSON payloads.
+  private static final byte[] GZIP_MAGIC = {0x1F, (byte) 0x8B};
 
   /** Webhook event type constants. */
   public static class EventType {
@@ -389,28 +402,32 @@ public class Webhook {
    *
    * @param rawEvent The raw webhook payload as a byte array
    * @return A typed event object corresponding to the event type
-   * @throws WebhookException if the event type is unknown or deserialization fails
+   * @throws InvalidWebhookException if the event type is unknown or deserialization fails
    */
-  public static Object parseWebhookEvent(byte[] rawEvent) throws WebhookException {
+  public static Object parseWebhookEvent(byte[] rawEvent) throws InvalidWebhookException {
     String eventType = extractEventType(rawEvent);
+    Class<?> eventClass = getEventClass(eventType);
+    if (eventClass == null) {
+      throw new InvalidWebhookException("Unknown webhook event type: " + eventType);
+    }
     try {
-      Class<?> eventClass = getEventClass(eventType);
       return objectMapper.readValue(rawEvent, eventClass);
     } catch (IOException e) {
-      throw new WebhookException("Failed to deserialize webhook event: " + e.getMessage(), e);
+      throw new InvalidWebhookException(
+          "Failed to deserialize webhook event: " + e.getMessage(), e);
     }
   }
 
-  private static String extractEventType(byte[] rawEvent) throws WebhookException {
+  private static String extractEventType(byte[] rawEvent) throws InvalidWebhookException {
     JsonNode node;
     try {
       node = objectMapper.readTree(rawEvent);
     } catch (IOException e) {
-      throw new WebhookException("Webhook payload is not valid JSON: " + e.getMessage(), e);
+      throw new InvalidWebhookException("Webhook payload is not valid JSON: " + e.getMessage(), e);
     }
     JsonNode typeNode = node.get("type");
     if (typeNode == null || typeNode.asText().isEmpty()) {
-      throw new WebhookException("Webhook payload missing 'type' field");
+      throw new InvalidWebhookException("Webhook payload missing 'type' field");
     }
     return typeNode.asText();
   }
@@ -420,13 +437,18 @@ public class Webhook {
    *
    * @param rawEvent The raw webhook payload as a string
    * @return A typed event object corresponding to the event type
-   * @throws WebhookException if the event type is unknown or deserialization fails
+   * @throws InvalidWebhookException if the event type is unknown or deserialization fails
    */
-  public static Object parseWebhookEvent(String rawEvent) throws WebhookException {
+  public static Object parseWebhookEvent(String rawEvent) throws InvalidWebhookException {
     return parseWebhookEvent(rawEvent.getBytes(StandardCharsets.UTF_8));
   }
 
-  private static Class<?> getEventClass(String eventType) throws WebhookException {
+  /**
+   * Map an event type discriminator to its generated event class. Returns null when the
+   * discriminator is not recognized; callers decide whether to throw (parseWebhookEvent) or fall
+   * back to UnknownEvent (parseEvent).
+   */
+  private static Class<?> getEventClass(String eventType) {
     switch (eventType) {
       case "*":
         return CustomEvent.class;
@@ -763,18 +785,60 @@ public class Webhook {
       case "user_group.updated":
         return UserGroupUpdatedEvent.class;
       default:
-        throw new WebhookException("Unknown webhook event type: " + eventType);
+        return null;
     }
   }
 
-  /** Exception thrown when webhook operations fail. */
-  public static class WebhookException extends Exception {
-    public WebhookException(String message) {
-      super(message);
+  /**
+   * Thrown for every webhook handling failure: signature mismatch, invalid JSON, missing/non-string
+   * {@code type} field, gzip-prefixed body that fails to decompress, invalid base64 in a queue
+   * body, or a malformed SNS envelope.
+   *
+   * <p>The unified class deliberately replaces the earlier split (separate signature vs. malformed
+   * exceptions): customers distinguish failure modes via the exception's message substring or its
+   * {@link Throwable#getCause() cause} chain rather than its class.
+   */
+  public static class InvalidWebhookException extends StreamException {
+    public InvalidWebhookException(String message) {
+      super(message, (Throwable) null);
     }
 
-    public WebhookException(String message, Throwable cause) {
+    public InvalidWebhookException(String message, Throwable cause) {
       super(message, cause);
+    }
+  }
+
+  /**
+   * Returned by {@link #parseEvent(byte[])} when the type discriminator is well-formed but unknown
+   * to this SDK version. Forward-compat surface for new event types.
+   *
+   * <p>To handle unknown events, check the result type with {@code instanceof UnknownEvent} after
+   * calling {@code parseEvent}.
+   */
+  public static class UnknownEvent {
+    private final String type;
+    private final OffsetDateTime createdAt;
+    private final JsonNode raw;
+
+    public UnknownEvent(String type, OffsetDateTime createdAt, JsonNode raw) {
+      this.type = type;
+      this.createdAt = createdAt;
+      this.raw = raw;
+    }
+
+    /** The unrecognized discriminator value. */
+    public String getType() {
+      return type;
+    }
+
+    /** Parsed timestamp from the envelope, or null if the field was missing or unparseable. */
+    public OffsetDateTime getCreatedAt() {
+      return createdAt;
+    }
+
+    /** The full parsed JSON payload, for inspection. */
+    public JsonNode getRaw() {
+      return raw;
     }
   }
 
@@ -811,6 +875,179 @@ public class Webhook {
    */
   public static boolean verifySignature(String body, String signature, String secret) {
     return verifySignature(body.getBytes(StandardCharsets.UTF_8), signature, secret);
+  }
+
+  /**
+   * Decompress the body if it is gzip-prefixed, otherwise return it as-is.
+   *
+   * <p>Detection uses the first two bytes (0x1F 0x8B). This is reliable because Stream webhook
+   * bodies are always JSON, and JSON cannot start with 0x1F.
+   *
+   * @param body the raw request body, possibly gzip-compressed
+   * @return the uncompressed bytes (or {@code body} unchanged if no gzip prefix)
+   * @throws InvalidWebhookException if the body has the gzip magic prefix but isn't a valid gzip
+   *     stream
+   */
+  public static byte[] gunzipPayload(byte[] body) throws InvalidWebhookException {
+    if (body == null || body.length < 2 || body[0] != GZIP_MAGIC[0] || body[1] != GZIP_MAGIC[1]) {
+      return body == null ? new byte[0] : body;
+    }
+    try (ByteArrayInputStream bin = new ByteArrayInputStream(body);
+        GZIPInputStream gz = new GZIPInputStream(bin);
+        ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+      byte[] buf = new byte[4096];
+      int n;
+      while ((n = gz.read(buf)) != -1) {
+        out.write(buf, 0, n);
+      }
+      return out.toByteArray();
+    } catch (IOException e) {
+      throw new InvalidWebhookException("gzip decompression failed: " + e.getMessage(), e);
+    }
+  }
+
+  /**
+   * base64-decode an SQS Message Body, then gunzip if gzip-prefixed.
+   *
+   * <p>Forward-compat: today the backend emits plain JSON to SQS; once compression is extended to
+   * queue transports, bodies will be base64(gzip(json)). This helper handles both cases via
+   * magic-byte detection in {@link #gunzipPayload(byte[])}.
+   *
+   * <p>Note: if the input is plain JSON (not base64), strict base64 decoding will fail and throw
+   * {@link InvalidWebhookException}. Callers receiving today's plain-JSON SQS messages should call
+   * {@link #parseEvent(byte[])} directly with the body bytes.
+   *
+   * @throws InvalidWebhookException if base64 decoding fails or gzip decompression fails
+   */
+  public static byte[] decodeSqsPayload(String messageBody) throws InvalidWebhookException {
+    if (messageBody == null) {
+      throw new InvalidWebhookException("messageBody must not be null");
+    }
+    byte[] decoded;
+    try {
+      decoded = Base64.getDecoder().decode(messageBody);
+    } catch (IllegalArgumentException e) {
+      throw new InvalidWebhookException("invalid base64: " + e.getMessage(), e);
+    }
+    return gunzipPayload(decoded);
+  }
+
+  /**
+   * Extract the {@code Message} field from a standard AWS SNS notification envelope, then
+   * base64-decode and gunzip. The envelope shape is:
+   *
+   * <pre>
+   * {"Type":"Notification","Message":"&lt;base64&gt;","MessageId":"...","TopicArn":"...","Timestamp":"..."}
+   * </pre>
+   *
+   * @throws InvalidWebhookException if the envelope is invalid or the Message field is
+   *     missing/non-string
+   */
+  public static byte[] decodeSnsPayload(String notificationBody) throws InvalidWebhookException {
+    if (notificationBody == null) {
+      throw new InvalidWebhookException("notificationBody must not be null");
+    }
+    JsonNode env;
+    try {
+      env = objectMapper.readTree(notificationBody);
+    } catch (IOException e) {
+      throw new InvalidWebhookException("invalid SNS envelope JSON: " + e.getMessage(), e);
+    }
+    JsonNode msg = env == null ? null : env.get("Message");
+    if (msg == null || !msg.isTextual()) {
+      throw new InvalidWebhookException("SNS envelope missing 'Message' string field");
+    }
+    return decodeSqsPayload(msg.asText());
+  }
+
+  /**
+   * Parse a webhook payload and return the typed event for known discriminators or {@link
+   * UnknownEvent} for well-formed-but-unknown ones.
+   *
+   * <p>Distinct from {@link #parseWebhookEvent(byte[])}: {@code parseEvent} returns an {@code
+   * UnknownEvent} on unrecognized discriminators (forward-compat); {@code parseWebhookEvent}
+   * throws.
+   *
+   * @return the typed event (a generated event class) or an {@link UnknownEvent} instance
+   * @throws InvalidWebhookException for invalid JSON, missing/non-string type field, or any
+   *     deserialization failure on a known type
+   */
+  public static Object parseEvent(byte[] payload) throws InvalidWebhookException {
+    if (payload == null || payload.length == 0) {
+      throw new InvalidWebhookException("payload must not be empty");
+    }
+    JsonNode root;
+    try {
+      root = objectMapper.readTree(payload);
+    } catch (IOException e) {
+      throw new InvalidWebhookException("failed to parse webhook payload: " + e.getMessage(), e);
+    }
+    if (root == null || !root.isObject()) {
+      throw new InvalidWebhookException("webhook payload must be a JSON object");
+    }
+    JsonNode typeNode = root.get("type");
+    if (typeNode == null || !typeNode.isTextual() || typeNode.asText().isEmpty()) {
+      throw new InvalidWebhookException("webhook payload missing 'type' string field");
+    }
+    String eventType = typeNode.asText();
+
+    Class<?> klass = getEventClass(eventType);
+    if (klass == null) {
+      OffsetDateTime createdAt = null;
+      JsonNode createdNode = root.get("created_at");
+      if (createdNode != null && createdNode.isTextual()) {
+        try {
+          createdAt = OffsetDateTime.parse(createdNode.asText());
+        } catch (DateTimeParseException ignored) {
+          // leave null
+        }
+      }
+      return new UnknownEvent(eventType, createdAt, root);
+    }
+
+    try {
+      return objectMapper.treeToValue(root, klass);
+    } catch (JsonProcessingException e) {
+      throw new InvalidWebhookException("failed to deserialize event: " + e.getMessage(), e);
+    }
+  }
+
+  /**
+   * HTTP composite: gunzip (if gzip-prefixed) then verify HMAC-SHA256 then parse.
+   *
+   * <p>The signature header is X-Signature. The signature is HMAC-SHA256 of the
+   * <em>uncompressed</em> JSON body, hex-encoded. Magic-byte detection means callers can pass
+   * either the raw HTTP body or already-decompressed bytes; both work.
+   *
+   * @throws InvalidWebhookException for signature mismatches as well as parse/decompression
+   *     failures; distinguish modes via the exception's message substring
+   */
+  public static Object verifyAndParseWebhook(byte[] body, String signature, String secret)
+      throws InvalidWebhookException {
+    byte[] payload = gunzipPayload(body);
+    if (!verifySignature(payload, signature, secret)) {
+      throw new InvalidWebhookException("webhook signature mismatch");
+    }
+    return parseEvent(payload);
+  }
+
+  /**
+   * SQS composite: base64-decode then gunzip (if gzip-prefixed) then parse.
+   *
+   * <p>The backend emits no signature attribute on SQS messages today; this helper therefore
+   * performs no signature verification. If a signed variant is added later, it'll be a separate
+   * function rather than retrofitting this signature.
+   */
+  public static Object parseSqsPayload(String messageBody) throws InvalidWebhookException {
+    return parseEvent(decodeSqsPayload(messageBody));
+  }
+
+  /**
+   * SNS composite: parse SNS envelope then base64-decode then gunzip then parse. Same no-signature
+   * posture as {@link #parseSqsPayload(String)}.
+   */
+  public static Object parseSnsPayload(String notificationBody) throws InvalidWebhookException {
+    return parseEvent(decodeSnsPayload(notificationBody));
   }
 
   private static String bytesToHex(byte[] bytes) {
