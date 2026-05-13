@@ -77,14 +77,14 @@ public class StreamSDKClient extends CommonImpl implements Common {
    * Verify and parse a webhook payload in one call, using this client's API secret.
    *
    * <p>Handles gzip-compressed bodies transparently via magic-byte detection. Throws {@link
-   * io.getstream.Webhook.InvalidWebhookException} on signature mismatch or parse failures.
+   * io.getstream.Webhook.WebhookException} on signature mismatch or parse failures.
    *
    * @param body the raw HTTP request body bytes (possibly gzip-compressed)
    * @param signature the value of the X-Signature header
    * @return the parsed event (typed event or {@link io.getstream.Webhook.UnknownEvent})
    */
   public Object verifyAndParseWebhook(byte[] body, String signature)
-      throws io.getstream.Webhook.InvalidWebhookException {
+      throws io.getstream.Webhook.WebhookException {
     return io.getstream.Webhook.verifyAndParseWebhook(
         body, signature, this.httpClient.getApiSecret());
   }
@@ -98,7 +98,7 @@ public class StreamSDKClient extends CommonImpl implements Common {
    * @param messageBody the SQS message body string
    * @return the parsed event (typed event or {@link io.getstream.Webhook.UnknownEvent})
    */
-  public Object parseSqs(String messageBody) throws io.getstream.Webhook.InvalidWebhookException {
+  public Object parseSqs(String messageBody) throws io.getstream.Webhook.WebhookException {
     return io.getstream.Webhook.parseSqs(messageBody);
   }
 
@@ -113,7 +113,7 @@ public class StreamSDKClient extends CommonImpl implements Common {
    * @return the parsed event (typed event or {@link io.getstream.Webhook.UnknownEvent})
    */
   public Object parseSns(String notificationBody)
-      throws io.getstream.Webhook.InvalidWebhookException {
+      throws io.getstream.Webhook.WebhookException {
     return io.getstream.Webhook.parseSns(notificationBody);
   }
 }

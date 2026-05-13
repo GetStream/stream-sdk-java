@@ -259,7 +259,7 @@ public class WebhookTest {
     "user_group.updated, UserGroupUpdatedEvent",
   })
   public void testParseWebhookEvent(String eventType, String expectedClassName)
-      throws Webhook.InvalidWebhookException {
+      throws Webhook.WebhookException {
     String payload = "{\"type\":\"" + eventType + "\"}";
     Object event = Webhook.parseWebhookEvent(payload);
     assertNotNull(event);
@@ -269,7 +269,7 @@ public class WebhookTest {
   @Test
   public void testParseWebhookEventUnknownType() {
     assertThrows(
-        Webhook.InvalidWebhookException.class,
+        Webhook.MalformedWebhookException.class,
         () -> {
           Webhook.parseWebhookEvent("{\"type\":\"unknown.event\"}");
         });
@@ -278,7 +278,7 @@ public class WebhookTest {
   @Test
   public void testParseWebhookEventMissingType() {
     assertThrows(
-        Webhook.InvalidWebhookException.class,
+        Webhook.MalformedWebhookException.class,
         () -> {
           Webhook.parseWebhookEvent("{\"foo\":\"bar\"}");
         });
@@ -287,7 +287,7 @@ public class WebhookTest {
   @Test
   public void testParseWebhookEventInvalidJson() {
     assertThrows(
-        Webhook.InvalidWebhookException.class,
+        Webhook.MalformedWebhookException.class,
         () -> {
           Webhook.parseWebhookEvent("not json");
         });
@@ -349,13 +349,15 @@ public class WebhookTest {
     if (!Files.exists(dir)) return;
     byte[] body = Files.readAllBytes(dir.resolve("body.json"));
     String sig = Files.readString(dir.resolve("signature.txt")).trim();
-    Webhook.InvalidWebhookException ex =
+    Webhook.InvalidSignatureException ex =
         assertThrows(
-            Webhook.InvalidWebhookException.class,
+            Webhook.InvalidSignatureException.class,
             () -> Webhook.verifyAndParseWebhook(body, sig, CANONICAL_TEST_SECRET));
     assertTrue(
         ex.getMessage().contains("signature mismatch"),
         "expected 'signature mismatch' in message, got: " + ex.getMessage());
+    // Base-class catch also works
+    assertTrue(ex instanceof Webhook.WebhookException);
   }
 
   @Test
@@ -373,8 +375,8 @@ public class WebhookTest {
     Path dir = FIXTURE_ROOT.resolve("_invalid").resolve("missing_type");
     if (!Files.exists(dir)) return;
     byte[] body = Files.readAllBytes(dir.resolve("body.json"));
-    Webhook.InvalidWebhookException ex =
-        assertThrows(Webhook.InvalidWebhookException.class, () -> Webhook.parseEvent(body));
+    Webhook.MalformedWebhookException ex =
+        assertThrows(Webhook.MalformedWebhookException.class, () -> Webhook.parseEvent(body));
     assertTrue(
         ex.getMessage().contains("missing 'type'"),
         "expected \"missing 'type'\" in message, got: " + ex.getMessage());
@@ -385,8 +387,8 @@ public class WebhookTest {
     Path dir = FIXTURE_ROOT.resolve("_invalid").resolve("malformed_json");
     if (!Files.exists(dir)) return;
     byte[] body = Files.readAllBytes(dir.resolve("body.json"));
-    Webhook.InvalidWebhookException ex =
-        assertThrows(Webhook.InvalidWebhookException.class, () -> Webhook.parseEvent(body));
+    Webhook.MalformedWebhookException ex =
+        assertThrows(Webhook.MalformedWebhookException.class, () -> Webhook.parseEvent(body));
     assertTrue(
         ex.getMessage().contains("failed to parse webhook payload"),
         "expected 'failed to parse webhook payload' in message, got: " + ex.getMessage());
@@ -397,8 +399,8 @@ public class WebhookTest {
     Path dir = FIXTURE_ROOT.resolve("_invalid").resolve("empty_body");
     if (!Files.exists(dir)) return;
     byte[] body = Files.readAllBytes(dir.resolve("body.json"));
-    Webhook.InvalidWebhookException ex =
-        assertThrows(Webhook.InvalidWebhookException.class, () -> Webhook.parseEvent(body));
+    Webhook.MalformedWebhookException ex =
+        assertThrows(Webhook.MalformedWebhookException.class, () -> Webhook.parseEvent(body));
     assertTrue(
         ex.getMessage().contains("must not be empty"),
         "expected 'must not be empty' in message, got: " + ex.getMessage());
@@ -410,10 +412,13 @@ public class WebhookTest {
     if (!Files.exists(dir)) return;
     byte[] body = Files.readAllBytes(dir.resolve("body.gz"));
     String sig = Files.readString(dir.resolve("signature.txt")).trim();
-    Webhook.InvalidWebhookException ex =
+    Webhook.WebhookException ex =
         assertThrows(
-            Webhook.InvalidWebhookException.class,
+            Webhook.WebhookException.class,
             () -> Webhook.verifyAndParseWebhook(body, sig, CANONICAL_TEST_SECRET));
+    assertTrue(
+        ex instanceof Webhook.MalformedWebhookException,
+        "expected MalformedWebhookException, got " + ex.getClass().getSimpleName());
     assertTrue(
         ex.getMessage().contains("gzip decompression failed"),
         "expected 'gzip decompression failed' in message, got: " + ex.getMessage());
@@ -424,22 +429,22 @@ public class WebhookTest {
     // Per CHA-3071 wire format: decodeSqsPayload falls back to raw bytes when
     // base64 decoding fails (uncompressed wire format). For input that is
     // neither valid base64 nor valid JSON nor gzip-prefixed, parseSqs still
-    // throws InvalidWebhookException — just down the chain at JSON parsing.
+    // throws MalformedWebhookException — just down the chain at JSON parsing.
     Path dir = FIXTURE_ROOT.resolve("_invalid").resolve("bad_base64");
     if (!Files.exists(dir)) return;
     String msg = Files.readString(dir.resolve("sqs_body.txt")).trim();
-    assertThrows(Webhook.InvalidWebhookException.class, () -> Webhook.parseSqs(msg));
+    assertThrows(Webhook.MalformedWebhookException.class, () -> Webhook.parseSqs(msg));
   }
 
   @Test
   void webhookConformanceBadSnsEnvelope() throws IOException {
     Path dir = FIXTURE_ROOT.resolve("_invalid").resolve("bad_sns_envelope");
     if (!Files.exists(dir)) return;
+    // Fix #4: bad_sns_envelope (non-envelope JSON) is now treated as a
+    // pre-extracted Message string and flows through the SQS path,
+    // surfacing as a downstream parse failure rather than SNS-specific.
+    // Still MalformedWebhookException.
     String notif = Files.readString(dir.resolve("sns_notification.txt")).trim();
-    Webhook.InvalidWebhookException ex =
-        assertThrows(Webhook.InvalidWebhookException.class, () -> Webhook.parseSns(notif));
-    assertTrue(
-        ex.getMessage().contains("SNS envelope"),
-        "expected 'SNS envelope' in message, got: " + ex.getMessage());
+    assertThrows(Webhook.MalformedWebhookException.class, () -> Webhook.parseSns(notif));
   }
 }
