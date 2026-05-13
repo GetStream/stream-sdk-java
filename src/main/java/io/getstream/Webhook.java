@@ -907,17 +907,20 @@ public class Webhook {
   }
 
   /**
-   * base64-decode an SQS Message Body, then gunzip if gzip-prefixed.
+   * Decode an SQS Message Body: try base64 first, fall back to raw bytes if base64 fails, then
+   * gunzip if gzip-prefixed.
    *
-   * <p>Forward-compat: today the backend emits plain JSON to SQS; once compression is extended to
-   * queue transports, bodies will be base64(gzip(json)). This helper handles both cases via
-   * magic-byte detection in {@link #gunzipPayload(byte[])}.
+   * <p>Wire format (per CHA-3071): SQS bodies are raw JSON when {@code
+   * enable_hook_payload_compression} is off (today's default for all existing apps), and
+   * base64(gzip(json)) when it's on. This helper handles both: raw JSON starts with '{' which is
+   * not valid base64, so the base64 decode fails and we fall through to raw bytes, then {@link
+   * #gunzipPayload(byte[])}'s magic-byte detection decides whether to decompress.
    *
-   * <p>Note: if the input is plain JSON (not base64), strict base64 decoding will fail and throw
-   * {@link InvalidWebhookException}. Callers receiving today's plain-JSON SQS messages should call
-   * {@link #parseEvent(byte[])} directly with the body bytes.
+   * <p>{@link #parseSqs(String)} sits on top of this and works transparently for both wire formats
+   * — no caller code change, no flag, no header.
    *
-   * @throws InvalidWebhookException if base64 decoding fails or gzip decompression fails
+   * @throws InvalidWebhookException if gzip decompression fails (only when input has gzip magic
+   *     prefix)
    */
   public static byte[] decodeSqsPayload(String messageBody) throws InvalidWebhookException {
     if (messageBody == null) {
@@ -927,7 +930,8 @@ public class Webhook {
     try {
       decoded = Base64.getDecoder().decode(messageBody);
     } catch (IllegalArgumentException e) {
-      throw new InvalidWebhookException("invalid base64: " + e.getMessage(), e);
+      // Not base64 — treat input as raw bytes (uncompressed wire format).
+      decoded = messageBody.getBytes(StandardCharsets.UTF_8);
     }
     return gunzipPayload(decoded);
   }

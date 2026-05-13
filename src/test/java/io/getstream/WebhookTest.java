@@ -421,14 +421,14 @@ public class WebhookTest {
 
   @Test
   void webhookConformanceBadBase64() throws IOException {
+    // Per CHA-3071 wire format: decodeSqsPayload falls back to raw bytes when
+    // base64 decoding fails (uncompressed wire format). For input that is
+    // neither valid base64 nor valid JSON nor gzip-prefixed, parseSqs still
+    // throws InvalidWebhookException — just down the chain at JSON parsing.
     Path dir = FIXTURE_ROOT.resolve("_invalid").resolve("bad_base64");
     if (!Files.exists(dir)) return;
     String msg = Files.readString(dir.resolve("sqs_body.txt")).trim();
-    Webhook.InvalidWebhookException ex =
-        assertThrows(Webhook.InvalidWebhookException.class, () -> Webhook.parseSqs(msg));
-    assertTrue(
-        ex.getMessage().contains("base64"),
-        "expected 'base64' in message, got: " + ex.getMessage());
+    assertThrows(Webhook.InvalidWebhookException.class, () -> Webhook.parseSqs(msg));
   }
 
   @Test
