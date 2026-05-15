@@ -304,6 +304,13 @@ public class WebhookTest {
   private static final Path FIXTURE_ROOT =
       Paths.get("src", "test", "resources", "fixtures", "webhooks");
 
+  @org.junit.jupiter.api.Test
+  void webhookConformanceFixturesPresent() {
+    org.junit.jupiter.api.Assertions.assertTrue(
+        java.nio.file.Files.isDirectory(FIXTURE_ROOT),
+        "Webhook conformance fixtures missing at " + FIXTURE_ROOT + " — run generate.sh");
+  }
+
   @TestFactory
   Collection<DynamicTest> webhookConformanceHappy() throws IOException {
     if (!Files.isDirectory(FIXTURE_ROOT)) {

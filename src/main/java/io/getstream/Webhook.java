@@ -822,6 +822,22 @@ public class Webhook {
   }
 
   /**
+   * @deprecated Renamed to {@link InvalidWebhookError}. Will be removed in the next minor release.
+   *     Kept as a subclass so existing {@code catch (WebhookException e)} clauses continue to
+   *     compile and catch the new class.
+   */
+  @Deprecated
+  public static class WebhookException extends InvalidWebhookError {
+    public WebhookException(String message) {
+      super(message);
+    }
+
+    public WebhookException(String message, Throwable cause) {
+      super(message, cause);
+    }
+  }
+
+  /**
    * Returned by {@link #parseEvent(byte[])} when the type discriminator is well-formed but unknown
    * to this SDK version. Forward-compat surface for new event types.
    *
