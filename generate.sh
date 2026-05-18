@@ -11,11 +11,11 @@ fi
 set -ex
 
 # cd in API repo, generate new spec and then generate code from it
-( cd $SOURCE_PATH ; make openapi ; go run ./cmd/chat-manager openapi generate-client --language java --spec ./releases/v2/serverside-api.yaml --output ../stream-sdk-java )
+( cd $SOURCE_PATH ; make openapi ; ./build/chat-manager openapi generate-client --language java --spec ./releases/v2/serverside-api.yaml --output ../stream-sdk-java )
 
 # Generate webhook conformance fixtures (CHA-2961). The test template reads them from
 # src/test/resources/fixtures/webhooks/ and gracefully skips if the dir is missing.
-( cd $SOURCE_PATH ; go run ./cmd/chat-manager openapi generate-webhook-fixtures --output ../stream-sdk-java/src/test/resources/fixtures/webhooks )
+( cd $SOURCE_PATH ; ./build/chat-manager openapi generate-webhook-fixtures --output ../stream-sdk-java/src/test/resources/fixtures/webhooks )
 
 perl -i -0pe 's/    \@JsonProperty\("Role"\)\n    private String role;\n//g' src/main/java/io/getstream/models/CallParticipant.java
 

@@ -360,6 +360,10 @@ public interface Common {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<SearchRolesResponse> searchRoles(SearchRolesRequest request)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<Response> deleteRole(@NotNull String name, DeleteRoleRequest request)
       throws StreamException;
 
