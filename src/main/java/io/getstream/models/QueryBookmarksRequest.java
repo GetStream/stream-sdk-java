@@ -41,10 +41,18 @@ public class QueryBookmarksRequest {
   private String prev;
 
   @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
   @JsonProperty("sort")
   private List<SortParamRequest> sort;
 
   @Nullable
   @JsonProperty("filter")
   private Map<String, Object> filter;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [Unreleased]
+
+### Added
+
+- Webhook handling spec helpers (CHA-2961): `UnknownEvent` class for forward-compat;
+  `gunzipPayload`, `decodeSqsPayload`, `decodeSnsPayload` primitives;
+  `verifyAndParseWebhook` HTTP composite; `parseSqs` / `parseSns`
+  queue composites (no HMAC signature on the payload — queue transports rely on
+  AWS IAM for authentication). Transparent gzip via magic-byte detection.
+- New instance methods on `StreamSDKClient`: `verifySignature(body, signature)`
+  and `verifyAndParseWebhook(body, signature)` — drop the api_secret parameter
+  in favor of the client's stored secret. Dual API: static `Webhook.*` methods
+  remain available.
+- New instance methods on `StreamSDKClient`: `parseSqs(String)`, `parseSns(String)`
+  (no signature; AWS IAM).
+- New exception class: `Webhook.InvalidWebhookException` (unified — covers both
+  signature mismatch and malformed payloads).
+- Conformance fixture suite under `src/test/resources/fixtures/webhooks/`.
+
+### Changed
+
+- No breaking changes. All existing webhook helpers preserved.
+
+[Spec](https://www.notion.so/stream-wiki/Server-Side-SDK-Webhook-Handling-Spec-34b6a5d7f9f681e78003c443f227493c)
+
 ## [7.2.0](https://github.com/GetStream/stream-sdk-java/compare/7.1.0...7.2.0) (2026-04-30)
 
 ## [7.1.0](https://github.com/GetStream/stream-sdk-java/compare/7.0.0...7.1.0) (2026-04-10)

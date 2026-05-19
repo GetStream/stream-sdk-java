@@ -25,4 +25,8 @@ public class DeleteFeedRequest {
   @Query("hard_delete")
   @JsonIgnore
   private Boolean HardDelete;
+
+  @Query("purge_user_activities")
+  @JsonIgnore
+  private Boolean PurgeUserActivities;
 }

@@ -42,6 +42,10 @@ public class RuleBuilderCondition {
   private CallViolationCountParameters callViolationCountParams;
 
   @Nullable
+  @JsonProperty("channel_message_count_rule_params")
+  private ChannelMessageCountRuleParameters channelMessageCountRuleParams;
+
+  @Nullable
   @JsonProperty("closed_caption_rule_params")
   private ClosedCaptionRuleParameters closedCaptionRuleParams;
 

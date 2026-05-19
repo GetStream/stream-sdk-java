@@ -58,4 +58,61 @@ public class StreamSDKClient extends CommonImpl implements Common {
   public StreamSDKClient getSDKClient() {
     return this;
   }
+
+  /**
+   * Verify a webhook signature using this client's API secret.
+   *
+   * <p>Convenience wrapper around {@link io.getstream.Webhook#verifySignature(byte[], String,
+   * String)}.
+   *
+   * @param body the raw HTTP request body bytes
+   * @param signature the value of the X-Signature header
+   * @return true if the signature matches
+   */
+  public boolean verifySignature(byte[] body, String signature) {
+    return io.getstream.Webhook.verifySignature(body, signature, this.httpClient.getApiSecret());
+  }
+
+  /**
+   * Verify and parse a webhook payload in one call, using this client's API secret.
+   *
+   * <p>Handles gzip-compressed bodies transparently via magic-byte detection. Throws {@link
+   * io.getstream.Webhook.InvalidWebhookError} on signature mismatch or parse failures.
+   *
+   * @param body the raw HTTP request body bytes (possibly gzip-compressed)
+   * @param signature the value of the X-Signature header
+   * @return the parsed event (typed event or {@link io.getstream.Webhook.UnknownEvent})
+   */
+  public Object verifyAndParseWebhook(byte[] body, String signature)
+      throws io.getstream.Webhook.InvalidWebhookError {
+    return io.getstream.Webhook.verifyAndParseWebhook(
+        body, signature, this.httpClient.getApiSecret());
+  }
+
+  /**
+   * Decode + parse a Stream-delivered SQS message body.
+   *
+   * <p>Convenience wrapper around {@link io.getstream.Webhook#parseSqs(String)}. No signature is
+   * required; SQS deliveries are authenticated via AWS IAM.
+   *
+   * @param messageBody the SQS message body string
+   * @return the parsed event (typed event or {@link io.getstream.Webhook.UnknownEvent})
+   */
+  public Object parseSqs(String messageBody) throws io.getstream.Webhook.InvalidWebhookError {
+    return io.getstream.Webhook.parseSqs(messageBody);
+  }
+
+  /**
+   * Decode + parse a Stream-delivered SNS notification body.
+   *
+   * <p>Accepts either the raw SNS HTTP envelope JSON or the pre-extracted Message string.
+   * Convenience wrapper around {@link io.getstream.Webhook#parseSns(String)}. No signature is
+   * required; SNS deliveries are authenticated via AWS IAM.
+   *
+   * @param notificationBody the SNS notification body (envelope JSON or extracted Message)
+   * @return the parsed event (typed event or {@link io.getstream.Webhook.UnknownEvent})
+   */
+  public Object parseSns(String notificationBody) throws io.getstream.Webhook.InvalidWebhookError {
+    return io.getstream.Webhook.parseSns(notificationBody);
+  }
 }

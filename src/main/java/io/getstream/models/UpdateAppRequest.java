@@ -58,6 +58,10 @@ public class UpdateAppRequest {
   private Boolean disablePermissionsChecks;
 
   @Nullable
+  @JsonProperty("enable_hook_payload_compression")
+  private Boolean enableHookPayloadCompression;
+
+  @Nullable
   @JsonProperty("enforce_unique_usernames")
   private String enforceUniqueUsernames;
 

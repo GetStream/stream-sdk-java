@@ -38,6 +38,10 @@ public class LabelsRequest {
   private String contentType;
 
   @Nullable
+  @JsonProperty("dry_run")
+  private Boolean dryRun;
+
+  @Nullable
   @JsonProperty("policy")
   private String policy;
 

@@ -39,6 +39,10 @@ public class AddActivityReactionRequest {
   private Boolean createNotificationActivity;
 
   @Nullable
+  @JsonProperty("create_users")
+  private Boolean createUsers;
+
+  @Nullable
   @JsonProperty("enforce_unique")
   private Boolean enforceUnique;
 

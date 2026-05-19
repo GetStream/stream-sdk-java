@@ -1071,6 +1071,21 @@ public class CommonImpl {
   }
 
   @NotNull
+  public StreamRequest<SearchRolesResponse> searchRoles(SearchRolesRequest request)
+      throws StreamException {
+
+    return new StreamRequest<SearchRolesResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/roles/search",
+        request,
+        null,
+        new TypeReference<SearchRolesResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<Response> deleteRole(@NotNull String name, DeleteRoleRequest request)
       throws StreamException {
     var pathParams = Map.of("name", name);

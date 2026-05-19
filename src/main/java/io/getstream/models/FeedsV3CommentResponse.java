@@ -24,6 +24,9 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class FeedsV3CommentResponse {
 
+  @JsonProperty("bookmark_count")
+  private Integer bookmarkCount;
+
   @JsonProperty("confidence_score")
   private Double confidenceScore;
 
@@ -64,7 +67,7 @@ public class FeedsV3CommentResponse {
   private List<UserResponse> mentionedUsers;
 
   @JsonProperty("own_reactions")
-  private List<Object> ownReactions;
+  private List<FeedsReactionResponse> ownReactions;
 
   @JsonProperty("user")
   private UserResponse user;
@@ -94,10 +97,18 @@ public class FeedsV3CommentResponse {
   private List<Attachment> attachments;
 
   @Nullable
+  @JsonProperty("latest_reactions")
+  private List<FeedsReactionResponse> latestReactions;
+
+  @Nullable
   @JsonProperty("custom")
   private Map<String, Object> custom;
 
   @Nullable
   @JsonProperty("moderation")
   private ModerationV2Response moderation;
+
+  @Nullable
+  @JsonProperty("reaction_groups")
+  private Map<String, FeedsReactionGroupResponse> reactionGroups;
 }
