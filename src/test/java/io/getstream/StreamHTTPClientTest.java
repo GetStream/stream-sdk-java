@@ -269,4 +269,34 @@ public class StreamHTTPClientTest {
 
     assertEquals(25_000, built.callTimeoutMillis(), "RequestTimeout flows through SDK client");
   }
+
+  @Test
+  void testEscapeHatchViaOptionsBypassesKnobs() {
+    ConnectionPool customPool = new ConnectionPool(42, 200, TimeUnit.SECONDS);
+    OkHttpClient userClient =
+        new OkHttpClient.Builder()
+            .connectionPool(customPool)
+            .connectTimeout(77, TimeUnit.SECONDS)
+            .callTimeout(88, TimeUnit.SECONDS)
+            .build();
+
+    StreamClientOptions opts =
+        new StreamClientOptions()
+            .setHttpClient(userClient)
+            // All four below MUST be ignored when an OkHttpClient is supplied:
+            .setMaxConnsPerHost(99)
+            .setIdleTimeout(Duration.ofSeconds(99))
+            .setConnectTimeout(Duration.ofSeconds(99))
+            .setRequestTimeout(Duration.ofSeconds(99));
+
+    StreamSDKClient sdk =
+        new StreamSDKClient("apiKey", "012345678901234567890123456789ab", opts);
+    OkHttpClient built = sdk.getHttpClient().getHttpClient();
+
+    assertSame(customPool, built.connectionPool(), "user pool preserved");
+    assertEquals(77_000, built.connectTimeoutMillis(), "user connectTimeout preserved");
+    assertEquals(88_000, built.callTimeoutMillis(), "user callTimeout preserved");
+    assertFalse(
+        built.interceptors().isEmpty(), "SDK still adds its interceptors to user-supplied client");
+  }
 }
