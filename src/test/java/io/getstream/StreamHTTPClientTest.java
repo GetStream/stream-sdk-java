@@ -256,4 +256,17 @@ public class StreamHTTPClientTest {
     assertEquals(7_000, built.connectTimeoutMillis());
     assertEquals(45_000, built.callTimeoutMillis());
   }
+
+  @Test
+  void testStreamSDKClientWithOptions() {
+    StreamClientOptions opts =
+        new StreamClientOptions()
+            .setMaxConnsPerHost(15)
+            .setRequestTimeout(Duration.ofSeconds(25));
+    StreamSDKClient sdk =
+        new StreamSDKClient("apiKey", "012345678901234567890123456789ab", opts);
+    OkHttpClient built = sdk.getHttpClient().getHttpClient();
+
+    assertEquals(25_000, built.callTimeoutMillis(), "RequestTimeout flows through SDK client");
+  }
 }
