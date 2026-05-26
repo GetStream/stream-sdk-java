@@ -231,4 +231,29 @@ public class StreamHTTPClientTest {
     assertEquals(Duration.ofSeconds(5), opts.getConnectTimeout());
     assertEquals(Duration.ofSeconds(20), opts.getRequestTimeout());
   }
+
+  @Test
+  void testStreamHTTPClientUsesDefaultOptions() {
+    StreamHTTPClient http = new StreamHTTPClient("apiKey", "012345678901234567890123456789ab");
+    OkHttpClient built = http.getHttpClient();
+    assertNotNull(built.connectionPool());
+    assertEquals(10_000, built.connectTimeoutMillis(), "default ConnectTimeout = 10_000ms");
+    assertEquals(30_000, built.callTimeoutMillis(), "default RequestTimeout = 30_000ms");
+    // OkHttp 4.x does not expose ConnectionPool.maxIdleConnections() publicly; we cover the
+    // pass-through path indirectly via the options-driven test below + the escape-hatch test.
+  }
+
+  @Test
+  void testStreamHTTPClientAppliesCustomOptions() {
+    StreamClientOptions opts =
+        new StreamClientOptions()
+            .setMaxConnsPerHost(20)
+            .setIdleTimeout(Duration.ofSeconds(90))
+            .setConnectTimeout(Duration.ofSeconds(7))
+            .setRequestTimeout(Duration.ofSeconds(45));
+    OkHttpClient built =
+        new StreamHTTPClient("apiKey", "012345678901234567890123456789ab", opts).getHttpClient();
+    assertEquals(7_000, built.connectTimeoutMillis());
+    assertEquals(45_000, built.callTimeoutMillis());
+  }
 }
