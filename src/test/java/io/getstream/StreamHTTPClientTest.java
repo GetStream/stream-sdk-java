@@ -265,11 +265,8 @@ public class StreamHTTPClientTest {
   @Test
   void testStreamSDKClientWithOptions() {
     StreamClientOptions opts =
-        new StreamClientOptions()
-            .setMaxConnsPerHost(15)
-            .setRequestTimeout(Duration.ofSeconds(25));
-    StreamSDKClient sdk =
-        new StreamSDKClient("apiKey", "012345678901234567890123456789ab", opts);
+        new StreamClientOptions().setMaxConnsPerHost(15).setRequestTimeout(Duration.ofSeconds(25));
+    StreamSDKClient sdk = new StreamSDKClient("apiKey", "012345678901234567890123456789ab", opts);
     OkHttpClient built = sdk.getHttpClient().getHttpClient();
 
     assertEquals(25_000, built.callTimeoutMillis(), "RequestTimeout flows through SDK client");
@@ -294,8 +291,7 @@ public class StreamHTTPClientTest {
             .setConnectTimeout(Duration.ofSeconds(99))
             .setRequestTimeout(Duration.ofSeconds(99));
 
-    StreamSDKClient sdk =
-        new StreamSDKClient("apiKey", "012345678901234567890123456789ab", opts);
+    StreamSDKClient sdk = new StreamSDKClient("apiKey", "012345678901234567890123456789ab", opts);
     OkHttpClient built = sdk.getHttpClient().getHttpClient();
 
     assertSame(customPool, built.connectionPool(), "user pool preserved");
