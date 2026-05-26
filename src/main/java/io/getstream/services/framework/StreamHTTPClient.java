@@ -186,8 +186,6 @@ public class StreamHTTPClient {
   private OkHttpClient buildHTTPClient(String jwtToken, OkHttpClient.Builder httpClient) {
     httpClient.interceptors().clear();
 
-    // Don't add an interceptor that sets Accept-Encoding; it disables
-    // OkHttp's automatic gzip handling.
     HttpLoggingInterceptor loggingInterceptor =
         new HttpLoggingInterceptor().setLevel(getLogLevel());
     httpClient.addInterceptor(loggingInterceptor);
