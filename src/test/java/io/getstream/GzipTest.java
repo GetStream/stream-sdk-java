@@ -19,9 +19,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * CHA-2964: verifies the SDK relies on OkHttp's BridgeInterceptor to auto-negotiate gzip. Hits the
- * SDK-configured OkHttpClient directly against a MockWebServer so the test does not depend on URL
- * resolution (env var STREAM_BASE_URL otherwise wins over System.setProperty on CI).
+ * Verifies the SDK relies on OkHttp's BridgeInterceptor to auto-negotiate gzip,
+ * by exercising the SDK's OkHttpClient directly against a MockWebServer.
  */
 public class GzipTest {
 
