@@ -12,10 +12,15 @@ import io.getstream.services.framework.StreamClientOptions;
 import io.getstream.services.framework.StreamHTTPClient;
 import io.getstream.services.framework.StreamSDKClient;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
 import org.junit.jupiter.api.BeforeAll;
@@ -298,5 +303,58 @@ public class StreamHTTPClientTest {
     assertEquals(88_000, built.callTimeoutMillis(), "user callTimeout preserved");
     assertFalse(
         built.interceptors().isEmpty(), "SDK still adds its interceptors to user-supplied client");
+  }
+
+  private static class CapturingHandler extends Handler {
+    final List<String> messages = new ArrayList<>();
+
+    @Override
+    public void publish(LogRecord r) {
+      if (r.getLevel().intValue() >= Level.INFO.intValue()) messages.add(r.getMessage());
+    }
+
+    @Override
+    public void flush() {}
+
+    @Override
+    public void close() throws SecurityException {}
+  }
+
+  private String captureLastPoolLog(Runnable construct) {
+    Logger jul = Logger.getLogger("io.getstream.services.framework.StreamHTTPClient");
+    CapturingHandler h = new CapturingHandler();
+    jul.addHandler(h);
+    try {
+      construct.run();
+      return h.messages.stream()
+          .filter(m -> m.startsWith("connection pool:"))
+          .reduce((a, b) -> b)
+          .orElseThrow();
+    } finally {
+      jul.removeHandler(h);
+    }
+  }
+
+  @Test
+  void testInfoLogOnConstructionWithDefaults() {
+    String got =
+        captureLastPoolLog(
+            () -> new StreamHTTPClient("apiKey", "012345678901234567890123456789ab"));
+    assertTrue(got.contains("max_conns_per_host=5"), got);
+    assertTrue(got.contains("idle_timeout=PT55S"), got);
+    assertTrue(got.contains("connect_timeout=PT10S"), got);
+    assertTrue(got.contains("request_timeout=PT30S"), got);
+    assertTrue(got.contains("user_http_client=false"), got);
+  }
+
+  @Test
+  void testInfoLogOnConstructionWithUserHttpClient() {
+    StreamClientOptions opts =
+        new StreamClientOptions().setHttpClient(new OkHttpClient.Builder().build());
+    String got =
+        captureLastPoolLog(
+            () -> new StreamHTTPClient("apiKey", "012345678901234567890123456789ab", opts));
+    assertTrue(got.contains("user_http_client=true"), got);
+    assertTrue(got.contains("5 knobs not applied"), got);
   }
 }
