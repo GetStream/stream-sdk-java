@@ -8,8 +8,10 @@ import io.getstream.models.MessageResponse;
 import io.getstream.models.TrackActivityMetricsEvent;
 import io.getstream.models.TrackActivityMetricsRequest;
 import io.getstream.models.UpdateAppRequest;
+import io.getstream.services.framework.StreamClientOptions;
 import io.getstream.services.framework.StreamHTTPClient;
 import io.getstream.services.framework.StreamSDKClient;
+import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -204,5 +206,29 @@ public class StreamHTTPClientTest {
         String.format(
             "Expected timestamp %d (2024-01-06T12:00:00Z) but got %d (%s)",
             expectedDate.getTime(), message.getUpdatedAt().getTime(), message.getUpdatedAt()));
+  }
+
+  @Test
+  void testStreamClientOptionsDefaults() {
+    StreamClientOptions opts = new StreamClientOptions();
+    assertEquals(5, opts.getMaxConnsPerHost(), "default MaxConnsPerHost = 5");
+    assertEquals(Duration.ofSeconds(55), opts.getIdleTimeout(), "default IdleTimeout = 55s");
+    assertEquals(Duration.ofSeconds(10), opts.getConnectTimeout(), "default ConnectTimeout = 10s");
+    assertEquals(Duration.ofSeconds(30), opts.getRequestTimeout(), "default RequestTimeout = 30s");
+    assertNull(opts.getHttpClient(), "no user-supplied OkHttpClient by default");
+  }
+
+  @Test
+  void testStreamClientOptionsFluentSetters() {
+    StreamClientOptions opts =
+        new StreamClientOptions()
+            .setMaxConnsPerHost(10)
+            .setIdleTimeout(Duration.ofSeconds(120))
+            .setConnectTimeout(Duration.ofSeconds(5))
+            .setRequestTimeout(Duration.ofSeconds(20));
+    assertEquals(10, opts.getMaxConnsPerHost());
+    assertEquals(Duration.ofSeconds(120), opts.getIdleTimeout());
+    assertEquals(Duration.ofSeconds(5), opts.getConnectTimeout());
+    assertEquals(Duration.ofSeconds(20), opts.getRequestTimeout());
   }
 }
