@@ -12,9 +12,11 @@ import io.getstream.models.framework.RateLimit;
 import io.getstream.models.framework.StreamResponse;
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,6 +25,7 @@ public class StreamRequest<T> {
   private final Request request;
   private final ObjectMapper objectMapper;
   private final TypeReference<T> typeReference;
+  private Duration callTimeoutOverride;
 
   public StreamRequest(
       OkHttpClient client,
@@ -223,8 +226,29 @@ public class StreamRequest<T> {
     return builder.build();
   }
 
+  /**
+   * Override the per-call timeout for this single request. The override takes precedence over the
+   * client-wide {@code RequestTimeout} configured via {@link
+   * io.getstream.services.framework.StreamClientOptions#setRequestTimeout}. Returns {@code this}
+   * for chaining.
+   *
+   * <p>Per CHA-2956 spec §5.2.
+   */
+  public StreamRequest<T> callTimeout(@NotNull Duration d) {
+    if (d.isNegative()) {
+      throw new IllegalArgumentException("callTimeout must be non-negative, got " + d);
+    }
+    this.callTimeoutOverride = d;
+    return this;
+  }
+
   public StreamResponse<T> execute() throws StreamException {
     okhttp3.Call call = client.newCall(request);
+    if (callTimeoutOverride != null) {
+      // OkHttp 4.x: Call.timeout() returns an okio.Timeout. Setting it overrides the
+      // client-wide callTimeout for this single dispatch.
+      call.timeout().timeout(callTimeoutOverride.toNanos(), TimeUnit.NANOSECONDS);
+    }
     Response response;
     try {
       response = call.execute();
