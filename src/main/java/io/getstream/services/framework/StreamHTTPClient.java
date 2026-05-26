@@ -186,6 +186,10 @@ public class StreamHTTPClient {
   private OkHttpClient buildHTTPClient(String jwtToken, OkHttpClient.Builder httpClient) {
     httpClient.interceptors().clear();
 
+    // CHA-2964 invariant: do NOT add a custom interceptor that sets
+    // "Accept-Encoding". OkHttp's BridgeInterceptor (default) auto-adds
+    // "Accept-Encoding: gzip" and auto-decodes the response. Setting it
+    // manually disables that auto-handling.
     HttpLoggingInterceptor loggingInterceptor =
         new HttpLoggingInterceptor().setLevel(getLogLevel());
     httpClient.addInterceptor(loggingInterceptor);
