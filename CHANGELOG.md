@@ -20,12 +20,35 @@ All notable changes to this project will be documented in this file. See [standa
 - New exception class: `Webhook.InvalidWebhookException` (unified — covers both
   signature mismatch and malformed payloads).
 - Conformance fixture suite under `src/test/resources/fixtures/webhooks/`.
+- Explicit HTTP connection pool configuration ([CHA-2956](https://linear.app/stream/issue/CHA-2956/connection-pooling)).
+  New `StreamClientOptions` POJO with fluent setters:
+    * `setMaxConnsPerHost(int)` — default `5`
+    * `setIdleTimeout(Duration)` — default `55s`
+    * `setConnectTimeout(Duration)` — default `10s`
+    * `setRequestTimeout(Duration)` — default `30s` (was `10s`; see Behavior changes)
+    * `setHttpClient(OkHttpClient)` — escape hatch; bypasses the four knobs above
+  Pass via the new constructor: `new StreamSDKClient(apiKey, secret, options)`.
+- Per-call `RequestTimeout` override on `StreamRequest`:
+  `request.callTimeout(Duration.ofSeconds(5)).execute()`. Spec §5.2.
+- INFO log on client construction lists the effective pool config (spec §8).
+  Uses `java.util.logging.Logger` (no new dependency).
 
 ### Changed
 
-- No breaking changes. All existing webhook helpers preserved.
+- **Default per-call `RequestTimeout` is now `30s` (was `10s`).** Aligns with CHA-2956
+  cross-SDK contract. The previous `10s` came from the hardcoded `timeout = 10000` ms
+  in `StreamHTTPClient`. To keep the old ceiling, pass
+  `new StreamClientOptions().setRequestTimeout(Duration.ofSeconds(10))`.
+- Default idle-connection lifetime now `55s` (was `59s` via the
+  `STREAM_API_CONNECTION_MAX_AGE` env var path). 55s sits 5s below the typical 60s
+  LB idle timeout for safer eviction. `MaxConnsPerHost` default is unchanged at `5`.
+- No other breaking changes. Existing `StreamSDKClient(apiKey, secret)`,
+  `StreamSDKClient(apiKey, secret, OkHttpClient)`, and `StreamSDKClient(Properties)`
+  constructors are preserved.
 
-[Spec](https://www.notion.so/stream-wiki/Server-Side-SDK-Webhook-Handling-Spec-34b6a5d7f9f681e78003c443f227493c)
+[Connection Pooling Spec](https://www.notion.so/stream-wiki/Server-Side-SDK-Connection-Pooling-Spec-3496a5d7f9f680749b8be9ee238ae108)
+
+[Webhook Spec](https://www.notion.so/stream-wiki/Server-Side-SDK-Webhook-Handling-Spec-34b6a5d7f9f681e78003c443f227493c)
 
 ## [7.2.0](https://github.com/GetStream/stream-sdk-java/compare/7.1.0...7.2.0) (2026-04-30)
 
