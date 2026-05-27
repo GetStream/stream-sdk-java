@@ -245,8 +245,8 @@ public class StreamRequest<T> {
   public StreamResponse<T> execute() throws StreamException {
     okhttp3.Call call = client.newCall(request);
     if (callTimeoutOverride != null) {
-      // OkHttp 4.x: Call.timeout() returns an okio.Timeout. Setting it overrides the
-      // client-wide callTimeout for this single dispatch.
+      // OkHttp 4.x: Call.timeout() returns an okio.Timeout. Setting it overrides the client-wide
+      // callTimeout for this single dispatch.
       call.timeout().timeout(callTimeoutOverride.toNanos(), TimeUnit.NANOSECONDS);
     }
     Response response;
