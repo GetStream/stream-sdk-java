@@ -191,7 +191,7 @@ public class Webhook {
   private static final ObjectMapper objectMapper =
       new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-  // gzipMagic is the two-byte gzip magic prefix (RFC 1952).
+  // gzipMagic is the two-byte gzip magic prefix (RFC 1952 §2.3.1).
   // JSON cannot start with these bytes, so this gives unambiguous detection
   // for Stream's always-JSON payloads.
   private static final byte[] GZIP_MAGIC = {0x1F, (byte) 0x8B};
@@ -944,8 +944,8 @@ public class Webhook {
    * not valid base64, so the base64 decode fails and we fall through to raw bytes, then {@link
    * #gunzipPayload(byte[])}'s magic-byte detection decides whether to decompress.
    *
-   * <p>{@link #parseSqs(String)} sits on top of this and works transparently for both wire formats:
-   * no caller code change, no flag, no header.
+   * <p>{@link #parseSqs(String)} sits on top of this and works transparently for both wire formats
+   * — no caller code change, no flag, no header.
    *
    * @throws InvalidWebhookError if gzip decompression fails (only when input has gzip magic prefix)
    */
@@ -958,7 +958,7 @@ public class Webhook {
     try {
       decoded = Base64.getDecoder().decode(messageBody);
     } catch (IllegalArgumentException e) {
-      // Not base64, so treat input as raw bytes (uncompressed wire format).
+      // Not base64 — treat input as raw bytes (uncompressed wire format).
       decoded = messageBody.getBytes(StandardCharsets.UTF_8);
     }
     return gunzipPayload(decoded);
@@ -970,8 +970,9 @@ public class Webhook {
    * through.
    *
    * <p>Heuristic: try to JSON-parse the input. If it yields an object with a string {@code Message}
-   * field, that's the envelope shape; return the Message. Otherwise the input is presumed to BE the
-   * pre-extracted Message (base64-encoded bytes are not valid JSON, so this falls through cleanly).
+   * field, that's the envelope shape — return the Message. Otherwise the input is presumed to BE
+   * the pre-extracted Message (base64-encoded bytes are not valid JSON, so this falls through
+   * cleanly).
    */
   private static String unwrapSnsNotificationBody(String body) {
     try {
@@ -981,7 +982,7 @@ public class Webhook {
         return msg.asText();
       }
     } catch (IOException e) {
-      // not JSON, so fall through to treating body as a bare Message string
+      // not JSON — fall through to treating body as a bare Message string
     }
     return body;
   }
