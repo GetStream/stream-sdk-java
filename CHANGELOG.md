@@ -9,15 +9,15 @@ All notable changes to this project will be documented in this file. See [standa
 - Webhook handling spec helpers (CHA-2961): `UnknownEvent` class for forward-compat;
   `gunzipPayload`, `decodeSqsPayload`, `decodeSnsPayload` primitives;
   `verifyAndParseWebhook` HTTP composite; `parseSqs` / `parseSns`
-  queue composites (no HMAC signature on the payload — queue transports rely on
+  queue composites (no HMAC signature on the payload: queue transports rely on
   AWS IAM for authentication). Transparent gzip via magic-byte detection.
 - New instance methods on `StreamSDKClient`: `verifySignature(body, signature)`
-  and `verifyAndParseWebhook(body, signature)` — drop the api_secret parameter
+  and `verifyAndParseWebhook(body, signature)` that drop the api_secret parameter
   in favor of the client's stored secret. Dual API: static `Webhook.*` methods
   remain available.
 - New instance methods on `StreamSDKClient`: `parseSqs(String)`, `parseSns(String)`
   (no signature; AWS IAM).
-- New exception class: `Webhook.InvalidWebhookException` (unified — covers both
+- New exception class: `Webhook.InvalidWebhookException` (unified, covering both
   signature mismatch and malformed payloads).
 - Conformance fixture suite under `src/test/resources/fixtures/webhooks/`.
 - Explicit HTTP connection pool configuration ([CHA-2956](https://linear.app/stream/issue/CHA-2956/connection-pooling)). New `StreamClientOptions` POJO with fluent setters:
