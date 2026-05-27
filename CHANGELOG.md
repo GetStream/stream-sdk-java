@@ -21,11 +21,11 @@ All notable changes to this project will be documented in this file. See [standa
   signature mismatch and malformed payloads).
 - Conformance fixture suite under `src/test/resources/fixtures/webhooks/`.
 - Explicit HTTP connection pool configuration ([CHA-2956](https://linear.app/stream/issue/CHA-2956/connection-pooling)). New `StreamClientOptions` POJO with fluent setters:
-    * `setMaxConnsPerHost(int)` — default `5`
-    * `setIdleTimeout(Duration)` — default `55s`
-    * `setConnectTimeout(Duration)` — default `10s`
-    * `setRequestTimeout(Duration)` — default `30s` (was `10s`; see Behavior changes)
-    * `setHttpClient(OkHttpClient)` — escape hatch; bypasses the four knobs above
+    * `setMaxConnsPerHost(int)` - default `5`
+    * `setIdleTimeout(Duration)` - default `55s`
+    * `setConnectTimeout(Duration)` - default `10s`
+    * `setRequestTimeout(Duration)` - default `30s` (was `10s`; see Behavior changes)
+    * `setHttpClient(OkHttpClient)` - escape hatch; bypasses the four knobs above
   Pass via the new constructor: `new StreamSDKClient(apiKey, secret, options)`.
 - Per-call `RequestTimeout` override on `StreamRequest`: `request.callTimeout(Duration.ofSeconds(5)).execute()`.
 - INFO log on client construction lists the effective pool config. Uses `java.util.logging.Logger` (no new dependency).
