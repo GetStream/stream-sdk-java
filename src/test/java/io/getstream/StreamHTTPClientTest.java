@@ -353,4 +353,62 @@ public class StreamHTTPClientTest {
     assertTrue(got.contains("user_http_client=true"), got);
     assertTrue(got.contains("5 knobs not applied"), got);
   }
+
+  @Test
+  void testApiTimeoutEnvPropertyStillOverridesRequestTimeout() {
+    // Regression guard for CHA-2956: the legacy STREAM_API_TIMEOUT / io.getstream.timeout override
+    // must still take effect via the env/properties constructor path. The env var and the system
+    // property share one code path (getOrDefault falls through to the property), so driving it
+    // through the property exercises the same fold-into-options logic.
+    String prevTimeout = System.getProperty(StreamHTTPClient.API_TIMEOUT_PROP_NAME);
+    String prevKey = System.getProperty(StreamHTTPClient.API_KEY_PROP_NAME);
+    String prevSecret = System.getProperty(StreamHTTPClient.API_SECRET_PROP_NAME);
+    try {
+      System.setProperty(StreamHTTPClient.API_TIMEOUT_PROP_NAME, "12345");
+      System.setProperty(StreamHTTPClient.API_KEY_PROP_NAME, "apiKey");
+      System.setProperty(StreamHTTPClient.API_SECRET_PROP_NAME, "012345678901234567890123456789ab");
+
+      OkHttpClient built = new StreamHTTPClient(System.getProperties()).getHttpClient();
+      assertEquals(
+          12_345,
+          built.callTimeoutMillis(),
+          "STREAM_API_TIMEOUT / io.getstream.timeout must drive the request (call) timeout");
+    } finally {
+      restoreProperty(StreamHTTPClient.API_TIMEOUT_PROP_NAME, prevTimeout);
+      restoreProperty(StreamHTTPClient.API_KEY_PROP_NAME, prevKey);
+      restoreProperty(StreamHTTPClient.API_SECRET_PROP_NAME, prevSecret);
+    }
+  }
+
+  @Test
+  void testConnectionMaxAgeEnvPropertyStillOverridesIdleTimeout() {
+    // Regression guard for CHA-2956: STREAM_API_CONNECTION_MAX_AGE / io.getstream.connection.maxAge
+    // must still take effect. OkHttp's ConnectionPool does not expose idle-ms publicly, so we
+    // assert via the effective-config INFO log, which reads options.getIdleTimeout().
+    String prevMaxAge = System.getProperty(StreamHTTPClient.API_CONNECTION_MAX_AGE_PROP_NAME);
+    String prevKey = System.getProperty(StreamHTTPClient.API_KEY_PROP_NAME);
+    String prevSecret = System.getProperty(StreamHTTPClient.API_SECRET_PROP_NAME);
+    try {
+      System.setProperty(StreamHTTPClient.API_CONNECTION_MAX_AGE_PROP_NAME, "123");
+      System.setProperty(StreamHTTPClient.API_KEY_PROP_NAME, "apiKey");
+      System.setProperty(StreamHTTPClient.API_SECRET_PROP_NAME, "012345678901234567890123456789ab");
+
+      String got = captureLastPoolLog(() -> new StreamHTTPClient(System.getProperties()));
+      assertTrue(
+          got.contains("idle_timeout=PT2M3S"),
+          "STREAM_API_CONNECTION_MAX_AGE must drive the idle timeout (123s = PT2M3S), got: " + got);
+    } finally {
+      restoreProperty(StreamHTTPClient.API_CONNECTION_MAX_AGE_PROP_NAME, prevMaxAge);
+      restoreProperty(StreamHTTPClient.API_KEY_PROP_NAME, prevKey);
+      restoreProperty(StreamHTTPClient.API_SECRET_PROP_NAME, prevSecret);
+    }
+  }
+
+  private static void restoreProperty(String key, String prev) {
+    if (prev == null) {
+      System.clearProperty(key);
+    } else {
+      System.setProperty(key, prev);
+    }
+  }
 }

@@ -11,6 +11,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
+import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
@@ -205,6 +206,10 @@ public class StreamHTTPClient {
         env.getOrDefault("STREAM_API_TIMEOUT", System.getProperty(API_TIMEOUT_PROP_NAME));
     if (envTimeout != null) {
       timeout = Long.parseLong(envTimeout);
+      // Fold the legacy env/property override into the options object so the request-timeout knob
+      // actually honors it. Only done when the value was explicitly provided, so an unset env var
+      // leaves the StreamClientOptions default (30s) intact rather than the bare 10000ms field.
+      options.setRequestTimeout(Duration.ofMillis(timeout));
     }
 
     var envConnectionMaxAge =
@@ -212,6 +217,9 @@ public class StreamHTTPClient {
             "STREAM_API_CONNECTION_MAX_AGE", System.getProperty(API_CONNECTION_MAX_AGE_PROP_NAME));
     if (envConnectionMaxAge != null) {
       connectionMaxAgeSeconds = Long.parseLong(envConnectionMaxAge);
+      // Same as above: an explicit max-age maps onto the idle-timeout knob; absent, the options
+      // default (55s) wins over the bare 59s field.
+      options.setIdleTimeout(Duration.ofSeconds(connectionMaxAgeSeconds));
     }
 
     var envApiUrl = env.getOrDefault("STREAM_BASE_URL", System.getProperty(API_URL_PROP_NAME));
