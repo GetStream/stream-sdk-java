@@ -351,7 +351,27 @@ public class StreamHTTPClientTest {
         captureLastPoolLog(
             () -> new StreamHTTPClient("apiKey", "012345678901234567890123456789ab", opts));
     assertTrue(got.contains("user_http_client=true"), got);
-    assertTrue(got.contains("5 knobs not applied"), got);
+    assertTrue(got.contains("4 knobs not applied"), got);
+  }
+
+  @Test
+  void testStreamHTTPClientDispatcherCapsRequestsPerHost() {
+    StreamClientOptions opts = new StreamClientOptions().setMaxConnsPerHost(17);
+    OkHttpClient built =
+        new StreamHTTPClient("apiKey", "012345678901234567890123456789ab", opts).getHttpClient();
+    assertEquals(
+        17,
+        built.dispatcher().getMaxRequestsPerHost(),
+        "maxConnsPerHost must drive Dispatcher.maxRequestsPerHost (the real per-host cap)");
+  }
+
+  @Test
+  void testDispatcherDefaultPerHostCapUnchanged() {
+    // OkHttp's default maxRequestsPerHost is 5, equal to our default maxConnsPerHost, so the
+    // default per-host concurrency is unchanged (the BLOCKER fix is not a behavior break).
+    OkHttpClient built =
+        new StreamHTTPClient("apiKey", "012345678901234567890123456789ab").getHttpClient();
+    assertEquals(5, built.dispatcher().getMaxRequestsPerHost());
   }
 
   @Test

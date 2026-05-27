@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 import javax.crypto.spec.SecretKeySpec;
 import okhttp3.ConnectionPool;
+import okhttp3.Dispatcher;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -159,17 +160,24 @@ public class StreamHTTPClient {
   }
 
   private OkHttpClient.Builder defaultHttpClientBuilder() {
-    long idleSeconds = options.getIdleTimeout().getSeconds();
+    long idleMillis = options.getIdleTimeout().toMillis();
+    // ConnectionPool's first arg is the idle-pool SIZE, not a per-host ceiling. The real per-host
+    // concurrency cap is Dispatcher.maxRequestsPerHost (OkHttp default 5), so wire maxConnsPerHost
+    // to both: the pool keeps that many idle connections warm, the dispatcher caps in-flight
+    // requests per host.
+    var dispatcher = new Dispatcher();
+    dispatcher.setMaxRequestsPerHost(options.getMaxConnsPerHost());
     return new OkHttpClient.Builder()
+        .dispatcher(dispatcher)
         .connectionPool(
-            new ConnectionPool(options.getMaxConnsPerHost(), idleSeconds, TimeUnit.SECONDS))
+            new ConnectionPool(options.getMaxConnsPerHost(), idleMillis, TimeUnit.MILLISECONDS))
         .connectTimeout(options.getConnectTimeout())
         .callTimeout(options.getRequestTimeout());
   }
 
   private void logEffectiveConfig() {
     if (options.hasUserHttpClient()) {
-      LOG.info("connection pool: user_http_client=true (5 knobs not applied)");
+      LOG.info("connection pool: user_http_client=true (4 knobs not applied)");
     } else {
       LOG.info(
           String.format(
