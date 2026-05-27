@@ -6,9 +6,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Tunables for the SDK's HTTP transport / connection pool. Per CHA-2956 connection pooling spec.
- * Defaults: 5 conns/host, 55s idle, 10s connect, 30s request. HTTP keep-alive is always on. {@link
- * #setHttpClient(OkHttpClient)} is the §7 escape hatch — when set, the four knobs are ignored.
+ * Tunables for the SDK's HTTP transport / connection pool. Per CHA-2956. Defaults: 5 conns/host,
+ * 55s idle, 10s connect, 30s request. HTTP keep-alive is always on. {@link
+ * #setHttpClient(OkHttpClient)} is the escape hatch: when set, the four knobs are ignored.
  */
 public class StreamClientOptions {
   public static final int DEFAULT_MAX_CONNS_PER_HOST = 5;
@@ -49,7 +49,7 @@ public class StreamClientOptions {
     return this;
   }
 
-  /** Spec §7 escape hatch. When set, the four knobs above are ignored. */
+  /** Escape hatch: when set, the four knobs above are ignored. */
   public StreamClientOptions setHttpClient(@Nullable OkHttpClient client) {
     this.httpClient = client;
     return this;

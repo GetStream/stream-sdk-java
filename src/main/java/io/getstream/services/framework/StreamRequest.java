@@ -232,7 +232,7 @@ public class StreamRequest<T> {
    * io.getstream.services.framework.StreamClientOptions#setRequestTimeout}. Returns {@code this}
    * for chaining.
    *
-   * <p>Per CHA-2956 spec §5.2.
+   * <p>Per CHA-2956.
    */
   public StreamRequest<T> callTimeout(@NotNull Duration d) {
     if (d.isNegative()) {

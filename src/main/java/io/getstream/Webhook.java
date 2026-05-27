@@ -191,7 +191,7 @@ public class Webhook {
   private static final ObjectMapper objectMapper =
       new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-  // gzipMagic is the two-byte gzip magic prefix (RFC 1952 §2.3.1).
+  // gzipMagic is the two-byte gzip magic prefix (RFC 1952).
   // JSON cannot start with these bytes, so this gives unambiguous detection
   // for Stream's always-JSON payloads.
   private static final byte[] GZIP_MAGIC = {0x1F, (byte) 0x8B};

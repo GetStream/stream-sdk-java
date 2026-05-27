@@ -29,8 +29,8 @@ All notable changes to this project will be documented in this file. See [standa
     * `setHttpClient(OkHttpClient)` — escape hatch; bypasses the four knobs above
   Pass via the new constructor: `new StreamSDKClient(apiKey, secret, options)`.
 - Per-call `RequestTimeout` override on `StreamRequest`:
-  `request.callTimeout(Duration.ofSeconds(5)).execute()`. Spec §5.2.
-- INFO log on client construction lists the effective pool config (spec §8).
+  `request.callTimeout(Duration.ofSeconds(5)).execute()`.
+- INFO log on client construction lists the effective pool config.
   Uses `java.util.logging.Logger` (no new dependency).
 
 ### Changed
@@ -45,10 +45,6 @@ All notable changes to this project will be documented in this file. See [standa
 - No other breaking changes. Existing `StreamSDKClient(apiKey, secret)`,
   `StreamSDKClient(apiKey, secret, OkHttpClient)`, and `StreamSDKClient(Properties)`
   constructors are preserved.
-
-[Connection Pooling Spec](https://www.notion.so/stream-wiki/Server-Side-SDK-Connection-Pooling-Spec-3496a5d7f9f680749b8be9ee238ae108)
-
-[Webhook Spec](https://www.notion.so/stream-wiki/Server-Side-SDK-Webhook-Handling-Spec-34b6a5d7f9f681e78003c443f227493c)
 
 ## [7.2.0](https://github.com/GetStream/stream-sdk-java/compare/7.1.0...7.2.0) (2026-04-30)
 
