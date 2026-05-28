@@ -32,8 +32,18 @@ public class StreamApiException extends StreamException {
       @Nullable String moreInfo,
       @Nullable Object details,
       @Nullable Throwable cause) {
-    super(message, cause, buildResponseData(statusCode, code, message, exceptionFields,
-        unrecoverable, rawResponseBody, moreInfo, details));
+    super(
+        message,
+        cause,
+        buildResponseData(
+            statusCode,
+            code,
+            message,
+            exceptionFields,
+            unrecoverable,
+            rawResponseBody,
+            moreInfo,
+            details));
     this.statusCode = statusCode;
     this.code = code;
     this.exceptionFields = exceptionFields != null ? exceptionFields : Collections.emptyMap();

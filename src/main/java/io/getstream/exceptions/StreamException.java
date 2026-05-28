@@ -50,12 +50,12 @@ public class StreamException extends Exception {
    * Builds a typed API exception from the Stream API error body.
    *
    * <p>Per CHA-2958 §6.2: parseable {@code APIError} envelope → {@link StreamApiException};
-   * unparseable body but HTTP layer succeeded → {@code StreamApiException} with {@code code=0}
-   * and the raw body preserved (§6.3).
+   * unparseable body but HTTP layer succeeded → {@code StreamApiException} with {@code code=0} and
+   * the raw body preserved (§6.3).
    *
    * <p>This overload does not see the status code; callers that have a {@link Response} should
-   * prefer {@link #build(Response)} so 429 is routed to {@link StreamRateLimitException} and
-   * {@code statusCode} is preserved.
+   * prefer {@link #build(Response)} so 429 is routed to {@link StreamRateLimitException} and {@code
+   * statusCode} is preserved.
    */
   public static StreamException build(ResponseBody responseBody) {
     ObjectMapper objectMapper = new ObjectMapper();
@@ -68,15 +68,7 @@ public class StreamException extends Exception {
         return apiExceptionFromResponseData(responseData, responseBodyString, status, null);
       } catch (JsonProcessingException e) {
         return new StreamApiException(
-            "failed to parse error response",
-            0,
-            0,
-            null,
-            false,
-            responseBodyString,
-            null,
-            null,
-            e);
+            "failed to parse error response", 0, 0, null, false, responseBodyString, null, null, e);
       }
     } catch (IOException e) {
       return new StreamException(e);
@@ -85,8 +77,8 @@ public class StreamException extends Exception {
 
   /**
    * Builds a typed API exception from an HTTP response. Per CHA-2958 §6.2: 429 → {@link
-   * StreamRateLimitException} with {@code Retry-After} parsed per RFC 7231 §7.1.3 (integer
-   * seconds or HTTP-date). Other 4xx/5xx → {@link StreamApiException}.
+   * StreamRateLimitException} with {@code Retry-After} parsed per RFC 7231 §7.1.3 (integer seconds
+   * or HTTP-date). Other 4xx/5xx → {@link StreamApiException}.
    */
   public static StreamException build(Response httpResponse) {
     int status = httpResponse.code();
@@ -120,10 +112,19 @@ public class StreamException extends Exception {
               : String.format("Unexpected server response code %d", status);
       if (status == 429) {
         return new StreamRateLimitException(
-            msg, status, 0, null, false, bodyString, null, null,
-            RetryAfterParser.parse(httpResponse.header("Retry-After")), parseCause);
+            msg,
+            status,
+            0,
+            null,
+            false,
+            bodyString,
+            null,
+            null,
+            RetryAfterParser.parse(httpResponse.header("Retry-After")),
+            parseCause);
       }
-      return new StreamApiException(msg, status, 0, null, false, bodyString, null, null, parseCause);
+      return new StreamApiException(
+          msg, status, 0, null, false, bodyString, null, null, parseCause);
     }
 
     if (status == 429) {

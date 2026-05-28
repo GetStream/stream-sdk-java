@@ -9,10 +9,10 @@ import java.net.UnknownHostException;
 import javax.net.ssl.SSLException;
 
 /**
- * Thrown when a network-layer failure prevents the SDK from receiving an HTTP response.
- * Carries an {@link #getErrorType()} string matching the logging spec §6.4 enum:
- * {@code connection_reset}, {@code timeout}, {@code dns_failure},
- * {@code tls_handshake_failed}, {@code unknown}. Per CHA-2958 §5.3 / §6.1.
+ * Thrown when a network-layer failure prevents the SDK from receiving an HTTP response. Carries an
+ * {@link #getErrorType()} string matching the logging spec §6.4 enum: {@code connection_reset},
+ * {@code timeout}, {@code dns_failure}, {@code tls_handshake_failed}, {@code unknown}. Per CHA-2958
+ * §5.3 / §6.1.
  *
  * <p>The original transport error is preserved on the cause chain ({@link Throwable#getCause()}).
  */
@@ -42,10 +42,9 @@ public class StreamTransportException extends StreamException {
   }
 
   /**
-   * Classifies an {@link IOException} from the HTTP client into one of the {@code errorType}
-   * enum values. The OkHttp call-timeout path throws {@link InterruptedIOException} with the
-   * message "timeout", so that is mapped to {@link #TIMEOUT} alongside
-   * {@link SocketTimeoutException}.
+   * Classifies an {@link IOException} from the HTTP client into one of the {@code errorType} enum
+   * values. The OkHttp call-timeout path throws {@link InterruptedIOException} with the message
+   * "timeout", so that is mapped to {@link #TIMEOUT} alongside {@link SocketTimeoutException}.
    */
   public static StreamTransportException fromIOException(IOException e) {
     String type = classify(e);

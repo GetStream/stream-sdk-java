@@ -121,7 +121,8 @@ class StreamErrorHandlingTest {
             .setBody("{\"code\":9,\"message\":\"Too many requests\",\"StatusCode\":429}"));
 
     StreamException raw = assertThrows(StreamException.class, () -> request().execute());
-    assertTrue(raw instanceof StreamRateLimitException, "429 must produce StreamRateLimitException");
+    assertTrue(
+        raw instanceof StreamRateLimitException, "429 must produce StreamRateLimitException");
     StreamRateLimitException e = (StreamRateLimitException) raw;
     assertEquals(429, e.getStatusCode());
     assertEquals(Duration.ofSeconds(30), e.getRetryAfter());

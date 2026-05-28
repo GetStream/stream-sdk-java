@@ -31,11 +31,9 @@ class StreamWaitForTaskTest {
     prevUrl = System.getProperty(StreamHTTPClient.API_URL_PROP_NAME);
     prevKey = System.getProperty(StreamHTTPClient.API_KEY_PROP_NAME);
     prevSecret = System.getProperty(StreamHTTPClient.API_SECRET_PROP_NAME);
-    System.setProperty(
-        StreamHTTPClient.API_URL_PROP_NAME, server.url("/").toString());
+    System.setProperty(StreamHTTPClient.API_URL_PROP_NAME, server.url("/").toString());
     System.setProperty(StreamHTTPClient.API_KEY_PROP_NAME, "apiKey");
-    System.setProperty(
-        StreamHTTPClient.API_SECRET_PROP_NAME, "012345678901234567890123456789ab");
+    System.setProperty(StreamHTTPClient.API_SECRET_PROP_NAME, "012345678901234567890123456789ab");
     client = new StreamSDKClient(System.getProperties());
   }
 
@@ -63,8 +61,7 @@ class StreamWaitForTaskTest {
                 "{\"task_id\":\"t1\",\"status\":\"completed\",\"duration\":\"1ms\","
                     + "\"result\":{\"k\":\"v\"}}"));
 
-    GetTaskResponse data =
-        client.waitForTask("t1", Duration.ZERO, Duration.ofSeconds(5));
+    GetTaskResponse data = client.waitForTask("t1", Duration.ZERO, Duration.ofSeconds(5));
     assertEquals("completed", data.getStatus());
     assertEquals("t1", data.getTaskID());
     assertNotNull(data.getResult());

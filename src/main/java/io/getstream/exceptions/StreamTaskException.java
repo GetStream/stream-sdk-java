@@ -47,9 +47,8 @@ public class StreamTaskException extends StreamException {
   }
 
   /**
-   * Returns the server-side stack trace from {@code ErrorResult.stacktrace}, or {@code null}.
-   * Named {@code getStackTraceText} so it does not collide with
-   * {@link Throwable#getStackTrace()}.
+   * Returns the server-side stack trace from {@code ErrorResult.stacktrace}, or {@code null}. Named
+   * {@code getStackTraceText} so it does not collide with {@link Throwable#getStackTrace()}.
    */
   @Nullable
   public String getStackTraceText() {
