@@ -11,16 +11,21 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
+import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 import javax.crypto.spec.SecretKeySpec;
 import okhttp3.ConnectionPool;
+import okhttp3.Dispatcher;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.jetbrains.annotations.NotNull;
 
 public class StreamHTTPClient {
+  private static final Logger LOG = Logger.getLogger(StreamHTTPClient.class.getName());
+
   public static final String API_KEY_PROP_NAME = "io.getstream.apiKey";
   public static final String API_SECRET_PROP_NAME = "io.getstream.apiSecret";
   public static final String API_TIMEOUT_PROP_NAME = "io.getstream.timeout";
@@ -54,17 +59,36 @@ public class StreamHTTPClient {
   @NotNull private String logLevel = "NONE";
   @NotNull private String baseUrl = API_DEFAULT_URL;
   @NotNull private OkHttpClient client;
+  @NotNull private StreamClientOptions options = new StreamClientOptions();
 
   public StreamHTTPClient(@NotNull String apiKey, @NotNull String apiSecret) {
     setCredetials(apiKey, apiSecret);
+    logEffectiveConfig();
   }
 
   public StreamHTTPClient(
       @NotNull String apiKey, @NotNull String apiSecret, @NotNull OkHttpClient httpClient) {
+    this.options = new StreamClientOptions().setHttpClient(httpClient);
     this.apiKey = apiKey;
     this.apiSecret = apiSecret;
     var jwtToken = buildJWT(apiSecret);
     this.client = buildHTTPClient(jwtToken, httpClient.newBuilder());
+    logEffectiveConfig();
+  }
+
+  public StreamHTTPClient(
+      @NotNull String apiKey, @NotNull String apiSecret, @NotNull StreamClientOptions options) {
+    this.options = options;
+    if (options.hasUserHttpClient()) {
+      // Escape hatch: user owns the OkHttpClient. None of the pool/timeout knobs apply.
+      this.apiKey = apiKey;
+      this.apiSecret = apiSecret;
+      var jwtToken = buildJWT(apiSecret);
+      this.client = buildHTTPClient(jwtToken, options.getHttpClient().newBuilder());
+    } else {
+      setCredetials(apiKey, apiSecret);
+    }
+    logEffectiveConfig();
   }
 
   // default constructor using ENV or System properties
@@ -85,6 +109,7 @@ public class StreamHTTPClient {
     }
 
     setCredetials(apiKey, apiSecret);
+    logEffectiveConfig();
   }
 
   private static @NotNull String buildJWT(String apiSecret) {
@@ -135,9 +160,34 @@ public class StreamHTTPClient {
   }
 
   private OkHttpClient.Builder defaultHttpClientBuilder() {
+    long idleMillis = options.getIdleTimeout().toMillis();
+    // ConnectionPool's first arg is the idle-pool SIZE, not a per-host ceiling. The real per-host
+    // concurrency cap is Dispatcher.maxRequestsPerHost (OkHttp default 5), so wire maxConnsPerHost
+    // to both: the pool keeps that many idle connections warm, the dispatcher caps in-flight
+    // requests per host.
+    var dispatcher = new Dispatcher();
+    dispatcher.setMaxRequestsPerHost(options.getMaxConnsPerHost());
     return new OkHttpClient.Builder()
-        .connectionPool(new ConnectionPool(5, connectionMaxAgeSeconds, TimeUnit.SECONDS))
-        .callTimeout(timeout, TimeUnit.MILLISECONDS);
+        .dispatcher(dispatcher)
+        .connectionPool(
+            new ConnectionPool(options.getMaxConnsPerHost(), idleMillis, TimeUnit.MILLISECONDS))
+        .connectTimeout(options.getConnectTimeout())
+        .callTimeout(options.getRequestTimeout());
+  }
+
+  private void logEffectiveConfig() {
+    if (options.hasUserHttpClient()) {
+      LOG.info("connection pool: user_http_client=true (4 knobs not applied)");
+    } else {
+      LOG.info(
+          String.format(
+              "connection pool: max_conns_per_host=%d idle_timeout=%s connect_timeout=%s"
+                  + " request_timeout=%s user_http_client=false",
+              options.getMaxConnsPerHost(),
+              options.getIdleTimeout(),
+              options.getConnectTimeout(),
+              options.getRequestTimeout()));
+    }
   }
 
   private void readPropertiesAndEnv(Properties properties) {
@@ -164,6 +214,10 @@ public class StreamHTTPClient {
         env.getOrDefault("STREAM_API_TIMEOUT", System.getProperty(API_TIMEOUT_PROP_NAME));
     if (envTimeout != null) {
       timeout = Long.parseLong(envTimeout);
+      // Fold the legacy env/property override into the options object so the request-timeout knob
+      // actually honors it. Only done when the value was explicitly provided, so an unset env var
+      // leaves the StreamClientOptions default (30s) intact rather than the bare 10000ms field.
+      options.setRequestTimeout(Duration.ofMillis(timeout));
     }
 
     var envConnectionMaxAge =
@@ -171,6 +225,9 @@ public class StreamHTTPClient {
             "STREAM_API_CONNECTION_MAX_AGE", System.getProperty(API_CONNECTION_MAX_AGE_PROP_NAME));
     if (envConnectionMaxAge != null) {
       connectionMaxAgeSeconds = Long.parseLong(envConnectionMaxAge);
+      // Same as above: an explicit max-age maps onto the idle-timeout knob; absent, the options
+      // default (55s) wins over the bare 59s field.
+      options.setIdleTimeout(Duration.ofSeconds(connectionMaxAgeSeconds));
     }
 
     var envApiUrl = env.getOrDefault("STREAM_BASE_URL", System.getProperty(API_URL_PROP_NAME));

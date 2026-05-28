@@ -8,12 +8,19 @@ import io.getstream.models.MessageResponse;
 import io.getstream.models.TrackActivityMetricsEvent;
 import io.getstream.models.TrackActivityMetricsRequest;
 import io.getstream.models.UpdateAppRequest;
+import io.getstream.services.framework.StreamClientOptions;
 import io.getstream.services.framework.StreamHTTPClient;
 import io.getstream.services.framework.StreamSDKClient;
+import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
 import org.junit.jupiter.api.BeforeAll;
@@ -204,5 +211,224 @@ public class StreamHTTPClientTest {
         String.format(
             "Expected timestamp %d (2024-01-06T12:00:00Z) but got %d (%s)",
             expectedDate.getTime(), message.getUpdatedAt().getTime(), message.getUpdatedAt()));
+  }
+
+  @Test
+  void testStreamClientOptionsDefaults() {
+    StreamClientOptions opts = new StreamClientOptions();
+    assertEquals(5, opts.getMaxConnsPerHost(), "default MaxConnsPerHost = 5");
+    assertEquals(Duration.ofSeconds(55), opts.getIdleTimeout(), "default IdleTimeout = 55s");
+    assertEquals(Duration.ofSeconds(10), opts.getConnectTimeout(), "default ConnectTimeout = 10s");
+    assertEquals(Duration.ofSeconds(30), opts.getRequestTimeout(), "default RequestTimeout = 30s");
+    assertNull(opts.getHttpClient(), "no user-supplied OkHttpClient by default");
+  }
+
+  @Test
+  void testStreamClientOptionsFluentSetters() {
+    StreamClientOptions opts =
+        new StreamClientOptions()
+            .setMaxConnsPerHost(10)
+            .setIdleTimeout(Duration.ofSeconds(120))
+            .setConnectTimeout(Duration.ofSeconds(5))
+            .setRequestTimeout(Duration.ofSeconds(20));
+    assertEquals(10, opts.getMaxConnsPerHost());
+    assertEquals(Duration.ofSeconds(120), opts.getIdleTimeout());
+    assertEquals(Duration.ofSeconds(5), opts.getConnectTimeout());
+    assertEquals(Duration.ofSeconds(20), opts.getRequestTimeout());
+  }
+
+  @Test
+  void testStreamHTTPClientUsesDefaultOptions() {
+    StreamHTTPClient http = new StreamHTTPClient("apiKey", "012345678901234567890123456789ab");
+    OkHttpClient built = http.getHttpClient();
+    assertNotNull(built.connectionPool());
+    assertEquals(10_000, built.connectTimeoutMillis(), "default ConnectTimeout = 10_000ms");
+    assertEquals(30_000, built.callTimeoutMillis(), "default RequestTimeout = 30_000ms");
+    // OkHttp 4.x does not expose ConnectionPool.maxIdleConnections() publicly; we cover the
+    // pass-through path indirectly via the options-driven test below + the escape-hatch test.
+  }
+
+  @Test
+  void testStreamHTTPClientAppliesCustomOptions() {
+    StreamClientOptions opts =
+        new StreamClientOptions()
+            .setMaxConnsPerHost(20)
+            .setIdleTimeout(Duration.ofSeconds(90))
+            .setConnectTimeout(Duration.ofSeconds(7))
+            .setRequestTimeout(Duration.ofSeconds(45));
+    OkHttpClient built =
+        new StreamHTTPClient("apiKey", "012345678901234567890123456789ab", opts).getHttpClient();
+    assertEquals(7_000, built.connectTimeoutMillis());
+    assertEquals(45_000, built.callTimeoutMillis());
+  }
+
+  @Test
+  void testStreamSDKClientWithOptions() {
+    StreamClientOptions opts =
+        new StreamClientOptions().setMaxConnsPerHost(15).setRequestTimeout(Duration.ofSeconds(25));
+    StreamSDKClient sdk = new StreamSDKClient("apiKey", "012345678901234567890123456789ab", opts);
+    OkHttpClient built = sdk.getHttpClient().getHttpClient();
+
+    assertEquals(25_000, built.callTimeoutMillis(), "RequestTimeout flows through SDK client");
+  }
+
+  @Test
+  void testEscapeHatchViaOptionsBypassesKnobs() {
+    ConnectionPool customPool = new ConnectionPool(42, 200, TimeUnit.SECONDS);
+    OkHttpClient userClient =
+        new OkHttpClient.Builder()
+            .connectionPool(customPool)
+            .connectTimeout(77, TimeUnit.SECONDS)
+            .callTimeout(88, TimeUnit.SECONDS)
+            .build();
+
+    StreamClientOptions opts =
+        new StreamClientOptions()
+            .setHttpClient(userClient)
+            // All four below MUST be ignored when an OkHttpClient is supplied:
+            .setMaxConnsPerHost(99)
+            .setIdleTimeout(Duration.ofSeconds(99))
+            .setConnectTimeout(Duration.ofSeconds(99))
+            .setRequestTimeout(Duration.ofSeconds(99));
+
+    StreamSDKClient sdk = new StreamSDKClient("apiKey", "012345678901234567890123456789ab", opts);
+    OkHttpClient built = sdk.getHttpClient().getHttpClient();
+
+    assertSame(customPool, built.connectionPool(), "user pool preserved");
+    assertEquals(77_000, built.connectTimeoutMillis(), "user connectTimeout preserved");
+    assertEquals(88_000, built.callTimeoutMillis(), "user callTimeout preserved");
+    assertFalse(
+        built.interceptors().isEmpty(), "SDK still adds its interceptors to user-supplied client");
+  }
+
+  private static class CapturingHandler extends Handler {
+    final List<String> messages = new ArrayList<>();
+
+    @Override
+    public void publish(LogRecord r) {
+      if (r.getLevel().intValue() >= Level.INFO.intValue()) messages.add(r.getMessage());
+    }
+
+    @Override
+    public void flush() {}
+
+    @Override
+    public void close() throws SecurityException {}
+  }
+
+  private String captureLastPoolLog(Runnable construct) {
+    Logger jul = Logger.getLogger("io.getstream.services.framework.StreamHTTPClient");
+    CapturingHandler h = new CapturingHandler();
+    jul.addHandler(h);
+    try {
+      construct.run();
+      return h.messages.stream()
+          .filter(m -> m.startsWith("connection pool:"))
+          .reduce((a, b) -> b)
+          .orElseThrow();
+    } finally {
+      jul.removeHandler(h);
+    }
+  }
+
+  @Test
+  void testInfoLogOnConstructionWithDefaults() {
+    String got =
+        captureLastPoolLog(
+            () -> new StreamHTTPClient("apiKey", "012345678901234567890123456789ab"));
+    assertTrue(got.contains("max_conns_per_host=5"), got);
+    assertTrue(got.contains("idle_timeout=PT55S"), got);
+    assertTrue(got.contains("connect_timeout=PT10S"), got);
+    assertTrue(got.contains("request_timeout=PT30S"), got);
+    assertTrue(got.contains("user_http_client=false"), got);
+  }
+
+  @Test
+  void testInfoLogOnConstructionWithUserHttpClient() {
+    StreamClientOptions opts =
+        new StreamClientOptions().setHttpClient(new OkHttpClient.Builder().build());
+    String got =
+        captureLastPoolLog(
+            () -> new StreamHTTPClient("apiKey", "012345678901234567890123456789ab", opts));
+    assertTrue(got.contains("user_http_client=true"), got);
+    assertTrue(got.contains("4 knobs not applied"), got);
+  }
+
+  @Test
+  void testStreamHTTPClientDispatcherCapsRequestsPerHost() {
+    StreamClientOptions opts = new StreamClientOptions().setMaxConnsPerHost(17);
+    OkHttpClient built =
+        new StreamHTTPClient("apiKey", "012345678901234567890123456789ab", opts).getHttpClient();
+    assertEquals(
+        17,
+        built.dispatcher().getMaxRequestsPerHost(),
+        "maxConnsPerHost must drive Dispatcher.maxRequestsPerHost (the real per-host cap)");
+  }
+
+  @Test
+  void testDispatcherDefaultPerHostCapUnchanged() {
+    // OkHttp's default maxRequestsPerHost is 5, equal to our default maxConnsPerHost, so the
+    // default per-host concurrency is unchanged (the BLOCKER fix is not a behavior break).
+    OkHttpClient built =
+        new StreamHTTPClient("apiKey", "012345678901234567890123456789ab").getHttpClient();
+    assertEquals(5, built.dispatcher().getMaxRequestsPerHost());
+  }
+
+  @Test
+  void testApiTimeoutEnvPropertyStillOverridesRequestTimeout() {
+    // Regression guard for CHA-2956: the legacy STREAM_API_TIMEOUT / io.getstream.timeout override
+    // must still take effect via the env/properties constructor path. The env var and the system
+    // property share one code path (getOrDefault falls through to the property), so driving it
+    // through the property exercises the same fold-into-options logic.
+    String prevTimeout = System.getProperty(StreamHTTPClient.API_TIMEOUT_PROP_NAME);
+    String prevKey = System.getProperty(StreamHTTPClient.API_KEY_PROP_NAME);
+    String prevSecret = System.getProperty(StreamHTTPClient.API_SECRET_PROP_NAME);
+    try {
+      System.setProperty(StreamHTTPClient.API_TIMEOUT_PROP_NAME, "12345");
+      System.setProperty(StreamHTTPClient.API_KEY_PROP_NAME, "apiKey");
+      System.setProperty(StreamHTTPClient.API_SECRET_PROP_NAME, "012345678901234567890123456789ab");
+
+      OkHttpClient built = new StreamHTTPClient(System.getProperties()).getHttpClient();
+      assertEquals(
+          12_345,
+          built.callTimeoutMillis(),
+          "STREAM_API_TIMEOUT / io.getstream.timeout must drive the request (call) timeout");
+    } finally {
+      restoreProperty(StreamHTTPClient.API_TIMEOUT_PROP_NAME, prevTimeout);
+      restoreProperty(StreamHTTPClient.API_KEY_PROP_NAME, prevKey);
+      restoreProperty(StreamHTTPClient.API_SECRET_PROP_NAME, prevSecret);
+    }
+  }
+
+  @Test
+  void testConnectionMaxAgeEnvPropertyStillOverridesIdleTimeout() {
+    // Regression guard for CHA-2956: STREAM_API_CONNECTION_MAX_AGE / io.getstream.connection.maxAge
+    // must still take effect. OkHttp's ConnectionPool does not expose idle-ms publicly, so we
+    // assert via the effective-config INFO log, which reads options.getIdleTimeout().
+    String prevMaxAge = System.getProperty(StreamHTTPClient.API_CONNECTION_MAX_AGE_PROP_NAME);
+    String prevKey = System.getProperty(StreamHTTPClient.API_KEY_PROP_NAME);
+    String prevSecret = System.getProperty(StreamHTTPClient.API_SECRET_PROP_NAME);
+    try {
+      System.setProperty(StreamHTTPClient.API_CONNECTION_MAX_AGE_PROP_NAME, "123");
+      System.setProperty(StreamHTTPClient.API_KEY_PROP_NAME, "apiKey");
+      System.setProperty(StreamHTTPClient.API_SECRET_PROP_NAME, "012345678901234567890123456789ab");
+
+      String got = captureLastPoolLog(() -> new StreamHTTPClient(System.getProperties()));
+      assertTrue(
+          got.contains("idle_timeout=PT2M3S"),
+          "STREAM_API_CONNECTION_MAX_AGE must drive the idle timeout (123s = PT2M3S), got: " + got);
+    } finally {
+      restoreProperty(StreamHTTPClient.API_CONNECTION_MAX_AGE_PROP_NAME, prevMaxAge);
+      restoreProperty(StreamHTTPClient.API_KEY_PROP_NAME, prevKey);
+      restoreProperty(StreamHTTPClient.API_SECRET_PROP_NAME, prevSecret);
+    }
+  }
+
+  private static void restoreProperty(String key, String prev) {
+    if (prev == null) {
+      System.clearProperty(key);
+    } else {
+      System.setProperty(key, prev);
+    }
   }
 }

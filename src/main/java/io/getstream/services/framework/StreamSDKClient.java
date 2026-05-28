@@ -12,6 +12,11 @@ public class StreamSDKClient extends CommonImpl implements Common {
     this(new StreamHTTPClient(apiKey, apiSecret));
   }
 
+  public StreamSDKClient(
+      @NotNull String apiKey, @NotNull String apiSecret, @NotNull StreamClientOptions options) {
+    this(new StreamHTTPClient(apiKey, apiSecret, options));
+  }
+
   public StreamSDKClient() {
     this(new StreamHTTPClient());
   }

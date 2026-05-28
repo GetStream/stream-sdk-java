@@ -9,23 +9,32 @@ All notable changes to this project will be documented in this file. See [standa
 - Webhook handling spec helpers (CHA-2961): `UnknownEvent` class for forward-compat;
   `gunzipPayload`, `decodeSqsPayload`, `decodeSnsPayload` primitives;
   `verifyAndParseWebhook` HTTP composite; `parseSqs` / `parseSns`
-  queue composites (no HMAC signature on the payload — queue transports rely on
+  queue composites (no HMAC signature on the payload: queue transports rely on
   AWS IAM for authentication). Transparent gzip via magic-byte detection.
 - New instance methods on `StreamSDKClient`: `verifySignature(body, signature)`
-  and `verifyAndParseWebhook(body, signature)` — drop the api_secret parameter
+  and `verifyAndParseWebhook(body, signature)` that drop the api_secret parameter
   in favor of the client's stored secret. Dual API: static `Webhook.*` methods
   remain available.
 - New instance methods on `StreamSDKClient`: `parseSqs(String)`, `parseSns(String)`
   (no signature; AWS IAM).
-- New exception class: `Webhook.InvalidWebhookException` (unified — covers both
+- New exception class: `Webhook.InvalidWebhookException` (unified, covering both
   signature mismatch and malformed payloads).
 - Conformance fixture suite under `src/test/resources/fixtures/webhooks/`.
+- Explicit HTTP connection pool configuration ([CHA-2956](https://linear.app/stream/issue/CHA-2956/connection-pooling)). New `StreamClientOptions` POJO with fluent setters:
+    * `setMaxConnsPerHost(int)`: default `5`
+    * `setIdleTimeout(Duration)`: default `55s`
+    * `setConnectTimeout(Duration)`: default `10s`
+    * `setRequestTimeout(Duration)`: default `30s` (was `10s`; see Behavior changes)
+    * `setHttpClient(OkHttpClient)`: escape hatch; bypasses the four knobs above
+  Pass via the new constructor: `new StreamSDKClient(apiKey, secret, options)`.
+- Per-call `RequestTimeout` override on `StreamRequest`: `request.callTimeout(Duration.ofSeconds(5)).execute()`.
+- INFO log on client construction lists the effective pool config. Uses `java.util.logging.Logger` (no new dependency).
 
 ### Changed
 
-- No breaking changes. All existing webhook helpers preserved.
-
-[Spec](https://www.notion.so/stream-wiki/Server-Side-SDK-Webhook-Handling-Spec-34b6a5d7f9f681e78003c443f227493c)
+- **Default per-call `RequestTimeout` is now `30s` (was `10s`).** Aligns with CHA-2956 cross-SDK contract. The previous `10s` came from the hardcoded `timeout = 10000` ms in `StreamHTTPClient`. To keep the old ceiling, pass `new StreamClientOptions().setRequestTimeout(Duration.ofSeconds(10))`.
+- Default idle-connection lifetime now `55s` (was `59s` via the `STREAM_API_CONNECTION_MAX_AGE` env var path). 55s sits 5s below the typical 60s LB idle timeout for safer eviction. `MaxConnsPerHost` default is unchanged at `5`.
+- No other breaking changes. Existing `StreamSDKClient(apiKey, secret)`, `StreamSDKClient(apiKey, secret, OkHttpClient)`, and `StreamSDKClient(Properties)` constructors are preserved.
 
 ## [7.2.0](https://github.com/GetStream/stream-sdk-java/compare/7.1.0...7.2.0) (2026-04-30)
 
