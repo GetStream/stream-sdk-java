@@ -48,7 +48,7 @@ class StreamErrorHandlingTest {
     server.shutdown();
   }
 
-  private StreamRequest<Map<String, Object>> request() {
+  private StreamRequest<Map<String, Object>> request() throws StreamException {
     return new StreamRequest<>(
         http.getHttpClient(),
         http.getObjectMapper(),
@@ -213,7 +213,10 @@ class StreamErrorHandlingTest {
     assertTrue(e instanceof StreamApiException);
     assertEquals(401, ((StreamApiException) e).getStatusCode());
     // The base StreamException stays as a checked Exception — explicitly verified.
+    // Use Class#isInstance to bypass the JDK 21 unconditional-instanceof compile error
+    // (StreamException is statically incompatible with RuntimeException).
     assertFalse(
-        e instanceof RuntimeException, "Java SDK keeps exceptions checked per CHA-2958 §9.3");
+        RuntimeException.class.isInstance(e),
+        "Java SDK keeps exceptions checked per CHA-2958 §9.3");
   }
 }
