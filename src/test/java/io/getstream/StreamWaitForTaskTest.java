@@ -9,6 +9,7 @@ import io.getstream.models.GetTaskResponse;
 import io.getstream.services.framework.StreamHTTPClient;
 import io.getstream.services.framework.StreamSDKClient;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.time.Duration;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -20,37 +21,25 @@ import org.junit.jupiter.api.Test;
 class StreamWaitForTaskTest {
   private MockWebServer server;
   private StreamSDKClient client;
-  private String prevUrl;
-  private String prevKey;
-  private String prevSecret;
 
   @BeforeEach
-  void start() throws IOException {
+  void start() throws Exception {
     server = new MockWebServer();
     server.start();
-    prevUrl = System.getProperty(StreamHTTPClient.API_URL_PROP_NAME);
-    prevKey = System.getProperty(StreamHTTPClient.API_KEY_PROP_NAME);
-    prevSecret = System.getProperty(StreamHTTPClient.API_SECRET_PROP_NAME);
-    System.setProperty(StreamHTTPClient.API_URL_PROP_NAME, server.url("/").toString());
-    System.setProperty(StreamHTTPClient.API_KEY_PROP_NAME, "apiKey");
-    System.setProperty(StreamHTTPClient.API_SECRET_PROP_NAME, "012345678901234567890123456789ab");
-    client = new StreamSDKClient(System.getProperties());
+    // Build via the credentials-only constructor (no env reading); force the
+    // baseUrl onto the mock server via reflection. CI sets STREAM_BASE_URL to
+    // the real API URL, so the env-reading Properties constructor would
+    // override any io.getstream.url system property the test could set.
+    StreamHTTPClient http = new StreamHTTPClient("apiKey", "012345678901234567890123456789ab");
+    Field baseUrl = StreamHTTPClient.class.getDeclaredField("baseUrl");
+    baseUrl.setAccessible(true);
+    baseUrl.set(http, server.url("/").toString());
+    client = new StreamSDKClient(http);
   }
 
   @AfterEach
   void stop() throws IOException {
     server.shutdown();
-    restoreProperty(StreamHTTPClient.API_URL_PROP_NAME, prevUrl);
-    restoreProperty(StreamHTTPClient.API_KEY_PROP_NAME, prevKey);
-    restoreProperty(StreamHTTPClient.API_SECRET_PROP_NAME, prevSecret);
-  }
-
-  private static void restoreProperty(String key, String prev) {
-    if (prev == null) {
-      System.clearProperty(key);
-    } else {
-      System.setProperty(key, prev);
-    }
   }
 
   @Test
