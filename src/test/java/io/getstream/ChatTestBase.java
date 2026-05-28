@@ -111,20 +111,6 @@ public class ChatTestBase extends BasicTest {
     }
   }
 
-  /**
-   * Polls the given task ID until it reaches "completed" or "failed" status. Polls up to 30 times
-   * with 1-second intervals.
-   */
-  protected void waitForTask(String taskId) throws Exception {
-    for (int i = 0; i < 30; i++) {
-      var result = client.getTask(taskId).execute();
-      String status = result.getData().getStatus();
-      if ("completed".equals(status) || "failed".equals(status)) return;
-      Thread.sleep(1000);
-    }
-    Assertions.fail("Task " + taskId + " did not complete after 30 attempts");
-  }
-
   /** Generates a random lowercase alphanumeric string of the given length. */
   protected String randomString(int n) {
     return RandomStringUtils.randomAlphanumeric(n).toLowerCase();

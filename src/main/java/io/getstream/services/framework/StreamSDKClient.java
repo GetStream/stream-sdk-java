@@ -1,6 +1,12 @@
 package io.getstream.services.framework;
 
+import io.getstream.exceptions.StreamException;
+import io.getstream.exceptions.StreamTaskException;
+import io.getstream.exceptions.StreamTransportException;
+import io.getstream.models.ErrorResult;
+import io.getstream.models.GetTaskResponse;
 import io.getstream.services.*;
+import java.time.Duration;
 import java.util.Properties;
 import okhttp3.OkHttpClient;
 import org.jetbrains.annotations.NotNull;
@@ -119,5 +125,81 @@ public class StreamSDKClient extends CommonImpl implements Common {
    */
   public Object parseSns(String notificationBody) throws io.getstream.Webhook.InvalidWebhookError {
     return io.getstream.Webhook.parseSns(notificationBody);
+  }
+
+  /** Default poll interval for {@link #waitForTask(String)}. */
+  private static final Duration DEFAULT_TASK_POLL_INTERVAL = Duration.ofSeconds(1);
+
+  /** Default max wait for {@link #waitForTask(String)}. */
+  private static final Duration DEFAULT_TASK_TIMEOUT = Duration.ofSeconds(60);
+
+  /**
+   * Polls {@code getTask(taskId)} until the task reaches a terminal status (per CHA-2958 §8).
+   * Uses a 1-second poll interval and a 60-second timeout.
+   *
+   * @return the terminal {@link GetTaskResponse} when {@code status == "completed"}
+   * @throws StreamTaskException if the task ends with {@code status == "failed"}
+   * @throws StreamTransportException with {@code errorType == "timeout"} if the wait elapses
+   * @throws StreamException for any other underlying transport / API failure
+   */
+  @NotNull
+  public GetTaskResponse waitForTask(@NotNull String taskId) throws StreamException {
+    return waitForTask(taskId, DEFAULT_TASK_POLL_INTERVAL, DEFAULT_TASK_TIMEOUT);
+  }
+
+  /**
+   * Polls {@code getTask(taskId)} until the task reaches a terminal status (per CHA-2958 §8).
+   *
+   * @param taskId the task identifier returned by the operation that enqueued the task
+   * @param pollInterval delay between polls; clamped to a non-negative value
+   * @param timeout max total wait; the timeout window starts before the first poll
+   * @throws StreamTaskException if the task ends with {@code status == "failed"}
+   * @throws StreamTransportException with {@code errorType == "timeout"} if the wait elapses
+   * @throws StreamException for any other underlying transport / API failure
+   */
+  @NotNull
+  public GetTaskResponse waitForTask(
+      @NotNull String taskId, @NotNull Duration pollInterval, @NotNull Duration timeout)
+      throws StreamException {
+    if (pollInterval.isNegative()) {
+      throw new IllegalArgumentException(
+          "pollInterval must be non-negative, got " + pollInterval);
+    }
+    if (timeout.isNegative()) {
+      throw new IllegalArgumentException("timeout must be non-negative, got " + timeout);
+    }
+    long deadlineNanos = System.nanoTime() + timeout.toNanos();
+    long pollMillis = Math.max(0L, pollInterval.toMillis());
+    while (true) {
+      GetTaskResponse data = this.getTask(taskId).execute().getData();
+      String status = data.getStatus();
+      if ("completed".equals(status)) {
+        return data;
+      }
+      if ("failed".equals(status)) {
+        ErrorResult err = data.getError();
+        throw new StreamTaskException(
+            taskId,
+            err != null && err.getType() != null ? err.getType() : "",
+            err != null && err.getDescription() != null ? err.getDescription() : "",
+            err != null ? err.getStacktrace() : null,
+            err != null ? err.getVersion() : null);
+      }
+      if (System.nanoTime() >= deadlineNanos) {
+        throw new StreamTransportException(
+            StreamTransportException.TIMEOUT,
+            "timed out waiting for task " + taskId + " after " + timeout,
+            null);
+      }
+      if (pollMillis > 0) {
+        try {
+          Thread.sleep(pollMillis);
+        } catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
+          throw new StreamTransportException(
+              StreamTransportException.TIMEOUT, "interrupted while polling task " + taskId, e);
+        }
+      }
+    }
   }
 }

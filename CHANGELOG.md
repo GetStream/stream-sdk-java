@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Added
 
+- Typed error hierarchy for the Stream API per [CHA-2958](https://linear.app/stream/issue/CHA-2958). New checked subclasses of the existing `StreamException`:
+    * `StreamApiException` — HTTP 4xx/5xx with the `APIError` envelope parsed. Getters: `getStatusCode`, `getCode`, `getMessage`, `getExceptionFields`, `isUnrecoverable`, `getRawResponseBody`, `getMoreInfo`, `getDetails`. The `unrecoverable` and `details` fields were previously dropped on the floor.
+    * `StreamRateLimitException` — HTTP 429. Subclass of `StreamApiException` with `Duration getRetryAfter()` populated from `Retry-After` (RFC 7231 §7.1.3 integer seconds + HTTP-date). `null` when header absent or unparseable.
+    * `StreamTransportException` — connection reset, timeout, DNS, TLS, etc. Carries `getErrorType()` matching the logging spec enum (`connection_reset` / `timeout` / `dns_failure` / `tls_handshake_failed` / `unknown`). Cause chain preserved.
+    * `StreamTaskException` — async task observed with `status: "failed"`. Carries `getTaskId`, `getErrorType`, `getDescription`, `getStackTraceText`, `getVersion`. (`getStackTraceText` rather than `getStackTrace` to avoid colliding with `Throwable.getStackTrace()`.)
+- `StreamSDKClient.waitForTask(taskId)` — main-source helper that polls the task endpoint to a terminal state. Returns `GetTaskResponse` on `completed`, throws `StreamTaskException` on `failed`, throws `StreamTransportException(errorType=timeout)` if the wait elapses (defaults: 1s poll, 60s timeout; overloaded with explicit `Duration`s). Replaces the test-only `ChatTestBase.waitForTask` (removed).
 - Webhook handling spec helpers (CHA-2961): `UnknownEvent` class for forward-compat;
   `gunzipPayload`, `decodeSqsPayload`, `decodeSnsPayload` primitives;
   `verifyAndParseWebhook` HTTP composite; `parseSqs` / `parseSns`
@@ -32,6 +38,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Changed
 
+- Exceptions remain **checked** (CHA-2958 §9.3). All new subclasses extend the existing checked `StreamException`, so `throws StreamException` declarations continue to compile and `catch (StreamException)` continues to handle every SDK error.
+- `StreamRequest` now throws `StreamApiException` (or `StreamRateLimitException` for 429) for HTTP-response errors, and `StreamTransportException` for IO failures. The static type on declarations is still `StreamException` — these are subclasses. The static `StreamException.build(Throwable)` factory continues to wrap into a base `StreamException` (the request path classifies transport failures directly so this factory is no longer auto-routed). `StreamException.getResponseData()` is still populated on API exceptions for back-compat.
+- The `APIError` envelope parser (formerly `StreamException.ResponseData`) gained the previously-dropped `details` and `unrecoverable` fields.
 - **Default per-call `RequestTimeout` is now `30s` (was `10s`).** Aligns with CHA-2956 cross-SDK contract. The previous `10s` came from the hardcoded `timeout = 10000` ms in `StreamHTTPClient`. To keep the old ceiling, pass `new StreamClientOptions().setRequestTimeout(Duration.ofSeconds(10))`.
 - Default idle-connection lifetime now `55s` (was `59s` via the `STREAM_API_CONNECTION_MAX_AGE` env var path). 55s sits 5s below the typical 60s LB idle timeout for safer eviction. `MaxConnsPerHost` default is unchanged at `5`.
 - No other breaking changes. Existing `StreamSDKClient(apiKey, secret)`, `StreamSDKClient(apiKey, secret, OkHttpClient)`, and `StreamSDKClient(Properties)` constructors are preserved.
