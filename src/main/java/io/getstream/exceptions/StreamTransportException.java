@@ -11,8 +11,7 @@ import javax.net.ssl.SSLException;
 /**
  * Thrown when a network-layer failure prevents the SDK from receiving an HTTP response. Carries an
  * {@link #getErrorType()} string matching the logging spec §6.4 enum: {@code connection_reset},
- * {@code timeout}, {@code dns_failure}, {@code tls_handshake_failed}, {@code unknown}. Per CHA-2958
- * §5.3 / §6.1.
+ * {@code timeout}, {@code dns_failure}, {@code tls_handshake_failed}, {@code unknown}.
  *
  * <p>The original transport error is preserved on the cause chain ({@link Throwable#getCause()}).
  */
@@ -52,8 +51,6 @@ public class StreamTransportException extends StreamException {
   }
 
   private static String classify(IOException e) {
-    // TLS first: SSLException is a subclass of IOException, and SSLHandshakeException is a
-    // subclass of SSLException — both flow through here.
     if (e instanceof SSLException) {
       return TLS_HANDSHAKE_FAILED;
     }
@@ -63,15 +60,12 @@ public class StreamTransportException extends StreamException {
     if (e instanceof SocketTimeoutException) {
       return TIMEOUT;
     }
-    // OkHttp's call-timeout path raises a plain InterruptedIOException with message "timeout".
     if (e instanceof InterruptedIOException) {
       return TIMEOUT;
     }
     if (e instanceof ConnectException || e instanceof NoRouteToHostException) {
       return CONNECTION_RESET;
     }
-    // "Connection reset" / "Broken pipe" surface as a vanilla IOException with that message on
-    // some JVMs. Match by message as a last-resort heuristic before falling through to unknown.
     String msg = e.getMessage();
     if (msg != null) {
       String lower = msg.toLowerCase();

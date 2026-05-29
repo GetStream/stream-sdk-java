@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Thrown when the Stream API returns a 4xx/5xx response. Carries the parsed {@code APIError}
- * envelope per CHA-2958 §5.1.
+ * envelope.
  *
  * <p>Checked subclass of {@link StreamException}: existing {@code throws StreamException}
  * declarations continue to compile.

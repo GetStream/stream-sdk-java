@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
  * <p>Accepts either non-negative integer seconds (e.g. {@code 30}) or an HTTP-date (IMF-fixdate,
  * e.g. {@code Fri, 31 Dec 2026 23:59:59 GMT}). HTTP-date values are converted to a delta from
  * {@code now()}, clamped to {@code >= 0}. Returns {@code null} when the header is absent or
- * unparseable — graceful per CHA-2958 §7.
+ * unparseable.
  */
 final class RetryAfterParser {
   private RetryAfterParser() {}

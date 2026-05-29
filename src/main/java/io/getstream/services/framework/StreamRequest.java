@@ -254,7 +254,7 @@ public class StreamRequest<T> {
     try {
       response = call.execute();
     } catch (IOException e) {
-      // Transport-layer failure (connection reset, timeout, DNS, TLS). CHA-2958 §6.1.
+      // IO failure: classify and re-throw as StreamTransportException.
       throw StreamTransportException.fromIOException(e);
     }
 
@@ -263,7 +263,7 @@ public class StreamRequest<T> {
 
   private StreamResponse<T> parseResponse(okhttp3.Response response) throws StreamException {
     if (!response.isSuccessful()) {
-      // 4xx/5xx → StreamApiException (or StreamRateLimitException for 429). CHA-2958 §6.2.
+      // 4xx/5xx → StreamApiException (StreamRateLimitException for 429).
       throw StreamException.build(response);
     }
     ResponseBody rawBody = response.body();
@@ -272,7 +272,7 @@ public class StreamRequest<T> {
     try {
       bodyStr = rawBody.string();
     } catch (IOException e) {
-      // Body read failed mid-stream — that's a transport problem, not a parse problem.
+      // Body read failure is transport, not parse.
       throw StreamTransportException.fromIOException(e);
     }
     T result;

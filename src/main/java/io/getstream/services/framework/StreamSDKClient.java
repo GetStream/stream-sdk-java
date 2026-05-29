@@ -134,8 +134,8 @@ public class StreamSDKClient extends CommonImpl implements Common {
   private static final Duration DEFAULT_TASK_TIMEOUT = Duration.ofSeconds(60);
 
   /**
-   * Polls {@code getTask(taskId)} until the task reaches a terminal status (per CHA-2958 §8). Uses
-   * a 1-second poll interval and a 60-second timeout.
+   * Polls {@code getTask(taskId)} until the task reaches a terminal status. Uses a 1-second poll
+   * interval and a 60-second timeout.
    *
    * @return the terminal {@link GetTaskResponse} when {@code status == "completed"}
    * @throws StreamTaskException if the task ends with {@code status == "failed"}
@@ -148,7 +148,7 @@ public class StreamSDKClient extends CommonImpl implements Common {
   }
 
   /**
-   * Polls {@code getTask(taskId)} until the task reaches a terminal status (per CHA-2958 §8).
+   * Polls {@code getTask(taskId)} until the task reaches a terminal status.
    *
    * @param taskId the task identifier returned by the operation that enqueued the task
    * @param pollInterval delay between polls; clamped to a non-negative value

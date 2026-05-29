@@ -7,7 +7,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Thrown when the Stream API returns HTTP 429. Subclass of {@link StreamApiException} that
  * additionally carries the parsed {@code Retry-After} header (RFC 7231 §7.1.3 — integer seconds or
- * HTTP-date). Per CHA-2958 §5.2.
+ * HTTP-date).
  */
 public class StreamRateLimitException extends StreamApiException {
   private static final long serialVersionUID = 1L;

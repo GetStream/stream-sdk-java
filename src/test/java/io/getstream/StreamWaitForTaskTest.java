@@ -17,7 +17,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/** CHA-2958 §8: customer-facing task-wait helper on {@link StreamSDKClient}. */
+/** Customer-facing task-wait helper on {@link StreamSDKClient}. */
 class StreamWaitForTaskTest {
   private MockWebServer server;
   private StreamSDKClient client;

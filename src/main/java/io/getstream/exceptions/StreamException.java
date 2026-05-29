@@ -29,8 +29,7 @@ public class StreamException extends Exception {
     super(t);
   }
 
-  // Allows subclasses (StreamApiException) to set both the cause and the back-compat responseData
-  // mirror in a single super() call. Package-private: only the exceptions package builds these.
+  // Package-private: subclasses construct via this with a parsed ResponseData mirror.
   StreamException(String message, Throwable cause, ResponseData responseData) {
     super(message, cause);
     this.responseData = responseData;
@@ -49,9 +48,8 @@ public class StreamException extends Exception {
   /**
    * Builds a typed API exception from the Stream API error body.
    *
-   * <p>Per CHA-2958 §6.2: parseable {@code APIError} envelope → {@link StreamApiException};
-   * unparseable body but HTTP layer succeeded → {@code StreamApiException} with {@code code=0} and
-   * the raw body preserved (§6.3).
+   * <p>Parseable {@code APIError} envelope → {@link StreamApiException}; unparseable body but HTTP
+   * layer succeeded → {@code StreamApiException} with {@code code=0} and the raw body preserved.
    *
    * <p>This overload does not see the status code; callers that have a {@link Response} should
    * prefer {@link #build(Response)} so 429 is routed to {@link StreamRateLimitException} and {@code
@@ -76,9 +74,9 @@ public class StreamException extends Exception {
   }
 
   /**
-   * Builds a typed API exception from an HTTP response. Per CHA-2958 §6.2: 429 → {@link
-   * StreamRateLimitException} with {@code Retry-After} parsed per RFC 7231 §7.1.3 (integer seconds
-   * or HTTP-date). Other 4xx/5xx → {@link StreamApiException}.
+   * Builds a typed API exception from an HTTP response. 429 → {@link StreamRateLimitException} with
+   * {@code Retry-After} parsed per RFC 7231 §7.1.3 (integer seconds or HTTP-date). Other 4xx/5xx →
+   * {@link StreamApiException}.
    */
   public static StreamException build(Response httpResponse) {
     int status = httpResponse.code();
@@ -157,8 +155,6 @@ public class StreamException extends Exception {
     return new StreamException(t);
   }
 
-  // statusCode comes from the HTTP layer (§5.1: "Source: HTTP status"). The envelope's
-  // StatusCode is only used as a fallback by build(ResponseBody), which has no live response.
   private static StreamApiException apiExceptionFromResponseData(
       ResponseData rd, String rawBody, int statusCode, Throwable cause) {
     return new StreamApiException(

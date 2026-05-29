@@ -24,9 +24,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Covers CHA-2958 error-handling spec for the request/response path: HTTP errors map to {@link
- * StreamApiException} / {@link StreamRateLimitException}, IO failures map to {@link
- * StreamTransportException}, and the existing {@link StreamException} base remains catchable.
+ * Covers the request/response error-handling path: HTTP errors map to {@link StreamApiException} /
+ * {@link StreamRateLimitException}, IO failures map to {@link StreamTransportException}, and the
+ * existing {@link StreamException} base remains catchable.
  */
 class StreamErrorHandlingTest {
   private MockWebServer server;
@@ -215,8 +215,6 @@ class StreamErrorHandlingTest {
     // The base StreamException stays as a checked Exception — explicitly verified.
     // Use Class#isInstance to bypass the JDK 21 unconditional-instanceof compile error
     // (StreamException is statically incompatible with RuntimeException).
-    assertFalse(
-        RuntimeException.class.isInstance(e),
-        "Java SDK keeps exceptions checked per CHA-2958 §9.3");
+    assertFalse(RuntimeException.class.isInstance(e), "Java SDK keeps exceptions checked");
   }
 }

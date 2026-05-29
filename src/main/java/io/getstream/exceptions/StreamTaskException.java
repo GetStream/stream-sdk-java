@@ -4,7 +4,7 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Thrown when an async task observed via {@code waitForTask} reaches {@code status: "failed"}.
- * Populated from the task's {@code ErrorResult}. Per CHA-2958 §5.4.
+ * Populated from the task's {@code ErrorResult}.
  */
 public class StreamTaskException extends StreamException {
   private static final long serialVersionUID = 1L;
