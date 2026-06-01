@@ -201,7 +201,7 @@ class ChatUserIntegrationTest extends ChatTestBase {
     }
 
     assertNotNull(taskId, "Delete users should return a task ID");
-    waitForTask(taskId);
+    client.waitForTask(taskId);
   }
 
   @Test
@@ -616,7 +616,7 @@ class ChatUserIntegrationTest extends ChatTestBase {
     assertNotNull(taskId, "DeactivateUsers should return a task ID");
 
     // Poll until completed
-    waitForTask(taskId);
+    client.waitForTask(taskId);
 
     // Verify users are deactivated (not visible without includeDeactivatedUsers)
     var queryResp =

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.getstream.exceptions.StreamException;
+import io.getstream.exceptions.StreamTransportException;
 import io.getstream.models.UploadChannelFileRequest;
 import io.getstream.models.UploadChannelImageRequest;
 import io.getstream.models.UploadFileRequest;
@@ -253,7 +254,8 @@ public class StreamRequest<T> {
     try {
       response = call.execute();
     } catch (IOException e) {
-      throw StreamException.build(e);
+      // IO failure: classify and re-throw as StreamTransportException.
+      throw StreamTransportException.fromIOException(e);
     }
 
     return this.parseResponse(response);
@@ -261,15 +263,23 @@ public class StreamRequest<T> {
 
   private StreamResponse<T> parseResponse(okhttp3.Response response) throws StreamException {
     if (!response.isSuccessful()) {
+      // 4xx/5xx → StreamApiException (StreamRateLimitException for 429).
       throw StreamException.build(response);
     }
     ResponseBody rawBody = response.body();
     // unmarshal the response body to the expected type using jackson
+    String bodyStr;
+    try {
+      bodyStr = rawBody.string();
+    } catch (IOException e) {
+      // Body read failure is transport, not parse.
+      throw StreamTransportException.fromIOException(e);
+    }
     T result;
     try {
-      result = objectMapper.readValue(rawBody.string(), typeReference);
+      result = objectMapper.readValue(bodyStr, typeReference);
     } catch (Throwable e) {
-      throw StreamException.build(e);
+      throw new StreamException("failed to parse response body", e);
     }
 
     StreamResponse<T> streamResponse = new StreamResponse<>();

@@ -230,9 +230,15 @@ public class StreamHTTPClient {
       options.setIdleTimeout(Duration.ofSeconds(connectionMaxAgeSeconds));
     }
 
-    var envApiUrl = env.getOrDefault("STREAM_BASE_URL", System.getProperty(API_URL_PROP_NAME));
-    if (envApiUrl != null) {
-      this.baseUrl = envApiUrl;
+    // Treat an empty STREAM_BASE_URL env var as unset (a common CI pattern: `STREAM_BASE_URL:
+    // ${{ vars.STREAM_BASE_URL }}` renders to empty when the variable is unset). Empty would
+    // otherwise wipe out any io.getstream.url system property set by tests.
+    var envBaseUrl = env.get("STREAM_BASE_URL");
+    if (envBaseUrl == null || envBaseUrl.isBlank()) {
+      envBaseUrl = System.getProperty(API_URL_PROP_NAME);
+    }
+    if (envBaseUrl != null && !envBaseUrl.isBlank()) {
+      this.baseUrl = envBaseUrl;
     }
   }
 

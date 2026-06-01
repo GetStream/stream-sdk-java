@@ -420,7 +420,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     assertFalse(taskId.isEmpty(), "TaskID should not be empty");
 
     // Poll task until completed
-    waitForTask(taskId);
+    client.waitForTask(taskId);
   }
 
   @Test

@@ -29,6 +29,12 @@ public class StreamException extends Exception {
     super(t);
   }
 
+  // Package-private: subclasses construct via this with a parsed ResponseData mirror.
+  StreamException(String message, Throwable cause, ResponseData responseData) {
+    super(message, cause);
+    this.responseData = responseData;
+  }
+
   /**
    * Builds a StreamException to signal an issue
    *
@@ -40,10 +46,14 @@ public class StreamException extends Exception {
   }
 
   /**
-   * Builds a StreamException using the response body when Stream API request fails
+   * Builds a typed API exception from the Stream API error body.
    *
-   * @param responseBody Stream API response body
-   * @return the StreamException
+   * <p>Parseable {@code APIError} envelope → {@link StreamApiException}; unparseable body but HTTP
+   * layer succeeded → {@code StreamApiException} with {@code code=0} and the raw body preserved.
+   *
+   * <p>This overload does not see the status code; callers that have a {@link Response} should
+   * prefer {@link #build(Response)} so 429 is routed to {@link StreamRateLimitException} and {@code
+   * statusCode} is preserved.
    */
   public static StreamException build(ResponseBody responseBody) {
     ObjectMapper objectMapper = new ObjectMapper();
@@ -52,9 +62,11 @@ public class StreamException extends Exception {
       String responseBodyString = responseBody.string();
       try {
         ResponseData responseData = objectMapper.readValue(responseBodyString, ResponseData.class);
-        return new StreamException(responseData.getMessage(), responseData);
+        int status = responseData.getStatusCode() != null ? responseData.getStatusCode() : 0;
+        return apiExceptionFromResponseData(responseData, responseBodyString, status, null);
       } catch (JsonProcessingException e) {
-        return new StreamException(responseBodyString, e);
+        return new StreamApiException(
+            "failed to parse error response", 0, 0, null, false, responseBodyString, null, null, e);
       }
     } catch (IOException e) {
       return new StreamException(e);
@@ -62,40 +74,99 @@ public class StreamException extends Exception {
   }
 
   /**
-   * Builds a StreamException based on response from the server and http code
-   *
-   * @param httpResponse Stream API response
-   * @return the StreamException
+   * Builds a typed API exception from an HTTP response. 429 → {@link StreamRateLimitException} with
+   * {@code Retry-After} parsed per RFC 7231 §7.1.3 (integer seconds or HTTP-date). Other 4xx/5xx →
+   * {@link StreamApiException}.
    */
   public static StreamException build(Response httpResponse) {
-    StreamException exception;
+    int status = httpResponse.code();
+    String bodyString = "";
+    ResponseData parsed = null;
+    Throwable parseCause = null;
 
     ResponseBody errorBody = httpResponse.body();
     if (errorBody != null) {
-      exception = StreamException.build(errorBody);
-    } else {
-      exception =
-          StreamException.build(
-              String.format("Unexpected server response code %d", httpResponse.code()));
+      try {
+        bodyString = errorBody.string();
+      } catch (IOException e) {
+        // Body unreadable — treat as empty.
+        parseCause = e;
+      }
+      if (!bodyString.isEmpty()) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        try {
+          parsed = objectMapper.readValue(bodyString, ResponseData.class);
+        } catch (JsonProcessingException e) {
+          parseCause = e;
+        }
+      }
     }
 
-    if (exception.responseData == null) {
-      ResponseData responseData = new ResponseData();
-      responseData.statusCode = httpResponse.code();
-      exception.responseData = responseData;
+    if (parsed == null) {
+      String msg =
+          parseCause != null
+              ? "failed to parse error response"
+              : String.format("Unexpected server response code %d", status);
+      if (status == 429) {
+        return new StreamRateLimitException(
+            msg,
+            status,
+            0,
+            null,
+            false,
+            bodyString,
+            null,
+            null,
+            RetryAfterParser.parse(httpResponse.header("Retry-After")),
+            parseCause);
+      }
+      return new StreamApiException(
+          msg, status, 0, null, false, bodyString, null, null, parseCause);
     }
 
-    return exception;
+    if (status == 429) {
+      return new StreamRateLimitException(
+          parsed.getMessage() != null ? parsed.getMessage() : "rate limited",
+          status,
+          parsed.getCode() != null ? parsed.getCode() : 0,
+          parsed.getExceptionFields(),
+          parsed.getUnrecoverable() != null ? parsed.getUnrecoverable() : false,
+          bodyString,
+          parsed.getMoreInfo(),
+          parsed.getDetails(),
+          RetryAfterParser.parse(httpResponse.header("Retry-After")),
+          null);
+    }
+    return apiExceptionFromResponseData(parsed, bodyString, status, null);
   }
 
   /**
-   * Builds a StreamException when an exception occurs calling the API
+   * Builds a StreamException when an exception occurs calling the API.
+   *
+   * <p>Historic factory preserved for back-compat. The HTTP-call path now classifies transport
+   * failures directly via {@link StreamTransportException#fromIOException(IOException)} so this
+   * factory no longer auto-routes; it simply wraps the cause.
    *
    * @param t the underlying exception
    * @return the StreamException
    */
   public static StreamException build(Throwable t) {
     return new StreamException(t);
+  }
+
+  private static StreamApiException apiExceptionFromResponseData(
+      ResponseData rd, String rawBody, int statusCode, Throwable cause) {
+    return new StreamApiException(
+        rd.getMessage() != null ? rd.getMessage() : "",
+        statusCode,
+        rd.getCode() != null ? rd.getCode() : 0,
+        rd.getExceptionFields(),
+        rd.getUnrecoverable() != null ? rd.getUnrecoverable() : false,
+        rawBody != null ? rawBody : "",
+        rd.getMoreInfo(),
+        rd.getDetails(),
+        cause);
   }
 
   @Data
@@ -117,5 +188,11 @@ public class StreamException extends Exception {
 
     @JsonProperty("more_info")
     private String moreInfo;
+
+    @JsonProperty("details")
+    private Object details;
+
+    @JsonProperty("unrecoverable")
+    private Boolean unrecoverable;
   }
 }

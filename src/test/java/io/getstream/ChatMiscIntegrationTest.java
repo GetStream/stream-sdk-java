@@ -440,7 +440,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
 
       // Poll task until completed
       String taskId = exportResp.getData().getTaskID();
-      waitForTask(taskId);
+      client.waitForTask(taskId);
 
     } finally {
       try {
@@ -902,7 +902,7 @@ class ChatMiscIntegrationTest extends ChatTestBase {
       // If an async task ID is returned, poll until completion
       String taskId = resp.getData().getTaskID();
       if (taskId != null && !taskId.isEmpty()) {
-        waitForTask(taskId);
+        client.waitForTask(taskId);
       }
 
     } catch (io.getstream.exceptions.StreamException e) {
