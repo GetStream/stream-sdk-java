@@ -1638,6 +1638,21 @@ public class ChatImpl {
   }
 
   @NotNull
+  public StreamRequest<CreateSegmentResponse> createSegment(CreateSegmentRequest request)
+      throws StreamException {
+
+    return new StreamRequest<CreateSegmentResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/chat/segments",
+        request,
+        null,
+        new TypeReference<CreateSegmentResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<QuerySegmentsResponse> querySegments(QuerySegmentsRequest request)
       throws StreamException {
 
@@ -1692,6 +1707,44 @@ public class ChatImpl {
   @NotNull
   public StreamRequest<GetSegmentResponse> getSegment(@NotNull String id) throws StreamException {
     return getSegment(id, new GetSegmentRequest());
+  }
+
+  @NotNull
+  public StreamRequest<UpdateSegmentResponse> updateSegment(
+      @NotNull String id, UpdateSegmentRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<UpdateSegmentResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PUT",
+        "/api/v2/chat/segments/{id}",
+        request,
+        pathParams,
+        new TypeReference<UpdateSegmentResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpdateSegmentResponse> updateSegment(@NotNull String id)
+      throws StreamException {
+    return updateSegment(id, new UpdateSegmentRequest());
+  }
+
+  @NotNull
+  public StreamRequest<Response> addSegmentTargets(
+      @NotNull String id, AddSegmentTargetsRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<Response>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/chat/segments/{id}/addtargets",
+        request,
+        pathParams,
+        new TypeReference<Response>() {});
   }
 
   @NotNull

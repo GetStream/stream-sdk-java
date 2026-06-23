@@ -65,7 +65,7 @@ public class ChannelInput {
 
   @Nullable
   @JsonProperty("config_overrides")
-  private ChannelConfig configOverrides;
+  private ChannelConfigOverrides configOverrides;
 
   @Nullable
   @JsonProperty("created_by")

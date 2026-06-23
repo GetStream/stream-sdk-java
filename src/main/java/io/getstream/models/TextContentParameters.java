@@ -36,6 +36,14 @@ public class TextContentParameters {
   private String severity;
 
   @Nullable
+  @JsonProperty("text_length")
+  private Integer textLength;
+
+  @Nullable
+  @JsonProperty("text_length_operator")
+  private String textLengthOperator;
+
+  @Nullable
   @JsonProperty("blocklist_match")
   private List<String> blocklistMatch;
 

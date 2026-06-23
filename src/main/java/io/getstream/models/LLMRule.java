@@ -22,15 +22,16 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class LLMRule {
 
-  @JsonProperty("description")
-  private String description;
-
   @JsonProperty("label")
   private String label;
 
   @Nullable
   @JsonProperty("action")
   private String action;
+
+  @Nullable
+  @JsonProperty("description")
+  private String description;
 
   @Nullable
   @JsonProperty("severity_rules")

@@ -54,6 +54,14 @@ public class RuleBuilderCondition {
   private ContentCountRuleParameters contentCountRuleParams;
 
   @Nullable
+  @JsonProperty("content_custom_property_count_params")
+  private ContentCustomPropertyCountParameters contentCustomPropertyCountParams;
+
+  @Nullable
+  @JsonProperty("content_custom_property_params")
+  private ContentCustomPropertyParameters contentCustomPropertyParams;
+
+  @Nullable
   @JsonProperty("content_flag_count_rule_params")
   private FlagCountRuleParameters contentFlagCountRuleParams;
 
@@ -64,6 +72,10 @@ public class RuleBuilderCondition {
   @Nullable
   @JsonProperty("image_rule_params")
   private ImageRuleParameters imageRuleParams;
+
+  @Nullable
+  @JsonProperty("keyframe_ocr_rule_params")
+  private KeyframeOCRRuleParameters keyframeOcrRuleParams;
 
   @Nullable
   @JsonProperty("keyframe_rule_params")

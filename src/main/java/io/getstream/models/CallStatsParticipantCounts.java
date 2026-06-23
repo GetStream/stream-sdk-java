@@ -51,6 +51,10 @@ public class CallStatsParticipantCounts {
   private Integer averageLatencyMs;
 
   @Nullable
+  @JsonProperty("avg_user_rating")
+  private Double avgUserRating;
+
+  @Nullable
   @JsonProperty("call_event_count")
   private Integer callEventCount;
 
@@ -61,6 +65,10 @@ public class CallStatsParticipantCounts {
   @Nullable
   @JsonProperty("max_freezes_duration_ms")
   private Integer maxFreezesDurationMs;
+
+  @Nullable
+  @JsonProperty("min_user_rating")
+  private Integer minUserRating;
 
   @Nullable
   @JsonProperty("total_participant_duration")

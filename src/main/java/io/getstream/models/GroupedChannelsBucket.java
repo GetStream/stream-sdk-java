@@ -26,6 +26,14 @@ public class GroupedChannelsBucket {
   private List<ChannelStateResponseFields> channels;
 
   @Nullable
+  @JsonProperty("next")
+  private String next;
+
+  @Nullable
+  @JsonProperty("prev")
+  private String prev;
+
+  @Nullable
   @JsonProperty("unread_channels")
   private Integer unreadChannels;
 }

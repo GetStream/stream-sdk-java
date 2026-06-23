@@ -72,6 +72,10 @@ public class UserBannedEvent {
   private Date receivedAt;
 
   @Nullable
+  @JsonProperty("review_queue_item_id")
+  private String reviewQueueItemID;
+
+  @Nullable
   @JsonProperty("shadow")
   private Boolean shadow;
 

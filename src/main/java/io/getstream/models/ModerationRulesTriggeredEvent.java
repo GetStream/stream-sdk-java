@@ -60,4 +60,8 @@ public class ModerationRulesTriggeredEvent {
   @Nullable
   @JsonProperty("violation_number")
   private Integer violationNumber;
+
+  @Nullable
+  @JsonProperty("matched_contents")
+  private List<MatchedContent> matchedContents;
 }

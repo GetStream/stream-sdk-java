@@ -610,6 +610,28 @@ public class CommonImpl {
   }
 
   @NotNull
+  public StreamRequest<CancelImportV2TaskResponse> cancelImportV2Task(
+      @NotNull String id, CancelImportV2TaskRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<CancelImportV2TaskResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/imports/v2/{id}/cancel",
+        request,
+        pathParams,
+        new TypeReference<CancelImportV2TaskResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<CancelImportV2TaskResponse> cancelImportV2Task(@NotNull String id)
+      throws StreamException {
+    return cancelImportV2Task(id, new CancelImportV2TaskRequest());
+  }
+
+  @NotNull
   public StreamRequest<GetImportResponse> getImport(@NotNull String id, GetImportRequest request)
       throws StreamException {
     var pathParams = Map.of("id", id);

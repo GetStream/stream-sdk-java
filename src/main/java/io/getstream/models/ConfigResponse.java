@@ -83,6 +83,10 @@ public class ConfigResponse {
   private BlockListConfig blockListConfig;
 
   @Nullable
+  @JsonProperty("flood_config")
+  private FloodConfig floodConfig;
+
+  @Nullable
   @JsonProperty("llm_config")
   private LLMConfig llmConfig;
 

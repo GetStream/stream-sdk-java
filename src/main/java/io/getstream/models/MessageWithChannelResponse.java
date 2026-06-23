@@ -146,6 +146,10 @@ public class MessageWithChannelResponse {
   private List<String> mentionedGroupIds;
 
   @Nullable
+  @JsonProperty("mentioned_groups")
+  private List<UserGroupResponse> mentionedGroups;
+
+  @Nullable
   @JsonProperty("mentioned_roles")
   private List<String> mentionedRoles;
 

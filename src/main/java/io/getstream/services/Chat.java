@@ -555,6 +555,10 @@ public interface Chat {
   public StreamRequest<SearchResponse> search() throws StreamException;
 
   @NotNull
+  public StreamRequest<CreateSegmentResponse> createSegment(CreateSegmentRequest request)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<QuerySegmentsResponse> querySegments(QuerySegmentsRequest request)
       throws StreamException;
 
@@ -571,6 +575,18 @@ public interface Chat {
 
   @NotNull
   public StreamRequest<GetSegmentResponse> getSegment(@NotNull String id) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateSegmentResponse> updateSegment(
+      @NotNull String id, UpdateSegmentRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateSegmentResponse> updateSegment(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> addSegmentTargets(
+      @NotNull String id, AddSegmentTargetsRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<Response> deleteSegmentTargets(

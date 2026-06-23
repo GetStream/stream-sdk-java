@@ -1807,6 +1807,21 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<GetOrCreateFollowResponse> getOrCreateFollow(
+      GetOrCreateFollowRequest request) throws StreamException {
+
+    return new StreamRequest<GetOrCreateFollowResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/follows/upsert",
+        request,
+        null,
+        new TypeReference<GetOrCreateFollowResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<UnfollowResponse> unfollow(
       @NotNull String source, @NotNull String target, UnfollowRequest request)
       throws StreamException {
@@ -1977,6 +1992,21 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<GetOrCreateUnfollowResponse> getOrCreateUnfollow(
+      GetOrCreateUnfollowRequest request) throws StreamException {
+
+    return new StreamRequest<GetOrCreateUnfollowResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/unfollow/upsert",
+        request,
+        null,
+        new TypeReference<GetOrCreateUnfollowResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<DeleteFeedUserDataResponse> deleteFeedUserData(
       @NotNull String userID, DeleteFeedUserDataRequest request) throws StreamException {
     var pathParams = Map.of("user_id", userID);
@@ -2018,5 +2048,27 @@ public class FeedsImpl {
   public StreamRequest<ExportFeedUserDataResponse> exportFeedUserData(@NotNull String userID)
       throws StreamException {
     return exportFeedUserData(userID, new ExportFeedUserDataRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GetUserInterestsResponse> getUserInterests(
+      @NotNull String userID, GetUserInterestsRequest request) throws StreamException {
+    var pathParams = Map.of("user_id", userID);
+
+    return new StreamRequest<GetUserInterestsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/feeds/users/{user_id}/interests",
+        request,
+        pathParams,
+        new TypeReference<GetUserInterestsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetUserInterestsResponse> getUserInterests(@NotNull String userID)
+      throws StreamException {
+    return getUserInterests(userID, new GetUserInterestsRequest());
   }
 }

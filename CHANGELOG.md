@@ -35,6 +35,8 @@ All notable changes to this project will be documented in this file. See [standa
   Pass via the new constructor: `new StreamSDKClient(apiKey, secret, options)`.
 - Per-call `RequestTimeout` override on `StreamRequest`: `request.callTimeout(Duration.ofSeconds(5)).execute()`.
 - INFO log on client construction lists the effective pool config. Uses `java.util.logging.Logger` (no new dependency).
+- Regenerated from the latest chat OpenAPI spec. New endpoints: `Moderation.analyze`, `Moderation.bulkActionAppeals`, `Moderation.getSetupSession`, `Moderation.upsertSetupSession`; `Feeds.getOrCreateFollow`, `Feeds.getOrCreateUnfollow`, `Feeds.getUserInterests`; `Chat.createSegment`, `Chat.updateSegment`, `Chat.addSegmentTargets`; `Common.cancelImportV2Task`; `Video.reportClientCallEvent`, together with the request/response model classes backing them.
+- New webhook event types `moderation.image_analysis.complete` and `moderation.text_analysis.complete`, with `ModerationImageAnalysisCompleteEvent` and `ModerationTextAnalysisCompleteEvent` model classes.
 
 ### Changed
 
@@ -43,7 +45,15 @@ All notable changes to this project will be documented in this file. See [standa
 - The `APIError` envelope parser (formerly `StreamException.ResponseData`) gained the previously-dropped `details` and `unrecoverable` fields.
 - **Default per-call `RequestTimeout` is now `30s` (was `10s`).** Aligns with CHA-2956 cross-SDK contract. The previous `10s` came from the hardcoded `timeout = 10000` ms in `StreamHTTPClient`. To keep the old ceiling, pass `new StreamClientOptions().setRequestTimeout(Duration.ofSeconds(10))`.
 - Default idle-connection lifetime now `55s` (was `59s` via the `STREAM_API_CONNECTION_MAX_AGE` env var path). 55s sits 5s below the typical 60s LB idle timeout for safer eviction. `MaxConnsPerHost` default is unchanged at `5`.
-- No other breaking changes. Existing `StreamSDKClient(apiKey, secret)`, `StreamSDKClient(apiKey, secret, OkHttpClient)`, and `StreamSDKClient(Properties)` constructors are preserved.
+- The client constructors are unchanged. Existing `StreamSDKClient(apiKey, secret)`, `StreamSDKClient(apiKey, secret, OkHttpClient)`, and `StreamSDKClient(Properties)` are preserved.
+
+### Breaking
+
+These come from regenerating against the latest chat OpenAPI spec. They are source- and binary-incompatible for Java consumers (changed return types and removed/retyped getters), so this release is a major version bump.
+
+- `Moderation.flag(...)` now returns `StreamRequest<FlagItemResponse>` (was `StreamRequest<FlagResponse>`). The moderation flag-action acknowledgement, which carries `itemID` and `duration`, moved to the new `FlagItemResponse`; `FlagResponse` now models the full flag record (`createdAt`, `updatedAt`, `targetMessage`, `targetUser`, `user`, `reason`, `details`, `custom`, and related fields). This resolves an upstream OpenAPI name collision where the acknowledgement was shadowing the rich record. The `/api/v2/moderation/flag` wire response is unchanged; call sites typed on `FlagResponse` must switch to `FlagItemResponse`.
+- Removed getters: `FlagResponse.getItemID()`, `FlagResponse.getDuration()`, `FlagDetails.getExtra()`.
+- Changed getter return types: `ChannelInput.getConfigOverrides()` and `ChannelDataUpdate.getConfigOverrides()` now return `ChannelConfigOverrides` (was `ChannelConfig`); `FlagDetails.getAutomod()` now returns `AutomodDetailsResponse` (was `AutomodDetails`); `ChatMessageResponse.getAttachments()` now returns `List<Attachment>` (was `List<Object>`); `ChatMessageResponse.getOwnReactions()` and `getLatestReactions()` now return `List<ChatReactionResponse>` (was `List<Object>`).
 
 ## [7.2.0](https://github.com/GetStream/stream-sdk-java/compare/7.1.0...7.2.0) (2026-04-30)
 

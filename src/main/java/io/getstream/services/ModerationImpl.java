@@ -130,6 +130,25 @@ public class ModerationImpl {
   }
 
   @NotNull
+  public StreamRequest<AnalyzeResponse> analyze(AnalyzeRequest request) throws StreamException {
+
+    return new StreamRequest<AnalyzeResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/analyze",
+        request,
+        null,
+        new TypeReference<AnalyzeResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<AnalyzeResponse> analyze() throws StreamException {
+    return analyze(new AnalyzeRequest());
+  }
+
+  @NotNull
   public StreamRequest<AppealResponse> appeal(AppealRequest request) throws StreamException {
 
     return new StreamRequest<AppealResponse>(
@@ -185,9 +204,24 @@ public class ModerationImpl {
   }
 
   @NotNull
-  public StreamRequest<BanResponse> ban(BanRequest request) throws StreamException {
+  public StreamRequest<BulkActionAppealsResponse> bulkActionAppeals(
+      BulkActionAppealsRequest request) throws StreamException {
 
-    return new StreamRequest<BanResponse>(
+    return new StreamRequest<BulkActionAppealsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/appeals/bulk_action",
+        request,
+        null,
+        new TypeReference<BulkActionAppealsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ModerationBanResponse> ban(BanRequest request) throws StreamException {
+
+    return new StreamRequest<ModerationBanResponse>(
         client.getHttpClient(),
         client.getObjectMapper(),
         client.getBaseUrl(),
@@ -195,7 +229,7 @@ public class ModerationImpl {
         "/api/v2/moderation/ban",
         request,
         null,
-        new TypeReference<BanResponse>() {});
+        new TypeReference<ModerationBanResponse>() {});
   }
 
   @NotNull
@@ -412,9 +446,9 @@ public class ModerationImpl {
   }
 
   @NotNull
-  public StreamRequest<FlagResponse> flag(FlagRequest request) throws StreamException {
+  public StreamRequest<FlagItemResponse> flag(FlagRequest request) throws StreamException {
 
-    return new StreamRequest<FlagResponse>(
+    return new StreamRequest<FlagItemResponse>(
         client.getHttpClient(),
         client.getObjectMapper(),
         client.getBaseUrl(),
@@ -422,7 +456,7 @@ public class ModerationImpl {
         "/api/v2/moderation/flag",
         request,
         null,
-        new TypeReference<FlagResponse>() {});
+        new TypeReference<FlagItemResponse>() {});
   }
 
   @NotNull
@@ -643,6 +677,41 @@ public class ModerationImpl {
   public StreamRequest<GetReviewQueueItemResponse> getReviewQueueItem(@NotNull String id)
       throws StreamException {
     return getReviewQueueItem(id, new GetReviewQueueItemRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GetSetupSessionResponse> getSetupSession(GetSetupSessionRequest request)
+      throws StreamException {
+
+    return new StreamRequest<GetSetupSessionResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/moderation/setup",
+        request,
+        null,
+        new TypeReference<GetSetupSessionResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetSetupSessionResponse> getSetupSession() throws StreamException {
+    return getSetupSession(new GetSetupSessionRequest());
+  }
+
+  @NotNull
+  public StreamRequest<UpsertSetupSessionResponse> upsertSetupSession(
+      UpsertSetupSessionRequest request) throws StreamException {
+
+    return new StreamRequest<UpsertSetupSessionResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/setup",
+        request,
+        null,
+        new TypeReference<UpsertSetupSessionResponse>() {});
   }
 
   @NotNull

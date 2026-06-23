@@ -44,6 +44,10 @@ public class DeviceResponse {
   private String disabledReason;
 
   @Nullable
+  @JsonProperty("hardware_id")
+  private String hardwareID;
+
+  @Nullable
   @JsonProperty("push_provider_name")
   private String pushProviderName;
 

@@ -226,7 +226,9 @@ public class WebhookTest {
     "message.updated, MessageUpdatedEvent",
     "moderation.custom_action, ModerationCustomActionEvent",
     "moderation.flagged, ModerationFlaggedEvent",
+    "moderation.image_analysis.complete, ModerationImageAnalysisCompleteEvent",
     "moderation.mark_reviewed, ModerationMarkReviewedEvent",
+    "moderation.text_analysis.complete, ModerationTextAnalysisCompleteEvent",
     "moderation_check.completed, ModerationCheckCompletedEvent",
     "moderation_rule.triggered, ModerationRulesTriggeredEvent",
     "notification.mark_unread, NotificationMarkUnreadEvent",
@@ -308,7 +310,7 @@ public class WebhookTest {
   void webhookConformanceFixturesPresent() {
     org.junit.jupiter.api.Assertions.assertTrue(
         java.nio.file.Files.isDirectory(FIXTURE_ROOT),
-        "Webhook conformance fixtures missing at " + FIXTURE_ROOT + " — run generate.sh");
+        "Webhook conformance fixtures missing at " + FIXTURE_ROOT + ", run generate.sh");
   }
 
   @TestFactory
@@ -437,7 +439,7 @@ public class WebhookTest {
     // Per CHA-3071 wire format: decodeSqsPayload falls back to raw bytes when
     // base64 decoding fails (uncompressed wire format). For input that is
     // neither valid base64 nor valid JSON nor gzip-prefixed, parseSqs still
-    // throws InvalidWebhookError — just down the chain at JSON parsing.
+    // throws InvalidWebhookError, just down the chain at JSON parsing.
     Path dir = FIXTURE_ROOT.resolve("_invalid").resolve("bad_base64");
     if (!Files.exists(dir)) return;
     String msg = Files.readString(dir.resolve("sqs_body.txt")).trim();

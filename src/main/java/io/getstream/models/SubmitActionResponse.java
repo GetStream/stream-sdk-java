@@ -25,6 +25,10 @@ public class SubmitActionResponse {
   private String duration;
 
   @Nullable
+  @JsonProperty("auto_restore_warning")
+  private String autoRestoreWarning;
+
+  @Nullable
   @JsonProperty("appeal_item")
   private AppealItemResponse appealItem;
 

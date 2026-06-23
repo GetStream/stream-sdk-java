@@ -213,6 +213,14 @@ public interface Common {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<CancelImportV2TaskResponse> cancelImportV2Task(
+      @NotNull String id, CancelImportV2TaskRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<CancelImportV2TaskResponse> cancelImportV2Task(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<GetImportResponse> getImport(@NotNull String id, GetImportRequest request)
       throws StreamException;
 

@@ -54,6 +54,12 @@ public interface Moderation {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<AnalyzeResponse> analyze(AnalyzeRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<AnalyzeResponse> analyze() throws StreamException;
+
+  @NotNull
   public StreamRequest<AppealResponse> appeal(AppealRequest request) throws StreamException;
 
   @NotNull
@@ -71,7 +77,11 @@ public interface Moderation {
   public StreamRequest<QueryAppealsResponse> queryAppeals() throws StreamException;
 
   @NotNull
-  public StreamRequest<BanResponse> ban(BanRequest request) throws StreamException;
+  public StreamRequest<BulkActionAppealsResponse> bulkActionAppeals(
+      BulkActionAppealsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ModerationBanResponse> ban(BanRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<BulkImageModerationResponse> bulkImageModeration(
@@ -141,7 +151,7 @@ public interface Moderation {
       V2UpsertTemplateRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<FlagResponse> flag(FlagRequest request) throws StreamException;
+  public StreamRequest<FlagItemResponse> flag(FlagRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<GetFlagCountResponse> getFlagCount(GetFlagCountRequest request)
@@ -213,6 +223,17 @@ public interface Moderation {
   @NotNull
   public StreamRequest<GetReviewQueueItemResponse> getReviewQueueItem(@NotNull String id)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetSetupSessionResponse> getSetupSession(GetSetupSessionRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetSetupSessionResponse> getSetupSession() throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpsertSetupSessionResponse> upsertSetupSession(
+      UpsertSetupSessionRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<SubmitActionResponse> submitAction(SubmitActionRequest request)

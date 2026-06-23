@@ -13,6 +13,9 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
+import java.util.Map;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -20,9 +23,56 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @lombok.AllArgsConstructor
 public class FlagResponse {
 
-  @JsonProperty("duration")
-  private String duration;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-  @JsonProperty("item_id")
-  private String itemID;
+  @JsonProperty("created_by_automod")
+  private Boolean createdByAutomod;
+
+  @JsonProperty("updated_at")
+  private Date updatedAt;
+
+  @Nullable
+  @JsonProperty("approved_at")
+  private Date approvedAt;
+
+  @Nullable
+  @JsonProperty("reason")
+  private String reason;
+
+  @Nullable
+  @JsonProperty("rejected_at")
+  private Date rejectedAt;
+
+  @Nullable
+  @JsonProperty("reviewed_at")
+  private Date reviewedAt;
+
+  @Nullable
+  @JsonProperty("reviewed_by")
+  private String reviewedBy;
+
+  @Nullable
+  @JsonProperty("target_message_id")
+  private String targetMessageID;
+
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
+
+  @Nullable
+  @JsonProperty("details")
+  private FlagDetails details;
+
+  @Nullable
+  @JsonProperty("target_message")
+  private MessageResponse targetMessage;
+
+  @Nullable
+  @JsonProperty("target_user")
+  private UserResponse targetUser;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserResponse user;
 }

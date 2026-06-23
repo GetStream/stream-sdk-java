@@ -37,6 +37,10 @@ public class LabelsResponse {
   private String directedAt;
 
   @Nullable
+  @JsonProperty("fully_masked_content")
+  private String fullyMaskedContent;
+
+  @Nullable
   @JsonProperty("harm_type")
   private String harmType;
 
