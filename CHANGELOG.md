@@ -2,59 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [Unreleased]
+## [8.0.0](https://github.com/GetStream/stream-sdk-java/compare/7.2.0...8.0.0) (2026-06-23)
 
-### Added
 
-- Typed error hierarchy for the Stream API per [CHA-2958](https://linear.app/stream/issue/CHA-2958). New checked subclasses of the existing `StreamException`:
-    * `StreamApiException` — HTTP 4xx/5xx with the `APIError` envelope parsed. Getters: `getStatusCode`, `getCode`, `getMessage`, `getExceptionFields`, `isUnrecoverable`, `getRawResponseBody`, `getMoreInfo`, `getDetails`. The `unrecoverable` and `details` fields were previously dropped on the floor.
-    * `StreamRateLimitException` — HTTP 429. Subclass of `StreamApiException` with `Duration getRetryAfter()` populated from `Retry-After` (RFC 7231 §7.1.3 integer seconds + HTTP-date). `null` when header absent or unparseable.
-    * `StreamTransportException` — connection reset, timeout, DNS, TLS, etc. Carries `getErrorType()` matching the logging spec enum (`connection_reset` / `timeout` / `dns_failure` / `tls_handshake_failed` / `unknown`). Cause chain preserved.
-    * `StreamTaskException` — async task observed with `status: "failed"`. Carries `getTaskId`, `getErrorType`, `getDescription`, `getStackTraceText`, `getVersion`. (`getStackTraceText` rather than `getStackTrace` to avoid colliding with `Throwable.getStackTrace()`.)
-- `StreamSDKClient.waitForTask(taskId)` — main-source helper that polls the task endpoint to a terminal state. Returns `GetTaskResponse` on `completed`, throws `StreamTaskException` on `failed`, throws `StreamTransportException(errorType=timeout)` if the wait elapses (defaults: 1s poll, 60s timeout; overloaded with explicit `Duration`s). Replaces the test-only `ChatTestBase.waitForTask` (removed).
-- Webhook handling spec helpers (CHA-2961): `UnknownEvent` class for forward-compat;
-  `gunzipPayload`, `decodeSqsPayload`, `decodeSnsPayload` primitives;
-  `verifyAndParseWebhook` HTTP composite; `parseSqs` / `parseSns`
-  queue composites (no HMAC signature on the payload: queue transports rely on
-  AWS IAM for authentication). Transparent gzip via magic-byte detection.
-- New instance methods on `StreamSDKClient`: `verifySignature(body, signature)`
-  and `verifyAndParseWebhook(body, signature)` that drop the api_secret parameter
-  in favor of the client's stored secret. Dual API: static `Webhook.*` methods
-  remain available.
-- New instance methods on `StreamSDKClient`: `parseSqs(String)`, `parseSns(String)`
-  (no signature; AWS IAM).
-- New exception class: `Webhook.InvalidWebhookException` (unified, covering both
-  signature mismatch and malformed payloads).
-- Conformance fixture suite under `src/test/resources/fixtures/webhooks/`.
-- Explicit HTTP connection pool configuration ([CHA-2956](https://linear.app/stream/issue/CHA-2956/connection-pooling)). New `StreamClientOptions` POJO with fluent setters:
-    * `setMaxConnsPerHost(int)`: default `5`
-    * `setIdleTimeout(Duration)`: default `55s`
-    * `setConnectTimeout(Duration)`: default `10s`
-    * `setRequestTimeout(Duration)`: default `30s` (was `10s`; see Behavior changes)
-    * `setHttpClient(OkHttpClient)`: escape hatch; bypasses the four knobs above
-  Pass via the new constructor: `new StreamSDKClient(apiKey, secret, options)`.
-- Per-call `RequestTimeout` override on `StreamRequest`: `request.callTimeout(Duration.ofSeconds(5)).execute()`.
-- INFO log on client construction lists the effective pool config. Uses `java.util.logging.Logger` (no new dependency).
-- Regenerated from the latest chat OpenAPI spec. New endpoints: `Moderation.analyze`, `Moderation.bulkActionAppeals`, `Moderation.getSetupSession`, `Moderation.upsertSetupSession`; `Feeds.getOrCreateFollow`, `Feeds.getOrCreateUnfollow`, `Feeds.getUserInterests`; `Chat.createSegment`, `Chat.updateSegment`, `Chat.addSegmentTargets`; `Common.cancelImportV2Task`; `Video.reportClientCallEvent`, together with the request/response model classes backing them.
-- New webhook event types `moderation.image_analysis.complete` and `moderation.text_analysis.complete`, with `ModerationImageAnalysisCompleteEvent` and `ModerationTextAnalysisCompleteEvent` model classes.
+### ⚠ BREAKING CHANGES
 
-### Changed
+* source- and binary-incompatible for Java consumers.
+Moderation.flag(...) now returns StreamRequest<FlagItemResponse> (was
+FlagResponse); the flag-action acknowledgement (itemID, duration) moved to the
+new FlagItemResponse and FlagResponse now models the full flag record. Removed
+getters FlagResponse.getItemID()/getDuration() and FlagDetails.getExtra();
+changed getter return types on ChannelInput/ChannelDataUpdate.getConfigOverrides(),
+FlagDetails.getAutomod(), and ChatMessageResponse.getAttachments()/getOwnReactions()/
+getLatestReactions(). Warrants a major version bump.
 
-- Exceptions remain **checked** (CHA-2958 §9.3). All new subclasses extend the existing checked `StreamException`, so `throws StreamException` declarations continue to compile and `catch (StreamException)` continues to handle every SDK error.
-- `StreamRequest` now throws `StreamApiException` (or `StreamRateLimitException` for 429) for HTTP-response errors, and `StreamTransportException` for IO failures. The static type on declarations is still `StreamException` — these are subclasses. The static `StreamException.build(Throwable)` factory continues to wrap into a base `StreamException` (the request path classifies transport failures directly so this factory is no longer auto-routed). `StreamException.getResponseData()` is still populated on API exceptions for back-compat.
-- The `APIError` envelope parser (formerly `StreamException.ResponseData`) gained the previously-dropped `details` and `unrecoverable` fields.
-- **Default per-call `RequestTimeout` is now `30s` (was `10s`).** Aligns with CHA-2956 cross-SDK contract. The previous `10s` came from the hardcoded `timeout = 10000` ms in `StreamHTTPClient`. To keep the old ceiling, pass `new StreamClientOptions().setRequestTimeout(Duration.ofSeconds(10))`.
-- Default idle-connection lifetime now `55s` (was `59s` via the `STREAM_API_CONNECTION_MAX_AGE` env var path). 55s sits 5s below the typical 60s LB idle timeout for safer eviction. `MaxConnsPerHost` default is unchanged at `5`.
-- The client constructors are unchanged. Existing `StreamSDKClient(apiKey, secret)`, `StreamSDKClient(apiKey, secret, OkHttpClient)`, and `StreamSDKClient(Properties)` are preserved.
+The version bump itself is handled at release time by initiate_release
+(workflow_dispatch version input -> gradle.properties + standard-version),
+so no version files are touched here.
 
-### Breaking
+* test: update ModerationTest for regenerated flag/ban return types
 
-These come from regenerating against the latest chat OpenAPI spec. They are source- and binary-incompatible for Java consumers (changed return types and removed/retyped getters), so this release is a major version bump.
+flag() now returns FlagItemResponse and ban() returns ModerationBanResponse
+after the OpenAPI regeneration. Update the hand-maintained ModerationTest
+assignments accordingly, and add the ban() return-type change to the CHANGELOG
+breaking list (it was missed in the first pass).
 
-- `Moderation.ban(...)` now returns `StreamRequest<ModerationBanResponse>` (was `StreamRequest<BanResponse>`). `BanResponse` is unchanged and still used elsewhere (e.g. `getBans()`); only the `ban()` action return type moved to the dedicated `ModerationBanResponse`.
-- `Moderation.flag(...)` now returns `StreamRequest<FlagItemResponse>` (was `StreamRequest<FlagResponse>`). The moderation flag-action acknowledgement, which carries `itemID` and `duration`, moved to the new `FlagItemResponse`; `FlagResponse` now models the full flag record (`createdAt`, `updatedAt`, `targetMessage`, `targetUser`, `user`, `reason`, `details`, `custom`, and related fields). This resolves an upstream OpenAPI name collision where the acknowledgement was shadowing the rich record. The `/api/v2/moderation/flag` wire response is unchanged; call sites typed on `FlagResponse` must switch to `FlagItemResponse`.
-- Removed getters: `FlagResponse.getItemID()`, `FlagResponse.getDuration()`, `FlagDetails.getExtra()`.
-- Changed getter return types: `ChannelInput.getConfigOverrides()` and `ChannelDataUpdate.getConfigOverrides()` now return `ChannelConfigOverrides` (was `ChannelConfig`); `FlagDetails.getAutomod()` now returns `AutomodDetailsResponse` (was `AutomodDetails`); `ChatMessageResponse.getAttachments()` now returns `List<Attachment>` (was `List<Object>`); `ChatMessageResponse.getOwnReactions()` and `getLatestReactions()` now return `List<ChatReactionResponse>` (was `List<Object>`).
+### Features
+
+* [CHA-2958] typed error hierarchy + waitForTask ([#65](https://github.com/GetStream/stream-sdk-java/issues/65)) ([1b314d4](https://github.com/GetStream/stream-sdk-java/commit/1b314d46d875f5377dc96344e93bdf7a8d68b798))
+* regenerate SDK from latest chat OpenAPI spec ([#66](https://github.com/GetStream/stream-sdk-java/issues/66)) ([ae91ce7](https://github.com/GetStream/stream-sdk-java/commit/ae91ce7f1cd3e8bef86eac952503237f8466c6bb))
 
 ## [7.2.0](https://github.com/GetStream/stream-sdk-java/compare/7.1.0...7.2.0) (2026-04-30)
 
