@@ -77,7 +77,7 @@ public class ModerationTest {
             .bannedByID(testModeratorId)
             .build();
 
-    BanResponse response = moderation.ban(request).execute().getData();
+    ModerationBanResponse response = moderation.ban(request).execute().getData();
     // snippet-end: BanWithReason
 
     Assertions.assertNotNull(response);
@@ -109,7 +109,7 @@ public class ModerationTest {
             .userID(testUserId2)
             .build();
 
-    FlagResponse response = moderation.flag(request).execute().getData();
+    FlagItemResponse response = moderation.flag(request).execute().getData();
     // snippet-end: FlagActivity
 
     Assertions.assertNotNull(response);
@@ -145,7 +145,7 @@ public class ModerationTest {
             .userID(testUserId2)
             .build();
 
-    FlagResponse response = moderation.flag(request).execute().getData();
+    FlagItemResponse response = moderation.flag(request).execute().getData();
     // snippet-end: FlagUser
 
     Assertions.assertNotNull(response);
