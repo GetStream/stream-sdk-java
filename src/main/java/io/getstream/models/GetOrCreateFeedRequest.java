@@ -36,6 +36,10 @@ public class GetOrCreateFeedRequest {
   private String next;
 
   @Nullable
+  @JsonProperty("overwrite_interest_weights")
+  private Boolean overwriteInterestWeights;
+
+  @Nullable
   @JsonProperty("prev")
   private String prev;
 

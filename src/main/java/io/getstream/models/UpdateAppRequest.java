@@ -34,6 +34,10 @@ public class UpdateAppRequest {
   private Boolean autoTranslationEnabled;
 
   @Nullable
+  @JsonProperty("before_message_send_hook_attempt_timeout_ms")
+  private Integer beforeMessageSendHookAttemptTimeoutMs;
+
+  @Nullable
   @JsonProperty("before_message_send_hook_url")
   private String beforeMessageSendHookUrl;
 
@@ -98,6 +102,10 @@ public class UpdateAppRequest {
   private Boolean moderationEnabled;
 
   @Nullable
+  @JsonProperty("moderation_onboarding_complete")
+  private Boolean moderationOnboardingComplete;
+
+  @Nullable
   @JsonProperty("moderation_s3_image_access_role_arn")
   private String moderationS3ImageAccessRoleArn;
 
@@ -152,6 +160,10 @@ public class UpdateAppRequest {
   @Nullable
   @JsonProperty("user_response_time_enabled")
   private Boolean userResponseTimeEnabled;
+
+  @Nullable
+  @JsonProperty("video_primary_use_case")
+  private String videoPrimaryUseCase;
 
   @Nullable
   @JsonProperty("webhook_url")

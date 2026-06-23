@@ -35,6 +35,9 @@ public class QueryModerationRulesResponse {
   @JsonProperty("keyframe_labels")
   private List<String> keyframeLabels;
 
+  @JsonProperty("ocr_labels")
+  private List<String> ocrLabels;
+
   @JsonProperty("rules")
   private List<ModerationRuleV2Response> rules;
 
@@ -43,6 +46,9 @@ public class QueryModerationRulesResponse {
 
   @JsonProperty("default_llm_labels")
   private Map<String, String> defaultLlmLabels;
+
+  @JsonProperty("default_username_llm_labels")
+  private Map<String, String> defaultUsernameLlmLabels;
 
   @JsonProperty("keyframe_label_classifications")
   private Map<String, List<String>> keyframeLabelClassifications;

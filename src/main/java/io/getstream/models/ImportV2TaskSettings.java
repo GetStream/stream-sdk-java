@@ -42,6 +42,10 @@ public class ImportV2TaskSettings {
   private String source;
 
   @Nullable
+  @JsonProperty("use_import_time_as_op_time")
+  private Boolean useImportTimeAsOpTime;
+
+  @Nullable
   @JsonProperty("s3")
   private ImportV2TaskSettingsS3 s3;
 }

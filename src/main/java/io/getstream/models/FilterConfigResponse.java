@@ -32,4 +32,8 @@ public class FilterConfigResponse {
   @Nullable
   @JsonProperty("config_keys")
   private List<String> configKeys;
+
+  @Nullable
+  @JsonProperty("filterable_custom_keys")
+  private List<String> filterableCustomKeys;
 }

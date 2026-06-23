@@ -80,6 +80,10 @@ public class ModerationConfig {
   private BlockListConfig blockListConfig;
 
   @Nullable
+  @JsonProperty("flood_config")
+  private FloodConfig floodConfig;
+
+  @Nullable
   @JsonProperty("google_vision_config")
   private GoogleVisionConfig googleVisionConfig;
 

@@ -24,12 +24,20 @@ import org.jetbrains.annotations.Nullable;
 public class UpdateBlockListRequest {
 
   @Nullable
+  @JsonProperty("is_confusable_folding_enabled")
+  private Boolean isConfusableFoldingEnabled;
+
+  @Nullable
   @JsonProperty("is_leet_check_enabled")
   private Boolean isLeetCheckEnabled;
 
   @Nullable
   @JsonProperty("is_plural_check_enabled")
   private Boolean isPluralCheckEnabled;
+
+  @Nullable
+  @JsonProperty("is_substring_matching_enabled")
+  private Boolean isSubstringMatchingEnabled;
 
   @Nullable
   @JsonProperty("team")

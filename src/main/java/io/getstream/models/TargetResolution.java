@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -20,12 +21,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @lombok.AllArgsConstructor
 public class TargetResolution {
 
-  @JsonProperty("bitrate")
-  private Integer bitrate;
-
   @JsonProperty("height")
   private Integer height;
 
   @JsonProperty("width")
   private Integer width;
+
+  @Nullable
+  @JsonProperty("bitrate")
+  private Integer bitrate;
 }

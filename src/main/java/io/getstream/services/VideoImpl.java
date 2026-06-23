@@ -1123,6 +1123,21 @@ public class VideoImpl {
   }
 
   @NotNull
+  public StreamRequest<ReportClientEventResponse> reportClientCallEvent(
+      ReportClientCallEventRequest request) throws StreamException {
+
+    return new StreamRequest<ReportClientEventResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/video/call_client_event",
+        request,
+        null,
+        new TypeReference<ReportClientEventResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<QueryCallSessionStatsResponse> queryCallSessionStats(
       QueryCallSessionStatsRequest request) throws StreamException {
 

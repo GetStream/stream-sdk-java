@@ -622,6 +622,10 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<GetOrCreateFollowResponse> getOrCreateFollow(
+      GetOrCreateFollowRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<UnfollowResponse> unfollow(
       @NotNull String source, @NotNull String target, UnfollowRequest request)
       throws StreamException;
@@ -677,6 +681,10 @@ public interface Feeds {
       GetOrCreateUnfollowsRequest request) throws StreamException;
 
   @NotNull
+  public StreamRequest<GetOrCreateUnfollowResponse> getOrCreateUnfollow(
+      GetOrCreateUnfollowRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<DeleteFeedUserDataResponse> deleteFeedUserData(
       @NotNull String userID, DeleteFeedUserDataRequest request) throws StreamException;
 
@@ -690,5 +698,13 @@ public interface Feeds {
 
   @NotNull
   public StreamRequest<ExportFeedUserDataResponse> exportFeedUserData(@NotNull String userID)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetUserInterestsResponse> getUserInterests(
+      @NotNull String userID, GetUserInterestsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetUserInterestsResponse> getUserInterests(@NotNull String userID)
       throws StreamException;
 }

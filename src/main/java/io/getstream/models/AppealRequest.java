@@ -33,6 +33,10 @@ public class AppealRequest {
   private String entityType;
 
   @Nullable
+  @JsonProperty("review_queue_item_id")
+  private String reviewQueueItemID;
+
+  @Nullable
   @JsonProperty("user_id")
   private String userID;
 

@@ -24,11 +24,17 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class BlockListResponse {
 
+  @JsonProperty("is_confusable_folding_enabled")
+  private Boolean isConfusableFoldingEnabled;
+
   @JsonProperty("is_leet_check_enabled")
   private Boolean isLeetCheckEnabled;
 
   @JsonProperty("is_plural_check_enabled")
   private Boolean isPluralCheckEnabled;
+
+  @JsonProperty("is_substring_matching_enabled")
+  private Boolean isSubstringMatchingEnabled;
 
   @JsonProperty("name")
   private String name;

@@ -135,8 +135,10 @@ import io.getstream.models.MessageUpdatedEvent;
 import io.getstream.models.ModerationCheckCompletedEvent;
 import io.getstream.models.ModerationCustomActionEvent;
 import io.getstream.models.ModerationFlaggedEvent;
+import io.getstream.models.ModerationImageAnalysisCompleteEvent;
 import io.getstream.models.ModerationMarkReviewedEvent;
 import io.getstream.models.ModerationRulesTriggeredEvent;
+import io.getstream.models.ModerationTextAnalysisCompleteEvent;
 import io.getstream.models.NotificationFeedUpdatedEvent;
 import io.getstream.models.NotificationMarkUnreadEvent;
 import io.getstream.models.NotificationThreadMessageNewEvent;
@@ -338,7 +340,11 @@ public class Webhook {
     public static final String MESSAGE_UPDATED = "message.updated";
     public static final String MODERATION_CUSTOM_ACTION = "moderation.custom_action";
     public static final String MODERATION_FLAGGED = "moderation.flagged";
+    public static final String MODERATION_IMAGE_ANALYSIS_COMPLETE =
+        "moderation.image_analysis.complete";
     public static final String MODERATION_MARK_REVIEWED = "moderation.mark_reviewed";
+    public static final String MODERATION_TEXT_ANALYSIS_COMPLETE =
+        "moderation.text_analysis.complete";
     public static final String MODERATION_CHECK_COMPLETED = "moderation_check.completed";
     public static final String MODERATION_RULE_TRIGGERED = "moderation_rule.triggered";
     public static final String NOTIFICATION_MARK_UNREAD = "notification.mark_unread";
@@ -731,8 +737,12 @@ public class Webhook {
         return ModerationCustomActionEvent.class;
       case "moderation.flagged":
         return ModerationFlaggedEvent.class;
+      case "moderation.image_analysis.complete":
+        return ModerationImageAnalysisCompleteEvent.class;
       case "moderation.mark_reviewed":
         return ModerationMarkReviewedEvent.class;
+      case "moderation.text_analysis.complete":
+        return ModerationTextAnalysisCompleteEvent.class;
       case "moderation_check.completed":
         return ModerationCheckCompletedEvent.class;
       case "moderation_rule.triggered":

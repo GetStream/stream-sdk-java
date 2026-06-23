@@ -166,8 +166,16 @@ public class AppResponseFields {
   private PushNotificationFields pushNotifications;
 
   @Nullable
+  @JsonProperty("before_message_send_hook_attempt_timeout_ms")
+  private Integer beforeMessageSendHookAttemptTimeoutMs;
+
+  @Nullable
   @JsonProperty("before_message_send_hook_url")
   private String beforeMessageSendHookUrl;
+
+  @Nullable
+  @JsonProperty("moderation_onboarding_complete")
+  private Boolean moderationOnboardingComplete;
 
   @Nullable
   @JsonProperty("moderation_s3_image_access_role_arn")
@@ -176,6 +184,10 @@ public class AppResponseFields {
   @Nullable
   @JsonProperty("revoke_tokens_issued_before")
   private Date revokeTokensIssuedBefore;
+
+  @Nullable
+  @JsonProperty("video_primary_use_case")
+  private String videoPrimaryUseCase;
 
   @Nullable
   @JsonProperty("allowed_flag_reasons")

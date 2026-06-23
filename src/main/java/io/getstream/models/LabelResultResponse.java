@@ -62,6 +62,10 @@ public class LabelResultResponse {
   private String directedAt;
 
   @Nullable
+  @JsonProperty("fully_masked_content")
+  private String fullyMaskedContent;
+
+  @Nullable
   @JsonProperty("masked_content")
   private String maskedContent;
 

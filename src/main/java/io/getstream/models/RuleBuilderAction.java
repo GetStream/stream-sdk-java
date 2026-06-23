@@ -22,6 +22,10 @@ import org.jetbrains.annotations.Nullable;
 public class RuleBuilderAction {
 
   @Nullable
+  @JsonProperty("reason")
+  private String reason;
+
+  @Nullable
   @JsonProperty("skip_inbox")
   private Boolean skipInbox;
 

@@ -45,16 +45,64 @@ public class AppealItemResponse {
   private Date updatedAt;
 
   @Nullable
+  @JsonProperty("ai_text_severity")
+  private String aiTextSeverity;
+
+  @Nullable
+  @JsonProperty("channel_cid")
+  private String channelCid;
+
+  @Nullable
+  @JsonProperty("config_key")
+  private String configKey;
+
+  @Nullable
   @JsonProperty("decision_reason")
   private String decisionReason;
+
+  @Nullable
+  @JsonProperty("recommended_action")
+  private String recommendedAction;
+
+  @Nullable
+  @JsonProperty("review_queue_item_id")
+  private String reviewQueueItemID;
+
+  @Nullable
+  @JsonProperty("severity")
+  private Integer severity;
+
+  @Nullable
+  @JsonProperty("actions")
+  private List<ActionLogResponse> actions;
 
   @Nullable
   @JsonProperty("attachments")
   private List<String> attachments;
 
   @Nullable
+  @JsonProperty("flag_labels")
+  private List<String> flagLabels;
+
+  @Nullable
+  @JsonProperty("flag_types")
+  private List<String> flagTypes;
+
+  @Nullable
+  @JsonProperty("flags")
+  private List<ModerationFlagResponse> flags;
+
+  @Nullable
   @JsonProperty("entity_content")
   private ModerationPayload entityContent;
+
+  @Nullable
+  @JsonProperty("moderation_action")
+  private ActionLogResponse moderationAction;
+
+  @Nullable
+  @JsonProperty("original_moderation_action")
+  private ActionLogResponse originalModerationAction;
 
   @Nullable
   @JsonProperty("user")

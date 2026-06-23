@@ -44,6 +44,7 @@ public class ChannelOwnCapability {
   public static ChannelOwnCapability CONNECT_EVENTS = new ChannelOwnCapability("connect-events");
   public static ChannelOwnCapability CREATE_ATTACHMENT =
       new ChannelOwnCapability("create-attachment");
+  public static ChannelOwnCapability CREATE_MENTION = new ChannelOwnCapability("create-mention");
   public static ChannelOwnCapability DELETE_ANY_MESSAGE =
       new ChannelOwnCapability("delete-any-message");
   public static ChannelOwnCapability DELETE_CHANNEL = new ChannelOwnCapability("delete-channel");
@@ -55,6 +56,10 @@ public class ChannelOwnCapability {
   public static ChannelOwnCapability JOIN_CHANNEL = new ChannelOwnCapability("join-channel");
   public static ChannelOwnCapability LEAVE_CHANNEL = new ChannelOwnCapability("leave-channel");
   public static ChannelOwnCapability MUTE_CHANNEL = new ChannelOwnCapability("mute-channel");
+  public static ChannelOwnCapability NOTIFY_CHANNEL = new ChannelOwnCapability("notify-channel");
+  public static ChannelOwnCapability NOTIFY_GROUP = new ChannelOwnCapability("notify-group");
+  public static ChannelOwnCapability NOTIFY_HERE = new ChannelOwnCapability("notify-here");
+  public static ChannelOwnCapability NOTIFY_ROLE = new ChannelOwnCapability("notify-role");
   public static ChannelOwnCapability PIN_MESSAGE = new ChannelOwnCapability("pin-message");
   public static ChannelOwnCapability QUERY_POLL_VOTES =
       new ChannelOwnCapability("query-poll-votes");

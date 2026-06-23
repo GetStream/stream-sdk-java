@@ -28,6 +28,10 @@ public class ClosedCaptionRuleParameters {
   private Integer threshold;
 
   @Nullable
+  @JsonProperty("time_window")
+  private String timeWindow;
+
+  @Nullable
   @JsonProperty("harm_labels")
   private List<String> harmLabels;
 
