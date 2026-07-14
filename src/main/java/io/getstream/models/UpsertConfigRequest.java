@@ -42,6 +42,10 @@ public class UpsertConfigRequest {
   private String userID;
 
   @Nullable
+  @JsonProperty("ai_audio_config")
+  private AIAudioConfigRequest aiAudioConfig;
+
+  @Nullable
   @JsonProperty("ai_image_config")
   private AIImageConfig aiImageConfig;
 

@@ -169,6 +169,8 @@ public class WebhookTest {
     "export.channels.success, AsyncExportChannelsEvent",
     "export.moderation_logs.error, AsyncExportErrorEvent",
     "export.moderation_logs.success, AsyncExportModerationLogsEvent",
+    "export.review_queue.error, AsyncExportErrorEvent",
+    "export.review_queue.success, AsyncExportReviewQueueEvent",
     "export.users.error, AsyncExportErrorEvent",
     "export.users.success, AsyncExportUsersEvent",
     "feeds.activity.added, ActivityAddedEvent",

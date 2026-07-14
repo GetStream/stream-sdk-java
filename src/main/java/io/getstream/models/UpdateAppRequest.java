@@ -70,6 +70,10 @@ public class UpdateAppRequest {
   private String enforceUniqueUsernames;
 
   @Nullable
+  @JsonProperty("feed_audit_logs_enabled")
+  private Boolean feedAuditLogsEnabled;
+
+  @Nullable
   @JsonProperty("feeds_moderation_enabled")
   private Boolean feedsModerationEnabled;
 
@@ -128,6 +132,10 @@ public class UpdateAppRequest {
   @Nullable
   @JsonProperty("reminders_max_members")
   private Integer remindersMaxMembers;
+
+  @Nullable
+  @JsonProperty("reminders_max_per_user")
+  private Integer remindersMaxPerUser;
 
   @Nullable
   @JsonProperty("revoke_tokens_issued_before")

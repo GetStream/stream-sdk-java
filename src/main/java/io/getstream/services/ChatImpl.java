@@ -323,6 +323,31 @@ public class ChatImpl {
   }
 
   @NotNull
+  public StreamRequest<ChannelStateResponse> getChannel(
+      @NotNull String type, @NotNull String id, GetChannelRequest request) throws StreamException {
+    var pathParams =
+        Map.of(
+            "type", type,
+            "id", id);
+
+    return new StreamRequest<ChannelStateResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/chat/channels/{type}/{id}",
+        request,
+        pathParams,
+        new TypeReference<ChannelStateResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ChannelStateResponse> getChannel(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return getChannel(type, id, new GetChannelRequest());
+  }
+
+  @NotNull
   public StreamRequest<UpdateChannelPartialResponse> updateChannelPartial(
       @NotNull String type, @NotNull String id, UpdateChannelPartialRequest request)
       throws StreamException {
