@@ -82,6 +82,10 @@ public class RuleBuilderCondition {
   private KeyframeRuleParameters keyframeRuleParams;
 
   @Nullable
+  @JsonProperty("ocr_content_params")
+  private OCRContentParameters ocrContentParams;
+
+  @Nullable
   @JsonProperty("text_content_params")
   private TextContentParameters textContentParams;
 

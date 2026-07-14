@@ -49,6 +49,14 @@ public class GetCommentsRequest {
   @JsonIgnore
   private String IDAround;
 
+  @Query("language")
+  @JsonIgnore
+  private String Language;
+
+  @Query("translate_text")
+  @JsonIgnore
+  private Boolean TranslateText;
+
   @Query("user_id")
   @JsonIgnore
   private String UserID;

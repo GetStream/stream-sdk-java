@@ -21,7 +21,8 @@ import org.jetbrains.annotations.Nullable;
  * &#39;set&#39; to update specific fields and &#39;unset&#39; to remove fields. Activities that
  * fail due to not found, permission denied, or no changes detected are silently skipped and not
  * included in the response. However, validation errors (e.g., updating reserved fields, invalid
- * field values) will fail the entire batch request. Sends events: - feeds.activity.updated
+ * field values, exceeding size limits) will fail the entire batch request. Sends events: -
+ * feeds.activity.updated
  */
 @lombok.Data
 @lombok.Builder

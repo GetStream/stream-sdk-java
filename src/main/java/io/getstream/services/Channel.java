@@ -38,6 +38,15 @@ public class Channel {
     return this.delete(new DeleteChannelRequest());
   }
 
+  public StreamResponse<ChannelStateResponse> get(GetChannelRequest request)
+      throws StreamException {
+    return service.getChannel(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<ChannelStateResponse> get() throws StreamException {
+    return this.get(new GetChannelRequest());
+  }
+
   public StreamResponse<UpdateChannelPartialResponse> updateChannelPartial(
       UpdateChannelPartialRequest request) throws StreamException {
     return service.updateChannelPartial(this.channelType, this.channelID, request).execute();

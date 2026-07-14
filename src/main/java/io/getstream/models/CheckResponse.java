@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -33,6 +34,10 @@ public class CheckResponse {
   @Nullable
   @JsonProperty("task_id")
   private String taskID;
+
+  @Nullable
+  @JsonProperty("triggered_rules")
+  private List<TriggeredRuleResponse> triggeredRules;
 
   @Nullable
   @JsonProperty("item")

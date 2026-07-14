@@ -31,6 +31,22 @@ public class AddCommentReactionResponse {
   private FeedsReactionResponse reaction;
 
   @Nullable
+  @JsonProperty("notification_accepted")
+  private Boolean notificationAccepted;
+
+  /**
+   * @deprecated
+   */
+  @Deprecated
+  @Nullable
   @JsonProperty("notification_created")
   private Boolean notificationCreated;
+
+  @Nullable
+  @JsonProperty("notification_task_id")
+  private String notificationTaskID;
+
+  @Nullable
+  @JsonProperty("reference_activity")
+  private ActivityResponse referenceActivity;
 }

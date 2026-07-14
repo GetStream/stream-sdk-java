@@ -24,8 +24,20 @@ import org.jetbrains.annotations.Nullable;
 public class ModerationPayload {
 
   @Nullable
+  @JsonProperty("audios")
+  private List<String> audios;
+
+  @Nullable
+  @JsonProperty("image_ordered_keys")
+  private List<String> imageOrderedKeys;
+
+  @Nullable
   @JsonProperty("images")
   private List<String> images;
+
+  @Nullable
+  @JsonProperty("text_ordered_keys")
+  private List<String> textOrderedKeys;
 
   @Nullable
   @JsonProperty("texts")
@@ -38,4 +50,12 @@ public class ModerationPayload {
   @Nullable
   @JsonProperty("custom")
   private Map<String, Object> custom;
+
+  @Nullable
+  @JsonProperty("image_ids")
+  private Map<String, String> imageIds;
+
+  @Nullable
+  @JsonProperty("text_ids")
+  private Map<String, String> textIds;
 }

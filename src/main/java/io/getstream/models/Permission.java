@@ -44,6 +44,9 @@ public class Permission {
   @JsonProperty("owner")
   private Boolean owner;
 
+  @JsonProperty("owner_resource")
+  private String ownerResource;
+
   @JsonProperty("same_team")
   private Boolean sameTeam;
 

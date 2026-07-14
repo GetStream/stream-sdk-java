@@ -121,6 +121,14 @@ public interface Chat {
       @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
+  public StreamRequest<ChannelStateResponse> getChannel(
+      @NotNull String type, @NotNull String id, GetChannelRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ChannelStateResponse> getChannel(@NotNull String type, @NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<UpdateChannelPartialResponse> updateChannelPartial(
       @NotNull String type, @NotNull String id, UpdateChannelPartialRequest request)
       throws StreamException;

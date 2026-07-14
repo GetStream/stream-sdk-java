@@ -24,12 +24,16 @@ import org.jetbrains.annotations.Nullable;
 public class ModerationDashboardPreferences {
 
   @Nullable
-  @JsonProperty("analyze_max_image_size_bytes")
-  private Integer analyzeMaxImageSizeBytes;
-
-  @Nullable
   @JsonProperty("async_review_queue_upsert")
   private Boolean asyncReviewQueueUpsert;
+
+  @Nullable
+  @JsonProperty("block_foreign_cdn_attachments")
+  private Boolean blockForeignCdnAttachments;
+
+  @Nullable
+  @JsonProperty("custom_views_enabled")
+  private Boolean customViewsEnabled;
 
   @Nullable
   @JsonProperty("disable_audit_logs")
@@ -54,10 +58,6 @@ public class ModerationDashboardPreferences {
   @Nullable
   @JsonProperty("media_queue_blur_enabled")
   private Boolean mediaQueueBlurEnabled;
-
-  @Nullable
-  @JsonProperty("webhook_header_client_request_id_key")
-  private String webhookHeaderClientRequestIDKey;
 
   @Nullable
   @JsonProperty("allowed_moderation_action_reasons")

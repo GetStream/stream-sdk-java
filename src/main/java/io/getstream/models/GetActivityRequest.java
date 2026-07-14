@@ -22,6 +22,14 @@ import io.getstream.annotations.Query;
 @lombok.AllArgsConstructor
 public class GetActivityRequest {
 
+  @Query("language")
+  @JsonIgnore
+  private String Language;
+
+  @Query("translate_text")
+  @JsonIgnore
+  private Boolean TranslateText;
+
   @Query("comment_sort")
   @JsonIgnore
   private String CommentSort;

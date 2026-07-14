@@ -157,8 +157,16 @@ public class FeedsV3ActivityResponse {
   private List<FeedsReactionResponse> friendReactions;
 
   @Nullable
+  @JsonProperty("latest_shares")
+  private List<FeedsShareResponse> latestShares;
+
+  @Nullable
   @JsonProperty("current_feed")
   private FeedsFeedResponse currentFeed;
+
+  @Nullable
+  @JsonProperty("i18n")
+  private Map<String, String> i18n;
 
   @Nullable
   @JsonProperty("location")
