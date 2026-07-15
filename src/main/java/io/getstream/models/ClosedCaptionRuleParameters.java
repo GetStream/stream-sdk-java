@@ -24,6 +24,10 @@ import org.jetbrains.annotations.Nullable;
 public class ClosedCaptionRuleParameters {
 
   @Nullable
+  @JsonProperty("severity")
+  private String severity;
+
+  @Nullable
   @JsonProperty("threshold")
   private Integer threshold;
 

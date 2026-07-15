@@ -638,6 +638,104 @@ public class ModerationImpl {
   }
 
   @NotNull
+  public StreamRequest<ListQueuesResponse> listQueues(ListQueuesRequest request)
+      throws StreamException {
+
+    return new StreamRequest<ListQueuesResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/moderation/queues",
+        request,
+        null,
+        new TypeReference<ListQueuesResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ListQueuesResponse> listQueues() throws StreamException {
+    return listQueues(new ListQueuesRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueueResponse> createQueue(CreateQueueRequest request)
+      throws StreamException {
+
+    return new StreamRequest<QueueResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/queues",
+        request,
+        null,
+        new TypeReference<QueueResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueueResponse> getQueue(@NotNull String id, GetQueueRequest request)
+      throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<QueueResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/moderation/queues/{id}",
+        request,
+        pathParams,
+        new TypeReference<QueueResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueueResponse> getQueue(@NotNull String id) throws StreamException {
+    return getQueue(id, new GetQueueRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueueResponse> updateQueue(@NotNull String id, UpdateQueueRequest request)
+      throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<QueueResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "PATCH",
+        "/api/v2/moderation/queues/{id}",
+        request,
+        pathParams,
+        new TypeReference<QueueResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueueResponse> updateQueue(@NotNull String id) throws StreamException {
+    return updateQueue(id, new UpdateQueueRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueueResponse> deleteQueue(@NotNull String id, DeleteQueueRequest request)
+      throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<QueueResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/moderation/queues/{id}/delete",
+        request,
+        pathParams,
+        new TypeReference<QueueResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueueResponse> deleteQueue(@NotNull String id) throws StreamException {
+    return deleteQueue(id, new DeleteQueueRequest());
+  }
+
+  @NotNull
   public StreamRequest<QueryReviewQueueResponse> queryReviewQueue(QueryReviewQueueRequest request)
       throws StreamException {
 

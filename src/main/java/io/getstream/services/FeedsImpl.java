@@ -123,6 +123,21 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<BatchQueryActivityReactionsResponse> batchQueryActivityReactions(
+      BatchQueryActivityReactionsRequest request) throws StreamException {
+
+    return new StreamRequest<BatchQueryActivityReactionsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/activities/reactions/query",
+        request,
+        null,
+        new TypeReference<BatchQueryActivityReactionsResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<DeleteBookmarkResponse> deleteBookmark(
       @NotNull String activityID, DeleteBookmarkRequest request) throws StreamException {
     var pathParams = Map.of("activity_id", activityID);
@@ -332,6 +347,28 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<QueryActivitySharesResponse> queryActivityShares(
+      @NotNull String activityID, QueryActivitySharesRequest request) throws StreamException {
+    var pathParams = Map.of("activity_id", activityID);
+
+    return new StreamRequest<QueryActivitySharesResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "GET",
+        "/api/v2/feeds/activities/{activity_id}/shares",
+        request,
+        pathParams,
+        new TypeReference<QueryActivitySharesResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryActivitySharesResponse> queryActivityShares(@NotNull String activityID)
+      throws StreamException {
+    return queryActivityShares(activityID, new QueryActivitySharesRequest());
+  }
+
+  @NotNull
   public StreamRequest<DeleteActivityResponse> deleteActivity(
       @NotNull String id, DeleteActivityRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
@@ -438,6 +475,22 @@ public class FeedsImpl {
   public StreamRequest<RestoreActivityResponse> restoreActivity(@NotNull String id)
       throws StreamException {
     return restoreActivity(id, new RestoreActivityRequest());
+  }
+
+  @NotNull
+  public StreamRequest<TranslateActivityResponse> translateActivity(
+      @NotNull String id, TranslateActivityRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<TranslateActivityResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/activities/{id}/translate",
+        request,
+        pathParams,
+        new TypeReference<TranslateActivityResponse>() {});
   }
 
   @NotNull
@@ -687,6 +740,21 @@ public class FeedsImpl {
         request,
         null,
         new TypeReference<QueryCommentsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<BatchQueryCommentReactionsResponse> batchQueryCommentReactions(
+      BatchQueryCommentReactionsRequest request) throws StreamException {
+
+    return new StreamRequest<BatchQueryCommentReactionsResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/comments/reactions/query",
+        request,
+        null,
+        new TypeReference<BatchQueryCommentReactionsResponse>() {});
   }
 
   @NotNull
@@ -948,6 +1016,22 @@ public class FeedsImpl {
   public StreamRequest<RestoreCommentResponse> restoreComment(@NotNull String id)
       throws StreamException {
     return restoreComment(id, new RestoreCommentRequest());
+  }
+
+  @NotNull
+  public StreamRequest<TranslateCommentResponse> translateComment(
+      @NotNull String id, TranslateCommentRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<TranslateCommentResponse>(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        "POST",
+        "/api/v2/feeds/comments/{id}/translate",
+        request,
+        pathParams,
+        new TypeReference<TranslateCommentResponse>() {});
   }
 
   @NotNull

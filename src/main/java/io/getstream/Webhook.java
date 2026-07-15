@@ -26,6 +26,7 @@ import io.getstream.models.AsyncBulkImageModerationEvent;
 import io.getstream.models.AsyncExportChannelsEvent;
 import io.getstream.models.AsyncExportErrorEvent;
 import io.getstream.models.AsyncExportModerationLogsEvent;
+import io.getstream.models.AsyncExportReviewQueueEvent;
 import io.getstream.models.AsyncExportUsersEvent;
 import io.getstream.models.BlockedUserEvent;
 import io.getstream.models.BookmarkAddedEvent;
@@ -282,6 +283,8 @@ public class Webhook {
     public static final String EXPORT_CHANNELS_SUCCESS = "export.channels.success";
     public static final String EXPORT_MODERATION_LOGS_ERROR = "export.moderation_logs.error";
     public static final String EXPORT_MODERATION_LOGS_SUCCESS = "export.moderation_logs.success";
+    public static final String EXPORT_REVIEW_QUEUE_ERROR = "export.review_queue.error";
+    public static final String EXPORT_REVIEW_QUEUE_SUCCESS = "export.review_queue.success";
     public static final String EXPORT_USERS_ERROR = "export.users.error";
     public static final String EXPORT_USERS_SUCCESS = "export.users.success";
     public static final String FEEDS_ACTIVITY_ADDED = "feeds.activity.added";
@@ -623,6 +626,10 @@ public class Webhook {
         return AsyncExportErrorEvent.class;
       case "export.moderation_logs.success":
         return AsyncExportModerationLogsEvent.class;
+      case "export.review_queue.error":
+        return AsyncExportErrorEvent.class;
+      case "export.review_queue.success":
+        return AsyncExportReviewQueueEvent.class;
       case "export.users.error":
         return AsyncExportErrorEvent.class;
       case "export.users.success":

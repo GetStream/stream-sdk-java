@@ -26,6 +26,10 @@ public class FilterConfigResponse {
   private List<String> llmLabels;
 
   @Nullable
+  @JsonProperty("ai_image_labels")
+  private List<String> aiImageLabels;
+
+  @Nullable
   @JsonProperty("ai_text_labels")
   private List<String> aiTextLabels;
 

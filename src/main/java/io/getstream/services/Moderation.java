@@ -210,6 +210,38 @@ public interface Moderation {
   public StreamRequest<MuteResponse> mute(MuteRequest request) throws StreamException;
 
   @NotNull
+  public StreamRequest<ListQueuesResponse> listQueues(ListQueuesRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListQueuesResponse> listQueues() throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueueResponse> createQueue(CreateQueueRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueueResponse> getQueue(@NotNull String id, GetQueueRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueueResponse> getQueue(@NotNull String id) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueueResponse> updateQueue(@NotNull String id, UpdateQueueRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueueResponse> updateQueue(@NotNull String id) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueueResponse> deleteQueue(@NotNull String id, DeleteQueueRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueueResponse> deleteQueue(@NotNull String id) throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryReviewQueueResponse> queryReviewQueue(QueryReviewQueueRequest request)
       throws StreamException;
 

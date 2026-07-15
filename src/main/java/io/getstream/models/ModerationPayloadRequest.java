@@ -25,6 +25,10 @@ import org.jetbrains.annotations.Nullable;
 public class ModerationPayloadRequest {
 
   @Nullable
+  @JsonProperty("audios")
+  private List<String> audios;
+
+  @Nullable
   @JsonProperty("images")
   private List<String> images;
 

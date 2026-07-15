@@ -51,6 +51,10 @@ public class ConfigResponse {
   private List<BodyguardProfileSummary> availableBodyguardProfiles;
 
   @Nullable
+  @JsonProperty("ai_audio_config")
+  private AIAudioConfigResponse aiAudioConfig;
+
+  @Nullable
   @JsonProperty("ai_image_config")
   private AIImageConfig aiImageConfig;
 
