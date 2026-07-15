@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.0.0](https://github.com/GetStream/stream-sdk-java/compare/8.0.0...9.0.0) (2026-07-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* renames moderation CallResponse to ModerationCallResponse (video CallResponse keeps its name); drops non-functional internal ModerationSettings fields no longer in the spec.
+
+### Features
+
+* add GetChannel endpoint and rename shadowed moderation schema ([#70](https://github.com/GetStream/stream-sdk-java/issues/70)) ([3ecf42c](https://github.com/GetStream/stream-sdk-java/commit/3ecf42ca121675321fbd409c0067c0047e1387a7))
+
 ## [8.0.0](https://github.com/GetStream/stream-sdk-java/compare/7.2.0...8.0.0) (2026-06-23)
 
 
