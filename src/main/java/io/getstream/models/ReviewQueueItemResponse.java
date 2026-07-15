@@ -116,7 +116,7 @@ public class ReviewQueueItemResponse {
 
   @Nullable
   @JsonProperty("call")
-  private CallResponse call;
+  private ModerationCallResponse call;
 
   @Nullable
   @JsonProperty("entity_creator")
