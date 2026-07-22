@@ -96,6 +96,14 @@ public class StreamHTTPClient {
   }
 
   public StreamHTTPClient(Properties properties) throws IllegalArgumentException {
+    this(properties, new StreamClientOptions());
+  }
+
+  public StreamHTTPClient(Properties properties, @NotNull StreamClientOptions options)
+      throws IllegalArgumentException {
+    // Set options before reading env/properties so env overrides (timeout, connection max-age)
+    // fold into them and the caller's injected logger is used for the client.initialized event.
+    this.options = options;
     readPropertiesAndEnv(properties);
 
     if (apiKey == null || apiKey.isEmpty()) {

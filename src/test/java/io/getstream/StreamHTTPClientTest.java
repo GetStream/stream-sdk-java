@@ -17,10 +17,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.LogRecord;
-import java.util.logging.Logger;
 import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
 import org.junit.jupiter.api.BeforeAll;
@@ -301,57 +297,80 @@ public class StreamHTTPClientTest {
         built.interceptors().isEmpty(), "SDK still adds its interceptors to user-supplied client");
   }
 
-  private static class CapturingHandler extends Handler {
+  // Records the SLF4J events emitted at construction (client.initialized replaced the old
+  // java.util.logging "connection pool:" line in CHA-2957); inject via StreamClientOptions.
+  static final class RecordingLogger extends org.slf4j.helpers.LegacyAbstractLogger {
     final List<String> messages = new ArrayList<>();
 
     @Override
-    public void publish(LogRecord r) {
-      if (r.getLevel().intValue() >= Level.INFO.intValue()) messages.add(r.getMessage());
+    protected void handleNormalizedLoggingCall(
+        org.slf4j.event.Level level,
+        org.slf4j.Marker marker,
+        String messagePattern,
+        Object[] arguments,
+        Throwable throwable) {
+      messages.add(org.slf4j.helpers.MessageFormatter.basicArrayFormat(messagePattern, arguments));
     }
 
     @Override
-    public void flush() {}
+    protected String getFullyQualifiedCallerName() {
+      return null;
+    }
 
     @Override
-    public void close() throws SecurityException {}
+    public boolean isTraceEnabled() {
+      return true;
+    }
+
+    @Override
+    public boolean isDebugEnabled() {
+      return true;
+    }
+
+    @Override
+    public boolean isInfoEnabled() {
+      return true;
+    }
+
+    @Override
+    public boolean isWarnEnabled() {
+      return true;
+    }
+
+    @Override
+    public boolean isErrorEnabled() {
+      return true;
+    }
   }
 
-  private String captureLastPoolLog(Runnable construct) {
-    Logger jul = Logger.getLogger("io.getstream.services.framework.StreamHTTPClient");
-    CapturingHandler h = new CapturingHandler();
-    jul.addHandler(h);
-    try {
-      construct.run();
-      return h.messages.stream()
-          .filter(m -> m.startsWith("connection pool:"))
-          .reduce((a, b) -> b)
-          .orElseThrow();
-    } finally {
-      jul.removeHandler(h);
-    }
+  private static String lastClientInitialized(RecordingLogger rec) {
+    return rec.messages.stream()
+        .filter(m -> m.startsWith("client.initialized"))
+        .reduce((a, b) -> b)
+        .orElseThrow();
   }
 
   @Test
   void testInfoLogOnConstructionWithDefaults() {
-    String got =
-        captureLastPoolLog(
-            () -> new StreamHTTPClient("apiKey", "012345678901234567890123456789ab"));
-    assertTrue(got.contains("max_conns_per_host=5"), got);
-    assertTrue(got.contains("idle_timeout=PT55S"), got);
-    assertTrue(got.contains("connect_timeout=PT10S"), got);
-    assertTrue(got.contains("request_timeout=PT30S"), got);
-    assertTrue(got.contains("user_http_client=false"), got);
+    RecordingLogger rec = new RecordingLogger();
+    new StreamHTTPClient(
+        "apiKey", "012345678901234567890123456789ab", new StreamClientOptions().setLogger(rec));
+    String got = lastClientInitialized(rec);
+    assertTrue(got.contains("stream.client.max_conns_per_host=5"), got);
+    assertTrue(got.contains("stream.client.idle_timeout_seconds=55"), got);
+    assertTrue(got.contains("stream.client.connect_timeout_seconds=10"), got);
+    assertTrue(got.contains("stream.client.request_timeout_seconds=30"), got);
+    assertTrue(got.contains("stream.client.user_http_client=false"), got);
   }
 
   @Test
   void testInfoLogOnConstructionWithUserHttpClient() {
+    RecordingLogger rec = new RecordingLogger();
     StreamClientOptions opts =
-        new StreamClientOptions().setHttpClient(new OkHttpClient.Builder().build());
-    String got =
-        captureLastPoolLog(
-            () -> new StreamHTTPClient("apiKey", "012345678901234567890123456789ab", opts));
-    assertTrue(got.contains("user_http_client=true"), got);
-    assertTrue(got.contains("4 knobs not applied"), got);
+        new StreamClientOptions().setHttpClient(new OkHttpClient.Builder().build()).setLogger(rec);
+    new StreamHTTPClient("apiKey", "012345678901234567890123456789ab", opts);
+    String got = lastClientInitialized(rec);
+    assertTrue(got.contains("stream.client.user_http_client=true"), got);
   }
 
   @Test
@@ -413,10 +432,12 @@ public class StreamHTTPClientTest {
       System.setProperty(StreamHTTPClient.API_KEY_PROP_NAME, "apiKey");
       System.setProperty(StreamHTTPClient.API_SECRET_PROP_NAME, "012345678901234567890123456789ab");
 
-      String got = captureLastPoolLog(() -> new StreamHTTPClient(System.getProperties()));
+      RecordingLogger rec = new RecordingLogger();
+      new StreamHTTPClient(System.getProperties(), new StreamClientOptions().setLogger(rec));
+      String got = lastClientInitialized(rec);
       assertTrue(
-          got.contains("idle_timeout=PT2M3S"),
-          "STREAM_API_CONNECTION_MAX_AGE must drive the idle timeout (123s = PT2M3S), got: " + got);
+          got.contains("stream.client.idle_timeout_seconds=123"),
+          "STREAM_API_CONNECTION_MAX_AGE must drive the idle timeout (123s), got: " + got);
     } finally {
       restoreProperty(StreamHTTPClient.API_CONNECTION_MAX_AGE_PROP_NAME, prevMaxAge);
       restoreProperty(StreamHTTPClient.API_KEY_PROP_NAME, prevKey);
