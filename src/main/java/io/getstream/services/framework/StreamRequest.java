@@ -13,6 +13,7 @@ import io.getstream.models.framework.RateLimit;
 import io.getstream.models.framework.StreamResponse;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,8 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.helpers.NOPLogger;
 
 public class StreamRequest<T> {
   private final OkHttpClient client;
@@ -27,6 +30,36 @@ public class StreamRequest<T> {
   private final ObjectMapper objectMapper;
   private final TypeReference<T> typeReference;
   private Duration callTimeoutOverride;
+  private Logger logger = NOPLogger.NOP_LOGGER;
+  private boolean logBodies = false;
+  // Serialized JSON request body captured at construction so logRequestSent can emit it (redacted)
+  // without re-reading the OkHttp RequestBody. Null for GET/DELETE/multipart uploads.
+  private String requestBodyJson;
+
+  /**
+   * Preferred constructor: derives the transport, base URL, logger and log-bodies flag from {@code
+   * client}, so the request emits the SDK's structured log events.
+   */
+  public StreamRequest(
+      StreamHTTPClient client,
+      String method,
+      String path,
+      Object jRequest,
+      Map<String, String> pathParams,
+      TypeReference<T> typeReference)
+      throws StreamException {
+    this(
+        client.getHttpClient(),
+        client.getObjectMapper(),
+        client.getBaseUrl(),
+        method,
+        path,
+        jRequest,
+        pathParams,
+        typeReference);
+    this.logger = client.getLogger();
+    this.logBodies = client.getLogBodies();
+  }
 
   public StreamRequest(
       OkHttpClient client,
@@ -56,7 +89,9 @@ public class StreamRequest<T> {
       } else if (jRequest instanceof UploadChannelImageRequest) {
         rawBody = createMultipartBody((UploadChannelImageRequest) jRequest);
       } else {
-        rawBody = RequestBody.create(objectMapper.writeValueAsBytes(jRequest));
+        byte[] bodyBytes = objectMapper.writeValueAsBytes(jRequest);
+        this.requestBodyJson = new String(bodyBytes, StandardCharsets.UTF_8);
+        rawBody = RequestBody.create(bodyBytes);
       }
       request =
           new Request.Builder()
@@ -250,15 +285,80 @@ public class StreamRequest<T> {
       // callTimeout for this single dispatch.
       call.timeout().timeout(callTimeoutOverride.toNanos(), TimeUnit.NANOSECONDS);
     }
+    logRequestSent();
+    long startNanos = System.nanoTime();
     Response response;
     try {
       response = call.execute();
     } catch (IOException e) {
-      // IO failure: classify and re-throw as StreamTransportException.
-      throw StreamTransportException.fromIOException(e);
+      // Transport failure: no HTTP response was received. Classify, log ERROR, then re-throw.
+      StreamTransportException transportException = StreamTransportException.fromIOException(e);
+      logger.error(
+          "http.request.failed http.request.method={} url.path={} url.query={} error.type={}"
+              + " error.message={} duration_ms={}",
+          request.method(),
+          request.url().encodedPath(),
+          LogRedaction.redactQuery(request.url()),
+          transportException.getErrorType(),
+          e.getMessage(),
+          elapsedMs(startNanos));
+      throw transportException;
     }
 
+    logResponseReceived(response, elapsedMs(startNanos));
     return this.parseResponse(response);
+  }
+
+  private static long elapsedMs(long startNanos) {
+    return (System.nanoTime() - startNanos) / 1_000_000;
+  }
+
+  private void logRequestSent() {
+    if (logBodies && requestBodyJson != null) {
+      logger.debug(
+          "http.request.sent http.request.method={} url.path={} url.query={} http.request.body={}",
+          request.method(),
+          request.url().encodedPath(),
+          LogRedaction.redactQuery(request.url()),
+          LogRedaction.redactJsonBody(requestBodyJson));
+    } else {
+      logger.debug(
+          "http.request.sent http.request.method={} url.path={} url.query={}",
+          request.method(),
+          request.url().encodedPath(),
+          LogRedaction.redactQuery(request.url()));
+    }
+  }
+
+  private void logResponseReceived(Response response, long durationMs) {
+    long bodySize = response.body() != null ? response.body().contentLength() : -1;
+    if (logBodies) {
+      String body;
+      try {
+        // peekBody copies up to the limit without consuming the real body that parseResponse reads.
+        body = LogRedaction.redactJsonBody(response.peekBody(1_048_576).string());
+      } catch (IOException e) {
+        body = "";
+      }
+      logger.debug(
+          "http.response.received http.request.method={} url.path={} http.response.status_code={}"
+              + " http.response.body.size={} duration_ms={} http.response.body={}",
+          request.method(),
+          request.url().encodedPath(),
+          response.code(),
+          bodySize,
+          durationMs,
+          body);
+    } else {
+      logger.debug(
+          "http.response.received http.request.method={} url.path={} http.response.status_code={}"
+              + " http.response.body.size={} duration_ms={}",
+          request.method(),
+          request.url().encodedPath(),
+          response.code(),
+          bodySize,
+          durationMs);
+    }
   }
 
   private StreamResponse<T> parseResponse(okhttp3.Response response) throws StreamException {

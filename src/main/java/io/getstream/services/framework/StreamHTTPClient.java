@@ -14,7 +14,6 @@ import java.security.Key;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 import javax.crypto.spec.SecretKeySpec;
 import okhttp3.ConnectionPool;
 import okhttp3.Dispatcher;
@@ -22,10 +21,9 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
 
 public class StreamHTTPClient {
-  private static final Logger LOG = Logger.getLogger(StreamHTTPClient.class.getName());
-
   public static final String API_KEY_PROP_NAME = "io.getstream.apiKey";
   public static final String API_SECRET_PROP_NAME = "io.getstream.apiSecret";
   public static final String API_TIMEOUT_PROP_NAME = "io.getstream.timeout";
@@ -152,6 +150,20 @@ public class StreamHTTPClient {
     return baseUrl;
   }
 
+  public void setBaseUrl(@NotNull String baseUrl) {
+    this.baseUrl = baseUrl;
+  }
+
+  /** The SLF4J logger for structured events (a no-op logger when none was injected). */
+  @NotNull
+  public Logger getLogger() {
+    return options.getLoggerOrNop();
+  }
+
+  public boolean getLogBodies() {
+    return options.getLogBodies();
+  }
+
   private void setCredetials(@NotNull String apiKey, @NotNull String apiSecret) {
     this.apiKey = apiKey;
     this.apiSecret = apiSecret;
@@ -176,17 +188,25 @@ public class StreamHTTPClient {
   }
 
   private void logEffectiveConfig() {
-    if (options.hasUserHttpClient()) {
-      LOG.info("connection pool: user_http_client=true (4 knobs not applied)");
-    } else {
-      LOG.info(
-          String.format(
-              "connection pool: max_conns_per_host=%d idle_timeout=%s connect_timeout=%s"
-                  + " request_timeout=%s user_http_client=false",
-              options.getMaxConnsPerHost(),
-              options.getIdleTimeout(),
-              options.getConnectTimeout(),
-              options.getRequestTimeout()));
+    Logger logger = getLogger();
+    logger.info(
+        "client.initialized stream.sdk.name=stream-sdk-java stream.sdk.version={}"
+            + " stream.client.max_conns_per_host={} stream.client.idle_timeout_seconds={}"
+            + " stream.client.connect_timeout_seconds={} stream.client.request_timeout_seconds={}"
+            + " stream.client.gzip_enabled={} stream.client.user_http_client={}"
+            + " stream.client.log_bodies={}",
+        sdkVersion,
+        options.getMaxConnsPerHost(),
+        options.getIdleTimeout().toSeconds(),
+        options.getConnectTimeout().toSeconds(),
+        options.getRequestTimeout().toSeconds(),
+        true,
+        options.hasUserHttpClient(),
+        options.getLogBodies());
+    if (options.getLogBodies()) {
+      logger.warn(
+          "log_bodies is enabled: HTTP request and response bodies will be logged (secret keys are"
+              + " redacted). Do not enable in production unless you accept this risk.");
     }
   }
 
@@ -242,10 +262,12 @@ public class StreamHTTPClient {
     }
   }
 
+  @SuppressWarnings("deprecation")
   private @NotNull HttpLoggingInterceptor.Level getLogLevel() {
     return HttpLoggingInterceptor.Level.valueOf(logLevel);
   }
 
+  @SuppressWarnings("deprecation")
   private OkHttpClient buildHTTPClient(String jwtToken, OkHttpClient.Builder httpClient) {
     httpClient.interceptors().clear();
 
