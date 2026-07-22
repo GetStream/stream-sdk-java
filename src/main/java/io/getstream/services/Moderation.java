@@ -187,17 +187,19 @@ public interface Moderation {
 
   @NotNull
   public StreamRequest<DeleteModerationRuleResponse> deleteModerationRule(
-      DeleteModerationRuleRequest request) throws StreamException;
+      @NotNull String id, DeleteModerationRuleRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<DeleteModerationRuleResponse> deleteModerationRule() throws StreamException;
+  public StreamRequest<DeleteModerationRuleResponse> deleteModerationRule(@NotNull String id)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<GetModerationRuleResponse> getModerationRule(
-      GetModerationRuleRequest request) throws StreamException;
+      @NotNull String id, GetModerationRuleRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<GetModerationRuleResponse> getModerationRule() throws StreamException;
+  public StreamRequest<GetModerationRuleResponse> getModerationRule(@NotNull String id)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<QueryModerationRulesResponse> queryModerationRules(

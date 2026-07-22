@@ -38,10 +38,6 @@ public class ImportV2TaskSettings {
   private Boolean skipReferencesCheck;
 
   @Nullable
-  @JsonProperty("source")
-  private String source;
-
-  @Nullable
   @JsonProperty("use_import_time_as_op_time")
   private Boolean useImportTimeAsOpTime;
 

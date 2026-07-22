@@ -171,7 +171,7 @@ public class SearchResultMessage {
 
   @Nullable
   @JsonProperty("member")
-  private ChannelMemberResponse member;
+  private ChannelMemberPartialResponse member;
 
   @Nullable
   @JsonProperty("moderation")

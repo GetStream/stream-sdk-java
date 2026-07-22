@@ -34,6 +34,10 @@ public class CallSettingsRequest {
   private BroadcastSettingsRequest broadcasting;
 
   @Nullable
+  @JsonProperty("encryption")
+  private EncryptionSettingsRequest encryption;
+
+  @Nullable
   @JsonProperty("frame_recording")
   private FrameRecordingSettingsRequest frameRecording;
 

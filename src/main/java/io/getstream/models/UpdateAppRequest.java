@@ -50,6 +50,10 @@ public class UpdateAppRequest {
   private Boolean channelHideMembersOnly;
 
   @Nullable
+  @JsonProperty("chat_primary_use_case")
+  private String chatPrimaryUseCase;
+
+  @Nullable
   @JsonProperty("custom_action_handler_url")
   private String customActionHandlerUrl;
 

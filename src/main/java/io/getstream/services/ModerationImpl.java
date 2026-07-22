@@ -565,7 +565,8 @@ public class ModerationImpl {
 
   @NotNull
   public StreamRequest<DeleteModerationRuleResponse> deleteModerationRule(
-      DeleteModerationRuleRequest request) throws StreamException {
+      @NotNull String id, DeleteModerationRuleRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
 
     return new StreamRequest<DeleteModerationRuleResponse>(
         client.getHttpClient(),
@@ -574,18 +575,20 @@ public class ModerationImpl {
         "DELETE",
         "/api/v2/moderation/moderation_rule/{id}",
         request,
-        null,
+        pathParams,
         new TypeReference<DeleteModerationRuleResponse>() {});
   }
 
   @NotNull
-  public StreamRequest<DeleteModerationRuleResponse> deleteModerationRule() throws StreamException {
-    return deleteModerationRule(new DeleteModerationRuleRequest());
+  public StreamRequest<DeleteModerationRuleResponse> deleteModerationRule(@NotNull String id)
+      throws StreamException {
+    return deleteModerationRule(id, new DeleteModerationRuleRequest());
   }
 
   @NotNull
   public StreamRequest<GetModerationRuleResponse> getModerationRule(
-      GetModerationRuleRequest request) throws StreamException {
+      @NotNull String id, GetModerationRuleRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetModerationRuleResponse>(
         client.getHttpClient(),
@@ -594,13 +597,14 @@ public class ModerationImpl {
         "GET",
         "/api/v2/moderation/moderation_rule/{id}",
         request,
-        null,
+        pathParams,
         new TypeReference<GetModerationRuleResponse>() {});
   }
 
   @NotNull
-  public StreamRequest<GetModerationRuleResponse> getModerationRule() throws StreamException {
-    return getModerationRule(new GetModerationRuleRequest());
+  public StreamRequest<GetModerationRuleResponse> getModerationRule(@NotNull String id)
+      throws StreamException {
+    return getModerationRule(id, new GetModerationRuleRequest());
   }
 
   @NotNull

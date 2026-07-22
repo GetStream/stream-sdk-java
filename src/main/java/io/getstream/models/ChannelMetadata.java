@@ -13,23 +13,45 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
+import java.util.Date;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
-/** Basic response information */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ListBlockListResponse {
+public class ChannelMetadata {
 
-  @JsonProperty("duration")
-  private String duration;
+  @JsonProperty("cid")
+  private String cid;
 
-  @JsonProperty("blocklists")
-  private List<BlockListResponse> blocklists;
+  @JsonProperty("id")
+  private String id;
+
+  @JsonProperty("type")
+  private String type;
+
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 
   @Nullable
-  @JsonProperty("next_cursor")
-  private String nextCursor;
+  @JsonProperty("last_message_at")
+  private Date lastMessageAt;
+
+  @Nullable
+  @JsonProperty("member_count")
+  private Integer memberCount;
+
+  @Nullable
+  @JsonProperty("message_count")
+  private Integer messageCount;
+
+  @Nullable
+  @JsonProperty("push_level")
+  private String pushLevel;
+
+  @Nullable
+  @JsonProperty("team")
+  private String team;
 }
