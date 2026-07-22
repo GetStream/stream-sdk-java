@@ -12,25 +12,24 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
-/** Get comment Get a comment by ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetCommentRequest {
+public class FloodSimilarRuleParameters {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @Nullable
+  @JsonProperty("similarity_distance")
+  private Integer similarityDistance;
 
-  @Query("language")
-  @JsonIgnore
-  private String Language;
+  @Nullable
+  @JsonProperty("threshold")
+  private Integer threshold;
 
-  @Query("translate_text")
-  @JsonIgnore
-  private Boolean TranslateText;
+  @Nullable
+  @JsonProperty("time_window")
+  private String timeWindow;
 }

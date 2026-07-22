@@ -32,9 +32,7 @@ public class ModerationImpl {
       throws StreamException {
 
     return new StreamRequest<GetActionConfigResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/moderation/action_config",
         request,
@@ -52,9 +50,7 @@ public class ModerationImpl {
       UpsertActionConfigRequest request) throws StreamException {
 
     return new StreamRequest<UpsertActionConfigResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/action_config",
         request,
@@ -67,9 +63,7 @@ public class ModerationImpl {
       BulkUpsertActionConfigRequest request) throws StreamException {
 
     return new StreamRequest<BulkUpsertActionConfigResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/action_config/bulk",
         request,
@@ -82,9 +76,7 @@ public class ModerationImpl {
       BulkDeleteActionConfigRequest request) throws StreamException {
 
     return new StreamRequest<BulkDeleteActionConfigResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/action_config/bulk_delete",
         request,
@@ -98,9 +90,7 @@ public class ModerationImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<DeleteActionConfigResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/moderation/action_config/{id}",
         request,
@@ -119,9 +109,7 @@ public class ModerationImpl {
       throws StreamException {
 
     return new StreamRequest<InsertActionLogResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/action_logs",
         request,
@@ -133,9 +121,7 @@ public class ModerationImpl {
   public StreamRequest<AnalyzeResponse> analyze(AnalyzeRequest request) throws StreamException {
 
     return new StreamRequest<AnalyzeResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/analyze",
         request,
@@ -152,9 +138,7 @@ public class ModerationImpl {
   public StreamRequest<AppealResponse> appeal(AppealRequest request) throws StreamException {
 
     return new StreamRequest<AppealResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/appeal",
         request,
@@ -168,9 +152,7 @@ public class ModerationImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetAppealResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/moderation/appeal/{id}",
         request,
@@ -188,9 +170,7 @@ public class ModerationImpl {
       throws StreamException {
 
     return new StreamRequest<QueryAppealsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/appeals",
         request,
@@ -208,9 +188,7 @@ public class ModerationImpl {
       BulkActionAppealsRequest request) throws StreamException {
 
     return new StreamRequest<BulkActionAppealsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/appeals/bulk_action",
         request,
@@ -222,9 +200,7 @@ public class ModerationImpl {
   public StreamRequest<ModerationBanResponse> ban(BanRequest request) throws StreamException {
 
     return new StreamRequest<ModerationBanResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/ban",
         request,
@@ -237,9 +213,7 @@ public class ModerationImpl {
       BulkImageModerationRequest request) throws StreamException {
 
     return new StreamRequest<BulkImageModerationResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/bulk_image_moderation",
         request,
@@ -251,9 +225,7 @@ public class ModerationImpl {
   public StreamRequest<BypassResponse> bypass(BypassRequest request) throws StreamException {
 
     return new StreamRequest<BypassResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/bypass",
         request,
@@ -265,9 +237,7 @@ public class ModerationImpl {
   public StreamRequest<CheckResponse> check(CheckRequest request) throws StreamException {
 
     return new StreamRequest<CheckResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/check",
         request,
@@ -280,9 +250,7 @@ public class ModerationImpl {
       throws StreamException {
 
     return new StreamRequest<CheckS3AccessResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/check_s3_access",
         request,
@@ -300,9 +268,7 @@ public class ModerationImpl {
       throws StreamException {
 
     return new StreamRequest<UpsertConfigResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/config",
         request,
@@ -316,9 +282,7 @@ public class ModerationImpl {
     var pathParams = Map.of("key", key);
 
     return new StreamRequest<DeleteModerationConfigResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/moderation/config/{key}",
         request,
@@ -338,9 +302,7 @@ public class ModerationImpl {
     var pathParams = Map.of("key", key);
 
     return new StreamRequest<GetConfigResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/moderation/config/{key}",
         request,
@@ -358,9 +320,7 @@ public class ModerationImpl {
       QueryModerationConfigsRequest request) throws StreamException {
 
     return new StreamRequest<QueryModerationConfigsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/configs",
         request,
@@ -379,9 +339,7 @@ public class ModerationImpl {
       throws StreamException {
 
     return new StreamRequest<CustomCheckResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/custom_check",
         request,
@@ -394,9 +352,7 @@ public class ModerationImpl {
       V2DeleteTemplateRequest request) throws StreamException {
 
     return new StreamRequest<DeleteModerationTemplateResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/moderation/feeds_moderation_template",
         request,
@@ -414,9 +370,7 @@ public class ModerationImpl {
       V2QueryTemplatesRequest request) throws StreamException {
 
     return new StreamRequest<QueryFeedModerationTemplatesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/moderation/feeds_moderation_template",
         request,
@@ -435,9 +389,7 @@ public class ModerationImpl {
       V2UpsertTemplateRequest request) throws StreamException {
 
     return new StreamRequest<UpsertModerationTemplateResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/feeds_moderation_template",
         request,
@@ -449,9 +401,7 @@ public class ModerationImpl {
   public StreamRequest<FlagItemResponse> flag(FlagRequest request) throws StreamException {
 
     return new StreamRequest<FlagItemResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/flag",
         request,
@@ -464,9 +414,7 @@ public class ModerationImpl {
       throws StreamException {
 
     return new StreamRequest<GetFlagCountResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/flag_count",
         request,
@@ -479,9 +427,7 @@ public class ModerationImpl {
       QueryModerationFlagsRequest request) throws StreamException {
 
     return new StreamRequest<QueryModerationFlagsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/flags",
         request,
@@ -498,9 +444,7 @@ public class ModerationImpl {
   public StreamRequest<LabelsResponse> labels(LabelsRequest request) throws StreamException {
 
     return new StreamRequest<LabelsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/labels",
         request,
@@ -513,9 +457,7 @@ public class ModerationImpl {
       QueryLabelResultsRequest request) throws StreamException {
 
     return new StreamRequest<QueryLabelResultsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/labels/results",
         request,
@@ -533,9 +475,7 @@ public class ModerationImpl {
       QueryModerationLogsRequest request) throws StreamException {
 
     return new StreamRequest<QueryModerationLogsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/logs",
         request,
@@ -553,9 +493,7 @@ public class ModerationImpl {
       UpsertModerationRuleRequest request) throws StreamException {
 
     return new StreamRequest<UpsertModerationRuleResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/moderation_rule",
         request,
@@ -565,42 +503,42 @@ public class ModerationImpl {
 
   @NotNull
   public StreamRequest<DeleteModerationRuleResponse> deleteModerationRule(
-      DeleteModerationRuleRequest request) throws StreamException {
+      @NotNull String id, DeleteModerationRuleRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
 
     return new StreamRequest<DeleteModerationRuleResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/moderation/moderation_rule/{id}",
         request,
-        null,
+        pathParams,
         new TypeReference<DeleteModerationRuleResponse>() {});
   }
 
   @NotNull
-  public StreamRequest<DeleteModerationRuleResponse> deleteModerationRule() throws StreamException {
-    return deleteModerationRule(new DeleteModerationRuleRequest());
+  public StreamRequest<DeleteModerationRuleResponse> deleteModerationRule(@NotNull String id)
+      throws StreamException {
+    return deleteModerationRule(id, new DeleteModerationRuleRequest());
   }
 
   @NotNull
   public StreamRequest<GetModerationRuleResponse> getModerationRule(
-      GetModerationRuleRequest request) throws StreamException {
+      @NotNull String id, GetModerationRuleRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetModerationRuleResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/moderation/moderation_rule/{id}",
         request,
-        null,
+        pathParams,
         new TypeReference<GetModerationRuleResponse>() {});
   }
 
   @NotNull
-  public StreamRequest<GetModerationRuleResponse> getModerationRule() throws StreamException {
-    return getModerationRule(new GetModerationRuleRequest());
+  public StreamRequest<GetModerationRuleResponse> getModerationRule(@NotNull String id)
+      throws StreamException {
+    return getModerationRule(id, new GetModerationRuleRequest());
   }
 
   @NotNull
@@ -608,9 +546,7 @@ public class ModerationImpl {
       QueryModerationRulesRequest request) throws StreamException {
 
     return new StreamRequest<QueryModerationRulesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/moderation_rules",
         request,
@@ -627,9 +563,7 @@ public class ModerationImpl {
   public StreamRequest<MuteResponse> mute(MuteRequest request) throws StreamException {
 
     return new StreamRequest<MuteResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/mute",
         request,
@@ -642,9 +576,7 @@ public class ModerationImpl {
       throws StreamException {
 
     return new StreamRequest<ListQueuesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/moderation/queues",
         request,
@@ -662,9 +594,7 @@ public class ModerationImpl {
       throws StreamException {
 
     return new StreamRequest<QueueResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/queues",
         request,
@@ -678,9 +608,7 @@ public class ModerationImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<QueueResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/moderation/queues/{id}",
         request,
@@ -699,9 +627,7 @@ public class ModerationImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<QueueResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/moderation/queues/{id}",
         request,
@@ -720,9 +646,7 @@ public class ModerationImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<QueueResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/queues/{id}/delete",
         request,
@@ -740,9 +664,7 @@ public class ModerationImpl {
       throws StreamException {
 
     return new StreamRequest<QueryReviewQueueResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/review_queue",
         request,
@@ -761,9 +683,7 @@ public class ModerationImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetReviewQueueItemResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/moderation/review_queue/{id}",
         request,
@@ -782,9 +702,7 @@ public class ModerationImpl {
       throws StreamException {
 
     return new StreamRequest<GetSetupSessionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/moderation/setup",
         request,
@@ -802,9 +720,7 @@ public class ModerationImpl {
       UpsertSetupSessionRequest request) throws StreamException {
 
     return new StreamRequest<UpsertSetupSessionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/setup",
         request,
@@ -817,9 +733,7 @@ public class ModerationImpl {
       throws StreamException {
 
     return new StreamRequest<SubmitActionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/submit_action",
         request,
@@ -832,9 +746,7 @@ public class ModerationImpl {
       SubmitModerationFeedbackRequest request) throws StreamException {
 
     return new StreamRequest<SubmitModerationFeedbackResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/submit_moderation_feedback",
         request,
@@ -846,9 +758,7 @@ public class ModerationImpl {
   public StreamRequest<UnbanResponse> unban(UnbanRequest request) throws StreamException {
 
     return new StreamRequest<UnbanResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/unban",
         request,
@@ -860,9 +770,7 @@ public class ModerationImpl {
   public StreamRequest<UnmuteResponse> unmute(UnmuteRequest request) throws StreamException {
 
     return new StreamRequest<UnmuteResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/moderation/unmute",
         request,

@@ -12,25 +12,15 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Get comment Get a comment by ID */
+/** EncryptionSettings is the payload for end-to-end encryption settings */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetCommentRequest {
+public class EncryptionSettingsResponse {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
-
-  @Query("language")
-  @JsonIgnore
-  private String Language;
-
-  @Query("translate_text")
-  @JsonIgnore
-  private Boolean TranslateText;
+  @JsonProperty("enabled")
+  private Boolean enabled;
 }

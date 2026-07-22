@@ -54,6 +54,10 @@ public class BlockListResponse {
   private String id;
 
   @Nullable
+  @JsonProperty("owner_user_id")
+  private String ownerUserID;
+
+  @Nullable
   @JsonProperty("team")
   private String team;
 

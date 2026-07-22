@@ -72,6 +72,9 @@ public class AppResponseFields {
   @JsonProperty("moderation_enabled")
   private Boolean moderationEnabled;
 
+  @JsonProperty("moderation_flood_rules_enabled")
+  private Boolean moderationFloodRulesEnabled;
+
   @JsonProperty("moderation_llm_configurability_enabled")
   private Boolean moderationLlmConfigurabilityEnabled;
 
@@ -172,6 +175,10 @@ public class AppResponseFields {
   @Nullable
   @JsonProperty("before_message_send_hook_url")
   private String beforeMessageSendHookUrl;
+
+  @Nullable
+  @JsonProperty("chat_primary_use_case")
+  private String chatPrimaryUseCase;
 
   @Nullable
   @JsonProperty("moderation_onboarding_complete")

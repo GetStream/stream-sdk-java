@@ -16,20 +16,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
-/** Basic response information */
+/**
+ * Import block list items Enqueues an asynchronous bulk import of items into an existing blocklist.
+ * Returns a task ID that can be polled via GET /tasks/{id} to observe progress. AddItems is
+ * idempotent: items already present are skipped without error. For lists exceeding the HTTP
+ * request-body cap, issue repeated import calls each carrying a bounded slice of items — the task
+ * result accumulates correctly.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ListBlockListResponse {
+public class ImportBlockListRequest {
 
-  @JsonProperty("duration")
-  private String duration;
-
-  @JsonProperty("blocklists")
-  private List<BlockListResponse> blocklists;
+  @JsonProperty("items")
+  private List<String> items;
 
   @Nullable
-  @JsonProperty("next_cursor")
-  private String nextCursor;
+  @JsonProperty("chunk_size")
+  private Integer chunkSize;
 }

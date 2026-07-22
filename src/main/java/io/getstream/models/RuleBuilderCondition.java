@@ -66,12 +66,28 @@ public class RuleBuilderCondition {
   private FlagCountRuleParameters contentFlagCountRuleParams;
 
   @Nullable
+  @JsonProperty("flood_identical_params")
+  private FloodIdenticalRuleParameters floodIdenticalParams;
+
+  @Nullable
+  @JsonProperty("flood_similar_params")
+  private FloodSimilarRuleParameters floodSimilarParams;
+
+  @Nullable
   @JsonProperty("image_content_params")
   private ImageContentParameters imageContentParams;
 
   @Nullable
   @JsonProperty("image_rule_params")
   private ImageRuleParameters imageRuleParams;
+
+  @Nullable
+  @JsonProperty("ip_content_count_rule_params")
+  private IPContentCountRuleParameters ipContentCountRuleParams;
+
+  @Nullable
+  @JsonProperty("ip_flag_count_rule_params")
+  private IPFlagCountRuleParameters ipFlagCountRuleParams;
 
   @Nullable
   @JsonProperty("keyframe_ocr_rule_params")

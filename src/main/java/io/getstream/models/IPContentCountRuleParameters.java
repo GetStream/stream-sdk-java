@@ -12,25 +12,20 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
-/** Get comment Get a comment by ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetCommentRequest {
+public class IPContentCountRuleParameters {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @Nullable
+  @JsonProperty("threshold")
+  private Integer threshold;
 
-  @Query("language")
-  @JsonIgnore
-  private String Language;
-
-  @Query("translate_text")
-  @JsonIgnore
-  private Boolean TranslateText;
+  @Nullable
+  @JsonProperty("time_window")
+  private String timeWindow;
 }

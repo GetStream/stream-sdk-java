@@ -12,25 +12,29 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
-/** Get comment Get a comment by ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetCommentRequest {
+public class IPFlagCountRuleParameters {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @Nullable
+  @JsonProperty("severity")
+  private String severity;
 
-  @Query("language")
-  @JsonIgnore
-  private String Language;
+  @Nullable
+  @JsonProperty("threshold")
+  private Integer threshold;
 
-  @Query("translate_text")
-  @JsonIgnore
-  private Boolean TranslateText;
+  @Nullable
+  @JsonProperty("time_window")
+  private String timeWindow;
+
+  @Nullable
+  @JsonProperty("harm_labels")
+  private List<String> harmLabels;
 }
