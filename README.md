@@ -97,6 +97,31 @@ call.getOrCreate(
 > **Note:** When constructing models, always use the **builder pattern** (e.g. `UserRequest.builder().id("id").build()`).
 > While some generated models expose positional constructors (for example via Lombok's `@AllArgsConstructor`), their parameter order is not part of the public API and may change between releases; using positional constructors is therefore strongly discouraged and may break across SDK updates.
 
+### Logging
+
+The SDK emits structured log events through [SLF4J](https://www.slf4j.org/) (dependency `org.slf4j:slf4j-api`). Inject your own SLF4J `Logger` via `StreamClientOptions.setLogger(...)`. When no logger is injected the SDK logs to a no-op logger, so nothing is emitted unless you opt in. The SDK never changes the logger's level; that stays entirely under your control through your SLF4J binding.
+
+```java
+org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger("io.getstream");
+var options = new StreamClientOptions().setLogger(logger);
+var client = new StreamSDKClient("apiKey", "apiSecret", options);
+```
+
+Four events are emitted:
+
+| Event | Level | When |
+| ----- | ----- | ---- |
+| `client.initialized` | INFO | once, at client construction (SDK name/version and the effective client config) |
+| `http.request.sent` | DEBUG | before each request (method, path, query) |
+| `http.response.received` | DEBUG | after any response, including 4xx/5xx (status code, body size, duration) |
+| `http.request.failed` | ERROR | transport failure only, when no HTTP response was received (error type, message, duration) |
+
+Redaction is mandatory and cannot be disabled: query values for `api_key`, `api_secret` and `token` are replaced with `<redacted>`, and the top-level JSON body keys `api_secret`, `token` and `password` are redacted. The events never log request/response headers.
+
+Request and response bodies are **not** logged by default. Call `StreamClientOptions.setLogBodies(true)` to opt in (secret body keys are still redacted); doing so emits a one-time warning at construction. Do not enable body logging in production unless you accept the risk of logging sensitive payloads.
+
+> **Deprecated:** the older `HttpLoggingInterceptor` is deprecated in favour of these SLF4J events. It is kept for backward compatibility and now redacts secret headers and secret body keys in its own output.
+
 ## Development
 
 To run tests, create the `local.properties` file using the `local.properties.example` and adjust it to have valid API credentials:
