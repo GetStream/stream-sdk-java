@@ -32,9 +32,7 @@ public class VideoImpl {
       GetActiveCallsStatusRequest request) throws StreamException {
 
     return new StreamRequest<GetActiveCallsStatusResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/video/active_calls_status",
         request,
@@ -52,9 +50,7 @@ public class VideoImpl {
       QueryUserFeedbackRequest request) throws StreamException {
 
     return new StreamRequest<QueryUserFeedbackResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/feedback",
         request,
@@ -72,9 +68,7 @@ public class VideoImpl {
       throws StreamException {
 
     return new StreamRequest<QueryCallMembersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/members",
         request,
@@ -87,9 +81,7 @@ public class VideoImpl {
       throws StreamException {
 
     return new StreamRequest<QueryCallStatsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/stats",
         request,
@@ -111,9 +103,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<GetCallResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/video/call/{type}/{id}",
         request,
@@ -136,9 +126,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<UpdateCallResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/video/call/{type}/{id}",
         request,
@@ -162,9 +150,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<GetOrCreateCallResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}",
         request,
@@ -187,9 +173,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<BlockUserResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/block",
         request,
@@ -207,9 +191,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<SendClosedCaptionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/closed_captions",
         request,
@@ -226,9 +208,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<DeleteCallResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/delete",
         request,
@@ -252,9 +232,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<SendCallEventResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/event",
         request,
@@ -278,9 +256,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<CollectUserFeedbackResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/feedback",
         request,
@@ -297,9 +273,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<GoLiveResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/go_live",
         request,
@@ -322,9 +296,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<KickUserResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/kick",
         request,
@@ -341,9 +313,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<EndCallResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/mark_ended",
         request,
@@ -367,9 +337,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<UpdateCallMembersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/members",
         request,
@@ -392,9 +360,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<MuteUsersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/mute_users",
         request,
@@ -418,9 +384,7 @@ public class VideoImpl {
             "type", type);
 
     return new StreamRequest<QueryCallParticipantsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/participants",
         request,
@@ -443,9 +407,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<PinResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/pin",
         request,
@@ -463,9 +425,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<ListRecordingsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/video/call/{type}/{id}/recordings",
         request,
@@ -493,9 +453,7 @@ public class VideoImpl {
             "recording_type", recordingType);
 
     return new StreamRequest<StartRecordingResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/recordings/{recording_type}/start",
         request,
@@ -524,9 +482,7 @@ public class VideoImpl {
             "recording_type", recordingType);
 
     return new StreamRequest<StopRecordingResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/recordings/{recording_type}/stop",
         request,
@@ -551,9 +507,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<GetCallReportResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/video/call/{type}/{id}/report",
         request,
@@ -576,9 +530,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<RingCallResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/ring",
         request,
@@ -602,9 +554,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<StartRTMPBroadcastsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/rtmp_broadcasts",
         request,
@@ -622,9 +572,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<StopAllRTMPBroadcastsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/rtmp_broadcasts/stop",
         request,
@@ -652,9 +600,7 @@ public class VideoImpl {
             "name", name);
 
     return new StreamRequest<StopRTMPBroadcastsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/rtmp_broadcasts/{name}/stop",
         request,
@@ -686,9 +632,7 @@ public class VideoImpl {
             "user_session", userSession);
 
     return new StreamRequest<GetCallParticipantSessionMetricsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/video/call/{type}/{id}/session/{session}/participant/{user}/{user_session}/details/track",
         request,
@@ -722,9 +666,7 @@ public class VideoImpl {
             "session", session);
 
     return new StreamRequest<QueryCallParticipantSessionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/video/call/{type}/{id}/session/{session}/participant_sessions",
         request,
@@ -749,9 +691,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<StartHLSBroadcastingResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/start_broadcasting",
         request,
@@ -775,9 +715,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<StartClosedCaptionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/start_closed_captions",
         request,
@@ -801,9 +739,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<StartFrameRecordingResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/start_frame_recording",
         request,
@@ -827,9 +763,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<StartTranscriptionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/start_transcription",
         request,
@@ -853,9 +787,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<StopHLSBroadcastingResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/stop_broadcasting",
         request,
@@ -879,9 +811,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<StopClosedCaptionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/stop_closed_captions",
         request,
@@ -905,9 +835,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<StopFrameRecordingResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/stop_frame_recording",
         request,
@@ -930,9 +858,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<StopLiveResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/stop_live",
         request,
@@ -956,9 +882,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<StopTranscriptionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/stop_transcription",
         request,
@@ -982,9 +906,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<ListTranscriptionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/video/call/{type}/{id}/transcriptions",
         request,
@@ -1007,9 +929,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<UnblockUserResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/unblock",
         request,
@@ -1026,9 +946,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<UnpinResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/unpin",
         request,
@@ -1046,9 +964,7 @@ public class VideoImpl {
             "id", id);
 
     return new StreamRequest<UpdateUserPermissionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call/{type}/{id}/user_permissions",
         request,
@@ -1072,9 +988,7 @@ public class VideoImpl {
             "filename", filename);
 
     return new StreamRequest<DeleteRecordingResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/video/call/{type}/{id}/{session}/recordings/{filename}",
         request,
@@ -1105,9 +1019,7 @@ public class VideoImpl {
             "filename", filename);
 
     return new StreamRequest<DeleteTranscriptionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/video/call/{type}/{id}/{session}/transcriptions/{filename}",
         request,
@@ -1127,9 +1039,7 @@ public class VideoImpl {
       ReportClientCallEventRequest request) throws StreamException {
 
     return new StreamRequest<ReportClientEventResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call_client_event",
         request,
@@ -1142,9 +1052,7 @@ public class VideoImpl {
       QueryCallSessionStatsRequest request) throws StreamException {
 
     return new StreamRequest<QueryCallSessionStatsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/call_stats",
         request,
@@ -1172,9 +1080,7 @@ public class VideoImpl {
             "session", session);
 
     return new StreamRequest<QueryCallStatsMapResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/video/call_stats/{call_type}/{call_id}/{session}/map",
         request,
@@ -1208,9 +1114,7 @@ public class VideoImpl {
             "user_session", userSession);
 
     return new StreamRequest<GetCallSessionParticipantStatsDetailsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/video/call_stats/{call_type}/{call_id}/{session}/participant/{user}/{user_session}/details",
         request,
@@ -1250,9 +1154,7 @@ public class VideoImpl {
             "session", session);
 
     return new StreamRequest<QueryCallSessionParticipantStatsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/video/call_stats/{call_type}/{call_id}/{session}/participants",
         request,
@@ -1287,9 +1189,7 @@ public class VideoImpl {
             "user_session", userSession);
 
     return new StreamRequest<QueryCallSessionParticipantStatsTimelineResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/video/call_stats/{call_type}/{call_id}/{session}/participants/{user}/{user_session}/timeline",
         request,
@@ -1320,9 +1220,7 @@ public class VideoImpl {
       throws StreamException {
 
     return new StreamRequest<QueryCallsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/calls",
         request,
@@ -1340,9 +1238,7 @@ public class VideoImpl {
       throws StreamException {
 
     return new StreamRequest<ListCallTypeResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/video/calltypes",
         request,
@@ -1360,9 +1256,7 @@ public class VideoImpl {
       throws StreamException {
 
     return new StreamRequest<CreateCallTypeResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/calltypes",
         request,
@@ -1376,9 +1270,7 @@ public class VideoImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/video/calltypes/{name}",
         request,
@@ -1397,9 +1289,7 @@ public class VideoImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<GetCallTypeResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/video/calltypes/{name}",
         request,
@@ -1419,9 +1309,7 @@ public class VideoImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<UpdateCallTypeResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/video/calltypes/{name}",
         request,
@@ -1439,9 +1327,7 @@ public class VideoImpl {
   public StreamRequest<GetEdgesResponse> getEdges(GetEdgesRequest request) throws StreamException {
 
     return new StreamRequest<GetEdgesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/video/edges",
         request,
@@ -1459,9 +1345,7 @@ public class VideoImpl {
       throws StreamException {
 
     return new StreamRequest<ResolveSipAuthResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/sip/auth",
         request,
@@ -1474,9 +1358,7 @@ public class VideoImpl {
       ListSIPInboundRoutingRuleRequest request) throws StreamException {
 
     return new StreamRequest<ListSIPInboundRoutingRuleResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/video/sip/inbound_routing_rules",
         request,
@@ -1495,9 +1377,7 @@ public class VideoImpl {
       CreateSIPInboundRoutingRuleRequest request) throws StreamException {
 
     return new StreamRequest<SIPInboundRoutingRuleResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/sip/inbound_routing_rules",
         request,
@@ -1511,9 +1391,7 @@ public class VideoImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<DeleteSIPInboundRoutingRuleResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/video/sip/inbound_routing_rules/{id}",
         request,
@@ -1533,9 +1411,7 @@ public class VideoImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<UpdateSIPInboundRoutingRuleResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/video/sip/inbound_routing_rules/{id}",
         request,
@@ -1548,9 +1424,7 @@ public class VideoImpl {
       throws StreamException {
 
     return new StreamRequest<ListSIPTrunksResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/video/sip/inbound_trunks",
         request,
@@ -1568,9 +1442,7 @@ public class VideoImpl {
       throws StreamException {
 
     return new StreamRequest<CreateSIPTrunkResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/sip/inbound_trunks",
         request,
@@ -1584,9 +1456,7 @@ public class VideoImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<DeleteSIPTrunkResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/video/sip/inbound_trunks/{id}",
         request,
@@ -1606,9 +1476,7 @@ public class VideoImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<UpdateSIPTrunkResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/video/sip/inbound_trunks/{id}",
         request,
@@ -1621,9 +1489,7 @@ public class VideoImpl {
       ResolveSipInboundRequest request) throws StreamException {
 
     return new StreamRequest<ResolveSipInboundResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/sip/resolve",
         request,
@@ -1636,9 +1502,7 @@ public class VideoImpl {
       QueryAggregateCallStatsRequest request) throws StreamException {
 
     return new StreamRequest<QueryAggregateCallStatsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/video/stats",
         request,

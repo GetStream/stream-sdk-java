@@ -32,9 +32,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<GetApplicationResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/app",
         request,
@@ -51,14 +49,7 @@ public class CommonImpl {
   public StreamRequest<Response> updateApp(UpdateAppRequest request) throws StreamException {
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "PATCH",
-        "/api/v2/app",
-        request,
-        null,
-        new TypeReference<Response>() {});
+        client, "PATCH", "/api/v2/app", request, null, new TypeReference<Response>() {});
   }
 
   @NotNull
@@ -71,9 +62,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<ListBlockListResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/blocklists",
         request,
@@ -91,9 +80,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<CreateBlockListResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/blocklists",
         request,
@@ -107,9 +94,7 @@ public class CommonImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<ImportBlockListResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/blocklists/{id}/import",
         request,
@@ -123,9 +108,7 @@ public class CommonImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/blocklists/{name}",
         request,
@@ -144,9 +127,7 @@ public class CommonImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<GetBlockListResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/blocklists/{name}",
         request,
@@ -166,9 +147,7 @@ public class CommonImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<UpdateBlockListResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/blocklists/{name}",
         request,
@@ -187,9 +166,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<CheckPushResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/check_push",
         request,
@@ -206,9 +183,7 @@ public class CommonImpl {
   public StreamRequest<CheckSNSResponse> checkSNS(CheckSNSRequest request) throws StreamException {
 
     return new StreamRequest<CheckSNSResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/check_sns",
         request,
@@ -225,9 +200,7 @@ public class CommonImpl {
   public StreamRequest<CheckSQSResponse> checkSQS(CheckSQSRequest request) throws StreamException {
 
     return new StreamRequest<CheckSQSResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/check_sqs",
         request,
@@ -244,14 +217,7 @@ public class CommonImpl {
   public StreamRequest<Response> deleteDevice(DeleteDeviceRequest request) throws StreamException {
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/devices",
-        request,
-        null,
-        new TypeReference<Response>() {});
+        client, "DELETE", "/api/v2/devices", request, null, new TypeReference<Response>() {});
   }
 
   @NotNull
@@ -259,9 +225,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<ListDevicesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/devices",
         request,
@@ -278,14 +242,7 @@ public class CommonImpl {
   public StreamRequest<Response> createDevice(CreateDeviceRequest request) throws StreamException {
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/devices",
-        request,
-        null,
-        new TypeReference<Response>() {});
+        client, "POST", "/api/v2/devices", request, null, new TypeReference<Response>() {});
   }
 
   @NotNull
@@ -293,9 +250,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<ExportUsersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/export/users",
         request,
@@ -308,9 +263,7 @@ public class CommonImpl {
       ListExternalStorageRequest request) throws StreamException {
 
     return new StreamRequest<ListExternalStorageResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/external_storage",
         request,
@@ -328,9 +281,7 @@ public class CommonImpl {
       CreateExternalStorageRequest request) throws StreamException {
 
     return new StreamRequest<CreateExternalStorageResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/external_storage",
         request,
@@ -344,9 +295,7 @@ public class CommonImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<DeleteExternalStorageResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/external_storage/{name}",
         request,
@@ -366,9 +315,7 @@ public class CommonImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<UpdateExternalStorageResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/external_storage/{name}",
         request,
@@ -382,9 +329,7 @@ public class CommonImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<CheckExternalStorageResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/external_storage/{name}/check",
         request,
@@ -403,9 +348,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<CreateGuestResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/guest",
         request,
@@ -418,9 +361,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<CreateImportURLResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/import_urls",
         request,
@@ -438,9 +379,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<ListImportsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/imports",
         request,
@@ -458,9 +397,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<CreateImportResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/imports",
         request,
@@ -473,9 +410,7 @@ public class CommonImpl {
       ListImportV2TasksRequest request) throws StreamException {
 
     return new StreamRequest<ListImportV2TasksResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/imports/v2",
         request,
@@ -493,9 +428,7 @@ public class CommonImpl {
       CreateImportV2TaskRequest request) throws StreamException {
 
     return new StreamRequest<CreateImportV2TaskResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/imports/v2",
         request,
@@ -509,9 +442,7 @@ public class CommonImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<DeleteImportV2TaskResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/imports/v2/{id}",
         request,
@@ -531,9 +462,7 @@ public class CommonImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetImportV2TaskResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/imports/v2/{id}",
         request,
@@ -553,9 +482,7 @@ public class CommonImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<CancelImportV2TaskResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/imports/v2/{id}/cancel",
         request,
@@ -575,9 +502,7 @@ public class CommonImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetImportResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/imports/{id}",
         request,
@@ -594,14 +519,7 @@ public class CommonImpl {
   public StreamRequest<GetOGResponse> getOG(GetOGRequest request) throws StreamException {
 
     return new StreamRequest<GetOGResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "GET",
-        "/api/v2/og",
-        request,
-        null,
-        new TypeReference<GetOGResponse>() {});
+        client, "GET", "/api/v2/og", request, null, new TypeReference<GetOGResponse>() {});
   }
 
   @NotNull
@@ -609,9 +527,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<ListPermissionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/permissions",
         request,
@@ -630,9 +546,7 @@ public class CommonImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetCustomPermissionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/permissions/{id}",
         request,
@@ -650,28 +564,14 @@ public class CommonImpl {
   public StreamRequest<PollResponse> createPoll(CreatePollRequest request) throws StreamException {
 
     return new StreamRequest<PollResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/polls",
-        request,
-        null,
-        new TypeReference<PollResponse>() {});
+        client, "POST", "/api/v2/polls", request, null, new TypeReference<PollResponse>() {});
   }
 
   @NotNull
   public StreamRequest<PollResponse> updatePoll(UpdatePollRequest request) throws StreamException {
 
     return new StreamRequest<PollResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "PUT",
-        "/api/v2/polls",
-        request,
-        null,
-        new TypeReference<PollResponse>() {});
+        client, "PUT", "/api/v2/polls", request, null, new TypeReference<PollResponse>() {});
   }
 
   @NotNull
@@ -679,9 +579,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<QueryPollsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/polls/query",
         request,
@@ -700,9 +598,7 @@ public class CommonImpl {
     var pathParams = Map.of("poll_id", pollID);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/polls/{poll_id}",
         request,
@@ -721,9 +617,7 @@ public class CommonImpl {
     var pathParams = Map.of("poll_id", pollID);
 
     return new StreamRequest<PollResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/polls/{poll_id}",
         request,
@@ -742,9 +636,7 @@ public class CommonImpl {
     var pathParams = Map.of("poll_id", pollID);
 
     return new StreamRequest<PollResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/polls/{poll_id}",
         request,
@@ -764,9 +656,7 @@ public class CommonImpl {
     var pathParams = Map.of("poll_id", pollID);
 
     return new StreamRequest<PollOptionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/polls/{poll_id}/options",
         request,
@@ -780,9 +670,7 @@ public class CommonImpl {
     var pathParams = Map.of("poll_id", pollID);
 
     return new StreamRequest<PollOptionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/polls/{poll_id}/options",
         request,
@@ -800,9 +688,7 @@ public class CommonImpl {
             "option_id", optionID);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/polls/{poll_id}/options/{option_id}",
         request,
@@ -826,9 +712,7 @@ public class CommonImpl {
             "option_id", optionID);
 
     return new StreamRequest<PollOptionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/polls/{poll_id}/options/{option_id}",
         request,
@@ -848,9 +732,7 @@ public class CommonImpl {
     var pathParams = Map.of("poll_id", pollID);
 
     return new StreamRequest<PollVotesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/polls/{poll_id}/votes",
         request,
@@ -869,9 +751,7 @@ public class CommonImpl {
       UpdatePushNotificationPreferencesRequest request) throws StreamException {
 
     return new StreamRequest<UpsertPushPreferencesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/push_preferences",
         request,
@@ -884,9 +764,7 @@ public class CommonImpl {
       ListPushProvidersRequest request) throws StreamException {
 
     return new StreamRequest<ListPushProvidersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/push_providers",
         request,
@@ -904,9 +782,7 @@ public class CommonImpl {
       UpsertPushProviderRequest request) throws StreamException {
 
     return new StreamRequest<UpsertPushProviderResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/push_providers",
         request,
@@ -929,9 +805,7 @@ public class CommonImpl {
             "name", name);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/push_providers/{type}/{name}",
         request,
@@ -950,9 +824,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<GetPushTemplatesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/push_templates",
         request,
@@ -965,9 +837,7 @@ public class CommonImpl {
       UpsertPushTemplateRequest request) throws StreamException {
 
     return new StreamRequest<UpsertPushTemplateResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/push_templates",
         request,
@@ -980,9 +850,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<GetRateLimitsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/rate_limits",
         request,
@@ -1000,14 +868,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<ListRolesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "GET",
-        "/api/v2/roles",
-        request,
-        null,
-        new TypeReference<ListRolesResponse>() {});
+        client, "GET", "/api/v2/roles", request, null, new TypeReference<ListRolesResponse>() {});
   }
 
   @NotNull
@@ -1020,14 +881,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<CreateRoleResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/roles",
-        request,
-        null,
-        new TypeReference<CreateRoleResponse>() {});
+        client, "POST", "/api/v2/roles", request, null, new TypeReference<CreateRoleResponse>() {});
   }
 
   @NotNull
@@ -1035,9 +889,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<SearchRolesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/roles/search",
         request,
@@ -1051,9 +903,7 @@ public class CommonImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/roles/{name}",
         request,
@@ -1072,9 +922,7 @@ public class CommonImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetTaskResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/tasks/{id}",
         request,
@@ -1091,14 +939,7 @@ public class CommonImpl {
   public StreamRequest<Response> deleteFile(DeleteFileRequest request) throws StreamException {
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/uploads/file",
-        request,
-        null,
-        new TypeReference<Response>() {});
+        client, "DELETE", "/api/v2/uploads/file", request, null, new TypeReference<Response>() {});
   }
 
   @NotNull
@@ -1111,9 +952,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<FileUploadResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/uploads/file",
         request,
@@ -1130,14 +969,7 @@ public class CommonImpl {
   public StreamRequest<Response> deleteImage(DeleteImageRequest request) throws StreamException {
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "DELETE",
-        "/api/v2/uploads/image",
-        request,
-        null,
-        new TypeReference<Response>() {});
+        client, "DELETE", "/api/v2/uploads/image", request, null, new TypeReference<Response>() {});
   }
 
   @NotNull
@@ -1150,9 +982,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<ImageUploadResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/uploads/image",
         request,
@@ -1170,9 +1000,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<ListUserGroupsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/usergroups",
         request,
@@ -1190,9 +1018,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<CreateUserGroupResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/usergroups",
         request,
@@ -1205,9 +1031,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<SearchUserGroupsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/usergroups/search",
         request,
@@ -1221,9 +1045,7 @@ public class CommonImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/usergroups/{id}",
         request,
@@ -1242,9 +1064,7 @@ public class CommonImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetUserGroupResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/usergroups/{id}",
         request,
@@ -1264,9 +1084,7 @@ public class CommonImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<UpdateUserGroupResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/usergroups/{id}",
         request,
@@ -1286,9 +1104,7 @@ public class CommonImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<AddUserGroupMembersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/usergroups/{id}/members",
         request,
@@ -1302,9 +1118,7 @@ public class CommonImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<RemoveUserGroupMembersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/usergroups/{id}/members/delete",
         request,
@@ -1317,14 +1131,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<QueryUsersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "GET",
-        "/api/v2/users",
-        request,
-        null,
-        new TypeReference<QueryUsersResponse>() {});
+        client, "GET", "/api/v2/users", request, null, new TypeReference<QueryUsersResponse>() {});
   }
 
   @NotNull
@@ -1337,9 +1144,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<UpdateUsersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/users",
         request,
@@ -1352,9 +1157,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<UpdateUsersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/users",
         request,
@@ -1367,9 +1170,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<GetBlockedUsersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/users/block",
         request,
@@ -1387,9 +1188,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<BlockUsersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/users/block",
         request,
@@ -1402,9 +1201,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<DeactivateUsersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/users/deactivate",
         request,
@@ -1417,9 +1214,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<DeleteUsersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/users/delete",
         request,
@@ -1432,9 +1227,7 @@ public class CommonImpl {
       GetUserLiveLocationsRequest request) throws StreamException {
 
     return new StreamRequest<SharedLocationsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/users/live_locations",
         request,
@@ -1452,9 +1245,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<SharedLocationResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/users/live_locations",
         request,
@@ -1467,9 +1258,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<ReactivateUsersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/users/reactivate",
         request,
@@ -1481,14 +1270,7 @@ public class CommonImpl {
   public StreamRequest<Response> restoreUsers(RestoreUsersRequest request) throws StreamException {
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
-        "POST",
-        "/api/v2/users/restore",
-        request,
-        null,
-        new TypeReference<Response>() {});
+        client, "POST", "/api/v2/users/restore", request, null, new TypeReference<Response>() {});
   }
 
   @NotNull
@@ -1496,9 +1278,7 @@ public class CommonImpl {
       throws StreamException {
 
     return new StreamRequest<UnblockUsersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/users/unblock",
         request,
@@ -1512,9 +1292,7 @@ public class CommonImpl {
     var pathParams = Map.of("user_id", userID);
 
     return new StreamRequest<DeactivateUserResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/users/{user_id}/deactivate",
         request,
@@ -1534,9 +1312,7 @@ public class CommonImpl {
     var pathParams = Map.of("user_id", userID);
 
     return new StreamRequest<ExportUserResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/users/{user_id}/export",
         request,
@@ -1556,9 +1332,7 @@ public class CommonImpl {
     var pathParams = Map.of("user_id", userID);
 
     return new StreamRequest<ReactivateUserResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/users/{user_id}/reactivate",
         request,
