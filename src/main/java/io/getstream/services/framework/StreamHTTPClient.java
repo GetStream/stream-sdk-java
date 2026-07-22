@@ -207,8 +207,9 @@ public class StreamHTTPClient {
         options.getLogBodies());
     if (options.getLogBodies()) {
       logger.warn(
-          "log_bodies is enabled: HTTP request and response bodies will be logged (secret keys are"
-              + " redacted). Do not enable in production unless you accept this risk.");
+          "HTTP request/response bodies will be logged. Auth headers and known-secret fields are"
+              + " still redacted, but other sensitive data (messages, PII) may appear in logs."
+              + " Disable for production.");
     }
   }
 
