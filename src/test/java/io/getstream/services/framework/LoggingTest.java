@@ -1,14 +1,15 @@
-package io.getstream;
+package io.getstream.services.framework;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import io.getstream.services.framework.StreamClientOptions;
-import io.getstream.services.framework.StreamHTTPClient;
-import io.getstream.services.framework.StreamRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.SocketPolicy;
@@ -17,6 +18,8 @@ import org.slf4j.event.Level;
 import org.slf4j.helpers.LegacyAbstractLogger;
 import org.slf4j.helpers.MessageFormatter;
 
+// Lives in io.getstream.services.framework (not io.getstream) so it can reach the package-private
+// StreamHTTPClient.setBaseUrl and LogRedaction without any public test-only API surface.
 public class LoggingTest {
   static final class RecordingLogger extends LegacyAbstractLogger {
     record Entry(Level level, String message) {}
@@ -88,8 +91,11 @@ public class LoggingTest {
   }
 
   private void get(StreamHTTPClient c) throws Exception {
-    new StreamRequest<Map<String, Object>>(
-            c, "GET", "/api/v2/app", null, null, new TypeReference<>() {})
+    getPath(c, "/api/v2/app");
+  }
+
+  private void getPath(StreamHTTPClient c, String path) throws Exception {
+    new StreamRequest<Map<String, Object>>(c, "GET", path, null, null, new TypeReference<>() {})
         .execute();
   }
 
@@ -98,8 +104,33 @@ public class LoggingTest {
     client(false);
     var inits = log.named("client.initialized");
     assertEquals(1, inits.size());
-    assertTrue(inits.get(0).message().contains("stream.sdk.name=stream-sdk-java"));
-    assertTrue(inits.get(0).message().contains("stream.client.max_conns_per_host="));
+    String m = inits.get(0).message();
+    // sdk.name is a fixed constant; version is present but its value depends on version.properties.
+    assertTrue(m.contains("stream.sdk.name=stream-sdk-java"), m);
+    assertTrue(m.contains("stream.sdk.version="), m);
+    // Pool/timeout knobs equal the StreamClientOptions defaults for a default-options client.
+    assertTrue(
+        m.contains(
+            "stream.client.max_conns_per_host=" + StreamClientOptions.DEFAULT_MAX_CONNS_PER_HOST),
+        m);
+    assertTrue(
+        m.contains(
+            "stream.client.idle_timeout_seconds="
+                + StreamClientOptions.DEFAULT_IDLE_TIMEOUT.toSeconds()),
+        m);
+    assertTrue(
+        m.contains(
+            "stream.client.connect_timeout_seconds="
+                + StreamClientOptions.DEFAULT_CONNECT_TIMEOUT.toSeconds()),
+        m);
+    assertTrue(
+        m.contains(
+            "stream.client.request_timeout_seconds="
+                + StreamClientOptions.DEFAULT_REQUEST_TIMEOUT.toSeconds()),
+        m);
+    assertTrue(m.contains("stream.client.gzip_enabled=true"), m);
+    assertTrue(m.contains("stream.client.user_http_client=false"), m);
+    assertTrue(m.contains("stream.client.log_bodies=false"), m);
   }
 
   @Test
@@ -140,15 +171,45 @@ public class LoggingTest {
 
   @Test
   void queryRedaction() throws Exception {
+    // A real, non-empty query carrying a secret proves redactQuery actually transforms it. The old
+    // test passed a null query, so redactQuery short-circuited on querySize()==0 and never ran.
     server.enqueue(
         new MockResponse()
             .setResponseCode(200)
             .setHeader("Content-Type", "application/json")
             .setBody("{}"));
-    get(client(false));
+    getPath(client(false), "/api/v2/app?token=SECRETVALUE");
+    var sent = log.named("http.request.sent");
+    assertEquals(1, sent.size());
+    assertTrue(sent.get(0).message().contains("url.query=token=<redacted>"), sent.get(0).message());
     for (var e : log.entries) {
-      assertFalse(e.message().contains("api_key=key"), () -> "api_key leaked: " + e.message());
+      assertFalse(e.message().contains("SECRETVALUE"), () -> "token leaked: " + e.message());
     }
+  }
+
+  @Test
+  @SuppressWarnings("deprecation")
+  void deprecatedInterceptorRedactsApiKeyInUrl() throws Exception {
+    // Reproduces the real leak class: the auth interceptor appends api_key downstream, so the
+    // response's request URL carries it. Both URL log sites (request-start, response-summary) must
+    // redact regardless of interceptor ordering, so we put api_key straight on the request URL.
+    server.enqueue(
+        new MockResponse()
+            .setResponseCode(200)
+            .setHeader("Content-Type", "application/json")
+            .setBody("{}"));
+    var lines = new ArrayList<String>();
+    var interceptor =
+        new HttpLoggingInterceptor(lines::add).setLevel(HttpLoggingInterceptor.Level.BASIC);
+    var okhttp = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+    HttpUrl url =
+        server.url("/api/v2/app").newBuilder().addQueryParameter("api_key", "SECRETKEY").build();
+    try (Response resp = okhttp.newCall(new Request.Builder().url(url).build()).execute()) {
+      assertEquals(200, resp.code());
+    }
+    String all = String.join("\n", lines);
+    assertTrue(all.contains("api_key=<redacted>"), () -> "expected redacted api_key:\n" + all);
+    assertFalse(all.contains("SECRETKEY"), () -> "api_key leaked:\n" + all);
   }
 
   @Test

@@ -150,7 +150,9 @@ public class StreamHTTPClient {
     return baseUrl;
   }
 
-  public void setBaseUrl(@NotNull String baseUrl) {
+  // Why: construction-time / test-support only (points a client at MockWebServer). Package-private
+  // to keep it off the public API; not safe for concurrent post-construction mutation.
+  void setBaseUrl(@NotNull String baseUrl) {
     this.baseUrl = baseUrl;
   }
 

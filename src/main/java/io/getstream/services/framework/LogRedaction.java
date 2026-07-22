@@ -27,6 +27,17 @@ final class LogRedaction {
     return b.toString();
   }
 
+  /**
+   * Full URL as a string with secret query values redacted, scheme/host/path preserved. Used by the
+   * deprecated {@link HttpLoggingInterceptor}, whose response-summary line logs the final request
+   * URL after a downstream interceptor may have appended {@code api_key}.
+   */
+  static String redactUrl(HttpUrl url) {
+    String base = url.newBuilder().query(null).build().toString();
+    String query = redactQuery(url);
+    return query.isEmpty() ? base : base + "?" + query;
+  }
+
   static boolean isSecretHeader(String name) {
     String n = name.toLowerCase();
     return n.equals("authorization")

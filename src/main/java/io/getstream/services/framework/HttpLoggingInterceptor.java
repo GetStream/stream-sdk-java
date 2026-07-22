@@ -38,8 +38,9 @@ import org.jetbrains.annotations.NotNull;
  * slightly between releases. If you need a stable logging format, use your own interceptor.
  *
  * @deprecated Superseded by the SLF4J structured log events emitted by the SDK (inject a logger via
- *     {@code StreamClientOptions.setLogger}). Kept for backward compatibility. Secret headers and
- *     secret body keys are now redacted in its output.
+ *     {@code StreamClientOptions.setLogger}). Kept for backward compatibility. Secret headers,
+ *     secret body keys, and secret URL query values ({@code api_key}/{@code api_secret}/{@code
+ *     token}) are now redacted in its output.
  */
 @Deprecated
 public final class HttpLoggingInterceptor implements Interceptor {
@@ -186,7 +187,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
         "--> "
             + request.method()
             + ' '
-            + request.url()
+            + LogRedaction.redactUrl(request.url())
             + (connection != null ? " " + connection.protocol() : "");
     if (!logHeaders && hasRequestBody) {
       requestStartMessage += " (" + requestBody.contentLength() + "-byte body)";
@@ -264,7 +265,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
             + response.code()
             + (response.message().isEmpty() ? "" : ' ' + response.message())
             + ' '
-            + response.request().url()
+            + LogRedaction.redactUrl(response.request().url())
             + " ("
             + tookMs
             + "ms"
