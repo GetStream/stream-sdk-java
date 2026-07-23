@@ -174,6 +174,12 @@ public class StreamHTTPClient {
     return options.getLogBodies();
   }
 
+  /** Opt-in auto-retry policy (default: disabled, no retries). */
+  @NotNull
+  public RetryConfig getRetryConfig() {
+    return options.getRetry();
+  }
+
   private void setCredetials(@NotNull String apiKey, @NotNull String apiSecret) {
     this.apiKey = apiKey;
     this.apiSecret = apiSecret;
