@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.1.0](https://github.com/GetStream/stream-sdk-java/compare/9.0.0...9.1.0) (2026-07-24)
+
+
+### Features
+
+* add opt-in retry for rate-limited and transport-failed requests ([#75](https://github.com/GetStream/stream-sdk-java/issues/75)) ([e4ea451](https://github.com/GetStream/stream-sdk-java/commit/e4ea4517bb4d29b7caa773ea8ac1f6de91feedb2))
+* add slf4j structured logging with secret redaction ([#73](https://github.com/GetStream/stream-sdk-java/issues/73)) ([88ad7c9](https://github.com/GetStream/stream-sdk-java/commit/88ad7c97f5c25cc844493dfcc0c24129c5489918))
+
 ## [9.0.0](https://github.com/GetStream/stream-sdk-java/compare/8.0.0...9.0.0) (2026-07-15)
 
 
