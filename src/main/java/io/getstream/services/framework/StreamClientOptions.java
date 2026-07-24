@@ -25,6 +25,7 @@ public class StreamClientOptions {
   @Nullable private OkHttpClient httpClient;
   @Nullable private Logger logger;
   private boolean logBodies = false;
+  @NotNull private RetryConfig retry = new RetryConfig();
 
   public StreamClientOptions setMaxConnsPerHost(int n) {
     if (n <= 0) throw new IllegalArgumentException("maxConnsPerHost must be > 0, got " + n);
@@ -77,6 +78,12 @@ public class StreamClientOptions {
     return this;
   }
 
+  /** Opt-in auto-retry policy (default: disabled, no retries). */
+  public StreamClientOptions setRetry(@NotNull RetryConfig retry) {
+    this.retry = retry;
+    return this;
+  }
+
   public int getMaxConnsPerHost() {
     return maxConnsPerHost;
   }
@@ -117,5 +124,10 @@ public class StreamClientOptions {
 
   public boolean getLogBodies() {
     return logBodies;
+  }
+
+  @NotNull
+  public RetryConfig getRetry() {
+    return retry;
   }
 }
