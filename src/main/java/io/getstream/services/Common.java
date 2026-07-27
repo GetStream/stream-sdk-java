@@ -46,6 +46,10 @@ public interface Common {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<ImportBlockListResponse> importBlockList(
+      @NotNull String id, ImportBlockListRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<Response> deleteBlockList(
       @NotNull String name, DeleteBlockListRequest request) throws StreamException;
 
@@ -167,34 +171,6 @@ public interface Common {
   @NotNull
   public StreamRequest<CreateImportV2TaskResponse> createImportV2Task(
       CreateImportV2TaskRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<DeleteExternalStorageResponse> deleteImporterExternalStorage(
-      DeleteImporterExternalStorageRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<DeleteExternalStorageResponse> deleteImporterExternalStorage()
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<GetExternalStorageResponse> getImporterExternalStorage(
-      GetImporterExternalStorageRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<GetExternalStorageResponse> getImporterExternalStorage()
-      throws StreamException;
-
-  @NotNull
-  public StreamRequest<UpsertExternalStorageResponse> upsertImporterExternalStorage(
-      UpsertImporterExternalStorageRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<ValidateExternalStorageResponse> validateImporterExternalStorage(
-      ValidateImporterExternalStorageRequest request) throws StreamException;
-
-  @NotNull
-  public StreamRequest<ValidateExternalStorageResponse> validateImporterExternalStorage()
-      throws StreamException;
 
   @NotNull
   public StreamRequest<DeleteImportV2TaskResponse> deleteImportV2Task(

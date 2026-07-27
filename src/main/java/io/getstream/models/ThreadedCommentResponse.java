@@ -110,6 +110,10 @@ public class ThreadedCommentResponse {
   private Map<String, Object> custom;
 
   @Nullable
+  @JsonProperty("i18n")
+  private Map<String, String> i18n;
+
+  @Nullable
   @JsonProperty("meta")
   private RepliesMeta meta;
 

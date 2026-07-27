@@ -25,4 +25,12 @@ public class GetCommentRequest {
   @Query("user_id")
   @JsonIgnore
   private String UserID;
+
+  @Query("language")
+  @JsonIgnore
+  private String Language;
+
+  @Query("translate_text")
+  @JsonIgnore
+  private Boolean TranslateText;
 }

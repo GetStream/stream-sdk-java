@@ -50,6 +50,10 @@ public interface Feeds {
   public StreamRequest<QueryActivitiesResponse> queryActivities() throws StreamException;
 
   @NotNull
+  public StreamRequest<BatchQueryActivityReactionsResponse> batchQueryActivityReactions(
+      BatchQueryActivityReactionsRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<DeleteBookmarkResponse> deleteBookmark(
       @NotNull String activityID, DeleteBookmarkRequest request) throws StreamException;
 
@@ -125,6 +129,14 @@ public interface Feeds {
       @NotNull String activityID, @NotNull String type) throws StreamException;
 
   @NotNull
+  public StreamRequest<QueryActivitySharesResponse> queryActivityShares(
+      @NotNull String activityID, QueryActivitySharesRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryActivitySharesResponse> queryActivityShares(@NotNull String activityID)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<DeleteActivityResponse> deleteActivity(
       @NotNull String id, DeleteActivityRequest request) throws StreamException;
 
@@ -162,6 +174,10 @@ public interface Feeds {
   @NotNull
   public StreamRequest<RestoreActivityResponse> restoreActivity(@NotNull String id)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<TranslateActivityResponse> translateActivity(
+      @NotNull String id, TranslateActivityRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryBookmarkFoldersResponse> queryBookmarkFolders(
@@ -241,6 +257,10 @@ public interface Feeds {
   @NotNull
   public StreamRequest<QueryCommentsResponse> queryComments(QueryCommentsRequest request)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<BatchQueryCommentReactionsResponse> batchQueryCommentReactions(
+      BatchQueryCommentReactionsRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<DeleteCommentBookmarkResponse> deleteCommentBookmark(
@@ -333,6 +353,10 @@ public interface Feeds {
   @NotNull
   public StreamRequest<RestoreCommentResponse> restoreComment(@NotNull String id)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<TranslateCommentResponse> translateComment(
+      @NotNull String id, TranslateCommentRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<ListFeedGroupsResponse> listFeedGroups(ListFeedGroupsRequest request)

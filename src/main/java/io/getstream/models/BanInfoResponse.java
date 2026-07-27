@@ -27,6 +27,10 @@ public class BanInfoResponse {
   private Date createdAt;
 
   @Nullable
+  @JsonProperty("channel_cid")
+  private String channelCid;
+
+  @Nullable
   @JsonProperty("expires")
   private Date expires;
 
@@ -37,6 +41,10 @@ public class BanInfoResponse {
   @Nullable
   @JsonProperty("shadow")
   private Boolean shadow;
+
+  @Nullable
+  @JsonProperty("channel")
+  private ChannelMetadata channel;
 
   @Nullable
   @JsonProperty("created_by")

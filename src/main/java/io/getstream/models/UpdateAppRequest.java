@@ -50,6 +50,10 @@ public class UpdateAppRequest {
   private Boolean channelHideMembersOnly;
 
   @Nullable
+  @JsonProperty("chat_primary_use_case")
+  private String chatPrimaryUseCase;
+
+  @Nullable
   @JsonProperty("custom_action_handler_url")
   private String customActionHandlerUrl;
 
@@ -68,6 +72,10 @@ public class UpdateAppRequest {
   @Nullable
   @JsonProperty("enforce_unique_usernames")
   private String enforceUniqueUsernames;
+
+  @Nullable
+  @JsonProperty("feed_audit_logs_enabled")
+  private Boolean feedAuditLogsEnabled;
 
   @Nullable
   @JsonProperty("feeds_moderation_enabled")
@@ -128,6 +136,10 @@ public class UpdateAppRequest {
   @Nullable
   @JsonProperty("reminders_max_members")
   private Integer remindersMaxMembers;
+
+  @Nullable
+  @JsonProperty("reminders_max_per_user")
+  private Integer remindersMaxPerUser;
 
   @Nullable
   @JsonProperty("revoke_tokens_issued_before")

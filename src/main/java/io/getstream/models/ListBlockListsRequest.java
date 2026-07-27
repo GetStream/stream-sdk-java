@@ -25,4 +25,12 @@ public class ListBlockListsRequest {
   @Query("team")
   @JsonIgnore
   private String Team;
+
+  @Query("cursor")
+  @JsonIgnore
+  private String Cursor;
+
+  @Query("limit")
+  @JsonIgnore
+  private Integer Limit;
 }

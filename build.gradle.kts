@@ -30,6 +30,7 @@ dependencies {
 
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
     implementation("com.squareup.okhttp3:okhttp")
+    implementation("org.slf4j:slf4j-api:2.0.13")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.18.2")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.18.2")
     implementation("io.jsonwebtoken:jjwt-api:0.12.6")

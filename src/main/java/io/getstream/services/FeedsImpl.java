@@ -32,9 +32,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<AddActivityResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/activities",
         request,
@@ -47,9 +45,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<UpsertActivitiesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/activities/batch",
         request,
@@ -62,9 +58,7 @@ public class FeedsImpl {
       UpdateActivitiesPartialBatchRequest request) throws StreamException {
 
     return new StreamRequest<UpdateActivitiesPartialBatchResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/feeds/activities/batch/partial",
         request,
@@ -77,9 +71,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<DeleteActivitiesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/activities/delete",
         request,
@@ -92,9 +84,7 @@ public class FeedsImpl {
       TrackActivityMetricsRequest request) throws StreamException {
 
     return new StreamRequest<TrackActivityMetricsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/activities/metrics/track",
         request,
@@ -107,9 +97,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<QueryActivitiesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/activities/query",
         request,
@@ -123,14 +111,25 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<BatchQueryActivityReactionsResponse> batchQueryActivityReactions(
+      BatchQueryActivityReactionsRequest request) throws StreamException {
+
+    return new StreamRequest<BatchQueryActivityReactionsResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/activities/reactions/query",
+        request,
+        null,
+        new TypeReference<BatchQueryActivityReactionsResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<DeleteBookmarkResponse> deleteBookmark(
       @NotNull String activityID, DeleteBookmarkRequest request) throws StreamException {
     var pathParams = Map.of("activity_id", activityID);
 
     return new StreamRequest<DeleteBookmarkResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/feeds/activities/{activity_id}/bookmarks",
         request,
@@ -150,9 +149,7 @@ public class FeedsImpl {
     var pathParams = Map.of("activity_id", activityID);
 
     return new StreamRequest<UpdateBookmarkResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/feeds/activities/{activity_id}/bookmarks",
         request,
@@ -172,9 +169,7 @@ public class FeedsImpl {
     var pathParams = Map.of("activity_id", activityID);
 
     return new StreamRequest<AddBookmarkResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/activities/{activity_id}/bookmarks",
         request,
@@ -194,9 +189,7 @@ public class FeedsImpl {
     var pathParams = Map.of("activity_id", activityID);
 
     return new StreamRequest<ActivityFeedbackResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/activities/{activity_id}/feedback",
         request,
@@ -220,9 +213,7 @@ public class FeedsImpl {
             "poll_id", pollID);
 
     return new StreamRequest<PollVoteResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/activities/{activity_id}/polls/{poll_id}/vote",
         request,
@@ -250,9 +241,7 @@ public class FeedsImpl {
             "vote_id", voteID);
 
     return new StreamRequest<PollVoteResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/feeds/activities/{activity_id}/polls/{poll_id}/vote/{vote_id}",
         request,
@@ -273,9 +262,7 @@ public class FeedsImpl {
     var pathParams = Map.of("activity_id", activityID);
 
     return new StreamRequest<AddReactionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/activities/{activity_id}/reactions",
         request,
@@ -289,9 +276,7 @@ public class FeedsImpl {
     var pathParams = Map.of("activity_id", activityID);
 
     return new StreamRequest<QueryActivityReactionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/activities/{activity_id}/reactions/query",
         request,
@@ -315,9 +300,7 @@ public class FeedsImpl {
             "type", type);
 
     return new StreamRequest<DeleteActivityReactionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/feeds/activities/{activity_id}/reactions/{type}",
         request,
@@ -332,14 +315,32 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<QueryActivitySharesResponse> queryActivityShares(
+      @NotNull String activityID, QueryActivitySharesRequest request) throws StreamException {
+    var pathParams = Map.of("activity_id", activityID);
+
+    return new StreamRequest<QueryActivitySharesResponse>(
+        client,
+        "GET",
+        "/api/v2/feeds/activities/{activity_id}/shares",
+        request,
+        pathParams,
+        new TypeReference<QueryActivitySharesResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryActivitySharesResponse> queryActivityShares(@NotNull String activityID)
+      throws StreamException {
+    return queryActivityShares(activityID, new QueryActivitySharesRequest());
+  }
+
+  @NotNull
   public StreamRequest<DeleteActivityResponse> deleteActivity(
       @NotNull String id, DeleteActivityRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<DeleteActivityResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/feeds/activities/{id}",
         request,
@@ -359,9 +360,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetActivityResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/feeds/activities/{id}",
         request,
@@ -380,9 +379,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<UpdateActivityPartialResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/feeds/activities/{id}",
         request,
@@ -402,9 +399,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<UpdateActivityResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/feeds/activities/{id}",
         request,
@@ -424,9 +419,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<RestoreActivityResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/activities/{id}/restore",
         request,
@@ -441,13 +434,25 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<TranslateActivityResponse> translateActivity(
+      @NotNull String id, TranslateActivityRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<TranslateActivityResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/activities/{id}/translate",
+        request,
+        pathParams,
+        new TypeReference<TranslateActivityResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<QueryBookmarkFoldersResponse> queryBookmarkFolders(
       QueryBookmarkFoldersRequest request) throws StreamException {
 
     return new StreamRequest<QueryBookmarkFoldersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/bookmark_folders/query",
         request,
@@ -466,9 +471,7 @@ public class FeedsImpl {
     var pathParams = Map.of("folder_id", folderID);
 
     return new StreamRequest<DeleteBookmarkFolderResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/feeds/bookmark_folders/{folder_id}",
         request,
@@ -488,9 +491,7 @@ public class FeedsImpl {
     var pathParams = Map.of("folder_id", folderID);
 
     return new StreamRequest<UpdateBookmarkFolderResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/feeds/bookmark_folders/{folder_id}",
         request,
@@ -509,9 +510,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<QueryBookmarksResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/bookmarks/query",
         request,
@@ -529,9 +528,7 @@ public class FeedsImpl {
       DeleteCollectionsRequest request) throws StreamException {
 
     return new StreamRequest<DeleteCollectionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/feeds/collections",
         request,
@@ -544,9 +541,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<ReadCollectionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/feeds/collections",
         request,
@@ -564,9 +559,7 @@ public class FeedsImpl {
       UpdateCollectionsRequest request) throws StreamException {
 
     return new StreamRequest<UpdateCollectionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/feeds/collections",
         request,
@@ -579,9 +572,7 @@ public class FeedsImpl {
       CreateCollectionsRequest request) throws StreamException {
 
     return new StreamRequest<CreateCollectionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/collections",
         request,
@@ -594,9 +585,7 @@ public class FeedsImpl {
       UpsertCollectionsRequest request) throws StreamException {
 
     return new StreamRequest<UpsertCollectionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/feeds/collections",
         request,
@@ -609,9 +598,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<QueryCollectionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/collections/query",
         request,
@@ -629,9 +616,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<GetCommentsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/feeds/comments",
         request,
@@ -644,9 +629,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<AddCommentResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/comments",
         request,
@@ -664,9 +647,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<AddCommentsBatchResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/comments/batch",
         request,
@@ -679,9 +660,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<QueryCommentsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/comments/query",
         request,
@@ -690,14 +669,25 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<BatchQueryCommentReactionsResponse> batchQueryCommentReactions(
+      BatchQueryCommentReactionsRequest request) throws StreamException {
+
+    return new StreamRequest<BatchQueryCommentReactionsResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/comments/reactions/query",
+        request,
+        null,
+        new TypeReference<BatchQueryCommentReactionsResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<DeleteCommentBookmarkResponse> deleteCommentBookmark(
       @NotNull String commentID, DeleteCommentBookmarkRequest request) throws StreamException {
     var pathParams = Map.of("comment_id", commentID);
 
     return new StreamRequest<DeleteCommentBookmarkResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/feeds/comments/{comment_id}/bookmarks",
         request,
@@ -717,9 +707,7 @@ public class FeedsImpl {
     var pathParams = Map.of("comment_id", commentID);
 
     return new StreamRequest<UpdateCommentBookmarkResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/feeds/comments/{comment_id}/bookmarks",
         request,
@@ -739,9 +727,7 @@ public class FeedsImpl {
     var pathParams = Map.of("comment_id", commentID);
 
     return new StreamRequest<AddCommentBookmarkResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/comments/{comment_id}/bookmarks",
         request,
@@ -761,9 +747,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<DeleteCommentResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/feeds/comments/{id}",
         request,
@@ -783,9 +767,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetCommentResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/feeds/comments/{id}",
         request,
@@ -804,9 +786,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<UpdateCommentResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/feeds/comments/{id}",
         request,
@@ -826,9 +806,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<UpdateCommentPartialResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/comments/{id}/partial",
         request,
@@ -848,9 +826,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<AddCommentReactionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/comments/{id}/reactions",
         request,
@@ -864,9 +840,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<QueryCommentReactionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/comments/{id}/reactions/query",
         request,
@@ -890,9 +864,7 @@ public class FeedsImpl {
             "type", type);
 
     return new StreamRequest<DeleteCommentReactionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/feeds/comments/{id}/reactions/{type}",
         request,
@@ -912,9 +884,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetCommentRepliesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/feeds/comments/{id}/replies",
         request,
@@ -934,9 +904,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<RestoreCommentResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/comments/{id}/restore",
         request,
@@ -951,13 +919,25 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<TranslateCommentResponse> translateComment(
+      @NotNull String id, TranslateCommentRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<TranslateCommentResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/comments/{id}/translate",
+        request,
+        pathParams,
+        new TypeReference<TranslateCommentResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<ListFeedGroupsResponse> listFeedGroups(ListFeedGroupsRequest request)
       throws StreamException {
 
     return new StreamRequest<ListFeedGroupsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/feeds/feed_groups",
         request,
@@ -975,9 +955,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<CreateFeedGroupResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/feed_groups",
         request,
@@ -995,9 +973,7 @@ public class FeedsImpl {
             "feed_id", feedID);
 
     return new StreamRequest<DeleteFeedResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}",
         request,
@@ -1021,9 +997,7 @@ public class FeedsImpl {
             "feed_id", feedID);
 
     return new StreamRequest<GetOrCreateFeedResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}",
         request,
@@ -1047,9 +1021,7 @@ public class FeedsImpl {
             "feed_id", feedID);
 
     return new StreamRequest<UpdateFeedResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}",
         request,
@@ -1073,9 +1045,7 @@ public class FeedsImpl {
             "feed_id", feedID);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/activities/mark/batch",
         request,
@@ -1103,9 +1073,7 @@ public class FeedsImpl {
             "activity_id", activityID);
 
     return new StreamRequest<UnpinActivityResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/activities/{activity_id}/pin",
         request,
@@ -1134,9 +1102,7 @@ public class FeedsImpl {
             "activity_id", activityID);
 
     return new StreamRequest<PinActivityResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/activities/{activity_id}/pin",
         request,
@@ -1161,9 +1127,7 @@ public class FeedsImpl {
             "feed_id", feedID);
 
     return new StreamRequest<ChangeFeedVisibilityResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/change_visibility",
         request,
@@ -1181,9 +1145,7 @@ public class FeedsImpl {
             "feed_id", feedID);
 
     return new StreamRequest<UpdateFeedMembersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members",
         request,
@@ -1201,9 +1163,7 @@ public class FeedsImpl {
             "feed_group_id", feedGroupID);
 
     return new StreamRequest<AcceptFeedMemberInviteResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members/accept",
         request,
@@ -1227,9 +1187,7 @@ public class FeedsImpl {
             "feed_id", feedID);
 
     return new StreamRequest<QueryFeedMembersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members/query",
         request,
@@ -1253,9 +1211,7 @@ public class FeedsImpl {
             "feed_id", feedID);
 
     return new StreamRequest<RejectFeedMemberInviteResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/members/reject",
         request,
@@ -1279,9 +1235,7 @@ public class FeedsImpl {
             "feed_id", feedID);
 
     return new StreamRequest<QueryPinnedActivitiesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/pinned_activities/query",
         request,
@@ -1301,9 +1255,7 @@ public class FeedsImpl {
     var pathParams = Map.of("feed_group_id", feedGroupID);
 
     return new StreamRequest<GetFollowSuggestionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/feeds/feed_groups/{feed_group_id}/follow_suggestions",
         request,
@@ -1323,9 +1275,7 @@ public class FeedsImpl {
     var pathParams = Map.of("feed_group_id", feedGroupID);
 
     return new StreamRequest<RestoreFeedGroupResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/feed_groups/{feed_group_id}/restore",
         request,
@@ -1345,9 +1295,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<DeleteFeedGroupResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/feeds/feed_groups/{id}",
         request,
@@ -1367,9 +1315,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetFeedGroupResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/feeds/feed_groups/{id}",
         request,
@@ -1389,9 +1335,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetOrCreateFeedGroupResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/feed_groups/{id}",
         request,
@@ -1411,9 +1355,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<UpdateFeedGroupResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/feeds/feed_groups/{id}",
         request,
@@ -1432,9 +1374,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<ListFeedViewsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/feeds/feed_views",
         request,
@@ -1452,9 +1392,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<CreateFeedViewResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/feed_views",
         request,
@@ -1468,9 +1406,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<DeleteFeedViewResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/feeds/feed_views/{id}",
         request,
@@ -1490,9 +1426,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetFeedViewResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/feeds/feed_views/{id}",
         request,
@@ -1511,9 +1445,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetOrCreateFeedViewResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/feed_views/{id}",
         request,
@@ -1533,9 +1465,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<UpdateFeedViewResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/feeds/feed_views/{id}",
         request,
@@ -1554,9 +1484,7 @@ public class FeedsImpl {
       ListFeedVisibilitiesRequest request) throws StreamException {
 
     return new StreamRequest<ListFeedVisibilitiesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/feeds/feed_visibilities",
         request,
@@ -1575,9 +1503,7 @@ public class FeedsImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<GetFeedVisibilityResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/feeds/feed_visibilities/{name}",
         request,
@@ -1597,9 +1523,7 @@ public class FeedsImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<UpdateFeedVisibilityResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/feeds/feed_visibilities/{name}",
         request,
@@ -1618,9 +1542,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<CreateFeedsBatchResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/feeds/batch",
         request,
@@ -1633,9 +1555,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<DeleteFeedsBatchResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/feeds/delete",
         request,
@@ -1647,9 +1567,7 @@ public class FeedsImpl {
   public StreamRequest<OwnBatchResponse> ownBatch(OwnBatchRequest request) throws StreamException {
 
     return new StreamRequest<OwnBatchResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/feeds/own/batch",
         request,
@@ -1662,9 +1580,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<QueryFeedsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/feeds/query",
         request,
@@ -1682,9 +1598,7 @@ public class FeedsImpl {
       GetFeedsRateLimitsRequest request) throws StreamException {
 
     return new StreamRequest<GetFeedsRateLimitsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/feeds/feeds/rate_limits",
         request,
@@ -1702,9 +1616,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<UpdateFollowResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/feeds/follows",
         request,
@@ -1716,9 +1628,7 @@ public class FeedsImpl {
   public StreamRequest<SingleFollowResponse> follow(FollowRequest request) throws StreamException {
 
     return new StreamRequest<SingleFollowResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/follows",
         request,
@@ -1731,9 +1641,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<AcceptFollowResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/follows/accept",
         request,
@@ -1746,9 +1654,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<FollowBatchResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/follows/batch",
         request,
@@ -1761,9 +1667,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<FollowBatchResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/follows/batch/upsert",
         request,
@@ -1776,9 +1680,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<QueryFollowsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/follows/query",
         request,
@@ -1796,9 +1698,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<RejectFollowResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/follows/reject",
         request,
@@ -1811,9 +1711,7 @@ public class FeedsImpl {
       GetOrCreateFollowRequest request) throws StreamException {
 
     return new StreamRequest<GetOrCreateFollowResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/follows/upsert",
         request,
@@ -1831,9 +1729,7 @@ public class FeedsImpl {
             "target", target);
 
     return new StreamRequest<UnfollowResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/feeds/follows/{source}/{target}",
         request,
@@ -1852,9 +1748,7 @@ public class FeedsImpl {
       CreateMembershipLevelRequest request) throws StreamException {
 
     return new StreamRequest<CreateMembershipLevelResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/membership_levels",
         request,
@@ -1867,9 +1761,7 @@ public class FeedsImpl {
       QueryMembershipLevelsRequest request) throws StreamException {
 
     return new StreamRequest<QueryMembershipLevelsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/membership_levels/query",
         request,
@@ -1889,9 +1781,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/feeds/membership_levels/{id}",
         request,
@@ -1910,9 +1800,7 @@ public class FeedsImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<UpdateMembershipLevelResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/feeds/membership_levels/{id}",
         request,
@@ -1931,9 +1819,7 @@ public class FeedsImpl {
       QueryRevisionHistoryRequest request) throws StreamException {
 
     return new StreamRequest<QueryRevisionHistoryResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/revisions/query",
         request,
@@ -1946,9 +1832,7 @@ public class FeedsImpl {
       QueryFeedsUsageStatsRequest request) throws StreamException {
 
     return new StreamRequest<QueryFeedsUsageStatsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/stats/usage",
         request,
@@ -1966,9 +1850,7 @@ public class FeedsImpl {
       throws StreamException {
 
     return new StreamRequest<UnfollowBatchResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/unfollow/batch",
         request,
@@ -1981,9 +1863,7 @@ public class FeedsImpl {
       GetOrCreateUnfollowsRequest request) throws StreamException {
 
     return new StreamRequest<UnfollowBatchResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/unfollow/batch/upsert",
         request,
@@ -1996,9 +1876,7 @@ public class FeedsImpl {
       GetOrCreateUnfollowRequest request) throws StreamException {
 
     return new StreamRequest<GetOrCreateUnfollowResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/unfollow/upsert",
         request,
@@ -2012,9 +1890,7 @@ public class FeedsImpl {
     var pathParams = Map.of("user_id", userID);
 
     return new StreamRequest<DeleteFeedUserDataResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/users/{user_id}/delete",
         request,
@@ -2034,9 +1910,7 @@ public class FeedsImpl {
     var pathParams = Map.of("user_id", userID);
 
     return new StreamRequest<ExportFeedUserDataResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/feeds/users/{user_id}/export",
         request,
@@ -2056,9 +1930,7 @@ public class FeedsImpl {
     var pathParams = Map.of("user_id", userID);
 
     return new StreamRequest<GetUserInterestsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/feeds/users/{user_id}/interests",
         request,

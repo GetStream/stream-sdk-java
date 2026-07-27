@@ -33,6 +33,10 @@ public class TriggeredRuleResponse {
   private String ruleName;
 
   @Nullable
+  @JsonProperty("type")
+  private String type;
+
+  @Nullable
   @JsonProperty("violation_number")
   private Integer violationNumber;
 

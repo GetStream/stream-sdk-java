@@ -30,6 +30,9 @@ public class CallSettingsResponse {
   @JsonProperty("broadcasting")
   private BroadcastSettingsResponse broadcasting;
 
+  @JsonProperty("encryption")
+  private EncryptionSettingsResponse encryption;
+
   @JsonProperty("frame_recording")
   private FrameRecordingSettingsResponse frameRecording;
 

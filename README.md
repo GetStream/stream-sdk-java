@@ -97,6 +97,48 @@ call.getOrCreate(
 > **Note:** When constructing models, always use the **builder pattern** (e.g. `UserRequest.builder().id("id").build()`).
 > While some generated models expose positional constructors (for example via Lombok's `@AllArgsConstructor`), their parameter order is not part of the public API and may change between releases; using positional constructors is therefore strongly discouraged and may break across SDK updates.
 
+### Logging
+
+The SDK emits structured log events through [SLF4J](https://www.slf4j.org/) (dependency `org.slf4j:slf4j-api`). Inject your own SLF4J `Logger` via `StreamClientOptions.setLogger(...)`. When no logger is injected the SDK logs to a no-op logger, so nothing is emitted unless you opt in. The SDK never changes the logger's level; that stays entirely under your control through your SLF4J binding.
+
+```java
+org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger("io.getstream");
+var options = new StreamClientOptions().setLogger(logger);
+var client = new StreamSDKClient("apiKey", "apiSecret", options);
+```
+
+Four events are emitted:
+
+| Event | Level | When |
+| ----- | ----- | ---- |
+| `client.initialized` | INFO | once, at client construction (SDK name/version and the effective client config) |
+| `http.request.sent` | DEBUG | before each request (method, path, query) |
+| `http.response.received` | DEBUG | after any response, including 4xx/5xx (status code, body size, duration) |
+| `http.request.failed` | ERROR / DEBUG | ERROR on a final transport failure (no HTTP response received; error type, message, duration). DEBUG once per attempt that gets retried (see [Retry](#retry)); a retried rate-limit (429) DEBUG log omits the error type field, since it isn't a transport error. |
+
+Redaction is mandatory and cannot be disabled: query values for `api_key`, `api_secret` and `token` are replaced with `<redacted>`, and the top-level JSON body keys `api_secret`, `token` and `password` are redacted. The events never log request/response headers.
+
+Request and response bodies are **not** logged by default. Call `StreamClientOptions.setLogBodies(true)` to opt in (secret body keys are still redacted); doing so emits a one-time warning at construction. Do not enable body logging in production unless you accept the risk of logging sensitive payloads.
+
+> **Deprecated:** the older `HttpLoggingInterceptor` is deprecated in favour of these SLF4J events. It is kept for backward compatibility and now redacts secret headers and secret body keys in its own output.
+
+### Retry
+
+Auto-retry is **opt-in** and disabled by default: the client makes exactly one attempt and surfaces errors unchanged. Enable it via `StreamClientOptions.setRetry(...)`:
+
+```java
+var options =
+    new StreamClientOptions()
+        .setRetry(
+            new RetryConfig()
+                .setEnabled(true)
+                .setMaxAttempts(3) // default: 3
+                .setMaxBackoff(Duration.ofSeconds(30))); // default: 30s
+var client = new StreamSDKClient("apiKey", "apiSecret", options);
+```
+
+Only idempotent `GET`/`HEAD` requests are retried, and only for HTTP 429 (rate limited, unless the server marked it unrecoverable) or a transport-level failure (connection reset, timeout, DNS failure, TLS handshake failure). Writes (`POST`/`PUT`/`PATCH`/`DELETE`) and any other 4xx/5xx response are never retried. The delay before each retry honors the `Retry-After` header when present (clamped to `MaxBackoff`); otherwise it uses full-jitter exponential backoff. When attempts are exhausted, the last attempt's error is surfaced.
+
 ## Development
 
 To run tests, create the `local.properties` file using the `local.properties.example` and adjust it to have valid API credentials:

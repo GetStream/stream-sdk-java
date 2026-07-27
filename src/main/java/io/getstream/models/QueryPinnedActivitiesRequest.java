@@ -12,7 +12,9 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.annotations.Query;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -47,4 +49,12 @@ public class QueryPinnedActivitiesRequest {
   @Nullable
   @JsonProperty("filter")
   private Map<String, Object> filter;
+
+  @Query("language")
+  @JsonIgnore
+  private String Language;
+
+  @Query("translate_text")
+  @JsonIgnore
+  private Boolean TranslateText;
 }

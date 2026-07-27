@@ -12,7 +12,9 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.getstream.annotations.Query;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
@@ -94,4 +96,12 @@ public class GetOrCreateFeedRequest {
   @Nullable
   @JsonProperty("user")
   private UserRequest user;
+
+  @Query("language")
+  @JsonIgnore
+  private String Language;
+
+  @Query("translate_text")
+  @JsonIgnore
+  private Boolean TranslateText;
 }

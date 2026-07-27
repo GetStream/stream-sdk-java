@@ -32,9 +32,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<CreateCampaignResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/campaigns",
         request,
@@ -47,9 +45,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<QueryCampaignsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/campaigns/query",
         request,
@@ -68,9 +64,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<DeleteCampaignResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/chat/campaigns/{id}",
         request,
@@ -90,9 +84,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetCampaignResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/campaigns/{id}",
         request,
@@ -111,9 +103,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<CampaignResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/chat/campaigns/{id}",
         request,
@@ -127,9 +117,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<StartCampaignResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/campaigns/{id}/start",
         request,
@@ -149,9 +137,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<CampaignResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/campaigns/{id}/stop",
         request,
@@ -169,9 +155,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<QueryChannelsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channels",
         request,
@@ -189,9 +173,7 @@ public class ChatImpl {
       ChannelBatchUpdateRequest request) throws StreamException {
 
     return new StreamRequest<ChannelBatchUpdateResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/chat/channels/batch",
         request,
@@ -204,9 +186,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<DeleteChannelsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channels/delete",
         request,
@@ -219,9 +199,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<MarkDeliveredResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channels/delivered",
         request,
@@ -239,9 +217,7 @@ public class ChatImpl {
       GroupedQueryChannelsRequest request) throws StreamException {
 
     return new StreamRequest<GroupedQueryChannelsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channels/grouped",
         request,
@@ -259,9 +235,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<MarkReadResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channels/read",
         request,
@@ -280,9 +254,7 @@ public class ChatImpl {
     var pathParams = Map.of("type", type);
 
     return new StreamRequest<ChannelStateResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channels/{type}/query",
         request,
@@ -306,9 +278,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<DeleteChannelResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/chat/channels/{type}/{id}",
         request,
@@ -323,6 +293,29 @@ public class ChatImpl {
   }
 
   @NotNull
+  public StreamRequest<ChannelStateResponse> getChannel(
+      @NotNull String type, @NotNull String id, GetChannelRequest request) throws StreamException {
+    var pathParams =
+        Map.of(
+            "type", type,
+            "id", id);
+
+    return new StreamRequest<ChannelStateResponse>(
+        client,
+        "GET",
+        "/api/v2/chat/channels/{type}/{id}",
+        request,
+        pathParams,
+        new TypeReference<ChannelStateResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ChannelStateResponse> getChannel(@NotNull String type, @NotNull String id)
+      throws StreamException {
+    return getChannel(type, id, new GetChannelRequest());
+  }
+
+  @NotNull
   public StreamRequest<UpdateChannelPartialResponse> updateChannelPartial(
       @NotNull String type, @NotNull String id, UpdateChannelPartialRequest request)
       throws StreamException {
@@ -332,9 +325,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<UpdateChannelPartialResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/chat/channels/{type}/{id}",
         request,
@@ -358,9 +349,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<UpdateChannelResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channels/{type}/{id}",
         request,
@@ -383,9 +372,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/chat/channels/{type}/{id}/draft",
         request,
@@ -408,9 +395,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<GetDraftResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/channels/{type}/{id}/draft",
         request,
@@ -433,9 +418,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<EventResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channels/{type}/{id}/event",
         request,
@@ -453,9 +436,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/chat/channels/{type}/{id}/file",
         request,
@@ -479,9 +460,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<UploadChannelFileResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channels/{type}/{id}/file",
         request,
@@ -504,9 +483,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<HideChannelResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channels/{type}/{id}/hide",
         request,
@@ -530,9 +507,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/chat/channels/{type}/{id}/image",
         request,
@@ -556,9 +531,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<UploadChannelResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channels/{type}/{id}/image",
         request,
@@ -582,9 +555,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<UpdateMemberPartialResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/chat/channels/{type}/{id}/member",
         request,
@@ -607,9 +578,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<SendMessageResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channels/{type}/{id}/message",
         request,
@@ -627,9 +596,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<GetManyMessagesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/channels/{type}/{id}/messages",
         request,
@@ -647,9 +614,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<ChannelStateResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channels/{type}/{id}/query",
         request,
@@ -672,9 +637,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<MarkReadResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channels/{type}/{id}/read",
         request,
@@ -697,9 +660,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<ShowChannelResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channels/{type}/{id}/show",
         request,
@@ -723,9 +684,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<TruncateChannelResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channels/{type}/{id}/truncate",
         request,
@@ -748,9 +707,7 @@ public class ChatImpl {
             "id", id);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channels/{type}/{id}/unread",
         request,
@@ -769,9 +726,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<ListChannelTypesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/channeltypes",
         request,
@@ -789,9 +744,7 @@ public class ChatImpl {
       CreateChannelTypeRequest request) throws StreamException {
 
     return new StreamRequest<CreateChannelTypeResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/channeltypes",
         request,
@@ -805,9 +758,7 @@ public class ChatImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/chat/channeltypes/{name}",
         request,
@@ -826,9 +777,7 @@ public class ChatImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<GetChannelTypeResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/channeltypes/{name}",
         request,
@@ -848,9 +797,7 @@ public class ChatImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<UpdateChannelTypeResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/chat/channeltypes/{name}",
         request,
@@ -863,9 +810,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<ListCommandsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/commands",
         request,
@@ -883,9 +828,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<CreateCommandResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/commands",
         request,
@@ -899,9 +842,7 @@ public class ChatImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<DeleteCommandResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/chat/commands/{name}",
         request,
@@ -921,9 +862,7 @@ public class ChatImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<GetCommandResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/commands/{name}",
         request,
@@ -942,9 +881,7 @@ public class ChatImpl {
     var pathParams = Map.of("name", name);
 
     return new StreamRequest<UpdateCommandResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/chat/commands/{name}",
         request,
@@ -957,9 +894,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<QueryDraftsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/drafts/query",
         request,
@@ -977,9 +912,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<ExportChannelsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/export_channels",
         request,
@@ -992,9 +925,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<MembersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/members",
         request,
@@ -1012,9 +943,7 @@ public class ChatImpl {
       QueryMessageHistoryRequest request) throws StreamException {
 
     return new StreamRequest<QueryMessageHistoryResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/messages/history",
         request,
@@ -1028,9 +957,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<DeleteMessageResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/chat/messages/{id}",
         request,
@@ -1050,9 +977,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetMessageResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/messages/{id}",
         request,
@@ -1071,9 +996,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<UpdateMessageResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/messages/{id}",
         request,
@@ -1087,9 +1010,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<UpdateMessagePartialResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/chat/messages/{id}",
         request,
@@ -1109,9 +1030,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<MessageActionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/messages/{id}/action",
         request,
@@ -1125,9 +1044,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<MessageActionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/messages/{id}/commit",
         request,
@@ -1147,9 +1064,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<UpdateMessagePartialResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/chat/messages/{id}/ephemeral",
         request,
@@ -1169,9 +1084,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<SendReactionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/messages/{id}/reaction",
         request,
@@ -1189,9 +1102,7 @@ public class ChatImpl {
             "type", type);
 
     return new StreamRequest<DeleteReactionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/chat/messages/{id}/reaction/{type}",
         request,
@@ -1211,9 +1122,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetReactionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/messages/{id}/reactions",
         request,
@@ -1233,9 +1142,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<QueryReactionsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/messages/{id}/reactions",
         request,
@@ -1255,9 +1162,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<MessageActionResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/messages/{id}/translate",
         request,
@@ -1271,9 +1176,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<UndeleteMessageResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/messages/{id}/undelete",
         request,
@@ -1291,9 +1194,7 @@ public class ChatImpl {
             "poll_id", pollID);
 
     return new StreamRequest<PollVoteResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/messages/{message_id}/polls/{poll_id}/vote",
         request,
@@ -1321,9 +1222,7 @@ public class ChatImpl {
             "vote_id", voteID);
 
     return new StreamRequest<PollVoteResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/chat/messages/{message_id}/polls/{poll_id}/vote/{vote_id}",
         request,
@@ -1344,9 +1243,7 @@ public class ChatImpl {
     var pathParams = Map.of("message_id", messageID);
 
     return new StreamRequest<DeleteReminderResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/chat/messages/{message_id}/reminders",
         request,
@@ -1366,9 +1263,7 @@ public class ChatImpl {
     var pathParams = Map.of("message_id", messageID);
 
     return new StreamRequest<UpdateReminderResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/chat/messages/{message_id}/reminders",
         request,
@@ -1388,9 +1283,7 @@ public class ChatImpl {
     var pathParams = Map.of("message_id", messageID);
 
     return new StreamRequest<ReminderResponseData>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/messages/{message_id}/reminders",
         request,
@@ -1410,9 +1303,7 @@ public class ChatImpl {
     var pathParams = Map.of("parent_id", parentID);
 
     return new StreamRequest<GetRepliesResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/messages/{parent_id}/replies",
         request,
@@ -1431,9 +1322,7 @@ public class ChatImpl {
       QueryMessageFlagsRequest request) throws StreamException {
 
     return new StreamRequest<QueryMessageFlagsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/moderation/flags/message",
         request,
@@ -1451,9 +1340,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<MuteChannelResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/moderation/mute/channel",
         request,
@@ -1471,9 +1358,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<UnmuteResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/moderation/unmute/channel",
         request,
@@ -1491,9 +1376,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<QueryBannedUsersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/query_banned_users",
         request,
@@ -1511,9 +1394,7 @@ public class ChatImpl {
       QueryFutureChannelBansRequest request) throws StreamException {
 
     return new StreamRequest<QueryFutureChannelBansResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/query_future_channel_bans",
         request,
@@ -1532,9 +1413,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<QueryRemindersResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/reminders/query",
         request,
@@ -1552,9 +1431,7 @@ public class ChatImpl {
       GetRetentionPolicyRequest request) throws StreamException {
 
     return new StreamRequest<GetRetentionPolicyResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/retention_policy",
         request,
@@ -1572,9 +1449,7 @@ public class ChatImpl {
       SetRetentionPolicyRequest request) throws StreamException {
 
     return new StreamRequest<SetRetentionPolicyResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/retention_policy",
         request,
@@ -1587,9 +1462,7 @@ public class ChatImpl {
       DeleteRetentionPolicyRequest request) throws StreamException {
 
     return new StreamRequest<DeleteRetentionPolicyResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/retention_policy/delete",
         request,
@@ -1602,9 +1475,7 @@ public class ChatImpl {
       GetRetentionPolicyRunsRequest request) throws StreamException {
 
     return new StreamRequest<GetRetentionPolicyRunsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/retention_policy/runs",
         request,
@@ -1622,9 +1493,7 @@ public class ChatImpl {
   public StreamRequest<SearchResponse> search(SearchRequest request) throws StreamException {
 
     return new StreamRequest<SearchResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/search",
         request,
@@ -1642,9 +1511,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<CreateSegmentResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/segments",
         request,
@@ -1657,9 +1524,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<QuerySegmentsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/segments/query",
         request,
@@ -1673,9 +1538,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "DELETE",
         "/api/v2/chat/segments/{id}",
         request,
@@ -1694,9 +1557,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<GetSegmentResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/segments/{id}",
         request,
@@ -1715,9 +1576,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<UpdateSegmentResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PUT",
         "/api/v2/chat/segments/{id}",
         request,
@@ -1737,9 +1596,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/segments/{id}/addtargets",
         request,
@@ -1753,9 +1610,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/segments/{id}/deletetargets",
         request,
@@ -1773,9 +1628,7 @@ public class ChatImpl {
             "target_id", targetID);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/segments/{id}/target/{target_id}",
         request,
@@ -1795,9 +1648,7 @@ public class ChatImpl {
     var pathParams = Map.of("id", id);
 
     return new StreamRequest<QuerySegmentTargetsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/segments/{id}/targets/query",
         request,
@@ -1816,9 +1667,7 @@ public class ChatImpl {
       QueryTeamUsageStatsRequest request) throws StreamException {
 
     return new StreamRequest<QueryTeamUsageStatsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/stats/team_usage",
         request,
@@ -1836,9 +1685,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<QueryThreadsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/threads",
         request,
@@ -1857,9 +1704,7 @@ public class ChatImpl {
     var pathParams = Map.of("message_id", messageID);
 
     return new StreamRequest<GetThreadResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/threads/{message_id}",
         request,
@@ -1879,9 +1724,7 @@ public class ChatImpl {
     var pathParams = Map.of("message_id", messageID);
 
     return new StreamRequest<UpdateThreadPartialResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "PATCH",
         "/api/v2/chat/threads/{message_id}",
         request,
@@ -1900,9 +1743,7 @@ public class ChatImpl {
       throws StreamException {
 
     return new StreamRequest<WrappedUnreadCountsResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "GET",
         "/api/v2/chat/unread",
         request,
@@ -1920,9 +1761,7 @@ public class ChatImpl {
       UnreadCountsBatchRequest request) throws StreamException {
 
     return new StreamRequest<UnreadCountsBatchResponse>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/unread_batch",
         request,
@@ -1936,9 +1775,7 @@ public class ChatImpl {
     var pathParams = Map.of("user_id", userID);
 
     return new StreamRequest<Response>(
-        client.getHttpClient(),
-        client.getObjectMapper(),
-        client.getBaseUrl(),
+        client,
         "POST",
         "/api/v2/chat/users/{user_id}/event",
         request,

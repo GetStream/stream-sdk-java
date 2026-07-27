@@ -36,7 +36,13 @@ import org.jetbrains.annotations.NotNull;
  *
  * <p>The format of the logs created by this class should not be considered stable and may change
  * slightly between releases. If you need a stable logging format, use your own interceptor.
+ *
+ * @deprecated Superseded by the SLF4J structured log events emitted by the SDK (inject a logger via
+ *     {@code StreamClientOptions.setLogger}). Kept for backward compatibility. Secret headers,
+ *     secret body keys, and secret URL query values ({@code api_key}/{@code api_secret}/{@code
+ *     token}) are now redacted in its output.
  */
+@Deprecated
 public final class HttpLoggingInterceptor implements Interceptor {
   private static final Charset UTF8 = StandardCharsets.UTF_8;
 
@@ -181,7 +187,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
         "--> "
             + request.method()
             + ' '
-            + request.url()
+            + LogRedaction.redactUrl(request.url())
             + (connection != null ? " " + connection.protocol() : "");
     if (!logHeaders && hasRequestBody) {
       requestStartMessage += " (" + requestBody.contentLength() + "-byte body)";
@@ -205,7 +211,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
         String name = headers.name(i);
         // Skip headers from the request body as they are explicitly logged above.
         if (!"Content-Type".equalsIgnoreCase(name) && !"Content-Length".equalsIgnoreCase(name)) {
-          logger.log(name + ": " + headers.value(i));
+          logger.log(name + ": " + LogRedaction.redactHeaderValue(name, headers.value(i)));
         }
       }
     }
@@ -228,7 +234,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
 
       logger.log("Request body:");
       if (isPlaintext(buffer)) {
-        logger.log(buffer.readString(charset));
+        logger.log(LogRedaction.redactJsonBody(buffer.readString(charset)));
         logger.log(
             "--> END " + request.method() + " (" + requestBody.contentLength() + "-byte body)");
       } else {
@@ -259,7 +265,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
             + response.code()
             + (response.message().isEmpty() ? "" : ' ' + response.message())
             + ' '
-            + response.request().url()
+            + LogRedaction.redactUrl(response.request().url())
             + " ("
             + tookMs
             + "ms"
@@ -269,7 +275,10 @@ public final class HttpLoggingInterceptor implements Interceptor {
     if (logHeaders) {
       Headers headers = response.headers();
       for (int i = 0, count = headers.size(); i < count; i++) {
-        logger.log(headers.name(i) + ": " + headers.value(i));
+        logger.log(
+            headers.name(i)
+                + ": "
+                + LogRedaction.redactHeaderValue(headers.name(i), headers.value(i)));
       }
     }
     if (!logResponseBody || response.body() == null) {
@@ -298,7 +307,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
 
       if (contentLength != 0) {
         logger.log("Response body:");
-        logger.log(buffer.clone().readString(charset));
+        logger.log(LogRedaction.redactJsonBody(buffer.clone().readString(charset)));
       }
 
       logger.log("<-- END HTTP (" + buffer.size() + "-byte body)");

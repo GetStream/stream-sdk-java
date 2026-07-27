@@ -64,6 +64,10 @@ public class ClientEvent {
   private String joinAttemptID;
 
   @Nullable
+  @JsonProperty("join_reason")
+  private String joinReason;
+
+  @Nullable
   @JsonProperty("microphone_permission_status")
   private String microphonePermissionStatus;
 
