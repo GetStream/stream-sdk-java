@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.2.0](https://github.com/GetStream/stream-sdk-java/compare/9.1.0...9.2.0) (2026-08-05)
+
+
+### Bug Fixes
+
+* **ci:** align workflow token permissions with actual operations ([59c1706](https://github.com/GetStream/stream-sdk-java/commit/59c170648ba257deb1d8b5bb4ad6c671a33b3922))
+
 ## [9.1.0](https://github.com/GetStream/stream-sdk-java/compare/9.0.0...9.1.0) (2026-07-24)
 
 
