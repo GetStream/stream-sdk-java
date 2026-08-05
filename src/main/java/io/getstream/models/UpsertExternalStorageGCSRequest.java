@@ -13,39 +13,21 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ModerationEvent {
+public class UpsertExternalStorageGCSRequest {
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+  @JsonProperty("bucket")
+  private String bucket;
 
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
-
-  @JsonProperty("type")
-  private String type;
+  @JsonProperty("credentials")
+  private String credentials;
 
   @Nullable
-  @JsonProperty("received_at")
-  private Date receivedAt;
-
-  @Nullable
-  @JsonProperty("flags")
-  private List<Flag2Response> flags;
-
-  @Nullable
-  @JsonProperty("action")
-  private ActionLogResponse action;
-
-  @Nullable
-  @JsonProperty("review_queue_item")
-  private ReviewQueueItemResponse reviewQueueItem;
+  @JsonProperty("path_prefix")
+  private String pathPrefix;
 }

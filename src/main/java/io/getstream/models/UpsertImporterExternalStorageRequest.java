@@ -17,7 +17,8 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Upsert external storage Creates or updates the external storage configuration for the app.
- * Currently only AWS S3 (via cross-account IAM role assumption) is supported.
+ * Supports AWS S3 (via cross-account IAM role assumption) and GCS (via service-account JSON
+ * credentials).
  */
 @lombok.Data
 @lombok.Builder
@@ -31,4 +32,8 @@ public class UpsertImporterExternalStorageRequest {
   @Nullable
   @JsonProperty("aws_s3")
   private UpsertExternalStorageAWSS3Request awsS3;
+
+  @Nullable
+  @JsonProperty("gcs")
+  private UpsertExternalStorageGCSRequest gcs;
 }

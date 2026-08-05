@@ -41,6 +41,6 @@ public class MessageHistoryEntryResponse {
   @JsonProperty("attachments")
   private List<Attachment> attachments;
 
-  @JsonProperty("Custom")
+  @JsonProperty("custom")
   private Map<String, Object> custom;
 }

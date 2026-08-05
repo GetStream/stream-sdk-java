@@ -22,6 +22,6 @@ import org.jetbrains.annotations.Nullable;
 public class EncryptionSettingsRequest {
 
   @Nullable
-  @JsonProperty("enabled")
-  private Boolean enabled;
+  @JsonProperty("mode")
+  private String mode;
 }

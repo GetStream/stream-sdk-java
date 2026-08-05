@@ -34,6 +34,14 @@ public class SendMessageRequest {
   private Boolean forceModeration;
 
   @Nullable
+  @JsonProperty("include_channel_context")
+  private Boolean includeChannelContext;
+
+  @Nullable
+  @JsonProperty("include_mentioned_members")
+  private Boolean includeMentionedMembers;
+
+  @Nullable
   @JsonProperty("keep_channel_hidden")
   private Boolean keepChannelHidden;
 

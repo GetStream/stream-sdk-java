@@ -70,7 +70,7 @@ public class UpdatePollRequest {
   private List<PollOptionRequest> options;
 
   @Nullable
-  @JsonProperty("Custom")
+  @JsonProperty("custom")
   private Map<String, Object> custom;
 
   @Nullable

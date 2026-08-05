@@ -26,4 +26,8 @@ public class GetManyMessagesRequest {
   @Query("ids")
   @JsonIgnore
   private List<String> Ids;
+
+  @Query("member_custom_include")
+  @JsonIgnore
+  private List<String> MemberCustomInclude;
 }

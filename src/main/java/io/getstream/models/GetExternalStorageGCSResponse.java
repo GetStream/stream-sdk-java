@@ -12,7 +12,22 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class GetExportChannelsStatusRequest {}
+@lombok.AllArgsConstructor
+public class GetExternalStorageGCSResponse {
+
+  @JsonProperty("bucket")
+  private String bucket;
+
+  @JsonProperty("credentials_set")
+  private Boolean credentialsSet;
+
+  @Nullable
+  @JsonProperty("path_prefix")
+  private String pathPrefix;
+}

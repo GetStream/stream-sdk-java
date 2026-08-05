@@ -25,4 +25,8 @@ public class DeleteBlockListRequest {
   @Query("team")
   @JsonIgnore
   private String Team;
+
+  @Query("user_id")
+  @JsonIgnore
+  private String UserID;
 }

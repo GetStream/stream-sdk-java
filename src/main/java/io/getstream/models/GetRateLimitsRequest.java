@@ -38,6 +38,10 @@ public class GetRateLimitsRequest {
   @JsonIgnore
   private Boolean Web;
 
+  @Query("unity")
+  @JsonIgnore
+  private Boolean Unity;
+
   @Query("endpoints")
   @JsonIgnore
   private String Endpoints;

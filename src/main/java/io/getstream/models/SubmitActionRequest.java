@@ -78,6 +78,10 @@ public class SubmitActionRequest {
   private DeleteUserRequestPayload deleteUser;
 
   @Nullable
+  @JsonProperty("delete_user_messages")
+  private DeleteUserMessagesRequestPayload deleteUserMessages;
+
+  @Nullable
   @JsonProperty("escalate")
   private EscalatePayload escalate;
 

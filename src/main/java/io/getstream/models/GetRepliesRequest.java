@@ -50,4 +50,8 @@ public class GetRepliesRequest {
   @Query("sort")
   @JsonIgnore
   private List<SortParamRequest> Sort;
+
+  @Query("member_custom_include")
+  @JsonIgnore
+  private List<String> MemberCustomInclude;
 }

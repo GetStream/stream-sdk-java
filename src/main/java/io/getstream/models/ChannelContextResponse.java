@@ -13,20 +13,25 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import org.jetbrains.annotations.Nullable;
 
+/** Slim channel object: identity plus creator */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UserBlock {
+public class ChannelContextResponse {
 
-  @JsonProperty("blocked_by_user_id")
-  private String blockedByUserID;
+  @JsonProperty("cid")
+  private String cid;
 
-  @JsonProperty("blocked_user_id")
-  private String blockedUserID;
+  @JsonProperty("id")
+  private String id;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+  @JsonProperty("type")
+  private String type;
+
+  @Nullable
+  @JsonProperty("created_by")
+  private UserResponse createdBy;
 }

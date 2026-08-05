@@ -226,6 +226,7 @@ public class WebhookTest {
     "message.unblocked, MessageUnblockedEvent",
     "message.undeleted, MessageUndeletedEvent",
     "message.updated, MessageUpdatedEvent",
+    "moderation.analysis.failed, ModerationAnalysisFailedEvent",
     "moderation.custom_action, ModerationCustomActionEvent",
     "moderation.flagged, ModerationFlaggedEvent",
     "moderation.image_analysis.complete, ModerationImageAnalysisCompleteEvent",

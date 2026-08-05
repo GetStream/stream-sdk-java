@@ -13,25 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Configuration for deleting all of a user&#39;s chat messages without banning them or deleting
+ * their account
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UserStats {
+public class DeleteUserMessagesRequestPayload {
 
-  @JsonProperty("min_event_ts")
-  private Integer minEventTs;
-
-  @JsonProperty("session_stats")
-  private List<UserSessionStats> sessionStats;
-
-  @JsonProperty("info")
-  private UserInfoResponse info;
+  @JsonProperty("delete_messages")
+  private String deleteMessages;
 
   @Nullable
-  @JsonProperty("rating")
-  private Integer rating;
+  @JsonProperty("channel_cid")
+  private String channelCid;
+
+  @Nullable
+  @JsonProperty("delete_reactions")
+  private Boolean deleteReactions;
+
+  @Nullable
+  @JsonProperty("entity_id")
+  private String entityID;
+
+  @Nullable
+  @JsonProperty("entity_type")
+  private String entityType;
+
+  @Nullable
+  @JsonProperty("reason")
+  private String reason;
 }

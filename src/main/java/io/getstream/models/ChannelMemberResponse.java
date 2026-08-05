@@ -54,8 +54,16 @@ public class ChannelMemberResponse {
   private Date banExpires;
 
   @Nullable
+  @JsonProperty("ban_from_future_channels")
+  private Boolean banFromFutureChannels;
+
+  @Nullable
   @JsonProperty("deleted_at")
   private Date deletedAt;
+
+  @Nullable
+  @JsonProperty("future_channel_ban_expires")
+  private Date futureChannelBanExpires;
 
   @Nullable
   @JsonProperty("invite_accepted_at")

@@ -55,4 +55,12 @@ public class CreateBlockListRequest {
   @Nullable
   @JsonProperty("type")
   private String type;
+
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

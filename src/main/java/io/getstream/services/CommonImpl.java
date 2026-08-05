@@ -437,6 +437,76 @@ public class CommonImpl {
   }
 
   @NotNull
+  public StreamRequest<DeleteExternalStorageResponse> deleteImporterExternalStorage(
+      DeleteImporterExternalStorageRequest request) throws StreamException {
+
+    return new StreamRequest<DeleteExternalStorageResponse>(
+        client,
+        "DELETE",
+        "/api/v2/imports/v2/external-storage",
+        request,
+        null,
+        new TypeReference<DeleteExternalStorageResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteExternalStorageResponse> deleteImporterExternalStorage()
+      throws StreamException {
+    return deleteImporterExternalStorage(new DeleteImporterExternalStorageRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GetExternalStorageResponse> getImporterExternalStorage(
+      GetImporterExternalStorageRequest request) throws StreamException {
+
+    return new StreamRequest<GetExternalStorageResponse>(
+        client,
+        "GET",
+        "/api/v2/imports/v2/external-storage",
+        request,
+        null,
+        new TypeReference<GetExternalStorageResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetExternalStorageResponse> getImporterExternalStorage()
+      throws StreamException {
+    return getImporterExternalStorage(new GetImporterExternalStorageRequest());
+  }
+
+  @NotNull
+  public StreamRequest<UpsertExternalStorageResponse> upsertImporterExternalStorage(
+      UpsertImporterExternalStorageRequest request) throws StreamException {
+
+    return new StreamRequest<UpsertExternalStorageResponse>(
+        client,
+        "PUT",
+        "/api/v2/imports/v2/external-storage",
+        request,
+        null,
+        new TypeReference<UpsertExternalStorageResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ValidateExternalStorageResponse> validateImporterExternalStorage(
+      ValidateImporterExternalStorageRequest request) throws StreamException {
+
+    return new StreamRequest<ValidateExternalStorageResponse>(
+        client,
+        "POST",
+        "/api/v2/imports/v2/external-storage/validate",
+        request,
+        null,
+        new TypeReference<ValidateExternalStorageResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ValidateExternalStorageResponse> validateImporterExternalStorage()
+      throws StreamException {
+    return validateImporterExternalStorage(new ValidateImporterExternalStorageRequest());
+  }
+
+  @NotNull
   public StreamRequest<DeleteImportV2TaskResponse> deleteImportV2Task(
       @NotNull String id, DeleteImportV2TaskRequest request) throws StreamException {
     var pathParams = Map.of("id", id);

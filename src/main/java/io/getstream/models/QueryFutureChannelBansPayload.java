@@ -26,6 +26,10 @@ public class QueryFutureChannelBansPayload {
   private Boolean excludeExpiredBans;
 
   @Nullable
+  @JsonProperty("include_total")
+  private Boolean includeTotal;
+
+  @Nullable
   @JsonProperty("limit")
   private Integer limit;
 
