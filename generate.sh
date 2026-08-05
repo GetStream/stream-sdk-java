@@ -9,10 +9,22 @@ SOURCE_PATH=${SOURCE_PATH:-../chat}
 MODELS_DIR=src/main/java/io/getstream/models
 FIXTURES_DIR=src/test/resources/fixtures/webhooks
 
+# Everything generate-client and generate-webhook-fixtures write. Snapshotted
+# before the run so a failure anywhere can put the tree back exactly as it was.
+# services/ and models/ also hold hand-written sources, which is fine: the
+# snapshot restores whatever was there rather than whatever git has.
+GENERATED_PATHS=(
+  "$MODELS_DIR"
+  src/main/java/io/getstream/services
+  src/main/java/io/getstream/Webhook.java
+  src/test/java/io/getstream/WebhookTest.java
+  "$FIXTURES_DIR"
+)
+
 # Building chat-manager pulls in a huge Go dependency graph. Without headroom the
 # compiler dies with "no space left on device" partway through and leaves a
 # half-generated tree behind, so check up front instead.
-MIN_FREE_GB=${MIN_FREE_GB:-20}
+MIN_FREE_GB=${MIN_FREE_GB:-30}
 
 if [ ! -d "$SOURCE_PATH" ]
 then
@@ -20,35 +32,93 @@ then
   exit 1;
 fi
 
-free_gb() {
-  df -Pk "$1" | awk 'NR==2 { print int($4 / 1048576) }'
+# df needs a path that exists; the Go caches may not have been created yet.
+existing_ancestor() {
+  local path=$1
+  while [ ! -e "$path" ] && [ "$path" != "/" ]; do
+    path=$(dirname "$path")
+  done
+  printf '%s' "$path"
 }
 
-for volume in "${TMPDIR:-/tmp}" "$REPO_ROOT"; do
+mount_point() {
+  df -Pk "$1" | awk 'NR == 2 { for (i = 6; i <= NF; i++) printf "%s%s", (i > 6 ? " " : ""), $i }'
+}
+
+free_gb() {
+  df -Pk "$1" | awk 'NR == 2 { print int($4 / 1048576) }'
+}
+
+# The build spends its space in the Go build and module caches, which usually
+# live under $HOME rather than on the repo or TMPDIR volume. Probe all of them so
+# the check still means something when they sit on separate disks.
+volumes=("${TMPDIR:-/tmp}" "$REPO_ROOT" "$HOME")
+if command -v go >/dev/null 2>&1; then
+  volumes+=("$(go env GOCACHE)" "$(go env GOMODCACHE)")
+fi
+
+checked_mounts=""
+for volume in "${volumes[@]}"; do
+  [ -n "$volume" ] || continue
+  volume=$(existing_ancestor "$volume")
+  mount=$(mount_point "$volume")
+
+  # One message per filesystem, however many probed paths share it.
+  if printf '%s' "$checked_mounts" | grep -Fxq "$mount"; then
+    continue
+  fi
+  checked_mounts="${checked_mounts}${mount}"$'\n'
+
   available=$(free_gb "$volume")
   if [ "$available" -lt "$MIN_FREE_GB" ]; then
-    echo "only ${available}GB free on ${volume}, need ~${MIN_FREE_GB}GB to build the generator"
+    echo "only ${available}GB free on ${mount} (${volume}), need ~${MIN_FREE_GB}GB to build the generator"
     echo "reclaim space with: go clean -cache && ./gradlew --stop && rm -rf ~/.gradle/caches/build-cache-*"
     exit 1
   fi
 done
 
-# Generated sources are wiped before regenerating, so roll them back rather than
-# leaving the tree in a half-generated state if any step below fails.
-rollback() {
-  status=$?
-  if [ "$status" -ne 0 ]; then
-    echo "generation failed (exit ${status}), restoring generated sources"
-    git checkout -- "$MODELS_DIR" "$FIXTURES_DIR" 2>/dev/null || true
-    git clean -fdq "$MODELS_DIR" "$FIXTURES_DIR" 2>/dev/null || true
-  fi
+SNAPSHOT=$(mktemp -d)
+ROLLBACK_ARMED=0
+
+take_snapshot() {
+  local path
+  for path in "${GENERATED_PATHS[@]}"; do
+    [ -e "$path" ] || continue
+    mkdir -p "$SNAPSHOT/$(dirname "$path")"
+    cp -R "$path" "$SNAPSHOT/$(dirname "$path")/"
+  done
 }
-trap rollback EXIT
+
+# Restores the pre-run contents, including uncommitted edits and untracked files
+# that a git-based rollback would throw away.
+restore_snapshot() {
+  local path
+  for path in "${GENERATED_PATHS[@]}"; do
+    rm -rf "$path"
+    if [ -e "$SNAPSHOT/$path" ]; then
+      mkdir -p "$(dirname "$path")"
+      cp -R "$SNAPSHOT/$path" "$(dirname "$path")/"
+    fi
+  done
+}
+
+cleanup() {
+  status=$?
+  if [ "$status" -ne 0 ] && [ "$ROLLBACK_ARMED" -eq 1 ]; then
+    echo "generation failed (exit ${status}), restoring generated sources"
+    restore_snapshot
+  fi
+  rm -rf "$SNAPSHOT"
+}
+trap cleanup EXIT
 
 set -x
 
 # Build the generator first so a compile failure never touches the SDK tree.
 ( cd "$SOURCE_PATH" ; make openapi )
+
+take_snapshot
+ROLLBACK_ARMED=1
 
 # Every file the generator writes here is regenerated from scratch, so wipe them
 # first: schemas and webhook events dropped from the spec would otherwise survive
@@ -75,7 +145,7 @@ rm -f src/main/java/io/getstream/WebhookTest.java
 
 # Generated output is complete and coherent from here on: a compile failure is
 # something to inspect, not something to roll back.
-trap - EXIT
+ROLLBACK_ARMED=0
 
 # format generated code, clean stale Gradle/Spotless caches, then build
 ./gradlew clean spotlessApply build -x test
