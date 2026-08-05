@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -37,6 +38,10 @@ public class GetOrCreateChannelRequest {
   @Nullable
   @JsonProperty("thread_unread_counts")
   private Boolean threadUnreadCounts;
+
+  @Nullable
+  @JsonProperty("member_custom_include")
+  private List<String> memberCustomInclude;
 
   @Nullable
   @JsonProperty("data")

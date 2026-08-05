@@ -29,6 +29,14 @@ public class SendMessageResponse {
   private MessageResponse message;
 
   @Nullable
+  @JsonProperty("channel_context")
+  private ChannelContextResponse channelContext;
+
+  @Nullable
+  @JsonProperty("mentioned_members")
+  private Map<String, Boolean> mentionedMembers;
+
+  @Nullable
   @JsonProperty("pending_message_metadata")
   private Map<String, String> pendingMessageMetadata;
 }

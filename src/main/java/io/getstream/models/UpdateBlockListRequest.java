@@ -44,6 +44,14 @@ public class UpdateBlockListRequest {
   private String team;
 
   @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
   @JsonProperty("words")
   private List<String> words;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

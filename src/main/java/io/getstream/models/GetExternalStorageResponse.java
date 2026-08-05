@@ -38,4 +38,8 @@ public class GetExternalStorageResponse {
   @Nullable
   @JsonProperty("aws_s3")
   private GetExternalStorageAWSS3Response awsS3;
+
+  @Nullable
+  @JsonProperty("gcs")
+  private GetExternalStorageGCSResponse gcs;
 }

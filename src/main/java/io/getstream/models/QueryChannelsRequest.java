@@ -53,6 +53,10 @@ public class QueryChannelsRequest {
   private String userID;
 
   @Nullable
+  @JsonProperty("member_custom_include")
+  private List<String> memberCustomInclude;
+
+  @Nullable
   @JsonProperty("sort")
   private List<SortParamRequest> sort;
 

@@ -41,6 +41,10 @@ public class GetFeedsRateLimitsRequest {
   @JsonIgnore
   private Boolean Web;
 
+  @Query("unity")
+  @JsonIgnore
+  private Boolean Unity;
+
   @Query("server_side")
   @JsonIgnore
   private Boolean ServerSide;

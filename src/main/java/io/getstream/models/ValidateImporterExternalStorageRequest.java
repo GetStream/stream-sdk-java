@@ -13,8 +13,9 @@
 package io.getstream.models;
 
 /**
- * Validate external storage Validates the configured external S3 storage by performing a live STS
- * AssumeRole and S3 ListObjectsV2 check.
+ * Validate external storage Validates the configured external storage. For AWS S3, performs a live
+ * STS AssumeRole and S3 ListObjectsV2 check. For GCS, performs a live bucket listing check using
+ * the configured service-account credentials.
  */
 @lombok.Data
 @lombok.Builder

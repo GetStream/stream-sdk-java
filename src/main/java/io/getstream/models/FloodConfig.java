@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -20,6 +21,10 @@ import org.jetbrains.annotations.Nullable;
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class FloodConfig {
+
+  @Nullable
+  @JsonProperty("allowlist")
+  private List<String> allowlist;
 
   @Nullable
   @JsonProperty("identical")

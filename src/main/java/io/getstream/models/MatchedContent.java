@@ -41,6 +41,10 @@ public class MatchedContent {
   private String severity;
 
   @Nullable
+  @JsonProperty("text")
+  private String text;
+
+  @Nullable
   @JsonProperty("classifications")
   private List<Classification> classifications;
 

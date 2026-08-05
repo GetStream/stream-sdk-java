@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -40,4 +41,8 @@ public class FilterConfigResponse {
   @Nullable
   @JsonProperty("filterable_custom_keys")
   private List<String> filterableCustomKeys;
+
+  @Nullable
+  @JsonProperty("ai_image_taxonomy")
+  private Map<String, List<String>> aiImageTaxonomy;
 }

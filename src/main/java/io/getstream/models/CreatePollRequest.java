@@ -68,7 +68,7 @@ public class CreatePollRequest {
   private List<PollOptionInput> options;
 
   @Nullable
-  @JsonProperty("Custom")
+  @JsonProperty("custom")
   private Map<String, Object> custom;
 
   @Nullable

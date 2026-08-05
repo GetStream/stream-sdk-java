@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -24,4 +25,8 @@ public class MessageOptions {
   @Nullable
   @JsonProperty("include_thread_participants")
   private Boolean includeThreadParticipants;
+
+  @Nullable
+  @JsonProperty("member_custom_include")
+  private List<String> memberCustomInclude;
 }

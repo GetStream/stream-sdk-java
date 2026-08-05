@@ -27,4 +27,8 @@ public class UpsertExternalStorageRequest {
   @Nullable
   @JsonProperty("aws_s3")
   private UpsertExternalStorageAWSS3Request awsS3;
+
+  @Nullable
+  @JsonProperty("gcs")
+  private UpsertExternalStorageGCSRequest gcs;
 }

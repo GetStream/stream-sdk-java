@@ -14,47 +14,51 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * An /analyze call was acknowledged but its moderation could not be completed, so no verdict exists
+ * for the content. The content was NOT screened — treat it as unverified rather than clean, and
+ * re-submit if a verdict is required.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ChannelBatchUpdatedStartedEvent {
-
-  @JsonProperty("batch_created_at")
-  private Date batchCreatedAt;
+public class ModerationAnalysisFailedEvent {
 
   @JsonProperty("created_at")
   private Date createdAt;
-
-  @JsonProperty("finished_at")
-  private Date finishedAt;
-
-  @JsonProperty("operation")
-  private String operation;
-
-  @JsonProperty("status")
-  private String status;
-
-  @JsonProperty("success_channels_count")
-  private Integer successChannelsCount;
-
-  @JsonProperty("task_id")
-  private String taskID;
-
-  @JsonProperty("failed_channels")
-  private List<FailedChannelUpdates> failedChannels;
-
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
 
   @JsonProperty("type")
   private String type;
 
   @Nullable
+  @JsonProperty("config_key")
+  private String configKey;
+
+  @Nullable
+  @JsonProperty("entity_creator_id")
+  private String entityCreatorID;
+
+  @Nullable
+  @JsonProperty("entity_id")
+  private String entityID;
+
+  @Nullable
+  @JsonProperty("entity_type")
+  private String entityType;
+
+  @Nullable
   @JsonProperty("received_at")
   private Date receivedAt;
+
+  @Nullable
+  @JsonProperty("content_ids")
+  private Map<String, String> contentIds;
+
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 }

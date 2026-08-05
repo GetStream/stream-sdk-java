@@ -31,7 +31,7 @@ public class CreatePollOptionRequest {
   private String userID;
 
   @Nullable
-  @JsonProperty("Custom")
+  @JsonProperty("custom")
   private Map<String, Object> custom;
 
   @Nullable

@@ -38,6 +38,10 @@ public class GetFeedsRateLimitsResponse {
   private Map<String, LimitInfoResponse> serverSide;
 
   @Nullable
+  @JsonProperty("unity")
+  private Map<String, LimitInfoResponse> unity;
+
+  @Nullable
   @JsonProperty("web")
   private Map<String, LimitInfoResponse> web;
 }

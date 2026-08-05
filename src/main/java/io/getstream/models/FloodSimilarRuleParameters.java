@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -32,4 +33,8 @@ public class FloodSimilarRuleParameters {
   @Nullable
   @JsonProperty("time_window")
   private String timeWindow;
+
+  @Nullable
+  @JsonProperty("allowlist")
+  private List<String> allowlist;
 }

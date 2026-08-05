@@ -133,6 +133,7 @@ import io.getstream.models.MessageReadEvent;
 import io.getstream.models.MessageUnblockedEvent;
 import io.getstream.models.MessageUndeletedEvent;
 import io.getstream.models.MessageUpdatedEvent;
+import io.getstream.models.ModerationAnalysisFailedEvent;
 import io.getstream.models.ModerationCheckCompletedEvent;
 import io.getstream.models.ModerationCustomActionEvent;
 import io.getstream.models.ModerationFlaggedEvent;
@@ -341,6 +342,7 @@ public class Webhook {
     public static final String MESSAGE_UNBLOCKED = "message.unblocked";
     public static final String MESSAGE_UNDELETED = "message.undeleted";
     public static final String MESSAGE_UPDATED = "message.updated";
+    public static final String MODERATION_ANALYSIS_FAILED = "moderation.analysis.failed";
     public static final String MODERATION_CUSTOM_ACTION = "moderation.custom_action";
     public static final String MODERATION_FLAGGED = "moderation.flagged";
     public static final String MODERATION_IMAGE_ANALYSIS_COMPLETE =
@@ -740,6 +742,8 @@ public class Webhook {
         return MessageUndeletedEvent.class;
       case "message.updated":
         return MessageUpdatedEvent.class;
+      case "moderation.analysis.failed":
+        return ModerationAnalysisFailedEvent.class;
       case "moderation.custom_action":
         return ModerationCustomActionEvent.class;
       case "moderation.flagged":

@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -26,4 +27,8 @@ public class QueryFutureChannelBansResponse {
 
   @JsonProperty("bans")
   private List<FutureChannelBanResponse> bans;
+
+  @Nullable
+  @JsonProperty("total")
+  private Integer total;
 }

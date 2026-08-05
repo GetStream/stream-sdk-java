@@ -21,6 +21,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @lombok.AllArgsConstructor
 public class EncryptionSettingsResponse {
 
-  @JsonProperty("enabled")
-  private Boolean enabled;
+  @JsonProperty("mode")
+  private String mode;
 }
