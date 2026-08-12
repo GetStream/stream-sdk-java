@@ -106,7 +106,8 @@ public class StreamException extends Exception {
     if (parsed == null) {
       String msg =
           parseCause != null
-              ? "failed to parse error response"
+              ? String.format(
+                  "failed to parse error response: unexpected server response code %d", status)
               : String.format("Unexpected server response code %d", status);
       if (status == 429) {
         return new StreamRateLimitException(

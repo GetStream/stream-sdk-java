@@ -107,7 +107,8 @@ class StreamErrorHandlingTest {
     StreamApiException e = assertThrows(StreamApiException.class, () -> request().execute());
     assertEquals(502, e.getStatusCode(), "status code preserved when body is unparseable");
     assertEquals(0, e.getCode(), "unparseable body → code 0");
-    assertEquals("failed to parse error response", e.getMessage());
+    assertEquals(
+        "failed to parse error response: unexpected server response code 502", e.getMessage());
     assertEquals("<html>bad gateway</html>", e.getRawResponseBody());
     assertNotNull(e.getCause(), "parse error preserved on cause chain");
   }
