@@ -21,6 +21,10 @@ public class ModerationTest {
   static String testUserId;
   static String testUserId2;
   static String testModeratorId;
+  // The ban tests need their own target. A global ban on testUserId survives for
+  // the rest of the class, and a banned user cannot add an activity, so the
+  // activity tests failed whenever they ran after the ban.
+  static String bannedUserId;
   static String testFeedId;
   static String testActivityId;
 
@@ -34,6 +38,7 @@ public class ModerationTest {
     testUserId = "test-user-" + RandomStringUtils.randomAlphanumeric(8);
     testUserId2 = "test-user-2-" + RandomStringUtils.randomAlphanumeric(8);
     testModeratorId = "moderator-" + RandomStringUtils.randomAlphanumeric(8);
+    bannedUserId = "banned-user-" + RandomStringUtils.randomAlphanumeric(8);
 
     Map<String, UserRequest> usersMap = new HashMap<>();
     usersMap.put(
@@ -53,6 +58,13 @@ public class ModerationTest {
             .name("Moderator " + testModeratorId)
             .role("admin")
             .build());
+    usersMap.put(
+        bannedUserId,
+        UserRequest.builder()
+            .id(bannedUserId)
+            .name("Banned User " + bannedUserId)
+            .role("user")
+            .build());
 
     UpdateUsersRequest updateUsersRequest = UpdateUsersRequest.builder().users(usersMap).build();
     client.updateUsers(updateUsersRequest).execute();
@@ -71,7 +83,7 @@ public class ModerationTest {
     // snippet-start: BanWithReason
     BanRequest request =
         BanRequest.builder()
-            .targetUserID(testUserId)
+            .targetUserID(bannedUserId)
             .reason("spam")
             .timeout(60) // 60 minutes
             .bannedByID(testModeratorId)
@@ -206,7 +218,7 @@ public class ModerationTest {
     // First ban the user
     BanRequest banRequest =
         BanRequest.builder()
-            .targetUserID(testUserId)
+            .targetUserID(bannedUserId)
             .reason("test")
             .bannedByID(testModeratorId)
             .build();
@@ -214,7 +226,7 @@ public class ModerationTest {
 
     // snippet-start: UnbanUser
     UnbanRequest request =
-        UnbanRequest.builder().TargetUserID(testUserId).unbannedByID(testModeratorId).build();
+        UnbanRequest.builder().TargetUserID(bannedUserId).unbannedByID(testModeratorId).build();
 
     UnbanResponse response = moderation.unban(request).execute().getData();
     // snippet-end: UnbanUser
