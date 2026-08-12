@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.3.0](https://github.com/GetStream/stream-sdk-java/compare/9.2.0...9.3.0) (2026-08-12)
+
+
+### Bug Fixes
+
+* name the HTTP status when the error body is not JSON ([#79](https://github.com/GetStream/stream-sdk-java/issues/79)) ([a49641c](https://github.com/GetStream/stream-sdk-java/commit/a49641c1d01074149afa62ce6d1f021443f05695))
+
 ## [9.2.0](https://github.com/GetStream/stream-sdk-java/compare/9.1.0...9.2.0) (2026-08-05)
 
 
