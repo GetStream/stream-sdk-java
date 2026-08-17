@@ -170,7 +170,8 @@ class ChatChannelIntegrationTest extends ChatTestBase {
 
     assertNotNull(setResp.getData(), "PartialUpdate (set) response should not be null");
     assertNotNull(setResp.getData().getChannel(), "Channel in response should not be null");
-    var custom = setResp.getData().getChannel().getCustom();
+
+    var custom = readChannel(channelId).getCustom();
     assertNotNull(custom, "Custom data should not be null after set");
     assertEquals("red", custom.get("color"), "Custom field 'color' should be 'red'");
 
@@ -184,10 +185,23 @@ class ChatChannelIntegrationTest extends ChatTestBase {
 
     assertNotNull(unsetResp.getData(), "PartialUpdate (unset) response should not be null");
     assertNotNull(unsetResp.getData().getChannel(), "Channel in response should not be null");
-    var customAfterUnset = unsetResp.getData().getChannel().getCustom();
+
+    var customAfterUnset = readChannel(channelId).getCustom();
     assertTrue(
         customAfterUnset == null || !customAfterUnset.containsKey("color"),
         "Custom field 'color' should be removed after unset");
+  }
+
+  /**
+   * Reads the channel back from the API. The channel returned by a partial update can lag the write
+   * it just applied, so state assertions read the channel instead of trusting that response.
+   */
+  private ChannelResponse readChannel(String channelId) throws Exception {
+    return chat.getOrCreateChannel(
+            "messaging", channelId, GetOrCreateChannelRequest.builder().build())
+        .execute()
+        .getData()
+        .getChannel();
   }
 
   @Test
@@ -793,7 +807,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     assertNotNull(freezeResp.getData(), "Freeze response should not be null");
     assertNotNull(
         freezeResp.getData().getChannel(), "Channel in freeze response should not be null");
-    Boolean frozenAfterFreeze = freezeResp.getData().getChannel().getFrozen();
+    Boolean frozenAfterFreeze = readChannel(channelId).getFrozen();
     assertNotNull(frozenAfterFreeze, "Frozen field should not be null after freeze");
     assertTrue(frozenAfterFreeze, "Channel should be frozen after setting frozen=true");
 
@@ -808,7 +822,7 @@ class ChatChannelIntegrationTest extends ChatTestBase {
     assertNotNull(unfreezeResp.getData(), "Unfreeze response should not be null");
     assertNotNull(
         unfreezeResp.getData().getChannel(), "Channel in unfreeze response should not be null");
-    Boolean frozenAfterUnfreeze = unfreezeResp.getData().getChannel().getFrozen();
+    Boolean frozenAfterUnfreeze = readChannel(channelId).getFrozen();
     assertNotNull(frozenAfterUnfreeze, "Frozen field should not be null after unfreeze");
     assertFalse(frozenAfterUnfreeze, "Channel should be unfrozen after setting frozen=false");
   }
