@@ -12,17 +12,33 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
-/** List queues */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ListQueuesRequest {
+public class PolicyTestRow {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @Nullable
+  @JsonProperty("content_type")
+  private String contentType;
+
+  @Nullable
+  @JsonProperty("policy")
+  private String policy;
+
+  @Nullable
+  @JsonProperty("recommended_action")
+  private String recommendedAction;
+
+  @Nullable
+  @JsonProperty("text")
+  private String text;
+
+  @Nullable
+  @JsonProperty("labels")
+  private List<String> labels;
 }

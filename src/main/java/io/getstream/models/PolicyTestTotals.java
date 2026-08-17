@@ -12,17 +12,26 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** List queues */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ListQueuesRequest {
+public class PolicyTestTotals {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @JsonProperty("failed")
+  private Integer failed;
+
+  @JsonProperty("passed")
+  private Integer passed;
+
+  @JsonProperty("rows")
+  private Integer rows;
+
+  @JsonProperty("scored")
+  private Integer scored;
+
+  @JsonProperty("unscored")
+  private Integer unscored;
 }

@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
-/** Export channels Exports channel data to JSON file */
+/** Export channels Exports channel data to a JSON or CSV file (CSV requires version=v2) */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -35,6 +35,10 @@ public class ExportChannelsRequest {
   private Boolean exportUsers;
 
   @Nullable
+  @JsonProperty("format")
+  private String format;
+
+  @Nullable
   @JsonProperty("include_soft_deleted_channels")
   private Boolean includeSoftDeletedChannels;
 
@@ -45,4 +49,8 @@ public class ExportChannelsRequest {
   @Nullable
   @JsonProperty("version")
   private String version;
+
+  @Nullable
+  @JsonProperty("include_fields")
+  private List<String> includeFields;
 }

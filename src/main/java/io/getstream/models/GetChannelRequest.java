@@ -18,7 +18,7 @@ import io.getstream.annotations.Query;
 /**
  * Get channel Returns a channel by its CID without creating it. Responds with 404 when the channel
  * does not exist, so it doubles as an existence check. Pass state=true to also load messages, read
- * state and watchers.
+ * state and watchers, and the messages_id_* parameters to page those messages by message ID.
  */
 @lombok.Data
 @lombok.Builder
@@ -41,4 +41,28 @@ public class GetChannelRequest {
   @Query("watchers_limit")
   @JsonIgnore
   private Integer WatchersLimit;
+
+  @Query("messages_id_lt")
+  @JsonIgnore
+  private String MessagesIDLt;
+
+  @Query("messages_id_lte")
+  @JsonIgnore
+  private String MessagesIDLte;
+
+  @Query("messages_id_gt")
+  @JsonIgnore
+  private String MessagesIDGt;
+
+  @Query("messages_id_gte")
+  @JsonIgnore
+  private String MessagesIDGte;
+
+  @Query("messages_id_around")
+  @JsonIgnore
+  private String MessagesIDAround;
+
+  @Query("user_id")
+  @JsonIgnore
+  private String UserID;
 }

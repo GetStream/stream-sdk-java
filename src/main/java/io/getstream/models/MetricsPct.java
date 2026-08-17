@@ -12,17 +12,32 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
-/** List queues */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ListQueuesRequest {
+public class MetricsPct {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @Nullable
+  @JsonProperty("freezes")
+  private Double freezes;
+
+  @Nullable
+  @JsonProperty("geo")
+  private Double geo;
+
+  @Nullable
+  @JsonProperty("jitter")
+  private Double jitter;
+
+  @Nullable
+  @JsonProperty("latency")
+  private Double latency;
+
+  @Nullable
+  @JsonProperty("quality_score")
+  private Double qualityScore;
 }

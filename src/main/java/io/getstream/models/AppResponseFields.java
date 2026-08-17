@@ -66,14 +66,14 @@ public class AppResponseFields {
   @JsonProperty("max_aggregated_activities_length")
   private Integer maxAggregatedActivitiesLength;
 
+  @JsonProperty("member_custom_on_messages_enabled")
+  private Boolean memberCustomOnMessagesEnabled;
+
   @JsonProperty("moderation_audio_call_moderation_enabled")
   private Boolean moderationAudioCallModerationEnabled;
 
   @JsonProperty("moderation_enabled")
   private Boolean moderationEnabled;
-
-  @JsonProperty("moderation_flood_rules_enabled")
-  private Boolean moderationFloodRulesEnabled;
 
   @JsonProperty("moderation_llm_configurability_enabled")
   private Boolean moderationLlmConfigurabilityEnabled;

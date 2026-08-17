@@ -12,17 +12,8 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
-
-/** List queues */
+/** List policy test sets */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
-public class ListQueuesRequest {
-
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
-}
+public class ListPolicyTestSetsRequest {}

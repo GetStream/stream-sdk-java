@@ -212,6 +212,48 @@ public interface Moderation {
   public StreamRequest<MuteResponse> mute(MuteRequest request) throws StreamException;
 
   @NotNull
+  public StreamRequest<PolicyTestRunResponse> getPolicyTestRun(
+      @NotNull String id, GetPolicyTestRunRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<PolicyTestRunResponse> getPolicyTestRun(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<PolicyTestSetListResponse> listPolicyTestSets(
+      ListPolicyTestSetsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<PolicyTestSetListResponse> listPolicyTestSets() throws StreamException;
+
+  @NotNull
+  public StreamRequest<PolicyTestSetResponse> createPolicyTestSet(
+      CreatePolicyTestSetRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deletePolicyTestSet(
+      @NotNull String id, DeletePolicyTestSetRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deletePolicyTestSet(@NotNull String id) throws StreamException;
+
+  @NotNull
+  public StreamRequest<PolicyTestSetResponse> getPolicyTestSet(
+      @NotNull String id, GetPolicyTestSetRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<PolicyTestSetResponse> getPolicyTestSet(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<PolicyTestRunResponse> startPolicyTestRun(
+      @NotNull String id, StartPolicyTestRunRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<PolicyTestRunResponse> startPolicyTestRun(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<ListQueuesResponse> listQueues(ListQueuesRequest request)
       throws StreamException;
 

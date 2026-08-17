@@ -14,52 +14,53 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
-import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** Basic response information */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ModerationPayload {
+public class GetDailyDigestResponse {
+
+  @JsonProperty("date")
+  private String date;
+
+  @JsonProperty("duration")
+  private String duration;
+
+  @JsonProperty("status")
+  private String status;
 
   @Nullable
-  @JsonProperty("audios")
-  private List<String> audios;
+  @JsonProperty("generated_at")
+  private String generatedAt;
 
   @Nullable
-  @JsonProperty("image_ordered_keys")
-  private List<String> imageOrderedKeys;
+  @JsonProperty("retry_after")
+  private Integer retryAfter;
 
   @Nullable
-  @JsonProperty("images")
-  private List<String> images;
+  @JsonProperty("revision")
+  private Integer revision;
 
   @Nullable
-  @JsonProperty("other_media")
-  private List<String> otherMedia;
+  @JsonProperty("schema_version")
+  private String schemaVersion;
 
   @Nullable
-  @JsonProperty("text_ordered_keys")
-  private List<String> textOrderedKeys;
+  @JsonProperty("broadcasts")
+  private List<BroadcastDigest> broadcasts;
 
   @Nullable
-  @JsonProperty("texts")
-  private List<String> texts;
+  @JsonProperty("call_sessions")
+  private List<DailyDigestCallSessionSummary> callSessions;
 
   @Nullable
-  @JsonProperty("videos")
-  private List<String> videos;
+  @JsonProperty("digest_kinds")
+  private List<String> digestKinds;
 
   @Nullable
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
-
-  @Nullable
-  @JsonProperty("image_ids")
-  private Map<String, String> imageIds;
-
-  @Nullable
-  @JsonProperty("text_ids")
-  private Map<String, String> textIds;
+  @JsonProperty("broadcast_rollup")
+  private BroadcastDailyRollup broadcastRollup;
 }

@@ -15,14 +15,22 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
-/** List queues */
+/**
+ * Get daily digest Returns the app&#39;s per-broadcast daily digest bundle for one UTC day, with an
+ * explicit readiness status (ready, pending, failed, future_date, expired). Payload keys are only
+ * present when status is ready.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ListQueuesRequest {
+public class GetDailyDigestRequest {
 
-  @Query("user_id")
+  @Query("date")
   @JsonIgnore
-  private String UserID;
+  private String Date;
+
+  @Query("app_id")
+  @JsonIgnore
+  private String AppID;
 }

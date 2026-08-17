@@ -12,17 +12,30 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
-/** List queues */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ListQueuesRequest {
+public class Segments {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @JsonProperty("by_country_reason")
+  private String byCountryReason;
+
+  @JsonProperty("by_browser")
+  private List<BroadcastSegment> byBrowser;
+
+  @JsonProperty("by_country")
+  private List<BroadcastSegment> byCountry;
+
+  @JsonProperty("by_delivery_zone")
+  private List<DeliveryZoneSegment> byDeliveryZone;
+
+  @JsonProperty("by_os")
+  private List<BroadcastSegment> byOs;
+
+  @JsonProperty("by_sdk")
+  private List<BroadcastSegment> bySdk;
 }

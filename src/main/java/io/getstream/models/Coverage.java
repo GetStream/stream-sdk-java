@@ -12,17 +12,21 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
-/** List queues */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ListQueuesRequest {
+public class Coverage {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @JsonProperty("publisher_encoding_profiles")
+  private Integer publisherEncodingProfiles;
+
+  @JsonProperty("absent")
+  private List<AbsentMetric> absent;
+
+  @JsonProperty("metrics_pct")
+  private MetricsPct metricsPct;
 }

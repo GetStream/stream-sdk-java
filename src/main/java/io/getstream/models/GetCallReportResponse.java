@@ -41,6 +41,10 @@ public class GetCallReportResponse {
   private ChatActivityStatsResponse chatActivity;
 
   @Nullable
+  @JsonProperty("digest")
+  private BroadcastDigest digest;
+
+  @Nullable
   @JsonProperty("session")
   private CallSessionResponse session;
 }

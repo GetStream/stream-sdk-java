@@ -17,8 +17,8 @@ import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Send new message Sends new message to the specified channel Sends events: - message.new -
- * message.updated
+ * Send new message Sends new message to the specified channel Sends events: - channel.visible -
+ * message.new - message.updated
  */
 @lombok.Data
 @lombok.Builder

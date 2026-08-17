@@ -12,17 +12,20 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
-/** List queues */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ListQueuesRequest {
+public class Percentiles {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @Nullable
+  @JsonProperty("p50")
+  private Double p50;
+
+  @Nullable
+  @JsonProperty("p95")
+  private Double p95;
 }
