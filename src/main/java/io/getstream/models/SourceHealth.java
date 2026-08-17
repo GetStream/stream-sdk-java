@@ -12,17 +12,24 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
-/** List queues */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ListQueuesRequest {
+public class SourceHealth {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @JsonProperty("co_host_peak")
+  private Integer coHostPeak;
+
+  @JsonProperty("dead_air_s")
+  private Integer deadAirS;
+
+  @JsonProperty("interruptions")
+  private List<SourceInterruption> interruptions;
+
+  @JsonProperty("publisher_sessions")
+  private List<PublisherSession> publisherSessions;
 }

@@ -15,26 +15,35 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
-/** Configuration for unban moderation action */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UnbanActionRequestPayload {
+public class BroadcastSegment {
+
+  @JsonProperty("key")
+  private String key;
+
+  @JsonProperty("sessions")
+  private Integer sessions;
 
   @Nullable
-  @JsonProperty("channel_cid")
-  private String channelCid;
+  @JsonProperty("avg_quality_score")
+  private Double avgQualityScore;
 
   @Nullable
-  @JsonProperty("decision_reason")
-  private String decisionReason;
+  @JsonProperty("p5_quality_score")
+  private Double p5QualityScore;
 
   @Nullable
-  @JsonProperty("remove_future_channels_ban")
-  private Boolean removeFutureChannelsBan;
+  @JsonProperty("poor_pct")
+  private Double poorPct;
 
   @Nullable
-  @JsonProperty("target_user_id")
-  private String targetUserID;
+  @JsonProperty("share_pct")
+  private Double sharePct;
+
+  @Nullable
+  @JsonProperty("watch_share_pct")
+  private Double watchSharePct;
 }

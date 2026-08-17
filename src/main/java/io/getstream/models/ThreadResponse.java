@@ -42,6 +42,9 @@ public class ThreadResponse {
   @JsonProperty("participant_count")
   private Integer participantCount;
 
+  @JsonProperty("reply_count")
+  private Integer replyCount;
+
   @JsonProperty("title")
   private String title;
 
@@ -58,10 +61,6 @@ public class ThreadResponse {
   @Nullable
   @JsonProperty("last_message_at")
   private Date lastMessageAt;
-
-  @Nullable
-  @JsonProperty("reply_count")
-  private Integer replyCount;
 
   @Nullable
   @JsonProperty("thread_participants")

@@ -12,17 +12,30 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
+import org.jetbrains.annotations.Nullable;
 
-/** List queues */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ListQueuesRequest {
+public class Joins {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @JsonProperty("reason")
+  private String reason;
+
+  @JsonProperty("disconnect_reasons")
+  private Map<String, Integer> disconnectReasons;
+
+  @JsonProperty("failure_stages")
+  private Map<String, Integer> failureStages;
+
+  @Nullable
+  @JsonProperty("join_attempts")
+  private Integer joinAttempts;
+
+  @Nullable
+  @JsonProperty("join_success_rate")
+  private Double joinSuccessRate;
 }

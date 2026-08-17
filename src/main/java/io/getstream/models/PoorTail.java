@@ -12,17 +12,31 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
-/** List queues */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ListQueuesRequest {
+public class PoorTail {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @JsonProperty("healthy_viewers")
+  private Integer healthyViewers;
+
+  @JsonProperty("note")
+  private String note;
+
+  @JsonProperty("poor_total")
+  private Integer poorTotal;
+
+  @JsonProperty("poor_by_cause")
+  private PoorByCause poorByCause;
+
+  @JsonProperty("supporting")
+  private Supporting supporting;
+
+  @Nullable
+  @JsonProperty("healthy_pct")
+  private Double healthyPct;
 }

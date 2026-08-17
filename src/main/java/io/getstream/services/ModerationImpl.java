@@ -572,6 +572,116 @@ public class ModerationImpl {
   }
 
   @NotNull
+  public StreamRequest<PolicyTestRunResponse> getPolicyTestRun(
+      @NotNull String id, GetPolicyTestRunRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<PolicyTestRunResponse>(
+        client,
+        "GET",
+        "/api/v2/moderation/policy_tests/runs/{id}",
+        request,
+        pathParams,
+        new TypeReference<PolicyTestRunResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<PolicyTestRunResponse> getPolicyTestRun(@NotNull String id)
+      throws StreamException {
+    return getPolicyTestRun(id, new GetPolicyTestRunRequest());
+  }
+
+  @NotNull
+  public StreamRequest<PolicyTestSetListResponse> listPolicyTestSets(
+      ListPolicyTestSetsRequest request) throws StreamException {
+
+    return new StreamRequest<PolicyTestSetListResponse>(
+        client,
+        "GET",
+        "/api/v2/moderation/policy_tests/sets",
+        request,
+        null,
+        new TypeReference<PolicyTestSetListResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<PolicyTestSetListResponse> listPolicyTestSets() throws StreamException {
+    return listPolicyTestSets(new ListPolicyTestSetsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<PolicyTestSetResponse> createPolicyTestSet(
+      CreatePolicyTestSetRequest request) throws StreamException {
+
+    return new StreamRequest<PolicyTestSetResponse>(
+        client,
+        "POST",
+        "/api/v2/moderation/policy_tests/sets",
+        request,
+        null,
+        new TypeReference<PolicyTestSetResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<Response> deletePolicyTestSet(
+      @NotNull String id, DeletePolicyTestSetRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<Response>(
+        client,
+        "DELETE",
+        "/api/v2/moderation/policy_tests/sets/{id}",
+        request,
+        pathParams,
+        new TypeReference<Response>() {});
+  }
+
+  @NotNull
+  public StreamRequest<Response> deletePolicyTestSet(@NotNull String id) throws StreamException {
+    return deletePolicyTestSet(id, new DeletePolicyTestSetRequest());
+  }
+
+  @NotNull
+  public StreamRequest<PolicyTestSetResponse> getPolicyTestSet(
+      @NotNull String id, GetPolicyTestSetRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<PolicyTestSetResponse>(
+        client,
+        "GET",
+        "/api/v2/moderation/policy_tests/sets/{id}",
+        request,
+        pathParams,
+        new TypeReference<PolicyTestSetResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<PolicyTestSetResponse> getPolicyTestSet(@NotNull String id)
+      throws StreamException {
+    return getPolicyTestSet(id, new GetPolicyTestSetRequest());
+  }
+
+  @NotNull
+  public StreamRequest<PolicyTestRunResponse> startPolicyTestRun(
+      @NotNull String id, StartPolicyTestRunRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<PolicyTestRunResponse>(
+        client,
+        "POST",
+        "/api/v2/moderation/policy_tests/sets/{id}/runs",
+        request,
+        pathParams,
+        new TypeReference<PolicyTestRunResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<PolicyTestRunResponse> startPolicyTestRun(@NotNull String id)
+      throws StreamException {
+    return startPolicyTestRun(id, new StartPolicyTestRunRequest());
+  }
+
+  @NotNull
   public StreamRequest<ListQueuesResponse> listQueues(ListQueuesRequest request)
       throws StreamException {
 

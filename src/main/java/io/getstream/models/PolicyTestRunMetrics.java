@@ -12,17 +12,23 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
+import org.jetbrains.annotations.Nullable;
 
-/** List queues */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ListQueuesRequest {
+public class PolicyTestRunMetrics {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @JsonProperty("mode")
+  private String mode;
+
+  @JsonProperty("totals")
+  private PolicyTestTotals totals;
+
+  @Nullable
+  @JsonProperty("by_label")
+  private Map<String, PolicyTestLabelDrift> byLabel;
 }

@@ -94,6 +94,10 @@ public class ActivityRequest {
   private List<String> collectionRefs;
 
   @Nullable
+  @JsonProperty("collections")
+  private List<CollectionRequest> collections;
+
+  @Nullable
   @JsonProperty("filter_tags")
   private List<String> filterTags;
 

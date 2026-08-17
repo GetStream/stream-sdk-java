@@ -12,17 +12,25 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
-/** List queues */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ListQueuesRequest {
+public class TopBroadcast {
 
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
+  @JsonProperty("call_cid")
+  private String callCid;
+
+  @JsonProperty("hours_watched")
+  private Double hoursWatched;
+
+  @JsonProperty("peak_concurrent_viewers")
+  private Integer peakConcurrentViewers;
+
+  @Nullable
+  @JsonProperty("poor_pct")
+  private Double poorPct;
 }

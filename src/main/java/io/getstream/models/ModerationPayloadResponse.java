@@ -37,6 +37,10 @@ public class ModerationPayloadResponse {
   private List<String> images;
 
   @Nullable
+  @JsonProperty("other_media")
+  private List<String> otherMedia;
+
+  @Nullable
   @JsonProperty("text_ordered_keys")
   private List<String> textOrderedKeys;
 

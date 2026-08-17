@@ -1515,4 +1515,22 @@ public class VideoImpl {
       throws StreamException {
     return queryAggregateCallStats(new QueryAggregateCallStatsRequest());
   }
+
+  @NotNull
+  public StreamRequest<GetDailyDigestResponse> getDailyDigest(GetDailyDigestRequest request)
+      throws StreamException {
+
+    return new StreamRequest<GetDailyDigestResponse>(
+        client,
+        "GET",
+        "/api/v2/video/stats/daily_digest",
+        request,
+        null,
+        new TypeReference<GetDailyDigestResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetDailyDigestResponse> getDailyDigest() throws StreamException {
+    return getDailyDigest(new GetDailyDigestRequest());
+  }
 }

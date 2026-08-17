@@ -583,5 +583,12 @@ public interface Video {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<GetDailyDigestResponse> getDailyDigest(GetDailyDigestRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetDailyDigestResponse> getDailyDigest() throws StreamException;
+
+  @NotNull
   public Call call(String callType, String callID);
 }

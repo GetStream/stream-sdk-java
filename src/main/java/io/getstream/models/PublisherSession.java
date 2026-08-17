@@ -13,53 +13,55 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
-import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ModerationPayload {
+public class PublisherSession {
+
+  @JsonProperty("duration_min")
+  private Double durationMin;
+
+  @JsonProperty("started_offset_min")
+  private Double startedOffsetMin;
+
+  @JsonProperty("user_id")
+  private String userID;
+
+  @JsonProperty("user_session_id")
+  private String userSessionID;
 
   @Nullable
-  @JsonProperty("audios")
-  private List<String> audios;
+  @JsonProperty("avg_jitter_ms")
+  private Double avgJitterMs;
 
   @Nullable
-  @JsonProperty("image_ordered_keys")
-  private List<String> imageOrderedKeys;
+  @JsonProperty("browser")
+  private String browser;
 
   @Nullable
-  @JsonProperty("images")
-  private List<String> images;
+  @JsonProperty("delivery_zone")
+  private String deliveryZone;
 
   @Nullable
-  @JsonProperty("other_media")
-  private List<String> otherMedia;
+  @JsonProperty("ingest")
+  private String ingest;
 
   @Nullable
-  @JsonProperty("text_ordered_keys")
-  private List<String> textOrderedKeys;
+  @JsonProperty("os")
+  private String os;
 
   @Nullable
-  @JsonProperty("texts")
-  private List<String> texts;
+  @JsonProperty("send_quality_score")
+  private Double sendQualityScore;
 
   @Nullable
-  @JsonProperty("videos")
-  private List<String> videos;
+  @JsonProperty("tool")
+  private String tool;
 
   @Nullable
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
-
-  @Nullable
-  @JsonProperty("image_ids")
-  private Map<String, String> imageIds;
-
-  @Nullable
-  @JsonProperty("text_ids")
-  private Map<String, String> textIds;
+  @JsonProperty("encoding")
+  private EncodingProfile encoding;
 }
