@@ -20,7 +20,9 @@ import org.jetbrains.annotations.Nullable;
  * Returns all 16 metrics grouped by team with cursor-based pagination. **Date Range Options
  * (mutually exclusive):** - Use &#39;month&#39; parameter (YYYY-MM format) for monthly aggregated
  * values - Use &#39;start_date&#39;/&#39;end_date&#39; parameters (YYYY-MM-DD format) for daily
- * breakdown - If neither provided, defaults to current month (monthly mode) This endpoint is
+ * breakdown - If neither provided, defaults to current month (monthly mode) **Team Filter:** - Use
+ * &#39;team&#39; to return a single team&#39;s stats (empty string selects users not assigned to
+ * any team) - Mutually exclusive with the &#39;next&#39; pagination cursor This endpoint is
  * server-side only.
  */
 @lombok.Data
@@ -48,4 +50,8 @@ public class QueryTeamUsageStatsRequest {
   @Nullable
   @JsonProperty("start_date")
   private String startDate;
+
+  @Nullable
+  @JsonProperty("team")
+  private String team;
 }

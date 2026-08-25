@@ -229,6 +229,15 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<GetPinnedMessagesResponse> getPinnedMessages(
+      @NotNull String type, @NotNull String id, GetPinnedMessagesRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetPinnedMessagesResponse> getPinnedMessages(
+      @NotNull String type, @NotNull String id) throws StreamException;
+
+  @NotNull
   public StreamRequest<ChannelStateResponse> getOrCreateChannel(
       @NotNull String type, @NotNull String id, GetOrCreateChannelRequest request)
       throws StreamException;
@@ -510,6 +519,38 @@ public interface Chat {
 
   @NotNull
   public StreamRequest<UnmuteResponse> unmuteChannel() throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryPredefinedFiltersResponse> getPredefinedFilters(
+      GetPredefinedFiltersRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryPredefinedFiltersResponse> getPredefinedFilters()
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<CreatePredefinedFilterResponse> createPredefinedFilter(
+      CreatePredefinedFilterRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deletePredefinedFilter(
+      @NotNull String name, DeletePredefinedFilterRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deletePredefinedFilter(@NotNull String name)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetPredefinedFilterResponse> getPredefinedFilter(
+      @NotNull String name, GetPredefinedFilterRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetPredefinedFilterResponse> getPredefinedFilter(@NotNull String name)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdatePredefinedFilterResponse> updatePredefinedFilter(
+      @NotNull String name, UpdatePredefinedFilterRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryBannedUsersResponse> queryBannedUsers(QueryBannedUsersRequest request)

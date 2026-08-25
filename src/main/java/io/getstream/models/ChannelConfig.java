@@ -50,6 +50,9 @@ public class ChannelConfig {
   @JsonProperty("max_message_length")
   private Integer maxMessageLength;
 
+  @JsonProperty("message_retention")
+  private String messageRetention;
+
   @JsonProperty("mutes")
   private Boolean mutes;
 

@@ -90,6 +90,15 @@ public class Feed {
     return service.changeFeedVisibility(this.feedGroup, this.feedID, request).execute();
   }
 
+  public StreamResponse<GetFeedCountsResponse> getFeedCounts(GetFeedCountsRequest request)
+      throws StreamException {
+    return service.getFeedCounts(this.feedGroup, this.feedID, request).execute();
+  }
+
+  public StreamResponse<GetFeedCountsResponse> getFeedCounts() throws StreamException {
+    return this.getFeedCounts(new GetFeedCountsRequest());
+  }
+
   public StreamResponse<UpdateFeedMembersResponse> updateFeedMembers(
       UpdateFeedMembersRequest request) throws StreamException {
     return service.updateFeedMembers(this.feedGroup, this.feedID, request).execute();

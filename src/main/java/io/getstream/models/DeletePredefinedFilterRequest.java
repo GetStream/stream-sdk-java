@@ -12,21 +12,8 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.Nullable;
-
-/**
- * Configuration for restore action. State-aware: reverses whichever of a delete, a block, or a
- * shadow block currently applies to the content (including both a delete and a block/shadow block
- * at once).
- */
+/** Delete predefined filter Delete a predefined filter by name */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
-public class RestoreActionRequestPayload {
-
-  @Nullable
-  @JsonProperty("decision_reason")
-  private String decisionReason;
-}
+public class DeletePredefinedFilterRequest {}

@@ -12,21 +12,25 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.Nullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.annotations.Query;
+import java.util.List;
 
 /**
- * Configuration for restore action. State-aware: reverses whichever of a delete, a block, or a
- * shadow block currently applies to the content (including both a delete and a block/shadow block
- * at once).
+ * Get predefined filters Get all predefined filters with optional sorting by created_at,
+ * updated_at, name, or operation
  */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class RestoreActionRequestPayload {
+public class GetPredefinedFiltersRequest {
 
-  @Nullable
-  @JsonProperty("decision_reason")
-  private String decisionReason;
+  @Query("include_stats")
+  @JsonIgnore
+  private Boolean IncludeStats;
+
+  @Query("sort")
+  @JsonIgnore
+  private List<SortParamRequest> Sort;
 }

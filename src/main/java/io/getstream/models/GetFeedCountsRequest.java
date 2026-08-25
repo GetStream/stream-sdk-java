@@ -12,21 +12,12 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.Nullable;
-
 /**
- * Configuration for restore action. State-aware: reverses whichever of a delete, a block, or a
- * shadow block currently applies to the content (including both a delete and a block/shadow block
- * at once).
+ * Get feed counts Returns the number of activities in a feed, the total number of comments on those
+ * activities (including nested replies), and the sum of both. The comment total is cached for a few
+ * seconds on large feeds.
  */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
-public class RestoreActionRequestPayload {
-
-  @Nullable
-  @JsonProperty("decision_reason")
-  private String decisionReason;
-}
+public class GetFeedCountsRequest {}

@@ -13,20 +13,37 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * Configuration for restore action. State-aware: reverses whichever of a delete, a block, or a
- * shadow block currently applies to the content (including both a delete and a block/shadow block
- * at once).
- */
+/** Create permission Creates permission */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class RestoreActionRequestPayload {
+public class CreatePermissionRequest {
+
+  @JsonProperty("action")
+  private String action;
+
+  @JsonProperty("id")
+  private String id;
+
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("condition")
+  private Map<String, Object> condition;
 
   @Nullable
-  @JsonProperty("decision_reason")
-  private String decisionReason;
+  @JsonProperty("description")
+  private String description;
+
+  @Nullable
+  @JsonProperty("owner")
+  private Boolean owner;
+
+  @Nullable
+  @JsonProperty("same_team")
+  private Boolean sameTeam;
 }
