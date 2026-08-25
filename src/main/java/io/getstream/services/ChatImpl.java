@@ -605,6 +605,30 @@ public class ChatImpl {
   }
 
   @NotNull
+  public StreamRequest<GetPinnedMessagesResponse> getPinnedMessages(
+      @NotNull String type, @NotNull String id, GetPinnedMessagesRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "type", type,
+            "id", id);
+
+    return new StreamRequest<GetPinnedMessagesResponse>(
+        client,
+        "GET",
+        "/api/v2/chat/channels/{type}/{id}/pinned_messages",
+        request,
+        pathParams,
+        new TypeReference<GetPinnedMessagesResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetPinnedMessagesResponse> getPinnedMessages(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return getPinnedMessages(type, id, new GetPinnedMessagesRequest());
+  }
+
+  @NotNull
   public StreamRequest<ChannelStateResponse> getOrCreateChannel(
       @NotNull String type, @NotNull String id, GetOrCreateChannelRequest request)
       throws StreamException {
@@ -1369,6 +1393,92 @@ public class ChatImpl {
   @NotNull
   public StreamRequest<UnmuteResponse> unmuteChannel() throws StreamException {
     return unmuteChannel(new UnmuteChannelRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueryPredefinedFiltersResponse> getPredefinedFilters(
+      GetPredefinedFiltersRequest request) throws StreamException {
+
+    return new StreamRequest<QueryPredefinedFiltersResponse>(
+        client,
+        "GET",
+        "/api/v2/chat/predefined_filters",
+        request,
+        null,
+        new TypeReference<QueryPredefinedFiltersResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryPredefinedFiltersResponse> getPredefinedFilters()
+      throws StreamException {
+    return getPredefinedFilters(new GetPredefinedFiltersRequest());
+  }
+
+  @NotNull
+  public StreamRequest<CreatePredefinedFilterResponse> createPredefinedFilter(
+      CreatePredefinedFilterRequest request) throws StreamException {
+
+    return new StreamRequest<CreatePredefinedFilterResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/predefined_filters",
+        request,
+        null,
+        new TypeReference<CreatePredefinedFilterResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<Response> deletePredefinedFilter(
+      @NotNull String name, DeletePredefinedFilterRequest request) throws StreamException {
+    var pathParams = Map.of("name", name);
+
+    return new StreamRequest<Response>(
+        client,
+        "DELETE",
+        "/api/v2/chat/predefined_filters/{name}",
+        request,
+        pathParams,
+        new TypeReference<Response>() {});
+  }
+
+  @NotNull
+  public StreamRequest<Response> deletePredefinedFilter(@NotNull String name)
+      throws StreamException {
+    return deletePredefinedFilter(name, new DeletePredefinedFilterRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GetPredefinedFilterResponse> getPredefinedFilter(
+      @NotNull String name, GetPredefinedFilterRequest request) throws StreamException {
+    var pathParams = Map.of("name", name);
+
+    return new StreamRequest<GetPredefinedFilterResponse>(
+        client,
+        "GET",
+        "/api/v2/chat/predefined_filters/{name}",
+        request,
+        pathParams,
+        new TypeReference<GetPredefinedFilterResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetPredefinedFilterResponse> getPredefinedFilter(@NotNull String name)
+      throws StreamException {
+    return getPredefinedFilter(name, new GetPredefinedFilterRequest());
+  }
+
+  @NotNull
+  public StreamRequest<UpdatePredefinedFilterResponse> updatePredefinedFilter(
+      @NotNull String name, UpdatePredefinedFilterRequest request) throws StreamException {
+    var pathParams = Map.of("name", name);
+
+    return new StreamRequest<UpdatePredefinedFilterResponse>(
+        client,
+        "PUT",
+        "/api/v2/chat/predefined_filters/{name}",
+        request,
+        pathParams,
+        new TypeReference<UpdatePredefinedFilterResponse>() {});
   }
 
   @NotNull

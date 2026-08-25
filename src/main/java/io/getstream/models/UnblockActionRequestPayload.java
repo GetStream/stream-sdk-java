@@ -15,7 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
-/** Configuration for unblock action */
+/**
+ * Deprecated: use restore instead — it now also reverses a block or shadow block. Configuration for
+ * unblock action.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

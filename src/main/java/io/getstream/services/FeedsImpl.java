@@ -1136,6 +1136,30 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<GetFeedCountsResponse> getFeedCounts(
+      @NotNull String feedGroupID, @NotNull String feedID, GetFeedCountsRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "feed_group_id", feedGroupID,
+            "feed_id", feedID);
+
+    return new StreamRequest<GetFeedCountsResponse>(
+        client,
+        "GET",
+        "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/counts",
+        request,
+        pathParams,
+        new TypeReference<GetFeedCountsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetFeedCountsResponse> getFeedCounts(
+      @NotNull String feedGroupID, @NotNull String feedID) throws StreamException {
+    return getFeedCounts(feedGroupID, feedID, new GetFeedCountsRequest());
+  }
+
+  @NotNull
   public StreamRequest<UpdateFeedMembersResponse> updateFeedMembers(
       @NotNull String feedGroupID, @NotNull String feedID, UpdateFeedMembersRequest request)
       throws StreamException {

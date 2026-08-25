@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -22,4 +23,12 @@ public class ActivityProcessorConfig {
 
   @JsonProperty("type")
   private String type;
+
+  @Nullable
+  @JsonProperty("min_text_length")
+  private Integer minTextLength;
+
+  @Nullable
+  @JsonProperty("min_word_count")
+  private Integer minWordCount;
 }

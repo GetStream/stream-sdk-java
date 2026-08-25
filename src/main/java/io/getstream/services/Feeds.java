@@ -437,6 +437,15 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<GetFeedCountsResponse> getFeedCounts(
+      @NotNull String feedGroupID, @NotNull String feedID, GetFeedCountsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedCountsResponse> getFeedCounts(
+      @NotNull String feedGroupID, @NotNull String feedID) throws StreamException;
+
+  @NotNull
   public StreamRequest<UpdateFeedMembersResponse> updateFeedMembers(
       @NotNull String feedGroupID, @NotNull String feedID, UpdateFeedMembersRequest request)
       throws StreamException;

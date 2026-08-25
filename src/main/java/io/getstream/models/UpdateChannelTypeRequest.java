@@ -62,6 +62,10 @@ public class UpdateChannelTypeRequest {
   private Boolean markMessagesPending;
 
   @Nullable
+  @JsonProperty("message_retention")
+  private String messageRetention;
+
+  @Nullable
   @JsonProperty("mutes")
   private Boolean mutes;
 

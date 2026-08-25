@@ -611,6 +611,33 @@ public class CommonImpl {
   }
 
   @NotNull
+  public StreamRequest<Response> createPermission(CreatePermissionRequest request)
+      throws StreamException {
+
+    return new StreamRequest<Response>(
+        client, "POST", "/api/v2/permissions", request, null, new TypeReference<Response>() {});
+  }
+
+  @NotNull
+  public StreamRequest<Response> deletePermission(
+      @NotNull String id, DeletePermissionRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<Response>(
+        client,
+        "DELETE",
+        "/api/v2/permissions/{id}",
+        request,
+        pathParams,
+        new TypeReference<Response>() {});
+  }
+
+  @NotNull
+  public StreamRequest<Response> deletePermission(@NotNull String id) throws StreamException {
+    return deletePermission(id, new DeletePermissionRequest());
+  }
+
+  @NotNull
   public StreamRequest<GetCustomPermissionResponse> getPermission(
       @NotNull String id, GetPermissionRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
@@ -628,6 +655,20 @@ public class CommonImpl {
   public StreamRequest<GetCustomPermissionResponse> getPermission(@NotNull String id)
       throws StreamException {
     return getPermission(id, new GetPermissionRequest());
+  }
+
+  @NotNull
+  public StreamRequest<Response> updatePermission(
+      @NotNull String id, UpdatePermissionRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<Response>(
+        client,
+        "PUT",
+        "/api/v2/permissions/{id}",
+        request,
+        pathParams,
+        new TypeReference<Response>() {});
   }
 
   @NotNull

@@ -13,31 +13,49 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class Classification {
+public class PredefinedFilterResponse {
+
+  @JsonProperty("created_at")
+  private Date createdAt;
 
   @JsonProperty("name")
   private String name;
 
-  @Nullable
-  @JsonProperty("confidence")
-  private Double confidence;
+  @JsonProperty("operation")
+  private String operation;
+
+  @JsonProperty("updated_at")
+  private Date updatedAt;
+
+  @JsonProperty("filter")
+  private Map<String, Object> filter;
 
   @Nullable
-  @JsonProperty("severity")
-  private String severity;
+  @JsonProperty("description")
+  private String description;
 
   @Nullable
-  @JsonProperty("matched_contributors")
-  private List<String> matchedContributors;
+  @JsonProperty("query_id")
+  private Integer queryID;
 
   @Nullable
-  @JsonProperty("subclassifications")
-  private List<Classification> subclassifications;
+  @JsonProperty("sort")
+  private List<SortParam> sort;
+
+  @Nullable
+  @JsonProperty("performance")
+  private PerformanceAnalysisResponse performance;
+
+  @Nullable
+  @JsonProperty("stats")
+  private PredefinedFilterStatsResponse stats;
 }

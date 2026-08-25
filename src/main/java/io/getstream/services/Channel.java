@@ -150,6 +150,15 @@ public class Channel {
     return service.getManyMessages(this.channelType, this.channelID, request).execute();
   }
 
+  public StreamResponse<GetPinnedMessagesResponse> getPinnedMessages(
+      GetPinnedMessagesRequest request) throws StreamException {
+    return service.getPinnedMessages(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<GetPinnedMessagesResponse> getPinnedMessages() throws StreamException {
+    return this.getPinnedMessages(new GetPinnedMessagesRequest());
+  }
+
   public StreamResponse<ChannelStateResponse> getOrCreate(GetOrCreateChannelRequest request)
       throws StreamException {
     return service.getOrCreateChannel(this.channelType, this.channelID, request).execute();

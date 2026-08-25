@@ -242,12 +242,27 @@ public interface Common {
   public StreamRequest<ListPermissionsResponse> listPermissions() throws StreamException;
 
   @NotNull
+  public StreamRequest<Response> createPermission(CreatePermissionRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deletePermission(
+      @NotNull String id, DeletePermissionRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> deletePermission(@NotNull String id) throws StreamException;
+
+  @NotNull
   public StreamRequest<GetCustomPermissionResponse> getPermission(
       @NotNull String id, GetPermissionRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<GetCustomPermissionResponse> getPermission(@NotNull String id)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<Response> updatePermission(
+      @NotNull String id, UpdatePermissionRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<PollResponse> createPoll(CreatePollRequest request) throws StreamException;

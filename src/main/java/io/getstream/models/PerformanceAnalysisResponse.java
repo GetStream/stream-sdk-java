@@ -13,20 +13,42 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * Configuration for restore action. State-aware: reverses whichever of a delete, a block, or a
- * shadow block currently applies to the content (including both a delete and a block/shadow block
- * at once).
- */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class RestoreActionRequestPayload {
+public class PerformanceAnalysisResponse {
+
+  @JsonProperty("analysis_type")
+  private String analysisType;
+
+  @JsonProperty("score")
+  private String score;
+
+  @JsonProperty("indexed_fields")
+  private List<String> indexedFields;
+
+  @JsonProperty("recommendations")
+  private List<String> recommendations;
+
+  @JsonProperty("unindexed_fields")
+  private List<String> unindexedFields;
+
+  @JsonProperty("unindexed_sort_fields")
+  private List<String> unindexedSortFields;
+
+  @JsonProperty("warnings")
+  private List<String> warnings;
 
   @Nullable
-  @JsonProperty("decision_reason")
-  private String decisionReason;
+  @JsonProperty("last_analyzed")
+  private Date lastAnalyzed;
+
+  @Nullable
+  @JsonProperty("scan_type")
+  private String scanType;
 }

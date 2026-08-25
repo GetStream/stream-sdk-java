@@ -13,20 +13,22 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.Nullable;
 
-/**
- * Configuration for restore action. State-aware: reverses whichever of a delete, a block, or a
- * shadow block currently applies to the content (including both a delete and a block/shadow block
- * at once).
- */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class RestoreActionRequestPayload {
+public class GetFeedCountsResponse {
 
-  @Nullable
-  @JsonProperty("decision_reason")
-  private String decisionReason;
+  @JsonProperty("activity_count")
+  private Integer activityCount;
+
+  @JsonProperty("comment_count")
+  private Integer commentCount;
+
+  @JsonProperty("duration")
+  private String duration;
+
+  @JsonProperty("total_count")
+  private Integer totalCount;
 }

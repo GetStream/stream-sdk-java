@@ -13,20 +13,17 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.Nullable;
+import java.util.List;
 
-/**
- * Configuration for restore action. State-aware: reverses whichever of a delete, a block, or a
- * shadow block currently applies to the content (including both a delete and a block/shadow block
- * at once).
- */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class RestoreActionRequestPayload {
+public class GetPinnedMessagesResponse {
 
-  @Nullable
-  @JsonProperty("decision_reason")
-  private String decisionReason;
+  @JsonProperty("duration")
+  private String duration;
+
+  @JsonProperty("messages")
+  private List<MessageResponse> messages;
 }
