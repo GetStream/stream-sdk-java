@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.1.1-feed-counts](https://github.com/GetStream/stream-sdk-java/compare/4.1.1...4.1.1-feed-counts) (2026-09-01)
+
+
+### Features
+
+* backport feed counts endpoint onto 4.1.1 ([8ab3ac1](https://github.com/GetStream/stream-sdk-java/commit/8ab3ac145e58f81041e2ac25e51b5fcd33974713))
+
 ### [4.1.1](https://github.com/GetStream/stream-sdk-java/compare/4.0.0...4.1.1) (2026-01-06)
 
 ## [4.1.0](https://github.com/GetStream/stream-sdk-java/compare/4.0.0...4.1.0) (2026-01-06)
