@@ -39,6 +39,9 @@ public class ReminderCreatedEvent {
   @JsonProperty("custom")
   private Map<String, Object> custom;
 
+  @JsonProperty("reminder")
+  private ReminderResponseData reminder;
+
   @JsonProperty("type")
   private String type;
 
@@ -49,8 +52,4 @@ public class ReminderCreatedEvent {
   @Nullable
   @JsonProperty("received_at")
   private Date receivedAt;
-
-  @Nullable
-  @JsonProperty("reminder")
-  private ReminderResponseData reminder;
 }

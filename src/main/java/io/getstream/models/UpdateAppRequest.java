@@ -98,6 +98,10 @@ public class UpdateAppRequest {
   private Integer maxAggregatedActivitiesLength;
 
   @Nullable
+  @JsonProperty("member_custom_on_mentioned_users_enabled")
+  private Boolean memberCustomOnMentionedUsersEnabled;
+
+  @Nullable
   @JsonProperty("member_custom_on_messages_enabled")
   private Boolean memberCustomOnMessagesEnabled;
 

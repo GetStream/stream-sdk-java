@@ -13,43 +13,17 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
-import java.util.Map;
-import org.jetbrains.annotations.Nullable;
 
-/** Emitted when a reminder becomes due, triggering a notification for the user. */
+/** Basic response information */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ReminderNotificationEvent {
+public class CreateReminderResponse {
 
-  @JsonProperty("cid")
-  private String cid;
-
-  @JsonProperty("created_at")
-  private Date createdAt;
-
-  @JsonProperty("message_id")
-  private String messageID;
-
-  @JsonProperty("user_id")
-  private String userID;
-
-  @JsonProperty("custom")
-  private Map<String, Object> custom;
+  @JsonProperty("duration")
+  private String duration;
 
   @JsonProperty("reminder")
   private ReminderResponseData reminder;
-
-  @JsonProperty("type")
-  private String type;
-
-  @Nullable
-  @JsonProperty("parent_id")
-  private String parentID;
-
-  @Nullable
-  @JsonProperty("received_at")
-  private Date receivedAt;
 }

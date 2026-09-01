@@ -24,6 +24,10 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class UnbanRequest {
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @Nullable
   @JsonProperty("unbanned_by_id")
   private String unbannedByID;

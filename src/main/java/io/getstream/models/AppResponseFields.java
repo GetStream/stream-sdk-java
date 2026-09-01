@@ -66,6 +66,9 @@ public class AppResponseFields {
   @JsonProperty("max_aggregated_activities_length")
   private Integer maxAggregatedActivitiesLength;
 
+  @JsonProperty("member_custom_on_mentioned_users_enabled")
+  private Boolean memberCustomOnMentionedUsersEnabled;
+
   @JsonProperty("member_custom_on_messages_enabled")
   private Boolean memberCustomOnMessagesEnabled;
 

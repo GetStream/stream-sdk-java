@@ -26,9 +26,6 @@ public class QueryMembersPayload {
   @JsonProperty("type")
   private String type;
 
-  @JsonProperty("filter_conditions")
-  private Map<String, Object> filterConditions;
-
   @Nullable
   @JsonProperty("id")
   private String id;
@@ -52,6 +49,10 @@ public class QueryMembersPayload {
   @Nullable
   @JsonProperty("sort")
   private List<SortParamRequest> sort;
+
+  @Nullable
+  @JsonProperty("filter_conditions")
+  private Map<String, Object> filterConditions;
 
   @Nullable
   @JsonProperty("user")

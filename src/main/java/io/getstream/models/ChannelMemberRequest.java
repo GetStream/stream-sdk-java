@@ -22,12 +22,13 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class ChannelMemberRequest {
 
-  @JsonProperty("user_id")
-  private String userID;
-
   @Nullable
   @JsonProperty("channel_role")
   private String channelRole;
+
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
 
   @Nullable
   @JsonProperty("custom")
@@ -35,5 +36,5 @@ public class ChannelMemberRequest {
 
   @Nullable
   @JsonProperty("user")
-  private UserResponse user;
+  private MemberUserRequest user;
 }

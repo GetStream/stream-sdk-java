@@ -1302,21 +1302,21 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<ReminderResponseData> createReminder(
+  public StreamRequest<CreateReminderResponse> createReminder(
       @NotNull String messageID, CreateReminderRequest request) throws StreamException {
     var pathParams = Map.of("message_id", messageID);
 
-    return new StreamRequest<ReminderResponseData>(
+    return new StreamRequest<CreateReminderResponse>(
         client,
         "POST",
         "/api/v2/chat/messages/{message_id}/reminders",
         request,
         pathParams,
-        new TypeReference<ReminderResponseData>() {});
+        new TypeReference<CreateReminderResponse>() {});
   }
 
   @NotNull
-  public StreamRequest<ReminderResponseData> createReminder(@NotNull String messageID)
+  public StreamRequest<CreateReminderResponse> createReminder(@NotNull String messageID)
       throws StreamException {
     return createReminder(messageID, new CreateReminderRequest());
   }
