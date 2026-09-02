@@ -691,7 +691,8 @@ class ChatMiscIntegrationTest extends ChatTestBase {
                     messageId,
                     CreateReminderRequest.builder().userID(userId).remindAt(remindAt).build())
                 .execute()
-                .getData();
+                .getData()
+                .getReminder();
       } catch (Exception e) {
         String msg = e.getMessage();
         if (msg != null
