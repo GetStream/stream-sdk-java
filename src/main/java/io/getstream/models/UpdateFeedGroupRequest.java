@@ -25,6 +25,10 @@ import org.jetbrains.annotations.Nullable;
 public class UpdateFeedGroupRequest {
 
   @Nullable
+  @JsonProperty("default_follower_role")
+  private String defaultFollowerRole;
+
+  @Nullable
   @JsonProperty("default_visibility")
   private String defaultVisibility;
 
@@ -39,6 +43,10 @@ public class UpdateFeedGroupRequest {
   @Nullable
   @JsonProperty("activity_filter")
   private ActivityFilterConfig activityFilter;
+
+  @Nullable
+  @JsonProperty("activity_processing")
+  private ActivityProcessingConfig activityProcessing;
 
   @Nullable
   @JsonProperty("aggregation")

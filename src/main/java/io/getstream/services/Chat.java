@@ -438,7 +438,7 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
-  public StreamRequest<MessageActionResponse> translateMessage(
+  public StreamRequest<TranslateMessageResponse> translateMessage(
       @NotNull String id, TranslateMessageRequest request) throws StreamException;
 
   @NotNull
@@ -484,11 +484,11 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
-  public StreamRequest<ReminderResponseData> createReminder(
+  public StreamRequest<CreateReminderResponse> createReminder(
       @NotNull String messageID, CreateReminderRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<ReminderResponseData> createReminder(@NotNull String messageID)
+  public StreamRequest<CreateReminderResponse> createReminder(@NotNull String messageID)
       throws StreamException;
 
   @NotNull

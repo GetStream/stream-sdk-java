@@ -55,7 +55,7 @@ public class UpsertConfigRequest {
 
   @Nullable
   @JsonProperty("ai_video_config")
-  private AIVideoConfig aiVideoConfig;
+  private AIVideoConfigRequest aiVideoConfig;
 
   @Nullable
   @JsonProperty("automod_platform_circumvention_config")

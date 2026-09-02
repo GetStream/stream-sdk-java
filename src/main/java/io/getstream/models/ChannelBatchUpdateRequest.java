@@ -35,8 +35,16 @@ public class ChannelBatchUpdateRequest {
   private Map<String, Object> filter;
 
   @Nullable
+  @JsonProperty("custom_unset")
+  private List<String> customUnset;
+
+  @Nullable
   @JsonProperty("members")
   private List<ChannelBatchMemberRequest> members;
+
+  @Nullable
+  @JsonProperty("custom_set")
+  private Map<String, Object> customSet;
 
   @Nullable
   @JsonProperty("data")

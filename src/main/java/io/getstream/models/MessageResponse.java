@@ -171,6 +171,10 @@ public class MessageResponse {
   private ChannelMemberPartialResponse member;
 
   @Nullable
+  @JsonProperty("mentioned_channel_members")
+  private Map<String, ChannelMemberPartialResponse> mentionedChannelMembers;
+
+  @Nullable
   @JsonProperty("moderation")
   private ModerationV2Response moderation;
 
