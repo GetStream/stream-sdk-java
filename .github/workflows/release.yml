@@ -10,22 +10,49 @@ permissions:
   contents: write
 
 jobs:
-  Release:
-    name: 🚀 Release
+  prepare_release:
+    name: Prepare release
     if: github.event.pull_request.merged && startsWith(github.head_ref, 'release-')
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.release_meta.outputs.version }}
+      tag: ${{ steps.release_meta.outputs.tag }}
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - uses: actions/github-script@v6
+      - name: Resolve release version
+        id: release_meta
+        run: |
+          VERSION="${GITHUB_HEAD_REF#release-}"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "tag=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v5.1.0
         with:
-          script: |
-            // Getting the release version from the PR source branch
-            // Source branch looks like this: release-1.0.0
-            const version = context.payload.pull_request.head.ref.replace(/^release-/, '')
-            core.exportVariable('VERSION', version)
+          distribution: 'corretto'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Run tests
+        env:
+          STREAM_API_KEY: ${{ vars.STREAM_API_KEY }}
+          STREAM_API_SECRET: ${{ secrets.STREAM_API_SECRET }}
+        run: |
+          ./gradlew test --no-daemon --max-workers 1
+
+  publish_release:
+    name: Publish release
+    needs: prepare_release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Setup JDK 17
         uses: actions/setup-java@v5.1.0
@@ -38,7 +65,7 @@ jobs:
 
       - name: Publish to MavenCentral
         run: |
-          ./gradlew publishToSonatype --no-daemon --max-workers 1 closeAndReleaseSonatypeStagingRepository
+          ./gradlew -Pversion=${{ needs.prepare_release.outputs.version }} publishToSonatype --no-daemon --max-workers 1 closeAndReleaseSonatypeStagingRepository
         env:
           STREAM_API_KEY: ${{ vars.STREAM_API_KEY }}
           STREAM_API_SECRET: ${{ secrets.STREAM_API_SECRET }}
@@ -53,5 +80,5 @@ jobs:
       - name: Create release on GitHub
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ env.VERSION }}
+          tag: ${{ needs.prepare_release.outputs.tag }}
           token: ${{ secrets.GITHUB_TOKEN }}
