@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.0.0](https://github.com/GetStream/stream-sdk-java/compare/9.4.0...10.0.0) (2026-09-03)
+
+
+### Features
+
+* [CHA-4947] regenerate from latest OpenAPI ([814c425](https://github.com/GetStream/stream-sdk-java/commit/814c42588faf9c6427872150c0d926f435b097d0))
+* [FEEDS-1830] regenerate OpenAPI client ([d52df07](https://github.com/GetStream/stream-sdk-java/commit/d52df07f5092fa2228e0e44b6a4510a803d586d0))
+
+
+### Bug Fixes
+
+* [FEEDS-1830] accept follow with feed_member_viewer role ([d76c07e](https://github.com/GetStream/stream-sdk-java/commit/d76c07e021fcc3e7cf441a6e878ff484470d67f5))
+* [FEEDS-1830] read reminder from CreateReminderResponse wrapper ([204bc86](https://github.com/GetStream/stream-sdk-java/commit/204bc86c0d3bc2fe6e4d00585be4b4996d698ed0))
+
 ## [9.4.0](https://github.com/GetStream/stream-sdk-java/compare/9.3.0...9.4.0) (2026-08-17)
 
 ## [9.3.0](https://github.com/GetStream/stream-sdk-java/compare/9.2.0...9.3.0) (2026-08-12)
