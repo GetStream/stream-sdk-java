@@ -46,6 +46,10 @@ public class ModerationFlagResponse {
   private List<Map<String, Object>> result;
 
   @Nullable
+  @JsonProperty("content_published_at")
+  private Date contentPublishedAt;
+
+  @Nullable
   @JsonProperty("entity_creator_id")
   private String entityCreatorID;
 

@@ -27,6 +27,10 @@ public class CreateFeedsBatchRequest {
   private List<FeedRequest> feeds;
 
   @Nullable
+  @JsonProperty("create_users")
+  private Boolean createUsers;
+
+  @Nullable
   @JsonProperty("enrich_own_fields")
   private Boolean enrichOwnFields;
 }

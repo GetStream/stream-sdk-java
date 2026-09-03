@@ -68,7 +68,7 @@ public class ConfigResponse {
 
   @Nullable
   @JsonProperty("ai_video_config")
-  private AIVideoConfig aiVideoConfig;
+  private AIVideoConfigResponse aiVideoConfig;
 
   @Nullable
   @JsonProperty("automod_platform_circumvention_config")

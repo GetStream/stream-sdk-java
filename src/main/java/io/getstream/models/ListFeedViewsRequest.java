@@ -12,7 +12,7 @@
  */
 package io.getstream.models;
 
-/** List all feed views List all feed views for a feed group */
+/** List all feed views List persisted feed views for the application. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -12,39 +12,18 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.getstream.annotations.Query;
-import org.jetbrains.annotations.Nullable;
 
-/** Unban Unban a user from a channel or globally. */
+/** Basic response information */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UnbanRequest {
+public class TranslateMessageResponse {
 
-  /**
-   * @deprecated
-   */
-  @Deprecated
-  @Nullable
-  @JsonProperty("unbanned_by_id")
-  private String unbannedByID;
+  @JsonProperty("duration")
+  private String duration;
 
-  @Nullable
-  @JsonProperty("unbanned_by")
-  private UserRequest unbannedBy;
-
-  @Query("target_user_id")
-  @JsonIgnore
-  private String TargetUserID;
-
-  @Query("channel_cid")
-  @JsonIgnore
-  private String ChannelCid;
-
-  @Query("created_by")
-  @JsonIgnore
-  private String CreatedBy;
+  @JsonProperty("message")
+  private MessageResponse message;
 }

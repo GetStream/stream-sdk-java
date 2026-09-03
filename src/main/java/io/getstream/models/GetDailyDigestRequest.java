@@ -30,7 +30,7 @@ public class GetDailyDigestRequest {
   @JsonIgnore
   private String Date;
 
-  @Query("app_id")
+  @Query("target_app_id")
   @JsonIgnore
-  private String AppID;
+  private String TargetAppID;
 }

@@ -13,43 +13,52 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
-/** Emitted when a reminder becomes due, triggering a notification for the user. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ReminderNotificationEvent {
+public class MemberUserRequest {
 
-  @JsonProperty("cid")
-  private String cid;
+  @JsonProperty("id")
+  private String id;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+  @Nullable
+  @JsonProperty("image")
+  private String image;
 
-  @JsonProperty("message_id")
-  private String messageID;
+  @Nullable
+  @JsonProperty("invisible")
+  private Boolean invisible;
 
-  @JsonProperty("user_id")
-  private String userID;
+  @Nullable
+  @JsonProperty("language")
+  private String language;
 
+  @Nullable
+  @JsonProperty("name")
+  private String name;
+
+  @Nullable
+  @JsonProperty("role")
+  private String role;
+
+  @Nullable
+  @JsonProperty("teams")
+  private List<String> teams;
+
+  @Nullable
   @JsonProperty("custom")
   private Map<String, Object> custom;
 
-  @JsonProperty("reminder")
-  private ReminderResponseData reminder;
-
-  @JsonProperty("type")
-  private String type;
+  @Nullable
+  @JsonProperty("privacy_settings")
+  private PrivacySettingsResponse privacySettings;
 
   @Nullable
-  @JsonProperty("parent_id")
-  private String parentID;
-
-  @Nullable
-  @JsonProperty("received_at")
-  private Date receivedAt;
+  @JsonProperty("teams_role")
+  private Map<String, String> teamsRole;
 }

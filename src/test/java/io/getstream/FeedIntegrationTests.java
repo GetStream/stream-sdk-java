@@ -1684,7 +1684,7 @@ class FeedIntegrationTests {
                 AcceptFollowRequest.builder()
                     .source("timeline:" + acceptedFollowerUserId)
                     .target("user:" + ownerUserId)
-                    .followerRole("feed_member")
+                    .followerRole("feed_member_viewer")
                     .build())
             .execute()
             .getData();

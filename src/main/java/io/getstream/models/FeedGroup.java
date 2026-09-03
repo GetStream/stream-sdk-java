@@ -33,6 +33,9 @@ public class FeedGroup {
   @JsonProperty("created_at")
   private Date createdAt;
 
+  @JsonProperty("default_follower_role")
+  private String defaultFollowerRole;
+
   @JsonProperty("default_visibility")
   private String defaultVisibility;
 

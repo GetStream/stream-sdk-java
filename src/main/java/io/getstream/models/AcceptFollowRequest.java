@@ -15,7 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
-/** Accept a follow request Accepts a pending follow request */
+/**
+ * Accept a follow request Accepts a pending follow request. Follower role can only be set via
+ * server-side requests.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
