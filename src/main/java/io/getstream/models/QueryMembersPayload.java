@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -25,6 +26,22 @@ public class QueryMembersPayload {
 
   @JsonProperty("type")
   private String type;
+
+  @Nullable
+  @JsonProperty("created_at_after")
+  private Date createdAtAfter;
+
+  @Nullable
+  @JsonProperty("created_at_after_or_equal")
+  private Date createdAtAfterOrEqual;
+
+  @Nullable
+  @JsonProperty("created_at_before")
+  private Date createdAtBefore;
+
+  @Nullable
+  @JsonProperty("created_at_before_or_equal")
+  private Date createdAtBeforeOrEqual;
 
   @Nullable
   @JsonProperty("id")
@@ -41,6 +58,22 @@ public class QueryMembersPayload {
   @Nullable
   @JsonProperty("user_id")
   private String userID;
+
+  @Nullable
+  @JsonProperty("user_id_gt")
+  private String userIDGt;
+
+  @Nullable
+  @JsonProperty("user_id_gte")
+  private String userIDGte;
+
+  @Nullable
+  @JsonProperty("user_id_lt")
+  private String userIDLt;
+
+  @Nullable
+  @JsonProperty("user_id_lte")
+  private String userIDLte;
 
   @Nullable
   @JsonProperty("members")

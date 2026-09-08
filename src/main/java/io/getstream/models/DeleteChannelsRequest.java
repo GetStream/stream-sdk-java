@@ -32,4 +32,8 @@ public class DeleteChannelsRequest {
   @Nullable
   @JsonProperty("hard_delete")
   private Boolean hardDelete;
+
+  @Nullable
+  @JsonProperty("skip_truncate")
+  private Boolean skipTruncate;
 }

@@ -18,17 +18,14 @@ import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Batch query comment reactions Returns a single user&#39;s reactions across a set of comment IDs,
- * without comment payloads
+ * Batch query comment reactions Returns a single user&#39;s comment reactions, optionally scoped to
+ * a set of comment IDs, without comment payloads
  */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class BatchQueryCommentReactionsRequest {
-
-  @JsonProperty("comment_ids")
-  private List<String> commentIds;
 
   @Nullable
   @JsonProperty("limit")
@@ -45,6 +42,10 @@ public class BatchQueryCommentReactionsRequest {
   @Nullable
   @JsonProperty("user_id")
   private String userID;
+
+  @Nullable
+  @JsonProperty("comment_ids")
+  private List<String> commentIds;
 
   @Nullable
   @JsonProperty("sort")

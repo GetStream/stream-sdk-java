@@ -25,4 +25,8 @@ public class DeleteChannelRequest {
   @Query("hard_delete")
   @JsonIgnore
   private Boolean HardDelete;
+
+  @Query("skip_truncate")
+  @JsonIgnore
+  private Boolean SkipTruncate;
 }

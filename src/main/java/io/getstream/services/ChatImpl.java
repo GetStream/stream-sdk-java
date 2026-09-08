@@ -98,17 +98,17 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<CampaignResponse> updateCampaign(
+  public StreamRequest<UpdateCampaignResponse> updateCampaign(
       @NotNull String id, UpdateCampaignRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
 
-    return new StreamRequest<CampaignResponse>(
+    return new StreamRequest<UpdateCampaignResponse>(
         client,
         "PUT",
         "/api/v2/chat/campaigns/{id}",
         request,
         pathParams,
-        new TypeReference<CampaignResponse>() {});
+        new TypeReference<UpdateCampaignResponse>() {});
   }
 
   @NotNull
@@ -132,21 +132,22 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<CampaignResponse> stopCampaign(
+  public StreamRequest<StopCampaignResponse> stopCampaign(
       @NotNull String id, StopCampaignRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
 
-    return new StreamRequest<CampaignResponse>(
+    return new StreamRequest<StopCampaignResponse>(
         client,
         "POST",
         "/api/v2/chat/campaigns/{id}/stop",
         request,
         pathParams,
-        new TypeReference<CampaignResponse>() {});
+        new TypeReference<StopCampaignResponse>() {});
   }
 
   @NotNull
-  public StreamRequest<CampaignResponse> stopCampaign(@NotNull String id) throws StreamException {
+  public StreamRequest<StopCampaignResponse> stopCampaign(@NotNull String id)
+      throws StreamException {
     return stopCampaign(id, new StopCampaignRequest());
   }
 
@@ -827,6 +828,12 @@ public class ChatImpl {
         request,
         pathParams,
         new TypeReference<UpdateChannelTypeResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpdateChannelTypeResponse> updateChannelType(@NotNull String name)
+      throws StreamException {
+    return updateChannelType(name, new UpdateChannelTypeRequest());
   }
 
   @NotNull

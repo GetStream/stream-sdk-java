@@ -124,6 +124,12 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<BatchQueryActivityReactionsResponse> batchQueryActivityReactions()
+      throws StreamException {
+    return batchQueryActivityReactions(new BatchQueryActivityReactionsRequest());
+  }
+
+  @NotNull
   public StreamRequest<DeleteBookmarkResponse> deleteBookmark(
       @NotNull String activityID, DeleteBookmarkRequest request) throws StreamException {
     var pathParams = Map.of("activity_id", activityID);
@@ -679,6 +685,12 @@ public class FeedsImpl {
         request,
         null,
         new TypeReference<BatchQueryCommentReactionsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<BatchQueryCommentReactionsResponse> batchQueryCommentReactions()
+      throws StreamException {
+    return batchQueryCommentReactions(new BatchQueryCommentReactionsRequest());
   }
 
   @NotNull

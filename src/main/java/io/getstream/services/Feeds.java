@@ -54,6 +54,10 @@ public interface Feeds {
       BatchQueryActivityReactionsRequest request) throws StreamException;
 
   @NotNull
+  public StreamRequest<BatchQueryActivityReactionsResponse> batchQueryActivityReactions()
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<DeleteBookmarkResponse> deleteBookmark(
       @NotNull String activityID, DeleteBookmarkRequest request) throws StreamException;
 
@@ -261,6 +265,10 @@ public interface Feeds {
   @NotNull
   public StreamRequest<BatchQueryCommentReactionsResponse> batchQueryCommentReactions(
       BatchQueryCommentReactionsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<BatchQueryCommentReactionsResponse> batchQueryCommentReactions()
+      throws StreamException;
 
   @NotNull
   public StreamRequest<DeleteCommentBookmarkResponse> deleteCommentBookmark(

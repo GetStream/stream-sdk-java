@@ -18,17 +18,14 @@ import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Batch query activity reactions Returns a single user&#39;s reactions across a set of activity
- * IDs, without activity payloads
+ * Batch query activity reactions Returns a single user&#39;s activity reactions, optionally scoped
+ * to a set of activity IDs, without activity payloads
  */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class BatchQueryActivityReactionsRequest {
-
-  @JsonProperty("activity_ids")
-  private List<String> activityIds;
 
   @Nullable
   @JsonProperty("limit")
@@ -45,6 +42,10 @@ public class BatchQueryActivityReactionsRequest {
   @Nullable
   @JsonProperty("user_id")
   private String userID;
+
+  @Nullable
+  @JsonProperty("activity_ids")
+  private List<String> activityIds;
 
   @Nullable
   @JsonProperty("sort")

@@ -58,6 +58,10 @@ public class FeedGroupResponse {
   private ActivityFilterConfig activityFilter;
 
   @Nullable
+  @JsonProperty("activity_marks")
+  private ActivityMarksConfig activityMarks;
+
+  @Nullable
   @JsonProperty("activity_processing")
   private ActivityProcessingConfig activityProcessing;
 

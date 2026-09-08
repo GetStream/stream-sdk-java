@@ -43,6 +43,10 @@ public class ActivitySelectorConfig {
   private List<SortParamRequest> sort;
 
   @Nullable
+  @JsonProperty("feed_groups")
+  private FeedGroupScope feedGroups;
+
+  @Nullable
   @JsonProperty("filter")
   private Map<String, Object> filter;
 

@@ -49,7 +49,7 @@ public interface Chat {
   public StreamRequest<GetCampaignResponse> getCampaign(@NotNull String id) throws StreamException;
 
   @NotNull
-  public StreamRequest<CampaignResponse> updateCampaign(
+  public StreamRequest<UpdateCampaignResponse> updateCampaign(
       @NotNull String id, UpdateCampaignRequest request) throws StreamException;
 
   @NotNull
@@ -61,11 +61,12 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
-  public StreamRequest<CampaignResponse> stopCampaign(
+  public StreamRequest<StopCampaignResponse> stopCampaign(
       @NotNull String id, StopCampaignRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<CampaignResponse> stopCampaign(@NotNull String id) throws StreamException;
+  public StreamRequest<StopCampaignResponse> stopCampaign(@NotNull String id)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<QueryChannelsResponse> queryChannels(QueryChannelsRequest request)
@@ -308,6 +309,10 @@ public interface Chat {
   @NotNull
   public StreamRequest<UpdateChannelTypeResponse> updateChannelType(
       @NotNull String name, UpdateChannelTypeRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateChannelTypeResponse> updateChannelType(@NotNull String name)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<ListCommandsResponse> listCommands(ListCommandsRequest request)

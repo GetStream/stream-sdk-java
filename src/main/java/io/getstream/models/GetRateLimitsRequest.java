@@ -42,6 +42,14 @@ public class GetRateLimitsRequest {
   @JsonIgnore
   private Boolean Unity;
 
+  @Query("unity_desktop")
+  @JsonIgnore
+  private Boolean UnityDesktop;
+
+  @Query("unity_console")
+  @JsonIgnore
+  private Boolean UnityConsole;
+
   @Query("endpoints")
   @JsonIgnore
   private String Endpoints;

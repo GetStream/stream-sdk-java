@@ -24,14 +24,13 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class UpdateChannelTypeRequest {
 
+  @Nullable
   @JsonProperty("automod")
   private String automod;
 
+  @Nullable
   @JsonProperty("automod_behavior")
   private String automodBehavior;
-
-  @JsonProperty("max_message_length")
-  private Integer maxMessageLength;
 
   @Nullable
   @JsonProperty("blocklist")
@@ -60,6 +59,10 @@ public class UpdateChannelTypeRequest {
   @Nullable
   @JsonProperty("mark_messages_pending")
   private Boolean markMessagesPending;
+
+  @Nullable
+  @JsonProperty("max_message_length")
+  private Integer maxMessageLength;
 
   @Nullable
   @JsonProperty("message_retention")
