@@ -22,6 +22,22 @@ import org.jetbrains.annotations.Nullable;
 public class PaginationParams {
 
   @Nullable
+  @JsonProperty("id_gt")
+  private Integer idGt;
+
+  @Nullable
+  @JsonProperty("id_gte")
+  private Integer idGte;
+
+  @Nullable
+  @JsonProperty("id_lt")
+  private Integer idLt;
+
+  @Nullable
+  @JsonProperty("id_lte")
+  private Integer idLte;
+
+  @Nullable
   @JsonProperty("limit")
   private Integer limit;
 

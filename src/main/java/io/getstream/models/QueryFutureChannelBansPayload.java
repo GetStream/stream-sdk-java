@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -20,6 +21,22 @@ import org.jetbrains.annotations.Nullable;
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class QueryFutureChannelBansPayload {
+
+  @Nullable
+  @JsonProperty("created_at_after")
+  private Date createdAtAfter;
+
+  @Nullable
+  @JsonProperty("created_at_after_or_equal")
+  private Date createdAtAfterOrEqual;
+
+  @Nullable
+  @JsonProperty("created_at_before")
+  private Date createdAtBefore;
+
+  @Nullable
+  @JsonProperty("created_at_before_or_equal")
+  private Date createdAtBeforeOrEqual;
 
   @Nullable
   @JsonProperty("exclude_expired_bans")

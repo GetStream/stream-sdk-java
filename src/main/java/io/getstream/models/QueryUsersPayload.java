@@ -27,6 +27,22 @@ public class QueryUsersPayload {
   private Map<String, Object> filterConditions;
 
   @Nullable
+  @JsonProperty("id_gt")
+  private String idGt;
+
+  @Nullable
+  @JsonProperty("id_gte")
+  private String idGte;
+
+  @Nullable
+  @JsonProperty("id_lt")
+  private String idLt;
+
+  @Nullable
+  @JsonProperty("id_lte")
+  private String idLte;
+
+  @Nullable
   @JsonProperty("include_deactivated_users")
   private Boolean includeDeactivatedUsers;
 

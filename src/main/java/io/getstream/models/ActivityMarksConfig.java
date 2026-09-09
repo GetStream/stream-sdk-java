@@ -13,24 +13,19 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ActivityProcessingConfig {
+public class ActivityMarksConfig {
 
   @Nullable
-  @JsonProperty("send_allowed_tags_to_ai")
-  private Boolean sendAllowedTagsToAi;
+  @JsonProperty("track_read")
+  private Boolean trackRead;
 
   @Nullable
-  @JsonProperty("allowed_tags")
-  private List<String> allowedTags;
-
-  @Nullable
-  @JsonProperty("blocked_tags")
-  private List<String> blockedTags;
+  @JsonProperty("track_seen")
+  private Boolean trackSeen;
 }

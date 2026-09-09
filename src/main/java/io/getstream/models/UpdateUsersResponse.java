@@ -24,6 +24,10 @@ public class UpdateUsersResponse {
   @JsonProperty("duration")
   private String duration;
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @JsonProperty("membership_deletion_task_id")
   private String membershipDeletionTaskID;
 
