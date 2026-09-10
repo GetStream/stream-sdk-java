@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.1.0](https://github.com/GetStream/stream-sdk-java/compare/10.0.0...10.1.0) (2026-09-10)
+
+
+### Features
+
+* [FEEDS-1763.1] regenerate OpenAPI client ([c0612ad](https://github.com/GetStream/stream-sdk-java/commit/c0612adf4ad7aafa603cf7414f87682f0d4f079f)), closes [#16794](https://github.com/GetStream/stream-sdk-java/issues/16794)
+
 ## [10.0.0](https://github.com/GetStream/stream-sdk-java/compare/9.4.0...10.0.0) (2026-09-03)
 
 
