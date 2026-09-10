@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -33,6 +34,10 @@ public class ChannelBatchUpdateRequest {
 
   @JsonProperty("filter")
   private Map<String, Object> filter;
+
+  @Nullable
+  @JsonProperty("hide_history_before")
+  private Date hideHistoryBefore;
 
   @Nullable
   @JsonProperty("custom_unset")

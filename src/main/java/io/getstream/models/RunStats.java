@@ -22,6 +22,10 @@ import org.jetbrains.annotations.Nullable;
 public class RunStats {
 
   @Nullable
+  @JsonProperty("activities_deleted")
+  private Integer activitiesDeleted;
+
+  @Nullable
   @JsonProperty("channels_deleted")
   private Integer channelsDeleted;
 

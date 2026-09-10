@@ -34,6 +34,30 @@ public class WebhookFailoverConfig {
   private String gcsPath;
 
   @Nullable
+  @JsonProperty("s3_api_key")
+  private String s3APIKey;
+
+  @Nullable
+  @JsonProperty("s3_bucket")
+  private String s3Bucket;
+
+  @Nullable
+  @JsonProperty("s3_path")
+  private String s3Path;
+
+  @Nullable
+  @JsonProperty("s3_region")
+  private String s3Region;
+
+  @Nullable
+  @JsonProperty("s3_role_arn")
+  private String s3RoleArn;
+
+  @Nullable
+  @JsonProperty("s3_secret")
+  private String s3Secret;
+
+  @Nullable
   @JsonProperty("type")
   private String type;
 }

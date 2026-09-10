@@ -79,6 +79,10 @@ public class ReviewQueueItemResponse {
   private Date completedAt;
 
   @Nullable
+  @JsonProperty("confidence_score")
+  private Double confidenceScore;
+
+  @Nullable
   @JsonProperty("config_key")
   private String configKey;
 

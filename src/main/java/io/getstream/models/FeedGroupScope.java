@@ -20,17 +20,13 @@ import org.jetbrains.annotations.Nullable;
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ActivityProcessingConfig {
+public class FeedGroupScope {
 
   @Nullable
-  @JsonProperty("send_allowed_tags_to_ai")
-  private Boolean sendAllowedTagsToAi;
+  @JsonProperty("exclude")
+  private List<String> exclude;
 
   @Nullable
-  @JsonProperty("allowed_tags")
-  private List<String> allowedTags;
-
-  @Nullable
-  @JsonProperty("blocked_tags")
-  private List<String> blockedTags;
+  @JsonProperty("include")
+  private List<String> include;
 }

@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
@@ -25,6 +26,22 @@ public class QueryBannedUsersPayload {
 
   @JsonProperty("filter_conditions")
   private Map<String, Object> filterConditions;
+
+  @Nullable
+  @JsonProperty("created_at_after")
+  private Date createdAtAfter;
+
+  @Nullable
+  @JsonProperty("created_at_after_or_equal")
+  private Date createdAtAfterOrEqual;
+
+  @Nullable
+  @JsonProperty("created_at_before")
+  private Date createdAtBefore;
+
+  @Nullable
+  @JsonProperty("created_at_before_or_equal")
+  private Date createdAtBeforeOrEqual;
 
   @Nullable
   @JsonProperty("exclude_expired_bans")

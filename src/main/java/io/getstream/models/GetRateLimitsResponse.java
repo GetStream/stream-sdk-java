@@ -42,6 +42,14 @@ public class GetRateLimitsResponse {
   private Map<String, LimitInfoResponse> unity;
 
   @Nullable
+  @JsonProperty("unity_console")
+  private Map<String, LimitInfoResponse> unityConsole;
+
+  @Nullable
+  @JsonProperty("unity_desktop")
+  private Map<String, LimitInfoResponse> unityDesktop;
+
+  @Nullable
   @JsonProperty("web")
   private Map<String, LimitInfoResponse> web;
 }
