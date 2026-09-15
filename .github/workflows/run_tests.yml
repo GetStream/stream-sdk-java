@@ -17,7 +17,9 @@ permissions:
 
 jobs:
   ci:
-    name: Build
+    # Keep this name: main requires the status check by name, and calling through a
+    # reusable workflow already prefixes it with the caller job id.
+    name: 🧪 Test & lint
     environment: ci
     runs-on: ubuntu-latest
     timeout-minutes: 30
