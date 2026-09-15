@@ -14,21 +14,22 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
+import java.util.List;
 
 /**
- * Get a user&#39;s interests Returns the user&#39;s interest tags with their ranking weights: tags
- * computed from the activities the user reacted to and tags set manually through the API.
- * Client-side callers may only read their own interests; server-side callers may fetch any user.
- * Results are sorted by descending weight, then manually set tags before computed ones, then
- * descending count, then alphabetically by tag.
+ * Remove interests from a user Removes the given interest tags from a user, whether they were set
+ * manually or computed from reactions. A removed computed tag returns on the next recomputation if
+ * the user&#39;s reactions still support it; to keep a tag out of ranking for good, set it with a
+ * weight of 0 or below instead. Client-side callers may only manage their own interests;
+ * server-side callers may manage any user. Returns the user&#39;s remaining interests.
  */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetUserInterestsRequest {
+public class DeleteUserInterestsRequest {
 
-  @Query("limit")
+  @Query("tags")
   @JsonIgnore
-  private Integer Limit;
+  private List<String> Tags;
 }

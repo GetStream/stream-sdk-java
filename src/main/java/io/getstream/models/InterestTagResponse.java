@@ -14,7 +14,10 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An interest tag with the number of distinct activities the user reacted to that carried it */
+/**
+ * An interest tag of a user with its ranking weight and, for computed tags, how many distinct
+ * reacted-to activities carried it
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -24,6 +27,12 @@ public class InterestTagResponse {
   @JsonProperty("count")
   private Integer count;
 
+  @JsonProperty("source")
+  private String source;
+
   @JsonProperty("tag")
   private String tag;
+
+  @JsonProperty("weight")
+  private Double weight;
 }

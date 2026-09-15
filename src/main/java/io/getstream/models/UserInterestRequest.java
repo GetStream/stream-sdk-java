@@ -15,20 +15,17 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.Nullable;
 
+/** An interest tag to set on a user with its ranking weight */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ChannelBatchUpdateResponse {
+public class UserInterestRequest {
 
-  @JsonProperty("duration")
-  private String duration;
-
-  @Nullable
-  @JsonProperty("success_channels_count")
-  private Integer successChannelsCount;
+  @JsonProperty("tag")
+  private String tag;
 
   @Nullable
-  @JsonProperty("task_id")
-  private String taskID;
+  @JsonProperty("weight")
+  private Double weight;
 }

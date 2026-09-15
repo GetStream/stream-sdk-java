@@ -19,9 +19,12 @@ import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Update channels in batch Update channels in batch Sends events: - channel.frozen - channel.hidden
- * - channel.unfrozen - channel.updated - channel.visible - member.added - member.removed -
- * member.updated
+ * Update channels in batch Update channels in batch. By default returns task_id for an asynchronous
+ * task. With synchronous: true, updateData accepts at most 100 explicit CIDs and returns a positive
+ * success_channels_count of channels selected for update after the database write completes,
+ * without task_id. Always poll a returned task_id, including when an older node ignores
+ * synchronous. Sends events: - channel.frozen - channel.hidden - channel.unfrozen - channel.updated
+ * - channel.visible - member.added - member.removed - member.updated
  */
 @lombok.Data
 @lombok.Builder
@@ -38,6 +41,10 @@ public class ChannelBatchUpdateRequest {
   @Nullable
   @JsonProperty("hide_history_before")
   private Date hideHistoryBefore;
+
+  @Nullable
+  @JsonProperty("synchronous")
+  private Boolean synchronous;
 
   @Nullable
   @JsonProperty("custom_unset")

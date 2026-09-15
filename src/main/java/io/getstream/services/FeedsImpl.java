@@ -1949,6 +1949,20 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<DeleteUserInterestsResponse> deleteUserInterests(
+      @NotNull String userID, DeleteUserInterestsRequest request) throws StreamException {
+    var pathParams = Map.of("user_id", userID);
+
+    return new StreamRequest<DeleteUserInterestsResponse>(
+        client,
+        "DELETE",
+        "/api/v2/feeds/users/{user_id}/interests",
+        request,
+        pathParams,
+        new TypeReference<DeleteUserInterestsResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<GetUserInterestsResponse> getUserInterests(
       @NotNull String userID, GetUserInterestsRequest request) throws StreamException {
     var pathParams = Map.of("user_id", userID);
@@ -1966,5 +1980,19 @@ public class FeedsImpl {
   public StreamRequest<GetUserInterestsResponse> getUserInterests(@NotNull String userID)
       throws StreamException {
     return getUserInterests(userID, new GetUserInterestsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<UpsertUserInterestsResponse> upsertUserInterests(
+      @NotNull String userID, UpsertUserInterestsRequest request) throws StreamException {
+    var pathParams = Map.of("user_id", userID);
+
+    return new StreamRequest<UpsertUserInterestsResponse>(
+        client,
+        "PUT",
+        "/api/v2/feeds/users/{user_id}/interests",
+        request,
+        pathParams,
+        new TypeReference<UpsertUserInterestsResponse>() {});
   }
 }
