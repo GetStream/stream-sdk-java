@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.1.1](https://github.com/GetStream/stream-sdk-java/compare/10.1.0...10.1.1) (2026-09-15)
+
 ## [10.1.0](https://github.com/GetStream/stream-sdk-java/compare/10.0.0...10.1.0) (2026-09-10)
 
 
