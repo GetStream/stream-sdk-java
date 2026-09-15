@@ -734,10 +734,18 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<DeleteUserInterestsResponse> deleteUserInterests(
+      @NotNull String userID, DeleteUserInterestsRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<GetUserInterestsResponse> getUserInterests(
       @NotNull String userID, GetUserInterestsRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<GetUserInterestsResponse> getUserInterests(@NotNull String userID)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpsertUserInterestsResponse> upsertUserInterests(
+      @NotNull String userID, UpsertUserInterestsRequest request) throws StreamException;
 }

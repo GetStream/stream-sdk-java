@@ -108,6 +108,10 @@ public class ClientEvent {
   private String sfuID;
 
   @Nullable
+  @JsonProperty("source")
+  private String source;
+
+  @Nullable
   @JsonProperty("stage")
   private String stage;
 

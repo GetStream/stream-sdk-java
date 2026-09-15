@@ -13,22 +13,21 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.Nullable;
+import java.util.List;
 
+/**
+ * Set a user&#39;s interests Adds or updates interest tags on a user with explicit ranking weights.
+ * Tags set this way rank above the tags computed from the user&#39;s reactions at equal weight and
+ * are never overwritten by them. Client-side callers may only manage their own interests;
+ * server-side callers may manage any user. Returns the user&#39;s full interest list after the
+ * write.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ChannelBatchUpdateResponse {
+public class UpsertUserInterestsRequest {
 
-  @JsonProperty("duration")
-  private String duration;
-
-  @Nullable
-  @JsonProperty("success_channels_count")
-  private Integer successChannelsCount;
-
-  @Nullable
-  @JsonProperty("task_id")
-  private String taskID;
+  @JsonProperty("interests")
+  private List<UserInterestRequest> interests;
 }

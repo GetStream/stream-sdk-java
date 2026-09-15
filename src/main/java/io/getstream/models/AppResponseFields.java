@@ -33,6 +33,9 @@ public class AppResponseFields {
   @JsonProperty("auto_translation_enabled")
   private Boolean autoTranslationEnabled;
 
+  @JsonProperty("before_message_send_hook_system_messages")
+  private Boolean beforeMessageSendHookSystemMessages;
+
   @JsonProperty("campaign_enabled")
   private Boolean campaignEnabled;
 

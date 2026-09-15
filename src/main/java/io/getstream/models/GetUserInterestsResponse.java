@@ -15,7 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** User&#39;s computed interest tags ordered by descending count, then ascending tag name */
+/**
+ * User&#39;s interest tags ordered by descending weight, then manually set tags before computed
+ * ones, then descending count, then ascending tag name
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

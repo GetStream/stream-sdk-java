@@ -13,22 +13,21 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.Nullable;
+import java.util.List;
 
+/**
+ * The user&#39;s remaining interest tags, ordered by descending weight, then manually set tags
+ * before computed ones, then descending count, then ascending tag name
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ChannelBatchUpdateResponse {
+public class DeleteUserInterestsResponse {
 
   @JsonProperty("duration")
   private String duration;
 
-  @Nullable
-  @JsonProperty("success_channels_count")
-  private Integer successChannelsCount;
-
-  @Nullable
-  @JsonProperty("task_id")
-  private String taskID;
+  @JsonProperty("interests")
+  private List<InterestTagResponse> interests;
 }

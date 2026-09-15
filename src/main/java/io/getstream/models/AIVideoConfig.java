@@ -31,10 +31,6 @@ public class AIVideoConfig {
   private Boolean enabled;
 
   @Nullable
-  @JsonProperty("provider")
-  private String provider;
-
-  @Nullable
   @JsonProperty("rules")
   private List<AWSRekognitionRule> rules;
 }

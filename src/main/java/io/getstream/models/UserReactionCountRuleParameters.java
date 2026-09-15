@@ -22,6 +22,10 @@ import org.jetbrains.annotations.Nullable;
 public class UserReactionCountRuleParameters {
 
   @Nullable
+  @JsonProperty("count")
+  private String count;
+
+  @Nullable
   @JsonProperty("threshold")
   private Integer threshold;
 
