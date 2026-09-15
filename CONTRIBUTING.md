@@ -111,16 +111,32 @@ This repository follows a commit message convention in order to automatically ge
 
 ## Releasing a new version (for Stream developers)
 
-In order to release new version you need to be a maintainer of the library.
+Releases are driven by [release-please](https://github.com/googleapis/release-please).
 
-- Kick off a job called `initiate_release` ([link](https://github.com/GetStream/stream-sdk-java/actions/workflows/initiate_release.yml)).
+- Merge PRs to `main` with conventional-commit titles, using **Squash and merge**. The
+  title becomes the commit subject and decides the next version: `feat:` is a minor,
+  `fix:` and `perf:` are a patch, `feat!:` or `<type>(scope)!:` is a major. Other types
+  (`chore`, `ci`, `docs`, `test`, `refactor`) ship nothing. This is new: the version used
+  to be typed by hand into the `initiate_release` job, which is gone.
+- release-please keeps a Release PR open with the version bump in `gradle.properties`
+  and `CHANGELOG.md`. It is opened by `github-actions[bot]`, so approve it and run its
+  held checks like any other PR. Never edit the version by hand, and leave the
+  `x-release-please-start-version` comments around it in place; a `.properties` file
+  takes a trailing comment as part of the value, so the marker has to bracket the line.
+- Merging the Release PR runs `spotlessCheck` and the build on that merge commit, which
+  is the commit the tag will point at. Only if that is green does the workflow create the
+  tag and the GitHub Release and publish to Maven Central. The order matters: a tag, a
+  GitHub Release and a Maven Central push cannot be withdrawn.
 
-The job creates a pull request with the changelog. Check if it looks good.
+Tags here have no `v` prefix (`10.1.1`, not `v10.1.1`), which `include-v-in-tag: false`
+in `release-please-config.json` preserves.
 
-- Merge the pull request.
+To retry a publish that failed after the release was tagged, use "Re-run failed jobs" on
+that workflow run. Once GitHub has retired the run, dispatch `Release` from `main` with
+`publish_tag` set to the tag, which builds and publishes that tag without touching
+release-please. If the suite goes red after the Release PR merged, the release stays
+pending and every later push logs a warning naming the commit to go back to.
 
-Once the PR is merged, it automatically kicks off another job which will upload the Gem to RubyGems.org and creates a GitHub release.
+To force a specific version, type `Release-As: X.Y.Z` in the commit message box of the
+squash dialog when merging a PR; the PR description is not copied there.
 
-### Pre-releases
-
-Push a tag (e.g. `1.0.0-beta.1`), then go to **GitHub Releases → Draft a new release**, select the tag, check **"Set as a pre-release"**, and publish. The CI job will trigger automatically and publish to MavenCentral.
