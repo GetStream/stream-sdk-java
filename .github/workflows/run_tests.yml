@@ -15,12 +15,19 @@ concurrency:
 permissions:
   contents: read
 
-# Release PRs only bump the version and rewrite the changelog, and every commit in one
-# already passed this suite on its own PR. The guard sits on each job, not on the caller,
-# so a skipped job still reports success to a required status check.
+# Every job below skips on a Release PR. release-please only bumps the version and rewrites
+# the changelog, and every source commit in one already passed this suite on the PR it came
+# from. The guard sits on each job rather than on the calling job in ci.yml, because a job
+# skipped by `if:` reports success and satisfies a required status check, while a reusable
+# workflow that is never called produces no check at all. It tests the author as well as the
+# branch name: on its own, the name would let any PR, a fork's included, call its branch
+# release-please--x and skip every required check, which branch protection counts as met.
 jobs:
   ci:
-    if: ${{ !startsWith(github.head_ref, 'release-please--') }}
+    if: >-
+      ${{ !(github.event.pull_request.user.login == 'github-actions[bot]'
+      && github.event.pull_request.head.repo.full_name == github.repository
+      && startsWith(github.head_ref, 'release-please--')) }}
     # Keep this name: main requires the status check by name, and calling through a
     # reusable workflow already prefixes it with the caller job id.
     name: 🧪 Test & lint
