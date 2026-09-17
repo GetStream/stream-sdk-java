@@ -15,8 +15,12 @@ concurrency:
 permissions:
   contents: read
 
+# Release PRs only bump the version and rewrite the changelog, and every commit in one
+# already passed this suite on its own PR. The guard sits on each job, not on the caller,
+# so a skipped job still reports success to a required status check.
 jobs:
   ci:
+    if: ${{ !startsWith(github.head_ref, 'release-please--') }}
     # Keep this name: main requires the status check by name, and calling through a
     # reusable workflow already prefixes it with the caller job id.
     name: 🧪 Test & lint
