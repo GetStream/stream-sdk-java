@@ -123,6 +123,10 @@ Releases are driven by [release-please](https://github.com/googleapis/release-pl
   held checks like any other PR. Never edit the version by hand, and leave the
   `x-release-please-start-version` comments around it in place; a `.properties` file
   takes a trailing comment as part of the value, so the marker has to bracket the line.
+- The test suite does not run on a Release PR: the job is skipped, which still reports the
+  `ci / 🧪 Test & lint` check as satisfied, so only CodeQL and the PR-title check stand
+  between the Release PR and merge. Pushing a commit onto the Release PR by hand does not
+  bring the suite back, and neither does **Update branch**.
 - Merging the Release PR runs `spotlessCheck` and the build on that merge commit, which
   is the commit the tag will point at. Only if that is green does the workflow create the
   tag and the GitHub Release and publish to Maven Central. The order matters: a tag, a
