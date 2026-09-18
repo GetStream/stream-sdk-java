@@ -22,14 +22,15 @@ permissions:
 # workflow that is never called produces no check at all. It tests the author as well as the
 # branch name: on its own, the name would let any PR, a fork's included, call its branch
 # release-please--x and skip every required check, which branch protection counts as met.
-# github.actor is the third clause, and it is the pusher rather than the PR author, so a
-# human commit pushed onto the Release PR to fix a conflict or a changelog entry is tested
-# like any other commit instead of riding the skip into main untested.
+# The guard deliberately leaves out github.actor. That is the pusher, not the PR author,
+# and clicking Update branch attributes the resulting merge commit to whoever clicked, so
+# on a branch protection that requires the branch to be up to date the skip would never
+# fire on a normal release. The cost is that a human commit pushed onto a Release PR is
+# untested there; release.yml runs this suite on the merge commit before it tags.
 jobs:
   ci:
     if: >-
-      ${{ !(github.actor == 'github-actions[bot]'
-      && github.event.pull_request.user.login == 'github-actions[bot]'
+      ${{ !(github.event.pull_request.user.login == 'github-actions[bot]'
       && github.event.pull_request.head.repo.full_name == github.repository
       && startsWith(github.head_ref, 'release-please--')) }}
     # Keep this name: main requires the status check by name, and calling through a
