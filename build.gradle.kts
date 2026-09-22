@@ -52,12 +52,34 @@ if (localPropertiesFile.exists()) {
     localProperties.load(localPropertiesFile.inputStream())
 }
 
+// `test` is the pull request gate, so it must not need credentials. Anything tagged
+// `integration` talks to a live Stream app and runs in `integrationTest` instead. JUnit
+// inherits the tag, so extending BasicTest is enough to land there.
 tasks.named<Test>("test") {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
+    useJUnitPlatform {
+        excludeTags("integration")
+    }
 
     doFirst {
         // Inject local properties into tests runtime system properties
+        localProperties.forEach { (k, v) ->
+            systemProperty(k.toString(), v.toString())
+        }
+    }
+}
+
+// Not wired into `check`, so `./gradlew build` stays offline.
+tasks.register<Test>("integrationTest") {
+    group = "verification"
+    description = "Runs the tests that talk to a live Stream app."
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
+
+    useJUnitPlatform {
+        includeTags("integration")
+    }
+
+    doFirst {
         localProperties.forEach { (k, v) ->
             systemProperty(k.toString(), v.toString())
         }

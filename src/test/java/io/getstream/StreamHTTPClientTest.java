@@ -29,7 +29,7 @@ public class StreamHTTPClientTest {
   @BeforeAll
   static void setup() {
     // Initialize with test credentials (secret must be at least 32 characters for HS256)
-    client = new StreamHTTPClient();
+    client = new StreamHTTPClient("apiKey", "012345678901234567890123456789ab");
     objectMapper = client.getObjectMapper();
   }
 
@@ -152,9 +152,7 @@ public class StreamHTTPClientTest {
             .readTimeout(45, TimeUnit.SECONDS)
             .build();
 
-    var sdkClient =
-        new StreamSDKClient(
-            System.getenv("STREAM_API_KEY"), System.getenv("STREAM_API_SECRET"), customHttp);
+    var sdkClient = new StreamSDKClient("apiKey", "012345678901234567890123456789ab", customHttp);
     OkHttpClient builtClient = sdkClient.getHttpClient().getHttpClient();
 
     assertSame(customPool, builtClient.connectionPool());

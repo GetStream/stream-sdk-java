@@ -16,6 +16,7 @@ import org.junit.jupiter.api.*;
  * update, delete) 5. Bookmark Operations (add, query, update, delete) 6. Follow Operations (follow,
  * query, unfollow) 7. Batch Operations 8. Advanced Operations (polls, pins, etc.) 9. Cleanup
  */
+@Tag("integration")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class FeedIntegrationTests {
 
