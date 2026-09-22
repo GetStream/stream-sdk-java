@@ -14,7 +14,11 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 
+// Inherited by every subclass: the @BeforeAll below creates users, a channel and a
+// message on a live Stream app, so anything extending this is an integration test.
+@Tag("integration")
 public class BasicTest {
   static StreamSDKClient client;
 

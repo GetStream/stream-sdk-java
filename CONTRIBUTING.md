@@ -35,8 +35,11 @@ The project is a Maven project.
 Copy `local.properties.example` to `local.properties` and put configuration there. These properties are automatically picked up during tests execution
 
 ```shell
-# Run tests
+# Run the unit tests
 ./gradlew test
+
+# Run the tests that talk to a live Stream app
+./gradlew integrationTest
 
 # Check code style
 ./gradlew spotlessCheck
@@ -87,6 +90,19 @@ The `StreamServiceHandler` class defines the synchronous and asynchronous proces
 
 They are organized by model. Each endpoint has at least one test related.
 
+A test tagged `@Tag("integration")` talks to a live Stream app and needs credentials.
+`BasicTest` carries the tag and JUnit inherits it, so extending that class is enough.
+`./gradlew test` excludes them and needs no credentials, `./gradlew integrationTest` runs
+only them.
+
+CI follows the same split:
+
+| When | What runs | Gates anything |
+| --- | --- | --- |
+| Pull request | `spotlessCheck` and `build` | yes, `🧪 Tests` is required on `main` |
+| Daily at 09:00 UTC | `integrationTest` | no, a red run opens an issue |
+| Push to `main` with a release pending | both | only the unit half gates the tag |
+
 ## Code rules
 
 - The code should be formatted using Google formatter.
@@ -119,14 +135,19 @@ Releases are driven by [release-please](https://github.com/googleapis/release-pl
   (`chore`, `ci`, `docs`, `test`, `refactor`) ship nothing. This is new: the version used
   to be typed by hand into the `initiate_release` job, which is gone.
 - release-please keeps a Release PR open with the version bump in `gradle.properties`
-  and `CHANGELOG.md`. It is opened by `github-actions[bot]`, so approve it and run its
-  held checks like any other PR. Never edit the version by hand, and leave the
+  and `CHANGELOG.md`. Never edit the version by hand, and leave the
   `x-release-please-start-version` comments around it in place; a `.properties` file
   takes a trailing comment as part of the value, so the marker has to bracket the line.
-- Merging the Release PR runs `spotlessCheck` and the build on that merge commit, which
-  is the commit the tag will point at. Only if that is green does the workflow create the
-  tag and the GitHub Release and publish to Maven Central. The order matters: a tag, a
-  GitHub Release and a Maven Central push cannot be withdrawn.
+- Its checks sit Pending until someone clicks **Approve and run**, because a PR opened
+  with `GITHUB_TOKEN` starts no workflow runs. After that the unit lane reports `skipped`
+  and `🧪 Tests` goes green in seconds without running a test. **Update branch** does not
+  bring the suite back, and neither does pushing a commit by hand, so a commit pushed onto
+  a Release PR reaches `main` untested.
+- Merging runs `spotlessCheck` and the build on the merge commit, which is the commit the
+  tag will point at. Only if that is green does the workflow create the tag and the GitHub
+  Release and publish to Maven Central. The order matters: a tag, a GitHub Release and a
+  Maven Central push cannot be withdrawn. Integration tests are advisory and gate none of
+  it.
 
 Tags here have no `v` prefix (`10.1.1`, not `v10.1.1`), which `include-v-in-tag: false`
 in `release-please-config.json` preserves.

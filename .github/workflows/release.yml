@@ -164,6 +164,15 @@ jobs:
     needs: detect
     if: needs.detect.outputs.ready == 'true'
     uses: ./.github/workflows/run_tests.yml
+
+  # Deliberately absent from `release`'s `needs`. A failure here would skip tagging while
+  # the Release PR is already merged carrying `autorelease: pending`, and nothing clears
+  # that label on its own, so every later push would stand down. Integration is advisory.
+  integration:
+    name: Integration tests
+    needs: detect
+    if: needs.detect.outputs.ready == 'true'
+    uses: ./.github/workflows/run_integration.yml
     secrets: inherit
 
   # Irreversible half.

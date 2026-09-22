@@ -1,48 +1,44 @@
 name: Scheduled tests
-
+# The integration lane's home. Advisory: see CONTRIBUTING.md.
 on:
-  workflow_dispatch:
   schedule:
-    # Monday at 9:00 UTC
-    - cron: "0 9 * * 1"
+    - cron: "0 9 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  test:
-    environment: ci
+  integration:
+    uses: ./.github/workflows/run_integration.yml
+    secrets: inherit
+
+  # Was a Slack notification, which failed every one of the 5 times it fired: the
+  # SLACK_NOTIFICATIONS_BOT_TOKEN secret it read does not exist in this repository.
+  report:
+    name: Report a red run
+    needs: integration
+    if: failure()
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      issues: write
     steps:
-      - uses: actions/checkout@v5.0.1
-
-      - name: Setup JDK 17
-        uses: actions/setup-java@v5.1.0
-        with:
-          distribution: 'corretto'
-          java-version: '17'
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-
-      - name: Run tests
+      - name: Open or update the tracking issue
         env:
-          STREAM_BASE_URL: ${{ vars.STREAM_BASE_URL }}
-          STREAM_API_KEY: ${{ vars.STREAM_API_KEY }}
-          STREAM_API_SECRET: ${{ secrets.STREAM_API_SECRET }}
+          GH_TOKEN: ${{ github.token }}
+          TITLE: Daily integration run is red
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          # Retry 3 times because tests can be flaky
-          for _ in 1 2 3;
-          do
-              ./gradlew test --no-daemon && break
-          done
+          num="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "in:title \"$TITLE\"" \
+            --json number,title --jq "map(select(.title == \"$TITLE\")) | .[0].number // empty")"
+          if [ -n "$num" ]; then
+            gh issue comment "$num" --repo "$GITHUB_REPOSITORY" --body "Still red: $RUN_URL"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$TITLE" --body \
+              "The daily \`integrationTest\` run failed: $RUN_URL
 
-      - name: Notify Slack if failed
-        uses: voxmedia/github-action-slack-notify-build@v1
-        if: failure()
-        with:
-          channel_id: C02RPDF7T63
-          color: danger
-          status: FAILED
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
+          Integration is advisory, so nothing is blocked by this. It still has to be read: the suite
+          runs against a live Stream app shared by five SDK repos, so decide whether this is the app,
+          the backend, or this SDK, and close the issue once a daily run is green again."
+          fi
