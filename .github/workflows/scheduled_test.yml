@@ -2,7 +2,8 @@ name: Scheduled tests
 # The integration lane's home. Advisory: see CONTRIBUTING.md.
 on:
   schedule:
-    - cron: "0 9 * * *"
+    # One hour per SDK repo sharing the Stream app, so no two mutate app-global settings at once.
+    - cron: "0 10 * * *"
   workflow_dispatch:
 
 permissions:
