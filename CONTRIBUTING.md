@@ -101,7 +101,7 @@ CI follows the same split:
 | --- | --- | --- |
 | Pull request | `spotlessCheck` and `build` | yes, `🧪 Tests` is required on `main` |
 | Daily at 10:00 UTC | `integrationTest` | no, a red run opens an issue |
-| Release PR merged | nothing, it tags and publishes | no |
+| Release PR merged | nothing on the default branch, the unit lane on `N.x` | `N.x` only |
 
 ## Code rules
 
@@ -140,10 +140,8 @@ Releases are driven by [release-please](https://github.com/googleapis/release-pl
   takes a trailing comment as part of the value, so the marker has to bracket the line.
 - Its checks sit Pending until someone clicks **Approve and run**, because a PR opened
   with `GITHUB_TOKEN` starts no workflow runs. After that the unit lane reports `skipped`
-  and `🧪 Tests` goes green in seconds without running a test. **Update branch** does not
-  bring the suite back, and neither does pushing a commit by hand, so a commit pushed onto
-  a Release PR reaches `main` untested.
-- Merging creates the tag and the GitHub Release on the merge commit and publishes to Maven Central, with no further test run: the Release PR adds only the version bump and changelog to an already-tested `main`. A tag, a GitHub Release and a Maven Central push cannot be withdrawn. The publish step builds the project, so a build that does not compile fails there and can be retried with `publish_tag`.
+  and `🧪 Tests` goes green in seconds without running a test. The skip only applies while every changed file is one release-please writes, so a code change pushed onto a Release PR by hand runs the unit lane like any other PR.
+- Merging creates the tag and the GitHub Release on the merge commit and publishes to Maven Central, with no further test run: the Release PR adds only the version bump and changelog to an already-tested `main`. A hotfix release from `N.x` runs the unit lane first, since its commits were pushed without a PR. A tag, a GitHub Release and a Maven Central push cannot be withdrawn. The publish step builds the project, so a build that does not compile fails there after the tag exists; the fix ships under the next version, since `publish_tag` rebuilds the same tag.
 
 Tags here have no `v` prefix (`10.1.1`, not `v10.1.1`), which `include-v-in-tag: false`
 in `release-please-config.json` preserves.
