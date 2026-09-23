@@ -101,7 +101,7 @@ CI follows the same split:
 | --- | --- | --- |
 | Pull request | `spotlessCheck` and `build` | yes, `🧪 Tests` is required on `main` |
 | Daily at 10:00 UTC | `integrationTest` | no, a red run opens an issue |
-| Push to `main` with a release pending | both | only the unit half gates the tag |
+| Push to `main` with a release pending | the unit lane | yes, it gates the tag |
 
 ## Code rules
 
