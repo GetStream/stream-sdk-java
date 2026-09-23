@@ -101,7 +101,7 @@ CI follows the same split:
 | --- | --- | --- |
 | Pull request | `spotlessCheck` and `build` | yes, `🧪 Tests` is required on `main` |
 | Daily at 10:00 UTC | `integrationTest` | no, a red run opens an issue |
-| Push to `main` with a release pending | the unit lane | yes, it gates the tag |
+| Release PR merged | nothing, it tags and publishes | no |
 
 ## Code rules
 
@@ -143,11 +143,7 @@ Releases are driven by [release-please](https://github.com/googleapis/release-pl
   and `🧪 Tests` goes green in seconds without running a test. **Update branch** does not
   bring the suite back, and neither does pushing a commit by hand, so a commit pushed onto
   a Release PR reaches `main` untested.
-- Merging runs `spotlessCheck` and the build on the merge commit, which is the commit the
-  tag will point at. Only if that is green does the workflow create the tag and the GitHub
-  Release and publish to Maven Central. The order matters: a tag, a GitHub Release and a
-  Maven Central push cannot be withdrawn. Integration tests are advisory and gate none of
-  it.
+- Merging creates the tag and the GitHub Release on the merge commit and publishes to Maven Central, with no further test run: the Release PR adds only the version bump and changelog to an already-tested `main`. A tag, a GitHub Release and a Maven Central push cannot be withdrawn. The publish step builds the project, so a build that does not compile fails there and can be retried with `publish_tag`.
 
 Tags here have no `v` prefix (`10.1.1`, not `v10.1.1`), which `include-v-in-tag: false`
 in `release-please-config.json` preserves.
@@ -155,7 +151,7 @@ in `release-please-config.json` preserves.
 To retry a publish that failed after the release was tagged, use "Re-run failed jobs" on
 that workflow run. Once GitHub has retired the run, dispatch `Release` from `main` with
 `publish_tag` set to the tag, which builds and publishes that tag without touching
-release-please. If the suite goes red after the Release PR merged, the release stays
+release-please. If the release job fails after the Release PR merged, the release stays
 pending and every later push logs a warning naming the commit to go back to.
 
 To force a specific version, type `Release-As: X.Y.Z` in the commit message box of the
