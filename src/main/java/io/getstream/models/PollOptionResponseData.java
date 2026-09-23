@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -29,4 +30,8 @@ public class PollOptionResponseData {
 
   @JsonProperty("custom")
   private Map<String, Object> custom;
+
+  @Nullable
+  @JsonProperty("text_i18n")
+  private Map<String, String> textI18n;
 }

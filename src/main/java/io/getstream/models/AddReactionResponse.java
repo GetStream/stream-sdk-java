@@ -21,8 +21,14 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class AddReactionResponse {
 
+  @JsonProperty("counter_delta")
+  private Integer counterDelta;
+
   @JsonProperty("duration")
   private String duration;
+
+  @JsonProperty("outcome")
+  private String outcome;
 
   @JsonProperty("activity")
   private ActivityResponse activity;
@@ -45,6 +51,10 @@ public class AddReactionResponse {
   @Nullable
   @JsonProperty("notification_task_id")
   private String notificationTaskID;
+
+  @Nullable
+  @JsonProperty("previous_reaction_type")
+  private String previousReactionType;
 
   @Nullable
   @JsonProperty("reference_activity")

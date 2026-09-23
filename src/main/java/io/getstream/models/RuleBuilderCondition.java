@@ -126,6 +126,10 @@ public class RuleBuilderCondition {
   private UserIdenticalContentCountParameters userIdenticalContentCountParams;
 
   @Nullable
+  @JsonProperty("user_identical_image_count_params")
+  private UserIdenticalImageCountParameters userIdenticalImageCountParams;
+
+  @Nullable
   @JsonProperty("user_reaction_count_params")
   private UserReactionCountRuleParameters userReactionCountParams;
 

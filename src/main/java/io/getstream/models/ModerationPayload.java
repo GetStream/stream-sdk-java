@@ -24,6 +24,10 @@ import org.jetbrains.annotations.Nullable;
 public class ModerationPayload {
 
   @Nullable
+  @JsonProperty("country_code")
+  private String countryCode;
+
+  @Nullable
   @JsonProperty("audios")
   private List<String> audios;
 

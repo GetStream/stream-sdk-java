@@ -80,6 +80,10 @@ public class EventHook {
   private String sqsAuthType;
 
   @Nullable
+  @JsonProperty("sqs_event_based_message_group_id_enabled")
+  private Boolean sqsEventBasedMessageGroupIDEnabled;
+
+  @Nullable
   @JsonProperty("sqs_key")
   private String sqsKey;
 

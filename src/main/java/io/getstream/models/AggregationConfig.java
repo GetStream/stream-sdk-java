@@ -30,6 +30,10 @@ public class AggregationConfig {
   private String format;
 
   @Nullable
+  @JsonProperty("group_size")
+  private Integer groupSize;
+
+  @Nullable
   @JsonProperty("score_strategy")
   private String scoreStrategy;
 }

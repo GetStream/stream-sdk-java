@@ -49,6 +49,10 @@ public class AppealItemResponse {
   private String aiTextSeverity;
 
   @Nullable
+  @JsonProperty("appeal_reason_language")
+  private String appealReasonLanguage;
+
+  @Nullable
   @JsonProperty("channel_cid")
   private String channelCid;
 
@@ -91,6 +95,10 @@ public class AppealItemResponse {
   @Nullable
   @JsonProperty("flags")
   private List<ModerationFlagResponse> flags;
+
+  @Nullable
+  @JsonProperty("languages")
+  private List<String> languages;
 
   @Nullable
   @JsonProperty("entity_content")

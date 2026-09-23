@@ -30,6 +30,10 @@ public class GetActivityRequest {
   @JsonIgnore
   private Integer CommentLimit;
 
+  @Query("skip_own_followings")
+  @JsonIgnore
+  private Boolean SkipOwnFollowings;
+
   @Query("user_id")
   @JsonIgnore
   private String UserID;
