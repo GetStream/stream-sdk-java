@@ -116,6 +116,7 @@ set -x
 
 # Build the generator first so a compile failure never touches the SDK tree.
 ( cd "$SOURCE_PATH" ; make openapi )
+( cd "$SOURCE_PATH" ; make -C tools/openapi build )
 
 take_snapshot
 ROLLBACK_ARMED=1
@@ -126,11 +127,11 @@ ROLLBACK_ARMED=1
 find "$MODELS_DIR" -maxdepth 1 -name '*.java' -delete
 rm -rf "$FIXTURES_DIR"
 
-( cd "$SOURCE_PATH" ; ./build/chat-manager openapi generate-client --language java --spec ./releases/v2/serverside-api.yaml --output "$REPO_ROOT" )
+( cd "$SOURCE_PATH" ; ./build/openapi generate-client --language java --spec ./releases/v2/serverside-api.yaml --output "$REPO_ROOT" )
 
 # Generate webhook conformance fixtures (CHA-2961). The test template reads them from
 # src/test/resources/fixtures/webhooks/ and gracefully skips if the dir is missing.
-( cd "$SOURCE_PATH" ; ./build/chat-manager openapi generate-webhook-fixtures --output "$REPO_ROOT/$FIXTURES_DIR" )
+( cd "$SOURCE_PATH" ; ./build/openapi generate-webhook-fixtures --output "$REPO_ROOT/$FIXTURES_DIR" )
 
 # CallParticipant carries both "role" and "Role"; drop the duplicate that Jackson
 # would reject. The model comes and goes across spec revisions, so patch it only
