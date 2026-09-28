@@ -13,48 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Get feeds retention policy runs Returns filtered and sorted feeds retention cleanup run history
+ * for the app. Supports filter_conditions on &#39;policy&#39; (possible values:
+ * &#39;old-activities&#39;) and &#39;date&#39; fields. Server-side only.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class PollVoteResponseData {
-
-  @JsonProperty("created_at")
-  private Date createdAt;
-
-  @JsonProperty("id")
-  private String id;
-
-  @JsonProperty("option_id")
-  private String optionID;
-
-  @JsonProperty("poll_id")
-  private String pollID;
-
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+public class FeedsGetRetentionPolicyRunsRequest {
 
   @Nullable
-  @JsonProperty("answer_text")
-  private String answerText;
+  @JsonProperty("limit")
+  private Integer limit;
 
   @Nullable
-  @JsonProperty("is_answer")
-  private Boolean isAnswer;
+  @JsonProperty("next")
+  private String next;
 
   @Nullable
-  @JsonProperty("user_id")
-  private String userID;
+  @JsonProperty("prev")
+  private String prev;
 
   @Nullable
-  @JsonProperty("answer_text_i18n")
-  private Map<String, String> answerTextI18n;
+  @JsonProperty("sort")
+  private List<SortParamRequest> sort;
 
   @Nullable
-  @JsonProperty("user")
-  private UserResponse user;
+  @JsonProperty("filter_conditions")
+  private Map<String, Object> filterConditions;
 }

@@ -13,50 +13,27 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
+/** Basic response information */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class AddCommentReactionResponse {
-
-  @JsonProperty("counter_delta")
-  private Integer counterDelta;
+public class GetFeedsRetentionPolicyRunsResponse {
 
   @JsonProperty("duration")
   private String duration;
 
-  @JsonProperty("outcome")
-  private String outcome;
-
-  @JsonProperty("comment")
-  private CommentResponse comment;
-
-  @JsonProperty("reaction")
-  private FeedsReactionResponse reaction;
+  @JsonProperty("runs")
+  private List<FeedsRetentionRunResponse> runs;
 
   @Nullable
-  @JsonProperty("notification_accepted")
-  private Boolean notificationAccepted;
-
-  /**
-   * @deprecated
-   */
-  @Deprecated
-  @Nullable
-  @JsonProperty("notification_created")
-  private Boolean notificationCreated;
+  @JsonProperty("next")
+  private String next;
 
   @Nullable
-  @JsonProperty("notification_task_id")
-  private String notificationTaskID;
-
-  @Nullable
-  @JsonProperty("previous_reaction_type")
-  private String previousReactionType;
-
-  @Nullable
-  @JsonProperty("reference_activity")
-  private ActivityResponse referenceActivity;
+  @JsonProperty("prev")
+  private String prev;
 }

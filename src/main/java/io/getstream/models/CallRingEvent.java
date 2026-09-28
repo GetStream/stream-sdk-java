@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 /** This event is sent to all call members to notify they are getting called */
 @lombok.Data
@@ -46,4 +47,8 @@ public class CallRingEvent {
 
   @JsonProperty("type")
   private String type;
+
+  @Nullable
+  @JsonProperty("ring_id")
+  private String ringID;
 }

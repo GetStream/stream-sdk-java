@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -33,4 +34,8 @@ public class RingCallRequest {
   @Nullable
   @JsonProperty("members_ids")
   private List<String> membersIds;
+
+  @Nullable
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 }

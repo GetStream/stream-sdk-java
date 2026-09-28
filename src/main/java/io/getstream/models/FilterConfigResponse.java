@@ -43,6 +43,10 @@ public class FilterConfigResponse {
   private List<String> filterableCustomKeys;
 
   @Nullable
+  @JsonProperty("rule_names")
+  private List<String> ruleNames;
+
+  @Nullable
   @JsonProperty("ai_image_taxonomy")
   private Map<String, List<String>> aiImageTaxonomy;
 }

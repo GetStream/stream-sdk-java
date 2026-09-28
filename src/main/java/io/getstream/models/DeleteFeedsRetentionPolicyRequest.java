@@ -12,37 +12,14 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.getstream.annotations.Query;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Get activity Returns activity by ID */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetActivityRequest {
+public class DeleteFeedsRetentionPolicyRequest {
 
-  @Query("comment_sort")
-  @JsonIgnore
-  private String CommentSort;
-
-  @Query("comment_limit")
-  @JsonIgnore
-  private Integer CommentLimit;
-
-  @Query("skip_own_followings")
-  @JsonIgnore
-  private Boolean SkipOwnFollowings;
-
-  @Query("user_id")
-  @JsonIgnore
-  private String UserID;
-
-  @Query("language")
-  @JsonIgnore
-  private String Language;
-
-  @Query("translate_text")
-  @JsonIgnore
-  private Boolean TranslateText;
+  @JsonProperty("policy")
+  private String policy;
 }

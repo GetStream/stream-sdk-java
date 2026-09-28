@@ -1839,6 +1839,70 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<GetFeedsRetentionPolicyResponse> feedsGetRetentionPolicy(
+      FeedsGetRetentionPolicyRequest request) throws StreamException {
+
+    return new StreamRequest<GetFeedsRetentionPolicyResponse>(
+        client,
+        "GET",
+        "/api/v2/feeds/retention_policy",
+        request,
+        null,
+        new TypeReference<GetFeedsRetentionPolicyResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetFeedsRetentionPolicyResponse> feedsGetRetentionPolicy()
+      throws StreamException {
+    return feedsGetRetentionPolicy(new FeedsGetRetentionPolicyRequest());
+  }
+
+  @NotNull
+  public StreamRequest<SetFeedsRetentionPolicyResponse> feedsSetRetentionPolicy(
+      FeedsSetRetentionPolicyRequest request) throws StreamException {
+
+    return new StreamRequest<SetFeedsRetentionPolicyResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/retention_policy",
+        request,
+        null,
+        new TypeReference<SetFeedsRetentionPolicyResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteFeedsRetentionPolicyResponse> feedsDeleteRetentionPolicy(
+      FeedsDeleteRetentionPolicyRequest request) throws StreamException {
+
+    return new StreamRequest<DeleteFeedsRetentionPolicyResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/retention_policy/delete",
+        request,
+        null,
+        new TypeReference<DeleteFeedsRetentionPolicyResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetFeedsRetentionPolicyRunsResponse> feedsGetRetentionPolicyRuns(
+      FeedsGetRetentionPolicyRunsRequest request) throws StreamException {
+
+    return new StreamRequest<GetFeedsRetentionPolicyRunsResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/retention_policy/runs",
+        request,
+        null,
+        new TypeReference<GetFeedsRetentionPolicyRunsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetFeedsRetentionPolicyRunsResponse> feedsGetRetentionPolicyRuns()
+      throws StreamException {
+    return feedsGetRetentionPolicyRuns(new FeedsGetRetentionPolicyRunsRequest());
+  }
+
+  @NotNull
   public StreamRequest<QueryRevisionHistoryResponse> queryRevisionHistory(
       QueryRevisionHistoryRequest request) throws StreamException {
 

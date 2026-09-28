@@ -23,12 +23,20 @@ import org.jetbrains.annotations.Nullable;
 public class FloodIdenticalRuleParameters {
 
   @Nullable
+  @JsonProperty("min_text_length")
+  private Integer minTextLength;
+
+  @Nullable
   @JsonProperty("threshold")
   private Integer threshold;
 
   @Nullable
   @JsonProperty("time_window")
   private String timeWindow;
+
+  @Nullable
+  @JsonProperty("track_across_users")
+  private Boolean trackAcrossUsers;
 
   @Nullable
   @JsonProperty("allowlist")

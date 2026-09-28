@@ -16,12 +16,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
-/** Create reminder Creates a new reminder Sends events: - reminder.created */
+/**
+ * Create reminder Creates a new reminder. An optional expires_at hides the reminder from every read
+ * once it passes and stops it counting against the per-user reminder cap Sends events: -
+ * reminder.created
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class CreateReminderRequest {
+
+  @Nullable
+  @JsonProperty("expires_at")
+  private Date expiresAt;
 
   @Nullable
   @JsonProperty("remind_at")

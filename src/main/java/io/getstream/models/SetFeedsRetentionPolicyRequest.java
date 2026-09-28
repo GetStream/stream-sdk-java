@@ -13,48 +13,21 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
-import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class PollVoteResponseData {
+public class SetFeedsRetentionPolicyRequest {
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+  @JsonProperty("max_age_hours")
+  private Integer maxAgeHours;
 
-  @JsonProperty("id")
-  private String id;
-
-  @JsonProperty("option_id")
-  private String optionID;
-
-  @JsonProperty("poll_id")
-  private String pollID;
-
-  @JsonProperty("updated_at")
-  private Date updatedAt;
+  @JsonProperty("policy")
+  private String policy;
 
   @Nullable
-  @JsonProperty("answer_text")
-  private String answerText;
-
-  @Nullable
-  @JsonProperty("is_answer")
-  private Boolean isAnswer;
-
-  @Nullable
-  @JsonProperty("user_id")
-  private String userID;
-
-  @Nullable
-  @JsonProperty("answer_text_i18n")
-  private Map<String, String> answerTextI18n;
-
-  @Nullable
-  @JsonProperty("user")
-  private UserResponse user;
+  @JsonProperty("enabled")
+  private Boolean enabled;
 }

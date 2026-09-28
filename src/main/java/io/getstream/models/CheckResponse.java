@@ -43,6 +43,10 @@ public class CheckResponse {
   @JsonProperty("item")
   private ReviewQueueItemResponse item;
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @Nullable
   @JsonProperty("triggered_rule")
   private TriggeredRuleResponse triggeredRule;

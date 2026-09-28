@@ -695,6 +695,30 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<GetFeedsRetentionPolicyResponse> feedsGetRetentionPolicy(
+      FeedsGetRetentionPolicyRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedsRetentionPolicyResponse> feedsGetRetentionPolicy()
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<SetFeedsRetentionPolicyResponse> feedsSetRetentionPolicy(
+      FeedsSetRetentionPolicyRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteFeedsRetentionPolicyResponse> feedsDeleteRetentionPolicy(
+      FeedsDeleteRetentionPolicyRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedsRetentionPolicyRunsResponse> feedsGetRetentionPolicyRuns(
+      FeedsGetRetentionPolicyRunsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetFeedsRetentionPolicyRunsResponse> feedsGetRetentionPolicyRuns()
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryRevisionHistoryResponse> queryRevisionHistory(
       QueryRevisionHistoryRequest request) throws StreamException;
 

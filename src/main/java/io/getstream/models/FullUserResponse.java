@@ -54,6 +54,10 @@ public class FullUserResponse {
   @JsonProperty("unread_channels")
   private Integer unreadChannels;
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @JsonProperty("unread_count")
   private Integer unreadCount;
 

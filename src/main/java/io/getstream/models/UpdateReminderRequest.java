@@ -16,12 +16,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
-/** Updates Reminder Updates an existing reminder Sends events: - reminder.updated */
+/**
+ * Updates Reminder Updates an existing reminder. remind_at and expires_at are both replaced on
+ * every call: omitting either one clears it Sends events: - reminder.updated
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class UpdateReminderRequest {
+
+  @Nullable
+  @JsonProperty("expires_at")
+  private Date expiresAt;
 
   @Nullable
   @JsonProperty("remind_at")

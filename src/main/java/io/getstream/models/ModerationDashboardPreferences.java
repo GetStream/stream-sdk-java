@@ -36,6 +36,10 @@ public class ModerationDashboardPreferences {
   private Boolean customViewsEnabled;
 
   @Nullable
+  @JsonProperty("disable_action_logs")
+  private Boolean disableActionLogs;
+
+  @Nullable
   @JsonProperty("disable_audit_logs")
   private Boolean disableAuditLogs;
 
