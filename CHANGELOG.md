@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.2.0](https://github.com/GetStream/stream-sdk-java/compare/10.1.1...10.2.0) (2026-09-28)
+
+
+### Features
+
+* [FEEDS-1963] regenerate from OpenAPI ([#106](https://github.com/GetStream/stream-sdk-java/issues/106)) ([0af93a1](https://github.com/GetStream/stream-sdk-java/commit/0af93a1dafe806f88a92333de6e2c289a06806e0))
+
 ### [10.1.1](https://github.com/GetStream/stream-sdk-java/compare/10.1.0...10.1.1) (2026-09-15)
 
 ## [10.1.0](https://github.com/GetStream/stream-sdk-java/compare/10.0.0...10.1.0) (2026-09-10)
