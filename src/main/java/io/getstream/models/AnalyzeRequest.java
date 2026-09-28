@@ -40,6 +40,10 @@ public class AnalyzeRequest {
   private Date contentPublishedAt;
 
   @Nullable
+  @JsonProperty("country_code")
+  private String countryCode;
+
+  @Nullable
   @JsonProperty("entity_creator_id")
   private String entityCreatorID;
 

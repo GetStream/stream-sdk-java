@@ -89,4 +89,12 @@ public class PollResponseData {
   @Nullable
   @JsonProperty("created_by")
   private UserResponse createdBy;
+
+  @Nullable
+  @JsonProperty("description_i18n")
+  private Map<String, String> descriptionI18n;
+
+  @Nullable
+  @JsonProperty("name_i18n")
+  private Map<String, String> nameI18n;
 }

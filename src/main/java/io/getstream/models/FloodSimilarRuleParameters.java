@@ -23,6 +23,10 @@ import org.jetbrains.annotations.Nullable;
 public class FloodSimilarRuleParameters {
 
   @Nullable
+  @JsonProperty("min_text_length")
+  private Integer minTextLength;
+
+  @Nullable
   @JsonProperty("similarity_distance")
   private Integer similarityDistance;
 

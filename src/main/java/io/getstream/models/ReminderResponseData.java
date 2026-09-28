@@ -38,6 +38,10 @@ public class ReminderResponseData {
   private String userID;
 
   @Nullable
+  @JsonProperty("expires_at")
+  private Date expiresAt;
+
+  @Nullable
   @JsonProperty("remind_at")
   private Date remindAt;
 

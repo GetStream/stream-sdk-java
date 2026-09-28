@@ -110,6 +110,10 @@ public class RuleBuilderCondition {
   private TextRuleParameters textRuleParams;
 
   @Nullable
+  @JsonProperty("user_channel_count_params")
+  private UserChannelCountRuleParameters userChannelCountParams;
+
+  @Nullable
   @JsonProperty("user_created_within_params")
   private UserCreatedWithinParameters userCreatedWithinParams;
 
@@ -124,6 +128,10 @@ public class RuleBuilderCondition {
   @Nullable
   @JsonProperty("user_identical_content_count_params")
   private UserIdenticalContentCountParameters userIdenticalContentCountParams;
+
+  @Nullable
+  @JsonProperty("user_identical_image_count_params")
+  private UserIdenticalImageCountParameters userIdenticalImageCountParams;
 
   @Nullable
   @JsonProperty("user_reaction_count_params")

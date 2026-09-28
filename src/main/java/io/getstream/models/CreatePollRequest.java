@@ -56,6 +56,10 @@ public class CreatePollRequest {
   private Integer maxVotesAllowed;
 
   @Nullable
+  @JsonProperty("team")
+  private String team;
+
+  @Nullable
   @JsonProperty("user_id")
   private String userID;
 

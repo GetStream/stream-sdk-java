@@ -46,6 +46,10 @@ public class CheckRequest {
   private Date contentPublishedAt;
 
   @Nullable
+  @JsonProperty("country_code")
+  private String countryCode;
+
+  @Nullable
   @JsonProperty("test_mode")
   private Boolean testMode;
 
