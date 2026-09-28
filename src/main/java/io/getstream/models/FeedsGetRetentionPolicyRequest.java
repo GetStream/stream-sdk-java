@@ -12,28 +12,11 @@
  */
 package io.getstream.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.Nullable;
-
+/**
+ * Get feeds retention policy Returns the feeds retention policies configured for the app.
+ * Server-side only.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
-public class AggregationConfig {
-
-  @Nullable
-  @JsonProperty("activities_sort")
-  private String activitiesSort;
-
-  @Nullable
-  @JsonProperty("format")
-  private String format;
-
-  @Nullable
-  @JsonProperty("group_size")
-  private Integer groupSize;
-
-  @Nullable
-  @JsonProperty("score_strategy")
-  private String scoreStrategy;
-}
+public class FeedsGetRetentionPolicyRequest {}

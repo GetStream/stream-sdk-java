@@ -32,6 +32,10 @@ public class UnbanRequest {
   @JsonProperty("unbanned_by_id")
   private String unbannedByID;
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @Nullable
   @JsonProperty("unbanned_by")
   private UserRequest unbannedBy;

@@ -21,7 +21,8 @@ import org.jetbrains.annotations.Nullable;
  * Partial activity update Updates certain fields of the activity. Use &#39;set&#39; to update
  * specific fields and &#39;unset&#39; to remove fields. This allows you to update only the fields
  * you need without replacing the entire activity. Useful for updating reply restrictions
- * (&#39;restrict_replies&#39;), mentioned users, or custom data. Sends events: -
+ * (&#39;restrict_replies&#39;), mentioned users, or custom data. Changing `feeds` is a placement
+ * change (add/delete on those feeds), not an activity content update. Sends events: -
  * feeds.activity.updated
  */
 @lombok.Data

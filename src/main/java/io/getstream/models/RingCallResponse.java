@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -26,4 +27,8 @@ public class RingCallResponse {
 
   @JsonProperty("members_ids")
   private List<String> membersIds;
+
+  @Nullable
+  @JsonProperty("ring_id")
+  private String ringID;
 }

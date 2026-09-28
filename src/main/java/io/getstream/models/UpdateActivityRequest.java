@@ -21,8 +21,9 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Full activity update Replaces an activity with the provided data. Use this to update text,
  * attachments, reply restrictions (&#39;restrict_replies&#39;), mentioned users, and other activity
- * fields. Note: This is a full update - any fields not provided will be cleared. Sends events: -
- * feeds.activity.updated
+ * fields. Note: This is a full update - any fields not provided will be cleared. Changing `feeds`
+ * is a placement change (add/delete on those feeds), not an activity content update. Sends events:
+ * - feeds.activity.updated
  */
 @lombok.Data
 @lombok.Builder

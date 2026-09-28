@@ -53,6 +53,10 @@ public class BulkActionAppealsRequest {
   @JsonProperty("unban")
   private UnbanActionRequestPayload unban;
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @Nullable
   @JsonProperty("unblock")
   private UnblockActionRequestPayload unblock;
