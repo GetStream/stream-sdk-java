@@ -88,10 +88,14 @@ tasks.register<Test>("integrationTest") {
 
 val generatedVersionDir = layout.buildDirectory.dir("generated-version")
 
+// Not "version.properties" at the jar root. stream-chat-java ships that same name, and
+// ClassLoader.getResourceAsStream returns whichever jar comes first.
+val sdkVersionResource = "io/getstream/stream-sdk-java/version.properties"
+
 tasks.register("generateVersionProperties") {
     doLast {
-        val f = layout.buildDirectory.file("generated-version/version.properties")
-        val propertiesFile = f.get().asFile
+        val propertiesFile =
+            layout.buildDirectory.file("generated-version/$sdkVersionResource").get().asFile
         propertiesFile.parentFile.mkdirs()
         val properties = Properties()
         properties.setProperty("version", version.toString())

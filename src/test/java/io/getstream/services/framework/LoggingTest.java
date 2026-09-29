@@ -105,7 +105,7 @@ public class LoggingTest {
     var inits = log.named("client.initialized");
     assertEquals(1, inits.size());
     String m = inits.get(0).message();
-    // sdk.name is a fixed constant; version is present but its value depends on version.properties.
+    // sdk.name is a fixed constant; version is present but its value comes from this SDK's jar.
     assertTrue(m.contains("stream.sdk.name=stream-sdk-java"), m);
     assertTrue(m.contains("stream.sdk.version="), m);
     // Pool/timeout knobs equal the StreamClientOptions defaults for a default-options client.

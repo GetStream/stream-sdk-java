@@ -132,12 +132,23 @@ public class StreamHTTPClient {
         .compact();
   }
 
+  // Unique to this jar. A root version.properties collides with stream-chat-java (and any
+  // other dependency that ships that name): the classloader returns the first match.
+  private static final String VERSION_RESOURCE = "/io/getstream/stream-sdk-java/version.properties";
+
   private static @NotNull String readSdkVersion() {
-    var clsLoader = StreamHTTPClient.class.getClassLoader();
-    try (var inputStream = clsLoader.getResourceAsStream("version.properties")) {
+    try (var inputStream = StreamHTTPClient.class.getResourceAsStream(VERSION_RESOURCE)) {
+      if (inputStream == null) {
+        throw new IllegalStateException("missing SDK version resource " + VERSION_RESOURCE);
+      }
       var properties = new Properties();
       properties.load(inputStream);
-      return properties.getProperty("version");
+      var version = properties.getProperty("version");
+      if (version == null || version.isBlank()) {
+        throw new IllegalStateException(
+            "SDK version resource " + VERSION_RESOURCE + " has no version");
+      }
+      return version;
     } catch (IOException ex) {
       throw new IllegalStateException(ex);
     }
