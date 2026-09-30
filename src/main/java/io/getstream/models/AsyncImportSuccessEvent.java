@@ -14,7 +14,6 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
@@ -22,40 +21,34 @@ import org.jetbrains.annotations.Nullable;
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ActivitySelectorConfigResponse {
+public class AsyncImportSuccessEvent {
+
+  @JsonProperty("created_at")
+  private Date createdAt;
+
+  @JsonProperty("finished_at")
+  private Date finishedAt;
+
+  @JsonProperty("product")
+  private String product;
+
+  @JsonProperty("state")
+  private String state;
+
+  @JsonProperty("task_id")
+  private String taskID;
+
+  @JsonProperty("custom")
+  private Map<String, Object> custom;
 
   @JsonProperty("type")
   private String type;
 
   @Nullable
-  @JsonProperty("cutoff_time")
-  private Date cutoffTime;
+  @JsonProperty("received_at")
+  private Date receivedAt;
 
   @Nullable
-  @JsonProperty("cutoff_window")
-  private String cutoffWindow;
-
-  @Nullable
-  @JsonProperty("min_popularity")
-  private Integer minPopularity;
-
-  @Nullable
-  @JsonProperty("ranking_candidate_limit")
-  private Integer rankingCandidateLimit;
-
-  @Nullable
-  @JsonProperty("sort")
-  private List<SortParamRequest> sort;
-
-  @Nullable
-  @JsonProperty("feed_groups")
-  private FeedGroupScope feedGroups;
-
-  @Nullable
-  @JsonProperty("filter")
-  private Map<String, Object> filter;
-
-  @Nullable
-  @JsonProperty("params")
-  private Map<String, Object> params;
+  @JsonProperty("started_at")
+  private Date startedAt;
 }

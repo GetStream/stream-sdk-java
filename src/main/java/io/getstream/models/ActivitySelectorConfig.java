@@ -39,6 +39,10 @@ public class ActivitySelectorConfig {
   private Integer minPopularity;
 
   @Nullable
+  @JsonProperty("ranking_candidate_limit")
+  private Integer rankingCandidateLimit;
+
+  @Nullable
   @JsonProperty("sort")
   private List<SortParamRequest> sort;
 

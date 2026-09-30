@@ -149,6 +149,10 @@ public class ActivityResponse {
   private String text;
 
   @Nullable
+  @JsonProperty("top_level_comment_count")
+  private Integer topLevelCommentCount;
+
+  @Nullable
   @JsonProperty("visibility_tag")
   private String visibilityTag;
 

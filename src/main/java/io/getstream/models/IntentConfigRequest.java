@@ -20,29 +20,9 @@ import org.jetbrains.annotations.Nullable;
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetCommentsResponse {
-
-  @JsonProperty("comment_count")
-  private Integer commentCount;
-
-  @JsonProperty("duration")
-  private String duration;
-
-  @JsonProperty("sort")
-  private String sort;
-
-  @JsonProperty("comments")
-  private List<ThreadedCommentResponse> comments;
+public class IntentConfigRequest {
 
   @Nullable
-  @JsonProperty("next")
-  private String next;
-
-  @Nullable
-  @JsonProperty("prev")
-  private String prev;
-
-  @Nullable
-  @JsonProperty("top_level_comment_count")
-  private Integer topLevelCommentCount;
+  @JsonProperty("topics")
+  private List<IntentTopicRequest> topics;
 }

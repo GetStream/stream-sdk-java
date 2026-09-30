@@ -45,4 +45,8 @@ public class GetActivityRequest {
   @Query("translate_text")
   @JsonIgnore
   private Boolean TranslateText;
+
+  @Query("include_top_level_comment_count")
+  @JsonIgnore
+  private Boolean IncludeTopLevelCommentCount;
 }
