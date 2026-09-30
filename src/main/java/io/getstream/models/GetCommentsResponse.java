@@ -22,6 +22,9 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class GetCommentsResponse {
 
+  @JsonProperty("comment_count")
+  private Integer commentCount;
+
   @JsonProperty("duration")
   private String duration;
 
@@ -35,4 +38,8 @@ public class GetCommentsResponse {
   @Nullable
   @JsonProperty("prev")
   private String prev;
+
+  @Nullable
+  @JsonProperty("top_level_comment_count")
+  private Integer topLevelCommentCount;
 }

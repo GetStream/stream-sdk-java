@@ -52,4 +52,8 @@ public class GetCommentsRequest {
   @Query("next")
   @JsonIgnore
   private String Next;
+
+  @Query("include_top_level_comment_count")
+  @JsonIgnore
+  private Boolean IncludeTopLevelCommentCount;
 }
