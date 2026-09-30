@@ -32,6 +32,22 @@ public class CheckResponse {
   private String status;
 
   @Nullable
+  @JsonProperty("intent_matched_topic")
+  private String intentMatchedTopic;
+
+  @Nullable
+  @JsonProperty("intent_score")
+  private Double intentScore;
+
+  @Nullable
+  @JsonProperty("intent_score_threshold")
+  private Double intentScoreThreshold;
+
+  @Nullable
+  @JsonProperty("intent_would_fire")
+  private Boolean intentWouldFire;
+
+  @Nullable
   @JsonProperty("task_id")
   private String taskID;
 

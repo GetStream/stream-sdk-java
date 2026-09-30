@@ -91,6 +91,10 @@ public class ConfigResponse {
   private FloodConfig floodConfig;
 
   @Nullable
+  @JsonProperty("intent_config")
+  private IntentConfigResponse intentConfig;
+
+  @Nullable
   @JsonProperty("llm_config")
   private LLMConfig llmConfig;
 

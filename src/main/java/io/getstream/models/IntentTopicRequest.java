@@ -13,49 +13,38 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class ActivitySelectorConfigResponse {
+public class IntentTopicRequest {
 
-  @JsonProperty("type")
-  private String type;
-
-  @Nullable
-  @JsonProperty("cutoff_time")
-  private Date cutoffTime;
+  @JsonProperty("label")
+  private String label;
 
   @Nullable
-  @JsonProperty("cutoff_window")
-  private String cutoffWindow;
+  @JsonProperty("analysis_cooldown_seconds")
+  private Integer analysisCooldownSeconds;
 
   @Nullable
-  @JsonProperty("min_popularity")
-  private Integer minPopularity;
+  @JsonProperty("description")
+  private String description;
 
   @Nullable
-  @JsonProperty("ranking_candidate_limit")
-  private Integer rankingCandidateLimit;
+  @JsonProperty("enabled")
+  private Boolean enabled;
 
   @Nullable
-  @JsonProperty("sort")
-  private List<SortParamRequest> sort;
+  @JsonProperty("max_captured_items")
+  private Integer maxCapturedItems;
 
   @Nullable
-  @JsonProperty("feed_groups")
-  private FeedGroupScope feedGroups;
+  @JsonProperty("refire_cooldown_seconds")
+  private Integer refireCooldownSeconds;
 
   @Nullable
-  @JsonProperty("filter")
-  private Map<String, Object> filter;
-
-  @Nullable
-  @JsonProperty("params")
-  private Map<String, Object> params;
+  @JsonProperty("score_threshold")
+  private Double scoreThreshold;
 }

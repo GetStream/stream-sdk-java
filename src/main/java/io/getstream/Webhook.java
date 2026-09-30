@@ -28,6 +28,8 @@ import io.getstream.models.AsyncExportErrorEvent;
 import io.getstream.models.AsyncExportModerationLogsEvent;
 import io.getstream.models.AsyncExportReviewQueueEvent;
 import io.getstream.models.AsyncExportUsersEvent;
+import io.getstream.models.AsyncImportErrorEvent;
+import io.getstream.models.AsyncImportSuccessEvent;
 import io.getstream.models.BlockedUserEvent;
 import io.getstream.models.BookmarkAddedEvent;
 import io.getstream.models.BookmarkDeletedEvent;
@@ -121,6 +123,7 @@ import io.getstream.models.FollowUpdatedEvent;
 import io.getstream.models.IngressErrorEvent;
 import io.getstream.models.IngressStartedEvent;
 import io.getstream.models.IngressStoppedEvent;
+import io.getstream.models.IntentDetectedEvent;
 import io.getstream.models.KickedUserEvent;
 import io.getstream.models.MaxStreakChangedEvent;
 import io.getstream.models.MemberAddedEvent;
@@ -328,6 +331,8 @@ public class Webhook {
     public static final String FEEDS_NOTIFICATION_FEED_UPDATED = "feeds.notification_feed.updated";
     public static final String FEEDS_STORIES_FEED_UPDATED = "feeds.stories_feed.updated";
     public static final String FLAG_UPDATED = "flag.updated";
+    public static final String IMPORT_ERROR = "import.error";
+    public static final String IMPORT_SUCCESS = "import.success";
     public static final String INGRESS_ERROR = "ingress.error";
     public static final String INGRESS_STARTED = "ingress.started";
     public static final String INGRESS_STOPPED = "ingress.stopped";
@@ -347,6 +352,7 @@ public class Webhook {
     public static final String MODERATION_FLAGGED = "moderation.flagged";
     public static final String MODERATION_IMAGE_ANALYSIS_COMPLETE =
         "moderation.image_analysis.complete";
+    public static final String MODERATION_INTENT_DETECTED = "moderation.intent_detected";
     public static final String MODERATION_MARK_REVIEWED = "moderation.mark_reviewed";
     public static final String MODERATION_TEXT_ANALYSIS_COMPLETE =
         "moderation.text_analysis.complete";
@@ -714,6 +720,10 @@ public class Webhook {
         return StoriesFeedUpdatedEvent.class;
       case "flag.updated":
         return FlagUpdatedEvent.class;
+      case "import.error":
+        return AsyncImportErrorEvent.class;
+      case "import.success":
+        return AsyncImportSuccessEvent.class;
       case "ingress.error":
         return IngressErrorEvent.class;
       case "ingress.started":
@@ -750,6 +760,8 @@ public class Webhook {
         return ModerationFlaggedEvent.class;
       case "moderation.image_analysis.complete":
         return ModerationImageAnalysisCompleteEvent.class;
+      case "moderation.intent_detected":
+        return IntentDetectedEvent.class;
       case "moderation.mark_reviewed":
         return ModerationMarkReviewedEvent.class;
       case "moderation.text_analysis.complete":

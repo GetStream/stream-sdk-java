@@ -13,36 +13,23 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
-import org.jetbrains.annotations.Nullable;
+import java.util.Date;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetCommentsResponse {
+public class IntentBufferedItem {
 
-  @JsonProperty("comment_count")
-  private Integer commentCount;
+  @JsonProperty("author_user_id")
+  private String authorUserID;
 
-  @JsonProperty("duration")
-  private String duration;
+  @JsonProperty("created_at")
+  private Date createdAt;
 
-  @JsonProperty("sort")
-  private String sort;
+  @JsonProperty("id")
+  private String id;
 
-  @JsonProperty("comments")
-  private List<ThreadedCommentResponse> comments;
-
-  @Nullable
-  @JsonProperty("next")
-  private String next;
-
-  @Nullable
-  @JsonProperty("prev")
-  private String prev;
-
-  @Nullable
-  @JsonProperty("top_level_comment_count")
-  private Integer topLevelCommentCount;
+  @JsonProperty("text")
+  private String text;
 }

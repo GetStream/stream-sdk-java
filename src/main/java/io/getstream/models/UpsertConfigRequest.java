@@ -90,6 +90,10 @@ public class UpsertConfigRequest {
   private GoogleVisionConfig googleVisionConfig;
 
   @Nullable
+  @JsonProperty("intent_config")
+  private IntentConfigRequest intentConfig;
+
+  @Nullable
   @JsonProperty("llm_config")
   private LLMConfig llmConfig;
 

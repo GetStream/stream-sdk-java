@@ -14,35 +14,13 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
-import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class GetCommentsResponse {
+public class IntentConfigResponse {
 
-  @JsonProperty("comment_count")
-  private Integer commentCount;
-
-  @JsonProperty("duration")
-  private String duration;
-
-  @JsonProperty("sort")
-  private String sort;
-
-  @JsonProperty("comments")
-  private List<ThreadedCommentResponse> comments;
-
-  @Nullable
-  @JsonProperty("next")
-  private String next;
-
-  @Nullable
-  @JsonProperty("prev")
-  private String prev;
-
-  @Nullable
-  @JsonProperty("top_level_comment_count")
-  private Integer topLevelCommentCount;
+  @JsonProperty("topics")
+  private List<IntentTopicResponse> topics;
 }
