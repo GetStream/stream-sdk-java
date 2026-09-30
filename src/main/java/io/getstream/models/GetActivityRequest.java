@@ -12,7 +12,16 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.annotations.Query;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class GetActivityRequest {}
+@lombok.AllArgsConstructor
+public class GetActivityRequest {
+
+  @Query("include_top_level_comment_count")
+  @JsonIgnore
+  private Boolean IncludeTopLevelCommentCount;
+}

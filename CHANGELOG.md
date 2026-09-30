@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.1.1-top-level-comment-count](https://github.com/GetStream/stream-sdk-java/compare/4.1.1-feed-counts...4.1.1-top-level-comment-count) (2026-09-30)
+
+
+### Features
+
+* backport top-level comment count onto 4.1.1 ([42504f1](https://github.com/GetStream/stream-sdk-java/commit/42504f1f8d18b6d55e77452b64c9b31899901281))
+
+### Bug Fixes
+
+* read the SDK version from its own jar ([a932c96](https://github.com/GetStream/stream-sdk-java/commit/a932c960ac4600ecba94fe5eca192d28d5601c82))
+
 ### [4.1.1-feed-counts](https://github.com/GetStream/stream-sdk-java/compare/4.1.1...4.1.1-feed-counts) (2026-09-01)
 
 

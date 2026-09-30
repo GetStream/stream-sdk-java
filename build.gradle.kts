@@ -30,6 +30,7 @@ dependencies {
 
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
     implementation("com.squareup.okhttp3:okhttp")
+    testImplementation("com.squareup.okhttp3:mockwebserver")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.18.2")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.18.2")
     implementation("io.jsonwebtoken:jjwt-api:0.12.6")
@@ -64,10 +65,14 @@ tasks.named<Test>("test") {
 
 val generatedVersionDir = layout.buildDirectory.dir("generated-version")
 
+// Not "version.properties" at the jar root. stream-chat-java ships that same name, and
+// ClassLoader.getResourceAsStream returns whichever jar comes first.
+val sdkVersionResource = "io/getstream/stream-sdk-java/version.properties"
+
 tasks.register("generateVersionProperties") {
     doLast {
-        val f = layout.buildDirectory.file("generated-version/version.properties")
-        val propertiesFile = f.get().asFile
+        val propertiesFile =
+            layout.buildDirectory.file("generated-version/$sdkVersionResource").get().asFile
         propertiesFile.parentFile.mkdirs()
         val properties = Properties()
         properties.setProperty("version", version.toString())
