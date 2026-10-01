@@ -16,9 +16,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.MockWebServer;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -210,7 +217,7 @@ public class StreamHTTPClientTest {
   @Test
   void testStreamClientOptionsDefaults() {
     StreamClientOptions opts = new StreamClientOptions();
-    assertEquals(5, opts.getMaxConnsPerHost(), "default MaxConnsPerHost = 5");
+    assertEquals(100, opts.getMaxConnsPerHost(), "default MaxConnsPerHost = 100");
     assertEquals(Duration.ofSeconds(55), opts.getIdleTimeout(), "default IdleTimeout = 55s");
     assertEquals(Duration.ofSeconds(10), opts.getConnectTimeout(), "default ConnectTimeout = 10s");
     assertEquals(Duration.ofSeconds(30), opts.getRequestTimeout(), "default RequestTimeout = 30s");
@@ -354,7 +361,7 @@ public class StreamHTTPClientTest {
     new StreamHTTPClient(
         "apiKey", "012345678901234567890123456789ab", new StreamClientOptions().setLogger(rec));
     String got = lastClientInitialized(rec);
-    assertTrue(got.contains("stream.client.max_conns_per_host=5"), got);
+    assertTrue(got.contains("stream.client.max_conns_per_host=100"), got);
     assertTrue(got.contains("stream.client.idle_timeout_seconds=55"), got);
     assertTrue(got.contains("stream.client.connect_timeout_seconds=10"), got);
     assertTrue(got.contains("stream.client.request_timeout_seconds=30"), got);
@@ -383,12 +390,42 @@ public class StreamHTTPClientTest {
   }
 
   @Test
-  void testDispatcherDefaultPerHostCapUnchanged() {
-    // OkHttp's default maxRequestsPerHost is 5, equal to our default maxConnsPerHost, so the
-    // default per-host concurrency is unchanged (the BLOCKER fix is not a behavior break).
+  void testDispatcherDefaultPerHostCap() {
     OkHttpClient built =
         new StreamHTTPClient("apiKey", "012345678901234567890123456789ab").getHttpClient();
-    assertEquals(5, built.dispatcher().getMaxRequestsPerHost());
+    assertEquals(100, built.dispatcher().getMaxRequestsPerHost());
+  }
+
+  @Test
+  void testDefaultPoolKeepsBurstConnectionsWarm() throws Exception {
+    int n = 10;
+    try (MockWebServer server = new MockWebServer()) {
+      for (int i = 0; i < n; i++) {
+        server.enqueue(new MockResponse().setBody("{}").setBodyDelay(200, TimeUnit.MILLISECONDS));
+      }
+      server.start();
+      OkHttpClient built =
+          new StreamHTTPClient("apiKey", "012345678901234567890123456789ab").getHttpClient();
+      Request request = new Request.Builder().url(server.url("/")).build();
+      ExecutorService executor = Executors.newFixedThreadPool(n);
+      List<Future<String>> calls = new ArrayList<>();
+      for (int i = 0; i < n; i++) {
+        calls.add(
+            executor.submit(
+                () -> {
+                  try (Response response = built.newCall(request).execute()) {
+                    return response.body().string();
+                  }
+                }));
+      }
+      for (Future<String> call : calls) {
+        call.get(10, TimeUnit.SECONDS);
+      }
+      executor.shutdown();
+      // Let the pool's async cleanup evict anything over its idle limit.
+      Thread.sleep(300);
+      assertEquals(n, built.connectionPool().idleConnectionCount());
+    }
   }
 
   @Test
