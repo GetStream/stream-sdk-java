@@ -200,10 +200,9 @@ public class StreamHTTPClient {
 
   private OkHttpClient.Builder defaultHttpClientBuilder() {
     long idleMillis = options.getIdleTimeout().toMillis();
-    // ConnectionPool's first arg is the idle-pool SIZE, not a per-host ceiling. The real per-host
-    // concurrency cap is Dispatcher.maxRequestsPerHost (OkHttp default 5), so wire maxConnsPerHost
-    // to both: the pool keeps that many idle connections warm, the dispatcher caps in-flight
-    // requests per host.
+    // ConnectionPool's first arg is the idle-pool SIZE, not a per-host ceiling, so it sets how many
+    // connections stay warm after a burst. Dispatcher.maxRequestsPerHost caps only async enqueue()
+    // calls; the SDK's synchronous execute() calls are not limited by it.
     var dispatcher = new Dispatcher();
     dispatcher.setMaxRequestsPerHost(options.getMaxConnsPerHost());
     return new OkHttpClient.Builder()

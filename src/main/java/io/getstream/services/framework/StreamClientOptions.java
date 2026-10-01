@@ -8,12 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.helpers.NOPLogger;
 
 /**
- * Tunables for the SDK's HTTP transport / connection pool. Per CHA-2956. Defaults: 5 conns/host,
+ * Tunables for the SDK's HTTP transport / connection pool. Per CHA-2956. Defaults: 100 conns/host,
  * 55s idle, 10s connect, 30s request. HTTP keep-alive is always on. {@link
  * #setHttpClient(OkHttpClient)} is the escape hatch: when set, the four knobs are ignored.
  */
 public class StreamClientOptions {
-  public static final int DEFAULT_MAX_CONNS_PER_HOST = 5;
+  public static final int DEFAULT_MAX_CONNS_PER_HOST = 100;
   public static final Duration DEFAULT_IDLE_TIMEOUT = Duration.ofSeconds(55);
   public static final Duration DEFAULT_CONNECT_TIMEOUT = Duration.ofSeconds(10);
   public static final Duration DEFAULT_REQUEST_TIMEOUT = Duration.ofSeconds(30);
