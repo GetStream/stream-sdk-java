@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.3.0](https://github.com/GetStream/stream-sdk-java/compare/10.2.0...10.3.0) (2026-10-01)
+
+
+### Features
+
+* add `include_top_level_comment_count` to `getActivity` and `getComments`, returning `top_level_comment_count`, plus `comment_count` on `getComments` ([7f6d248](https://github.com/GetStream/stream-sdk-java/commit/7f6d2481e7719638a67eb2fc7dbf679342263697))
+* add `ranking_candidate_limit` to activity selector configs ([7f6d248](https://github.com/GetStream/stream-sdk-java/commit/7f6d2481e7719638a67eb2fc7dbf679342263697))
+* add moderation intent detection: `intent_config` on moderation configs and intent scores on check responses ([7f6d248](https://github.com/GetStream/stream-sdk-java/commit/7f6d2481e7719638a67eb2fc7dbf679342263697))
+* add the `import.success` and `import.error` webhook events ([7f6d248](https://github.com/GetStream/stream-sdk-java/commit/7f6d2481e7719638a67eb2fc7dbf679342263697))
+
+
+### Bug Fixes
+
+* report this SDK's own version in `X-Stream-Client` when stream-chat-java is also on the classpath ([fdbd00b](https://github.com/GetStream/stream-sdk-java/commit/fdbd00bb2feeec9f4f368dc8c200e9695d7834f1))
+
+
+### Performance Improvements
+
+* raise the default connection pool size from 5 to 100 ([#113](https://github.com/GetStream/stream-sdk-java/issues/113)) ([e7afcf8](https://github.com/GetStream/stream-sdk-java/commit/e7afcf84badd6dea5ce7396c18d00b1bbba3f77f))
+
 ## [10.2.0](https://github.com/GetStream/stream-sdk-java/compare/10.1.1...10.2.0) (2026-09-28)
 
 
