@@ -17,10 +17,36 @@ Check out our:
 
 ## Installation
 
-```gradle
+Releases are published to the Stream Maven repository. Add it next to Maven Central.
+
+Gradle (`build.gradle.kts`):
+
+```kotlin
+repositories {
+    mavenCentral()
+    maven("https://stream-io-repo.com")
+}
+
 dependencies {
     implementation("io.getstream:stream-sdk-java:$streamVersion")
 }
+```
+
+Maven (`pom.xml`):
+
+```xml
+<repositories>
+  <repository>
+    <id>stream</id>
+    <url>https://stream-io-repo.com</url>
+  </repository>
+</repositories>
+
+<dependency>
+  <groupId>io.getstream</groupId>
+  <artifactId>stream-sdk-java</artifactId>
+  <version>${streamVersion}</version>
+</dependency>
 ```
 
 ## Migrating from stream-chat-java?

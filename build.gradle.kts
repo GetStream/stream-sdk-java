@@ -176,6 +176,31 @@ publishing {
     }
 }
 
+// Where to publish: "streamRepo", "central", or both, comma-separated. CI always passes it;
+// with nothing passed this stays on Central so a local publishToMavenLocal behaves as before.
+// streamRepo stages a Maven-2 tree under build/staged-repo for a separate upload job.
+val publishTargets = providers.gradleProperty("streamPublishTargets")
+    .getOrElse("central")
+    .split(",")
+    .map(String::trim)
+    .filter(String::isNotEmpty)
+    .toSet()
+
+require(publishTargets.isNotEmpty() && (publishTargets - setOf("central", "streamRepo")).isEmpty()) {
+    "'streamPublishTargets' must be a comma-separated subset of central, streamRepo but was '$publishTargets'"
+}
+
+if ("streamRepo" in publishTargets) {
+    publishing {
+        repositories {
+            maven {
+                name = "streamRepoStaging"
+                url = layout.buildDirectory.dir("staged-repo").get().asFile.toURI()
+            }
+        }
+    }
+}
+
 signing {
     useInMemoryPgpKeys(
         extra["signing.keyId"] as String,
