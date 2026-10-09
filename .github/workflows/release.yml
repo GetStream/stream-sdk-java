@@ -8,12 +8,27 @@ on:
   workflow_dispatch:
     inputs:
       publish_tag:
-        description: 'Existing tag to (re)publish to Maven Central, e.g. 10.1.2. Leave empty for a normal release run.'
+        description: 'Existing tag to (re)publish, e.g. 10.1.2. Leave empty for a normal release run.'
         required: false
         default: ''
+      publish-targets:
+        description: >-
+          Leave as-is. central is a manual escape hatch for a release that has to
+          go out when the Stream repository cannot take it.
+        required: false
+        type: choice
+        options:
+          - streamRepo
+          - streamRepo,central
+          - central
+        default: streamRepo
 
 permissions:
   contents: read
+
+env:
+  # A push has no inputs: releases go to the Stream repository.
+  PUBLISH_TARGETS: ${{ inputs.publish-targets || 'streamRepo' }}
 
 concurrency:
   group: release-${{ github.ref_name }}
@@ -190,7 +205,7 @@ jobs:
   # workflow_dispatch with publish_tag, which is the recovery path once GitHub has
   # retired the original run and "Re-run failed jobs" is gone.
   publish:
-    name: 📦 Publish to Maven Central
+    name: 📦 Publish
     needs: release
     if: >-
       !cancelled() &&
@@ -199,6 +214,8 @@ jobs:
     timeout-minutes: 30
     permissions:
       contents: read
+    outputs:
+      tag: ${{ steps.target.outputs.tag }}
     steps:
       - name: Resolve tag
         id: target
@@ -225,7 +242,24 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
+      # An env var rather than -P, so a value with a space cannot split into a second argument.
+      - name: Select publish targets
+        run: echo "ORG_GRADLE_PROJECT_streamPublishTargets=$PUBLISH_TARGETS" >> "$GITHUB_ENV"
+
+      # Stages a signed Maven-2 tree under build/staged-repo for the upload job.
+      - name: Stage for the Stream repository
+        if: ${{ contains(env.PUBLISH_TARGETS, 'streamRepo') }}
+        env:
+          STREAM_API_KEY: ${{ vars.STREAM_API_KEY }}
+          STREAM_API_SECRET: ${{ secrets.STREAM_API_SECRET }}
+          GPG_KEY_CONTENTS: ${{ secrets.GPG_KEY_CONTENTS }}
+          SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
+          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+        run: |
+          ./gradlew publishMavenPublicationToStreamRepoStagingRepository --no-daemon --max-workers 1
+
       - name: Publish to Maven Central
+        if: ${{ contains(env.PUBLISH_TARGETS, 'central') }}
         env:
           STREAM_API_KEY: ${{ vars.STREAM_API_KEY }}
           STREAM_API_SECRET: ${{ secrets.STREAM_API_SECRET }}
@@ -238,3 +272,92 @@ jobs:
           SONATYPE_STAGING_PROFILE_ID: ${{ secrets.SONATYPE_STAGING_PROFILE_ID }}
         run: |
           ./gradlew publishToSonatype --no-daemon --max-workers 1 closeAndReleaseSonatypeStagingRepository
+
+      # Handed to a job that has never seen the signing key -- the reason Gradle stages to a
+      # directory instead of writing to the bucket itself.
+      - name: Hand the staged tree to the upload job
+        if: ${{ contains(env.PUBLISH_TARGETS, 'streamRepo') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: stream-repo-staged
+          path: build/staged-repo
+          retention-days: 1
+          if-no-files-found: error
+
+  # Separate job: secrets are injected per job, so this one holds the R2 credential and never the
+  # signing key, and the publish job holds the signing key and never the R2 credential.
+  upload:
+    name: ☁️ Upload to the Stream repository
+    needs: publish
+    if: ${{ !cancelled() && needs.publish.result == 'success' && contains(inputs.publish-targets || 'streamRepo', 'streamRepo') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - name: Download the staged tree
+        uses: actions/download-artifact@v4
+        with:
+          name: stream-repo-staged
+          path: build/staged-repo
+
+      - name: Publish to the Stream repository
+        uses: GetStream/stream-build-conventions-android/.github/actions/publish-to-stream-repo@v1.0.1
+        with:
+          staged-directory: build/staged-repo
+          channel: releases
+          endpoint: ${{ secrets.STREAM_REPO_ENDPOINT }}
+          bucket: ${{ secrets.STREAM_REPO_BUCKET }}
+          access-key-id: ${{ secrets.STREAM_REPO_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.STREAM_REPO_SECRET_ACCESS_KEY }}
+
+  # release-please created the GitHub Release before publishing, so the card is added to it
+  # once the artifact is actually resolvable from the Stream repository.
+  release-notes-header:
+    name: 📝 Add the Stream repository card to the release
+    needs: [publish, upload]
+    if: ${{ !cancelled() && needs.upload.result == 'success' && (inputs.publish-targets || 'streamRepo') == 'streamRepo' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: Prepend the card
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.publish.outputs.tag }}
+        run: |
+          set -euo pipefail
+          gh release view "$TAG" -R "$GITHUB_REPOSITORY" --json body -q .body > notes.md
+          # A re-run, or a re-publish through publish_tag, must not stack a second card.
+          if grep -q "stream-io-repo.com" notes.md; then
+            echo "The card is already there."
+            exit 0
+          fi
+
+          cat > card.md <<EOF
+          > [!IMPORTANT]
+          > **\`io.getstream:stream-sdk-java:$TAG\` is published to the Stream Maven repository, not Maven Central.**
+          >
+          > Gradle (\`build.gradle.kts\`):
+          > \`\`\`kotlin
+          > repositories {
+          >     mavenCentral()
+          >     maven("https://stream-io-repo.com")
+          > }
+          > \`\`\`
+          >
+          > Maven (\`pom.xml\`):
+          > \`\`\`xml
+          > <repositories>
+          >   <repository>
+          >     <id>stream</id>
+          >     <url>https://stream-io-repo.com</url>
+          >   </repository>
+          > </repositories>
+          > \`\`\`
+
+          EOF
+
+          cat card.md notes.md > body.md
+          gh release edit "$TAG" -R "$GITHUB_REPOSITORY" --notes-file body.md
