@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.4.0](https://github.com/GetStream/stream-sdk-java/compare/10.3.0...10.4.0) (2026-10-09)
+
+
+### Features
+
+* publish releases to the Stream Maven repository (https://stream-io-repo.com); add it to your build repositories to get this and later versions ([693d019](https://github.com/GetStream/stream-sdk-java/commit/693d01999f8daec11728dca5d56bdcad7e6421a8))
+
 ## [10.3.0](https://github.com/GetStream/stream-sdk-java/compare/10.2.0...10.3.0) (2026-10-01)
 
 
