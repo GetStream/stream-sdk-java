@@ -1,6 +1,6 @@
 # Official Java SDK for [Stream](https://getstream.io/)
 
-[![Build](https://github.com/GetStream/stream-sdk-java/actions/workflows/ci.yml/badge.svg)](https://github.com/GetStream/stream-sdk-java/actions/workflows/ci.yml) ![Maven Central Version](https://img.shields.io/maven-central/v/io.getstream/stream-sdk-java) ![Java Version](https://img.shields.io/badge/Java-17%2B-orange)
+[![Build](https://github.com/GetStream/stream-sdk-java/actions/workflows/ci.yml/badge.svg)](https://github.com/GetStream/stream-sdk-java/actions/workflows/ci.yml) ![Version](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fstream-io-repo.com%2Fio%2Fgetstream%2Fstream-sdk-java%2Fmaven-metadata.xml&label=version) ![Java Version](https://img.shields.io/badge/Java-17%2B-orange)
 
 
 Check out our:
