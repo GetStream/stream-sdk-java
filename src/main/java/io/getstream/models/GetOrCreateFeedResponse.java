@@ -16,7 +16,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
-/** Basic response information */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -59,6 +58,10 @@ public class GetOrCreateFeedResponse {
   private String prev;
 
   @Nullable
+  @JsonProperty("degraded_selectors")
+  private List<String> degradedSelectors;
+
+  @Nullable
   @JsonProperty("followers_pagination")
   private PagerResponse followersPagination;
 
@@ -73,4 +76,8 @@ public class GetOrCreateFeedResponse {
   @Nullable
   @JsonProperty("notification_status")
   private NotificationStatusResponse notificationStatus;
+
+  @Nullable
+  @JsonProperty("ranking_config")
+  private RankingConfig rankingConfig;
 }

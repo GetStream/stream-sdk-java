@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** A type representing the app settings. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

@@ -14,43 +14,21 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * This event is sent when a buffered conversation&#39;s intent score clears the configured
- * threshold
- */
+/** Emitted when comment feedback is provided. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class IntentDetectedEvent {
-
-  @JsonProperty("conversation_id")
-  private String conversationID;
+public class CommentFeedbackEvent {
 
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @JsonProperty("entity_id")
-  private String entityID;
-
-  @JsonProperty("entity_type")
-  private String entityType;
-
-  @JsonProperty("matched_topic")
-  private String matchedTopic;
-
-  @JsonProperty("score")
-  private Double score;
-
-  @JsonProperty("user_id")
-  private String userID;
-
-  @JsonProperty("items")
-  private List<IntentBufferedItem> items;
+  @JsonProperty("comment_feedback")
+  private CommentFeedbackEventPayload commentFeedback;
 
   @JsonProperty("custom")
   private Map<String, Object> custom;
@@ -61,4 +39,8 @@ public class IntentDetectedEvent {
   @Nullable
   @JsonProperty("received_at")
   private Date receivedAt;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserResponseCommonFields user;
 }

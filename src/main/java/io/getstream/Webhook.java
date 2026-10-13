@@ -25,6 +25,7 @@ import io.getstream.models.AppealRejectedEvent;
 import io.getstream.models.AsyncBulkImageModerationEvent;
 import io.getstream.models.AsyncExportChannelsEvent;
 import io.getstream.models.AsyncExportErrorEvent;
+import io.getstream.models.AsyncExportLabelResultsEvent;
 import io.getstream.models.AsyncExportModerationLogsEvent;
 import io.getstream.models.AsyncExportReviewQueueEvent;
 import io.getstream.models.AsyncExportUsersEvent;
@@ -67,6 +68,7 @@ import io.getstream.models.CallRecordingStartedEvent;
 import io.getstream.models.CallRecordingStoppedEvent;
 import io.getstream.models.CallRejectedEvent;
 import io.getstream.models.CallRingEvent;
+import io.getstream.models.CallRingSettledEvent;
 import io.getstream.models.CallRtmpBroadcastFailedEvent;
 import io.getstream.models.CallRtmpBroadcastStartedEvent;
 import io.getstream.models.CallRtmpBroadcastStoppedEvent;
@@ -100,6 +102,7 @@ import io.getstream.models.ChannelVisibleEvent;
 import io.getstream.models.ClosedCaptionEvent;
 import io.getstream.models.CommentAddedEvent;
 import io.getstream.models.CommentDeletedEvent;
+import io.getstream.models.CommentFeedbackEvent;
 import io.getstream.models.CommentReactionAddedEvent;
 import io.getstream.models.CommentReactionDeletedEvent;
 import io.getstream.models.CommentReactionUpdatedEvent;
@@ -123,7 +126,6 @@ import io.getstream.models.FollowUpdatedEvent;
 import io.getstream.models.IngressErrorEvent;
 import io.getstream.models.IngressStartedEvent;
 import io.getstream.models.IngressStoppedEvent;
-import io.getstream.models.IntentDetectedEvent;
 import io.getstream.models.KickedUserEvent;
 import io.getstream.models.MaxStreakChangedEvent;
 import io.getstream.models.MemberAddedEvent;
@@ -245,6 +247,7 @@ public class Webhook {
     public static final String CALL_RECORDING_STOPPED = "call.recording_stopped";
     public static final String CALL_REJECTED = "call.rejected";
     public static final String CALL_RING = "call.ring";
+    public static final String CALL_RING_SETTLED = "call.ring_settled";
     public static final String CALL_RTMP_BROADCAST_FAILED = "call.rtmp_broadcast_failed";
     public static final String CALL_RTMP_BROADCAST_STARTED = "call.rtmp_broadcast_started";
     public static final String CALL_RTMP_BROADCAST_STOPPED = "call.rtmp_broadcast_stopped";
@@ -285,6 +288,8 @@ public class Webhook {
         "export.bulk_image_moderation.success";
     public static final String EXPORT_CHANNELS_ERROR = "export.channels.error";
     public static final String EXPORT_CHANNELS_SUCCESS = "export.channels.success";
+    public static final String EXPORT_LABEL_RESULTS_ERROR = "export.label_results.error";
+    public static final String EXPORT_LABEL_RESULTS_SUCCESS = "export.label_results.success";
     public static final String EXPORT_MODERATION_LOGS_ERROR = "export.moderation_logs.error";
     public static final String EXPORT_MODERATION_LOGS_SUCCESS = "export.moderation_logs.success";
     public static final String EXPORT_REVIEW_QUEUE_ERROR = "export.review_queue.error";
@@ -311,6 +316,7 @@ public class Webhook {
     public static final String FEEDS_BOOKMARK_FOLDER_UPDATED = "feeds.bookmark_folder.updated";
     public static final String FEEDS_COMMENT_ADDED = "feeds.comment.added";
     public static final String FEEDS_COMMENT_DELETED = "feeds.comment.deleted";
+    public static final String FEEDS_COMMENT_FEEDBACK = "feeds.comment.feedback";
     public static final String FEEDS_COMMENT_REACTION_ADDED = "feeds.comment.reaction.added";
     public static final String FEEDS_COMMENT_REACTION_DELETED = "feeds.comment.reaction.deleted";
     public static final String FEEDS_COMMENT_REACTION_UPDATED = "feeds.comment.reaction.updated";
@@ -352,7 +358,6 @@ public class Webhook {
     public static final String MODERATION_FLAGGED = "moderation.flagged";
     public static final String MODERATION_IMAGE_ANALYSIS_COMPLETE =
         "moderation.image_analysis.complete";
-    public static final String MODERATION_INTENT_DETECTED = "moderation.intent_detected";
     public static final String MODERATION_MARK_REVIEWED = "moderation.mark_reviewed";
     public static final String MODERATION_TEXT_ANALYSIS_COMPLETE =
         "moderation.text_analysis.complete";
@@ -556,6 +561,8 @@ public class Webhook {
         return CallRejectedEvent.class;
       case "call.ring":
         return CallRingEvent.class;
+      case "call.ring_settled":
+        return CallRingSettledEvent.class;
       case "call.rtmp_broadcast_failed":
         return CallRtmpBroadcastFailedEvent.class;
       case "call.rtmp_broadcast_started":
@@ -630,6 +637,10 @@ public class Webhook {
         return AsyncExportErrorEvent.class;
       case "export.channels.success":
         return AsyncExportChannelsEvent.class;
+      case "export.label_results.error":
+        return AsyncExportErrorEvent.class;
+      case "export.label_results.success":
+        return AsyncExportLabelResultsEvent.class;
       case "export.moderation_logs.error":
         return AsyncExportErrorEvent.class;
       case "export.moderation_logs.success":
@@ -680,6 +691,8 @@ public class Webhook {
         return CommentAddedEvent.class;
       case "feeds.comment.deleted":
         return CommentDeletedEvent.class;
+      case "feeds.comment.feedback":
+        return CommentFeedbackEvent.class;
       case "feeds.comment.reaction.added":
         return CommentReactionAddedEvent.class;
       case "feeds.comment.reaction.deleted":
@@ -760,8 +773,6 @@ public class Webhook {
         return ModerationFlaggedEvent.class;
       case "moderation.image_analysis.complete":
         return ModerationImageAnalysisCompleteEvent.class;
-      case "moderation.intent_detected":
-        return IntentDetectedEvent.class;
       case "moderation.mark_reviewed":
         return ModerationMarkReviewedEvent.class;
       case "moderation.text_analysis.complete":

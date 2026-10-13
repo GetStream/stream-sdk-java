@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
-/** Basic response information */
+/** The total unread information from the current user. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

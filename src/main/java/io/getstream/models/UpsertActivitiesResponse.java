@@ -31,4 +31,8 @@ public class UpsertActivitiesResponse {
   @Nullable
   @JsonProperty("mention_notifications_created")
   private Integer mentionNotificationsCreated;
+
+  @Nullable
+  @JsonProperty("skipped_existing")
+  private List<String> skippedExisting;
 }

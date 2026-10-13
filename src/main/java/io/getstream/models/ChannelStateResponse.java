@@ -39,6 +39,10 @@ public class ChannelStateResponse {
   private List<ThreadStateResponse> threads;
 
   @Nullable
+  @JsonProperty("cooldown_remaining_ms")
+  private Integer cooldownRemainingMs;
+
+  @Nullable
   @JsonProperty("hidden")
   private Boolean hidden;
 

@@ -19,8 +19,8 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Get feeds retention policy runs Returns filtered and sorted feeds retention cleanup run history
- * for the app. Supports filter_conditions on &#39;policy&#39; (possible values:
- * &#39;old-activities&#39;) and &#39;date&#39; fields. Server-side only.
+ * for the app. Supports filter_conditions on &#39;policy&#39; and &#39;date&#39; fields.
+ * Server-side only.
  */
 @lombok.Data
 @lombok.Builder

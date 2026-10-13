@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -30,4 +31,8 @@ public class SetFeedsRetentionPolicyRequest {
   @Nullable
   @JsonProperty("enabled")
   private Boolean enabled;
+
+  @Nullable
+  @JsonProperty("feed_groups")
+  private List<String> feedGroups;
 }

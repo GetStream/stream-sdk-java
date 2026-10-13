@@ -31,6 +31,18 @@ public class QueryPinnedActivitiesRequest {
   private Boolean enrichOwnFields;
 
   @Nullable
+  @JsonProperty("include_expired_activities")
+  private Boolean includeExpiredActivities;
+
+  @Nullable
+  @JsonProperty("include_moderated_activities")
+  private Boolean includeModeratedActivities;
+
+  @Nullable
+  @JsonProperty("include_soft_deleted_activities")
+  private Boolean includeSoftDeletedActivities;
+
+  @Nullable
   @JsonProperty("limit")
   private Integer limit;
 
@@ -43,12 +55,20 @@ public class QueryPinnedActivitiesRequest {
   private String prev;
 
   @Nullable
+  @JsonProperty("user_id")
+  private String userID;
+
+  @Nullable
   @JsonProperty("sort")
   private List<SortParamRequest> sort;
 
   @Nullable
   @JsonProperty("filter")
   private Map<String, Object> filter;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 
   @Query("language")
   @JsonIgnore

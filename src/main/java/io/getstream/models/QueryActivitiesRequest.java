@@ -35,6 +35,10 @@ public class QueryActivitiesRequest {
   private Boolean includeExpiredActivities;
 
   @Nullable
+  @JsonProperty("include_moderated_activities")
+  private Boolean includeModeratedActivities;
+
+  @Nullable
   @JsonProperty("include_private_activities")
   private Boolean includePrivateActivities;
 

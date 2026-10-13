@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -29,4 +30,12 @@ public class AIAudioConfigResponse {
 
   @JsonProperty("rules")
   private List<BodyguardRule> rules;
+
+  @Nullable
+  @JsonProperty("ai_text_config")
+  private AITextConfig aiTextConfig;
+
+  @Nullable
+  @JsonProperty("llm_config")
+  private LLMConfig llmConfig;
 }

@@ -79,6 +79,10 @@ public class AddActivityRequest {
   private Boolean skipEnrichUrl;
 
   @Nullable
+  @JsonProperty("skip_existing")
+  private Boolean skipExisting;
+
+  @Nullable
   @JsonProperty("skip_push")
   private Boolean skipPush;
 
