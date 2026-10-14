@@ -41,6 +41,10 @@ public interface Video {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<QueryCallRingAttemptsResponse> queryCallRingAttempts(
+      QueryCallRingAttemptsRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryCallStatsResponse> queryCallStats(QueryCallStatsRequest request)
       throws StreamException;
 

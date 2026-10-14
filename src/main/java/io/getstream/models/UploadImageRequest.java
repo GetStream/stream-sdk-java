@@ -21,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UploadImageRequest {
+public class UploadImageRequest implements io.getstream.services.framework.MultipartRequest {
 
   @Nullable
   @JsonProperty("file")

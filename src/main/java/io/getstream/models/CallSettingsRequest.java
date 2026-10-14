@@ -54,6 +54,10 @@ public class CallSettingsRequest {
   private IngressSettingsRequest ingress;
 
   @Nullable
+  @JsonProperty("lifecycle")
+  private LifecycleSettingsRequest lifecycle;
+
+  @Nullable
   @JsonProperty("limits")
   private LimitsSettingsRequest limits;
 

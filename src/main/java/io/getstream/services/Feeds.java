@@ -310,6 +310,14 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<CommentFeedbackResponse> commentFeedback(
+      @NotNull String id, CommentFeedbackRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<CommentFeedbackResponse> commentFeedback(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<UpdateCommentPartialResponse> updateCommentPartial(
       @NotNull String id, UpdateCommentPartialRequest request) throws StreamException;
 

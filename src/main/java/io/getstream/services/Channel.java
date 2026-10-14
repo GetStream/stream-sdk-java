@@ -66,6 +66,15 @@ public class Channel {
     return this.update(new UpdateChannelRequest());
   }
 
+  public StreamResponse<QueryChannelBansResponse> queryChannelBans(QueryChannelBansRequest request)
+      throws StreamException {
+    return service.queryChannelBans(this.channelType, this.channelID, request).execute();
+  }
+
+  public StreamResponse<QueryChannelBansResponse> queryChannelBans() throws StreamException {
+    return this.queryChannelBans(new QueryChannelBansRequest());
+  }
+
   public StreamResponse<Response> deleteDraft(DeleteDraftRequest request) throws StreamException {
     return service.deleteDraft(this.channelType, this.channelID, request).execute();
   }

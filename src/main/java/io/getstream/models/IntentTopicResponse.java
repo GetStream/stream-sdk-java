@@ -21,26 +21,10 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class IntentTopicResponse {
 
-  @JsonProperty("analysis_cooldown_seconds")
-  private Integer analysisCooldownSeconds;
-
-  @JsonProperty("enabled")
-  private Boolean enabled;
-
   @JsonProperty("label")
   private String label;
-
-  @JsonProperty("max_captured_items")
-  private Integer maxCapturedItems;
-
-  @JsonProperty("score_threshold")
-  private Double scoreThreshold;
 
   @Nullable
   @JsonProperty("description")
   private String description;
-
-  @Nullable
-  @JsonProperty("refire_cooldown_seconds")
-  private Integer refireCooldownSeconds;
 }

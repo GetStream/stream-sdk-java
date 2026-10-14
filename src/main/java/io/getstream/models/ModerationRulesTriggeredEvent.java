@@ -64,4 +64,8 @@ public class ModerationRulesTriggeredEvent {
   @Nullable
   @JsonProperty("matched_contents")
   private List<MatchedContent> matchedContents;
+
+  @Nullable
+  @JsonProperty("intent")
+  private IntentEvaluationInfo intent;
 }

@@ -77,6 +77,19 @@ public class VideoImpl {
   }
 
   @NotNull
+  public StreamRequest<QueryCallRingAttemptsResponse> queryCallRingAttempts(
+      QueryCallRingAttemptsRequest request) throws StreamException {
+
+    return new StreamRequest<QueryCallRingAttemptsResponse>(
+        client,
+        "POST",
+        "/api/v2/video/call/ring_attempts",
+        request,
+        null,
+        new TypeReference<QueryCallRingAttemptsResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<QueryCallStatsResponse> queryCallStats(QueryCallStatsRequest request)
       throws StreamException {
 

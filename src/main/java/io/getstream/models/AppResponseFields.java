@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** A type representing the app settings. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -164,6 +165,9 @@ public class AppResponseFields {
 
   @JsonProperty("channel_configs")
   private Map<String, ChannelConfig> channelConfigs;
+
+  @JsonProperty("defaults")
+  private AppDefaults defaults;
 
   @JsonProperty("file_upload_config")
   private FileUploadConfig fileUploadConfig;

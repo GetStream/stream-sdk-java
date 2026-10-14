@@ -64,6 +64,9 @@ public class OwnUserResponse {
   @JsonProperty("updated_at")
   private Date updatedAt;
 
+  @JsonProperty("blocked_user_ids")
+  private List<String> blockedUserIds;
+
   @JsonProperty("channel_mutes")
   private List<ChannelMute> channelMutes;
 
@@ -106,10 +109,6 @@ public class OwnUserResponse {
   @Nullable
   @JsonProperty("revoke_tokens_issued_before")
   private Date revokeTokensIssuedBefore;
-
-  @Nullable
-  @JsonProperty("blocked_user_ids")
-  private List<String> blockedUserIds;
 
   @Nullable
   @JsonProperty("latest_hidden_channels")

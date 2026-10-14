@@ -42,6 +42,9 @@ public class CallSettingsResponse {
   @JsonProperty("individual_recording")
   private IndividualRecordingSettingsResponse individualRecording;
 
+  @JsonProperty("lifecycle")
+  private LifecycleSettingsResponse lifecycle;
+
   @JsonProperty("limits")
   private LimitsSettingsResponse limits;
 

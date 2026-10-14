@@ -37,6 +37,9 @@ public class ThreadedCommentResponse {
   @JsonProperty("downvote_count")
   private Integer downvoteCount;
 
+  @JsonProperty("hidden")
+  private Boolean hidden;
+
   @JsonProperty("id")
   private String id;
 
