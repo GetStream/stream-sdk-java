@@ -59,6 +59,10 @@ public class GetOrCreateFeedResponse {
   private String prev;
 
   @Nullable
+  @JsonProperty("degraded_selectors")
+  private List<String> degradedSelectors;
+
+  @Nullable
   @JsonProperty("followers_pagination")
   private PagerResponse followersPagination;
 
