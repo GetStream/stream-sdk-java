@@ -26,6 +26,10 @@ public class RankingConfig {
   private String type;
 
   @Nullable
+  @JsonProperty("exclude_below")
+  private Double excludeBelow;
+
+  @Nullable
   @JsonProperty("score")
   private String score;
 

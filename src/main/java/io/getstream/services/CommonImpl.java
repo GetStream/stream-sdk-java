@@ -162,6 +162,24 @@ public class CommonImpl {
   }
 
   @NotNull
+  public StreamRequest<CheckGCPPubSubResponse> checkGCPPubSub(CheckGCPPubSubRequest request)
+      throws StreamException {
+
+    return new StreamRequest<CheckGCPPubSubResponse>(
+        client,
+        "POST",
+        "/api/v2/check_gcp_pubsub",
+        request,
+        null,
+        new TypeReference<CheckGCPPubSubResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<CheckGCPPubSubResponse> checkGCPPubSub() throws StreamException {
+    return checkGCPPubSub(new CheckGCPPubSubRequest());
+  }
+
+  @NotNull
   public StreamRequest<CheckPushResponse> checkPush(CheckPushRequest request)
       throws StreamException {
 

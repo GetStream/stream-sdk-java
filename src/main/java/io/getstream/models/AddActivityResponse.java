@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -30,4 +31,8 @@ public class AddActivityResponse {
   @Nullable
   @JsonProperty("mention_notifications_created")
   private Integer mentionNotificationsCreated;
+
+  @Nullable
+  @JsonProperty("skipped_existing")
+  private List<String> skippedExisting;
 }

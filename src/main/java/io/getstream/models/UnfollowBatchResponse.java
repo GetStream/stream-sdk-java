@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -26,4 +27,8 @@ public class UnfollowBatchResponse {
 
   @JsonProperty("follows")
   private List<FollowResponse> follows;
+
+  @Nullable
+  @JsonProperty("task_id")
+  private String taskID;
 }

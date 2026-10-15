@@ -68,6 +68,14 @@ public class ClientEvent {
   private String joinReason;
 
   @Nullable
+  @JsonProperty("leave_initiator")
+  private String leaveInitiator;
+
+  @Nullable
+  @JsonProperty("leave_reason")
+  private String leaveReason;
+
+  @Nullable
   @JsonProperty("microphone_permission_status")
   private String microphonePermissionStatus;
 

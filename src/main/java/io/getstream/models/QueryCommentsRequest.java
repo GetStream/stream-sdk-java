@@ -33,6 +33,10 @@ public class QueryCommentsRequest {
   private String idAround;
 
   @Nullable
+  @JsonProperty("include_soft_deleted_comments")
+  private Boolean includeSoftDeletedComments;
+
+  @Nullable
   @JsonProperty("limit")
   private Integer limit;
 

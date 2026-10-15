@@ -13,23 +13,20 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
 
+/** Response for comment feedback submission */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class IntentBufferedItem {
+public class CommentFeedbackResponse {
 
-  @JsonProperty("author_user_id")
-  private String authorUserID;
+  @JsonProperty("comment_id")
+  private String commentID;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+  @JsonProperty("duration")
+  private String duration;
 
-  @JsonProperty("id")
-  private String id;
-
-  @JsonProperty("text")
-  private String text;
+  @JsonProperty("hide")
+  private Boolean hide;
 }

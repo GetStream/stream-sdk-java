@@ -32,6 +32,10 @@ public class NotificationComment {
   private String userID;
 
   @Nullable
+  @JsonProperty("parent_id")
+  private String parentID;
+
+  @Nullable
   @JsonProperty("attachments")
   private List<Attachment> attachments;
 }
