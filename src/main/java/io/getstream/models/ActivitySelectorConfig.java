@@ -43,6 +43,10 @@ public class ActivitySelectorConfig {
   private Integer rankingCandidateLimit;
 
   @Nullable
+  @JsonProperty("time_budget_ms")
+  private Integer timeBudgetMs;
+
+  @Nullable
   @JsonProperty("sort")
   private List<SortParamRequest> sort;
 
