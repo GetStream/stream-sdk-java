@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.5.0](https://github.com/GetStream/stream-sdk-java/compare/10.4.0...10.5.0) (2026-10-15)
+
+
+### Features
+
+* add `degraded_selectors` to the get-or-create feed response ([a7fb02c](https://github.com/GetStream/stream-sdk-java/commit/a7fb02c585133050e670bc37d3109abf4188220a))
+* add `time_budget_ms` to activity selector configs ([a7fb02c](https://github.com/GetStream/stream-sdk-java/commit/a7fb02c585133050e670bc37d3109abf4188220a))
+
 ## [10.4.0](https://github.com/GetStream/stream-sdk-java/compare/10.3.0...10.4.0) (2026-10-09)
 
 
