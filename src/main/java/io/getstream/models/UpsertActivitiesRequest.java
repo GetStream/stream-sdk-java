@@ -37,4 +37,8 @@ public class UpsertActivitiesRequest {
   @Nullable
   @JsonProperty("force_moderation")
   private Boolean forceModeration;
+
+  @Nullable
+  @JsonProperty("skip_existing")
+  private Boolean skipExisting;
 }

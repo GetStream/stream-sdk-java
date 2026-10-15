@@ -29,5 +29,5 @@ public class GetFeedsRetentionPolicyResponse {
   private Boolean enabled;
 
   @JsonProperty("policies")
-  private List<RetentionPolicy> policies;
+  private List<FeedsRetentionPolicy> policies;
 }

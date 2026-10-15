@@ -364,6 +364,30 @@ public class ChatImpl {
   }
 
   @NotNull
+  public StreamRequest<QueryChannelBansResponse> queryChannelBans(
+      @NotNull String type, @NotNull String id, QueryChannelBansRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "type", type,
+            "id", id);
+
+    return new StreamRequest<QueryChannelBansResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/channels/{type}/{id}/bans/query",
+        request,
+        pathParams,
+        new TypeReference<QueryChannelBansResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryChannelBansResponse> queryChannelBans(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return queryChannelBans(type, id, new QueryChannelBansRequest());
+  }
+
+  @NotNull
   public StreamRequest<Response> deleteDraft(
       @NotNull String type, @NotNull String id, DeleteDraftRequest request) throws StreamException {
     var pathParams =
@@ -1597,6 +1621,85 @@ public class ChatImpl {
   public StreamRequest<GetRetentionPolicyRunsResponse> getRetentionPolicyRuns()
       throws StreamException {
     return getRetentionPolicyRuns(new GetRetentionPolicyRunsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueryScheduledMessagesResponse> queryScheduledMessages(
+      QueryScheduledMessagesRequest request) throws StreamException {
+
+    return new StreamRequest<QueryScheduledMessagesResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/scheduled_messages/query",
+        request,
+        null,
+        new TypeReference<QueryScheduledMessagesResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryScheduledMessagesResponse> queryScheduledMessages()
+      throws StreamException {
+    return queryScheduledMessages(new QueryScheduledMessagesRequest());
+  }
+
+  @NotNull
+  public StreamRequest<DeleteScheduledMessageResponse> deleteScheduledMessage(
+      @NotNull String id, DeleteScheduledMessageRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<DeleteScheduledMessageResponse>(
+        client,
+        "DELETE",
+        "/api/v2/chat/scheduled_messages/{id}",
+        request,
+        pathParams,
+        new TypeReference<DeleteScheduledMessageResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteScheduledMessageResponse> deleteScheduledMessage(@NotNull String id)
+      throws StreamException {
+    return deleteScheduledMessage(id, new DeleteScheduledMessageRequest());
+  }
+
+  @NotNull
+  public StreamRequest<UpdateScheduledMessageResponse> updateScheduledMessage(
+      @NotNull String id, UpdateScheduledMessageRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<UpdateScheduledMessageResponse>(
+        client,
+        "PATCH",
+        "/api/v2/chat/scheduled_messages/{id}",
+        request,
+        pathParams,
+        new TypeReference<UpdateScheduledMessageResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpdateScheduledMessageResponse> updateScheduledMessage(@NotNull String id)
+      throws StreamException {
+    return updateScheduledMessage(id, new UpdateScheduledMessageRequest());
+  }
+
+  @NotNull
+  public StreamRequest<SendScheduledMessageNowResponse> sendScheduledMessageNow(
+      @NotNull String id, SendScheduledMessageNowRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<SendScheduledMessageNowResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/scheduled_messages/{id}/send_now",
+        request,
+        pathParams,
+        new TypeReference<SendScheduledMessageNowResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<SendScheduledMessageNowResponse> sendScheduledMessageNow(@NotNull String id)
+      throws StreamException {
+    return sendScheduledMessageNow(id, new SendScheduledMessageNowRequest());
   }
 
   @NotNull

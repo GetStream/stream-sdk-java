@@ -25,26 +25,6 @@ public class IntentTopicRequest {
   private String label;
 
   @Nullable
-  @JsonProperty("analysis_cooldown_seconds")
-  private Integer analysisCooldownSeconds;
-
-  @Nullable
   @JsonProperty("description")
   private String description;
-
-  @Nullable
-  @JsonProperty("enabled")
-  private Boolean enabled;
-
-  @Nullable
-  @JsonProperty("max_captured_items")
-  private Integer maxCapturedItems;
-
-  @Nullable
-  @JsonProperty("refire_cooldown_seconds")
-  private Integer refireCooldownSeconds;
-
-  @Nullable
-  @JsonProperty("score_threshold")
-  private Double scoreThreshold;
 }

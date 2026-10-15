@@ -32,24 +32,20 @@ public class CheckResponse {
   private String status;
 
   @Nullable
-  @JsonProperty("intent_matched_topic")
-  private String intentMatchedTopic;
+  @JsonProperty("llm_model")
+  private String llmModel;
 
   @Nullable
-  @JsonProperty("intent_score")
-  private Double intentScore;
-
-  @Nullable
-  @JsonProperty("intent_score_threshold")
-  private Double intentScoreThreshold;
-
-  @Nullable
-  @JsonProperty("intent_would_fire")
-  private Boolean intentWouldFire;
+  @JsonProperty("llm_reasoning_effort")
+  private String llmReasoningEffort;
 
   @Nullable
   @JsonProperty("task_id")
   private String taskID;
+
+  @Nullable
+  @JsonProperty("intent_scores")
+  private List<IntentScoreResponse> intentScores;
 
   @Nullable
   @JsonProperty("triggered_rules")

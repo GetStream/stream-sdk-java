@@ -32,6 +32,22 @@ public class EventHook {
   private Boolean enabled;
 
   @Nullable
+  @JsonProperty("gcp_pubsub_auth_type")
+  private String gcpPubsubAuthType;
+
+  @Nullable
+  @JsonProperty("gcp_pubsub_event_based_ordering_key_enabled")
+  private Boolean gcpPubsubEventBasedOrderingKeyEnabled;
+
+  @Nullable
+  @JsonProperty("gcp_pubsub_region")
+  private String gcpPubsubRegion;
+
+  @Nullable
+  @JsonProperty("gcp_pubsub_topic")
+  private String gcpPubsubTopic;
+
+  @Nullable
   @JsonProperty("hook_type")
   private String hookType;
 

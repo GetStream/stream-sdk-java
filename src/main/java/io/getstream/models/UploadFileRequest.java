@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UploadFileRequest {
+public class UploadFileRequest implements io.getstream.services.framework.MultipartRequest {
 
   @Nullable
   @JsonProperty("file")

@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** The unread information from channels with a specific type. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

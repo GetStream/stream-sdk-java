@@ -12,7 +12,7 @@
  */
 package io.getstream.models;
 
-/** All possibility of string to use */
+/** An action that can be performed in a channel. */
 public class ChannelOwnCapability {
   private final String value;
 
@@ -65,6 +65,8 @@ public class ChannelOwnCapability {
       new ChannelOwnCapability("query-poll-votes");
   public static ChannelOwnCapability QUOTE_MESSAGE = new ChannelOwnCapability("quote-message");
   public static ChannelOwnCapability READ_EVENTS = new ChannelOwnCapability("read-events");
+  public static ChannelOwnCapability SCHEDULE_MESSAGE =
+      new ChannelOwnCapability("schedule-message");
   public static ChannelOwnCapability SEARCH_MESSAGES = new ChannelOwnCapability("search-messages");
   public static ChannelOwnCapability SEND_CUSTOM_EVENTS =
       new ChannelOwnCapability("send-custom-events");

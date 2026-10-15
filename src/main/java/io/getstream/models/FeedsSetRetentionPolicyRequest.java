@@ -13,11 +13,12 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Set feeds retention policy Creates or updates the feeds retention policy for the app. Server-side
- * only.
+ * Set feeds retention policy Creates or updates a feeds retention policy for the app (an app may
+ * have multiple, each scoped to feed groups). Server-side only.
  */
 @lombok.Data
 @lombok.Builder
@@ -34,4 +35,8 @@ public class FeedsSetRetentionPolicyRequest {
   @Nullable
   @JsonProperty("enabled")
   private Boolean enabled;
+
+  @Nullable
+  @JsonProperty("feed_groups")
+  private List<String> feedGroups;
 }

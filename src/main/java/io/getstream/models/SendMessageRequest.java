@@ -13,12 +13,13 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 /**
  * Send new message Sends new message to the specified channel Sends events: - channel.visible -
- * message.new - message.updated
+ * message.new - message.updated - scheduled_message.created
  */
 @lombok.Data
 @lombok.Builder
@@ -48,6 +49,10 @@ public class SendMessageRequest {
   @Nullable
   @JsonProperty("pending")
   private Boolean pending;
+
+  @Nullable
+  @JsonProperty("scheduled_at")
+  private Date scheduledAt;
 
   @Nullable
   @JsonProperty("skip_enrich_url")

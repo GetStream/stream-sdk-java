@@ -147,6 +147,15 @@ public interface Chat {
       @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
+  public StreamRequest<QueryChannelBansResponse> queryChannelBans(
+      @NotNull String type, @NotNull String id, QueryChannelBansRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryChannelBansResponse> queryChannelBans(
+      @NotNull String type, @NotNull String id) throws StreamException;
+
+  @NotNull
   public StreamRequest<Response> deleteDraft(
       @NotNull String type, @NotNull String id, DeleteDraftRequest request) throws StreamException;
 
@@ -595,6 +604,38 @@ public interface Chat {
 
   @NotNull
   public StreamRequest<GetRetentionPolicyRunsResponse> getRetentionPolicyRuns()
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryScheduledMessagesResponse> queryScheduledMessages(
+      QueryScheduledMessagesRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryScheduledMessagesResponse> queryScheduledMessages()
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteScheduledMessageResponse> deleteScheduledMessage(
+      @NotNull String id, DeleteScheduledMessageRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteScheduledMessageResponse> deleteScheduledMessage(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateScheduledMessageResponse> updateScheduledMessage(
+      @NotNull String id, UpdateScheduledMessageRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateScheduledMessageResponse> updateScheduledMessage(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<SendScheduledMessageNowResponse> sendScheduledMessageNow(
+      @NotNull String id, SendScheduledMessageNowRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<SendScheduledMessageNowResponse> sendScheduledMessageNow(@NotNull String id)
       throws StreamException;
 
   @NotNull

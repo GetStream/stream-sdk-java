@@ -29,4 +29,12 @@ public class AIAudioConfigRequest {
   @Nullable
   @JsonProperty("rules")
   private List<BodyguardRule> rules;
+
+  @Nullable
+  @JsonProperty("ai_text_config")
+  private AITextConfig aiTextConfig;
+
+  @Nullable
+  @JsonProperty("llm_config")
+  private LLMConfig llmConfig;
 }

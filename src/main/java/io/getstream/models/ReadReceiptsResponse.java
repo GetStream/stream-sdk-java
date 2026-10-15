@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** The settings for the read receipt events. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

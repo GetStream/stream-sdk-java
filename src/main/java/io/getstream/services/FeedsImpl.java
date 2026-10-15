@@ -801,6 +801,26 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<CommentFeedbackResponse> commentFeedback(
+      @NotNull String id, CommentFeedbackRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<CommentFeedbackResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/comments/{id}/feedback",
+        request,
+        pathParams,
+        new TypeReference<CommentFeedbackResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<CommentFeedbackResponse> commentFeedback(@NotNull String id)
+      throws StreamException {
+    return commentFeedback(id, new CommentFeedbackRequest());
+  }
+
+  @NotNull
   public StreamRequest<UpdateCommentPartialResponse> updateCommentPartial(
       @NotNull String id, UpdateCommentPartialRequest request) throws StreamException {
     var pathParams = Map.of("id", id);

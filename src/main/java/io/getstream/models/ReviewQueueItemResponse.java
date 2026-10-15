@@ -87,6 +87,10 @@ public class ReviewQueueItemResponse {
   private String configKey;
 
   @Nullable
+  @JsonProperty("country_code")
+  private String countryCode;
+
+  @Nullable
   @JsonProperty("entity_creator_id")
   private String entityCreatorID;
 
@@ -153,6 +157,10 @@ public class ReviewQueueItemResponse {
   @Nullable
   @JsonProperty("moderation_payload")
   private ModerationPayloadResponse moderationPayload;
+
+  @Nullable
+  @JsonProperty("poll")
+  private PollResponseData poll;
 
   @Nullable
   @JsonProperty("reaction")
