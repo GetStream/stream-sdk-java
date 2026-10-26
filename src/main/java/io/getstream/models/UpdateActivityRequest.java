@@ -41,6 +41,10 @@ public class UpdateActivityRequest {
   private Boolean skipEnrichUrl;
 
   @Nullable
+  @JsonProperty("force_moderation")
+  private Boolean forceModeration;
+
+  @Nullable
   @JsonProperty("text")
   private String text;
 

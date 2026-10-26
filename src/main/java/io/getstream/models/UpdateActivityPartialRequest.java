@@ -28,6 +28,10 @@ public class UpdateActivityPartialRequest {
   private String userID;
 
   @Nullable
+  @JsonProperty("force_moderation")
+  private Boolean forceModeration;
+
+  @Nullable
   @JsonProperty("unset")
   private List<String> unset;
 
