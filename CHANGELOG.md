@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.1.2-feed-counts](https://github.com/GetStream/stream-sdk-java/compare/4.1.1-feed-counts...4.1.2-feed-counts) (2026-10-26)
+
+
+### Features
+
+* add force_moderation to feeds write requests ([c7cb9f3](https://github.com/GetStream/stream-sdk-java/commit/c7cb9f35997f7caa452b7988344967c1da60c695))
+
 ### [4.1.1-feed-counts](https://github.com/GetStream/stream-sdk-java/compare/4.1.1...4.1.1-feed-counts) (2026-09-01)
 
 
