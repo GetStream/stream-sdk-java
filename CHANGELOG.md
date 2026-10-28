@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.1.3-ebay](https://github.com/GetStream/stream-sdk-java/compare/4.1.1-top-level-comment-count...4.1.3-ebay) (2026-10-28)
+
+
+### Features
+
+* add force_moderation to feeds write requests on top of 4.1.1-top-level-comment-count ([99114ab](https://github.com/GetStream/stream-sdk-java/commit/99114ab))
+
 ### [4.1.1-top-level-comment-count](https://github.com/GetStream/stream-sdk-java/compare/4.1.1-feed-counts...4.1.1-top-level-comment-count) (2026-09-30)
 
 
