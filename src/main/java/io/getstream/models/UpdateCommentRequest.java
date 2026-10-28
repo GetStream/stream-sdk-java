@@ -36,6 +36,10 @@ public class UpdateCommentRequest {
   private Boolean skipPush;
 
   @Nullable
+  @JsonProperty("force_moderation")
+  private Boolean forceModeration;
+
+  @Nullable
   @JsonProperty("user_id")
   private String userID;
 
