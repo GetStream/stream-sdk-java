@@ -50,6 +50,10 @@ public class ChannelResponse {
   private Map<String, Object> custom;
 
   @Nullable
+  @JsonProperty("active_member_count")
+  private Integer activeMemberCount;
+
+  @Nullable
   @JsonProperty("auto_translation_enabled")
   private Boolean autoTranslationEnabled;
 
@@ -115,7 +119,7 @@ public class ChannelResponse {
 
   @Nullable
   @JsonProperty("own_capabilities")
-  private List<ChannelOwnCapability> ownCapabilities;
+  private List<String> ownCapabilities;
 
   @Nullable
   @JsonProperty("config")

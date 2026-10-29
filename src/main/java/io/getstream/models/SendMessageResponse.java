@@ -39,4 +39,8 @@ public class SendMessageResponse {
   @Nullable
   @JsonProperty("pending_message_metadata")
   private Map<String, String> pendingMessageMetadata;
+
+  @Nullable
+  @JsonProperty("scheduled_message")
+  private ScheduledMessageResponse scheduledMessage;
 }

@@ -16,7 +16,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
-/** Create multiple feeds at once Create multiple feeds at once for a given feed group */
+/**
+ * Create multiple feeds at once Create multiple feeds at once for a given feed group. Client-side,
+ * feeds that already exist are returned unchanged. Server-side, an existing feed keeps its owner
+ * and any fields the request omits. Feeds that have been deleted are rejected.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

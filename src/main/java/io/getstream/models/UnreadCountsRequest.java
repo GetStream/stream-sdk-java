@@ -25,4 +25,8 @@ public class UnreadCountsRequest {
   @Query("user_id")
   @JsonIgnore
   private String UserID;
+
+  @Query("include_large_channels")
+  @JsonIgnore
+  private Boolean IncludeLargeChannels;
 }

@@ -801,6 +801,26 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<CommentFeedbackResponse> commentFeedback(
+      @NotNull String id, CommentFeedbackRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<CommentFeedbackResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/comments/{id}/feedback",
+        request,
+        pathParams,
+        new TypeReference<CommentFeedbackResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<CommentFeedbackResponse> commentFeedback(@NotNull String id)
+      throws StreamException {
+    return commentFeedback(id, new CommentFeedbackRequest());
+  }
+
+  @NotNull
   public StreamRequest<UpdateCommentPartialResponse> updateCommentPartial(
       @NotNull String id, UpdateCommentPartialRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
@@ -930,6 +950,44 @@ public class FeedsImpl {
         request,
         pathParams,
         new TypeReference<TranslateCommentResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ExportFeedsResponse> exportFeedsApp(ExportFeedsAppRequest request)
+      throws StreamException {
+
+    return new StreamRequest<ExportFeedsResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/export/app",
+        request,
+        null,
+        new TypeReference<ExportFeedsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ExportFeedsResponse> exportFeedsApp() throws StreamException {
+    return exportFeedsApp(new ExportFeedsAppRequest());
+  }
+
+  @NotNull
+  public StreamRequest<ExportFeedsResponse> exportFeedsByType(
+      @NotNull String type, ExportFeedsByTypeRequest request) throws StreamException {
+    var pathParams = Map.of("type", type);
+
+    return new StreamRequest<ExportFeedsResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/export/{type}",
+        request,
+        pathParams,
+        new TypeReference<ExportFeedsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ExportFeedsResponse> exportFeedsByType(@NotNull String type)
+      throws StreamException {
+    return exportFeedsByType(type, new ExportFeedsByTypeRequest());
   }
 
   @NotNull
@@ -1673,6 +1731,7 @@ public class FeedsImpl {
         new TypeReference<AcceptFollowResponse>() {});
   }
 
+  @Deprecated
   @NotNull
   public StreamRequest<FollowBatchResponse> followBatch(FollowBatchRequest request)
       throws StreamException {
@@ -1933,6 +1992,7 @@ public class FeedsImpl {
     return queryFeedsUsageStats(new QueryFeedsUsageStatsRequest());
   }
 
+  @Deprecated
   @NotNull
   public StreamRequest<UnfollowBatchResponse> unfollowBatch(UnfollowBatchRequest request)
       throws StreamException {

@@ -42,6 +42,10 @@ public class APIError {
   private List<Integer> details;
 
   @Nullable
+  @JsonProperty("cooldown_remaining_ms")
+  private Integer cooldownRemainingMs;
+
+  @Nullable
   @JsonProperty("unrecoverable")
   private Boolean unrecoverable;
 

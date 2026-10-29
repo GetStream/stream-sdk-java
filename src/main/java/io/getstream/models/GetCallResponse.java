@@ -28,7 +28,7 @@ public class GetCallResponse {
   private List<MemberResponse> members;
 
   @JsonProperty("own_capabilities")
-  private List<OwnCapability> ownCapabilities;
+  private List<String> ownCapabilities;
 
   @JsonProperty("call")
   private CallResponse call;

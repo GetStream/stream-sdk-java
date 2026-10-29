@@ -36,6 +36,10 @@ public class EnrichedActivity {
   private Double score;
 
   @Nullable
+  @JsonProperty("time")
+  private String time;
+
+  @Nullable
   @JsonProperty("verb")
   private String verb;
 

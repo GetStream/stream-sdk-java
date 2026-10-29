@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
-/** Response for Device */
+/** An object representing a device which can receive push notifications. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

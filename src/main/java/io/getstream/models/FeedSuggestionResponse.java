@@ -85,7 +85,7 @@ public class FeedSuggestionResponse {
 
   @Nullable
   @JsonProperty("own_capabilities")
-  private List<FeedOwnCapability> ownCapabilities;
+  private List<String> ownCapabilities;
 
   @Nullable
   @JsonProperty("own_followings")

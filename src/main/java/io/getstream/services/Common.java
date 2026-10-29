@@ -73,6 +73,13 @@ public interface Common {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<CheckGCPPubSubResponse> checkGCPPubSub(CheckGCPPubSubRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<CheckGCPPubSubResponse> checkGCPPubSub() throws StreamException;
+
+  @NotNull
   public StreamRequest<CheckPushResponse> checkPush(CheckPushRequest request)
       throws StreamException;
 
@@ -500,6 +507,10 @@ public interface Common {
 
   @NotNull
   public StreamRequest<BlockUsersResponse> blockUsers(BlockUsersRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<ClaimGuestUserResponse> claimGuestUser(ClaimGuestUserRequest request)
       throws StreamException;
 
   @NotNull

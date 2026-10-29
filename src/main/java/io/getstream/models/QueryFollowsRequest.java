@@ -17,12 +17,21 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
-/** Query follows Query follows based on filters with pagination and sorting options */
+/**
+ * Query follows Query follows based on filters with pagination and sorting options. Server-side
+ * callers may set include_group_counts to also receive accepted following counts keyed by followed
+ * feed group. Requires exactly one source_feed / source_fid string equality. HTTP 400 if
+ * target_feed appears, if two source FIDs are given, or if $in / $or mentions those keys.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 public class QueryFollowsRequest {
+
+  @Nullable
+  @JsonProperty("include_group_counts")
+  private Boolean includeGroupCounts;
 
   @Nullable
   @JsonProperty("limit")

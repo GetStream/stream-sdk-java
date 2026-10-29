@@ -32,8 +32,16 @@ public class LLMConfig {
   private Boolean async;
 
   @Nullable
+  @JsonProperty("custom_keys_context_description")
+  private String customKeysContextDescription;
+
+  @Nullable
   @JsonProperty("enabled")
   private Boolean enabled;
+
+  @Nullable
+  @JsonProperty("context_custom_keys")
+  private List<String> contextCustomKeys;
 
   @Nullable
   @JsonProperty("rules")

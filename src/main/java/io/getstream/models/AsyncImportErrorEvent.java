@@ -29,6 +29,9 @@ public class AsyncImportErrorEvent {
   @JsonProperty("error")
   private String error;
 
+  @JsonProperty("error_code")
+  private String errorCode;
+
   @JsonProperty("finished_at")
   private Date finishedAt;
 

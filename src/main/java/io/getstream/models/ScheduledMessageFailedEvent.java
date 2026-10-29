@@ -14,51 +14,37 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * This event is sent when a buffered conversation&#39;s intent score clears the configured
- * threshold
- */
+/** Emitted when a scheduled message fails to send. scheduled_message.failure_reason says why. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class IntentDetectedEvent {
-
-  @JsonProperty("conversation_id")
-  private String conversationID;
+public class ScheduledMessageFailedEvent {
 
   @JsonProperty("created_at")
   private Date createdAt;
 
-  @JsonProperty("entity_id")
-  private String entityID;
-
-  @JsonProperty("entity_type")
-  private String entityType;
-
-  @JsonProperty("matched_topic")
-  private String matchedTopic;
-
-  @JsonProperty("score")
-  private Double score;
-
-  @JsonProperty("user_id")
-  private String userID;
-
-  @JsonProperty("items")
-  private List<IntentBufferedItem> items;
-
   @JsonProperty("custom")
   private Map<String, Object> custom;
+
+  @JsonProperty("user")
+  private UserResponseCommonFields user;
 
   @JsonProperty("type")
   private String type;
 
   @Nullable
+  @JsonProperty("cid")
+  private String cid;
+
+  @Nullable
   @JsonProperty("received_at")
   private Date receivedAt;
+
+  @Nullable
+  @JsonProperty("scheduled_message")
+  private ScheduledMessageResponse scheduledMessage;
 }

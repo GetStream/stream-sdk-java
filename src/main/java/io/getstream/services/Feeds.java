@@ -310,6 +310,14 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<CommentFeedbackResponse> commentFeedback(
+      @NotNull String id, CommentFeedbackRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<CommentFeedbackResponse> commentFeedback(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<UpdateCommentPartialResponse> updateCommentPartial(
       @NotNull String id, UpdateCommentPartialRequest request) throws StreamException;
 
@@ -357,6 +365,21 @@ public interface Feeds {
   @NotNull
   public StreamRequest<TranslateCommentResponse> translateComment(
       @NotNull String id, TranslateCommentRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ExportFeedsResponse> exportFeedsApp(ExportFeedsAppRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<ExportFeedsResponse> exportFeedsApp() throws StreamException;
+
+  @NotNull
+  public StreamRequest<ExportFeedsResponse> exportFeedsByType(
+      @NotNull String type, ExportFeedsByTypeRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ExportFeedsResponse> exportFeedsByType(@NotNull String type)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<ListFeedGroupsResponse> listFeedGroups(ListFeedGroupsRequest request)
@@ -635,6 +658,7 @@ public interface Feeds {
   public StreamRequest<AcceptFollowResponse> acceptFollow(AcceptFollowRequest request)
       throws StreamException;
 
+  @Deprecated
   @NotNull
   public StreamRequest<FollowBatchResponse> followBatch(FollowBatchRequest request)
       throws StreamException;
@@ -729,6 +753,7 @@ public interface Feeds {
   @NotNull
   public StreamRequest<QueryFeedsUsageStatsResponse> queryFeedsUsageStats() throws StreamException;
 
+  @Deprecated
   @NotNull
   public StreamRequest<UnfollowBatchResponse> unfollowBatch(UnfollowBatchRequest request)
       throws StreamException;

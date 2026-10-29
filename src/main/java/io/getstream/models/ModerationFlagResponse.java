@@ -54,6 +54,10 @@ public class ModerationFlagResponse {
   private String entityCreatorID;
 
   @Nullable
+  @JsonProperty("id")
+  private String id;
+
+  @Nullable
   @JsonProperty("reason")
   private String reason;
 

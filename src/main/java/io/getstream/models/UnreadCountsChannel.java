@@ -15,6 +15,7 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
+/** The unread information of a channel. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -23,6 +24,9 @@ public class UnreadCountsChannel {
 
   @JsonProperty("channel_id")
   private String channelID;
+
+  @JsonProperty("has_unread")
+  private Boolean hasUnread;
 
   @JsonProperty("last_read")
   private Date lastRead;

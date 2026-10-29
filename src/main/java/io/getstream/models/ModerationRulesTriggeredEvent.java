@@ -50,6 +50,14 @@ public class ModerationRulesTriggeredEvent {
   private String type;
 
   @Nullable
+  @JsonProperty("app_id")
+  private Integer appID;
+
+  @Nullable
+  @JsonProperty("category")
+  private String category;
+
+  @Nullable
   @JsonProperty("received_at")
   private Date receivedAt;
 
@@ -58,10 +66,34 @@ public class ModerationRulesTriggeredEvent {
   private String reviewQueueItemID;
 
   @Nullable
+  @JsonProperty("threshold")
+  private Integer threshold;
+
+  @Nullable
+  @JsonProperty("time_window")
+  private String timeWindow;
+
+  @Nullable
   @JsonProperty("violation_number")
   private Integer violationNumber;
 
   @Nullable
   @JsonProperty("matched_contents")
   private List<MatchedContent> matchedContents;
+
+  @Nullable
+  @JsonProperty("matched_user_ids")
+  private List<String> matchedUserIds;
+
+  @Nullable
+  @JsonProperty("scope")
+  private List<String> scope;
+
+  @Nullable
+  @JsonProperty("app_count")
+  private AppCountInfo appCount;
+
+  @Nullable
+  @JsonProperty("intent")
+  private IntentEvaluationInfo intent;
 }

@@ -74,6 +74,9 @@ public class ReviewQueueItemResponse {
   @JsonProperty("languages")
   private List<String> languages;
 
+  @JsonProperty("media_display")
+  private MediaDisplayResponse mediaDisplay;
+
   @Nullable
   @JsonProperty("completed_at")
   private Date completedAt;
@@ -85,6 +88,10 @@ public class ReviewQueueItemResponse {
   @Nullable
   @JsonProperty("config_key")
   private String configKey;
+
+  @Nullable
+  @JsonProperty("country_code")
+  private String countryCode;
 
   @Nullable
   @JsonProperty("entity_creator_id")
@@ -101,6 +108,10 @@ public class ReviewQueueItemResponse {
   @Nullable
   @JsonProperty("reviewed_at")
   private Date reviewedAt;
+
+  @Nullable
+  @JsonProperty("false_positive_flags")
+  private List<String> falsePositiveFlags;
 
   @Nullable
   @JsonProperty("teams")
@@ -153,6 +164,10 @@ public class ReviewQueueItemResponse {
   @Nullable
   @JsonProperty("moderation_payload")
   private ModerationPayloadResponse moderationPayload;
+
+  @Nullable
+  @JsonProperty("poll")
+  private PollResponseData poll;
 
   @Nullable
   @JsonProperty("reaction")

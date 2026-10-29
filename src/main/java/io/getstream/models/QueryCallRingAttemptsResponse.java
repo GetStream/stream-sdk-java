@@ -13,23 +13,32 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
+/** The ring attempts of a call, newest first. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class IntentBufferedItem {
+public class QueryCallRingAttemptsResponse {
 
-  @JsonProperty("author_user_id")
-  private String authorUserID;
+  @JsonProperty("call_id")
+  private String callID;
 
-  @JsonProperty("created_at")
-  private Date createdAt;
+  @JsonProperty("call_type")
+  private String callType;
 
-  @JsonProperty("id")
-  private String id;
+  @JsonProperty("count")
+  private Integer count;
 
-  @JsonProperty("text")
-  private String text;
+  @JsonProperty("duration")
+  private String duration;
+
+  @JsonProperty("ring_attempts")
+  private List<RingAttemptResponse> ringAttempts;
+
+  @Nullable
+  @JsonProperty("call_session_id")
+  private String callSessionID;
 }

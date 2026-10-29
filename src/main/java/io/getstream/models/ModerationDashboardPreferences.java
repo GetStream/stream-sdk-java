@@ -68,6 +68,10 @@ public class ModerationDashboardPreferences {
   private Boolean mediaQueueBlurEnabled;
 
   @Nullable
+  @JsonProperty("text_redaction_enabled")
+  private Boolean textRedactionEnabled;
+
+  @Nullable
   @JsonProperty("allowed_moderation_action_reasons")
   private List<String> allowedModerationActionReasons;
 
@@ -82,6 +86,10 @@ public class ModerationDashboardPreferences {
   @Nullable
   @JsonProperty("keyframe_classifications_map")
   private Map<String, Map<String, Boolean>> keyframeClassificationsMap;
+
+  @Nullable
+  @JsonProperty("media_label_display")
+  private Map<String, String> mediaLabelDisplay;
 
   @Nullable
   @JsonProperty("overview_dashboard")

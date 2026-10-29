@@ -36,6 +36,14 @@ public class CreatePollRequest {
   private Boolean allowUserSuggestedOptions;
 
   @Nullable
+  @JsonProperty("config_key")
+  private String configKey;
+
+  @Nullable
+  @JsonProperty("config_team")
+  private String configTeam;
+
+  @Nullable
   @JsonProperty("description")
   private String description;
 

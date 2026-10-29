@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/** A type representing the app settings. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -141,6 +142,9 @@ public class AppResponseFields {
   @JsonProperty("suspended_explanation")
   private String suspendedExplanation;
 
+  @JsonProperty("two_way_block_effect_enabled")
+  private Boolean twoWayBlockEffectEnabled;
+
   @JsonProperty("use_hook_v2")
   private Boolean useHookV2;
 
@@ -164,6 +168,9 @@ public class AppResponseFields {
 
   @JsonProperty("channel_configs")
   private Map<String, ChannelConfig> channelConfigs;
+
+  @JsonProperty("defaults")
+  private AppDefaults defaults;
 
   @JsonProperty("file_upload_config")
   private FileUploadConfig fileUploadConfig;

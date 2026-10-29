@@ -29,6 +29,14 @@ public class AnalyzeResponse {
   private String status;
 
   @Nullable
+  @JsonProperty("llm_model")
+  private String llmModel;
+
+  @Nullable
+  @JsonProperty("llm_reasoning_effort")
+  private String llmReasoningEffort;
+
+  @Nullable
   @JsonProperty("images")
   private Map<String, AnalyzeImageField> images;
 

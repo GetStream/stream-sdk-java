@@ -34,6 +34,10 @@ public class EnrichmentOptions {
   private Boolean includeFlatActivities;
 
   @Nullable
+  @JsonProperty("include_ranking_config")
+  private Boolean includeRankingConfig;
+
+  @Nullable
   @JsonProperty("include_score_vars")
   private Boolean includeScoreVars;
 

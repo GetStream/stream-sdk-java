@@ -13,75 +13,43 @@
 package io.getstream.models;
 
 /** All possibility of string to use */
-public class OwnCapability {
-  private final String value;
+public final class OwnCapability {
+  private OwnCapability() {}
 
-  private OwnCapability(String value) {
-    this.value = value;
-  }
-
-  @Override
-  public String toString() {
-    return value;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    OwnCapability that = (OwnCapability) o;
-    return value.equals(that.value);
-  }
-
-  @Override
-  public int hashCode() {
-    return value.hashCode();
-  }
-
-  public static OwnCapability BLOCK_USERS = new OwnCapability("block-users");
-  public static OwnCapability CHANGE_MAX_DURATION = new OwnCapability("change-max-duration");
-  public static OwnCapability CREATE_CALL = new OwnCapability("create-call");
-  public static OwnCapability CREATE_REACTION = new OwnCapability("create-reaction");
-  public static OwnCapability ENABLE_NOISE_CANCELLATION =
-      new OwnCapability("enable-noise-cancellation");
-  public static OwnCapability END_CALL = new OwnCapability("end-call");
-  public static OwnCapability JOIN_BACKSTAGE = new OwnCapability("join-backstage");
-  public static OwnCapability JOIN_CALL = new OwnCapability("join-call");
-  public static OwnCapability JOIN_ENDED_CALL = new OwnCapability("join-ended-call");
-  public static OwnCapability KICK_USER = new OwnCapability("kick-user");
-  public static OwnCapability MUTE_USERS = new OwnCapability("mute-users");
-  public static OwnCapability PIN_FOR_EVERYONE = new OwnCapability("pin-for-everyone");
-  public static OwnCapability READ_CALL = new OwnCapability("read-call");
-  public static OwnCapability REMOVE_CALL_MEMBER = new OwnCapability("remove-call-member");
-  public static OwnCapability SCREENSHARE = new OwnCapability("screenshare");
-  public static OwnCapability SEND_AUDIO = new OwnCapability("send-audio");
-  public static OwnCapability SEND_CLOSED_CAPTIONS_CALL =
-      new OwnCapability("send-closed-captions-call");
-  public static OwnCapability SEND_VIDEO = new OwnCapability("send-video");
-  public static OwnCapability START_BROADCAST_CALL = new OwnCapability("start-broadcast-call");
-  public static OwnCapability START_CLOSED_CAPTIONS_CALL =
-      new OwnCapability("start-closed-captions-call");
-  public static OwnCapability START_FRAME_RECORD_CALL =
-      new OwnCapability("start-frame-record-call");
-  public static OwnCapability START_INDIVIDUAL_RECORD_CALL =
-      new OwnCapability("start-individual-record-call");
-  public static OwnCapability START_RAW_RECORD_CALL = new OwnCapability("start-raw-record-call");
-  public static OwnCapability START_RECORD_CALL = new OwnCapability("start-record-call");
-  public static OwnCapability START_TRANSCRIPTION_CALL =
-      new OwnCapability("start-transcription-call");
-  public static OwnCapability STOP_BROADCAST_CALL = new OwnCapability("stop-broadcast-call");
-  public static OwnCapability STOP_CLOSED_CAPTIONS_CALL =
-      new OwnCapability("stop-closed-captions-call");
-  public static OwnCapability STOP_FRAME_RECORD_CALL = new OwnCapability("stop-frame-record-call");
-  public static OwnCapability STOP_INDIVIDUAL_RECORD_CALL =
-      new OwnCapability("stop-individual-record-call");
-  public static OwnCapability STOP_RAW_RECORD_CALL = new OwnCapability("stop-raw-record-call");
-  public static OwnCapability STOP_RECORD_CALL = new OwnCapability("stop-record-call");
-  public static OwnCapability STOP_TRANSCRIPTION_CALL =
-      new OwnCapability("stop-transcription-call");
-  public static OwnCapability UPDATE_CALL = new OwnCapability("update-call");
-  public static OwnCapability UPDATE_CALL_MEMBER = new OwnCapability("update-call-member");
-  public static OwnCapability UPDATE_CALL_PERMISSIONS =
-      new OwnCapability("update-call-permissions");
-  public static OwnCapability UPDATE_CALL_SETTINGS = new OwnCapability("update-call-settings");
+  public static final String BLOCK_USERS = "block-users";
+  public static final String CHANGE_MAX_DURATION = "change-max-duration";
+  public static final String CREATE_CALL = "create-call";
+  public static final String CREATE_REACTION = "create-reaction";
+  public static final String ENABLE_NOISE_CANCELLATION = "enable-noise-cancellation";
+  public static final String END_CALL = "end-call";
+  public static final String JOIN_BACKSTAGE = "join-backstage";
+  public static final String JOIN_CALL = "join-call";
+  public static final String JOIN_ENDED_CALL = "join-ended-call";
+  public static final String KICK_USER = "kick-user";
+  public static final String MUTE_USERS = "mute-users";
+  public static final String PIN_FOR_EVERYONE = "pin-for-everyone";
+  public static final String READ_CALL = "read-call";
+  public static final String REMOVE_CALL_MEMBER = "remove-call-member";
+  public static final String SCREENSHARE = "screenshare";
+  public static final String SEND_AUDIO = "send-audio";
+  public static final String SEND_CLOSED_CAPTIONS_CALL = "send-closed-captions-call";
+  public static final String SEND_VIDEO = "send-video";
+  public static final String START_BROADCAST_CALL = "start-broadcast-call";
+  public static final String START_CLOSED_CAPTIONS_CALL = "start-closed-captions-call";
+  public static final String START_FRAME_RECORD_CALL = "start-frame-record-call";
+  public static final String START_INDIVIDUAL_RECORD_CALL = "start-individual-record-call";
+  public static final String START_RAW_RECORD_CALL = "start-raw-record-call";
+  public static final String START_RECORD_CALL = "start-record-call";
+  public static final String START_TRANSCRIPTION_CALL = "start-transcription-call";
+  public static final String STOP_BROADCAST_CALL = "stop-broadcast-call";
+  public static final String STOP_CLOSED_CAPTIONS_CALL = "stop-closed-captions-call";
+  public static final String STOP_FRAME_RECORD_CALL = "stop-frame-record-call";
+  public static final String STOP_INDIVIDUAL_RECORD_CALL = "stop-individual-record-call";
+  public static final String STOP_RAW_RECORD_CALL = "stop-raw-record-call";
+  public static final String STOP_RECORD_CALL = "stop-record-call";
+  public static final String STOP_TRANSCRIPTION_CALL = "stop-transcription-call";
+  public static final String UPDATE_CALL = "update-call";
+  public static final String UPDATE_CALL_MEMBER = "update-call-member";
+  public static final String UPDATE_CALL_PERMISSIONS = "update-call-permissions";
+  public static final String UPDATE_CALL_SETTINGS = "update-call-settings";
 }

@@ -29,4 +29,8 @@ public class DeleteCollectionsRequest {
   @Query("collection_refs")
   @JsonIgnore
   private List<String> CollectionRefs;
+
+  @Query("hard_delete")
+  @JsonIgnore
+  private Boolean HardDelete;
 }

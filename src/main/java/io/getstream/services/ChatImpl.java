@@ -98,17 +98,17 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<CampaignResponse> updateCampaign(
+  public StreamRequest<UpdateCampaignResponse> updateCampaign(
       @NotNull String id, UpdateCampaignRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
 
-    return new StreamRequest<CampaignResponse>(
+    return new StreamRequest<UpdateCampaignResponse>(
         client,
         "PUT",
         "/api/v2/chat/campaigns/{id}",
         request,
         pathParams,
-        new TypeReference<CampaignResponse>() {});
+        new TypeReference<UpdateCampaignResponse>() {});
   }
 
   @NotNull
@@ -132,21 +132,22 @@ public class ChatImpl {
   }
 
   @NotNull
-  public StreamRequest<CampaignResponse> stopCampaign(
+  public StreamRequest<StopCampaignResponse> stopCampaign(
       @NotNull String id, StopCampaignRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
 
-    return new StreamRequest<CampaignResponse>(
+    return new StreamRequest<StopCampaignResponse>(
         client,
         "POST",
         "/api/v2/chat/campaigns/{id}/stop",
         request,
         pathParams,
-        new TypeReference<CampaignResponse>() {});
+        new TypeReference<StopCampaignResponse>() {});
   }
 
   @NotNull
-  public StreamRequest<CampaignResponse> stopCampaign(@NotNull String id) throws StreamException {
+  public StreamRequest<StopCampaignResponse> stopCampaign(@NotNull String id)
+      throws StreamException {
     return stopCampaign(id, new StopCampaignRequest());
   }
 
@@ -364,6 +365,30 @@ public class ChatImpl {
   }
 
   @NotNull
+  public StreamRequest<QueryChannelBansResponse> queryChannelBans(
+      @NotNull String type, @NotNull String id, QueryChannelBansRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "type", type,
+            "id", id);
+
+    return new StreamRequest<QueryChannelBansResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/channels/{type}/{id}/bans/query",
+        request,
+        pathParams,
+        new TypeReference<QueryChannelBansResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryChannelBansResponse> queryChannelBans(
+      @NotNull String type, @NotNull String id) throws StreamException {
+    return queryChannelBans(type, id, new QueryChannelBansRequest());
+  }
+
+  @NotNull
   public StreamRequest<Response> deleteDraft(
       @NotNull String type, @NotNull String id, DeleteDraftRequest request) throws StreamException {
     var pathParams =
@@ -472,6 +497,41 @@ public class ChatImpl {
   public StreamRequest<UploadChannelFileResponse> uploadChannelFile(
       @NotNull String type, @NotNull String id) throws StreamException {
     return uploadChannelFile(type, id, new UploadChannelFileRequest());
+  }
+
+  @NotNull
+  public StreamRequest<ForkChannelResponse> forkChannel(
+      @NotNull String type, @NotNull String id, ForkChannelRequest request) throws StreamException {
+    var pathParams =
+        Map.of(
+            "type", type,
+            "id", id);
+
+    return new StreamRequest<ForkChannelResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/channels/{type}/{id}/fork",
+        request,
+        pathParams,
+        new TypeReference<ForkChannelResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ForkMessageIDsResponse> forkMessageIDs(
+      @NotNull String type, @NotNull String id, ForkMessageIDsRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "type", type,
+            "id", id);
+
+    return new StreamRequest<ForkMessageIDsResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/channels/{type}/{id}/fork/message_ids",
+        request,
+        pathParams,
+        new TypeReference<ForkMessageIDsResponse>() {});
   }
 
   @NotNull
@@ -676,6 +736,24 @@ public class ChatImpl {
   }
 
   @NotNull
+  public StreamRequest<RewindChannelResponse> rewindChannel(
+      @NotNull String type, @NotNull String id, RewindChannelRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "type", type,
+            "id", id);
+
+    return new StreamRequest<RewindChannelResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/channels/{type}/{id}/rewind",
+        request,
+        pathParams,
+        new TypeReference<RewindChannelResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<ShowChannelResponse> showChannel(
       @NotNull String type, @NotNull String id, ShowChannelRequest request) throws StreamException {
     var pathParams =
@@ -827,6 +905,12 @@ public class ChatImpl {
         request,
         pathParams,
         new TypeReference<UpdateChannelTypeResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpdateChannelTypeResponse> updateChannelType(@NotNull String name)
+      throws StreamException {
+    return updateChannelType(name, new UpdateChannelTypeRequest());
   }
 
   @NotNull
@@ -1597,6 +1681,85 @@ public class ChatImpl {
   public StreamRequest<GetRetentionPolicyRunsResponse> getRetentionPolicyRuns()
       throws StreamException {
     return getRetentionPolicyRuns(new GetRetentionPolicyRunsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueryScheduledMessagesResponse> queryScheduledMessages(
+      QueryScheduledMessagesRequest request) throws StreamException {
+
+    return new StreamRequest<QueryScheduledMessagesResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/scheduled_messages/query",
+        request,
+        null,
+        new TypeReference<QueryScheduledMessagesResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryScheduledMessagesResponse> queryScheduledMessages()
+      throws StreamException {
+    return queryScheduledMessages(new QueryScheduledMessagesRequest());
+  }
+
+  @NotNull
+  public StreamRequest<DeleteScheduledMessageResponse> deleteScheduledMessage(
+      @NotNull String id, DeleteScheduledMessageRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<DeleteScheduledMessageResponse>(
+        client,
+        "DELETE",
+        "/api/v2/chat/scheduled_messages/{id}",
+        request,
+        pathParams,
+        new TypeReference<DeleteScheduledMessageResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteScheduledMessageResponse> deleteScheduledMessage(@NotNull String id)
+      throws StreamException {
+    return deleteScheduledMessage(id, new DeleteScheduledMessageRequest());
+  }
+
+  @NotNull
+  public StreamRequest<UpdateScheduledMessageResponse> updateScheduledMessage(
+      @NotNull String id, UpdateScheduledMessageRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<UpdateScheduledMessageResponse>(
+        client,
+        "PATCH",
+        "/api/v2/chat/scheduled_messages/{id}",
+        request,
+        pathParams,
+        new TypeReference<UpdateScheduledMessageResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpdateScheduledMessageResponse> updateScheduledMessage(@NotNull String id)
+      throws StreamException {
+    return updateScheduledMessage(id, new UpdateScheduledMessageRequest());
+  }
+
+  @NotNull
+  public StreamRequest<SendScheduledMessageNowResponse> sendScheduledMessageNow(
+      @NotNull String id, SendScheduledMessageNowRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<SendScheduledMessageNowResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/scheduled_messages/{id}/send_now",
+        request,
+        pathParams,
+        new TypeReference<SendScheduledMessageNowResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<SendScheduledMessageNowResponse> sendScheduledMessageNow(@NotNull String id)
+      throws StreamException {
+    return sendScheduledMessageNow(id, new SendScheduledMessageNowRequest());
   }
 
   @NotNull

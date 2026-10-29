@@ -30,6 +30,10 @@ public class GetOrCreateUnfollowsRequest {
   private List<UnfollowPair> follows;
 
   @Nullable
+  @JsonProperty("async")
+  private Boolean async;
+
+  @Nullable
   @JsonProperty("delete_notification_activity")
   private Boolean deleteNotificationActivity;
 

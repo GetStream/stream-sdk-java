@@ -12,8 +12,31 @@
  */
 package io.getstream.models;
 
-/** Configuration for ending video call */
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
+import org.jetbrains.annotations.Nullable;
+
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class VideoEndCallRequestPayload {}
+@lombok.AllArgsConstructor
+public class ChannelBanScopeResponse {
+
+  @JsonProperty("created_at")
+  private Date createdAt;
+
+  @JsonProperty("shadow")
+  private Boolean shadow;
+
+  @Nullable
+  @JsonProperty("expires")
+  private Date expires;
+
+  @Nullable
+  @JsonProperty("reason")
+  private String reason;
+
+  @Nullable
+  @JsonProperty("banned_by")
+  private UserResponse bannedBy;
+}

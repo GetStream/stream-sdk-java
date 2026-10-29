@@ -30,11 +30,20 @@ public class QueryFeedsUsageStatsResponse {
   @JsonProperty("api_requests")
   private DailyMetricStatsResponse apiRequests;
 
+  @JsonProperty("collections")
+  private DailyMetricStatsResponse collections;
+
+  @JsonProperty("comments")
+  private DailyMetricStatsResponse comments;
+
   @JsonProperty("follows")
   private DailyMetricStatsResponse follows;
 
   @JsonProperty("openai_requests")
   private DailyMetricStatsResponse openaiRequests;
+
+  @JsonProperty("reactions")
+  private DailyMetricStatsResponse reactions;
 
   @Nullable
   @JsonProperty("emau")
