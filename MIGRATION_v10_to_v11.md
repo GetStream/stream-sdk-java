@@ -49,15 +49,22 @@ The same change applies to channel and feed capability lists, and to call respon
 
 ```java
 // v10
-CampaignResponse campaign = client.updateCampaign(id, request).execute().getData();
+CampaignResponse campaign = client.chat().updateCampaign(id, request).execute().getData();
 
 // v11
-CampaignResponse campaign = client.updateCampaign(id, request).execute().getData().getCampaign();
+CampaignResponse campaign =
+    client.chat().updateCampaign(id, request).execute().getData().getCampaign();
 ```
+
+`stopCampaign` is the same shape: `StopCampaignResponse.getCampaign()`.
 
 ## Feeds retention policies
 
 `GetFeedsRetentionPolicyResponse.getPolicies()` is `List<FeedsRetentionPolicy>`. `SetFeedsRetentionPolicyResponse.getPolicy()` is `FeedsRetentionPolicy`. Both were `RetentionPolicy`.
+
+## Moderation check response
+
+`CheckResponse` no longer has `intentMatchedTopic`, `intentScore`, `intentScoreThreshold`, or `intentWouldFire`. Scores are `List<IntentScoreResponse> getIntentScores()`.
 
 ## Reaction timestamps
 
