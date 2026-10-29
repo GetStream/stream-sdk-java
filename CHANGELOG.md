@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.0.0](https://github.com/GetStream/stream-sdk-java/compare/10.5.0...11.0.0) (2026-10-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* [FLU-1105] regenerate client from openapi-v239.93.2 ([#120](https://github.com/GetStream/stream-sdk-java/issues/120))
+
+### Features
+
+* [FLU-1105] regenerate client from openapi-v239.93.2 ([#120](https://github.com/GetStream/stream-sdk-java/issues/120)) ([52fe52d](https://github.com/GetStream/stream-sdk-java/commit/52fe52db4501401e803acd10b3fc4bb819db3b4d))
+
 ## [10.5.0](https://github.com/GetStream/stream-sdk-java/compare/10.4.0...10.5.0) (2026-10-15)
 
 
