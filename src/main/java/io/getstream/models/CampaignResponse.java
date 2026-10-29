@@ -41,12 +41,6 @@ public class CampaignResponse {
   @JsonProperty("sender_id")
   private String senderID;
 
-  @JsonProperty("sender_mode")
-  private String senderMode;
-
-  @JsonProperty("sender_visibility")
-  private String senderVisibility;
-
   @JsonProperty("show_channels")
   private Boolean showChannels;
 
@@ -80,6 +74,14 @@ public class CampaignResponse {
   @Nullable
   @JsonProperty("scheduled_for")
   private Date scheduledFor;
+
+  @Nullable
+  @JsonProperty("sender_mode")
+  private String senderMode;
+
+  @Nullable
+  @JsonProperty("sender_visibility")
+  private String senderVisibility;
 
   @Nullable
   @JsonProperty("stop_at")

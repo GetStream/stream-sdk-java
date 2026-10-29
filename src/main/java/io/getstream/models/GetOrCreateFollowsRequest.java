@@ -30,6 +30,10 @@ public class GetOrCreateFollowsRequest {
   private List<FollowRequest> follows;
 
   @Nullable
+  @JsonProperty("async")
+  private Boolean async;
+
+  @Nullable
   @JsonProperty("create_users")
   private Boolean createUsers;
 

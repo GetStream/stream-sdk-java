@@ -70,6 +70,18 @@ public class SubmitActionRequest {
   private DeleteMessageRequestPayload deleteMessage;
 
   @Nullable
+  @JsonProperty("delete_poll")
+  private DeletePollRequestPayload deletePoll;
+
+  @Nullable
+  @JsonProperty("delete_poll_answer")
+  private DeletePollAnswerRequestPayload deletePollAnswer;
+
+  @Nullable
+  @JsonProperty("delete_poll_option")
+  private DeletePollOptionRequestPayload deletePollOption;
+
+  @Nullable
   @JsonProperty("delete_reaction")
   private DeleteReactionRequestPayload deleteReaction;
 

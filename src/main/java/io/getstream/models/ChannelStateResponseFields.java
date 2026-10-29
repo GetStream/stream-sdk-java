@@ -36,6 +36,10 @@ public class ChannelStateResponseFields {
   private List<ThreadStateResponse> threads;
 
   @Nullable
+  @JsonProperty("cooldown_remaining_ms")
+  private Integer cooldownRemainingMs;
+
+  @Nullable
   @JsonProperty("hidden")
   private Boolean hidden;
 
@@ -58,6 +62,10 @@ public class ChannelStateResponseFields {
   @Nullable
   @JsonProperty("read")
   private List<ReadStateResponse> read;
+
+  @Nullable
+  @JsonProperty("scheduled_messages")
+  private List<ScheduledMessageResponse> scheduledMessages;
 
   @Nullable
   @JsonProperty("watchers")

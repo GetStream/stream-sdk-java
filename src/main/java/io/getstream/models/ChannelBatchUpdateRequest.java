@@ -20,11 +20,13 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Update channels in batch Update channels in batch. By default returns task_id for an asynchronous
- * task. With synchronous: true, updateData accepts at most 100 explicit CIDs and returns a positive
- * success_channels_count of channels selected for update after the database write completes,
- * without task_id. Always poll a returned task_id, including when an older node ignores
- * synchronous. Sends events: - channel.frozen - channel.hidden - channel.unfrozen - channel.updated
- * - channel.visible - member.added - member.removed - member.updated
+ * task. With synchronous: true, updateData and hide accept at most 100 explicit CIDs (hide also at
+ * most 10 distinct members) and return success_channels_count of channels selected after the
+ * database write completes, without task_id. A synchronous hide where none of the member users
+ * exist hides nothing and omits success_channels_count. Always poll a returned task_id, including
+ * when an older node ignores synchronous. Sends events: - channel.frozen - channel.hidden -
+ * channel.unfrozen - channel.updated - channel.visible - member.added - member.removed -
+ * member.updated
  */
 @lombok.Data
 @lombok.Builder

@@ -31,7 +31,7 @@ public class QueryCallParticipantsResponse {
   private List<MemberResponse> members;
 
   @JsonProperty("own_capabilities")
-  private List<OwnCapability> ownCapabilities;
+  private List<String> ownCapabilities;
 
   @JsonProperty("participants")
   private List<CallParticipantResponse> participants;

@@ -33,7 +33,7 @@ public class UpdatedCallPermissionsEvent {
   private Date createdAt;
 
   @JsonProperty("own_capabilities")
-  private List<OwnCapability> ownCapabilities;
+  private List<String> ownCapabilities;
 
   @JsonProperty("user")
   private UserResponse user;

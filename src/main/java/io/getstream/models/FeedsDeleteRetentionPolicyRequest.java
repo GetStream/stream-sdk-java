@@ -15,7 +15,8 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Delete feeds retention policy Removes the feeds retention policy for the app. Server-side only.
+ * Delete feeds retention policy Removes the named feeds retention policy for the app (an app may
+ * hold several). Server-side only.
  */
 @lombok.Data
 @lombok.Builder

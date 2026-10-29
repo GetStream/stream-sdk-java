@@ -182,6 +182,10 @@ public class UpdateAppRequest {
   private String sqsUrl;
 
   @Nullable
+  @JsonProperty("two_way_block_effect_enabled")
+  private Boolean twoWayBlockEffectEnabled;
+
+  @Nullable
   @JsonProperty("user_response_time_enabled")
   private Boolean userResponseTimeEnabled;
 

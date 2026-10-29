@@ -26,6 +26,10 @@ public class BanRequest {
   private String targetUserID;
 
   @Nullable
+  @JsonProperty("ban_from_future_channels")
+  private Boolean banFromFutureChannels;
+
+  @Nullable
   @JsonProperty("banned_by_id")
   private String bannedByID;
 
@@ -36,6 +40,10 @@ public class BanRequest {
   @Nullable
   @JsonProperty("delete_messages")
   private String deleteMessages;
+
+  @Nullable
+  @JsonProperty("delete_reactions")
+  private Boolean deleteReactions;
 
   @Nullable
   @JsonProperty("ip_ban")

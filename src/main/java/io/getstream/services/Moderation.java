@@ -132,6 +132,14 @@ public interface Moderation {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<QueryModerationFeedbackResponse> queryModerationFeedback(
+      QueryModerationFeedbackRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryModerationFeedbackResponse> queryModerationFeedback()
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<DeleteModerationTemplateResponse> v2DeleteTemplate(
       V2DeleteTemplateRequest request) throws StreamException;
 
@@ -286,6 +294,10 @@ public interface Moderation {
   public StreamRequest<QueueResponse> deleteQueue(@NotNull String id) throws StreamException;
 
   @NotNull
+  public StreamRequest<RevealMediaResponse> revealMedia(RevealMediaRequest request)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryReviewQueueResponse> queryReviewQueue(QueryReviewQueueRequest request)
       throws StreamException;
 
@@ -318,6 +330,10 @@ public interface Moderation {
   @NotNull
   public StreamRequest<SubmitModerationFeedbackResponse> submitModerationFeedback(
       SubmitModerationFeedbackRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<SubmitModerationFeedbackResponse> submitModerationFeedback()
+      throws StreamException;
 
   @NotNull
   public StreamRequest<UnbanResponse> unban(UnbanRequest request) throws StreamException;

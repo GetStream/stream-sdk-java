@@ -28,6 +28,14 @@ import org.jetbrains.annotations.Nullable;
 public class UpdatePollPartialRequest {
 
   @Nullable
+  @JsonProperty("config_key")
+  private String configKey;
+
+  @Nullable
+  @JsonProperty("config_team")
+  private String configTeam;
+
+  @Nullable
   @JsonProperty("user_id")
   private String userID;
 

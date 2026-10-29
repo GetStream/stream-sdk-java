@@ -43,6 +43,10 @@ public class AnalyzeImageField {
   private List<Classification> classifications;
 
   @Nullable
+  @JsonProperty("detected_urls")
+  private List<DetectedURLResponse> detectedUrls;
+
+  @Nullable
   @JsonProperty("ocr_classifications")
   private List<Classification> ocrClassifications;
 }

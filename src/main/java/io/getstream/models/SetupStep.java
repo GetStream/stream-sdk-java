@@ -12,8 +12,12 @@
  */
 package io.getstream.models;
 
-/** Configuration for kicking user from video call */
-@lombok.Data
-@lombok.Builder
-@lombok.NoArgsConstructor
-public class VideoKickUserRequestPayload {}
+/** A step in the moderation setup wizard. */
+public final class SetupStep {
+  private SetupStep() {}
+
+  public static final String CONFIGURE = "configure";
+  public static final String INPUT = "input";
+  public static final String LIVE = "live";
+  public static final String WELCOME = "welcome";
+}

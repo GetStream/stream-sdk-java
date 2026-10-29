@@ -18,7 +18,8 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Create multiple follows at once Creates multiple follows at once and broadcasts FollowAddedEvent
- * for each follow
+ * for each follow. Deprecated: use GetOrCreateFollows (POST /api/v2/feeds/follows/batch/upsert),
+ * which returns existing follows instead of erroring.
  */
 @lombok.Data
 @lombok.Builder
@@ -28,6 +29,10 @@ public class FollowBatchRequest {
 
   @JsonProperty("follows")
   private List<FollowRequest> follows;
+
+  @Nullable
+  @JsonProperty("async")
+  private Boolean async;
 
   @Nullable
   @JsonProperty("create_users")

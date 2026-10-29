@@ -93,12 +93,20 @@ public class CreateChannelTypeRequest {
   private Boolean pushNotifications;
 
   @Nullable
+  @JsonProperty("quotes")
+  private Boolean quotes;
+
+  @Nullable
   @JsonProperty("reactions")
   private Boolean reactions;
 
   @Nullable
   @JsonProperty("read_events")
   private Boolean readEvents;
+
+  @Nullable
+  @JsonProperty("reminders")
+  private Boolean reminders;
 
   @Nullable
   @JsonProperty("replies")
@@ -143,6 +151,10 @@ public class CreateChannelTypeRequest {
   @Nullable
   @JsonProperty("permissions")
   private List<PolicyRequest> permissions;
+
+  @Nullable
+  @JsonProperty("automod_thresholds")
+  private Thresholds automodThresholds;
 
   @Nullable
   @JsonProperty("chat_preferences")

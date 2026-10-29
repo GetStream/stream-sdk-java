@@ -25,6 +25,10 @@ import org.jetbrains.annotations.Nullable;
 public class QueryChannelsRequest {
 
   @Nullable
+  @JsonProperty("include_active_member_count")
+  private Boolean includeActiveMemberCount;
+
+  @Nullable
   @JsonProperty("limit")
   private Integer limit;
 

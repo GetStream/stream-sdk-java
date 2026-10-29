@@ -13,71 +13,36 @@
 package io.getstream.models;
 
 /** Represents a feed capability value and enumerates all possible capability strings. */
-public class FeedOwnCapability {
-  private final String value;
+public final class FeedOwnCapability {
+  private FeedOwnCapability() {}
 
-  private FeedOwnCapability(String value) {
-    this.value = value;
-  }
-
-  @Override
-  public String toString() {
-    return value;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    FeedOwnCapability that = (FeedOwnCapability) o;
-    return value.equals(that.value);
-  }
-
-  @Override
-  public int hashCode() {
-    return value.hashCode();
-  }
-
-  public static FeedOwnCapability ADD_ACTIVITY = new FeedOwnCapability("add-activity");
-  public static FeedOwnCapability ADD_ACTIVITY_BOOKMARK =
-      new FeedOwnCapability("add-activity-bookmark");
-  public static FeedOwnCapability ADD_ACTIVITY_REACTION =
-      new FeedOwnCapability("add-activity-reaction");
-  public static FeedOwnCapability ADD_COMMENT = new FeedOwnCapability("add-comment");
-  public static FeedOwnCapability ADD_COMMENT_REACTION =
-      new FeedOwnCapability("add-comment-reaction");
-  public static FeedOwnCapability CREATE_FEED = new FeedOwnCapability("create-feed");
-  public static FeedOwnCapability DELETE_ANY_ACTIVITY =
-      new FeedOwnCapability("delete-any-activity");
-  public static FeedOwnCapability DELETE_ANY_COMMENT = new FeedOwnCapability("delete-any-comment");
-  public static FeedOwnCapability DELETE_FEED = new FeedOwnCapability("delete-feed");
-  public static FeedOwnCapability DELETE_OWN_ACTIVITY =
-      new FeedOwnCapability("delete-own-activity");
-  public static FeedOwnCapability DELETE_OWN_ACTIVITY_BOOKMARK =
-      new FeedOwnCapability("delete-own-activity-bookmark");
-  public static FeedOwnCapability DELETE_OWN_ACTIVITY_REACTION =
-      new FeedOwnCapability("delete-own-activity-reaction");
-  public static FeedOwnCapability DELETE_OWN_COMMENT = new FeedOwnCapability("delete-own-comment");
-  public static FeedOwnCapability DELETE_OWN_COMMENT_REACTION =
-      new FeedOwnCapability("delete-own-comment-reaction");
-  public static FeedOwnCapability FOLLOW = new FeedOwnCapability("follow");
-  public static FeedOwnCapability PIN_ACTIVITY = new FeedOwnCapability("pin-activity");
-  public static FeedOwnCapability QUERY_FEED_MEMBERS = new FeedOwnCapability("query-feed-members");
-  public static FeedOwnCapability QUERY_FOLLOWS = new FeedOwnCapability("query-follows");
-  public static FeedOwnCapability READ_ACTIVITIES = new FeedOwnCapability("read-activities");
-  public static FeedOwnCapability READ_FEED = new FeedOwnCapability("read-feed");
-  public static FeedOwnCapability UNFOLLOW = new FeedOwnCapability("unfollow");
-  public static FeedOwnCapability UPDATE_ANY_ACTIVITY =
-      new FeedOwnCapability("update-any-activity");
-  public static FeedOwnCapability UPDATE_ANY_COMMENT = new FeedOwnCapability("update-any-comment");
-  public static FeedOwnCapability UPDATE_FEED = new FeedOwnCapability("update-feed");
-  public static FeedOwnCapability UPDATE_FEED_FOLLOWERS =
-      new FeedOwnCapability("update-feed-followers");
-  public static FeedOwnCapability UPDATE_FEED_MEMBERS =
-      new FeedOwnCapability("update-feed-members");
-  public static FeedOwnCapability UPDATE_OWN_ACTIVITY =
-      new FeedOwnCapability("update-own-activity");
-  public static FeedOwnCapability UPDATE_OWN_ACTIVITY_BOOKMARK =
-      new FeedOwnCapability("update-own-activity-bookmark");
-  public static FeedOwnCapability UPDATE_OWN_COMMENT = new FeedOwnCapability("update-own-comment");
+  public static final String ADD_ACTIVITY = "add-activity";
+  public static final String ADD_ACTIVITY_BOOKMARK = "add-activity-bookmark";
+  public static final String ADD_ACTIVITY_REACTION = "add-activity-reaction";
+  public static final String ADD_COMMENT = "add-comment";
+  public static final String ADD_COMMENT_REACTION = "add-comment-reaction";
+  public static final String CREATE_FEED = "create-feed";
+  public static final String DELETE_ANY_ACTIVITY = "delete-any-activity";
+  public static final String DELETE_ANY_COMMENT = "delete-any-comment";
+  public static final String DELETE_FEED = "delete-feed";
+  public static final String DELETE_OWN_ACTIVITY = "delete-own-activity";
+  public static final String DELETE_OWN_ACTIVITY_BOOKMARK = "delete-own-activity-bookmark";
+  public static final String DELETE_OWN_ACTIVITY_REACTION = "delete-own-activity-reaction";
+  public static final String DELETE_OWN_COMMENT = "delete-own-comment";
+  public static final String DELETE_OWN_COMMENT_REACTION = "delete-own-comment-reaction";
+  public static final String FOLLOW = "follow";
+  public static final String PIN_ACTIVITY = "pin-activity";
+  public static final String QUERY_FEED_MEMBERS = "query-feed-members";
+  public static final String QUERY_FOLLOWS = "query-follows";
+  public static final String READ_ACTIVITIES = "read-activities";
+  public static final String READ_FEED = "read-feed";
+  public static final String UNFOLLOW = "unfollow";
+  public static final String UPDATE_ANY_ACTIVITY = "update-any-activity";
+  public static final String UPDATE_ANY_COMMENT = "update-any-comment";
+  public static final String UPDATE_FEED = "update-feed";
+  public static final String UPDATE_FEED_FOLLOWERS = "update-feed-followers";
+  public static final String UPDATE_FEED_MEMBERS = "update-feed-members";
+  public static final String UPDATE_OWN_ACTIVITY = "update-own-activity";
+  public static final String UPDATE_OWN_ACTIVITY_BOOKMARK = "update-own-activity-bookmark";
+  public static final String UPDATE_OWN_COMMENT = "update-own-comment";
 }

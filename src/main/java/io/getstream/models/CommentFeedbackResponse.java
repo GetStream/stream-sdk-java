@@ -12,7 +12,21 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/** Response for comment feedback submission */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class Time {}
+@lombok.AllArgsConstructor
+public class CommentFeedbackResponse {
+
+  @JsonProperty("comment_id")
+  private String commentID;
+
+  @JsonProperty("duration")
+  private String duration;
+
+  @JsonProperty("hide")
+  private Boolean hide;
+}

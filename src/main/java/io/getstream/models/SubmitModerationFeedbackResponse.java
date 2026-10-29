@@ -13,6 +13,8 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -22,4 +24,20 @@ public class SubmitModerationFeedbackResponse {
 
   @JsonProperty("duration")
   private String duration;
+
+  @Nullable
+  @JsonProperty("feedback_id")
+  private String feedbackID;
+
+  @Nullable
+  @JsonProperty("review_queue_item_id")
+  private String reviewQueueItemID;
+
+  @Nullable
+  @JsonProperty("false_positive_flags")
+  private List<String> falsePositiveFlags;
+
+  @Nullable
+  @JsonProperty("feedback_item_ids")
+  private List<String> feedbackItemIds;
 }

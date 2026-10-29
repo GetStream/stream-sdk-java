@@ -348,6 +348,25 @@ public class ModerationImpl {
   }
 
   @NotNull
+  public StreamRequest<QueryModerationFeedbackResponse> queryModerationFeedback(
+      QueryModerationFeedbackRequest request) throws StreamException {
+
+    return new StreamRequest<QueryModerationFeedbackResponse>(
+        client,
+        "POST",
+        "/api/v2/moderation/feedback_items",
+        request,
+        null,
+        new TypeReference<QueryModerationFeedbackResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryModerationFeedbackResponse> queryModerationFeedback()
+      throws StreamException {
+    return queryModerationFeedback(new QueryModerationFeedbackRequest());
+  }
+
+  @NotNull
   public StreamRequest<DeleteModerationTemplateResponse> v2DeleteTemplate(
       V2DeleteTemplateRequest request) throws StreamException {
 
@@ -770,6 +789,19 @@ public class ModerationImpl {
   }
 
   @NotNull
+  public StreamRequest<RevealMediaResponse> revealMedia(RevealMediaRequest request)
+      throws StreamException {
+
+    return new StreamRequest<RevealMediaResponse>(
+        client,
+        "POST",
+        "/api/v2/moderation/reveal_media",
+        request,
+        null,
+        new TypeReference<RevealMediaResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<QueryReviewQueueResponse> queryReviewQueue(QueryReviewQueueRequest request)
       throws StreamException {
 
@@ -862,6 +894,12 @@ public class ModerationImpl {
         request,
         null,
         new TypeReference<SubmitModerationFeedbackResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<SubmitModerationFeedbackResponse> submitModerationFeedback()
+      throws StreamException {
+    return submitModerationFeedback(new SubmitModerationFeedbackRequest());
   }
 
   @NotNull

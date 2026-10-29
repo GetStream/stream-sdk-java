@@ -49,4 +49,12 @@ public class GetActivityRequest {
   @Query("include_top_level_comment_count")
   @JsonIgnore
   private Boolean IncludeTopLevelCommentCount;
+
+  @Query("include_soft_deleted_activities")
+  @JsonIgnore
+  private Boolean IncludeSoftDeletedActivities;
+
+  @Query("include_moderated_activities")
+  @JsonIgnore
+  private Boolean IncludeModeratedActivities;
 }

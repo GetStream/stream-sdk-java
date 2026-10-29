@@ -45,4 +45,8 @@ public class AnalyzeTextField {
   @Nullable
   @JsonProperty("classifications")
   private List<Classification> classifications;
+
+  @Nullable
+  @JsonProperty("detected_urls")
+  private List<DetectedURLResponse> detectedUrls;
 }

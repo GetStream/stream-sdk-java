@@ -18,7 +18,8 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Unfollow multiple feeds at once Removes multiple follows at once and broadcasts
- * FollowRemovedEvent for each one
+ * FollowRemovedEvent for each one. Deprecated: use GetOrCreateUnfollows (POST
+ * /api/v2/feeds/unfollow/batch/upsert).
  */
 @lombok.Data
 @lombok.Builder
@@ -28,6 +29,10 @@ public class UnfollowBatchRequest {
 
   @JsonProperty("follows")
   private List<UnfollowPair> follows;
+
+  @Nullable
+  @JsonProperty("async")
+  private Boolean async;
 
   @Nullable
   @JsonProperty("delete_notification_activity")

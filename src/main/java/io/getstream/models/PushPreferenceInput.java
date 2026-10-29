@@ -47,6 +47,10 @@ public class PushPreferenceInput {
   private Boolean removeDisable;
 
   @Nullable
+  @JsonProperty("remove_schedule")
+  private Boolean removeSchedule;
+
+  @Nullable
   @JsonProperty("user_id")
   private String userID;
 
@@ -57,4 +61,8 @@ public class PushPreferenceInput {
   @Nullable
   @JsonProperty("feeds_preferences")
   private FeedsPreferences feedsPreferences;
+
+  @Nullable
+  @JsonProperty("schedule")
+  private PushScheduleInput schedule;
 }

@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Submit moderation feedback Forward a moderator-supplied correction to the moderation feedback
- * pipeline. Server-side only.
+ * pipeline, optionally marking the referenced flags as false positives. Server-side only.
  */
 @lombok.Data
 @lombok.Builder
@@ -26,18 +26,13 @@ import org.jetbrains.annotations.Nullable;
 @lombok.AllArgsConstructor
 public class SubmitModerationFeedbackRequest {
 
-  @JsonProperty("message")
-  private String message;
-
-  @JsonProperty("published_at")
-  private String publishedAt;
-
-  @JsonProperty("reference")
-  private String reference;
-
   @Nullable
   @JsonProperty("channel_id")
   private String channelID;
+
+  @Nullable
+  @JsonProperty("confidence")
+  private String confidence;
 
   @Nullable
   @JsonProperty("current_recommended_action")
@@ -48,8 +43,48 @@ public class SubmitModerationFeedbackRequest {
   private String description;
 
   @Nullable
+  @JsonProperty("entity_creator_id")
+  private String entityCreatorID;
+
+  @Nullable
+  @JsonProperty("entity_id")
+  private String entityID;
+
+  @Nullable
+  @JsonProperty("entity_type")
+  private String entityType;
+
+  @Nullable
   @JsonProperty("expected_recommended_action")
   private String expectedRecommendedAction;
+
+  @Nullable
+  @JsonProperty("false_positive")
+  private Boolean falsePositive;
+
+  @Nullable
+  @JsonProperty("feedback_type")
+  private String feedbackType;
+
+  @Nullable
+  @JsonProperty("message")
+  private String message;
+
+  @Nullable
+  @JsonProperty("published_at")
+  private String publishedAt;
+
+  @Nullable
+  @JsonProperty("reference")
+  private String reference;
+
+  @Nullable
+  @JsonProperty("review_queue_item_id")
+  private String reviewQueueItemID;
+
+  @Nullable
+  @JsonProperty("user_id")
+  private String userID;
 
   @Nullable
   @JsonProperty("current_labels")
@@ -58,4 +93,12 @@ public class SubmitModerationFeedbackRequest {
   @Nullable
   @JsonProperty("expected_labels")
   private List<String> expectedLabels;
+
+  @Nullable
+  @JsonProperty("items")
+  private List<SubmitModerationFeedbackItem> items;
+
+  @Nullable
+  @JsonProperty("user")
+  private UserRequest user;
 }

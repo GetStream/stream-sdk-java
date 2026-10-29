@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** Response from AI moderation */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

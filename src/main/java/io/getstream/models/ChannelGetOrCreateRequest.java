@@ -27,6 +27,10 @@ public class ChannelGetOrCreateRequest {
   private Boolean hideForCreator;
 
   @Nullable
+  @JsonProperty("include_scheduled_messages")
+  private Boolean includeScheduledMessages;
+
+  @Nullable
   @JsonProperty("state")
   private Boolean state;
 

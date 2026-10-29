@@ -42,6 +42,9 @@ public class ChannelMemberResponse {
   @JsonProperty("updated_at")
   private Date updatedAt;
 
+  @JsonProperty("user_id")
+  private String userID;
+
   @JsonProperty("custom")
   private Map<String, Object> custom;
 
@@ -92,10 +95,6 @@ public class ChannelMemberResponse {
   @Nullable
   @JsonProperty("status")
   private String status;
-
-  @Nullable
-  @JsonProperty("user_id")
-  private String userID;
 
   @Nullable
   @JsonProperty("deleted_messages")

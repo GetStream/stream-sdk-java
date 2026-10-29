@@ -30,6 +30,14 @@ public class RuleBuilderCondition {
   private String type;
 
   @Nullable
+  @JsonProperty("app_channel_count_params")
+  private AppChannelCountParameters appChannelCountParams;
+
+  @Nullable
+  @JsonProperty("app_message_count_params")
+  private AppMessageCountParameters appMessageCountParams;
+
+  @Nullable
   @JsonProperty("call_custom_property_params")
   private CallCustomPropertyParameters callCustomPropertyParams;
 
@@ -52,6 +60,10 @@ public class RuleBuilderCondition {
   @Nullable
   @JsonProperty("content_count_rule_params")
   private ContentCountRuleParameters contentCountRuleParams;
+
+  @Nullable
+  @JsonProperty("content_country_code_params")
+  private ContentCountryCodeParameters contentCountryCodeParams;
 
   @Nullable
   @JsonProperty("content_custom_property_count_params")
@@ -82,6 +94,10 @@ public class RuleBuilderCondition {
   private ImageRuleParameters imageRuleParams;
 
   @Nullable
+  @JsonProperty("intent_rule_params")
+  private IntentRuleParameters intentRuleParams;
+
+  @Nullable
   @JsonProperty("ip_content_count_rule_params")
   private IPContentCountRuleParameters ipContentCountRuleParams;
 
@@ -108,6 +124,10 @@ public class RuleBuilderCondition {
   @Nullable
   @JsonProperty("text_rule_params")
   private TextRuleParameters textRuleParams;
+
+  @Nullable
+  @JsonProperty("user_channel_ban_count_params")
+  private UserChannelBanCountRuleParameters userChannelBanCountParams;
 
   @Nullable
   @JsonProperty("user_channel_count_params")

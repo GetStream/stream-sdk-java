@@ -129,6 +129,22 @@ public class ChannelConfigWithInfo {
   private String pushLevel;
 
   @Nullable
+  @JsonProperty("scheduled_messages_max_lead_time_seconds")
+  private Integer scheduledMessagesMaxLeadTimeSeconds;
+
+  @Nullable
+  @JsonProperty("scheduled_messages_max_per_channel")
+  private Integer scheduledMessagesMaxPerChannel;
+
+  @Nullable
+  @JsonProperty("scheduled_messages_max_per_user")
+  private Integer scheduledMessagesMaxPerUser;
+
+  @Nullable
+  @JsonProperty("scheduled_messages_min_lead_time_seconds")
+  private Integer scheduledMessagesMinLeadTimeSeconds;
+
+  @Nullable
   @JsonProperty("allowed_flag_reasons")
   private List<String> allowedFlagReasons;
 

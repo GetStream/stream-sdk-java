@@ -33,6 +33,10 @@ public class EnrichedReaction {
   private String userID;
 
   @Nullable
+  @JsonProperty("created_at")
+  private String createdAt;
+
+  @Nullable
   @JsonProperty("id")
   private String id;
 
@@ -41,16 +45,16 @@ public class EnrichedReaction {
   private String parent;
 
   @Nullable
+  @JsonProperty("updated_at")
+  private String updatedAt;
+
+  @Nullable
   @JsonProperty("target_feeds")
   private List<String> targetFeeds;
 
   @Nullable
   @JsonProperty("children_counts")
   private Map<String, Integer> childrenCounts;
-
-  @Nullable
-  @JsonProperty("created_at")
-  private Time createdAt;
 
   @Nullable
   @JsonProperty("data")
@@ -63,10 +67,6 @@ public class EnrichedReaction {
   @Nullable
   @JsonProperty("own_children")
   private Map<String, List<EnrichedReaction>> ownChildren;
-
-  @Nullable
-  @JsonProperty("updated_at")
-  private Time updatedAt;
 
   @Nullable
   @JsonProperty("user")

@@ -26,12 +26,24 @@ public class RankingConfig {
   private String type;
 
   @Nullable
+  @JsonProperty("exclude_below")
+  private Double excludeBelow;
+
+  @Nullable
   @JsonProperty("score")
   private String score;
 
   @Nullable
+  @JsonProperty("arrange")
+  private ArrangeConfig arrange;
+
+  @Nullable
   @JsonProperty("defaults")
   private Map<String, Object> defaults;
+
+  @Nullable
+  @JsonProperty("for_you")
+  private ForYouConfig forYou;
 
   @Nullable
   @JsonProperty("functions")

@@ -49,7 +49,7 @@ public interface Chat {
   public StreamRequest<GetCampaignResponse> getCampaign(@NotNull String id) throws StreamException;
 
   @NotNull
-  public StreamRequest<CampaignResponse> updateCampaign(
+  public StreamRequest<UpdateCampaignResponse> updateCampaign(
       @NotNull String id, UpdateCampaignRequest request) throws StreamException;
 
   @NotNull
@@ -61,11 +61,12 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
-  public StreamRequest<CampaignResponse> stopCampaign(
+  public StreamRequest<StopCampaignResponse> stopCampaign(
       @NotNull String id, StopCampaignRequest request) throws StreamException;
 
   @NotNull
-  public StreamRequest<CampaignResponse> stopCampaign(@NotNull String id) throws StreamException;
+  public StreamRequest<StopCampaignResponse> stopCampaign(@NotNull String id)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<QueryChannelsResponse> queryChannels(QueryChannelsRequest request)
@@ -147,6 +148,15 @@ public interface Chat {
       @NotNull String type, @NotNull String id) throws StreamException;
 
   @NotNull
+  public StreamRequest<QueryChannelBansResponse> queryChannelBans(
+      @NotNull String type, @NotNull String id, QueryChannelBansRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryChannelBansResponse> queryChannelBans(
+      @NotNull String type, @NotNull String id) throws StreamException;
+
+  @NotNull
   public StreamRequest<Response> deleteDraft(
       @NotNull String type, @NotNull String id, DeleteDraftRequest request) throws StreamException;
 
@@ -183,6 +193,15 @@ public interface Chat {
   @NotNull
   public StreamRequest<UploadChannelFileResponse> uploadChannelFile(
       @NotNull String type, @NotNull String id) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ForkChannelResponse> forkChannel(
+      @NotNull String type, @NotNull String id, ForkChannelRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ForkMessageIDsResponse> forkMessageIDs(
+      @NotNull String type, @NotNull String id, ForkMessageIDsRequest request)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<HideChannelResponse> hideChannel(
@@ -255,6 +274,11 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<RewindChannelResponse> rewindChannel(
+      @NotNull String type, @NotNull String id, RewindChannelRequest request)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<ShowChannelResponse> showChannel(
       @NotNull String type, @NotNull String id, ShowChannelRequest request) throws StreamException;
 
@@ -308,6 +332,10 @@ public interface Chat {
   @NotNull
   public StreamRequest<UpdateChannelTypeResponse> updateChannelType(
       @NotNull String name, UpdateChannelTypeRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateChannelTypeResponse> updateChannelType(@NotNull String name)
+      throws StreamException;
 
   @NotNull
   public StreamRequest<ListCommandsResponse> listCommands(ListCommandsRequest request)
@@ -595,6 +623,38 @@ public interface Chat {
 
   @NotNull
   public StreamRequest<GetRetentionPolicyRunsResponse> getRetentionPolicyRuns()
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryScheduledMessagesResponse> queryScheduledMessages(
+      QueryScheduledMessagesRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryScheduledMessagesResponse> queryScheduledMessages()
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteScheduledMessageResponse> deleteScheduledMessage(
+      @NotNull String id, DeleteScheduledMessageRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteScheduledMessageResponse> deleteScheduledMessage(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateScheduledMessageResponse> updateScheduledMessage(
+      @NotNull String id, UpdateScheduledMessageRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateScheduledMessageResponse> updateScheduledMessage(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<SendScheduledMessageNowResponse> sendScheduledMessageNow(
+      @NotNull String id, SendScheduledMessageNowRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<SendScheduledMessageNowResponse> sendScheduledMessageNow(@NotNull String id)
       throws StreamException;
 
   @NotNull

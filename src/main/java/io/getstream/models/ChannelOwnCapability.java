@@ -12,84 +12,52 @@
  */
 package io.getstream.models;
 
-/** All possibility of string to use */
-public class ChannelOwnCapability {
-  private final String value;
+/** An action that can be performed in a channel. */
+public final class ChannelOwnCapability {
+  private ChannelOwnCapability() {}
 
-  private ChannelOwnCapability(String value) {
-    this.value = value;
-  }
-
-  @Override
-  public String toString() {
-    return value;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ChannelOwnCapability that = (ChannelOwnCapability) o;
-    return value.equals(that.value);
-  }
-
-  @Override
-  public int hashCode() {
-    return value.hashCode();
-  }
-
-  public static ChannelOwnCapability BAN_CHANNEL_MEMBERS =
-      new ChannelOwnCapability("ban-channel-members");
-  public static ChannelOwnCapability CAST_POLL_VOTE = new ChannelOwnCapability("cast-poll-vote");
-  public static ChannelOwnCapability CONNECT_EVENTS = new ChannelOwnCapability("connect-events");
-  public static ChannelOwnCapability CREATE_ATTACHMENT =
-      new ChannelOwnCapability("create-attachment");
-  public static ChannelOwnCapability CREATE_MENTION = new ChannelOwnCapability("create-mention");
-  public static ChannelOwnCapability DELETE_ANY_MESSAGE =
-      new ChannelOwnCapability("delete-any-message");
-  public static ChannelOwnCapability DELETE_CHANNEL = new ChannelOwnCapability("delete-channel");
-  public static ChannelOwnCapability DELETE_OWN_MESSAGE =
-      new ChannelOwnCapability("delete-own-message");
-  public static ChannelOwnCapability DELIVERY_EVENTS = new ChannelOwnCapability("delivery-events");
-  public static ChannelOwnCapability FLAG_MESSAGE = new ChannelOwnCapability("flag-message");
-  public static ChannelOwnCapability FREEZE_CHANNEL = new ChannelOwnCapability("freeze-channel");
-  public static ChannelOwnCapability JOIN_CHANNEL = new ChannelOwnCapability("join-channel");
-  public static ChannelOwnCapability LEAVE_CHANNEL = new ChannelOwnCapability("leave-channel");
-  public static ChannelOwnCapability MUTE_CHANNEL = new ChannelOwnCapability("mute-channel");
-  public static ChannelOwnCapability NOTIFY_CHANNEL = new ChannelOwnCapability("notify-channel");
-  public static ChannelOwnCapability NOTIFY_GROUP = new ChannelOwnCapability("notify-group");
-  public static ChannelOwnCapability NOTIFY_HERE = new ChannelOwnCapability("notify-here");
-  public static ChannelOwnCapability NOTIFY_ROLE = new ChannelOwnCapability("notify-role");
-  public static ChannelOwnCapability PIN_MESSAGE = new ChannelOwnCapability("pin-message");
-  public static ChannelOwnCapability QUERY_POLL_VOTES =
-      new ChannelOwnCapability("query-poll-votes");
-  public static ChannelOwnCapability QUOTE_MESSAGE = new ChannelOwnCapability("quote-message");
-  public static ChannelOwnCapability READ_EVENTS = new ChannelOwnCapability("read-events");
-  public static ChannelOwnCapability SEARCH_MESSAGES = new ChannelOwnCapability("search-messages");
-  public static ChannelOwnCapability SEND_CUSTOM_EVENTS =
-      new ChannelOwnCapability("send-custom-events");
-  public static ChannelOwnCapability SEND_LINKS = new ChannelOwnCapability("send-links");
-  public static ChannelOwnCapability SEND_MESSAGE = new ChannelOwnCapability("send-message");
-  public static ChannelOwnCapability SEND_POLL = new ChannelOwnCapability("send-poll");
-  public static ChannelOwnCapability SEND_REACTION = new ChannelOwnCapability("send-reaction");
-  public static ChannelOwnCapability SEND_REPLY = new ChannelOwnCapability("send-reply");
-  public static ChannelOwnCapability SEND_RESTRICTED_VISIBILITY_MESSAGE =
-      new ChannelOwnCapability("send-restricted-visibility-message");
-  public static ChannelOwnCapability SEND_TYPING_EVENTS =
-      new ChannelOwnCapability("send-typing-events");
-  public static ChannelOwnCapability SET_CHANNEL_COOLDOWN =
-      new ChannelOwnCapability("set-channel-cooldown");
-  public static ChannelOwnCapability SHARE_LOCATION = new ChannelOwnCapability("share-location");
-  public static ChannelOwnCapability SKIP_SLOW_MODE = new ChannelOwnCapability("skip-slow-mode");
-  public static ChannelOwnCapability SLOW_MODE = new ChannelOwnCapability("slow-mode");
-  public static ChannelOwnCapability TYPING_EVENTS = new ChannelOwnCapability("typing-events");
-  public static ChannelOwnCapability UPDATE_ANY_MESSAGE =
-      new ChannelOwnCapability("update-any-message");
-  public static ChannelOwnCapability UPDATE_CHANNEL = new ChannelOwnCapability("update-channel");
-  public static ChannelOwnCapability UPDATE_CHANNEL_MEMBERS =
-      new ChannelOwnCapability("update-channel-members");
-  public static ChannelOwnCapability UPDATE_OWN_MESSAGE =
-      new ChannelOwnCapability("update-own-message");
-  public static ChannelOwnCapability UPDATE_THREAD = new ChannelOwnCapability("update-thread");
-  public static ChannelOwnCapability UPLOAD_FILE = new ChannelOwnCapability("upload-file");
+  public static final String BAN_CHANNEL_MEMBERS = "ban-channel-members";
+  public static final String CAST_POLL_VOTE = "cast-poll-vote";
+  public static final String CONNECT_EVENTS = "connect-events";
+  public static final String CREATE_ATTACHMENT = "create-attachment";
+  public static final String CREATE_MENTION = "create-mention";
+  public static final String DELETE_ANY_MESSAGE = "delete-any-message";
+  public static final String DELETE_CHANNEL = "delete-channel";
+  public static final String DELETE_OWN_MESSAGE = "delete-own-message";
+  public static final String DELIVERY_EVENTS = "delivery-events";
+  public static final String FLAG_MESSAGE = "flag-message";
+  public static final String FREEZE_CHANNEL = "freeze-channel";
+  public static final String JOIN_CHANNEL = "join-channel";
+  public static final String LEAVE_CHANNEL = "leave-channel";
+  public static final String MUTE_CHANNEL = "mute-channel";
+  public static final String NOTIFY_CHANNEL = "notify-channel";
+  public static final String NOTIFY_GROUP = "notify-group";
+  public static final String NOTIFY_HERE = "notify-here";
+  public static final String NOTIFY_ROLE = "notify-role";
+  public static final String PIN_MESSAGE = "pin-message";
+  public static final String QUERY_POLL_VOTES = "query-poll-votes";
+  public static final String QUOTE_MESSAGE = "quote-message";
+  public static final String READ_EVENTS = "read-events";
+  public static final String SCHEDULE_MESSAGE = "schedule-message";
+  public static final String SEARCH_MESSAGES = "search-messages";
+  public static final String SEND_CUSTOM_EVENTS = "send-custom-events";
+  public static final String SEND_LINKS = "send-links";
+  public static final String SEND_MESSAGE = "send-message";
+  public static final String SEND_POLL = "send-poll";
+  public static final String SEND_REACTION = "send-reaction";
+  public static final String SEND_REPLY = "send-reply";
+  public static final String SEND_RESTRICTED_VISIBILITY_MESSAGE =
+      "send-restricted-visibility-message";
+  public static final String SEND_TYPING_EVENTS = "send-typing-events";
+  public static final String SET_CHANNEL_COOLDOWN = "set-channel-cooldown";
+  public static final String SHARE_LOCATION = "share-location";
+  public static final String SKIP_SLOW_MODE = "skip-slow-mode";
+  public static final String SLOW_MODE = "slow-mode";
+  public static final String TYPING_EVENTS = "typing-events";
+  public static final String UPDATE_ANY_MESSAGE = "update-any-message";
+  public static final String UPDATE_CHANNEL = "update-channel";
+  public static final String UPDATE_CHANNEL_MEMBERS = "update-channel-members";
+  public static final String UPDATE_OWN_MESSAGE = "update-own-message";
+  public static final String UPDATE_THREAD = "update-thread";
+  public static final String UPLOAD_FILE = "upload-file";
 }

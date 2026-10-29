@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
+/** The push preference details. */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -45,4 +46,8 @@ public class PushPreferencesResponse {
   @Nullable
   @JsonProperty("feeds_preferences")
   private FeedsPreferencesResponse feedsPreferences;
+
+  @Nullable
+  @JsonProperty("schedule")
+  private PushScheduleResponse schedule;
 }
