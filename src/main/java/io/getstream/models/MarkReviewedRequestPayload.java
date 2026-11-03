@@ -33,4 +33,8 @@ public class MarkReviewedRequestPayload {
   @Nullable
   @JsonProperty("disable_marking_content_as_reviewed")
   private Boolean disableMarkingContentAsReviewed;
+
+  @Nullable
+  @JsonProperty("reason")
+  private String reason;
 }

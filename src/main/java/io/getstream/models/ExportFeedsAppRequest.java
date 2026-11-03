@@ -12,6 +12,10 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * Export all feeds data of the app Starts an async task that exports all feeds data of the app in
  * export format v1. Poll the task for the result
@@ -19,4 +23,14 @@ package io.getstream.models;
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class ExportFeedsAppRequest {}
+@lombok.AllArgsConstructor
+public class ExportFeedsAppRequest {
+
+  @Nullable
+  @JsonProperty("include_deleted")
+  private Boolean includeDeleted;
+
+  @Nullable
+  @JsonProperty("types")
+  private List<String> types;
+}

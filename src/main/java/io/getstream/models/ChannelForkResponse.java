@@ -46,6 +46,18 @@ public class ChannelForkResponse {
   private Map<String, String> messageIDMap;
 
   @Nullable
+  @JsonProperty("failed_reason")
+  private String failedReason;
+
+  @Nullable
+  @JsonProperty("oldest_source_message_id")
+  private String oldestSourceMessageID;
+
+  @Nullable
   @JsonProperty("task_id")
   private String taskID;
+
+  @Nullable
+  @JsonProperty("truncated")
+  private Boolean truncated;
 }

@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import org.jetbrains.annotations.Nullable;
 
 /** CallTranscription represents a transcription of a call. */
 @lombok.Data
@@ -36,4 +37,12 @@ public class CallTranscription {
 
   @JsonProperty("url")
   private String url;
+
+  @Nullable
+  @JsonProperty("language")
+  private String language;
+
+  @Nullable
+  @JsonProperty("translated")
+  private Boolean translated;
 }

@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
@@ -45,6 +46,10 @@ public class CheckRequest {
   @JsonProperty("content_published_at")
   private Date contentPublishedAt;
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @Nullable
   @JsonProperty("country_code")
   private String countryCode;
@@ -56,6 +61,10 @@ public class CheckRequest {
   @Nullable
   @JsonProperty("user_id")
   private String userID;
+
+  @Nullable
+  @JsonProperty("country_codes")
+  private List<String> countryCodes;
 
   @Nullable
   @JsonProperty("config")

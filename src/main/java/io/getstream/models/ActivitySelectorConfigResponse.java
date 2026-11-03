@@ -48,6 +48,10 @@ public class ActivitySelectorConfigResponse {
   private Integer timeBudgetMs;
 
   @Nullable
+  @JsonProperty("viewer_location_radius_km")
+  private Double viewerLocationRadiusKm;
+
+  @Nullable
   @JsonProperty("sort")
   private List<SortParamRequest> sort;
 

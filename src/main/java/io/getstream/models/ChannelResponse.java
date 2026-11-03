@@ -130,6 +130,10 @@ public class ChannelResponse {
   private UserResponse createdBy;
 
   @Nullable
+  @JsonProperty("fork")
+  private ChannelForkSummary fork;
+
+  @Nullable
   @JsonProperty("truncated_by")
   private UserResponse truncatedBy;
 }

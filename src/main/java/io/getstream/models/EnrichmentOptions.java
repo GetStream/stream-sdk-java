@@ -38,6 +38,10 @@ public class EnrichmentOptions {
   private Boolean includeRankingConfig;
 
   @Nullable
+  @JsonProperty("include_reasons")
+  private Boolean includeReasons;
+
+  @Nullable
   @JsonProperty("include_score_vars")
   private Boolean includeScoreVars;
 

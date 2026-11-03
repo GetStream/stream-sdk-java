@@ -29,4 +29,8 @@ public class RestoreActionRequestPayload {
   @Nullable
   @JsonProperty("decision_reason")
   private String decisionReason;
+
+  @Nullable
+  @JsonProperty("reason")
+  private String reason;
 }

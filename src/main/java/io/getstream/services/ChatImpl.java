@@ -196,6 +196,24 @@ public class ChatImpl {
   }
 
   @NotNull
+  public StreamRequest<QueryDeletedChannelsResponse> queryDeletedChannels(
+      QueryDeletedChannelsRequest request) throws StreamException {
+
+    return new StreamRequest<QueryDeletedChannelsResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/channels/deleted",
+        request,
+        null,
+        new TypeReference<QueryDeletedChannelsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryDeletedChannelsResponse> queryDeletedChannels() throws StreamException {
+    return queryDeletedChannels(new QueryDeletedChannelsRequest());
+  }
+
+  @NotNull
   public StreamRequest<MarkDeliveredResponse> markDelivered(MarkDeliveredRequest request)
       throws StreamException {
 
@@ -1026,6 +1044,51 @@ public class ChatImpl {
         request,
         null,
         new TypeReference<ExportChannelsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetHistoryWindowTeamsResponse> getHistoryWindowTeams(
+      GetHistoryWindowTeamsRequest request) throws StreamException {
+
+    return new StreamRequest<GetHistoryWindowTeamsResponse>(
+        client,
+        "GET",
+        "/api/v2/chat/history_window/teams",
+        request,
+        null,
+        new TypeReference<GetHistoryWindowTeamsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetHistoryWindowTeamsResponse> getHistoryWindowTeams()
+      throws StreamException {
+    return getHistoryWindowTeams(new GetHistoryWindowTeamsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<SetHistoryWindowTeamsResponse> setHistoryWindowTeams(
+      SetHistoryWindowTeamsRequest request) throws StreamException {
+
+    return new StreamRequest<SetHistoryWindowTeamsResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/history_window/teams",
+        request,
+        null,
+        new TypeReference<SetHistoryWindowTeamsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteHistoryWindowTeamsResponse> deleteHistoryWindowTeams(
+      DeleteHistoryWindowTeamsRequest request) throws StreamException {
+
+    return new StreamRequest<DeleteHistoryWindowTeamsResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/history_window/teams/delete",
+        request,
+        null,
+        new TypeReference<DeleteHistoryWindowTeamsResponse>() {});
   }
 
   @NotNull

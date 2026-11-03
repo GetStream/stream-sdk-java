@@ -87,6 +87,10 @@ public class ConfigResponse {
   private BlockListConfig blockListConfig;
 
   @Nullable
+  @JsonProperty("engine")
+  private ModerationEngineConfigResponse engine;
+
+  @Nullable
   @JsonProperty("flood_config")
   private FloodConfig floodConfig;
 

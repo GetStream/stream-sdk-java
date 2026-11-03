@@ -203,6 +203,8 @@ public class WebhookTest {
     "feeds.comment.reaction.updated, CommentReactionUpdatedEvent",
     "feeds.comment.restored, CommentRestoredEvent",
     "feeds.comment.updated, CommentUpdatedEvent",
+    "feeds.export.error, AsyncExportErrorEvent",
+    "feeds.export.success, AsyncExportFeedsSuccessEvent",
     "feeds.feed.created, FeedCreatedEvent",
     "feeds.feed.deleted, FeedDeletedEvent",
     "feeds.feed.updated, FeedUpdatedEvent",
