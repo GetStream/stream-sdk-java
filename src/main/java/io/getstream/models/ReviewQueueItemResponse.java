@@ -110,6 +110,10 @@ public class ReviewQueueItemResponse {
   private Date reviewedAt;
 
   @Nullable
+  @JsonProperty("country_codes")
+  private List<String> countryCodes;
+
+  @Nullable
   @JsonProperty("false_positive_flags")
   private List<String> falsePositiveFlags;
 

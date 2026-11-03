@@ -84,6 +84,13 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<QueryDeletedChannelsResponse> queryDeletedChannels(
+      QueryDeletedChannelsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryDeletedChannelsResponse> queryDeletedChannels() throws StreamException;
+
+  @NotNull
   public StreamRequest<MarkDeliveredResponse> markDelivered(MarkDeliveredRequest request)
       throws StreamException;
 
@@ -377,6 +384,22 @@ public interface Chat {
   @NotNull
   public StreamRequest<ExportChannelsResponse> exportChannels(ExportChannelsRequest request)
       throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetHistoryWindowTeamsResponse> getHistoryWindowTeams(
+      GetHistoryWindowTeamsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetHistoryWindowTeamsResponse> getHistoryWindowTeams()
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<SetHistoryWindowTeamsResponse> setHistoryWindowTeams(
+      SetHistoryWindowTeamsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteHistoryWindowTeamsResponse> deleteHistoryWindowTeams(
+      DeleteHistoryWindowTeamsRequest request) throws StreamException;
 
   @NotNull
   public StreamRequest<MembersResponse> queryMembers(QueryMembersRequest request)

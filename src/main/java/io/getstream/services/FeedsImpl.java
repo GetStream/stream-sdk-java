@@ -971,6 +971,26 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<CancelExportFeedsResponse> cancelExportFeeds(
+      @NotNull String taskID, CancelExportFeedsRequest request) throws StreamException {
+    var pathParams = Map.of("task_id", taskID);
+
+    return new StreamRequest<CancelExportFeedsResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/export/{task_id}/cancel",
+        request,
+        pathParams,
+        new TypeReference<CancelExportFeedsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<CancelExportFeedsResponse> cancelExportFeeds(@NotNull String taskID)
+      throws StreamException {
+    return cancelExportFeeds(taskID, new CancelExportFeedsRequest());
+  }
+
+  @NotNull
   public StreamRequest<ExportFeedsResponse> exportFeedsByType(
       @NotNull String type, ExportFeedsByTypeRequest request) throws StreamException {
     var pathParams = Map.of("type", type);

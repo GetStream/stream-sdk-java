@@ -25,6 +25,7 @@ import io.getstream.models.AppealRejectedEvent;
 import io.getstream.models.AsyncBulkImageModerationEvent;
 import io.getstream.models.AsyncExportChannelsEvent;
 import io.getstream.models.AsyncExportErrorEvent;
+import io.getstream.models.AsyncExportFeedsSuccessEvent;
 import io.getstream.models.AsyncExportLabelResultsEvent;
 import io.getstream.models.AsyncExportModerationLogsEvent;
 import io.getstream.models.AsyncExportReviewQueueEvent;
@@ -335,6 +336,8 @@ public class Webhook {
     public static final String FEEDS_COMMENT_REACTION_UPDATED = "feeds.comment.reaction.updated";
     public static final String FEEDS_COMMENT_RESTORED = "feeds.comment.restored";
     public static final String FEEDS_COMMENT_UPDATED = "feeds.comment.updated";
+    public static final String FEEDS_EXPORT_ERROR = "feeds.export.error";
+    public static final String FEEDS_EXPORT_SUCCESS = "feeds.export.success";
     public static final String FEEDS_FEED_CREATED = "feeds.feed.created";
     public static final String FEEDS_FEED_DELETED = "feeds.feed.deleted";
     public static final String FEEDS_FEED_UPDATED = "feeds.feed.updated";
@@ -729,6 +732,10 @@ public class Webhook {
         return CommentRestoredEvent.class;
       case "feeds.comment.updated":
         return CommentUpdatedEvent.class;
+      case "feeds.export.error":
+        return AsyncExportErrorEvent.class;
+      case "feeds.export.success":
+        return AsyncExportFeedsSuccessEvent.class;
       case "feeds.feed.created":
         return FeedCreatedEvent.class;
       case "feeds.feed.deleted":

@@ -82,6 +82,10 @@ public class UpsertConfigRequest {
   private AITextConfig bodyguardConfig;
 
   @Nullable
+  @JsonProperty("engine")
+  private ModerationEngineConfigRequest engine;
+
+  @Nullable
   @JsonProperty("flood_config")
   private FloodConfig floodConfig;
 

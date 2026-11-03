@@ -17,7 +17,12 @@ import java.util.Date;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
-/** Emitted on an agent channel once a fork of it into a new agent channel is complete. */
+/**
+ * Emitted once a fork of an agent channel into a new agent channel is finished, complete or failed
+ * (`fork.status` is `completed` or `failed`): on the source channel, and on the fork, whose members
+ * are told over WebSocket so a client showing the fork while it was backfilling reads it again.
+ * `cid` is the channel the event was sent on; `fork` names both.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

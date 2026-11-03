@@ -32,6 +32,10 @@ public class ModerationPayload {
   private List<String> audios;
 
   @Nullable
+  @JsonProperty("country_codes")
+  private List<String> countryCodes;
+
+  @Nullable
   @JsonProperty("image_ordered_keys")
   private List<String> imageOrderedKeys;
 

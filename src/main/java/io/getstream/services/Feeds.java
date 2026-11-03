@@ -374,6 +374,14 @@ public interface Feeds {
   public StreamRequest<ExportFeedsResponse> exportFeedsApp() throws StreamException;
 
   @NotNull
+  public StreamRequest<CancelExportFeedsResponse> cancelExportFeeds(
+      @NotNull String taskID, CancelExportFeedsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<CancelExportFeedsResponse> cancelExportFeeds(@NotNull String taskID)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<ExportFeedsResponse> exportFeedsByType(
       @NotNull String type, ExportFeedsByTypeRequest request) throws StreamException;
 

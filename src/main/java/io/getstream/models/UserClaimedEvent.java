@@ -19,7 +19,9 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * This event is sent when a regular user claims a guest user. The guest&#39;s channels, messages
- * and reactions are then moved to the claiming user.
+ * and reactions are then moved to the claiming user. Webhooks receive it when the claim is made;
+ * the claiming user&#39;s websocket connections receive it when the move has completed, as the
+ * signal to reload channels and messages.
  */
 @lombok.Data
 @lombok.Builder

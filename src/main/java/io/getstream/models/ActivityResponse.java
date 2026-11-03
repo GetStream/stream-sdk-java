@@ -165,6 +165,10 @@ public class ActivityResponse {
   private List<ShareResponse> latestShares;
 
   @Nullable
+  @JsonProperty("reasons")
+  private List<String> reasons;
+
+  @Nullable
   @JsonProperty("current_feed")
   private FeedResponse currentFeed;
 

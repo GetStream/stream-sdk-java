@@ -20,11 +20,12 @@ import org.jetbrains.annotations.Nullable;
  * copy of the messages a client sees up to it, itself included, with their replies up to it. The
  * source channel is not changed. Reactions, pins, polls, read state, mutes, reminders, moderation
  * flags and edit history are not copied. Fork only at a message the agent has finished writing. The
- * request copies the newest 100 messages and their replies, so the fork is usable when it returns;
- * older history is copied by a background task (`fork.status` is `backfilling`, `fork.task_id`
- * names the task) and `channel.forked` is sent once every message is copied. A retry with the same
- * channel ID and message returns the fork. Only available for the `agent` channel type. Sends
- * events: - channel.created - channel.forked
+ * request copies the newest 100 messages and their replies, so the fork is usable when it returns
+ * (fewer when the newest 1,000 messages are mostly deleted or hidden); older history is copied by a
+ * background task (`fork.status` is `backfilling`, `fork.task_id` names the task) and
+ * `channel.forked` is sent once every message is copied. A retry with the same channel ID and
+ * message returns the fork. Only available for the `agent` channel type. Sends events: -
+ * channel.created - channel.forked
  */
 @lombok.Data
 @lombok.Builder

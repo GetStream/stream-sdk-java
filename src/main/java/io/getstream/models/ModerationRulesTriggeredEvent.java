@@ -58,12 +58,20 @@ public class ModerationRulesTriggeredEvent {
   private String category;
 
   @Nullable
+  @JsonProperty("channel_cid")
+  private String channelCid;
+
+  @Nullable
   @JsonProperty("received_at")
   private Date receivedAt;
 
   @Nullable
   @JsonProperty("review_queue_item_id")
   private String reviewQueueItemID;
+
+  @Nullable
+  @JsonProperty("severity")
+  private String severity;
 
   @Nullable
   @JsonProperty("threshold")
@@ -80,6 +88,10 @@ public class ModerationRulesTriggeredEvent {
   @Nullable
   @JsonProperty("matched_contents")
   private List<MatchedContent> matchedContents;
+
+  @Nullable
+  @JsonProperty("matched_labels")
+  private List<String> matchedLabels;
 
   @Nullable
   @JsonProperty("matched_user_ids")

@@ -31,6 +31,10 @@ public class BlockListConfig {
   private Boolean enabled;
 
   @Nullable
+  @JsonProperty("explicit_urls_only")
+  private Boolean explicitUrlsOnly;
+
+  @Nullable
   @JsonProperty("match_substring")
   private Boolean matchSubstring;
 

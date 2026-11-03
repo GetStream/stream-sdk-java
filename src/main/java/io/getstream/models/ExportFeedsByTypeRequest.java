@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -36,6 +37,14 @@ public class ExportFeedsByTypeRequest {
   private Date createdAtTo;
 
   @Nullable
+  @JsonProperty("include_deleted")
+  private Boolean includeDeleted;
+
+  @Nullable
   @JsonProperty("user_id")
   private String userID;
+
+  @Nullable
+  @JsonProperty("activity_ids")
+  private List<String> activityIds;
 }
