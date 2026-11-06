@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.1.0](https://github.com/GetStream/stream-sdk-java/compare/11.0.0...11.1.0) (2026-11-06)
+
+
+### Features
+
+* add activity_ids, include_deleted to ExportFeedsByTypeRequest ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add cancelExportFeeds ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add channel_cid, matched_labels, severity to ModerationRulesTriggeredEvent ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add country_codes to AnalyzeRequest ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add country_codes to CheckRequest ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add country_codes to ModerationPayload ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add country_codes to ReviewQueueItemResponse ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add deleteHistoryWindowTeams ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add engine to ConfigResponse ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add engine to UpsertConfigRequest ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add explicit_urls_only to BlockListConfig ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add failed_reason, oldest_source_message_id, truncated to ChannelForkResponse ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add failed_reason, oldest_source_message_id, truncated to ChannelForkSummary ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add fork to ChannelResponse ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add getHistoryWindowTeams ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add include_deleted, types to ExportFeedsAppRequest ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add include_reasons to EnrichmentOptions ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add language, translated to CallTranscription ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add ocr_severity_rules to AIImageConfig ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add queryDeletedChannels ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add reason to MarkReviewedRequestPayload ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add reason to RestoreActionRequestPayload ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add reasons to ActivityResponse ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add setHistoryWindowTeams ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add viewer_location_radius_km to ActivitySelectorConfig ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add viewer_location_radius_km to ActivitySelectorConfigResponse ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+* add webhook event AsyncExportFeedsSuccessEvent ([f81c6da](https://github.com/GetStream/stream-sdk-java/commit/f81c6da8240c1811d8474584ee6ebb424a3f29ed))
+
 ## [11.0.0](https://github.com/GetStream/stream-sdk-java/compare/10.5.0...11.0.0) (2026-10-29)
 
 
