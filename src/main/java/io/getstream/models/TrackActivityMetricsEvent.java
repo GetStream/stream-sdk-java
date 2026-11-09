@@ -31,4 +31,16 @@ public class TrackActivityMetricsEvent {
   @Nullable
   @JsonProperty("delta")
   private Integer delta;
+
+  @Nullable
+  @JsonProperty("dwell_ms")
+  private Integer dwellMs;
+
+  @Nullable
+  @JsonProperty("position")
+  private Integer position;
+
+  @Nullable
+  @JsonProperty("request_id")
+  private String requestID;
 }

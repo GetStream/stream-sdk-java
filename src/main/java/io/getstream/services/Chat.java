@@ -687,6 +687,13 @@ public interface Chat {
   public StreamRequest<SearchResponse> search() throws StreamException;
 
   @NotNull
+  public StreamRequest<SearchAllResponse> searchAll(SearchAllRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<SearchAllResponse> searchAll() throws StreamException;
+
+  @NotNull
   public StreamRequest<CreateSegmentResponse> createSegment(CreateSegmentRequest request)
       throws StreamException;
 

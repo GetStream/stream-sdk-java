@@ -40,6 +40,10 @@ public class UserBannedEvent {
   private String type;
 
   @Nullable
+  @JsonProperty("ban_from_future_channels")
+  private Boolean banFromFutureChannels;
+
+  @Nullable
   @JsonProperty("channel_id")
   private String channelID;
 

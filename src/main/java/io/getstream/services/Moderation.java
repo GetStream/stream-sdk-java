@@ -105,6 +105,10 @@ public interface Moderation {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<SaveConfigVersionResponse> saveConfigVersion(
+      SaveConfigVersionRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<DeleteModerationConfigResponse> deleteConfig(
       @NotNull String key, DeleteConfigRequest request) throws StreamException;
 
@@ -118,6 +122,32 @@ public interface Moderation {
 
   @NotNull
   public StreamRequest<GetConfigResponse> getConfig(@NotNull String key) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListConfigVersionsResponse> listConfigVersions(
+      @NotNull String key, ListConfigVersionsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListConfigVersionsResponse> listConfigVersions(@NotNull String key)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetConfigVersionResponse> getConfigVersion(
+      @NotNull String key, @NotNull Integer version, GetConfigVersionRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetConfigVersionResponse> getConfigVersion(
+      @NotNull String key, @NotNull Integer version) throws StreamException;
+
+  @NotNull
+  public StreamRequest<PublishConfigVersionResponse> publishConfigVersion(
+      @NotNull String key, @NotNull Integer version, PublishConfigVersionRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<PublishConfigVersionResponse> publishConfigVersion(
+      @NotNull String key, @NotNull Integer version) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryModerationConfigsResponse> queryModerationConfigs(

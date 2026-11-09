@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
@@ -71,6 +72,10 @@ public class CallSettingsResponse {
 
   @JsonProperty("video")
   private VideoSettingsResponse video;
+
+  @Nullable
+  @JsonProperty("extra_opts")
+  private Map<String, Object> extraOpts;
 
   @Nullable
   @JsonProperty("ingress")

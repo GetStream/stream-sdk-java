@@ -141,6 +141,10 @@ public class ActivityResponse {
   private String moderationAction;
 
   @Nullable
+  @JsonProperty("position")
+  private Integer position;
+
+  @Nullable
   @JsonProperty("selector_source")
   private String selectorSource;
 

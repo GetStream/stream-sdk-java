@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -31,4 +32,8 @@ public class RetentionRunResponse {
 
   @JsonProperty("stats")
   private RunStats stats;
+
+  @Nullable
+  @JsonProperty("channel_type")
+  private String channelType;
 }

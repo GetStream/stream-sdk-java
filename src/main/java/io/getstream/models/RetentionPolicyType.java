@@ -17,5 +17,6 @@ public final class RetentionPolicyType {
   private RetentionPolicyType() {}
 
   public static final String INACTIVE_CHANNELS = "inactive-channels";
+  public static final String INACTIVE_CHANNELS_BY_TYPE = "inactive-channels-by-type";
   public static final String OLD_MESSAGES = "old-messages";
 }

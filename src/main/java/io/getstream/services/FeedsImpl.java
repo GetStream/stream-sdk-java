@@ -1328,6 +1328,30 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<GetNotificationStatusResponse> getNotificationStatus(
+      @NotNull String feedGroupID, @NotNull String feedID, GetNotificationStatusRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "feed_group_id", feedGroupID,
+            "feed_id", feedID);
+
+    return new StreamRequest<GetNotificationStatusResponse>(
+        client,
+        "GET",
+        "/api/v2/feeds/feed_groups/{feed_group_id}/feeds/{feed_id}/notification_status",
+        request,
+        pathParams,
+        new TypeReference<GetNotificationStatusResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetNotificationStatusResponse> getNotificationStatus(
+      @NotNull String feedGroupID, @NotNull String feedID) throws StreamException {
+    return getNotificationStatus(feedGroupID, feedID, new GetNotificationStatusRequest());
+  }
+
+  @NotNull
   public StreamRequest<QueryPinnedActivitiesResponse> queryPinnedActivities(
       @NotNull String feedGroupID, @NotNull String feedID, QueryPinnedActivitiesRequest request)
       throws StreamException {

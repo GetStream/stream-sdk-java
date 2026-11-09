@@ -12,7 +12,11 @@
  */
 package io.getstream.models;
 
-/** Get retention policy Returns all retention policies configured for the app. Server-side only. */
+/**
+ * Get retention policy Returns all retention policies configured for the app. The per-channel-type
+ * rules of the &#39;inactive-channels-by-type&#39; policy are returned in
+ * &#39;channel_type_rules&#39; rather than in &#39;policies&#39;. Server-side only.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor

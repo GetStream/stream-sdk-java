@@ -1843,6 +1843,24 @@ public class ChatImpl {
   }
 
   @NotNull
+  public StreamRequest<SearchAllResponse> searchAll(SearchAllRequest request)
+      throws StreamException {
+
+    return new StreamRequest<SearchAllResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/search/all",
+        request,
+        null,
+        new TypeReference<SearchAllResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<SearchAllResponse> searchAll() throws StreamException {
+    return searchAll(new SearchAllRequest());
+  }
+
+  @NotNull
   public StreamRequest<CreateSegmentResponse> createSegment(CreateSegmentRequest request)
       throws StreamException {
 

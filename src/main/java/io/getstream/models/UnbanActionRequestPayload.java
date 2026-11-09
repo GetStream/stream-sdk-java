@@ -35,6 +35,10 @@ public class UnbanActionRequestPayload {
   private Boolean removeFutureChannelsBan;
 
   @Nullable
+  @JsonProperty("restore_shadowed_messages")
+  private Boolean restoreShadowedMessages;
+
+  @Nullable
   @JsonProperty("target_user_id")
   private String targetUserID;
 }
