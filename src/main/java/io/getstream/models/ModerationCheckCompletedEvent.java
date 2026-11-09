@@ -48,4 +48,8 @@ public class ModerationCheckCompletedEvent {
   @Nullable
   @JsonProperty("received_at")
   private Date receivedAt;
+
+  @Nullable
+  @JsonProperty("moderation_payload")
+  private ModerationPayloadResponse moderationPayload;
 }

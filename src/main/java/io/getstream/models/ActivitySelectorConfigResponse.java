@@ -36,6 +36,18 @@ public class ActivitySelectorConfigResponse {
   private String cutoffWindow;
 
   @Nullable
+  @JsonProperty("friend_type")
+  private String friendType;
+
+  @Nullable
+  @JsonProperty("max_friends")
+  private Integer maxFriends;
+
+  @Nullable
+  @JsonProperty("min_friends")
+  private Integer minFriends;
+
+  @Nullable
   @JsonProperty("min_popularity")
   private Integer minPopularity;
 
@@ -50,6 +62,10 @@ public class ActivitySelectorConfigResponse {
   @Nullable
   @JsonProperty("viewer_location_radius_km")
   private Double viewerLocationRadiusKm;
+
+  @Nullable
+  @JsonProperty("reaction_types")
+  private List<String> reactionTypes;
 
   @Nullable
   @JsonProperty("sort")

@@ -509,6 +509,15 @@ public interface Feeds {
       @NotNull String feedGroupID, @NotNull String feedID) throws StreamException;
 
   @NotNull
+  public StreamRequest<GetNotificationStatusResponse> getNotificationStatus(
+      @NotNull String feedGroupID, @NotNull String feedID, GetNotificationStatusRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetNotificationStatusResponse> getNotificationStatus(
+      @NotNull String feedGroupID, @NotNull String feedID) throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryPinnedActivitiesResponse> queryPinnedActivities(
       @NotNull String feedGroupID, @NotNull String feedID, QueryPinnedActivitiesRequest request)
       throws StreamException;

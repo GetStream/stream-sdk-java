@@ -19,6 +19,7 @@ public final class ActivitySelectorType {
   public static final String CURRENT_FEED = "current_feed";
   public static final String FOLLOWING = "following";
   public static final String FOLLOW_SUGGESTION = "follow_suggestion";
+  public static final String FRIENDS_ENGAGED = "friends_engaged";
   public static final String INTEREST = "interest";
   public static final String POPULAR = "popular";
   public static final String PROXIMITY = "proximity";

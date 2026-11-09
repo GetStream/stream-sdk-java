@@ -58,6 +58,10 @@ public class GetOrCreateFeedResponse {
   private String prev;
 
   @Nullable
+  @JsonProperty("request_id")
+  private String requestID;
+
+  @Nullable
   @JsonProperty("degraded_selectors")
   private List<String> degradedSelectors;
 

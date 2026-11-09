@@ -28,4 +28,12 @@ public class ForYouConfig {
   @Nullable
   @JsonProperty("preset")
   private String preset;
+
+  @Nullable
+  @JsonProperty("dwell")
+  private ForYouDwellConfig dwell;
+
+  @Nullable
+  @JsonProperty("exploration")
+  private ForYouExplorationConfig exploration;
 }

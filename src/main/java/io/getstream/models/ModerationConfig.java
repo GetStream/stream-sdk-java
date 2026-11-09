@@ -36,6 +36,10 @@ public class ModerationConfig {
   private String key;
 
   @Nullable
+  @JsonProperty("published_version")
+  private Integer publishedVersion;
+
+  @Nullable
   @JsonProperty("team")
   private String team;
 

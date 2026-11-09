@@ -13,8 +13,14 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
-/** Set retention policy Creates or updates a retention policy for the app. Server-side only. */
+/**
+ * Set retention policy Creates or updates a retention policy for the app. The
+ * &#39;inactive-channels-by-type&#39; policy sets the &#39;max_age_hours&#39; rule of the channel
+ * type given by &#39;channel_type&#39;, which overrides &#39;inactive-channels&#39; for that type;
+ * its response carries the saved rule in &#39;channel_type_rule&#39;. Server-side only.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -26,4 +32,8 @@ public class SetRetentionPolicyRequest {
 
   @JsonProperty("policy")
   private String policy;
+
+  @Nullable
+  @JsonProperty("channel_type")
+  private String channelType;
 }

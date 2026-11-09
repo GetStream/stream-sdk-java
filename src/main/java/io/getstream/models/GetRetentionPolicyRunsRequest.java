@@ -20,7 +20,13 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Get retention policy runs Returns filtered and sorted retention cleanup run history for the app.
  * Supports filter_conditions on &#39;policy&#39; (possible values: &#39;old-messages&#39;,
- * &#39;inactive-channels&#39;) and &#39;date&#39; fields. Server-side only.
+ * &#39;inactive-channels&#39;, &#39;inactive-channels@type:&lt;channel type&gt;&#39;,
+ * &#39;inactive-channels@blanket:&lt;channel type&gt;&#39;) and &#39;date&#39; fields. Once the app
+ * has a per-channel-type rule, inactive-channels runs are recorded per channel type, under
+ * &#39;inactive-channels@type:&lt;channel type&gt;&#39; for a type with its own rule and
+ * &#39;inactive-channels@blanket:&lt;channel type&gt;&#39; for a type covered by the app-wide rule,
+ * and &#39;policy&#39;: &#39;inactive-channels&#39; no longer matches new runs; filter with
+ * &#39;$in&#39; over the pass names of your channel types. Server-side only.
  */
 @lombok.Data
 @lombok.Builder

@@ -13,8 +13,13 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
-/** Delete retention policy Removes a retention policy for the app. Server-side only. */
+/**
+ * Delete retention policy Removes a retention policy for the app. For the
+ * &#39;inactive-channels-by-type&#39; policy, &#39;channel_type&#39; selects the rule to remove.
+ * Server-side only.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -23,4 +28,8 @@ public class DeleteRetentionPolicyRequest {
 
   @JsonProperty("policy")
   private String policy;
+
+  @Nullable
+  @JsonProperty("channel_type")
+  private String channelType;
 }

@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.Nullable;
 
 /** Basic response information */
 @lombok.Data
@@ -26,4 +27,8 @@ public class SetRetentionPolicyResponse {
 
   @JsonProperty("policy")
   private RetentionPolicy policy;
+
+  @Nullable
+  @JsonProperty("channel_type_rule")
+  private ChannelTypeRuleResponse channelTypeRule;
 }

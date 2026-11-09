@@ -133,6 +133,16 @@ public class Feed {
     return this.rejectFeedMemberInvite(new RejectFeedMemberInviteRequest());
   }
 
+  public StreamResponse<GetNotificationStatusResponse> getNotificationStatus(
+      GetNotificationStatusRequest request) throws StreamException {
+    return service.getNotificationStatus(this.feedGroup, this.feedID, request).execute();
+  }
+
+  public StreamResponse<GetNotificationStatusResponse> getNotificationStatus()
+      throws StreamException {
+    return this.getNotificationStatus(new GetNotificationStatusRequest());
+  }
+
   public StreamResponse<QueryPinnedActivitiesResponse> queryPinnedActivities(
       QueryPinnedActivitiesRequest request) throws StreamException {
     return service.queryPinnedActivities(this.feedGroup, this.feedID, request).execute();

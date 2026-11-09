@@ -12,8 +12,21 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.annotations.Query;
+
 /** List policy test sets */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class ListPolicyTestSetsRequest {}
+@lombok.AllArgsConstructor
+public class ListPolicyTestSetsRequest {
+
+  @Query("limit")
+  @JsonIgnore
+  private Integer Limit;
+
+  @Query("offset")
+  @JsonIgnore
+  private Integer Offset;
+}

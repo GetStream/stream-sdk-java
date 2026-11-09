@@ -277,6 +277,19 @@ public class ModerationImpl {
   }
 
   @NotNull
+  public StreamRequest<SaveConfigVersionResponse> saveConfigVersion(
+      SaveConfigVersionRequest request) throws StreamException {
+
+    return new StreamRequest<SaveConfigVersionResponse>(
+        client,
+        "POST",
+        "/api/v2/moderation/config/versions",
+        request,
+        null,
+        new TypeReference<SaveConfigVersionResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<DeleteModerationConfigResponse> deleteConfig(
       @NotNull String key, DeleteConfigRequest request) throws StreamException {
     var pathParams = Map.of("key", key);
@@ -313,6 +326,74 @@ public class ModerationImpl {
   @NotNull
   public StreamRequest<GetConfigResponse> getConfig(@NotNull String key) throws StreamException {
     return getConfig(key, new GetConfigRequest());
+  }
+
+  @NotNull
+  public StreamRequest<ListConfigVersionsResponse> listConfigVersions(
+      @NotNull String key, ListConfigVersionsRequest request) throws StreamException {
+    var pathParams = Map.of("key", key);
+
+    return new StreamRequest<ListConfigVersionsResponse>(
+        client,
+        "GET",
+        "/api/v2/moderation/config/{key}/versions",
+        request,
+        pathParams,
+        new TypeReference<ListConfigVersionsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ListConfigVersionsResponse> listConfigVersions(@NotNull String key)
+      throws StreamException {
+    return listConfigVersions(key, new ListConfigVersionsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GetConfigVersionResponse> getConfigVersion(
+      @NotNull String key, @NotNull Integer version, GetConfigVersionRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "key", key,
+            "version", version);
+
+    return new StreamRequest<GetConfigVersionResponse>(
+        client,
+        "GET",
+        "/api/v2/moderation/config/{key}/versions/{version}",
+        request,
+        pathParams,
+        new TypeReference<GetConfigVersionResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetConfigVersionResponse> getConfigVersion(
+      @NotNull String key, @NotNull Integer version) throws StreamException {
+    return getConfigVersion(key, version, new GetConfigVersionRequest());
+  }
+
+  @NotNull
+  public StreamRequest<PublishConfigVersionResponse> publishConfigVersion(
+      @NotNull String key, @NotNull Integer version, PublishConfigVersionRequest request)
+      throws StreamException {
+    var pathParams =
+        Map.of(
+            "key", key,
+            "version", version);
+
+    return new StreamRequest<PublishConfigVersionResponse>(
+        client,
+        "POST",
+        "/api/v2/moderation/config/{key}/versions/{version}/publish",
+        request,
+        pathParams,
+        new TypeReference<PublishConfigVersionResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<PublishConfigVersionResponse> publishConfigVersion(
+      @NotNull String key, @NotNull Integer version) throws StreamException {
+    return publishConfigVersion(key, version, new PublishConfigVersionRequest());
   }
 
   @NotNull
