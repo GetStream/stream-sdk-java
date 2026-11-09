@@ -352,10 +352,7 @@ public class ModerationImpl {
   public StreamRequest<GetConfigVersionResponse> getConfigVersion(
       @NotNull String key, @NotNull Integer version, GetConfigVersionRequest request)
       throws StreamException {
-    var pathParams =
-        Map.of(
-            "key", key,
-            "version", version);
+    var pathParams = Map.of("key", key, "version", String.valueOf(version));
 
     return new StreamRequest<GetConfigVersionResponse>(
         client,
@@ -376,10 +373,7 @@ public class ModerationImpl {
   public StreamRequest<PublishConfigVersionResponse> publishConfigVersion(
       @NotNull String key, @NotNull Integer version, PublishConfigVersionRequest request)
       throws StreamException {
-    var pathParams =
-        Map.of(
-            "key", key,
-            "version", version);
+    var pathParams = Map.of("key", key, "version", String.valueOf(version));
 
     return new StreamRequest<PublishConfigVersionResponse>(
         client,
