@@ -79,6 +79,10 @@ public class EventHook {
   @JsonProperty("sns_region")
   private String snsRegion;
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @Nullable
   @JsonProperty("sns_role_arn")
   private String snsRoleArn;
@@ -111,6 +115,10 @@ public class EventHook {
   @JsonProperty("sqs_region")
   private String sqsRegion;
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @Nullable
   @JsonProperty("sqs_role_arn")
   private String sqsRoleArn;

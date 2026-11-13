@@ -12,8 +12,21 @@
  */
 package io.getstream.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.getstream.annotations.Query;
+
 /** Get import Gets an import */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
-public class ListImportsRequest {}
+@lombok.AllArgsConstructor
+public class ListImportsRequest {
+
+  @Query("limit")
+  @JsonIgnore
+  private Integer Limit;
+
+  @Query("offset")
+  @JsonIgnore
+  private Integer Offset;
+}

@@ -22,6 +22,10 @@ import org.jetbrains.annotations.Nullable;
 public class ContentCustomPropertyParameters {
 
   @Nullable
+  @JsonProperty("expected_value")
+  private Object expectedValue;
+
+  @Nullable
   @JsonProperty("operator")
   private String operator;
 

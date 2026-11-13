@@ -54,6 +54,24 @@ public interface Moderation {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<ListAgentFeedbackResponse> listAgentFeedback(
+      ListAgentFeedbackRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListAgentFeedbackResponse> listAgentFeedback() throws StreamException;
+
+  @NotNull
+  public StreamRequest<SubmitAgentFeedbackResponse> submitAgentFeedback(
+      SubmitAgentFeedbackRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetAgentReviewStatusResponse> getAgentReviewStatus(
+      GetAgentReviewStatusRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetAgentReviewStatusResponse> getAgentReviewStatus() throws StreamException;
+
+  @NotNull
   public StreamRequest<AnalyzeResponse> analyze(AnalyzeRequest request) throws StreamException;
 
   @NotNull
@@ -333,6 +351,13 @@ public interface Moderation {
 
   @NotNull
   public StreamRequest<QueryReviewQueueResponse> queryReviewQueue() throws StreamException;
+
+  @NotNull
+  public StreamRequest<CountReviewQueueResponse> countReviewQueue(CountReviewQueueRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<CountReviewQueueResponse> countReviewQueue() throws StreamException;
 
   @NotNull
   public StreamRequest<GetReviewQueueItemResponse> getReviewQueueItem(

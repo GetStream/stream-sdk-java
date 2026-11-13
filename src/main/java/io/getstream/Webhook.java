@@ -217,6 +217,13 @@ public class Webhook {
   // for Stream's always-JSON payloads.
   private static final byte[] GZIP_MAGIC = {0x1F, (byte) 0x8B};
 
+  /**
+   * Caps the decompressed size of a gzip webhook body. {@link #gunzipPayload(byte[])} runs before
+   * the signature check, so without a cap an unsigned gzip bomb could exhaust memory. Raise it if
+   * your events are larger.
+   */
+  public static long maxPayloadBytes = 10L * 1024 * 1024;
+
   /** Webhook event type constants. */
   public static class EventType {
     public static final String WILDCARD = "*";
@@ -1009,18 +1016,24 @@ public class Webhook {
    *
    * @param body the raw request body, possibly gzip-compressed
    * @return the uncompressed bytes (or {@code body} unchanged if no gzip prefix)
-   * @throws InvalidWebhookError if the body has the gzip magic prefix but isn't a valid gzip stream
+   * @throws InvalidWebhookError if the body has the gzip magic prefix but isn't a valid gzip
+   *     stream, or decompresses to more than {@link #maxPayloadBytes}
    */
   public static byte[] gunzipPayload(byte[] body) throws InvalidWebhookError {
     if (body == null || body.length < 2 || body[0] != GZIP_MAGIC[0] || body[1] != GZIP_MAGIC[1]) {
       return body == null ? new byte[0] : body;
     }
+    long limit = maxPayloadBytes;
     try (ByteArrayInputStream bin = new ByteArrayInputStream(body);
         GZIPInputStream gz = new GZIPInputStream(bin);
         ByteArrayOutputStream out = new ByteArrayOutputStream()) {
       byte[] buf = new byte[4096];
       int n;
       while ((n = gz.read(buf)) != -1) {
+        if ((long) out.size() + n > limit) {
+          throw new InvalidWebhookError(
+              InvalidWebhookError.GZIP_FAILED + ": payload exceeds " + limit + " bytes");
+        }
         out.write(buf, 0, n);
       }
       return out.toByteArray();

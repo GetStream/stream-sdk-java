@@ -86,6 +86,10 @@ public class ModerationRulesTriggeredEvent {
   private Integer violationNumber;
 
   @Nullable
+  @JsonProperty("matched_blocklists")
+  private List<MatchedBlocklist> matchedBlocklists;
+
+  @Nullable
   @JsonProperty("matched_contents")
   private List<MatchedContent> matchedContents;
 

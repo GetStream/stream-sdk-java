@@ -38,6 +38,12 @@ public class ModerationQueueResponse {
   @JsonProperty("item_count")
   private Integer itemCount;
 
+  @JsonProperty("item_count_capped")
+  private Boolean itemCountCapped;
+
+  @JsonProperty("item_count_pending")
+  private Boolean itemCountPending;
+
   @JsonProperty("name")
   private String name;
 

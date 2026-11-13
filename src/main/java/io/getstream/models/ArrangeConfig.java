@@ -36,4 +36,8 @@ public class ArrangeConfig {
   @Nullable
   @JsonProperty("blend")
   private BlendArrangeConfig blend;
+
+  @Nullable
+  @JsonProperty("diversify")
+  private DiversifyArrangeConfig diversify;
 }

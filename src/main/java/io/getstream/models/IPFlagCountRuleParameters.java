@@ -37,4 +37,8 @@ public class IPFlagCountRuleParameters {
   @Nullable
   @JsonProperty("harm_labels")
   private List<String> harmLabels;
+
+  @Nullable
+  @JsonProperty("severities")
+  private List<String> severities;
 }

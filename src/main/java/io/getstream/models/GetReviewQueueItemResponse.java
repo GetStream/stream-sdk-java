@@ -25,6 +25,10 @@ public class GetReviewQueueItemResponse {
   private String duration;
 
   @Nullable
+  @JsonProperty("agent_review")
+  private AgentReviewResponse agentReview;
+
+  @Nullable
   @JsonProperty("item")
   private ReviewQueueItemResponse item;
 }

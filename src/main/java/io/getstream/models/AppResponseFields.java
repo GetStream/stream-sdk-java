@@ -232,8 +232,16 @@ public class AppResponseFields {
   private Map<String, Integer> activityMetricsConfig;
 
   @Nullable
+  @JsonProperty("agent_review")
+  private AgentReviewSettingsPayload agentReview;
+
+  @Nullable
   @JsonProperty("datadog_info")
   private DataDogInfo datadogInfo;
+
+  @Nullable
+  @JsonProperty("effective_agent_review")
+  private AgentReviewSettingsPayload effectiveAgentReview;
 
   @Nullable
   @JsonProperty("moderation_dashboard_preferences")

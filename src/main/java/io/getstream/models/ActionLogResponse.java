@@ -52,6 +52,10 @@ public class ActionLogResponse {
   private Map<String, Object> custom;
 
   @Nullable
+  @JsonProperty("agent_recommendation")
+  private AgentRecommendationResponse agentRecommendation;
+
+  @Nullable
   @JsonProperty("review_queue_item")
   private ReviewQueueItemResponse reviewQueueItem;
 

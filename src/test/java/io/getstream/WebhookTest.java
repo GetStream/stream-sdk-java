@@ -457,6 +457,21 @@ public class WebhookTest {
   }
 
   @Test
+  void webhookConformanceOversizedCompression() throws IOException {
+    Path dir = FIXTURE_ROOT.resolve("_invalid").resolve("oversized_compression");
+    if (!Files.exists(dir)) return;
+    byte[] body = Files.readAllBytes(dir.resolve("body.gz"));
+    String sig = Files.readString(dir.resolve("signature.txt")).trim();
+    Webhook.InvalidWebhookError ex =
+        assertThrows(
+            Webhook.InvalidWebhookError.class,
+            () -> Webhook.verifyAndParseWebhook(body, sig, CANONICAL_TEST_SECRET));
+    assertTrue(
+        ex.getMessage().contains("payload exceeds"),
+        "expected 'payload exceeds' in message, got: " + ex.getMessage());
+  }
+
+  @Test
   void webhookConformanceBadBase64() throws IOException {
     // Per CHA-3071 wire format: decodeSqsPayload falls back to raw bytes when
     // base64 decoding fails (uncompressed wire format). For input that is

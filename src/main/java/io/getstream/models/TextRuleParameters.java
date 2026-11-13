@@ -56,6 +56,10 @@ public class TextRuleParameters {
   private List<String> semanticFilterNames;
 
   @Nullable
+  @JsonProperty("severities")
+  private List<String> severities;
+
+  @Nullable
   @JsonProperty("llm_harm_labels")
   private Map<String, String> llmHarmLabels;
 }
