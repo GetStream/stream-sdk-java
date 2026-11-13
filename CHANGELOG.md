@@ -2,6 +2,56 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.2.0](https://github.com/GetStream/stream-sdk-java/compare/11.1.0...11.2.0) (2026-11-13)
+
+
+### Features
+
+* add agent_recommendation to ActionLogResponse and SubmitActionRequest ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* add agent_review to AppResponseFields, UpdateAppRequest, GetReviewQueueItemResponse and ReviewQueueItemResponse ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* add ban_from_future_channels to UserBannedEvent ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add channel_type to RetentionRunResponse ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add channel_type to SetRetentionPolicyRequest and DeleteRetentionPolicyRequest ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add channel_type_rule to SetRetentionPolicyResponse and channel_type_rules to GetRetentionPolicyResponse ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add countReviewQueue ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* add custom_format to ImportV2TaskSettings ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* add diversify to ArrangeConfig ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* add dwell and exploration to ForYouConfig ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add dwell_ms, position and request_id to TrackActivityMetricsEvent ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add effective_agent_review to AppResponseFields ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* add expected_value to CallCustomPropertyParameters, ContentCustomPropertyParameters, ContentCustomPropertyCountParameters and UserCustomPropertyParameters ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* add extra_opts to CallSettingsResponse ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add friend_type, max_friends, min_friends and reaction_types to ActivitySelectorConfig and ActivitySelectorConfigResponse ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add friends_engaged to ActivitySelectorType ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add getAgentReviewStatus ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* add getConfigVersion, listConfigVersions, saveConfigVersion and publishConfigVersion ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add getNotificationStatus ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add inactive-channels-by-type to RetentionPolicyType ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add include_soft_deleted_channel to GetChannel ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* add item_count_capped and item_count_pending to ModerationQueueResponse ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* add limit and offset to ListImports ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* add limit and offset to ListPolicyTestSets ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add listAgentFeedback ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* add matched_blocklists to ModerationRulesTriggeredEvent ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* add moderation_payload to ModerationCheckCompletedEvent ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add name to V2DeleteTemplate ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add position to ActivityResponse ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add published_version to ConfigResponse and ModerationConfig ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add reasoning_effort and strictness to ModerationEngineConfigRequest and ModerationEngineConfigResponse ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* add remove_future_channels_ban to Unban ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* add request_id to GetOrCreateFeedResponse ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add restore_shadowed_messages to UnbanActionRequestPayload ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add searchAll ([2e96d7e](https://github.com/GetStream/stream-sdk-java/commit/2e96d7e0d8ba65f29172b96d5712a62675abb3f0))
+* add severities to TextRuleParameters, TextContentParameters, OCRContentParameters, IPFlagCountRuleParameters and ClosedCaptionRuleParameters ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* add skip_viewer_visibility to GetActivity ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* add submitAgentFeedback ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+* deprecate sqs_role_arn and sns_role_arn on EventHook ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+
+
+### Bug Fixes
+
+* limit decompressed webhook payloads to 10 MiB, configurable with Webhook.maxPayloadBytes ([7dbadec](https://github.com/GetStream/stream-sdk-java/commit/7dbadec39324a38cc8549d4eee7ae459d755c722))
+
 ## [11.1.0](https://github.com/GetStream/stream-sdk-java/compare/11.0.0...11.1.0) (2026-11-06)
 
 
