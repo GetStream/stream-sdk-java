@@ -126,6 +126,10 @@ public class ReviewQueueItemResponse {
   private EnrichedActivity activity;
 
   @Nullable
+  @JsonProperty("agent_review")
+  private AgentReviewSummaryResponse agentReview;
+
+  @Nullable
   @JsonProperty("appeal")
   private AppealItemResponse appeal;
 

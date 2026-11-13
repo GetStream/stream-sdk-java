@@ -42,6 +42,10 @@ public class SubmitActionRequest {
   private String userID;
 
   @Nullable
+  @JsonProperty("agent_recommendation")
+  private AgentRecommendationPayload agentRecommendation;
+
+  @Nullable
   @JsonProperty("ban")
   private BanActionRequestPayload ban;
 

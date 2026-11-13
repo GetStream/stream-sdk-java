@@ -40,6 +40,10 @@ public class ClosedCaptionRuleParameters {
   private List<String> harmLabels;
 
   @Nullable
+  @JsonProperty("severities")
+  private List<String> severities;
+
+  @Nullable
   @JsonProperty("llm_harm_labels")
   private Map<String, String> llmHarmLabels;
 }

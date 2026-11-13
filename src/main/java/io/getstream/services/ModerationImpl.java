@@ -118,6 +118,55 @@ public class ModerationImpl {
   }
 
   @NotNull
+  public StreamRequest<ListAgentFeedbackResponse> listAgentFeedback(
+      ListAgentFeedbackRequest request) throws StreamException {
+
+    return new StreamRequest<ListAgentFeedbackResponse>(
+        client,
+        "GET",
+        "/api/v2/moderation/agent_feedback",
+        request,
+        null,
+        new TypeReference<ListAgentFeedbackResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ListAgentFeedbackResponse> listAgentFeedback() throws StreamException {
+    return listAgentFeedback(new ListAgentFeedbackRequest());
+  }
+
+  @NotNull
+  public StreamRequest<SubmitAgentFeedbackResponse> submitAgentFeedback(
+      SubmitAgentFeedbackRequest request) throws StreamException {
+
+    return new StreamRequest<SubmitAgentFeedbackResponse>(
+        client,
+        "POST",
+        "/api/v2/moderation/agent_feedback",
+        request,
+        null,
+        new TypeReference<SubmitAgentFeedbackResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetAgentReviewStatusResponse> getAgentReviewStatus(
+      GetAgentReviewStatusRequest request) throws StreamException {
+
+    return new StreamRequest<GetAgentReviewStatusResponse>(
+        client,
+        "GET",
+        "/api/v2/moderation/agent_review_status",
+        request,
+        null,
+        new TypeReference<GetAgentReviewStatusResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetAgentReviewStatusResponse> getAgentReviewStatus() throws StreamException {
+    return getAgentReviewStatus(new GetAgentReviewStatusRequest());
+  }
+
+  @NotNull
   public StreamRequest<AnalyzeResponse> analyze(AnalyzeRequest request) throws StreamException {
 
     return new StreamRequest<AnalyzeResponse>(
@@ -892,6 +941,24 @@ public class ModerationImpl {
   @NotNull
   public StreamRequest<QueryReviewQueueResponse> queryReviewQueue() throws StreamException {
     return queryReviewQueue(new QueryReviewQueueRequest());
+  }
+
+  @NotNull
+  public StreamRequest<CountReviewQueueResponse> countReviewQueue(CountReviewQueueRequest request)
+      throws StreamException {
+
+    return new StreamRequest<CountReviewQueueResponse>(
+        client,
+        "POST",
+        "/api/v2/moderation/review_queue/count",
+        request,
+        null,
+        new TypeReference<CountReviewQueueResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<CountReviewQueueResponse> countReviewQueue() throws StreamException {
+    return countReviewQueue(new CountReviewQueueRequest());
   }
 
   @NotNull

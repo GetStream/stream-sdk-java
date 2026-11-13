@@ -226,6 +226,10 @@ public class UpdateAppRequest {
   private Map<String, Integer> activityMetricsConfig;
 
   @Nullable
+  @JsonProperty("agent_review")
+  private AgentReviewSettingsPayload agentReview;
+
+  @Nullable
   @JsonProperty("apn_config")
   private APNConfig apnConfig;
 

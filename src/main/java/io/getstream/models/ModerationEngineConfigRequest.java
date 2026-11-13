@@ -28,4 +28,12 @@ public class ModerationEngineConfigRequest {
   @Nullable
   @JsonProperty("provider")
   private String provider;
+
+  @Nullable
+  @JsonProperty("reasoning_effort")
+  private String reasoningEffort;
+
+  @Nullable
+  @JsonProperty("strictness")
+  private String strictness;
 }

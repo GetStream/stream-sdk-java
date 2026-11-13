@@ -51,4 +51,8 @@ public class UnbanRequest {
   @Query("created_by")
   @JsonIgnore
   private String CreatedBy;
+
+  @Query("remove_future_channels_ban")
+  @JsonIgnore
+  private Boolean RemoveFutureChannelsBan;
 }

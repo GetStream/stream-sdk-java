@@ -19,6 +19,8 @@ import io.getstream.annotations.Query;
  * Get channel Returns a channel by its CID without creating it. Responds with 404 when the channel
  * does not exist, so it doubles as an existence check. Pass state=true to also load messages, read
  * state and watchers, and the messages_id_* parameters to page those messages by message ID.
+ * Server-side requests can set include_soft_deleted_channel to read a soft-deleted channel and the
+ * messages its deletion hid; members are not returned for a deleted channel.
  */
 @lombok.Data
 @lombok.Builder
@@ -61,6 +63,10 @@ public class GetChannelRequest {
   @Query("messages_id_around")
   @JsonIgnore
   private String MessagesIDAround;
+
+  @Query("include_soft_deleted_channel")
+  @JsonIgnore
+  private Boolean IncludeSoftDeletedChannel;
 
   @Query("user_id")
   @JsonIgnore

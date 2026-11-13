@@ -57,4 +57,8 @@ public class GetActivityRequest {
   @Query("include_moderated_activities")
   @JsonIgnore
   private Boolean IncludeModeratedActivities;
+
+  @Query("skip_viewer_visibility")
+  @JsonIgnore
+  private Boolean SkipViewerVisibility;
 }
