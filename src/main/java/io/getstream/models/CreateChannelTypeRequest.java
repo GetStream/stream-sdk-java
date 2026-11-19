@@ -141,12 +141,20 @@ public class CreateChannelTypeRequest {
   private Boolean userMessageReminders;
 
   @Nullable
+  @JsonProperty("voice_transcription")
+  private Boolean voiceTranscription;
+
+  @Nullable
   @JsonProperty("blocklists")
   private List<BlockListOptions> blocklists;
 
   @Nullable
   @JsonProperty("commands")
   private List<String> commands;
+
+  @Nullable
+  @JsonProperty("mark_types")
+  private List<String> markTypes;
 
   @Nullable
   @JsonProperty("permissions")

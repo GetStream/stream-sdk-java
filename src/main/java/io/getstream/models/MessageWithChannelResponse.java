@@ -154,6 +154,10 @@ public class MessageWithChannelResponse {
   private List<String> mentionedRoles;
 
   @Nullable
+  @JsonProperty("own_marks")
+  private List<OwnMarkResponse> ownMarks;
+
+  @Nullable
   @JsonProperty("thread_participants")
   private List<UserResponse> threadParticipants;
 
@@ -168,6 +172,10 @@ public class MessageWithChannelResponse {
   @Nullable
   @JsonProperty("image_labels")
   private Map<String, List<String>> imageLabels;
+
+  @Nullable
+  @JsonProperty("mark_groups")
+  private Map<String, MarkGroupResponse> markGroups;
 
   @Nullable
   @JsonProperty("member")

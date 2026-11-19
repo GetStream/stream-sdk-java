@@ -14,7 +14,9 @@ package io.getstream.models;
 
 /**
  * Delete a scheduled message Cancels a scheduled message so it is never sent, or removes a failed
- * one. Returns 409 while the message is being sent Sends events: - scheduled_message.deleted
+ * one. Returns 409 while the message is being sent. Returns 400 scheduled_message_already_sent
+ * (code 123) when the message was already sent and 400 scheduled_message_canceled (code 124) when
+ * it was deleted Sends events: - scheduled_message.deleted
  */
 @lombok.Data
 @lombok.Builder

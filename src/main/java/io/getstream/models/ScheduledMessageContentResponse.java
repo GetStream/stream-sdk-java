@@ -100,6 +100,10 @@ public class ScheduledMessageContentResponse {
   private List<String> restrictedVisibility;
 
   @Nullable
+  @JsonProperty("quoted_message")
+  private MessageResponse quotedMessage;
+
+  @Nullable
   @JsonProperty("shared_location")
   private ScheduledMessageLocation sharedLocation;
 }

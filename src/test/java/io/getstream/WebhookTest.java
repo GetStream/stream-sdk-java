@@ -218,6 +218,8 @@ public class WebhookTest {
     "feeds.follow.deleted, FollowDeletedEvent",
     "feeds.follow.updated, FollowUpdatedEvent",
     "feeds.notification_feed.updated, NotificationFeedUpdatedEvent",
+    "feeds.scheduled_activity.failed, ScheduledActivityFailedEvent",
+    "feeds.scheduled_activity.published, ScheduledActivityPublishedEvent",
     "feeds.stories_feed.updated, StoriesFeedUpdatedEvent",
     "flag.updated, FlagUpdatedEvent",
     "import.error, AsyncImportErrorEvent",

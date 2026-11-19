@@ -31,6 +31,14 @@ public class AIVideoConfigRequest {
   private Boolean enabled;
 
   @Nullable
+  @JsonProperty("ocr_rules")
+  private List<OCRRule> ocrRules;
+
+  @Nullable
+  @JsonProperty("ocr_severity_rules")
+  private List<BodyguardRule> ocrSeverityRules;
+
+  @Nullable
   @JsonProperty("rules")
   private List<AWSRekognitionRule> rules;
 }

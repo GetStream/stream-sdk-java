@@ -460,6 +460,18 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<CreateMessageMarkResponse> createMessageMark(
+      @NotNull String id, CreateMessageMarkRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryMessageMarksResponse> queryMessageMarks(
+      @NotNull String id, QueryMessageMarksRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryMessageMarksResponse> queryMessageMarks(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<SendReactionResponse> sendReaction(
       @NotNull String id, SendReactionRequest request) throws StreamException;
 
