@@ -43,6 +43,7 @@ public final class ChannelOwnCapability {
   public static final String SEND_CUSTOM_EVENTS = "send-custom-events";
   public static final String SEND_LINKS = "send-links";
   public static final String SEND_MESSAGE = "send-message";
+  public static final String SEND_MESSAGE_MARK = "send-message-mark";
   public static final String SEND_POLL = "send-poll";
   public static final String SEND_REACTION = "send-reaction";
   public static final String SEND_REPLY = "send-reply";

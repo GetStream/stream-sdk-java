@@ -105,6 +105,9 @@ public class ChannelConfigWithInfo {
   @JsonProperty("user_message_reminders")
   private Boolean userMessageReminders;
 
+  @JsonProperty("voice_transcription")
+  private Boolean voiceTranscription;
+
   @JsonProperty("commands")
   private List<Command> commands;
 
@@ -151,6 +154,10 @@ public class ChannelConfigWithInfo {
   @Nullable
   @JsonProperty("blocklists")
   private List<BlockListOptions> blocklists;
+
+  @Nullable
+  @JsonProperty("mark_types")
+  private List<String> markTypes;
 
   @Nullable
   @JsonProperty("automod_thresholds")

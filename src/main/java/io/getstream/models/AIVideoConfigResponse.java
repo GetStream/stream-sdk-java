@@ -31,4 +31,12 @@ public class AIVideoConfigResponse {
   @Nullable
   @JsonProperty("async")
   private Boolean async;
+
+  @Nullable
+  @JsonProperty("ocr_rules")
+  private List<OCRRule> ocrRules;
+
+  @Nullable
+  @JsonProperty("ocr_severity_rules")
+  private List<BodyguardRule> ocrSeverityRules;
 }

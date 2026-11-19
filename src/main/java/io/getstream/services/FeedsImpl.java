@@ -1942,6 +1942,70 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<ListPromotedTopicsResponse> listPromotedTopics(
+      ListPromotedTopicsRequest request) throws StreamException {
+
+    return new StreamRequest<ListPromotedTopicsResponse>(
+        client,
+        "GET",
+        "/api/v2/feeds/promoted_topics",
+        request,
+        null,
+        new TypeReference<ListPromotedTopicsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ListPromotedTopicsResponse> listPromotedTopics() throws StreamException {
+    return listPromotedTopics(new ListPromotedTopicsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<PromoteTopicsResponse> promoteTopics(PromoteTopicsRequest request)
+      throws StreamException {
+
+    return new StreamRequest<PromoteTopicsResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/promoted_topics",
+        request,
+        null,
+        new TypeReference<PromoteTopicsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UnpromoteTopicsResponse> unpromoteTopics(
+      @NotNull String id, UnpromoteTopicsRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<UnpromoteTopicsResponse>(
+        client,
+        "DELETE",
+        "/api/v2/feeds/promoted_topics/{id}",
+        request,
+        pathParams,
+        new TypeReference<UnpromoteTopicsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UnpromoteTopicsResponse> unpromoteTopics(@NotNull String id)
+      throws StreamException {
+    return unpromoteTopics(id, new UnpromoteTopicsRequest());
+  }
+
+  @NotNull
+  public StreamRequest<QueryFeedsReactionsResponse> queryFeedsReactions(
+      QueryFeedsReactionsRequest request) throws StreamException {
+
+    return new StreamRequest<QueryFeedsReactionsResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/reactions/query",
+        request,
+        null,
+        new TypeReference<QueryFeedsReactionsResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<GetFeedsRetentionPolicyResponse> feedsGetRetentionPolicy(
       FeedsGetRetentionPolicyRequest request) throws StreamException {
 
@@ -2016,6 +2080,118 @@ public class FeedsImpl {
         request,
         null,
         new TypeReference<QueryRevisionHistoryResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<ScheduleActivityResponse> scheduleActivity(ScheduleActivityRequest request)
+      throws StreamException {
+
+    return new StreamRequest<ScheduleActivityResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/scheduled_activities",
+        request,
+        null,
+        new TypeReference<ScheduleActivityResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryScheduledActivitiesResponse> queryScheduledActivities(
+      QueryScheduledActivitiesRequest request) throws StreamException {
+
+    return new StreamRequest<QueryScheduledActivitiesResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/scheduled_activities/query",
+        request,
+        null,
+        new TypeReference<QueryScheduledActivitiesResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryScheduledActivitiesResponse> queryScheduledActivities()
+      throws StreamException {
+    return queryScheduledActivities(new QueryScheduledActivitiesRequest());
+  }
+
+  @NotNull
+  public StreamRequest<DeleteScheduledActivityResponse> deleteScheduledActivity(
+      @NotNull String id, DeleteScheduledActivityRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<DeleteScheduledActivityResponse>(
+        client,
+        "DELETE",
+        "/api/v2/feeds/scheduled_activities/{id}",
+        request,
+        pathParams,
+        new TypeReference<DeleteScheduledActivityResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<DeleteScheduledActivityResponse> deleteScheduledActivity(@NotNull String id)
+      throws StreamException {
+    return deleteScheduledActivity(id, new DeleteScheduledActivityRequest());
+  }
+
+  @NotNull
+  public StreamRequest<GetScheduledActivityResponse> getScheduledActivity(
+      @NotNull String id, GetScheduledActivityRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<GetScheduledActivityResponse>(
+        client,
+        "GET",
+        "/api/v2/feeds/scheduled_activities/{id}",
+        request,
+        pathParams,
+        new TypeReference<GetScheduledActivityResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetScheduledActivityResponse> getScheduledActivity(@NotNull String id)
+      throws StreamException {
+    return getScheduledActivity(id, new GetScheduledActivityRequest());
+  }
+
+  @NotNull
+  public StreamRequest<UpdateScheduledActivityResponse> updateScheduledActivity(
+      @NotNull String id, UpdateScheduledActivityRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<UpdateScheduledActivityResponse>(
+        client,
+        "PATCH",
+        "/api/v2/feeds/scheduled_activities/{id}",
+        request,
+        pathParams,
+        new TypeReference<UpdateScheduledActivityResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<UpdateScheduledActivityResponse> updateScheduledActivity(@NotNull String id)
+      throws StreamException {
+    return updateScheduledActivity(id, new UpdateScheduledActivityRequest());
+  }
+
+  @NotNull
+  public StreamRequest<PublishScheduledActivityNowResponse> publishScheduledActivityNow(
+      @NotNull String id, PublishScheduledActivityNowRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<PublishScheduledActivityNowResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/scheduled_activities/{id}/publish_now",
+        request,
+        pathParams,
+        new TypeReference<PublishScheduledActivityNowResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<PublishScheduledActivityNowResponse> publishScheduledActivityNow(
+      @NotNull String id) throws StreamException {
+    return publishScheduledActivityNow(id, new PublishScheduledActivityNowRequest());
   }
 
   @NotNull
@@ -2162,5 +2338,25 @@ public class FeedsImpl {
         request,
         pathParams,
         new TypeReference<UpsertUserInterestsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetTrendingTopicsResponse> getTrendingTopics(
+      @NotNull String userID, GetTrendingTopicsRequest request) throws StreamException {
+    var pathParams = Map.of("user_id", userID);
+
+    return new StreamRequest<GetTrendingTopicsResponse>(
+        client,
+        "GET",
+        "/api/v2/feeds/users/{user_id}/trending_topics",
+        request,
+        pathParams,
+        new TypeReference<GetTrendingTopicsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetTrendingTopicsResponse> getTrendingTopics(@NotNull String userID)
+      throws StreamException {
+    return getTrendingTopics(userID, new GetTrendingTopicsRequest());
   }
 }

@@ -262,6 +262,10 @@ public class UpdateAppRequest {
   private FileUploadConfig imageUploadConfig;
 
   @Nullable
+  @JsonProperty("message_marks")
+  private MessageMarksConfig messageMarks;
+
+  @Nullable
   @JsonProperty("moderation_dashboard_preferences")
   private ModerationDashboardPreferences moderationDashboardPreferences;
 

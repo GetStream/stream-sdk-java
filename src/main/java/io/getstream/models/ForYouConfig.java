@@ -30,6 +30,10 @@ public class ForYouConfig {
   private String preset;
 
   @Nullable
+  @JsonProperty("trending")
+  private Boolean trending;
+
+  @Nullable
   @JsonProperty("dwell")
   private ForYouDwellConfig dwell;
 

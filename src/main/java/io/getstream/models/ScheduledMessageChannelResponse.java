@@ -13,6 +13,7 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 /** The channel of a scheduled message */
@@ -28,8 +29,14 @@ public class ScheduledMessageChannelResponse {
   @JsonProperty("id")
   private String id;
 
+  @JsonProperty("member_count")
+  private Integer memberCount;
+
   @JsonProperty("type")
   private String type;
+
+  @JsonProperty("members")
+  private List<ChannelMemberResponse> members;
 
   @Nullable
   @JsonProperty("image")
