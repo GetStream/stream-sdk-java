@@ -77,6 +77,10 @@ public class ChannelConfigOverrides {
   private Boolean userMessageReminders;
 
   @Nullable
+  @JsonProperty("voice_transcription")
+  private Boolean voiceTranscription;
+
+  @Nullable
   @JsonProperty("commands")
   private List<String> commands;
 

@@ -736,6 +736,29 @@ public interface Feeds {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<ListPromotedTopicsResponse> listPromotedTopics(
+      ListPromotedTopicsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ListPromotedTopicsResponse> listPromotedTopics() throws StreamException;
+
+  @NotNull
+  public StreamRequest<PromoteTopicsResponse> promoteTopics(PromoteTopicsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UnpromoteTopicsResponse> unpromoteTopics(
+      @NotNull String id, UnpromoteTopicsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UnpromoteTopicsResponse> unpromoteTopics(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryFeedsReactionsResponse> queryFeedsReactions(
+      QueryFeedsReactionsRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<GetFeedsRetentionPolicyResponse> feedsGetRetentionPolicy(
       FeedsGetRetentionPolicyRequest request) throws StreamException;
 
@@ -762,6 +785,50 @@ public interface Feeds {
   @NotNull
   public StreamRequest<QueryRevisionHistoryResponse> queryRevisionHistory(
       QueryRevisionHistoryRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<ScheduleActivityResponse> scheduleActivity(ScheduleActivityRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryScheduledActivitiesResponse> queryScheduledActivities(
+      QueryScheduledActivitiesRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<QueryScheduledActivitiesResponse> queryScheduledActivities()
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteScheduledActivityResponse> deleteScheduledActivity(
+      @NotNull String id, DeleteScheduledActivityRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<DeleteScheduledActivityResponse> deleteScheduledActivity(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetScheduledActivityResponse> getScheduledActivity(
+      @NotNull String id, GetScheduledActivityRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetScheduledActivityResponse> getScheduledActivity(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateScheduledActivityResponse> updateScheduledActivity(
+      @NotNull String id, UpdateScheduledActivityRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<UpdateScheduledActivityResponse> updateScheduledActivity(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<PublishScheduledActivityNowResponse> publishScheduledActivityNow(
+      @NotNull String id, PublishScheduledActivityNowRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<PublishScheduledActivityNowResponse> publishScheduledActivityNow(
+      @NotNull String id) throws StreamException;
 
   @NotNull
   public StreamRequest<QueryFeedsUsageStatsResponse> queryFeedsUsageStats(
@@ -814,4 +881,12 @@ public interface Feeds {
   @NotNull
   public StreamRequest<UpsertUserInterestsResponse> upsertUserInterests(
       @NotNull String userID, UpsertUserInterestsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetTrendingTopicsResponse> getTrendingTopics(
+      @NotNull String userID, GetTrendingTopicsRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetTrendingTopicsResponse> getTrendingTopics(@NotNull String userID)
+      throws StreamException;
 }

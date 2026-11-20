@@ -20,7 +20,9 @@ import org.jetbrains.annotations.Nullable;
  * Update a scheduled message Replaces the message and/or the send time of a scheduled message. The
  * scheduling checks run again, and the message is then sent, under the caller&#39;s auth mode. A
  * request that changes only scheduled_at keeps the auth mode the message was scheduled with.
- * Returns 409 while the message is being sent Sends events: - scheduled_message.updated
+ * Returns 409 while the message is being sent. Returns 400 scheduled_message_already_sent (code
+ * 123) when the message was already sent and 400 scheduled_message_canceled (code 124) when it was
+ * deleted Sends events: - scheduled_message.updated
  */
 @lombok.Data
 @lombok.Builder

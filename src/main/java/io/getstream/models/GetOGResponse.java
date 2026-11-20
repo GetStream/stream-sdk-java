@@ -112,4 +112,8 @@ public class GetOGResponse {
   @Nullable
   @JsonProperty("giphy")
   private Images giphy;
+
+  @Nullable
+  @JsonProperty("voice_transcript")
+  private AttachmentTranscriptResponse voiceTranscript;
 }

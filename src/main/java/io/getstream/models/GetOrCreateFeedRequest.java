@@ -47,6 +47,10 @@ public class GetOrCreateFeedRequest {
   private String prev;
 
   @Nullable
+  @JsonProperty("skip_feed_creation")
+  private Boolean skipFeedCreation;
+
+  @Nullable
   @JsonProperty("user_id")
   private String userID;
 

@@ -14,8 +14,10 @@ package io.getstream.models;
 
 /**
  * Send a scheduled message now Moves the send time of a scheduled message to now and queues the
- * send. Every send check runs when it is sent. Returns 409 while the message is being sent Sends
- * events: - scheduled_message.updated
+ * send. Every send check runs when it is sent. Returns 409 while the message is being sent. Returns
+ * 400 scheduled_message_already_sent (code 123) when the message was already sent and 400
+ * scheduled_message_canceled (code 124) when it was deleted Sends events: -
+ * scheduled_message.updated
  */
 @lombok.Data
 @lombok.Builder

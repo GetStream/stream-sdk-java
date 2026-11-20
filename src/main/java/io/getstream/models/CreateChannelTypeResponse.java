@@ -109,6 +109,9 @@ public class CreateChannelTypeResponse {
   @JsonProperty("user_message_reminders")
   private Boolean userMessageReminders;
 
+  @JsonProperty("voice_transcription")
+  private Boolean voiceTranscription;
+
   @JsonProperty("commands")
   private List<String> commands;
 
@@ -145,6 +148,10 @@ public class CreateChannelTypeResponse {
   @Nullable
   @JsonProperty("blocklists")
   private List<BlockListOptions> blocklists;
+
+  @Nullable
+  @JsonProperty("mark_types")
+  private List<String> markTypes;
 
   @Nullable
   @JsonProperty("automod_thresholds")

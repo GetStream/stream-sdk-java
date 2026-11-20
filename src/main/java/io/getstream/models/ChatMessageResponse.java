@@ -150,6 +150,10 @@ public class ChatMessageResponse {
   private List<String> mentionedRoles;
 
   @Nullable
+  @JsonProperty("own_marks")
+  private List<ChatOwnMarkResponse> ownMarks;
+
+  @Nullable
   @JsonProperty("thread_participants")
   private List<UserResponse> threadParticipants;
 
@@ -164,6 +168,10 @@ public class ChatMessageResponse {
   @Nullable
   @JsonProperty("image_labels")
   private Map<String, List<String>> imageLabels;
+
+  @Nullable
+  @JsonProperty("mark_groups")
+  private Map<String, ChatMarkGroupResponse> markGroups;
 
   @Nullable
   @JsonProperty("member")
