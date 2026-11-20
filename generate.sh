@@ -26,12 +26,6 @@ GENERATED_PATHS=(
 # half-generated tree behind, so check up front instead.
 MIN_FREE_GB=${MIN_FREE_GB:-30}
 
-if [ ! -d "$SOURCE_PATH" ]
-then
-  echo "cannot find chat path on the parent folder (${SOURCE_PATH}), do you have a copy of the API source?";
-  exit 1;
-fi
-
 # df needs a path that exists; the Go caches may not have been created yet.
 existing_ancestor() {
   local path=$1
@@ -52,32 +46,33 @@ free_gb() {
 # The build spends its space in the Go build and module caches, which usually
 # live under $HOME rather than on the repo or TMPDIR volume. Probe all of them so
 # the check still means something when they sit on separate disks.
-volumes=("${TMPDIR:-/tmp}" "$REPO_ROOT" "$HOME")
-if command -v go >/dev/null 2>&1; then
-  volumes+=("$(go env GOCACHE)" "$(go env GOMODCACHE)")
-fi
-
-checked_mounts=""
-for volume in "${volumes[@]}"; do
-  [ -n "$volume" ] || continue
-  volume=$(existing_ancestor "$volume")
-  mount=$(mount_point "$volume")
-
-  # One message per filesystem, however many probed paths share it.
-  if printf '%s' "$checked_mounts" | grep -Fxq "$mount"; then
-    continue
+check_free_space() {
+  local volumes=("${TMPDIR:-/tmp}" "$REPO_ROOT" "$HOME") checked_mounts="" volume mount available
+  if command -v go >/dev/null 2>&1; then
+    volumes+=("$(go env GOCACHE)" "$(go env GOMODCACHE)")
   fi
-  checked_mounts="${checked_mounts}${mount}"$'\n'
+  for volume in "${volumes[@]}"; do
+    [ -n "$volume" ] || continue
+    volume=$(existing_ancestor "$volume")
+    mount=$(mount_point "$volume")
 
-  available=$(free_gb "$volume")
-  if [ "$available" -lt "$MIN_FREE_GB" ]; then
-    echo "only ${available}GB free on ${mount} (${volume}), need ~${MIN_FREE_GB}GB to build the generator"
-    echo "reclaim space with: go clean -cache && ./gradlew --stop && rm -rf ~/.gradle/caches/build-cache-*"
-    exit 1
-  fi
-done
+    # One message per filesystem, however many probed paths share it.
+    if printf '%s' "$checked_mounts" | grep -Fxq "$mount"; then
+      continue
+    fi
+    checked_mounts="${checked_mounts}${mount}"$'\n'
+
+    available=$(free_gb "$volume")
+    if [ "$available" -lt "$MIN_FREE_GB" ]; then
+      echo "only ${available}GB free on ${mount} (${volume}), need ~${MIN_FREE_GB}GB to build the generator"
+      echo "reclaim space with: go clean -cache && ./gradlew --stop && rm -rf ~/.gradle/caches/build-cache-*"
+      exit 1
+    fi
+  done
+}
 
 SNAPSHOT=$(mktemp -d)
+WORK=$(mktemp -d)
 ROLLBACK_ARMED=0
 
 take_snapshot() {
@@ -108,15 +103,45 @@ cleanup() {
     echo "generation failed (exit ${status}), restoring generated sources"
     restore_snapshot
   fi
-  rm -rf "$SNAPSHOT"
+  git -C "$SOURCE_PATH" worktree remove --force "$WORK/chat" 2>/dev/null || true
+  rm -rf "$SNAPSHOT" "$WORK"
 }
 trap cleanup EXIT
 
+# The spec comes from a protocol release rather than from chat's working tree, so the
+# generated code always corresponds to a tag someone else can regenerate from. protocol
+# carries other tag namespaces, hence the openapi- prefix filter. SPEC_TAG=openapi-vX
+# picks that release instead of the latest.
+SPEC_TAG=${SPEC_TAG:-$(curl -fsSL -H "Accept: application/vnd.github+json" https://api.github.com/repos/GetStream/protocol/releases \
+  | jq -r 'map(select(.tag_name | startswith("openapi-"))) | .[0].tag_name')}
+[ -n "$SPEC_TAG" ] && [ "$SPEC_TAG" != "null" ] || { echo "could not resolve the latest protocol openapi release"; exit 1; }
+SPEC_FILE="$WORK/serverside-api.yaml"
+curl -fsSL -o "$SPEC_FILE" "https://raw.githubusercontent.com/GetStream/protocol/${SPEC_TAG}/openapi/v2/serverside-api.yaml"
+
 set -x
 
-# Build the generator first so a compile failure never touches the SDK tree.
-( cd "$SOURCE_PATH" ; make openapi )
-( cd "$SOURCE_PATH" ; make -C tools/openapi build )
+# GENERATOR_BIN=<path> runs an openapi binary attached to a chat release, so no chat checkout is needed; .spec-version records the version it reports.
+# Otherwise the generator is built from chat at the spec's own tag, so the templates match the breaking-change list the regen PR check reads from that spec.
+# GENERATOR_REF=HEAD builds from the ../chat checkout as it is, for an unreleased generator fix; the regen PR then has to be a major.
+# The generator is built first so a compile failure never touches the SDK tree.
+if [ -n "${GENERATOR_BIN:-}" ]; then
+  GENERATOR=$(cd "$(dirname "$GENERATOR_BIN")" && pwd)/$(basename "$GENERATOR_BIN")
+  GENERATOR_VERSION=$("$GENERATOR" --version)
+  GENERATOR_VERSION=${GENERATOR_VERSION##* }
+else
+  [ -d "$SOURCE_PATH" ] || { echo "cannot find chat path on the parent folder (${SOURCE_PATH}), do you have a copy of the API source?"; exit 1; }
+  check_free_space
+  GENERATOR_REF=${GENERATOR_REF:-${SPEC_TAG#openapi-}}
+  GENERATOR_PATH=$SOURCE_PATH
+  if [ "$GENERATOR_REF" != HEAD ]; then
+    git -C "$SOURCE_PATH" fetch -q origin tag "$GENERATOR_REF"
+    GENERATOR_PATH=$WORK/chat
+    git -C "$SOURCE_PATH" worktree add -q --detach "$GENERATOR_PATH" "$GENERATOR_REF"
+  fi
+  make -C "$GENERATOR_PATH/tools/openapi" build
+  GENERATOR=$(cd "$GENERATOR_PATH" && pwd)/build/openapi
+  GENERATOR_VERSION=$(git -C "$GENERATOR_PATH" describe --tags --always --dirty)
+fi
 
 take_snapshot
 ROLLBACK_ARMED=1
@@ -127,11 +152,11 @@ ROLLBACK_ARMED=1
 find "$MODELS_DIR" -maxdepth 1 -name '*.java' -delete
 rm -rf "$FIXTURES_DIR"
 
-( cd "$SOURCE_PATH" ; ./build/openapi generate-client --language java --spec ./releases/v2/serverside-api.yaml --output "$REPO_ROOT" )
+"$GENERATOR" generate-client --language java --spec "$SPEC_FILE" --output "$REPO_ROOT"
 
 # Generate webhook conformance fixtures (CHA-2961). The test template reads them from
 # src/test/resources/fixtures/webhooks/ and gracefully skips if the dir is missing.
-( cd "$SOURCE_PATH" ; ./build/openapi generate-webhook-fixtures --output "$REPO_ROOT/$FIXTURES_DIR" )
+"$GENERATOR" generate-webhook-fixtures --output "$REPO_ROOT/$FIXTURES_DIR"
 
 # CallParticipant carries both "role" and "Role"; drop the duplicate that Jackson
 # would reject. The model comes and goes across spec revisions, so patch it only
@@ -143,6 +168,8 @@ fi
 # Clean up test files that may exist in main source from older generator versions
 # (generator now outputs tests directly to src/test/)
 rm -f src/main/java/io/getstream/WebhookTest.java
+
+printf 'spec: %s\ngenerator: chat %s\n' "$SPEC_TAG" "$GENERATOR_VERSION" > .spec-version
 
 # Generated output is complete and coherent from here on: a compile failure is
 # something to inspect, not something to roll back.
