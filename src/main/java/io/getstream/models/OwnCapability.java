@@ -33,6 +33,7 @@ public final class OwnCapability {
   public static final String SCREENSHARE = "screenshare";
   public static final String SEND_AUDIO = "send-audio";
   public static final String SEND_CLOSED_CAPTIONS_CALL = "send-closed-captions-call";
+  public static final String SEND_DATA = "send-data";
   public static final String SEND_VIDEO = "send-video";
   public static final String START_BROADCAST_CALL = "start-broadcast-call";
   public static final String START_CLOSED_CAPTIONS_CALL = "start-closed-captions-call";

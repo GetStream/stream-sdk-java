@@ -74,14 +74,26 @@ public class ConfigResponse {
   @JsonProperty("ai_video_config")
   private AIVideoConfigResponse aiVideoConfig;
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @Nullable
   @JsonProperty("automod_platform_circumvention_config")
   private AutomodPlatformCircumventionConfig automodPlatformCircumventionConfig;
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @Nullable
   @JsonProperty("automod_semantic_filters_config")
   private AutomodSemanticFiltersConfig automodSemanticFiltersConfig;
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @Nullable
   @JsonProperty("automod_toxicity_config")
   private AutomodToxicityConfig automodToxicityConfig;

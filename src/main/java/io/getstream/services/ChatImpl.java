@@ -1250,6 +1250,40 @@ public class ChatImpl {
   }
 
   @NotNull
+  public StreamRequest<CreateMessageMarkResponse> createMessageMark(
+      @NotNull String id, CreateMessageMarkRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<CreateMessageMarkResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/messages/{id}/marks",
+        request,
+        pathParams,
+        new TypeReference<CreateMessageMarkResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryMessageMarksResponse> queryMessageMarks(
+      @NotNull String id, QueryMessageMarksRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<QueryMessageMarksResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/messages/{id}/marks/query",
+        request,
+        pathParams,
+        new TypeReference<QueryMessageMarksResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<QueryMessageMarksResponse> queryMessageMarks(@NotNull String id)
+      throws StreamException {
+    return queryMessageMarks(id, new QueryMessageMarksRequest());
+  }
+
+  @NotNull
   public StreamRequest<SendReactionResponse> sendReaction(
       @NotNull String id, SendReactionRequest request) throws StreamException {
     var pathParams = Map.of("id", id);

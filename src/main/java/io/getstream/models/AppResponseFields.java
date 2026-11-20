@@ -244,6 +244,10 @@ public class AppResponseFields {
   private AgentReviewSettingsPayload effectiveAgentReview;
 
   @Nullable
+  @JsonProperty("message_marks")
+  private MessageMarksConfig messageMarks;
+
+  @Nullable
   @JsonProperty("moderation_dashboard_preferences")
   private ModerationDashboardPreferences moderationDashboardPreferences;
 }

@@ -169,6 +169,8 @@ import io.getstream.models.ReminderNotificationEvent;
 import io.getstream.models.ReminderUpdatedEvent;
 import io.getstream.models.ReviewQueueItemNewEvent;
 import io.getstream.models.ReviewQueueItemUpdatedEvent;
+import io.getstream.models.ScheduledActivityFailedEvent;
+import io.getstream.models.ScheduledActivityPublishedEvent;
 import io.getstream.models.ScheduledMessageFailedEvent;
 import io.getstream.models.ScheduledMessageSentEvent;
 import io.getstream.models.StoriesFeedUpdatedEvent;
@@ -358,6 +360,9 @@ public class Webhook {
     public static final String FEEDS_FOLLOW_DELETED = "feeds.follow.deleted";
     public static final String FEEDS_FOLLOW_UPDATED = "feeds.follow.updated";
     public static final String FEEDS_NOTIFICATION_FEED_UPDATED = "feeds.notification_feed.updated";
+    public static final String FEEDS_SCHEDULED_ACTIVITY_FAILED = "feeds.scheduled_activity.failed";
+    public static final String FEEDS_SCHEDULED_ACTIVITY_PUBLISHED =
+        "feeds.scheduled_activity.published";
     public static final String FEEDS_STORIES_FEED_UPDATED = "feeds.stories_feed.updated";
     public static final String FLAG_UPDATED = "flag.updated";
     public static final String IMPORT_ERROR = "import.error";
@@ -769,6 +774,10 @@ public class Webhook {
         return FollowUpdatedEvent.class;
       case "feeds.notification_feed.updated":
         return NotificationFeedUpdatedEvent.class;
+      case "feeds.scheduled_activity.failed":
+        return ScheduledActivityFailedEvent.class;
+      case "feeds.scheduled_activity.published":
+        return ScheduledActivityPublishedEvent.class;
       case "feeds.stories_feed.updated":
         return StoriesFeedUpdatedEvent.class;
       case "flag.updated":

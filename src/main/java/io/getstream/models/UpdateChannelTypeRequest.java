@@ -141,6 +141,10 @@ public class UpdateChannelTypeRequest {
   private Boolean userMessageReminders;
 
   @Nullable
+  @JsonProperty("voice_transcription")
+  private Boolean voiceTranscription;
+
+  @Nullable
   @JsonProperty("allowed_flag_reasons")
   private List<String> allowedFlagReasons;
 
@@ -151,6 +155,10 @@ public class UpdateChannelTypeRequest {
   @Nullable
   @JsonProperty("commands")
   private List<String> commands;
+
+  @Nullable
+  @JsonProperty("mark_types")
+  private List<String> markTypes;
 
   @Nullable
   @JsonProperty("permissions")
