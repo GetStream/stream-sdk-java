@@ -133,7 +133,7 @@ The client regenerates itself on every chat production release:
 2. protocol notifies this repo, and the **Regenerate** workflow opens one PR from `regen/auto`, titled `feat: regenerate client from openapi-vX`. Its `BEGIN_COMMIT_OVERRIDE` block lists the changelog lines.
 3. Once the required checks pass and the **Regen integration** run passes on the PR's head commit, the PR merges itself, and release-please adds those lines to the Release PR. Merging the Release PR ships, as described below.
 
-A regen PR waits for a human when its changelog carries a `BREAKING CHANGE:` footer, when the `Breaking changes check` finds an approved breaking change in the new spec, or when a required check fails. For each approved breaking change with wire lines, the regen writes `BREAKING CHANGE:` footers from the lines chat allowlisted and titles the PR `feat!:`, so the check passes and the PR only waits for a human to merge it. A ticket chat approved for getstream-go only has no Java lines, so the check fails until a human judges it. Only `getstream-sdk-bot` can push to `regen/**`.
+A regen PR waits for a human when its changelog carries a `BREAKING CHANGE:` footer, when the `Breaking changes check` finds an approved breaking change in the new spec, or when a required check fails. For each approved breaking change with wire lines, the regen writes `BREAKING CHANGE:` footers from the lines chat allowlisted and titles the PR `feat!:`, so the check passes and the PR only waits for a human to merge it. A ticket chat approved for getstream-go only has no Java lines, so the check fails until a human names it in the PR body, also on a `feat!:` PR. Only `getstream-sdk-bot` can push to `regen/**`.
 
 ### Manual cases
 

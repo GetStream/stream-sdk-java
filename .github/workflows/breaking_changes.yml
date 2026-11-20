@@ -78,7 +78,15 @@ jobs:
           if [ -z "$added" ] && [ ${#reasons[@]} -eq 0 ]; then echo "nothing here needs a major"; exit 0; fi
           bang='^[a-z]+(\([^)]*\))?!:'
           hold="If auto-merge is on, turn it off before adding '!', or the major merges as soon as this check passes."
-          if [[ $TITLE =~ $bang ]]; then echo "the title marks a major"; exit 0; fi
+          if [[ $TITLE =~ $bang ]]; then
+            # The regen writes footers from wire lines only, so a `!` speaks for no other added ticket until a human names it here.
+            unlined=
+            [ -z "$added" ] || unlined=$(comm -23 <(printf '%s\n' "$added") <(yq -r '.info."x-stream-breaking-changes".wire // [] | .[]' "$RUNNER_TEMP/spec.yaml" | sort))
+            missing=$(while read -r ticket; do [ -z "$ticket" ] || [[ $BODY == *"$ticket"* ]] || echo "$ticket"; done <<< "$unlined")
+            if [ -z "$missing" ]; then echo "the title marks a major"; exit 0; fi
+            echo "::error::The title marks a major, but no footer covers ${missing//$'\n'/, }, which has no Java lines. Name each in the PR body once you have judged it, with a BREAKING CHANGE footer if it breaks this SDK."
+            exit 1
+          fi
           if [ ${#reasons[@]} -gt 0 ]; then
             for reason in "${reasons[@]}"; do echo "::error::Add '!' to the PR title: $reason. $hold"; done
             exit 1

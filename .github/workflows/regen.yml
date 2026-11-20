@@ -28,7 +28,8 @@ jobs:
     name: Regenerate
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion != 'skipped'
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    # Setup, generate.sh's Gradle build and land()'s 45 minutes of polling stay under it, so a stuck run fails and posts a heads-up instead of being cancelled silently.
+    timeout-minutes: 75
     # The getstream-sdk-bot key lives only in this environment, which deploys from the default branch. The App pushes and merges, because GITHUB_TOKEN events start neither the PR checks nor the release run.
     environment: sdk-bot
     # GITHUB_TOKEN reads the PR's checks and the integration run, which the App has no permission for, and reruns a red run once.
@@ -189,13 +190,13 @@ jobs:
           inventory() {
             spec=$RUNNER_TEMP/$1.yaml
             curl -fsSL "https://raw.githubusercontent.com/GetStream/protocol/$1/openapi/v2/serverside-api.yaml" -o "$spec"
-            # Java names methods, parameters and fields in lowerCamelCase (get_config_version is getConfigVersion, content-available is contentAvailable) and keeps schema names.
-            camel='sub c { lcfirst join "", map { ucfirst } split /[-_]/, shift }'
+            # Java names methods, parameters and fields with chat's casing.CamelCase (user_id is userID, content-available is contentAvailable), maps the field and parameter short to short_, and keeps schema names.
+            camel='sub c { my @w = grep { length } split /[^A-Za-z0-9]+/, shift; $w[0] = lcfirst $w[0] if @w; $_ = /^(id|api|apns|s3|hls|aws|ws|rtmp|og)$/i ? uc : ucfirst for @w[1 .. $#w]; join "", @w } sub f { $_[0] eq "short" ? "short_" : c($_[0]) }'
             {
               yq -r '.paths | to_entries | .[] | .value | to_entries | .[] | select(.value.operationId) | "op " + .value.operationId' "$spec" | perl -pe "$camel"' s/ (.+)/" " . c($1)/e'
-              yq -r '.paths | to_entries | .[] | .value | to_entries | .[] | select(.value.operationId) | .value.operationId as $o | (.value.parameters // [])[] | "field " + $o + "." + .name' "$spec" | perl -pe "$camel"' s/ ([^.]+)\.(.+)/" " . c($1) . "." . c($2)/e'
+              yq -r '.paths | to_entries | .[] | .value | to_entries | .[] | select(.value.operationId) | .value.operationId as $o | (.value.parameters // [])[] | "field " + $o + "." + .name' "$spec" | perl -pe "$camel"' s/ ([^.]+)\.(.+)/" " . c($1) . "." . f($2)/e'
               yq -r '.components.schemas | keys | .[] | "type " + .' "$spec"
-              yq -r '.components.schemas | to_entries | .[] | .key as $s | (.value.properties // {}) | keys | .[] | "field " + $s + "." + .' "$spec" | perl -pe "$camel"' s/\.(.+)/"." . c($1)/e'
+              yq -r '.components.schemas | to_entries | .[] | .key as $s | (.value.properties // {}) | keys | .[] | "field " + $s + "." + .' "$spec" | perl -pe "$camel"' s/\.(.+)/"." . f($1)/e'
             } | sort -u
           }
           inventory "$current" > "$RUNNER_TEMP/old"
