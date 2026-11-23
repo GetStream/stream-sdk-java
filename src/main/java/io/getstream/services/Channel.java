@@ -91,6 +91,11 @@ public class Channel {
     return this.getDraft(new GetDraftRequest());
   }
 
+  public StreamResponse<CreateDraftResponse> createDraft(CreateDraftRequest request)
+      throws StreamException {
+    return service.createDraft(this.channelType, this.channelID, request).execute();
+  }
+
   public StreamResponse<EventResponse> sendEvent(SendEventRequest request) throws StreamException {
     return service.sendEvent(this.channelType, this.channelID, request).execute();
   }
