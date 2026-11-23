@@ -56,4 +56,8 @@ public class DeleteUsersRequest {
   @Nullable
   @JsonProperty("user")
   private String user;
+
+  @Nullable
+  @JsonProperty("exclude_channel_cids")
+  private List<String> excludeChannelCids;
 }
