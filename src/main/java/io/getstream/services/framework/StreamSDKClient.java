@@ -103,8 +103,8 @@ public class StreamSDKClient extends CommonImpl implements Common {
   /**
    * Decode + parse a Stream-delivered SQS message body.
    *
-   * <p>Convenience wrapper around {@link io.getstream.Webhook#parseSqs(String)}. No signature is
-   * required; SQS deliveries are authenticated via AWS IAM.
+   * <p>Convenience wrapper around {@link io.getstream.Webhook#parseSqs(String)}. It verifies no
+   * signature: only principals the queue's IAM policy allows can send to it.
    *
    * @param messageBody the SQS message body string
    * @return the parsed event (typed event or {@link io.getstream.Webhook.UnknownEvent})
@@ -117,14 +117,30 @@ public class StreamSDKClient extends CommonImpl implements Common {
    * Decode + parse a Stream-delivered SNS notification body.
    *
    * <p>Accepts either the raw SNS HTTP envelope JSON or the pre-extracted Message string.
-   * Convenience wrapper around {@link io.getstream.Webhook#parseSns(String)}. No signature is
-   * required; SNS deliveries are authenticated via AWS IAM.
+   * Convenience wrapper around {@link io.getstream.Webhook#parseSns(String)}. It verifies no
+   * signature, so use it only for a body read from an IAM-protected SQS queue. For an SNS HTTP(S)
+   * subscription, use {@link #verifyAndParseSns(String)}.
    *
    * @param notificationBody the SNS notification body (envelope JSON or extracted Message)
    * @return the parsed event (typed event or {@link io.getstream.Webhook.UnknownEvent})
    */
   public Object parseSns(String notificationBody) throws io.getstream.Webhook.InvalidWebhookError {
     return io.getstream.Webhook.parseSns(notificationBody);
+  }
+
+  /**
+   * Verify and parse an SNS HTTP(S) notification envelope, using this client's API secret.
+   *
+   * <p>Convenience wrapper around {@link io.getstream.Webhook#verifyAndParseSns(String, String)}.
+   * Throws {@link io.getstream.Webhook.InvalidWebhookError} on signature mismatch or parse
+   * failures.
+   *
+   * @param notificationBody the SNS notification envelope JSON
+   * @return the parsed event (typed event or {@link io.getstream.Webhook.UnknownEvent})
+   */
+  public Object verifyAndParseSns(String notificationBody)
+      throws io.getstream.Webhook.InvalidWebhookError {
+    return io.getstream.Webhook.verifyAndParseSns(notificationBody, this.httpClient.getApiSecret());
   }
 
   /** Default poll interval for {@link #waitForTask(String)}. */

@@ -988,9 +988,13 @@ public class Webhook {
    * @param body The raw request body as a byte array
    * @param signature The signature from the X-Signature header
    * @param secret Your webhook secret (found in the Stream Dashboard)
-   * @return true if the signature is valid, false otherwise
+   * @return true if the signature is valid, false otherwise (including a null or empty secret or
+   *     signature)
    */
   public static boolean verifySignature(byte[] body, String signature, String secret) {
+    if (secret == null || secret.isEmpty() || signature == null || signature.isEmpty()) {
+      return false;
+    }
     try {
       Mac mac = Mac.getInstance(HMAC_SHA256);
       SecretKeySpec secretKey =
@@ -1113,6 +1117,7 @@ public class Webhook {
    * </ul>
    *
    * The inner payload is then base64-decoded and gunzipped via {@link #decodeSqsPayload(String)}.
+   * The signature is not verified.
    */
   public static byte[] decodeSnsPayload(String notificationBody) throws InvalidWebhookError {
     if (notificationBody == null) {
@@ -1203,20 +1208,54 @@ public class Webhook {
   /**
    * SQS composite: base64-decode then gunzip (if gzip-prefixed) then parse.
    *
-   * <p>The backend emits no signature attribute on SQS messages today; this helper therefore
-   * performs no signature verification. If a signed variant is added later, it'll be a separate
-   * function rather than retrofitting this signature.
+   * <p>Performs no signature verification: only principals the queue's IAM policy allows can send
+   * to it. Each message also carries a {@code signature} attribute, the same HMAC as the
+   * X-Signature header, which {@link #verifySignature(byte[], String, String)} checks against the
+   * decoded payload.
    */
   public static Object parseSqs(String messageBody) throws InvalidWebhookError {
     return parseEvent(decodeSqsPayload(messageBody));
   }
 
   /**
-   * SNS composite: parse SNS envelope then base64-decode then gunzip then parse. Same no-signature
-   * posture as {@link #parseSqs(String)}.
+   * SNS composite: parse SNS envelope then base64-decode then gunzip then parse.
+   *
+   * <p>Performs no signature verification, so use it only for a body read from an IAM-protected SQS
+   * queue. For an SNS HTTP(S) subscription, which anyone can POST to, use {@link
+   * #verifyAndParseSns(String, String)}.
    */
   public static Object parseSns(String notificationBody) throws InvalidWebhookError {
     return parseEvent(decodeSnsPayload(notificationBody));
+  }
+
+  /**
+   * SNS HTTP(S) composite: unwrap envelope then decode then verify signature then parse.
+   *
+   * <p>{@code notificationBody} is the SNS notification envelope JSON, with raw message delivery
+   * off. The signature is read from its {@code signature} message attribute: HMAC-SHA256 of the
+   * uncompressed JSON, keyed by your API secret, the same value HTTP webhooks send as X-Signature.
+   *
+   * @throws InvalidWebhookError for every failure mode, including a missing envelope or signature
+   *     attribute ({@link InvalidWebhookError#SIGNATURE_MISMATCH})
+   */
+  public static Object verifyAndParseSns(String notificationBody, String secret)
+      throws InvalidWebhookError {
+    JsonNode env;
+    try {
+      env = notificationBody == null ? null : objectMapper.readTree(notificationBody);
+    } catch (IOException e) {
+      throw new InvalidWebhookError(InvalidWebhookError.INVALID_JSON + ": invalid SNS envelope", e);
+    }
+    JsonNode message = env == null ? null : env.get("Message");
+    if (message == null || !message.isTextual()) {
+      throw new InvalidWebhookError(InvalidWebhookError.INVALID_JSON + ": invalid SNS envelope");
+    }
+    byte[] payload = decodeSqsPayload(message.asText());
+    String signature = env.path("MessageAttributes").path("signature").path("Value").asText("");
+    if (!verifySignature(payload, signature, secret)) {
+      throw new InvalidWebhookError(InvalidWebhookError.SIGNATURE_MISMATCH);
+    }
+    return parseEvent(payload);
   }
 
   private static String bytesToHex(byte[] bytes) {
