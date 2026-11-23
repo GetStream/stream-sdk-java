@@ -988,9 +988,13 @@ public class Webhook {
    * @param body The raw request body as a byte array
    * @param signature The signature from the X-Signature header
    * @param secret Your webhook secret (found in the Stream Dashboard)
-   * @return true if the signature is valid, false otherwise
+   * @return true if the signature is valid, false otherwise (including a null or empty secret or
+   *     signature)
    */
   public static boolean verifySignature(byte[] body, String signature, String secret) {
+    if (secret == null || secret.isEmpty() || signature == null || signature.isEmpty()) {
+      return false;
+    }
     try {
       Mac mac = Mac.getInstance(HMAC_SHA256);
       SecretKeySpec secretKey =

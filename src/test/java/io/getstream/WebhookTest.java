@@ -69,6 +69,13 @@ public class WebhookTest {
   }
 
   @Test
+  public void testVerifySignatureEmptyOrNullSecretOrSignature() {
+    assertFalse(Webhook.verifySignature(TEST_BODY, "abc", ""));
+    assertFalse(Webhook.verifySignature(TEST_BODY, "abc", null));
+    assertFalse(Webhook.verifySignature(TEST_BODY, null, TEST_SECRET));
+  }
+
+  @Test
   public void testGetEventTypeValid() {
     assertEquals("message.new", Webhook.getEventType("{\"type\":\"message.new\"}"));
   }
