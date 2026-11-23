@@ -370,6 +370,7 @@ public class WebhookTest {
                   assertNotNull(Webhook.parseSqs(sqsCompressed));
                   assertNotNull(Webhook.parseSqs(sqsRaw));
                   assertNotNull(Webhook.parseSns(sns));
+                  assertNotNull(Webhook.verifyAndParseSns(sns, CANONICAL_TEST_SECRET));
                 }));
       }
     }
@@ -495,5 +496,32 @@ public class WebhookTest {
     // Still InvalidWebhookError.
     String notif = Files.readString(dir.resolve("sns_notification.txt")).trim();
     assertThrows(Webhook.InvalidWebhookError.class, () -> Webhook.parseSns(notif));
+  }
+
+  @Test
+  void webhookConformanceVerifyAndParseSnsRejectsForgeries() throws IOException {
+    Path dir = FIXTURE_ROOT.resolve("_invalid").resolve("tampered_body");
+    if (!Files.exists(dir)) return;
+    String tampered = Files.readString(dir.resolve("sns_notification.txt")).trim();
+    String bareMessage = Files.readString(dir.resolve("sqs_body.txt")).trim();
+    String unsigned = "{\"Type\":\"Notification\",\"Message\":\"" + bareMessage + "\"}";
+
+    Webhook.InvalidWebhookError ex =
+        assertThrows(
+            Webhook.InvalidWebhookError.class,
+            () -> Webhook.verifyAndParseSns(tampered, CANONICAL_TEST_SECRET));
+    assertTrue(
+        ex.getMessage().contains(Webhook.InvalidWebhookError.SIGNATURE_MISMATCH), ex.getMessage());
+    ex =
+        assertThrows(
+            Webhook.InvalidWebhookError.class,
+            () -> Webhook.verifyAndParseSns(unsigned, CANONICAL_TEST_SECRET));
+    assertTrue(
+        ex.getMessage().contains(Webhook.InvalidWebhookError.SIGNATURE_MISMATCH), ex.getMessage());
+    ex =
+        assertThrows(
+            Webhook.InvalidWebhookError.class,
+            () -> Webhook.verifyAndParseSns(bareMessage, CANONICAL_TEST_SECRET));
+    assertTrue(ex.getMessage().contains("invalid SNS envelope"), ex.getMessage());
   }
 }

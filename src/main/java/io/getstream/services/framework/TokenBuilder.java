@@ -30,6 +30,10 @@ public class TokenBuilder {
   @NotNull
   public static String createToken(
       @NotNull String apiSecret, @NotNull String userId, @Nullable Integer validity) {
+    // A secret-signed token without a user id authenticates as the server.
+    if (userId == null || userId.isBlank()) {
+      throw new IllegalArgumentException("userId is required");
+    }
     var issuedAt = Instant.now().minusSeconds(5);
 
     var key = Keys.hmacShaKeyFor(apiSecret.getBytes(StandardCharsets.UTF_8));
