@@ -180,6 +180,10 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<CreateDraftResponse> createDraft(
+      @NotNull String type, @NotNull String id, CreateDraftRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<EventResponse> sendEvent(
       @NotNull String type, @NotNull String id, SendEventRequest request) throws StreamException;
 

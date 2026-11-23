@@ -70,6 +70,10 @@ public class NotificationMarkUnreadEvent {
   private Date receivedAt;
 
   @Nullable
+  @JsonProperty("soft_unread")
+  private Boolean softUnread;
+
+  @Nullable
   @JsonProperty("team")
   private String team;
 

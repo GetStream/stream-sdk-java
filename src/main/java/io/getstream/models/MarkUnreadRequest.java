@@ -16,7 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import org.jetbrains.annotations.Nullable;
 
-/** Mark unread Marks channel as unread from a specific message */
+/**
+ * Mark unread Marks channel as unread from a specific message, or as soft unread (a dot without a
+ * counter) when no message_id, message_timestamp or thread_id is given
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
