@@ -151,6 +151,13 @@ public interface Common {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<GetHookEventsResponse> getHookEvents(GetHookEventsRequest request)
+      throws StreamException;
+
+  @NotNull
+  public StreamRequest<GetHookEventsResponse> getHookEvents() throws StreamException;
+
+  @NotNull
   public StreamRequest<CreateImportURLResponse> createImportURL(CreateImportURLRequest request)
       throws StreamException;
 

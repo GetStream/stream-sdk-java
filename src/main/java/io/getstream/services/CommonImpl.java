@@ -375,6 +375,24 @@ public class CommonImpl {
   }
 
   @NotNull
+  public StreamRequest<GetHookEventsResponse> getHookEvents(GetHookEventsRequest request)
+      throws StreamException {
+
+    return new StreamRequest<GetHookEventsResponse>(
+        client,
+        "GET",
+        "/api/v2/hook/events",
+        request,
+        null,
+        new TypeReference<GetHookEventsResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<GetHookEventsResponse> getHookEvents() throws StreamException {
+    return getHookEvents(new GetHookEventsRequest());
+  }
+
+  @NotNull
   public StreamRequest<CreateImportURLResponse> createImportURL(CreateImportURLRequest request)
       throws StreamException {
 

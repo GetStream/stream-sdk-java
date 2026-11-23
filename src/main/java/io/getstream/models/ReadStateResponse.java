@@ -42,4 +42,8 @@ public class ReadStateResponse {
   @Nullable
   @JsonProperty("last_read_message_id")
   private String lastReadMessageID;
+
+  @Nullable
+  @JsonProperty("soft_unread")
+  private Boolean softUnread;
 }

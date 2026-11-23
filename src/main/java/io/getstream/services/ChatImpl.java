@@ -453,6 +453,23 @@ public class ChatImpl {
   }
 
   @NotNull
+  public StreamRequest<CreateDraftResponse> createDraft(
+      @NotNull String type, @NotNull String id, CreateDraftRequest request) throws StreamException {
+    var pathParams =
+        Map.of(
+            "type", type,
+            "id", id);
+
+    return new StreamRequest<CreateDraftResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/channels/{type}/{id}/draft",
+        request,
+        pathParams,
+        new TypeReference<CreateDraftResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<EventResponse> sendEvent(
       @NotNull String type, @NotNull String id, SendEventRequest request) throws StreamException {
     var pathParams =

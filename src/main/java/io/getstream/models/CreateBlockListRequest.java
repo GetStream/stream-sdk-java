@@ -61,6 +61,10 @@ public class CreateBlockListRequest {
   private String userID;
 
   @Nullable
+  @JsonProperty("validate")
+  private Boolean validate;
+
+  @Nullable
   @JsonProperty("user")
   private UserRequest user;
 }
