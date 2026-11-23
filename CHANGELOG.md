@@ -2,6 +2,67 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.3.0](https://github.com/GetStream/stream-sdk-java/compare/11.2.0...11.3.0) (2026-11-23)
+
+
+### Features
+
+* add `verifyAndParseSns` to verify the `signature` attribute on SNS HTTP(S) deliveries before parsing ([2758291](https://github.com/GetStream/stream-sdk-java/commit/2758291c7b0fdacf2ee1c47e398aa6f2212416bf))
+* add createDraft ([35a61c7](https://github.com/GetStream/stream-sdk-java/commit/35a61c7f39a05a2da0a5acc68c2d87be36cdf20f))
+* add createMessageMark ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add deleteScheduledActivity ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add excludeChannelCids to DeleteUsersRequest ([44dc3e5](https://github.com/GetStream/stream-sdk-java/commit/44dc3e56dca62e22686b909125646816f00ffa4d))
+* add getHookEvents ([35a61c7](https://github.com/GetStream/stream-sdk-java/commit/35a61c7f39a05a2da0a5acc68c2d87be36cdf20f))
+* add getScheduledActivity ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add getTrendingTopics ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add listPromotedTopics ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add markGroups, ownMarks to ChatMessageResponse ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add markGroups, ownMarks to MessageResponse ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add markGroups, ownMarks to MessageWithChannelResponse ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add markGroups, ownMarks to SearchResultMessage ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add markTypes, voiceTranscription to ChannelConfig ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add markTypes, voiceTranscription to ChannelConfigWithInfo ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add markTypes, voiceTranscription to ChannelTypeConfig ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add markTypes, voiceTranscription to CreateChannelTypeRequest ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add markTypes, voiceTranscription to CreateChannelTypeResponse ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add markTypes, voiceTranscription to GetChannelTypeResponse ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add markTypes, voiceTranscription to UpdateChannelTypeRequest ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add markTypes, voiceTranscription to UpdateChannelTypeResponse ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add memberCount, members to ScheduledMessageChannelResponse ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add messageMarks to AppResponseFields ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add messageMarks to UpdateAppRequest ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add ocrRules, ocrSeverityRules to AIVideoConfig ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add ocrRules, ocrSeverityRules to AIVideoConfigRequest ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add ocrRules, ocrSeverityRules to AIVideoConfigResponse ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add promoteTopics ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add publishScheduledActivityNow ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add queryFeedsReactions ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add queryMessageMarks ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add queryScheduledActivities ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add quotedMessage to ScheduledMessageContentResponse ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add scheduleActivity ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add skipFeedCreation to GetOrCreateFeedRequest ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add softUnread to NotificationMarkUnreadEvent ([35a61c7](https://github.com/GetStream/stream-sdk-java/commit/35a61c7f39a05a2da0a5acc68c2d87be36cdf20f))
+* add softUnread to ReadStateResponse ([35a61c7](https://github.com/GetStream/stream-sdk-java/commit/35a61c7f39a05a2da0a5acc68c2d87be36cdf20f))
+* add softUnread to UnreadCountsChannel ([35a61c7](https://github.com/GetStream/stream-sdk-java/commit/35a61c7f39a05a2da0a5acc68c2d87be36cdf20f))
+* add trending to ForYouConfig ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add unpromoteTopics ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add updateScheduledActivity ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add validate to CreateBlockListRequest ([35a61c7](https://github.com/GetStream/stream-sdk-java/commit/35a61c7f39a05a2da0a5acc68c2d87be36cdf20f))
+* add validate to UpdateBlockListRequest ([35a61c7](https://github.com/GetStream/stream-sdk-java/commit/35a61c7f39a05a2da0a5acc68c2d87be36cdf20f))
+* add voiceTranscript to Attachment ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add voiceTranscript to GetOGResponse ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add voiceTranscription to ChannelConfigOverrides ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add voiceTranscription to ConfigOverridesRequest ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add webhook event ScheduledActivityFailedEvent ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+* add webhook event ScheduledActivityPublishedEvent ([900a0fb](https://github.com/GetStream/stream-sdk-java/commit/900a0fbaffbd98b18d98223975e85faa4c424a4b))
+
+
+### Bug Fixes
+
+* `TokenBuilder.createToken` rejects a null, empty or blank `userId` instead of minting a server-side token ([2758291](https://github.com/GetStream/stream-sdk-java/commit/2758291c7b0fdacf2ee1c47e398aa6f2212416bf))
+* `Webhook.verifySignature` returns false for a null or empty secret or signature instead of throwing ([2758291](https://github.com/GetStream/stream-sdk-java/commit/2758291c7b0fdacf2ee1c47e398aa6f2212416bf))
+
 ## [11.2.0](https://github.com/GetStream/stream-sdk-java/compare/11.1.0...11.2.0) (2026-11-13)
 
 
