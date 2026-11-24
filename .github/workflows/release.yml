@@ -45,7 +45,7 @@ jobs:
     # anything short of a definite "nothing pending" has to hold this job back, or it
     # proposes a second Release PR on top of one that may still be untagged.
     if: needs.detect.outputs.pending == 'false'
-    runs-on: { group: github-public-ubuntu-static }
+    runs-on: { group: github-public-amd64 }
     timeout-minutes: 5
     # The org no longer lets GITHUB_TOKEN create pull requests, so release-please opens the
     # Release PR as getstream-sdk-bot. Its key lives only in the sdk-bot environment, which
@@ -78,7 +78,7 @@ jobs:
     if: >-
       (github.event_name == 'push' || inputs.publish_tag == '') &&
       (github.ref_name == 'main' || endsWith(github.ref_name, '.x'))
-    runs-on: { group: github-public-ubuntu-static }
+    runs-on: { group: github-public-amd64 }
     timeout-minutes: 5
     permissions:
       contents: read
@@ -195,7 +195,7 @@ jobs:
     if: >-
       ${{ !cancelled() && needs.detect.result == 'success' && needs.detect.outputs.ready == 'true'
       && (needs.tests.result == 'success' || needs.tests.result == 'skipped') }}
-    runs-on: { group: github-public-ubuntu-static }
+    runs-on: { group: github-public-amd64 }
     timeout-minutes: 5
     permissions:
       contents: write
@@ -223,7 +223,7 @@ jobs:
     if: >-
       !cancelled() &&
       (inputs.publish_tag != '' || needs.release.outputs.release_created == 'true')
-    runs-on: { group: github-public-ubuntu-static }
+    runs-on: { group: github-public-amd64 }
     timeout-minutes: 30
     permissions:
       contents: read
@@ -302,7 +302,7 @@ jobs:
     name: ☁️ Upload to the Stream repository
     needs: publish
     if: ${{ !cancelled() && needs.publish.result == 'success' && contains(inputs.publish-targets || 'streamRepo', 'streamRepo') }}
-    runs-on: { group: github-public-ubuntu-static }
+    runs-on: { group: github-public-amd64 }
     timeout-minutes: 30
     permissions:
       contents: read
@@ -329,7 +329,7 @@ jobs:
     name: 📝 Add the Stream repository card to the release
     needs: [publish, upload]
     if: ${{ !cancelled() && needs.upload.result == 'success' && (inputs.publish-targets || 'streamRepo') == 'streamRepo' }}
-    runs-on: { group: github-public-ubuntu-static }
+    runs-on: { group: github-public-amd64 }
     timeout-minutes: 5
     permissions:
       contents: write
