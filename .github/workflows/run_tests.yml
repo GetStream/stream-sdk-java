@@ -16,7 +16,7 @@ permissions:
 jobs:
   test:
     name: 🧪 Test & lint
-    runs-on: ubuntu-latest
+    runs-on: { group: github-public-ubuntu-static }
     timeout-minutes: 20
     steps:
       - name: Check out code
