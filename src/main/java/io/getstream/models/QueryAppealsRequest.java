@@ -25,6 +25,10 @@ import org.jetbrains.annotations.Nullable;
 public class QueryAppealsRequest {
 
   @Nullable
+  @JsonProperty("include_count")
+  private Boolean includeCount;
+
+  @Nullable
   @JsonProperty("limit")
   private Integer limit;
 
