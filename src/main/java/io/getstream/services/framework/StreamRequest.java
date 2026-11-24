@@ -137,19 +137,48 @@ public class StreamRequest<T> {
   public HttpUrl buildUrl(
       String baseUrl, String path, Map<String, String> pathParams, Object queryParams)
       throws JsonProcessingException, NullPointerException, IllegalAccessException {
-    // Handle path parameters
-    if (pathParams != null && !pathParams.isEmpty()) {
-      for (Map.Entry<String, String> entry : pathParams.entrySet()) {
-        path = path.replace("{" + entry.getKey() + "}", entry.getValue());
-      }
+    HttpUrl parsedBase = HttpUrl.parse(baseUrl);
+    if (parsedBase == null) {
+      throw new IllegalArgumentException("Invalid base URL: " + baseUrl);
     }
 
-    // Add the processed path
-    // Remove leading slash if present to avoid double slashes
+    // Build path segment-by-segment so path parameters are percent-encoded as single segments
+    // and cannot traverse parent paths or inject query/fragment components.
+    HttpUrl.Builder urlBuilder = parsedBase.newBuilder();
     String processedPath = path.startsWith("/") ? path.substring(1) : path;
-
-    // Start building with the base URL
-    HttpUrl.Builder urlBuilder = HttpUrl.parse(baseUrl).newBuilder(processedPath);
+    if (!processedPath.isEmpty()) {
+      for (String segment : processedPath.split("/", -1)) {
+        if (segment.startsWith("{") && segment.endsWith("}") && pathParams != null) {
+          String key = segment.substring(1, segment.length() - 1);
+          if (pathParams.containsKey(key)) {
+            String value = pathParams.get(key);
+            if (value == null || value.isEmpty() || ".".equals(value) || "..".equals(value)) {
+              throw new IllegalArgumentException(
+                  "Invalid path parameter '" + key + "': must not be empty or a dot-segment");
+            }
+            urlBuilder.addPathSegment(value);
+            continue;
+          }
+        }
+        String resolved = segment;
+        if (pathParams != null && !pathParams.isEmpty()) {
+          for (Map.Entry<String, String> entry : pathParams.entrySet()) {
+            String placeholder = "{" + entry.getKey() + "}";
+            if (resolved.contains(placeholder)) {
+              String value = entry.getValue();
+              if (value == null || value.isEmpty() || ".".equals(value) || "..".equals(value)) {
+                throw new IllegalArgumentException(
+                    "Invalid path parameter '"
+                        + entry.getKey()
+                        + "': must not be empty or a dot-segment");
+              }
+              resolved = resolved.replace(placeholder, value);
+            }
+          }
+        }
+        urlBuilder.addPathSegment(resolved);
+      }
+    }
 
     // Add query parameters
     if (queryParams != null) {
