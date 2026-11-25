@@ -505,6 +505,14 @@ public interface Chat {
       throws StreamException;
 
   @NotNull
+  public StreamRequest<TranscribeMessageResponse> transcribeMessage(
+      @NotNull String id, TranscribeMessageRequest request) throws StreamException;
+
+  @NotNull
+  public StreamRequest<TranscribeMessageResponse> transcribeMessage(@NotNull String id)
+      throws StreamException;
+
+  @NotNull
   public StreamRequest<TranslateMessageResponse> translateMessage(
       @NotNull String id, TranslateMessageRequest request) throws StreamException;
 
