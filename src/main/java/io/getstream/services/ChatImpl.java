@@ -1379,6 +1379,26 @@ public class ChatImpl {
   }
 
   @NotNull
+  public StreamRequest<TranscribeMessageResponse> transcribeMessage(
+      @NotNull String id, TranscribeMessageRequest request) throws StreamException {
+    var pathParams = Map.of("id", id);
+
+    return new StreamRequest<TranscribeMessageResponse>(
+        client,
+        "POST",
+        "/api/v2/chat/messages/{id}/transcribe",
+        request,
+        pathParams,
+        new TypeReference<TranscribeMessageResponse>() {});
+  }
+
+  @NotNull
+  public StreamRequest<TranscribeMessageResponse> transcribeMessage(@NotNull String id)
+      throws StreamException {
+    return transcribeMessage(id, new TranscribeMessageRequest());
+  }
+
+  @NotNull
   public StreamRequest<TranslateMessageResponse> translateMessage(
       @NotNull String id, TranslateMessageRequest request) throws StreamException {
     var pathParams = Map.of("id", id);
