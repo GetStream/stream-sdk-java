@@ -14,6 +14,7 @@ package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 @lombok.Data
 @lombok.Builder
@@ -26,4 +27,8 @@ public class GetBlockedUsersResponse {
 
   @JsonProperty("blocks")
   private List<BlockedUserResponse> blocks;
+
+  @Nullable
+  @JsonProperty("next")
+  private String next;
 }

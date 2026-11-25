@@ -15,7 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
-/** Get list of blocked Users Get list of blocked Users */
+/**
+ * Get list of blocked Users Returns users blocked by one user, oldest block first. Page with limit
+ * (default 500, max 500) and next.
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
@@ -25,4 +28,12 @@ public class GetBlockedUsersRequest {
   @Query("user_id")
   @JsonIgnore
   private String UserID;
+
+  @Query("limit")
+  @JsonIgnore
+  private Integer Limit;
+
+  @Query("next")
+  @JsonIgnore
+  private String Next;
 }

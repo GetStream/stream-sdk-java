@@ -31,6 +31,10 @@ public class MarkChannelsReadRequest {
   private String userID;
 
   @Nullable
+  @JsonProperty("filter_conditions")
+  private Map<String, Object> filterConditions;
+
+  @Nullable
   @JsonProperty("read_by_channel")
   private Map<String, String> readByChannel;
 
