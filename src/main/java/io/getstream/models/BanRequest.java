@@ -38,6 +38,10 @@ public class BanRequest {
   private String channelCid;
 
   @Nullable
+  @JsonProperty("channel_type")
+  private String channelType;
+
+  @Nullable
   @JsonProperty("delete_messages")
   private String deleteMessages;
 
