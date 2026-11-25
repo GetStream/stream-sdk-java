@@ -48,6 +48,10 @@ public class ModerationDashboardPreferences {
   private Boolean disableFlaggingReviewedEntity;
 
   @Nullable
+  @JsonProperty("disable_review_queue")
+  private Boolean disableReviewQueue;
+
+  @Nullable
   @JsonProperty("enforce_shadow_server_side")
   private Boolean enforceShadowServerSide;
 

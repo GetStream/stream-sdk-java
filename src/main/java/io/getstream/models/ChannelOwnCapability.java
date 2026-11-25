@@ -54,6 +54,7 @@ public final class ChannelOwnCapability {
   public static final String SHARE_LOCATION = "share-location";
   public static final String SKIP_SLOW_MODE = "skip-slow-mode";
   public static final String SLOW_MODE = "slow-mode";
+  public static final String TRANSCRIBE_VOICE_MESSAGE = "transcribe-voice-message";
   public static final String TYPING_EVENTS = "typing-events";
   public static final String UPDATE_ANY_MESSAGE = "update-any-message";
   public static final String UPDATE_CHANNEL = "update-channel";
