@@ -41,4 +41,8 @@ public class AIVideoConfigRequest {
   @Nullable
   @JsonProperty("rules")
   private List<AWSRekognitionRule> rules;
+
+  @Nullable
+  @JsonProperty("audio_config")
+  private AIAudioConfigRequest audioConfig;
 }

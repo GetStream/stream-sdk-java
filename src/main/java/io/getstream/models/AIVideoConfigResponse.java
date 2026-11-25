@@ -39,4 +39,8 @@ public class AIVideoConfigResponse {
   @Nullable
   @JsonProperty("ocr_severity_rules")
   private List<BodyguardRule> ocrSeverityRules;
+
+  @Nullable
+  @JsonProperty("audio_config")
+  private AIAudioConfigResponse audioConfig;
 }
