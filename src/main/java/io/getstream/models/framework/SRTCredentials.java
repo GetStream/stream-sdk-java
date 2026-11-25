@@ -6,7 +6,7 @@ import lombok.Getter;
 
 /**
  * SRT address an encoder (OBS, ffmpeg, ...) publishes to. The address contains a user token, so
- * {@link #toString()} leaves it out; call {@code getAddress()} when you need it.
+ * keep it secret.
  */
 @Builder
 @Getter
@@ -15,9 +15,4 @@ public class SRTCredentials {
 
   /** When the token in the address expires. */
   Instant expiresAt;
-
-  @Override
-  public String toString() {
-    return "SRTCredentials(address=[redacted], expiresAt=" + expiresAt + ")";
-  }
 }

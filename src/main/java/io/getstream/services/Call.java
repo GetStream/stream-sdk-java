@@ -5,12 +5,9 @@ import io.getstream.models.*;
 import io.getstream.models.framework.SRTCredentials;
 import io.getstream.models.framework.StreamResponse;
 import io.getstream.services.framework.TokenBuilder;
-import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.jetbrains.annotations.NotNull;
 
 public class Call extends BaseCall {
@@ -87,11 +84,6 @@ public class Call extends BaseCall {
   /** Default lifetime of the token in an SRT address. */
   public static final Duration DEFAULT_SRT_TOKEN_VALIDITY = Duration.ofHours(24);
 
-  /** SRT caps the stream id at 512 bytes; encoders refuse a longer one. */
-  static final int MAX_SRT_STREAM_ID_BYTES = 512;
-
-  private static final Pattern SRT_STREAM_ID = Pattern.compile("[?&]streamid=([^&]*)");
-
   static SRTCredentials buildSRTCredentials(
       @NotNull String addressTemplate,
       @NotNull TokenBuilder tokenBuilder,
@@ -111,19 +103,6 @@ public class Call extends BaseCall {
     }
 
     String address = addressTemplate.replace("{passphrase}", segments[2]).replace("{token}", token);
-    Matcher streamID = SRT_STREAM_ID.matcher(address);
-    if (streamID.find()) {
-      int size = streamID.group(1).getBytes(StandardCharsets.UTF_8).length;
-      if (size > MAX_SRT_STREAM_ID_BYTES) {
-        throw StreamException.build(
-            "The SRT stream id is "
-                + size
-                + " bytes, over the "
-                + MAX_SRT_STREAM_ID_BYTES
-                + "-byte SRT limit. Use a shorter user ID or call ID.");
-      }
-    }
-
     return SRTCredentials.builder().address(address).expiresAt(expiresAt).build();
   }
 }

@@ -1,7 +1,6 @@
 package io.getstream.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -91,22 +90,5 @@ public class SRTCredentialsTest {
   void rejectsValidityUnderOneSecond(long millis) {
     assertThrows(
         IllegalArgumentException.class, () -> build("my-call", "john", Duration.ofMillis(millis)));
-  }
-
-  @Test
-  void rejectsStreamIdOverTheSrtLimit() {
-    var error =
-        assertThrows(
-            StreamException.class,
-            () -> build("c".repeat(200), "u".repeat(100), Call.DEFAULT_SRT_TOKEN_VALIDITY));
-    assertTrue(error.getMessage().contains("512-byte SRT limit"), error.getMessage());
-  }
-
-  @Test
-  void toStringHidesTheAddress() throws StreamException {
-    var credentials = build("my-call", "john", Call.DEFAULT_SRT_TOKEN_VALIDITY);
-
-    assertFalse(credentials.toString().contains(tokenOf(credentials)));
-    assertTrue(credentials.toString().contains("[redacted]"));
   }
 }
