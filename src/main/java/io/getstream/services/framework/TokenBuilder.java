@@ -51,6 +51,34 @@ public class TokenBuilder {
     return builder.compact();
   }
 
+  /**
+   * Creates a token that can only join the call {@code callCID} (and read the app settings). The
+   * backend refuses it on every other endpoint and on the websocket. Unlike {@code call_cids},
+   * which grants the user a role in calls, this takes access away.
+   *
+   * @param userId the user the token authenticates
+   * @param callCID the call the token is limited to, as {@code type:id}
+   * @param expiresAt when the token expires
+   */
+  @NotNull
+  public String createScopedCallToken(
+      @NotNull String userId, @NotNull String callCID, @NotNull Instant expiresAt) {
+    if (userId == null || userId.isBlank()) {
+      throw new IllegalArgumentException("userId is required");
+    }
+    if (callCID == null || callCID.isBlank()) {
+      throw new IllegalArgumentException("callCID is required");
+    }
+    var key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+    return Jwts.builder()
+        .claim("user_id", userId)
+        .claim("scoped_call_cid", callCID)
+        .issuedAt(Date.from(Instant.now().minusSeconds(5)))
+        .expiration(Date.from(expiresAt))
+        .signWith(key, Jwts.SIG.HS256)
+        .compact();
+  }
+
   public String createCallToken(@NotNull CallTokenClaims claims) {
     return createCallToken(secret, claims);
   }
