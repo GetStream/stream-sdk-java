@@ -11,25 +11,27 @@ import okhttp3.OkHttpClient;
 import org.junit.jupiter.api.Test;
 
 class StreamRequestPathEncodingTest {
-  private final StreamRequest<Map<String, Object>> helper =
-      new StreamRequest<>(
-          new OkHttpClient(),
-          new ObjectMapper(),
-          "https://chat.stream-io-api.com",
-          "GET",
-          "/api/v2/users",
-          null,
-          null,
-          new TypeReference<Map<String, Object>>() {});
+  private static StreamRequest<Map<String, Object>> newHelper() throws Exception {
+    return new StreamRequest<>(
+        new OkHttpClient(),
+        new ObjectMapper(),
+        "https://chat.stream-io-api.com",
+        "GET",
+        "/api/v2/users",
+        null,
+        null,
+        new TypeReference<Map<String, Object>>() {});
+  }
 
   @Test
   void encodesPathTraversalQueryAndFragmentCharacters() throws Exception {
     HttpUrl url =
-        helper.buildUrl(
-            "https://chat.stream-io-api.com",
-            "/api/v2/video/call/{type}/{id}",
-            Map.of("type", "default", "id", "../other/path?hard_delete=true#frag"),
-            null);
+        newHelper()
+            .buildUrl(
+                "https://chat.stream-io-api.com",
+                "/api/v2/video/call/{type}/{id}",
+                Map.of("type", "default", "id", "../other/path?hard_delete=true#frag"),
+                null);
 
     assertEquals(
         "https://chat.stream-io-api.com/api/v2/video/call/default/..%2Fother%2Fpath%3Fhard_delete=true%23frag",
@@ -41,17 +43,19 @@ class StreamRequestPathEncodingTest {
   @Test
   void encodesSpacesAsPercent20() throws Exception {
     HttpUrl url =
-        helper.buildUrl(
-            "https://chat.stream-io-api.com",
-            "/api/v2/roles/{name}",
-            Map.of("name", "custom role"),
-            null);
+        newHelper()
+            .buildUrl(
+                "https://chat.stream-io-api.com",
+                "/api/v2/roles/{name}",
+                Map.of("name", "custom role"),
+                null);
 
     assertEquals("https://chat.stream-io-api.com/api/v2/roles/custom%20role", url.toString());
   }
 
   @Test
-  void rejectsEmptyAndDotSegmentPathParams() {
+  void rejectsEmptyAndDotSegmentPathParams() throws Exception {
+    StreamRequest<Map<String, Object>> helper = newHelper();
     for (String bad : new String[] {"", ".", ".."}) {
       assertThrows(
           IllegalArgumentException.class,
