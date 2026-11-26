@@ -29,10 +29,18 @@ public class QueryAppealsResponse {
   private List<AppealItemResponse> items;
 
   @Nullable
+  @JsonProperty("capped")
+  private Boolean capped;
+
+  @Nullable
   @JsonProperty("next")
   private String next;
 
   @Nullable
   @JsonProperty("prev")
   private String prev;
+
+  @Nullable
+  @JsonProperty("total")
+  private Integer total;
 }
