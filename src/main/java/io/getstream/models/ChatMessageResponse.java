@@ -158,6 +158,10 @@ public class ChatMessageResponse {
   private List<UserResponse> threadParticipants;
 
   @Nullable
+  @JsonProperty("deleted_by")
+  private UserResponse deletedBy;
+
+  @Nullable
   @JsonProperty("draft")
   private ChatDraftResponse draft;
 
