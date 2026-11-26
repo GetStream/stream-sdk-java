@@ -55,4 +55,8 @@ public class UnbanRequest {
   @Query("remove_future_channels_ban")
   @JsonIgnore
   private Boolean RemoveFutureChannelsBan;
+
+  @Query("channel_type")
+  @JsonIgnore
+  private String ChannelType;
 }

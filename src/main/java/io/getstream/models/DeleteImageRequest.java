@@ -15,7 +15,11 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
-/** Delete image Deletes previously uploaded image */
+/**
+ * Delete image Deletes previously uploaded image. A client can delete its own uploads; deleting
+ * another user&#39;s upload needs DeleteAttachmentGlobal for uploads of other users (by default,
+ * moderators and admins; in a multi-tenant app, within the uploader&#39;s team).
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
