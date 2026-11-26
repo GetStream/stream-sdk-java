@@ -43,6 +43,10 @@ public class AddActivityRequest {
   private Boolean createNotificationActivity;
 
   @Nullable
+  @JsonProperty("create_system_feeds")
+  private Boolean createSystemFeeds;
+
+  @Nullable
   @JsonProperty("create_users")
   private Boolean createUsers;
 
