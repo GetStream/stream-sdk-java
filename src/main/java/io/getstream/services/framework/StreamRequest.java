@@ -143,9 +143,17 @@ public class StreamRequest<T> {
     }
 
     // Build path segment-by-segment so path parameters are percent-encoded as single segments
-    // and cannot traverse parent paths or inject query/fragment components.
+    // and cannot traverse parent paths or inject query/fragment components. Preserve any literal
+    // query string already present on the path template itself before substituting pathParams.
     HttpUrl.Builder urlBuilder = parsedBase.newBuilder();
-    String processedPath = path.startsWith("/") ? path.substring(1) : path;
+    String pathPart = path;
+    String rawQuery = null;
+    int queryIdx = path.indexOf('?');
+    if (queryIdx >= 0) {
+      pathPart = path.substring(0, queryIdx);
+      rawQuery = path.substring(queryIdx + 1);
+    }
+    String processedPath = pathPart.startsWith("/") ? pathPart.substring(1) : pathPart;
     if (!processedPath.isEmpty()) {
       for (String segment : processedPath.split("/", -1)) {
         if (segment.startsWith("{") && segment.endsWith("}") && pathParams != null) {
@@ -178,6 +186,10 @@ public class StreamRequest<T> {
         }
         urlBuilder.addPathSegment(resolved);
       }
+    }
+
+    if (rawQuery != null) {
+      urlBuilder.encodedQuery(rawQuery);
     }
 
     // Add query parameters
