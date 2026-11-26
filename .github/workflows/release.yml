@@ -287,6 +287,8 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-disabled: true
 
       # An env var rather than -P, so a value with a space cannot split into a second argument.
       - name: Select publish targets
