@@ -137,19 +137,60 @@ public class StreamRequest<T> {
   public HttpUrl buildUrl(
       String baseUrl, String path, Map<String, String> pathParams, Object queryParams)
       throws JsonProcessingException, NullPointerException, IllegalAccessException {
-    // Handle path parameters
-    if (pathParams != null && !pathParams.isEmpty()) {
-      for (Map.Entry<String, String> entry : pathParams.entrySet()) {
-        path = path.replace("{" + entry.getKey() + "}", entry.getValue());
+    HttpUrl parsedBase = HttpUrl.parse(baseUrl);
+    if (parsedBase == null) {
+      throw new IllegalArgumentException("Invalid base URL: " + baseUrl);
+    }
+
+    // Build path segment-by-segment so path parameters are percent-encoded as single segments
+    // and cannot traverse parent paths or inject query/fragment components. Preserve any literal
+    // query string already present on the path template itself before substituting pathParams.
+    HttpUrl.Builder urlBuilder = parsedBase.newBuilder();
+    String pathPart = path;
+    String rawQuery = null;
+    int queryIdx = path.indexOf('?');
+    if (queryIdx >= 0) {
+      pathPart = path.substring(0, queryIdx);
+      rawQuery = path.substring(queryIdx + 1);
+    }
+    String processedPath = pathPart.startsWith("/") ? pathPart.substring(1) : pathPart;
+    if (!processedPath.isEmpty()) {
+      for (String segment : processedPath.split("/", -1)) {
+        if (segment.startsWith("{") && segment.endsWith("}") && pathParams != null) {
+          String key = segment.substring(1, segment.length() - 1);
+          if (pathParams.containsKey(key)) {
+            String value = pathParams.get(key);
+            if (value == null || value.isEmpty() || ".".equals(value) || "..".equals(value)) {
+              throw new IllegalArgumentException(
+                  "Invalid path parameter '" + key + "': must not be empty or a dot-segment");
+            }
+            urlBuilder.addPathSegment(value);
+            continue;
+          }
+        }
+        String resolved = segment;
+        if (pathParams != null && !pathParams.isEmpty()) {
+          for (Map.Entry<String, String> entry : pathParams.entrySet()) {
+            String placeholder = "{" + entry.getKey() + "}";
+            if (resolved.contains(placeholder)) {
+              String value = entry.getValue();
+              if (value == null || value.isEmpty() || ".".equals(value) || "..".equals(value)) {
+                throw new IllegalArgumentException(
+                    "Invalid path parameter '"
+                        + entry.getKey()
+                        + "': must not be empty or a dot-segment");
+              }
+              resolved = resolved.replace(placeholder, value);
+            }
+          }
+        }
+        urlBuilder.addPathSegment(resolved);
       }
     }
 
-    // Add the processed path
-    // Remove leading slash if present to avoid double slashes
-    String processedPath = path.startsWith("/") ? path.substring(1) : path;
-
-    // Start building with the base URL
-    HttpUrl.Builder urlBuilder = HttpUrl.parse(baseUrl).newBuilder(processedPath);
+    if (rawQuery != null) {
+      urlBuilder.encodedQuery(rawQuery);
+    }
 
     // Add query parameters
     if (queryParams != null) {
