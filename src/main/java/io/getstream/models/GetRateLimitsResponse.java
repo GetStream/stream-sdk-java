@@ -30,6 +30,10 @@ public class GetRateLimitsResponse {
   private Map<String, LimitInfoResponse> android;
 
   @Nullable
+  @JsonProperty("budgets")
+  private BudgetsResponse budgets;
+
+  @Nullable
   @JsonProperty("ios")
   private Map<String, LimitInfoResponse> ios;
 
