@@ -15,7 +15,10 @@ package io.getstream.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.getstream.annotations.Query;
 
-/** Get rate limits Get rate limits usage and quotas */
+/**
+ * Get rate limits Get rate limits usage and quotas, and the query budget status of budgeted
+ * endpoints
+ */
 @lombok.Data
 @lombok.Builder
 @lombok.NoArgsConstructor
