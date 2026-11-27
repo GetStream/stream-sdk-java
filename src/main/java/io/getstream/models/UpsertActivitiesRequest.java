@@ -27,6 +27,10 @@ public class UpsertActivitiesRequest {
   private List<ActivityRequest> activities;
 
   @Nullable
+  @JsonProperty("create_system_feeds")
+  private Boolean createSystemFeeds;
+
+  @Nullable
   @JsonProperty("create_users")
   private Boolean createUsers;
 

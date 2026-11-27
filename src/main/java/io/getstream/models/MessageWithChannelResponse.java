@@ -162,6 +162,10 @@ public class MessageWithChannelResponse {
   private List<UserResponse> threadParticipants;
 
   @Nullable
+  @JsonProperty("deleted_by")
+  private UserResponse deletedBy;
+
+  @Nullable
   @JsonProperty("draft")
   private DraftResponse draft;
 
