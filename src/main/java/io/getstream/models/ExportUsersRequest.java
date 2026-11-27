@@ -13,7 +13,9 @@
 package io.getstream.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 /** Export users Exports user profile, reactions and messages for list of given users */
 @lombok.Data
@@ -24,4 +26,16 @@ public class ExportUsersRequest {
 
   @JsonProperty("user_ids")
   private List<String> userIds;
+
+  @Nullable
+  @JsonProperty("messages_from")
+  private Date messagesFrom;
+
+  @Nullable
+  @JsonProperty("messages_to")
+  private Date messagesTo;
+
+  @Nullable
+  @JsonProperty("channel_cids")
+  private List<String> channelCids;
 }
