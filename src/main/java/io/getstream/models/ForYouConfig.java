@@ -22,6 +22,10 @@ import org.jetbrains.annotations.Nullable;
 public class ForYouConfig {
 
   @Nullable
+  @JsonProperty("analytics")
+  private Boolean analytics;
+
+  @Nullable
   @JsonProperty("enabled")
   private Boolean enabled;
 
@@ -36,6 +40,10 @@ public class ForYouConfig {
   @Nullable
   @JsonProperty("dwell")
   private ForYouDwellConfig dwell;
+
+  @Nullable
+  @JsonProperty("experiment")
+  private ForYouExperimentConfig experiment;
 
   @Nullable
   @JsonProperty("exploration")

@@ -2195,6 +2195,19 @@ public class FeedsImpl {
   }
 
   @NotNull
+  public StreamRequest<QueryFeedsEngagementStatsResponse> queryFeedsEngagementStats(
+      QueryFeedsEngagementStatsRequest request) throws StreamException {
+
+    return new StreamRequest<QueryFeedsEngagementStatsResponse>(
+        client,
+        "POST",
+        "/api/v2/feeds/stats/engagement",
+        request,
+        null,
+        new TypeReference<QueryFeedsEngagementStatsResponse>() {});
+  }
+
+  @NotNull
   public StreamRequest<QueryFeedsUsageStatsResponse> queryFeedsUsageStats(
       QueryFeedsUsageStatsRequest request) throws StreamException {
 
