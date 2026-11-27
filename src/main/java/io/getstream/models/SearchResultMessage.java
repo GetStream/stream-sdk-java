@@ -162,6 +162,10 @@ public class SearchResultMessage {
   private ChannelResponse channel;
 
   @Nullable
+  @JsonProperty("deleted_by")
+  private UserResponse deletedBy;
+
+  @Nullable
   @JsonProperty("draft")
   private DraftResponse draft;
 
