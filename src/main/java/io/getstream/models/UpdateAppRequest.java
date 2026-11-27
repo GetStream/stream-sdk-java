@@ -266,6 +266,10 @@ public class UpdateAppRequest {
   private MessageMarksConfig messageMarks;
 
   @Nullable
+  @JsonProperty("message_schema")
+  private MessageSchemaSettings messageSchema;
+
+  @Nullable
   @JsonProperty("moderation_dashboard_preferences")
   private ModerationDashboardPreferences moderationDashboardPreferences;
 

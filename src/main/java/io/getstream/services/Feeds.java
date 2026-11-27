@@ -831,6 +831,10 @@ public interface Feeds {
       @NotNull String id) throws StreamException;
 
   @NotNull
+  public StreamRequest<QueryFeedsEngagementStatsResponse> queryFeedsEngagementStats(
+      QueryFeedsEngagementStatsRequest request) throws StreamException;
+
+  @NotNull
   public StreamRequest<QueryFeedsUsageStatsResponse> queryFeedsUsageStats(
       QueryFeedsUsageStatsRequest request) throws StreamException;
 
