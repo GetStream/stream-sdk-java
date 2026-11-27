@@ -4,6 +4,10 @@ import io.getstream.exceptions.StreamException;
 import io.getstream.models.*;
 import io.getstream.models.framework.SRTCredentials;
 import io.getstream.models.framework.StreamResponse;
+import io.getstream.services.framework.TokenBuilder;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import org.jetbrains.annotations.NotNull;
 
 public class Call extends BaseCall {
@@ -42,23 +46,63 @@ public class Call extends BaseCall {
     return this.getOrCreate(new GetOrCreateCallRequest());
   }
 
+  /**
+   * Creates the SRT address an encoder (OBS, ffmpeg, ...) uses to publish into this call. The token
+   * in it expires after {@link #DEFAULT_SRT_TOKEN_VALIDITY}.
+   *
+   * @see #createSRTCredentials(String, Duration)
+   */
   public SRTCredentials createSRTCredentials(@NotNull String userID) throws StreamException {
+    return createSRTCredentials(userID, DEFAULT_SRT_TOKEN_VALIDITY);
+  }
+
+  /**
+   * Creates the SRT address an encoder (OBS, ffmpeg, ...) uses to publish into this call.
+   *
+   * <p>The address embeds a user token that can only join this call and expires after {@code
+   * validity}. The token is checked again whenever the stream reconnects, and at least every 6
+   * hours during a stream, so it must stay valid until the stream ends. Treat the address as a
+   * secret.
+   *
+   * @param userID the user the encoder publishes as
+   * @param validity how long the address works, at least one second
+   */
+  public SRTCredentials createSRTCredentials(@NotNull String userID, @NotNull Duration validity)
+      throws StreamException {
     if (this.data == null) {
       throw StreamException.build(
           "Call object is not initialized, please call get() or getOrCreate() first");
     }
+    return buildSRTCredentials(
+        data.getIngress().getSrt().getAddress(),
+        this.service.getSDKClient().tokenBuilder(),
+        userID,
+        callType + ":" + callID,
+        validity);
+  }
 
-    String token = this.service.getSDKClient().tokenBuilder().createToken(userID);
+  /** Default lifetime of the token in an SRT address. */
+  public static final Duration DEFAULT_SRT_TOKEN_VALIDITY = Duration.ofHours(24);
+
+  static SRTCredentials buildSRTCredentials(
+      @NotNull String addressTemplate,
+      @NotNull TokenBuilder tokenBuilder,
+      @NotNull String userID,
+      @NotNull String callCID,
+      @NotNull Duration validity)
+      throws StreamException {
+    if (validity == null || validity.compareTo(Duration.ofSeconds(1)) < 0) {
+      throw new IllegalArgumentException("validity must be at least one second");
+    }
+
+    Instant expiresAt = Instant.now().plus(validity).truncatedTo(ChronoUnit.SECONDS);
+    String token = tokenBuilder.createScopedCallToken(userID, callCID, expiresAt);
     String[] segments = token.split("\\.");
-    String passphrase = segments[2];
+    if (segments.length != 3) {
+      throw StreamException.build("Invalid token format");
+    }
 
-    return SRTCredentials.builder()
-        .address(
-            data.getIngress()
-                .getSrt()
-                .getAddress()
-                .replace("{passphrase}", passphrase)
-                .replace("{token}", token))
-        .build();
+    String address = addressTemplate.replace("{passphrase}", segments[2]).replace("{token}", token);
+    return SRTCredentials.builder().address(address).expiresAt(expiresAt).build();
   }
 }
