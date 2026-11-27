@@ -30,6 +30,10 @@ public class ActivityFeedbackRequest {
   private Boolean hide;
 
   @Nullable
+  @JsonProperty("request_id")
+  private String requestID;
+
+  @Nullable
   @JsonProperty("show_less")
   private Boolean showLess;
 
