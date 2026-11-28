@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.4.0](https://github.com/GetStream/stream-sdk-java/compare/11.3.0...11.4.0) (2026-11-28)
+
+
+### Features
+
+* add analytics, experiment to ForYouConfig ([680da52](https://github.com/GetStream/stream-sdk-java/commit/680da522d91dd3a33b97c731822e6d656e4c14f6))
+* add audioConfig to AIVideoConfigRequest ([3c84779](https://github.com/GetStream/stream-sdk-java/commit/3c84779b898407b478b901c047e1b73e189ddabf))
+* add audioConfig to AIVideoConfigResponse ([3c84779](https://github.com/GetStream/stream-sdk-java/commit/3c84779b898407b478b901c047e1b73e189ddabf))
+* add budgets to GetRateLimitsResponse ([2a1a896](https://github.com/GetStream/stream-sdk-java/commit/2a1a89608962ea60a2ae4cdf6275d3611e1f2234))
+* add capped, total to QueryAppealsResponse ([cb76e14](https://github.com/GetStream/stream-sdk-java/commit/cb76e147d889c4426a65e0f3e7a72669b26f05e7))
+* add channelCids, messagesFrom, messagesTo to ExportUsersRequest ([d8ec7ae](https://github.com/GetStream/stream-sdk-java/commit/d8ec7ae52b357eedc9dbafbc72a5a0867aea1eda))
+* add channelType to BanRequest ([a84669d](https://github.com/GetStream/stream-sdk-java/commit/a84669df749fcc7389a3df38017b7d318b7dffff))
+* add channelType to unban ([a84669d](https://github.com/GetStream/stream-sdk-java/commit/a84669df749fcc7389a3df38017b7d318b7dffff))
+* add createSystemFeeds to AddActivityRequest ([231eba8](https://github.com/GetStream/stream-sdk-java/commit/231eba8c298443f4a333fbdc73e8982bdcd5c6be))
+* add createSystemFeeds to UpsertActivitiesRequest ([231eba8](https://github.com/GetStream/stream-sdk-java/commit/231eba8c298443f4a333fbdc73e8982bdcd5c6be))
+* add deletedBy to ChatMessageResponse ([231eba8](https://github.com/GetStream/stream-sdk-java/commit/231eba8c298443f4a333fbdc73e8982bdcd5c6be))
+* add deletedBy to MessageResponse ([231eba8](https://github.com/GetStream/stream-sdk-java/commit/231eba8c298443f4a333fbdc73e8982bdcd5c6be))
+* add deletedBy to MessageWithChannelResponse ([231eba8](https://github.com/GetStream/stream-sdk-java/commit/231eba8c298443f4a333fbdc73e8982bdcd5c6be))
+* add deletedBy to SearchResultMessage ([231eba8](https://github.com/GetStream/stream-sdk-java/commit/231eba8c298443f4a333fbdc73e8982bdcd5c6be))
+* add disableReviewQueue to ModerationDashboardPreferences ([0d8c6ea](https://github.com/GetStream/stream-sdk-java/commit/0d8c6eae5b3257f4c4e382d8d1cd2e11b7e83c45))
+* add filterConditions to FeedsPolicyConfig ([680da52](https://github.com/GetStream/stream-sdk-java/commit/680da522d91dd3a33b97c731822e6d656e4c14f6))
+* add filterConditions to MarkChannelsReadRequest ([3c84779](https://github.com/GetStream/stream-sdk-java/commit/3c84779b898407b478b901c047e1b73e189ddabf))
+* add filterConditions to SetFeedsRetentionPolicyRequest ([680da52](https://github.com/GetStream/stream-sdk-java/commit/680da522d91dd3a33b97c731822e6d656e4c14f6))
+* add includeCount to QueryAppealsRequest ([cb76e14](https://github.com/GetStream/stream-sdk-java/commit/cb76e147d889c4426a65e0f3e7a72669b26f05e7))
+* add itemID to SubmitActionResponse ([000d9ab](https://github.com/GetStream/stream-sdk-java/commit/000d9ab2303ac893b97d6364902e39ed9b6f89ed))
+* add limit, next to getBlockedUsers ([3c84779](https://github.com/GetStream/stream-sdk-java/commit/3c84779b898407b478b901c047e1b73e189ddabf))
+* add messageSchema to AppResponseFields ([680da52](https://github.com/GetStream/stream-sdk-java/commit/680da522d91dd3a33b97c731822e6d656e4c14f6))
+* add messageSchema to UpdateAppRequest ([680da52](https://github.com/GetStream/stream-sdk-java/commit/680da522d91dd3a33b97c731822e6d656e4c14f6))
+* add next to GetBlockedUsersResponse ([3c84779](https://github.com/GetStream/stream-sdk-java/commit/3c84779b898407b478b901c047e1b73e189ddabf))
+* add queryFeedsEngagementStats ([680da52](https://github.com/GetStream/stream-sdk-java/commit/680da522d91dd3a33b97c731822e6d656e4c14f6))
+* add requestID to ActivityFeedbackRequest ([680da52](https://github.com/GetStream/stream-sdk-java/commit/680da522d91dd3a33b97c731822e6d656e4c14f6))
+* add transcribeMessage ([0d8c6ea](https://github.com/GetStream/stream-sdk-java/commit/0d8c6eae5b3257f4c4e382d8d1cd2e11b7e83c45))
+
+
+### Bug Fixes
+
+* **security:** scope and expire SRT ingest tokens [SEC-2523] ([#153](https://github.com/GetStream/stream-sdk-java/issues/153)) ([1272aac](https://github.com/GetStream/stream-sdk-java/commit/1272aacdc372cc6b12bb0aed9251db3f599d7061))
+
 ## [11.3.0](https://github.com/GetStream/stream-sdk-java/compare/11.2.0...11.3.0) (2026-11-23)
 
 
